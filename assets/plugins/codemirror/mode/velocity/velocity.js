@@ -64,7 +64,7 @@ CodeMirror.defineMode("velocity", function() {
             stream.eatWhile(/[\w\.]/);
             return "number";
         }
-        // multi line comment?
+        // multi line comentario?
         else if (ch == "#" && stream.eat("*")) {
             state.lastTokenWasBuiltin = false;
             return chain(stream, state, tokenComment);
@@ -74,11 +74,11 @@ CodeMirror.defineMode("velocity", function() {
             state.lastTokenWasBuiltin = false;
             return chain(stream, state, tokenUnparsed);
         }
-        // single line comment?
+        // single line comentario?
         else if (ch == "#" && stream.eat("#")) {
             state.lastTokenWasBuiltin = false;
             stream.skipToEnd();
-            return "comment";
+            return "comentario";
         }
         // variable?
         else if (ch == "$") {
@@ -155,7 +155,7 @@ CodeMirror.defineMode("velocity", function() {
             }
             maybeEnd = (ch == "*");
         }
-        return "comment";
+        return "comentario";
     }
 
     function tokenUnparsed(stream, state) {

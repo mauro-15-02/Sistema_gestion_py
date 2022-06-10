@@ -420,18 +420,18 @@
 .fa.fa-dashboard:before {
   content: "\f3fd"; }
 
-.fa.fa-comment-o {
+.fa.fa-comentario-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-comment-o:before {
+.fa.fa-comentario-o:before {
   content: "\f075"; }
 
-.fa.fa-comments-o {
+.fa.fa-comentarios-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-comments-o:before {
+.fa.fa-comentarios-o:before {
   content: "\f086"; }
 
 .fa.fa-flash:before {
@@ -1784,14 +1784,14 @@
 .fa.fa-map-o:before {
   content: "\f279"; }
 
-.fa.fa-commenting:before {
+.fa.fa-comentarioing:before {
   content: "\f4ad"; }
 
-.fa.fa-commenting-o {
+.fa.fa-comentarioing-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-commenting-o:before {
+.fa.fa-comentarioing-o:before {
   content: "\f4ad"; }
 
 .fa.fa-houzz {
@@ -2006,21 +2006,21 @@
   font-family: 'Font Awesome 5 Brands';
   font-weight: 400; }
 
-.fa.fa-address-book-o {
+.fa.fa-direccion-book-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-address-book-o:before {
+.fa.fa-direccion-book-o:before {
   content: "\f2b9"; }
 
 .fa.fa-vcard:before {
   content: "\f2bb"; }
 
-.fa.fa-address-card-o {
+.fa.fa-direccion-card-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-address-card-o:before {
+.fa.fa-direccion-card-o:before {
   content: "\f2bb"; }
 
 .fa.fa-vcard-o {

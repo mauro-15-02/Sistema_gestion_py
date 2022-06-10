@@ -26,7 +26,7 @@
                 searchButtonTooltip: "Buscar",
                 clearFilterButtonTooltip: "Remover filtro",
                 insertButtonTooltip: "Adicionar",
-                updateButtonTooltip: "Atualizar",
+                upfechaButtonTooltip: "Atualizar",
                 cancelEditButtonTooltip: "Cancelar Edição"
             }
         },

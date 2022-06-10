@@ -156,7 +156,7 @@ CodeMirror.defineMode("apl", function() {
       }
       if (isComment.test(ch)) {
         stream.skipToEnd();
-        return "comment";
+        return "comentario";
       }
       if (ch === "∘" && stream.peek() === ".") {
         stream.next();

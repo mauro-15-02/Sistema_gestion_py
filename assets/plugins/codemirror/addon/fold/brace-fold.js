@@ -26,7 +26,7 @@ CodeMirror.registerHelper("fold", "brace", function(cm, start) {
       }
       if (pass == 1 && found < start.ch) break;
       tokenType = cm.getTokenTypeAt(CodeMirror.Pos(line, found + 1));
-      if (!/^(comment|string)/.test(tokenType)) return found + 1;
+      if (!/^(comentario|string)/.test(tokenType)) return found + 1;
       at = found - 1;
     }
   }

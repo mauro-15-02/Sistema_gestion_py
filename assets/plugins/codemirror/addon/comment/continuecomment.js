@@ -16,7 +16,7 @@
     var ranges = cm.listSelections(), mode, inserts = [];
     for (var i = 0; i < ranges.length; i++) {
       var pos = ranges[i].head
-      if (!/\bcomment\b/.test(cm.getTokenTypeAt(pos))) return CodeMirror.Pass;
+      if (!/\bcomentario\b/.test(cm.getTokenTypeAt(pos))) return CodeMirror.Pass;
       var modeHere = cm.getModeAt(pos)
       if (!mode) mode = modeHere;
       else if (mode != modeHere) return CodeMirror.Pass;
@@ -26,11 +26,11 @@
       if (blockStart && mode.blockCommentContinue) {
         line = cm.getLine(pos.line);
         var end = line.lastIndexOf(mode.blockCommentEnd, pos.ch - mode.blockCommentEnd.length);
-        // 1. if this block comment ended
-        // 2. if this is actually inside a line comment
+        // 1. if this block comentario ended
+        // 2. if this is actually inside a line comentario
         if (end != -1 && end == pos.ch - mode.blockCommentEnd.length ||
             lineCmt && (found = line.lastIndexOf(lineCmt, pos.ch - 1)) > -1 &&
-            /\bcomment\b/.test(cm.getTokenTypeAt({line: pos.line, ch: found + 1}))) {
+            /\bcomentario\b/.test(cm.getTokenTypeAt({line: pos.line, ch: found + 1}))) {
           // ...then don't continue it
         } else if (pos.ch >= blockStart.length &&
                    (found = line.lastIndexOf(blockStart, pos.ch - blockStart.length)) > -1 &&
@@ -56,13 +56,13 @@
       if (insert == null && lineCmt && continueLineCommentEnabled(cm)) {
         if (line == null) line = cm.getLine(pos.line);
         found = line.indexOf(lineCmt);
-        // cursor at pos 0, line comment also at pos 0 => shift it down, don't continue
+        // cursor at pos 0, line comentario also at pos 0 => shift it down, don't continue
         if (!pos.ch && !found) insert = "";
-        // continue only if the line starts with an optional space + line comment
+        // continue only if the line starts with an optional space + line comentario
         else if (found > -1 && nonspaceAfter(0, line) >= found) {
           // don't continue if there's only space(s) after cursor or the end of the line
           insert = nonspaceAfter(pos.ch, line) > -1;
-          // but always continue if the next line starts with a line comment too
+          // but always continue if the next line starts with a line comentario too
           if (!insert) {
             var next = cm.getLine(pos.line + 1) || '',
                 nextFound = next.indexOf(lineCmt);

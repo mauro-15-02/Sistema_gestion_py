@@ -258,7 +258,7 @@ CodeMirror.defineMode("perl",function(){
                 accept                          :1,     // - accept an incoming socket connect
                 alarm                           :1,     // - schedule a SIGALRM
                 'atan2'                         :1,     // - arctangent of Y/X in the range -PI to PI
-                bind                            :1,     // - binds an address to a socket
+                bind                            :1,     // - binds an direccion to a socket
                 binmode                         :1,     // - prepare binary files for I/O
                 bless                           :1,     // - create an object
                 bootstrap                       :1,     //
@@ -308,11 +308,11 @@ CodeMirror.defineMode("perl",function(){
                 getgrent                        :1,     // - get next group record
                 getgrgid                        :1,     // - get group record given group user ID
                 getgrnam                        :1,     // - get group record given group name
-                gethostbyaddr                   :1,     // - get host record given its address
+                gethostbyaddr                   :1,     // - get host record given its direccion
                 gethostbyname                   :1,     // - get host record given name
                 gethostent                      :1,     // - get next hosts record
                 getlogin                        :1,     // - return who logged in at this tty
-                getnetbyaddr                    :1,     // - get network record given its address
+                getnetbyaddr                    :1,     // - get network record given its direccion
                 getnetbyname                    :1,     // - get networks record given name
                 getnetent                       :1,     // - get next networks record
                 getpeername                     :1,     // - find the other end of a socket connection
@@ -706,7 +706,7 @@ CodeMirror.defineMode("perl",function(){
                 if(ch=="#"){
                         if(look(stream, -2)!="$"){
                                 stream.skipToEnd();
-                                return "comment";}}
+                                return "comentario";}}
                 if(/[:+\-\^*$&%@=<>!?|\/~\.]/.test(ch)){
                         var p=stream.pos;
                         stream.eatWhile(/[:+\-\^*$&%@=<>!?|\/~\.]/);
@@ -717,7 +717,7 @@ CodeMirror.defineMode("perl",function(){
                 if(ch=="_"){
                         if(stream.pos==1){
                                 if(suffix(stream, 6)=="_END__"){
-                                        return tokenChain(stream,state,['\0'],"comment");}
+                                        return tokenChain(stream,state,['\0'],"comentario");}
                                 else if(suffix(stream, 7)=="_DATA__"){
                                         return tokenChain(stream,state,['\0'],"variable-2");}
                                 else if(suffix(stream, 7)=="_C__"){

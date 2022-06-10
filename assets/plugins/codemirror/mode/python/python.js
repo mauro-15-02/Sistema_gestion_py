@@ -102,7 +102,7 @@
       if (stream.eatSpace()) return null;
 
       // Handle Comments
-      if (!inFormat && stream.match(/^#.*/)) return "comment";
+      if (!inFormat && stream.match(/^#.*/)) return "comentario";
 
       // Handle Number Literals
       if (stream.match(/^[0-9\.]/, false)) {
@@ -321,7 +321,7 @@
       if (current == ":" && !state.lambda && top(state).type == "py")
         pushPyScope(state);
 
-      if (current.length == 1 && !/string|comment/.test(style)) {
+      if (current.length == 1 && !/string|comentario/.test(style)) {
         var delimiter_index = "[({".indexOf(current);
         if (delimiter_index != -1)
           pushBracketScope(stream, state, "])}".slice(delimiter_index, delimiter_index+1));
@@ -357,7 +357,7 @@
         if (addErr) state.errorToken = false;
         var style = tokenLexer(stream, state);
 
-        if (style && style != "comment")
+        if (style && style != "comentario")
           state.lastToken = (style == "keyword" || style == "punctuation") ? stream.current() : style;
         if (style == "punctuation") style = null;
 

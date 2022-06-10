@@ -160,7 +160,7 @@ var Extension = function () {
 
     this.colorpicker.element.on('colorpickerCreate.colorpicker-ext', _jquery2.default.proxy(this.onCreate, this));
     this.colorpicker.element.on('colorpickerDestroy.colorpicker-ext', _jquery2.default.proxy(this.onDestroy, this));
-    this.colorpicker.element.on('colorpickerUpdate.colorpicker-ext', _jquery2.default.proxy(this.onUpdate, this));
+    this.colorpicker.element.on('colorpickerUpfecha.colorpicker-ext', _jquery2.default.proxy(this.onUpfecha, this));
     this.colorpicker.element.on('colorpickerChange.colorpicker-ext', _jquery2.default.proxy(this.onChange, this));
     this.colorpicker.element.on('colorpickerInvalid.colorpicker-ext', _jquery2.default.proxy(this.onInvalid, this));
     this.colorpicker.element.on('colorpickerShow.colorpicker-ext', _jquery2.default.proxy(this.onShow, this));
@@ -215,15 +215,15 @@ var Extension = function () {
     }
 
     /**
-     * Method called after the colorpicker is updated
+     * Method called after the colorpicker is upfechad
      *
-     * @listens Colorpicker#colorpickerUpdate
+     * @listens Colorpicker#colorpickerUpfecha
      * @param {Event} event
      */
 
   }, {
-    key: 'onUpdate',
-    value: function onUpdate(event) {}
+    key: 'onUpfecha',
+    value: function onUpfecha(event) {}
     // to be extended
 
 
@@ -2944,8 +2944,8 @@ var Colorpicker = function () {
       // Inject into the DOM (this may make it visible)
       this.pickerHandler.attach();
 
-      // Update all components
-      this.update();
+      // Upfecha all components
+      this.upfecha();
 
       if (this.inputHandler.isDisabled()) {
         this.disable();
@@ -3116,34 +3116,34 @@ var Colorpicker = function () {
        */
       this.trigger('colorpickerChange', ch.color, val);
 
-      // force update if color has changed to empty
-      this.update();
+      // force upfecha if color has changed to empty
+      this.upfecha();
     }
 
     /**
-     * Updates the UI and the input color according to the internal color.
+     * Upfechas the UI and the input color according to the internal color.
      *
-     * @fires Colorpicker#colorpickerUpdate
+     * @fires Colorpicker#colorpickerUpfecha
      */
 
   }, {
-    key: 'update',
-    value: function update() {
+    key: 'upfecha',
+    value: function upfecha() {
       if (this.colorHandler.hasColor()) {
-        this.inputHandler.update();
+        this.inputHandler.upfecha();
       } else {
         this.colorHandler.assureColor();
       }
 
-      this.addonHandler.update();
-      this.pickerHandler.update();
+      this.addonHandler.upfecha();
+      this.pickerHandler.upfecha();
 
       /**
-       * (Colorpicker) Fired when the widget is updated.
+       * (Colorpicker) Fired when the widget is upfechad.
        *
-       * @event Colorpicker#colorpickerUpdate
+       * @event Colorpicker#colorpickerUpfecha
        */
-      this.trigger('colorpickerUpdate');
+      this.trigger('colorpickerUpfecha');
     }
 
     /**
@@ -3422,9 +3422,9 @@ var Debugger = function (_Extension) {
       return _get(Debugger.prototype.__proto__ || Object.getPrototypeOf(Debugger.prototype), 'onDestroy', this).call(this, event);
     }
   }, {
-    key: 'onUpdate',
-    value: function onUpdate(event) {
-      this.log('colorpickerUpdate');
+    key: 'onUpfecha',
+    value: function onUpfecha(event) {
+      this.log('colorpickerUpfecha');
     }
 
     /**
@@ -3537,9 +3537,9 @@ var Preview = function (_Extension) {
       this.colorpicker.picker.append(this.element);
     }
   }, {
-    key: 'onUpdate',
-    value: function onUpdate(event) {
-      _get(Preview.prototype.__proto__ || Object.getPrototypeOf(Preview.prototype), 'onUpdate', this).call(this, event);
+    key: 'onUpfecha',
+    value: function onUpfecha(event) {
+      _get(Preview.prototype.__proto__ || Object.getPrototypeOf(Preview.prototype), 'onUpfecha', this).call(this, event);
 
       if (!event.color) {
         this.elementInner.css('backgroundColor', null).css('color', null).html('');
@@ -4182,7 +4182,7 @@ var PopupHandler = function () {
     key: 'reposition',
     value: function reposition(e) {
       if (this.popoverTarget && this.isVisible()) {
-        this.popoverTarget.popover('update');
+        this.popoverTarget.popover('upfecha');
       }
     }
 
@@ -4506,7 +4506,7 @@ var InputHandler = function () {
       var val = '';
 
       [
-      // candidates:
+      // candifechas:
       this.input.val(), this.input.data('color'), this.input.attr('data-color')].map(function (item) {
         if (item && val === '') {
           val = item;
@@ -4540,7 +4540,7 @@ var InputHandler = function () {
     }
 
     /**
-     * If the input element is present, it updates the value with the current color object color string.
+     * If the input element is present, it upfechas the value with the current color object color string.
      * If the value is changed, this method fires a "change" event on the input element.
      *
      * @param {String} val
@@ -4678,14 +4678,14 @@ var InputHandler = function () {
      */
 
   }, {
-    key: 'update',
-    value: function update() {
+    key: 'upfecha',
+    value: function upfecha() {
       if (!this.hasInput()) {
         return;
       }
 
       if (this.colorpicker.options.autoInputFallback === false && this.colorpicker.colorHandler.isInvalidColor()) {
-        // prevent update if color is invalid, autoInputFallback is disabled and the last event is keyup.
+        // prevent upfecha if color is invalid, autoInputFallback is disabled and the last event is keyup.
         return;
       }
 
@@ -4693,7 +4693,7 @@ var InputHandler = function () {
     }
 
     /**
-     * Function triggered when the input has changed, so the colorpicker gets updated.
+     * Function triggered when the input has changed, so the colorpicker gets upfechad.
      *
      * @private
      * @param {Event} e
@@ -6089,8 +6089,8 @@ var PickerHandler = function () {
      */
 
   }, {
-    key: 'update',
-    value: function update() {
+    key: 'upfecha',
+    value: function upfecha() {
       if (!this.colorpicker.colorHandler.hasColor()) {
         return;
       }
@@ -6216,12 +6216,12 @@ var AddonHandler = function () {
     }
 
     /**
-     * If the addon element is present, its background color is updated
+     * If the addon element is present, its background color is upfechad
      */
 
   }, {
-    key: 'update',
-    value: function update() {
+    key: 'upfecha',
+    value: function upfecha() {
       if (!this.colorpicker.colorHandler.hasColor() || !this.hasAddon()) {
         return;
       }

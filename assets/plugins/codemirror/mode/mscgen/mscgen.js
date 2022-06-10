@@ -28,7 +28,7 @@
       "brackets" : ["\\{", "\\}"], // [ and  ] are brackets too, but these get handled in with lists
       "arcsWords" : ["note", "abox", "rbox", "box"],
       "arcsOthers" : ["\\|\\|\\|", "\\.\\.\\.", "---", "--", "<->", "==", "<<=>>", "<=>", "\\.\\.", "<<>>", "::", "<:>", "->", "=>>", "=>", ">>", ":>", "<-", "<<=", "<=", "<<", "<:", "x-", "-x"],
-      "singlecomment" : ["//", "#"],
+      "singlecomentario" : ["//", "#"],
       "operators" : ["="]
     },
     xu: {
@@ -39,7 +39,7 @@
       "brackets" : ["\\{", "\\}"],  // [ and  ] are brackets too, but these get handled in with lists
       "arcsWords" : ["note", "abox", "rbox", "box", "alt", "else", "opt", "break", "par", "seq", "strict", "neg", "critical", "ignore", "consider", "assert", "loop", "ref", "exc"],
       "arcsOthers" : ["\\|\\|\\|", "\\.\\.\\.", "---", "--", "<->", "==", "<<=>>", "<=>", "\\.\\.", "<<>>", "::", "<:>", "->", "=>>", "=>", ">>", ":>", "<-", "<<=", "<=", "<<", "<:", "x-", "-x"],
-      "singlecomment" : ["//", "#"],
+      "singlecomentario" : ["//", "#"],
       "operators" : ["="]
     },
     msgenny: {
@@ -50,7 +50,7 @@
       "brackets" : ["\\{", "\\}"],
       "arcsWords" : ["note", "abox", "rbox", "box", "alt", "else", "opt", "break", "par", "seq", "strict", "neg", "critical", "ignore", "consider", "assert", "loop", "ref", "exc"],
       "arcsOthers" : ["\\|\\|\\|", "\\.\\.\\.", "---", "--", "<->", "==", "<<=>>", "<=>", "\\.\\.", "<<>>", "::", "<:>", "->", "=>>", "=>", ">>", ":>", "<-", "<<=", "<=", "<<", "<:", "x-", "-x"],
-      "singlecomment" : ["//", "#"],
+      "singlecomentario" : ["//", "#"],
       "operators" : ["="]
     }
   }
@@ -103,15 +103,15 @@
       if (pStream.match(wordRegexp(pConfig.brackets), true, true)) {
         return "bracket";
       }
-      /* comments */
+      /* comentarios */
       if (!pState.inComment) {
         if (pStream.match(/\/\*[^\*\/]*/, true, true)) {
           pState.inComment = true;
-          return "comment";
+          return "comentario";
         }
-        if (pStream.match(wordRegexp(pConfig.singlecomment), true, true)) {
+        if (pStream.match(wordRegexp(pConfig.singlecomentario), true, true)) {
           pStream.skipToEnd();
-          return "comment";
+          return "comentario";
         }
       }
       if (pState.inComment) {
@@ -119,7 +119,7 @@
           pState.inComment = false;
         else
           pStream.skipToEnd();
-        return "comment";
+        return "comentario";
       }
       /* strings */
       if (!pState.inString && pStream.match(/\"(\\\"|[^\"])*/, true, true)) {

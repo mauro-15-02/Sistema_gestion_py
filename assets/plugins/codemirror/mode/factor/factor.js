@@ -18,8 +18,8 @@
   CodeMirror.defineSimpleMode("factor", {
     // The start state contains the rules that are intially used
     start: [
-      // comments
-      {regex: /#?!.*/, token: "comment"},
+      // comentarios
+      {regex: /#?!.*/, token: "comentario"},
       // strings """, multiline --> state
       {regex: /"""/, token: "string", next: "string3"},
       {regex: /(STRING:)(\s)/, token: ["keyword", null], next: "string2"},

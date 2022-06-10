@@ -30,7 +30,7 @@ CodeMirror.defineMode("tcl", function() {
         "registry regsub rename resource return scan seek set socket source split " +
         "string subst switch tcl_endOfWord tcl_findLibrary tcl_startOfNextWord " +
         "tcl_wordBreakAfter tcl_startOfPreviousWord tcl_wordBreakBefore tcltest " +
-        "tclvars tell time trace unknown unset update uplevel upvar variable " +
+        "tclvars tell time trace unknown unset upfecha uplevel upvar variable " +
     "vwait");
     var functions = parseWords("if elseif else and not or eq ne in ni for foreach while switch");
     var isOperatorChar = /[+\-*&%=<>!?^\/\|]/;
@@ -57,10 +57,10 @@ CodeMirror.defineMode("tcl", function() {
         if (ch == "#" && stream.match(/ *\[ *\[/))
           return chain(stream, state, tokenUnparsed);
         stream.skipToEnd();
-        return "comment";
+        return "comentario";
       } else if (ch == '"') {
         stream.skipTo(/"/);
-        return "comment";
+        return "comentario";
       } else if (ch == "$") {
         stream.eatWhile(/[$_a-z0-9A-Z\.{:]/);
         stream.eatWhile(/}/);
@@ -68,7 +68,7 @@ CodeMirror.defineMode("tcl", function() {
         return "builtin";
       } else if (isOperatorChar.test(ch)) {
         stream.eatWhile(isOperatorChar);
-        return "comment";
+        return "comentario";
       } else {
         stream.eatWhile(/[\w\$_{}\xa1-\uffff]/);
         var word = stream.current().toLowerCase();
@@ -104,7 +104,7 @@ CodeMirror.defineMode("tcl", function() {
         }
         maybeEnd = (ch == "*");
       }
-      return "comment";
+      return "comentario";
     }
     function tokenUnparsed(stream, state) {
       var maybeEnd = 0, ch;

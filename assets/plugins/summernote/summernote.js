@@ -56,9 +56,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 	__webpack_require__.d = function(exports, nombre, getter) {
+/******/ 		if(!__webpack_require__.o(exports, nombre)) {
+/******/ 			Object.defineProperty(exports, nombre, { enumerable: true, get: getter });
 /******/ 		}
 /******/ 	};
 /******/
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 	};
 /******/
-/******/ 	// create a fake namespace object
+/******/ 	// create a fake nombrespace object
 /******/ 	// mode & 1: value is a module id, require it
 /******/ 	// mode & 2: merge all properties of value into the ns
 /******/ 	// mode & 4: return value when already ns object
@@ -150,8 +150,8 @@ var Renderer = /*#__PURE__*/function () {
         $node.html(this.options.contents);
       }
 
-      if (this.options && this.options.className) {
-        $node.addClass(this.options.className);
+      if (this.options && this.options.classnombre) {
+        $node.addClass(this.options.classnombre);
       }
 
       if (this.options && this.options.data) {
@@ -239,7 +239,7 @@ external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.exten
       underline: 'Underline',
       clear: 'Remove Font Style',
       height: 'Line Height',
-      name: 'Font Family',
+      nombre: 'Font Family',
       strikethrough: 'Strikethrough',
       subscript: 'Subscript',
       superscript: 'Superscript',
@@ -399,25 +399,25 @@ var isSupportAmd = typeof define === 'function' && __webpack_require__(2); // es
 /**
  * returns whether font is installed or not.
  *
- * @param {String} fontName
+ * @param {String} fontnombre
  * @return {Boolean}
  */
 
 var genericFontFamilies = ['sans-serif', 'serif', 'monospace', 'cursive', 'fantasy'];
 
-function validFontName(fontName) {
-  return external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.inArray(fontName.toLowerCase(), genericFontFamilies) === -1 ? "'".concat(fontName, "'") : fontName;
+function validFontnombre(fontnombre) {
+  return external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.inArray(fontnombre.toLowerCase(), genericFontFamilies) === -1 ? "'".concat(fontnombre, "'") : fontnombre;
 }
 
-function env_isFontInstalled(fontName) {
-  var testFontName = fontName === 'Comic Sans MS' ? 'Courier New' : 'Comic Sans MS';
+function env_isFontInstalled(fontnombre) {
+  var testFontnombre = fontnombre === 'Comic Sans MS' ? 'Courier New' : 'Comic Sans MS';
   var testText = 'mmmmmmmmmmwwwww';
   var testSize = '200px';
   var canvas = document.createElement('canvas');
   var context = canvas.getContext('2d');
-  context.font = testSize + " '" + testFontName + "'";
+  context.font = testSize + " '" + testFontnombre + "'";
   var originalWidth = context.measureText(testText).width;
-  context.font = testSize + ' ' + validFontName(fontName) + ', "' + testFontName + '"';
+  context.font = testSize + ' ' + validFontnombre(fontnombre) + ', "' + testFontnombre + '"';
   var width = context.measureText(testText).width;
   return originalWidth !== width;
 }
@@ -444,14 +444,14 @@ var isEdge = /Edge\/\d+/.test(userAgent);
 var isSupportTouch = 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0; // [workaround] IE doesn't have input events for contentEditable
 // - see: https://goo.gl/4bfIvA
 
-var inputEventName = isMSIE ? 'DOMCharacterDataModified DOMSubtreeModified DOMNodeInserted' : 'input';
+var inputEventnombre = isMSIE ? 'DOMCharacterDataModified DOMSubtreeModified DOMNodeInserted' : 'input';
 /**
  * @class core.env
  *
  * Object which check platform and agent
  *
  * @singleton
- * @alternateClassName env
+ * @alternateClassnombre env
  */
 
 /* harmony default export */ var env = ({
@@ -469,9 +469,9 @@ var inputEventName = isMSIE ? 'DOMCharacterDataModified DOMSubtreeModified DOMNo
   isSupportTouch: isSupportTouch,
   isFontInstalled: env_isFontInstalled,
   isW3CRangeSupport: !!document.createRange,
-  inputEventName: inputEventName,
+  inputEventnombre: inputEventnombre,
   genericFontFamilies: genericFontFamilies,
-  validFontName: validFontName
+  validFontnombre: validFontnombre
 });
 // CONCATENATED MODULE: ./src/js/base/core/func.js
 
@@ -481,7 +481,7 @@ var inputEventName = isMSIE ? 'DOMCharacterDataModified DOMSubtreeModified DOMNo
  * func utils (for high-order func's arg)
  *
  * @singleton
- * @alternateClassName func
+ * @alternateClassnombre func
  */
 
 function eq(itemA) {
@@ -494,9 +494,9 @@ function eq2(itemA, itemB) {
   return itemA === itemB;
 }
 
-function peq2(propName) {
+function peq2(propnombre) {
   return function (itemA, itemB) {
-    return itemA[propName] === itemB[propName];
+    return itemA[propnombre] === itemB[propnombre];
   };
 }
 
@@ -593,16 +593,16 @@ function invertObject(obj) {
   return inverted;
 }
 /**
- * @param {String} namespace
+ * @param {String} nombrespace
  * @param {String} [prefix]
  * @return {String}
  */
 
 
-function namespaceToCamel(namespace, prefix) {
+function nombrespaceToCamel(nombrespace, prefix) {
   prefix = prefix || '';
-  return prefix + namespace.split('.').map(function (name) {
-    return name.substring(0, 1).toUpperCase() + name.substring(1);
+  return prefix + nombrespace.split('.').map(function (nombre) {
+    return nombre.substring(0, 1).toUpperCase() + nombre.substring(1);
   }).join('');
 }
 /**
@@ -666,7 +666,7 @@ function isValidUrl(url) {
   uniqueId: uniqueId,
   rect2bnd: rect2bnd,
   invertObject: invertObject,
-  namespaceToCamel: namespaceToCamel,
+  nombrespaceToCamel: nombrespaceToCamel,
   debounce: debounce,
   isValidUrl: isValidUrl
 });
@@ -893,7 +893,7 @@ function prev(array, item) {
  * list utils
  *
  * @singleton
- * @alternateClassName list
+ * @alternateClassnombre list
  */
 
 
@@ -947,19 +947,19 @@ function isControlSizing(node) {
   return node && external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()(node).hasClass('note-control-sizing');
 }
 /**
- * @method makePredByNodeName
+ * @method makePredByNodenombre
  *
- * returns predicate which judge whether nodeName is same
+ * returns predicate which judge whether nodenombre is same
  *
- * @param {String} nodeName
+ * @param {String} nodenombre
  * @return {Function}
  */
 
 
-function makePredByNodeName(nodeName) {
-  nodeName = nodeName.toUpperCase();
+function makePredByNodenombre(nodenombre) {
+  nodenombre = nodenombre.toUpperCase();
   return function (node) {
-    return node && node.nodeName.toUpperCase() === nodeName;
+    return node && node.nodenombre.toUpperCase() === nodenombre;
   };
 }
 /**
@@ -995,7 +995,7 @@ function isElement(node) {
 
 
 function isVoid(node) {
-  return node && /^BR|^IMG|^HR|^IFRAME|^BUTTON|^INPUT|^AUDIO|^VIDEO|^EMBED/.test(node.nodeName.toUpperCase());
+  return node && /^BR|^IMG|^HR|^IFRAME|^BUTTON|^INPUT|^AUDIO|^VIDEO|^EMBED/.test(node.nodenombre.toUpperCase());
 }
 
 function isPara(node) {
@@ -1004,44 +1004,44 @@ function isPara(node) {
   } // Chrome(v31.0), FF(v25.0.1) use DIV for paragraph
 
 
-  return node && /^DIV|^P|^LI|^H[1-7]/.test(node.nodeName.toUpperCase());
+  return node && /^DIV|^P|^LI|^H[1-7]/.test(node.nodenombre.toUpperCase());
 }
 
 function isHeading(node) {
-  return node && /^H[1-7]/.test(node.nodeName.toUpperCase());
+  return node && /^H[1-7]/.test(node.nodenombre.toUpperCase());
 }
 
-var isPre = makePredByNodeName('PRE');
-var isLi = makePredByNodeName('LI');
+var isPre = makePredByNodenombre('PRE');
+var isLi = makePredByNodenombre('LI');
 
 function isPurePara(node) {
   return isPara(node) && !isLi(node);
 }
 
-var isTable = makePredByNodeName('TABLE');
-var isData = makePredByNodeName('DATA');
+var isTable = makePredByNodenombre('TABLE');
+var isData = makePredByNodenombre('DATA');
 
 function dom_isInline(node) {
   return !isBodyContainer(node) && !isList(node) && !isHr(node) && !isPara(node) && !isTable(node) && !isBlockquote(node) && !isData(node);
 }
 
 function isList(node) {
-  return node && /^UL|^OL/.test(node.nodeName.toUpperCase());
+  return node && /^UL|^OL/.test(node.nodenombre.toUpperCase());
 }
 
-var isHr = makePredByNodeName('HR');
+var isHr = makePredByNodenombre('HR');
 
 function dom_isCell(node) {
-  return node && /^TD|^TH/.test(node.nodeName.toUpperCase());
+  return node && /^TD|^TH/.test(node.nodenombre.toUpperCase());
 }
 
-var isBlockquote = makePredByNodeName('BLOCKQUOTE');
+var isBlockquote = makePredByNodenombre('BLOCKQUOTE');
 
 function isBodyContainer(node) {
   return dom_isCell(node) || isBlockquote(node) || isEditable(node);
 }
 
-var isAnchor = makePredByNodeName('A');
+var isAnchor = makePredByNodenombre('A');
 
 function isParaInline(node) {
   return dom_isInline(node) && !!dom_ancestor(node, isPara);
@@ -1051,7 +1051,7 @@ function isBodyInline(node) {
   return dom_isInline(node) && !dom_ancestor(node, isPara);
 }
 
-var isBody = makePredByNodeName('BODY');
+var isBody = makePredByNodenombre('BODY');
 /**
  * returns whether nodeB is closest sibling of nodeA
  *
@@ -1335,14 +1335,14 @@ function listDescendant(node, pred) {
  * wrap node with new tag.
  *
  * @param {Node} node
- * @param {Node} tagName of wrapper
+ * @param {Node} tagnombre of wrapper
  * @return {Node} - wrapper
  */
 
 
-function wrap(node, wrapperName) {
+function wrap(node, wrappernombre) {
   var parent = node.parentNode;
-  var wrapper = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()('<' + wrapperName + '>')[0];
+  var wrapper = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()('<' + wrappernombre + '>')[0];
   parent.insertBefore(wrapper, node);
   wrapper.appendChild(node);
   return wrapper;
@@ -1948,8 +1948,8 @@ function splitPoint(point, isInline) {
   };
 }
 
-function dom_create(nodeName) {
-  return document.createElement(nodeName);
+function dom_create(nodenombre) {
+  return document.createElement(nodenombre);
 }
 
 function createText(text) {
@@ -2012,20 +2012,20 @@ function removeWhile(node, pred) {
 /**
  * @method replace
  *
- * replace node with provided nodeName
+ * replace node with provided nodenombre
  *
  * @param {Node} node
- * @param {String} nodeName
+ * @param {String} nodenombre
  * @return {Node} - new node
  */
 
 
-function dom_replace(node, nodeName) {
-  if (node.nodeName.toUpperCase() === nodeName.toUpperCase()) {
+function dom_replace(node, nodenombre) {
+  if (node.nodenombre.toUpperCase() === nodenombre.toUpperCase()) {
     return node;
   }
 
-  var newNode = dom_create(nodeName);
+  var newNode = dom_create(nodenombre);
 
   if (node.style.cssText) {
     newNode.style.cssText = node.style.cssText;
@@ -2037,7 +2037,7 @@ function dom_replace(node, nodeName) {
   return newNode;
 }
 
-var isTextarea = makePredByNodeName('TEXTAREA');
+var isTextarea = makePredByNodenombre('TEXTAREA');
 /**
  * @param {jQuery} $node
  * @param {Boolean} [stripLinebreaks] - default: false
@@ -2067,10 +2067,10 @@ function dom_html($node, isNewlineOnBlock) {
 
   if (isNewlineOnBlock) {
     var regexTag = /<(\/?)(\b(?!!)[^>\s]*)(.*?)(\s*\/?>)/g;
-    markup = markup.replace(regexTag, function (match, endSlash, name) {
-      name = name.toUpperCase();
-      var isEndOfInlineContainer = /^DIV|^TD|^TH|^P|^LI|^H[1-7]/.test(name) && !!endSlash;
-      var isBlockNode = /^BLOCKQUOTE|^TABLE|^TBODY|^TR|^HR|^UL|^OL/.test(name);
+    markup = markup.replace(regexTag, function (match, endSlash, nombre) {
+      nombre = nombre.toUpperCase();
+      var isEndOfInlineContainer = /^DIV|^TD|^TH|^P|^LI|^H[1-7]/.test(nombre) && !!endSlash;
+      var isBlockNode = /^BLOCKQUOTE|^TABLE|^TBODY|^TR|^HR|^UL|^OL/.test(nombre);
       return match + (isEndOfInlineContainer || isBlockNode ? '\n' : '');
     });
     markup = markup.trim();
@@ -2127,7 +2127,7 @@ function isCustomStyleTag(node) {
 
   /** @property {String} emptyPara */
   emptyPara: "<p>".concat(blankHTML, "</p>"),
-  makePredByNodeName: makePredByNodeName,
+  makePredByNodenombre: makePredByNodenombre,
   isEditable: isEditable,
   isControlSizing: isControlSizing,
   isText: isText,
@@ -2149,15 +2149,15 @@ function isCustomStyleTag(node) {
   isBlockquote: isBlockquote,
   isBodyContainer: isBodyContainer,
   isAnchor: isAnchor,
-  isDiv: makePredByNodeName('DIV'),
+  isDiv: makePredByNodenombre('DIV'),
   isLi: isLi,
-  isBR: makePredByNodeName('BR'),
-  isSpan: makePredByNodeName('SPAN'),
-  isB: makePredByNodeName('B'),
-  isU: makePredByNodeName('U'),
-  isS: makePredByNodeName('S'),
-  isI: makePredByNodeName('I'),
-  isImg: makePredByNodeName('IMG'),
+  isBR: makePredByNodenombre('BR'),
+  isSpan: makePredByNodenombre('SPAN'),
+  isB: makePredByNodenombre('B'),
+  isU: makePredByNodenombre('U'),
+  isS: makePredByNodenombre('S'),
+  isI: makePredByNodenombre('I'),
+  isImg: makePredByNodenombre('IMG'),
   isTextarea: isTextarea,
   deepestChildIsEmpty: deepestChildIsEmpty,
   isEmpty: dom_isEmpty,
@@ -2372,15 +2372,15 @@ var Context_Context = /*#__PURE__*/function () {
   }, {
     key: "triggerEvent",
     value: function triggerEvent() {
-      var namespace = lists.head(arguments);
+      var nombrespace = lists.head(arguments);
       var args = lists.tail(lists.from(arguments));
-      var callback = this.options.callbacks[func.namespaceToCamel(namespace, 'on')];
+      var callback = this.options.callbacks[func.nombrespaceToCamel(nombrespace, 'on')];
 
       if (callback) {
         callback.apply(this.$note[0], args);
       }
 
-      this.$note.trigger('summernote.' + namespace, args);
+      this.$note.trigger('summernote.' + nombrespace, args);
     }
   }, {
     key: "initializeModule",
@@ -2455,43 +2455,43 @@ var Context_Context = /*#__PURE__*/function () {
      */
 
   }, {
-    key: "createInvokeHandlerAndUpdateState",
-    value: function createInvokeHandlerAndUpdateState(namespace, value) {
+    key: "createInvokeHandlerAndUpfechaState",
+    value: function createInvokeHandlerAndUpfechaState(nombrespace, value) {
       var _this3 = this;
 
       return function (event) {
-        _this3.createInvokeHandler(namespace, value)(event);
+        _this3.createInvokeHandler(nombrespace, value)(event);
 
-        _this3.invoke('buttons.updateCurrentStyle');
+        _this3.invoke('buttons.upfechaCurrentStyle');
       };
     }
   }, {
     key: "createInvokeHandler",
-    value: function createInvokeHandler(namespace, value) {
+    value: function createInvokeHandler(nombrespace, value) {
       var _this4 = this;
 
       return function (event) {
         event.preventDefault();
         var $target = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()(event.target);
 
-        _this4.invoke(namespace, value || $target.closest('[data-value]').data('value'), $target);
+        _this4.invoke(nombrespace, value || $target.closest('[data-value]').data('value'), $target);
       };
     }
   }, {
     key: "invoke",
     value: function invoke() {
-      var namespace = lists.head(arguments);
+      var nombrespace = lists.head(arguments);
       var args = lists.tail(lists.from(arguments));
-      var splits = namespace.split('.');
+      var splits = nombrespace.split('.');
       var hasSeparator = splits.length > 1;
-      var moduleName = hasSeparator && lists.head(splits);
-      var methodName = hasSeparator ? lists.last(splits) : lists.head(splits);
-      var module = this.modules[moduleName || 'editor'];
+      var modulenombre = hasSeparator && lists.head(splits);
+      var methodnombre = hasSeparator ? lists.last(splits) : lists.head(splits);
+      var module = this.modules[modulenombre || 'editor'];
 
-      if (!moduleName && this[methodName]) {
-        return this[methodName].apply(this, args);
-      } else if (module && module[methodName] && module.shouldInitialize()) {
-        return module[methodName].apply(module, args);
+      if (!modulenombre && this[methodnombre]) {
+        return this[methodnombre].apply(this, args);
+      } else if (module && module[methodnombre] && module.shouldInitialize()) {
+        return module[methodnombre].apply(module, args);
       }
     }
   }]);
@@ -2516,7 +2516,7 @@ external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.fn.ex
     var type = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.type(lists.head(arguments));
     var isExternalAPICalled = type === 'string';
     var hasInitOptions = type === 'object';
-    var options = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.extend({}, external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.summernote.options, hasInitOptions ? lists.head(arguments) : {}); // Update options
+    var options = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.extend({}, external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.summernote.options, hasInitOptions ? lists.head(arguments) : {}); // Upfecha options
 
     options.langInfo = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.extend(true, {}, external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.summernote.lang['en-US'], external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.summernote.lang[options.lang]);
     options.icons = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.extend(true, {}, external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.summernote.options.icons, options.icons);
@@ -2741,7 +2741,7 @@ var range_WrappedRange = /*#__PURE__*/function () {
       };
     }
     /**
-     * select update visible range
+     * select upfecha visible range
      */
 
   }, {
@@ -3550,7 +3550,7 @@ var KEY_MAP = {
  * Object for keycodes.
  *
  * @singleton
- * @alternateClassName key
+ * @alternateClassnombre key
  */
 
 /* harmony default export */ var core_key = ({
@@ -3585,10 +3585,10 @@ var KEY_MAP = {
   },
 
   /**
-   * @property {Object} nameFromCode
-   * @property {String} nameFromCode.8 "BACKSPACE"
+   * @property {Object} nombreFromCode
+   * @property {String} nombreFromCode.8 "BACKSPACE"
    */
-  nameFromCode: func.invertObject(KEY_MAP),
+  nombreFromCode: func.invertObject(KEY_MAP),
   code: KEY_MAP
 });
 // CONCATENATED MODULE: ./src/js/base/core/async.js
@@ -3826,19 +3826,19 @@ var Style_Style = /*#__PURE__*/function () {
      *
      * @private
      * @param  {jQuery} $obj
-     * @param  {Array} propertyNames - An array of one or more CSS properties.
+     * @param  {Array} propertynombres - An array of one or more CSS properties.
      * @return {Object}
      */
-    value: function jQueryCSS($obj, propertyNames) {
+    value: function jQueryCSS($obj, propertynombres) {
       if (env.jqueryVersion < 1.9) {
         var result = {};
-        external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(propertyNames, function (idx, propertyName) {
-          result[propertyName] = $obj.css(propertyName);
+        external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(propertynombres, function (idx, propertynombre) {
+          result[propertynombre] = $obj.css(propertynombre);
         });
         return result;
       }
 
-      return $obj.css(propertyNames);
+      return $obj.css(propertynombres);
     }
     /**
      * returns style object from node
@@ -3878,7 +3878,7 @@ var Style_Style = /*#__PURE__*/function () {
      *
      * @param {WrappedRange} rng
      * @param {Object} [options] - options for styleNodes
-     * @param {String} [options.nodeName] - default: `SPAN`
+     * @param {String} [options.nodenombre] - default: `SPAN`
      * @param {Boolean} [options.expandClosestSibling] - default: `false`
      * @param {Boolean} [options.onlyPartialContains] - default: `false`
      * @return {Node[]}
@@ -3888,19 +3888,19 @@ var Style_Style = /*#__PURE__*/function () {
     key: "styleNodes",
     value: function styleNodes(rng, options) {
       rng = rng.splitText();
-      var nodeName = options && options.nodeName || 'SPAN';
+      var nodenombre = options && options.nodenombre || 'SPAN';
       var expandClosestSibling = !!(options && options.expandClosestSibling);
       var onlyPartialContains = !!(options && options.onlyPartialContains);
 
       if (rng.isCollapsed()) {
-        return [rng.insertNode(dom.create(nodeName))];
+        return [rng.insertNode(dom.create(nodenombre))];
       }
 
-      var pred = dom.makePredByNodeName(nodeName);
+      var pred = dom.makePredByNodenombre(nodenombre);
       var nodes = rng.nodes(dom.isText, {
         fullyContains: true
       }).map(function (text) {
-        return dom.singleChildAncestor(text, pred) || dom.wrap(text, nodeName);
+        return dom.singleChildAncestor(text, pred) || dom.wrap(text, nodenombre);
       });
 
       if (expandClosestSibling) {
@@ -3948,7 +3948,7 @@ var Style_Style = /*#__PURE__*/function () {
           'font-subscript': document.queryCommandState('subscript') ? 'subscript' : 'normal',
           'font-superscript': document.queryCommandState('superscript') ? 'superscript' : 'normal',
           'font-strikethrough': document.queryCommandState('strikethrough') ? 'strikethrough' : 'normal',
-          'font-family': document.queryCommandValue('fontname') || styleInfo['font-family']
+          'font-family': document.queryCommandValue('fontnombre') || styleInfo['font-family']
         });
       } catch (e) {} // eslint-disable-next-line
       // list-style-type to list-style(unordered, ordered)
@@ -4043,7 +4043,7 @@ var Bullet_Bullet = /*#__PURE__*/function () {
               return previousList.appendChild(para);
             });
           } else {
-            _this.wrapList(paras, head.parentNode.nodeName);
+            _this.wrapList(paras, head.parentNode.nodenombre);
 
             paras.map(function (para) {
               return para.parentNode;
@@ -4094,12 +4094,12 @@ var Bullet_Bullet = /*#__PURE__*/function () {
     /**
      * toggle list
      *
-     * @param {String} listName - OL or UL
+     * @param {String} listnombre - OL or UL
      */
 
   }, {
     key: "toggleList",
-    value: function toggleList(listName, editable) {
+    value: function toggleList(listnombre, editable) {
       var _this3 = this;
 
       var rng = range.create(editable).wrapBodyInlineWithPara();
@@ -4112,19 +4112,19 @@ var Bullet_Bullet = /*#__PURE__*/function () {
       if (lists.find(paras, dom.isPurePara)) {
         var wrappedParas = [];
         external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(clustereds, function (idx, paras) {
-          wrappedParas = wrappedParas.concat(_this3.wrapList(paras, listName));
+          wrappedParas = wrappedParas.concat(_this3.wrapList(paras, listnombre));
         });
         paras = wrappedParas; // list to paragraph or change list style
       } else {
         var diffLists = rng.nodes(dom.isList, {
           includeAncestor: true
         }).filter(function (listNode) {
-          return !external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.nodeName(listNode, listName);
+          return !external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.nodenombre(listNode, listnombre);
         });
 
         if (diffLists.length) {
           external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(diffLists, function (idx, listNode) {
-            dom.replace(listNode, listName);
+            dom.replace(listNode, listnombre);
           });
         } else {
           paras = this.releaseList(clustereds, true);
@@ -4135,18 +4135,18 @@ var Bullet_Bullet = /*#__PURE__*/function () {
     }
     /**
      * @param {Node[]} paras
-     * @param {String} listName
+     * @param {String} listnombre
      * @return {Node[]}
      */
 
   }, {
     key: "wrapList",
-    value: function wrapList(paras, listName) {
+    value: function wrapList(paras, listnombre) {
       var head = lists.head(paras);
       var last = lists.last(paras);
       var prevList = dom.isList(head.previousSibling) && head.previousSibling;
       var nextList = dom.isList(last.nextSibling) && last.nextSibling;
-      var listNode = prevList || dom.insertAfter(dom.create(listName || 'UL'), last); // P to LI
+      var listNode = prevList || dom.insertAfter(dom.create(listnombre || 'UL'), last); // P to LI
 
       paras = paras.map(function (para) {
         return dom.isPurePara(para) ? dom.replace(para, 'LI') : para;
@@ -4181,7 +4181,7 @@ var Bullet_Bullet = /*#__PURE__*/function () {
         var headList = isEscapseToBody ? dom.lastAncestor(head, dom.isList) : head.parentNode;
         var parentItem = headList.parentNode;
 
-        if (headList.parentNode.nodeName === 'LI') {
+        if (headList.parentNode.nodenombre === 'LI') {
           paras.map(function (para) {
             var newList = _this4.findNextSiblings(para);
 
@@ -4192,7 +4192,7 @@ var Bullet_Bullet = /*#__PURE__*/function () {
             }
 
             if (newList.length) {
-              _this4.wrapList(newList, headList.nodeName);
+              _this4.wrapList(newList, headList.nodenombre);
 
               para.appendChild(newList[0].parentNode);
             }
@@ -4273,7 +4273,7 @@ var Bullet_Bullet = /*#__PURE__*/function () {
     key: "findList",
     value: function findList(node) {
       return node ? lists.find(node.children, function (child) {
-        return ['OL', 'UL'].indexOf(child.nodeName) > -1;
+        return ['OL', 'UL'].indexOf(child.nodenombre) > -1;
       }) : null;
     }
     /**
@@ -4374,7 +4374,7 @@ var Typing_Typing = /*#__PURE__*/function () {
         // if it is an empty line with li
         if (dom.isLi(splitRoot) && (dom.isEmpty(splitRoot) || dom.deepestChildIsEmpty(splitRoot))) {
           // toggle UL/OL and escape
-          this.bullet.toggleList(splitRoot.parentNode.nodeName);
+          this.bullet.toggleList(splitRoot.parentNode.nodenombre);
           return;
         } else {
           var blockquote = null;
@@ -4471,14 +4471,14 @@ var TableResultAction = function TableResultAction(startPoint, where, action, do
    */
 
   function setStartPoint() {
-    if (!startPoint || !startPoint.tagName || startPoint.tagName.toLowerCase() !== 'td' && startPoint.tagName.toLowerCase() !== 'th') {
+    if (!startPoint || !startPoint.tagnombre || startPoint.tagnombre.toLowerCase() !== 'td' && startPoint.tagnombre.toLowerCase() !== 'th') {
       // Impossible to identify start Cell point
       return;
     }
 
     _startPoint.colPos = startPoint.cellIndex;
 
-    if (!startPoint.parentElement || !startPoint.parentElement.tagName || startPoint.parentElement.tagName.toLowerCase() !== 'tr') {
+    if (!startPoint.parentElement || !startPoint.parentElement.tagnombre || startPoint.parentElement.tagnombre.toLowerCase() !== 'tr') {
       // Impossible to identify start Row point
       return;
     }
@@ -4929,12 +4929,12 @@ var Table_Table = /*#__PURE__*/function () {
       var attrList = el.attributes || [];
 
       for (var i = 0; i < attrList.length; i++) {
-        if (attrList[i].name.toLowerCase() === 'id') {
+        if (attrList[i].nombre.toLowerCase() === 'id') {
           continue;
         }
 
         if (attrList[i].specified) {
-          resultStr += ' ' + attrList[i].name + '=\'' + attrList[i].value + '\'';
+          resultStr += ' ' + attrList[i].nombre + '=\'' + attrList[i].value + '\'';
         }
       }
 
@@ -5110,8 +5110,8 @@ var Table_Table = /*#__PURE__*/function () {
       trHTML = trs.join('');
       var $table = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()('<table>' + trHTML + '</table>');
 
-      if (options && options.tableClassName) {
-        $table.addClass(options.tableClassName);
+      if (options && options.tableClassnombre) {
+        $table.addClass(options.tableClassnombre);
       }
 
       return $table[0];
@@ -5192,7 +5192,7 @@ var Editor_Editor = /*#__PURE__*/function () {
     this.context.memo('help.outdent', this.lang.help.outdent);
     this.context.memo('help.formatPara', this.lang.help.formatPara);
     this.context.memo('help.insertHorizontalRule', this.lang.help.insertHorizontalRule);
-    this.context.memo('help.fontName', this.lang.help.fontName); // native commands(with execCommand), generate function for execCommand
+    this.context.memo('help.fontnombre', this.lang.help.fontnombre); // native commands(with execCommand), generate function for execCommand
 
     var commands = ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'formatBlock', 'removeFormat', 'backColor'];
 
@@ -5210,8 +5210,8 @@ var Editor_Editor = /*#__PURE__*/function () {
       this.context.memo('help.' + commands[idx], this.lang.help[commands[idx]]);
     }
 
-    this.fontName = this.wrapCommand(function (value) {
-      return _this.fontStyling('font-family', env.validFontName(value));
+    this.fontnombre = this.wrapCommand(function (value) {
+      return _this.fontStyling('font-family', env.validFontnombre(value));
     });
     this.fontSize = this.wrapCommand(function (value) {
       var unit = _this.currentStyle()['font-size-unit'];
@@ -5301,16 +5301,16 @@ var Editor_Editor = /*#__PURE__*/function () {
     /**
      * formatBlock
      *
-     * @param {String} tagName
+     * @param {String} tagnombre
      */
 
-    this.formatBlock = this.wrapCommand(function (tagName, $target) {
+    this.formatBlock = this.wrapCommand(function (tagnombre, $target) {
       var onApplyCustomStyle = _this.options.callbacks.onApplyCustomStyle;
 
       if (onApplyCustomStyle) {
         onApplyCustomStyle.call(_this, $target, _this.context, _this.onFormatBlock);
       } else {
-        _this.onFormatBlock(tagName, $target);
+        _this.onFormatBlock(tagnombre, $target);
       }
     });
     /**
@@ -5375,7 +5375,7 @@ var Editor_Editor = /*#__PURE__*/function () {
         anchors.push(anchor);
       } else {
         anchors = _this.style.styleNodes(rng, {
-          nodeName: 'A',
+          nodenombre: 'A',
           expandClosestSibling: true,
           onlyPartialContains: true
         });
@@ -5562,7 +5562,7 @@ var Editor_Editor = /*#__PURE__*/function () {
 
 
       this.$editable.html(dom.html(this.$note) || dom.emptyPara);
-      this.$editable.on(env.inputEventName, func.debounce(function () {
+      this.$editable.on(env.inputEventnombre, func.debounce(function () {
         _this2.context.triggerEvent('change', _this2.$editable.html(), _this2.$editable);
       }, 10));
       this.$editable.on('focusin', function (event) {
@@ -5623,18 +5623,18 @@ var Editor_Editor = /*#__PURE__*/function () {
         keys.push('SHIFT');
       }
 
-      var keyName = core_key.nameFromCode[event.keyCode];
+      var keynombre = core_key.nombreFromCode[event.keyCode];
 
-      if (keyName) {
-        keys.push(keyName);
+      if (keynombre) {
+        keys.push(keynombre);
       }
 
-      var eventName = keyMap[keys.join('+')];
+      var eventnombre = keyMap[keys.join('+')];
 
-      if (keyName === 'TAB' && !this.options.tabDisable) {
+      if (keynombre === 'TAB' && !this.options.tabDisable) {
         this.afterCommand();
-      } else if (eventName) {
-        if (this.context.invoke(eventName) !== false) {
+      } else if (eventnombre) {
+        if (this.context.invoke(eventnombre) !== false) {
           event.preventDefault(); // if keyMap action was invoked
 
           return true;
@@ -5948,7 +5948,7 @@ var Editor_Editor = /*#__PURE__*/function () {
           param($image);
         } else {
           if (typeof param === 'string') {
-            $image.attr('data-filename', param);
+            $image.attr('data-filenombre', param);
           }
 
           $image.css('width', Math.min(_this3.$editable.width(), $image.width()));
@@ -5976,13 +5976,13 @@ var Editor_Editor = /*#__PURE__*/function () {
       var _this4 = this;
 
       external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(files, function (idx, file) {
-        var filename = file.name;
+        var filenombre = file.nombre;
 
         if (_this4.options.maximumImageFileSize && _this4.options.maximumImageFileSize < file.size) {
           _this4.context.triggerEvent('image.upload.error', _this4.lang.image.maximumFileSizeError);
         } else {
           readFileAsDataURL(file).then(function (dataURL) {
-            return _this4.insertImage(dataURL, filename);
+            return _this4.insertImage(dataURL, filenombre);
           }).fail(function () {
             _this4.context.triggerEvent('image.upload.error');
           });
@@ -6023,23 +6023,23 @@ var Editor_Editor = /*#__PURE__*/function () {
     }
   }, {
     key: "onFormatBlock",
-    value: function onFormatBlock(tagName, $target) {
+    value: function onFormatBlock(tagnombre, $target) {
       // [workaround] for MSIE, IE need `<`
-      document.execCommand('FormatBlock', false, env.isMSIE ? '<' + tagName + '>' : tagName); // support custom class
+      document.execCommand('FormatBlock', false, env.isMSIE ? '<' + tagnombre + '>' : tagnombre); // support custom class
 
       if ($target && $target.length) {
-        // find the exact element has given tagName
-        if ($target[0].tagName.toUpperCase() !== tagName.toUpperCase()) {
-          $target = $target.find(tagName);
+        // find the exact element has given tagnombre
+        if ($target[0].tagnombre.toUpperCase() !== tagnombre.toUpperCase()) {
+          $target = $target.find(tagnombre);
         }
 
         if ($target && $target.length) {
-          var className = $target[0].className || '';
+          var classnombre = $target[0].classnombre || '';
 
-          if (className) {
+          if (classnombre) {
             var currentRange = this.createRange();
-            var $parent = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()([currentRange.sc, currentRange.ec]).closest(tagName);
-            $parent.addClass(className);
+            var $parent = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()([currentRange.sc, currentRange.ec]).closest(tagnombre);
+            $parent.addClass(classnombre);
           }
         }
       }
@@ -6410,9 +6410,9 @@ var Dropzone_Dropzone = /*#__PURE__*/function () {
       };
 
       this.documentEventHandlers.onDragleave = function (e) {
-        collection = collection.not(e.target); // If nodeName is BODY, then just make it over (fix for IE)
+        collection = collection.not(e.target); // If nodenombre is BODY, then just make it over (fix for IE)
 
-        if (!collection.length || e.target.nodeName === 'BODY') {
+        if (!collection.length || e.target.nodenombre === 'BODY') {
           collection = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()();
 
           _this.$editor.removeClass('dragover');
@@ -6487,7 +6487,7 @@ var Dropzone_Dropzone = /*#__PURE__*/function () {
 // CONCATENATED MODULE: ./src/js/base/module/Codeview.js
 function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.nombre; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -6632,8 +6632,8 @@ var Codeview_CodeView = /*#__PURE__*/function () {
       var CodeMirror = this.CodeMirrorConstructor;
       this.$codable.val(dom.html(this.$editable, this.options.prettifyHtml));
       this.$codable.height(this.$editable.height());
-      this.context.invoke('toolbar.updateCodeview', true);
-      this.context.invoke('airPopover.updateCodeview', true);
+      this.context.invoke('toolbar.upfechaCodeview', true);
+      this.context.invoke('airPopover.upfechaCodeview', true);
       this.$editor.addClass('codeview');
       this.$codable.focus(); // activate CodeMirror as codable
 
@@ -6644,7 +6644,7 @@ var Codeview_CodeView = /*#__PURE__*/function () {
           var server = new CodeMirror.TernServer(this.options.codemirror.tern);
           cmEditor.ternServer = server;
           cmEditor.on('cursorActivity', function (cm) {
-            server.updateArgHints(cm);
+            server.upfechaArgHints(cm);
           });
         }
 
@@ -6692,8 +6692,8 @@ var Codeview_CodeView = /*#__PURE__*/function () {
       }
 
       this.$editable.focus();
-      this.context.invoke('toolbar.updateCodeview', false);
-      this.context.invoke('airPopover.updateCodeview', false);
+      this.context.invoke('toolbar.upfechaCodeview', false);
+      this.context.invoke('airPopover.upfechaCodeview', false);
     }
   }, {
     key: "destroy",
@@ -6833,7 +6833,7 @@ var Fullscreen_Fullscreen = /*#__PURE__*/function () {
         this.$scrollbar.css('overflow', 'visible');
       }
 
-      this.context.invoke('toolbar.updateFullscreen', this.isFullscreen());
+      this.context.invoke('toolbar.upfechaFullscreen', this.isFullscreen());
     }
   }, {
     key: "isFullscreen",
@@ -6869,18 +6869,18 @@ var Handle_Handle = /*#__PURE__*/function () {
     this.lang = this.options.langInfo;
     this.events = {
       'summernote.mousedown': function summernoteMousedown(we, e) {
-        if (_this.update(e.target, e)) {
+        if (_this.upfecha(e.target, e)) {
           e.preventDefault();
         }
       },
       'summernote.keyup summernote.scroll summernote.change summernote.dialog.shown': function summernoteKeyupSummernoteScrollSummernoteChangeSummernoteDialogShown() {
-        _this.update();
+        _this.upfecha();
       },
       'summernote.disable summernote.blur': function summernoteDisableSummernoteBlur() {
         _this.hide();
       },
       'summernote.codeview.toggled': function summernoteCodeviewToggled() {
-        _this.update();
+        _this.upfecha();
       }
     };
   }
@@ -6908,7 +6908,7 @@ var Handle_Handle = /*#__PURE__*/function () {
               y: event.clientY - (posStart.top - scrollTop)
             }, $target, !event.shiftKey);
 
-            _this2.update($target[0], event);
+            _this2.upfecha($target[0], event);
           };
 
           _this2.$document.on('mousemove', onMouseMove).one('mouseup', function (e) {
@@ -6929,7 +6929,7 @@ var Handle_Handle = /*#__PURE__*/function () {
       this.$handle.on('wheel', function (e) {
         e.preventDefault();
 
-        _this2.update();
+        _this2.upfecha();
       });
     }
   }, {
@@ -6938,15 +6938,15 @@ var Handle_Handle = /*#__PURE__*/function () {
       this.$handle.remove();
     }
   }, {
-    key: "update",
-    value: function update(target, event) {
+    key: "upfecha",
+    value: function upfecha(target, event) {
       if (this.context.isDisabled()) {
         return false;
       }
 
       var isImage = dom.isImg(target);
       var $selection = this.$handle.find('.note-control-selection');
-      this.context.invoke('imagePopover.update', target, event);
+      this.context.invoke('imagePopover.upfecha', target, event);
 
       if (isImage) {
         var $image = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()(target);
@@ -7254,10 +7254,10 @@ var Placeholder_Placeholder = /*#__PURE__*/function () {
 
     this.events = {
       'summernote.init summernote.change': function summernoteInitSummernoteChange() {
-        _this.update();
+        _this.upfecha();
       },
       'summernote.codeview.toggled': function summernoteCodeviewToggled() {
-        _this.update();
+        _this.upfecha();
       }
     };
   }
@@ -7276,7 +7276,7 @@ var Placeholder_Placeholder = /*#__PURE__*/function () {
       this.$placeholder.on('click', function () {
         _this2.context.invoke('focus');
       }).html(this.options.placeholder).prependTo(this.$editingArea);
-      this.update();
+      this.upfecha();
     }
   }, {
     key: "destroy",
@@ -7284,8 +7284,8 @@ var Placeholder_Placeholder = /*#__PURE__*/function () {
       this.$placeholder.remove();
     }
   }, {
-    key: "update",
-    value: function update() {
+    key: "upfecha",
+    value: function upfecha() {
       var isShow = !this.context.invoke('codeview.isActivated') && this.context.invoke('editor.isEmpty');
       this.$placeholder.toggle(isShow);
     }
@@ -7361,28 +7361,28 @@ var Buttons_Buttons = /*#__PURE__*/function () {
     }
   }, {
     key: "isFontInstalled",
-    value: function isFontInstalled(name) {
-      if (!Object.prototype.hasOwnProperty.call(this.fontInstalledMap, name)) {
-        this.fontInstalledMap[name] = env.isFontInstalled(name) || lists.contains(this.options.fontNamesIgnoreCheck, name);
+    value: function isFontInstalled(nombre) {
+      if (!Object.prototype.hasOwnProperty.call(this.fontInstalledMap, nombre)) {
+        this.fontInstalledMap[nombre] = env.isFontInstalled(nombre) || lists.contains(this.options.fontnombresIgnoreCheck, nombre);
       }
 
-      return this.fontInstalledMap[name];
+      return this.fontInstalledMap[nombre];
     }
   }, {
     key: "isFontDeservedToAdd",
-    value: function isFontDeservedToAdd(name) {
-      name = name.toLowerCase();
-      return name !== '' && this.isFontInstalled(name) && env.genericFontFamilies.indexOf(name) === -1;
+    value: function isFontDeservedToAdd(nombre) {
+      nombre = nombre.toLowerCase();
+      return nombre !== '' && this.isFontInstalled(nombre) && env.genericFontFamilies.indexOf(nombre) === -1;
     }
   }, {
     key: "colorPalette",
-    value: function colorPalette(className, tooltip, backColor, foreColor) {
+    value: function colorPalette(classnombre, tooltip, backColor, foreColor) {
       var _this = this;
 
       return this.ui.buttonGroup({
-        className: 'note-color ' + className,
+        classnombre: 'note-color ' + classnombre,
         children: [this.button({
-          className: 'note-current-color-button',
+          classnombre: 'note-current-color-button',
           contents: this.ui.icon(this.options.icons.font + ' note-recent-color'),
           tooltip: tooltip,
           click: function click(e) {
@@ -7419,7 +7419,7 @@ var Buttons_Buttons = /*#__PURE__*/function () {
             }
           }
         }), this.button({
-          className: 'dropdown-toggle',
+          classnombre: 'dropdown-toggle',
           contents: this.ui.dropdownButtonContents('', this.options),
           tooltip: this.lang.color.more,
           data: {
@@ -7433,8 +7433,8 @@ var Buttons_Buttons = /*#__PURE__*/function () {
               var $holder = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()(item);
               $holder.append(_this.ui.palette({
                 colors: _this.options.colors,
-                colorsName: _this.options.colorsName,
-                eventName: $holder.data('event'),
+                colorsnombre: _this.options.colorsnombre,
+                eventnombre: $holder.data('event'),
                 container: _this.options.container,
                 tooltip: _this.options.tooltip
               }).render());
@@ -7446,8 +7446,8 @@ var Buttons_Buttons = /*#__PURE__*/function () {
               var $holder = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()(item);
               $holder.append(_this.ui.palette({
                 colors: customColors,
-                colorsName: customColors,
-                eventName: $holder.data('event'),
+                colorsnombre: customColors,
+                eventnombre: $holder.data('event'),
                 container: _this.options.container,
                 tooltip: _this.options.tooltip
               }).render());
@@ -7463,12 +7463,12 @@ var Buttons_Buttons = /*#__PURE__*/function () {
           },
           click: function click(event) {
             event.stopPropagation();
-            var $parent = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()('.' + className).find('.note-dropdown-menu');
+            var $parent = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()('.' + classnombre).find('.note-dropdown-menu');
             var $button = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()(event.target);
-            var eventName = $button.data('event');
+            var eventnombre = $button.data('event');
             var value = $button.attr('data-value');
 
-            if (eventName === 'openPalette') {
+            if (eventnombre === 'openPalette') {
               var $picker = $parent.find('#' + value);
               var $palette = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()($parent.find('#' + $picker.data('event')).find('.note-color-row')[0]); // Shift palette chips
 
@@ -7479,15 +7479,15 @@ var Buttons_Buttons = /*#__PURE__*/function () {
               $palette.prepend($chip);
               $picker.click();
             } else {
-              if (lists.contains(['backColor', 'foreColor'], eventName)) {
-                var key = eventName === 'backColor' ? 'background-color' : 'color';
+              if (lists.contains(['backColor', 'foreColor'], eventnombre)) {
+                var key = eventnombre === 'backColor' ? 'background-color' : 'color';
                 var $color = $button.closest('.note-color').find('.note-recent-color');
                 var $currentButton = $button.closest('.note-color').find('.note-current-color-button');
                 $color.css(key, value);
-                $currentButton.attr('data-' + eventName, value);
+                $currentButton.attr('data-' + eventnombre, value);
               }
 
-              _this.context.invoke('editor.' + eventName, value);
+              _this.context.invoke('editor.' + eventnombre, value);
             }
           }
         })]
@@ -7500,14 +7500,14 @@ var Buttons_Buttons = /*#__PURE__*/function () {
 
       this.context.memo('button.style', function () {
         return _this2.ui.buttonGroup([_this2.button({
-          className: 'dropdown-toggle',
+          classnombre: 'dropdown-toggle',
           contents: _this2.ui.dropdownButtonContents(_this2.ui.icon(_this2.options.icons.magic), _this2.options),
           tooltip: _this2.lang.style.style,
           data: {
             toggle: 'dropdown'
           }
         }), _this2.ui.dropdown({
-          className: 'dropdown-style',
+          classnombre: 'dropdown-style',
           items: _this2.options.styleTags,
           title: _this2.lang.style.style,
           template: function template(item) {
@@ -7522,8 +7522,8 @@ var Buttons_Buttons = /*#__PURE__*/function () {
             var tag = item.tag;
             var title = item.title;
             var style = item.style ? ' style="' + item.style + '" ' : '';
-            var className = item.className ? ' class="' + item.className + '"' : '';
-            return '<' + tag + style + className + '>' + title + '</' + tag + '>';
+            var classnombre = item.classnombre ? ' class="' + item.classnombre + '"' : '';
+            return '<' + tag + style + classnombre + '>' + title + '</' + tag + '>';
           },
           click: _this2.context.createInvokeHandler('editor.formatBlock')
         })]).render();
@@ -7534,7 +7534,7 @@ var Buttons_Buttons = /*#__PURE__*/function () {
 
         _this2.context.memo('button.style.' + item, function () {
           return _this2.button({
-            className: 'note-btn-style-' + item,
+            classnombre: 'note-btn-style-' + item,
             contents: '<div data-value="' + item + '">' + item.toUpperCase() + '</div>',
             tooltip: _this2.lang.style[item],
             click: _this2.context.createInvokeHandler('editor.formatBlock')
@@ -7548,26 +7548,26 @@ var Buttons_Buttons = /*#__PURE__*/function () {
 
       this.context.memo('button.bold', function () {
         return _this2.button({
-          className: 'note-btn-bold',
+          classnombre: 'note-btn-bold',
           contents: _this2.ui.icon(_this2.options.icons.bold),
           tooltip: _this2.lang.font.bold + _this2.representShortcut('bold'),
-          click: _this2.context.createInvokeHandlerAndUpdateState('editor.bold')
+          click: _this2.context.createInvokeHandlerAndUpfechaState('editor.bold')
         }).render();
       });
       this.context.memo('button.italic', function () {
         return _this2.button({
-          className: 'note-btn-italic',
+          classnombre: 'note-btn-italic',
           contents: _this2.ui.icon(_this2.options.icons.italic),
           tooltip: _this2.lang.font.italic + _this2.representShortcut('italic'),
-          click: _this2.context.createInvokeHandlerAndUpdateState('editor.italic')
+          click: _this2.context.createInvokeHandlerAndUpfechaState('editor.italic')
         }).render();
       });
       this.context.memo('button.underline', function () {
         return _this2.button({
-          className: 'note-btn-underline',
+          classnombre: 'note-btn-underline',
           contents: _this2.ui.icon(_this2.options.icons.underline),
           tooltip: _this2.lang.font.underline + _this2.representShortcut('underline'),
-          click: _this2.context.createInvokeHandlerAndUpdateState('editor.underline')
+          click: _this2.context.createInvokeHandlerAndUpfechaState('editor.underline')
         }).render();
       });
       this.context.memo('button.clear', function () {
@@ -7579,92 +7579,92 @@ var Buttons_Buttons = /*#__PURE__*/function () {
       });
       this.context.memo('button.strikethrough', function () {
         return _this2.button({
-          className: 'note-btn-strikethrough',
+          classnombre: 'note-btn-strikethrough',
           contents: _this2.ui.icon(_this2.options.icons.strikethrough),
           tooltip: _this2.lang.font.strikethrough + _this2.representShortcut('strikethrough'),
-          click: _this2.context.createInvokeHandlerAndUpdateState('editor.strikethrough')
+          click: _this2.context.createInvokeHandlerAndUpfechaState('editor.strikethrough')
         }).render();
       });
       this.context.memo('button.superscript', function () {
         return _this2.button({
-          className: 'note-btn-superscript',
+          classnombre: 'note-btn-superscript',
           contents: _this2.ui.icon(_this2.options.icons.superscript),
           tooltip: _this2.lang.font.superscript,
-          click: _this2.context.createInvokeHandlerAndUpdateState('editor.superscript')
+          click: _this2.context.createInvokeHandlerAndUpfechaState('editor.superscript')
         }).render();
       });
       this.context.memo('button.subscript', function () {
         return _this2.button({
-          className: 'note-btn-subscript',
+          classnombre: 'note-btn-subscript',
           contents: _this2.ui.icon(_this2.options.icons.subscript),
           tooltip: _this2.lang.font.subscript,
-          click: _this2.context.createInvokeHandlerAndUpdateState('editor.subscript')
+          click: _this2.context.createInvokeHandlerAndUpfechaState('editor.subscript')
         }).render();
       });
-      this.context.memo('button.fontname', function () {
+      this.context.memo('button.fontnombre', function () {
         var styleInfo = _this2.context.invoke('editor.currentStyle');
 
         if (_this2.options.addDefaultFonts) {
-          // Add 'default' fonts into the fontnames array if not exist
-          external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(styleInfo['font-family'].split(','), function (idx, fontname) {
-            fontname = fontname.trim().replace(/['"]+/g, '');
+          // Add 'default' fonts into the fontnombres array if not exist
+          external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(styleInfo['font-family'].split(','), function (idx, fontnombre) {
+            fontnombre = fontnombre.trim().replace(/['"]+/g, '');
 
-            if (_this2.isFontDeservedToAdd(fontname)) {
-              if (_this2.options.fontNames.indexOf(fontname) === -1) {
-                _this2.options.fontNames.push(fontname);
+            if (_this2.isFontDeservedToAdd(fontnombre)) {
+              if (_this2.options.fontnombres.indexOf(fontnombre) === -1) {
+                _this2.options.fontnombres.push(fontnombre);
               }
             }
           });
         }
 
         return _this2.ui.buttonGroup([_this2.button({
-          className: 'dropdown-toggle',
-          contents: _this2.ui.dropdownButtonContents('<span class="note-current-fontname"></span>', _this2.options),
-          tooltip: _this2.lang.font.name,
+          classnombre: 'dropdown-toggle',
+          contents: _this2.ui.dropdownButtonContents('<span class="note-current-fontnombre"></span>', _this2.options),
+          tooltip: _this2.lang.font.nombre,
           data: {
             toggle: 'dropdown'
           }
         }), _this2.ui.dropdownCheck({
-          className: 'dropdown-fontname',
-          checkClassName: _this2.options.icons.menuCheck,
-          items: _this2.options.fontNames.filter(_this2.isFontInstalled.bind(_this2)),
-          title: _this2.lang.font.name,
+          classnombre: 'dropdown-fontnombre',
+          checkClassnombre: _this2.options.icons.menuCheck,
+          items: _this2.options.fontnombres.filter(_this2.isFontInstalled.bind(_this2)),
+          title: _this2.lang.font.nombre,
           template: function template(item) {
-            return '<span style="font-family: ' + env.validFontName(item) + '">' + item + '</span>';
+            return '<span style="font-family: ' + env.validFontnombre(item) + '">' + item + '</span>';
           },
-          click: _this2.context.createInvokeHandlerAndUpdateState('editor.fontName')
+          click: _this2.context.createInvokeHandlerAndUpfechaState('editor.fontnombre')
         })]).render();
       });
       this.context.memo('button.fontsize', function () {
         return _this2.ui.buttonGroup([_this2.button({
-          className: 'dropdown-toggle',
+          classnombre: 'dropdown-toggle',
           contents: _this2.ui.dropdownButtonContents('<span class="note-current-fontsize"></span>', _this2.options),
           tooltip: _this2.lang.font.size,
           data: {
             toggle: 'dropdown'
           }
         }), _this2.ui.dropdownCheck({
-          className: 'dropdown-fontsize',
-          checkClassName: _this2.options.icons.menuCheck,
+          classnombre: 'dropdown-fontsize',
+          checkClassnombre: _this2.options.icons.menuCheck,
           items: _this2.options.fontSizes,
           title: _this2.lang.font.size,
-          click: _this2.context.createInvokeHandlerAndUpdateState('editor.fontSize')
+          click: _this2.context.createInvokeHandlerAndUpfechaState('editor.fontSize')
         })]).render();
       });
       this.context.memo('button.fontsizeunit', function () {
         return _this2.ui.buttonGroup([_this2.button({
-          className: 'dropdown-toggle',
+          classnombre: 'dropdown-toggle',
           contents: _this2.ui.dropdownButtonContents('<span class="note-current-fontsizeunit"></span>', _this2.options),
           tooltip: _this2.lang.font.sizeunit,
           data: {
             toggle: 'dropdown'
           }
         }), _this2.ui.dropdownCheck({
-          className: 'dropdown-fontsizeunit',
-          checkClassName: _this2.options.icons.menuCheck,
+          classnombre: 'dropdown-fontsizeunit',
+          checkClassnombre: _this2.options.icons.menuCheck,
           items: _this2.options.fontSizeUnits,
           title: _this2.lang.font.sizeunit,
-          click: _this2.context.createInvokeHandlerAndUpdateState('editor.fontSizeUnit')
+          click: _this2.context.createInvokeHandlerAndUpfechaState('editor.fontSizeUnit')
         })]).render();
       });
       this.context.memo('button.color', function () {
@@ -7728,23 +7728,23 @@ var Buttons_Buttons = /*#__PURE__*/function () {
       this.context.memo('button.indent', func.invoke(indent, 'render'));
       this.context.memo('button.paragraph', function () {
         return _this2.ui.buttonGroup([_this2.button({
-          className: 'dropdown-toggle',
+          classnombre: 'dropdown-toggle',
           contents: _this2.ui.dropdownButtonContents(_this2.ui.icon(_this2.options.icons.alignLeft), _this2.options),
           tooltip: _this2.lang.paragraph.paragraph,
           data: {
             toggle: 'dropdown'
           }
         }), _this2.ui.dropdown([_this2.ui.buttonGroup({
-          className: 'note-align',
+          classnombre: 'note-align',
           children: [justifyLeft, justifyCenter, justifyRight, justifyFull]
         }), _this2.ui.buttonGroup({
-          className: 'note-list',
+          classnombre: 'note-list',
           children: [outdent, indent]
         })])]).render();
       });
       this.context.memo('button.height', function () {
         return _this2.ui.buttonGroup([_this2.button({
-          className: 'dropdown-toggle',
+          classnombre: 'dropdown-toggle',
           contents: _this2.ui.dropdownButtonContents(_this2.ui.icon(_this2.options.icons.textHeight), _this2.options),
           tooltip: _this2.lang.font.height,
           data: {
@@ -7752,15 +7752,15 @@ var Buttons_Buttons = /*#__PURE__*/function () {
           }
         }), _this2.ui.dropdownCheck({
           items: _this2.options.lineHeights,
-          checkClassName: _this2.options.icons.menuCheck,
-          className: 'dropdown-line-height',
+          checkClassnombre: _this2.options.icons.menuCheck,
+          classnombre: 'dropdown-line-height',
           title: _this2.lang.font.height,
           click: _this2.context.createInvokeHandler('editor.lineHeight')
         })]).render();
       });
       this.context.memo('button.table', function () {
         return _this2.ui.buttonGroup([_this2.button({
-          className: 'dropdown-toggle',
+          classnombre: 'dropdown-toggle',
           contents: _this2.ui.dropdownButtonContents(_this2.ui.icon(_this2.options.icons.table), _this2.options),
           tooltip: _this2.lang.table.table,
           data: {
@@ -7768,7 +7768,7 @@ var Buttons_Buttons = /*#__PURE__*/function () {
           }
         }), _this2.ui.dropdown({
           title: _this2.lang.table.table,
-          className: 'note-table',
+          classnombre: 'note-table',
           items: ['<div class="note-dimension-picker">', '<div class="note-dimension-picker-mousecatcher" data-event="insertTable" data-value="1x1"></div>', '<div class="note-dimension-picker-highlighted"></div>', '<div class="note-dimension-picker-unhighlighted"></div>', '</div>', '<div class="note-dimension-display">1 x 1</div>'].join('')
         })], {
           callback: function callback($node) {
@@ -7810,7 +7810,7 @@ var Buttons_Buttons = /*#__PURE__*/function () {
       });
       this.context.memo('button.fullscreen', function () {
         return _this2.button({
-          className: 'btn-fullscreen note-codeview-keep',
+          classnombre: 'btn-fullscreen note-codeview-keep',
           contents: _this2.ui.icon(_this2.options.icons.arrowsAlt),
           tooltip: _this2.lang.options.fullscreen,
           click: _this2.context.createInvokeHandler('fullscreen.toggle')
@@ -7818,7 +7818,7 @@ var Buttons_Buttons = /*#__PURE__*/function () {
       });
       this.context.memo('button.codeview', function () {
         return _this2.button({
-          className: 'btn-codeview note-codeview-keep',
+          classnombre: 'btn-codeview note-codeview-keep',
           contents: _this2.ui.icon(_this2.options.icons.code),
           tooltip: _this2.lang.options.codeview,
           click: _this2.context.createInvokeHandler('codeview.toggle')
@@ -7953,7 +7953,7 @@ var Buttons_Buttons = /*#__PURE__*/function () {
 
       this.context.memo('button.addRowUp', function () {
         return _this5.button({
-          className: 'btn-md',
+          classnombre: 'btn-md',
           contents: _this5.ui.icon(_this5.options.icons.rowAbove),
           tooltip: _this5.lang.table.addRowAbove,
           click: _this5.context.createInvokeHandler('editor.addRow', 'top')
@@ -7961,7 +7961,7 @@ var Buttons_Buttons = /*#__PURE__*/function () {
       });
       this.context.memo('button.addRowDown', function () {
         return _this5.button({
-          className: 'btn-md',
+          classnombre: 'btn-md',
           contents: _this5.ui.icon(_this5.options.icons.rowBelow),
           tooltip: _this5.lang.table.addRowBelow,
           click: _this5.context.createInvokeHandler('editor.addRow', 'bottom')
@@ -7969,7 +7969,7 @@ var Buttons_Buttons = /*#__PURE__*/function () {
       });
       this.context.memo('button.addColLeft', function () {
         return _this5.button({
-          className: 'btn-md',
+          classnombre: 'btn-md',
           contents: _this5.ui.icon(_this5.options.icons.colBefore),
           tooltip: _this5.lang.table.addColLeft,
           click: _this5.context.createInvokeHandler('editor.addCol', 'left')
@@ -7977,7 +7977,7 @@ var Buttons_Buttons = /*#__PURE__*/function () {
       });
       this.context.memo('button.addColRight', function () {
         return _this5.button({
-          className: 'btn-md',
+          classnombre: 'btn-md',
           contents: _this5.ui.icon(_this5.options.icons.colAfter),
           tooltip: _this5.lang.table.addColRight,
           click: _this5.context.createInvokeHandler('editor.addCol', 'right')
@@ -7985,7 +7985,7 @@ var Buttons_Buttons = /*#__PURE__*/function () {
       });
       this.context.memo('button.deleteRow', function () {
         return _this5.button({
-          className: 'btn-md',
+          classnombre: 'btn-md',
           contents: _this5.ui.icon(_this5.options.icons.rowRemove),
           tooltip: _this5.lang.table.delRow,
           click: _this5.context.createInvokeHandler('editor.deleteRow')
@@ -7993,7 +7993,7 @@ var Buttons_Buttons = /*#__PURE__*/function () {
       });
       this.context.memo('button.deleteCol', function () {
         return _this5.button({
-          className: 'btn-md',
+          classnombre: 'btn-md',
           contents: _this5.ui.icon(_this5.options.icons.colRemove),
           tooltip: _this5.lang.table.delCol,
           click: _this5.context.createInvokeHandler('editor.deleteCol')
@@ -8001,7 +8001,7 @@ var Buttons_Buttons = /*#__PURE__*/function () {
       });
       this.context.memo('button.deleteTable', function () {
         return _this5.button({
-          className: 'btn-md',
+          classnombre: 'btn-md',
           contents: _this5.ui.icon(_this5.options.icons.trash),
           tooltip: _this5.lang.table.delTable,
           click: _this5.context.createInvokeHandler('editor.deleteTable')
@@ -8013,10 +8013,10 @@ var Buttons_Buttons = /*#__PURE__*/function () {
     value: function build($container, groups) {
       for (var groupIdx = 0, groupLen = groups.length; groupIdx < groupLen; groupIdx++) {
         var group = groups[groupIdx];
-        var groupName = Array.isArray(group) ? group[0] : group;
+        var groupnombre = Array.isArray(group) ? group[0] : group;
         var buttons = Array.isArray(group) ? group.length === 1 ? [group[0]] : group[1] : [group];
         var $group = this.ui.buttonGroup({
-          className: 'note-' + groupName
+          classnombre: 'note-' + groupnombre
         }).render();
 
         for (var idx = 0, len = buttons.length; idx < len; idx++) {
@@ -8035,13 +8035,13 @@ var Buttons_Buttons = /*#__PURE__*/function () {
      */
 
   }, {
-    key: "updateCurrentStyle",
-    value: function updateCurrentStyle($container) {
+    key: "upfechaCurrentStyle",
+    value: function upfechaCurrentStyle($container) {
       var _this6 = this;
 
       var $cont = $container || this.$toolbar;
       var styleInfo = this.context.invoke('editor.currentStyle');
-      this.updateBtnStates($cont, {
+      this.upfechaBtnStates($cont, {
         '.note-btn-bold': function noteBtnBold() {
           return styleInfo['font-bold'] === 'bold';
         },
@@ -8063,17 +8063,17 @@ var Buttons_Buttons = /*#__PURE__*/function () {
       });
 
       if (styleInfo['font-family']) {
-        var fontNames = styleInfo['font-family'].split(',').map(function (name) {
-          return name.replace(/[\'\"]/g, '').replace(/\s+$/, '').replace(/^\s+/, '');
+        var fontnombres = styleInfo['font-family'].split(',').map(function (nombre) {
+          return nombre.replace(/[\'\"]/g, '').replace(/\s+$/, '').replace(/^\s+/, '');
         });
-        var fontName = lists.find(fontNames, this.isFontInstalled.bind(this));
-        $cont.find('.dropdown-fontname a').each(function (idx, item) {
+        var fontnombre = lists.find(fontnombres, this.isFontInstalled.bind(this));
+        $cont.find('.dropdown-fontnombre a').each(function (idx, item) {
           var $item = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()(item); // always compare string to avoid creating another func.
 
-          var isChecked = $item.data('value') + '' === fontName + '';
+          var isChecked = $item.data('value') + '' === fontnombre + '';
           $item.toggleClass('checked', isChecked);
         });
-        $cont.find('.note-current-fontname').text(fontName).css('font-family', fontName);
+        $cont.find('.note-current-fontnombre').text(fontnombre).css('font-family', fontnombre);
       }
 
       if (styleInfo['font-size']) {
@@ -8099,13 +8099,13 @@ var Buttons_Buttons = /*#__PURE__*/function () {
         $cont.find('.dropdown-line-height li a').each(function (idx, item) {
           // always compare with string to avoid creating another func.
           var isChecked = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()(item).data('value') + '' === lineHeight + '';
-          _this6.className = isChecked ? 'checked' : '';
+          _this6.classnombre = isChecked ? 'checked' : '';
         });
       }
     }
   }, {
-    key: "updateBtnStates",
-    value: function updateBtnStates($container, infos) {
+    key: "upfechaBtnStates",
+    value: function upfechaBtnStates($container, infos) {
       var _this7 = this;
 
       external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.each(infos, function (selector, pred) {
@@ -8218,9 +8218,9 @@ var Toolbar_Toolbar = /*#__PURE__*/function () {
 
       this.changeContainer(false);
       this.$note.on('summernote.keyup summernote.mouseup summernote.change', function () {
-        _this.context.invoke('buttons.updateCurrentStyle');
+        _this.context.invoke('buttons.upfechaCurrentStyle');
       });
-      this.context.invoke('buttons.updateCurrentStyle');
+      this.context.invoke('buttons.upfechaCurrentStyle');
 
       if (this.options.followingToolbar) {
         this.$window.on('scroll resize', this.followScroll);
@@ -8299,14 +8299,14 @@ var Toolbar_Toolbar = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "updateFullscreen",
-    value: function updateFullscreen(isFullscreen) {
+    key: "upfechaFullscreen",
+    value: function upfechaFullscreen(isFullscreen) {
       this.ui.toggleBtnActive(this.$toolbar.find('.btn-fullscreen'), isFullscreen);
       this.changeContainer(isFullscreen);
     }
   }, {
-    key: "updateCodeview",
-    value: function updateCodeview(isCodeview) {
+    key: "upfechaCodeview",
+    value: function upfechaCodeview(isCodeview) {
       this.ui.toggleBtnActive(this.$toolbar.find('.btn-codeview'), isCodeview);
 
       if (isCodeview) {
@@ -8373,18 +8373,18 @@ var LinkDialog_LinkDialog = /*#__PURE__*/function () {
     value: function initialize() {
       var $container = this.options.dialogsInBody ? this.$body : this.options.container;
       var body = ['<div class="form-group note-form-group">', "<label for=\"note-dialog-link-txt-".concat(this.options.id, "\" class=\"note-form-label\">").concat(this.lang.link.textToDisplay, "</label>"), "<input id=\"note-dialog-link-txt-".concat(this.options.id, "\" class=\"note-link-text form-control note-form-control note-input\" type=\"text\"/>"), '</div>', '<div class="form-group note-form-group">', "<label for=\"note-dialog-link-url-".concat(this.options.id, "\" class=\"note-form-label\">").concat(this.lang.link.url, "</label>"), "<input id=\"note-dialog-link-url-".concat(this.options.id, "\" class=\"note-link-url form-control note-form-control note-input\" type=\"text\" value=\"http://\"/>"), '</div>', !this.options.disableLinkTarget ? external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()('<div/>').append(this.ui.checkbox({
-        className: 'sn-checkbox-open-in-new-window',
+        classnombre: 'sn-checkbox-open-in-new-window',
         text: this.lang.link.openInNewWindow,
         checked: true
       }).render()).html() : '', external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()('<div/>').append(this.ui.checkbox({
-        className: 'sn-checkbox-use-protocol',
+        classnombre: 'sn-checkbox-use-protocol',
         text: this.lang.link.useProtocol,
         checked: true
       }).render()).html()].join('');
       var buttonClass = 'btn btn-primary note-btn note-btn-primary note-link-btn';
       var footer = "<input type=\"button\" href=\"#\" class=\"".concat(buttonClass, "\" value=\"").concat(this.lang.link.insert, "\" disabled>");
       this.$dialog = this.ui.dialog({
-        className: 'link-dialog',
+        classnombre: 'link-dialog',
         title: this.lang.link.insert,
         fade: this.options.dialogsFade,
         body: body,
@@ -8408,7 +8408,7 @@ var LinkDialog_LinkDialog = /*#__PURE__*/function () {
       });
     }
     /**
-     * toggle update button
+     * toggle upfecha button
      */
 
   }, {
@@ -8553,7 +8553,7 @@ var LinkPopover_LinkPopover = /*#__PURE__*/function () {
     this.options = context.options;
     this.events = {
       'summernote.keyup summernote.mouseup summernote.change summernote.scroll': function summernoteKeyupSummernoteMouseupSummernoteChangeSummernoteScroll() {
-        _this.update();
+        _this.upfecha();
       },
       'summernote.disable summernote.dialog.shown summernote.blur': function summernoteDisableSummernoteDialogShownSummernoteBlur() {
         _this.hide();
@@ -8570,7 +8570,7 @@ var LinkPopover_LinkPopover = /*#__PURE__*/function () {
     key: "initialize",
     value: function initialize() {
       this.$popover = this.ui.popover({
-        className: 'note-link-popover',
+        classnombre: 'note-link-popover',
         callback: function callback($node) {
           var $content = $node.find('.popover-content,.note-popover-content');
           $content.prepend('<span><a target="_blank"></a>&nbsp;</span>');
@@ -8588,8 +8588,8 @@ var LinkPopover_LinkPopover = /*#__PURE__*/function () {
       this.$popover.remove();
     }
   }, {
-    key: "update",
-    value: function update() {
+    key: "upfecha",
+    value: function upfecha() {
       // Prevent focusing on editable when invoke('code') is executed
       if (!this.context.invoke('editor.hasFocus')) {
         this.hide();
@@ -8661,7 +8661,7 @@ var ImageDialog_ImageDialog = /*#__PURE__*/function () {
       }
 
       var $container = this.options.dialogsInBody ? this.$body : this.options.container;
-      var body = ['<div class="form-group note-form-group note-group-select-from-files">', '<label for="note-dialog-image-file-' + this.options.id + '" class="note-form-label">' + this.lang.image.selectFromFiles + '</label>', '<input id="note-dialog-image-file-' + this.options.id + '" class="note-image-input form-control-file note-form-control note-input" ', ' type="file" name="files" accept="image/*" multiple="multiple"/>', imageLimitation, '</div>', '<div class="form-group note-group-image-url">', '<label for="note-dialog-image-url-' + this.options.id + '" class="note-form-label">' + this.lang.image.url + '</label>', '<input id="note-dialog-image-url-' + this.options.id + '" class="note-image-url form-control note-form-control note-input" type="text"/>', '</div>'].join('');
+      var body = ['<div class="form-group note-form-group note-group-select-from-files">', '<label for="note-dialog-image-file-' + this.options.id + '" class="note-form-label">' + this.lang.image.selectFromFiles + '</label>', '<input id="note-dialog-image-file-' + this.options.id + '" class="note-image-input form-control-file note-form-control note-input" ', ' type="file" nombre="files" accept="image/*" multiple="multiple"/>', imageLimitation, '</div>', '<div class="form-group note-group-image-url">', '<label for="note-dialog-image-url-' + this.options.id + '" class="note-form-label">' + this.lang.image.url + '</label>', '<input id="note-dialog-image-url-' + this.options.id + '" class="note-image-url form-control note-form-control note-input" type="text"/>', '</div>'].join('');
       var buttonClass = 'btn btn-primary note-btn note-btn-primary note-image-btn';
       var footer = "<input type=\"button\" href=\"#\" class=\"".concat(buttonClass, "\" value=\"").concat(this.lang.image.insert, "\" disabled>");
       this.$dialog = this.ui.dialog({
@@ -8789,7 +8789,7 @@ function ImagePopover_createClass(Constructor, protoProps, staticProps) { if (pr
 /**
  * Image popover module
  *  mouse events that show/hide popover will be handled by Handle.js.
- *  Handle.js will receive the events and invoke 'imagePopover.update'.
+ *  Handle.js will receive the events and invoke 'imagePopover.upfecha'.
  */
 
 var ImagePopover_ImagePopover = /*#__PURE__*/function () {
@@ -8818,7 +8818,7 @@ var ImagePopover_ImagePopover = /*#__PURE__*/function () {
     key: "initialize",
     value: function initialize() {
       this.$popover = this.ui.popover({
-        className: 'note-image-popover'
+        classnombre: 'note-image-popover'
       }).render().appendTo(this.options.container);
       var $content = this.$popover.find('.popover-content,.note-popover-content');
       this.context.invoke('buttons.build', $content, this.options.popover.image);
@@ -8832,8 +8832,8 @@ var ImagePopover_ImagePopover = /*#__PURE__*/function () {
       this.$popover.remove();
     }
   }, {
-    key: "update",
-    value: function update(target, event) {
+    key: "upfecha",
+    value: function upfecha(target, event) {
       if (dom.isImg(target)) {
         var position = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()(target).offset();
         var containerOffset = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()(this.options.container).offset();
@@ -8891,10 +8891,10 @@ var TablePopover_TablePopover = /*#__PURE__*/function () {
     this.options = context.options;
     this.events = {
       'summernote.mousedown': function summernoteMousedown(we, e) {
-        _this.update(e.target);
+        _this.upfecha(e.target);
       },
       'summernote.keyup summernote.scroll summernote.change': function summernoteKeyupSummernoteScrollSummernoteChange() {
-        _this.update();
+        _this.upfecha();
       },
       'summernote.disable summernote.blur': function summernoteDisableSummernoteBlur() {
         _this.hide();
@@ -8911,7 +8911,7 @@ var TablePopover_TablePopover = /*#__PURE__*/function () {
     key: "initialize",
     value: function initialize() {
       this.$popover = this.ui.popover({
-        className: 'note-table-popover'
+        classnombre: 'note-table-popover'
       }).render().appendTo(this.options.container);
       var $content = this.$popover.find('.popover-content,.note-popover-content');
       this.context.invoke('buttons.build', $content, this.options.popover.table); // [workaround] Disable Firefox's default table editor
@@ -8930,8 +8930,8 @@ var TablePopover_TablePopover = /*#__PURE__*/function () {
       this.$popover.remove();
     }
   }, {
-    key: "update",
-    value: function update(target) {
+    key: "upfecha",
+    value: function upfecha(target) {
       if (this.context.isDisabled()) {
         return false;
       }
@@ -9300,7 +9300,7 @@ var AirPopover_AirPopover = /*#__PURE__*/function () {
           e.stopPropagation();
           _this.onContextmenu = true;
 
-          _this.update(true);
+          _this.upfecha(true);
         }
       },
       'summernote.mousedown': function summernoteMousedown(we, e) {
@@ -9312,7 +9312,7 @@ var AirPopover_AirPopover = /*#__PURE__*/function () {
           _this.pageX = e.pageX;
           _this.pageY = e.pageY;
 
-          _this.update();
+          _this.upfecha();
         }
 
         _this.onContextmenu = false;
@@ -9339,7 +9339,7 @@ var AirPopover_AirPopover = /*#__PURE__*/function () {
       var _this2 = this;
 
       this.$popover = this.ui.popover({
-        className: 'note-air-popover'
+        classnombre: 'note-air-popover'
       }).render().appendTo(this.options.container);
       var $content = this.$popover.find('.popover-content');
       this.context.invoke('buttons.build', $content, this.options.popover.air); // disable hiding this popover preemptively by 'summernote.blur' event.
@@ -9358,8 +9358,8 @@ var AirPopover_AirPopover = /*#__PURE__*/function () {
       this.$popover.remove();
     }
   }, {
-    key: "update",
-    value: function update(forcelyOpen) {
+    key: "upfecha",
+    value: function upfecha(forcelyOpen) {
       var styleInfo = this.context.invoke('editor.currentStyle');
 
       if (styleInfo.range && (!styleInfo.range.isCollapsed() || forcelyOpen)) {
@@ -9375,14 +9375,14 @@ var AirPopover_AirPopover = /*#__PURE__*/function () {
           left: Math.max(rect.left, 0) + AIRMODE_POPOVER_X_OFFSET,
           top: rect.top + AIRMODE_POPOVER_Y_OFFSET
         });
-        this.context.invoke('buttons.updateCurrentStyle', this.$popover);
+        this.context.invoke('buttons.upfechaCurrentStyle', this.$popover);
       } else {
         this.hide();
       }
     }
   }, {
-    key: "updateCodeview",
-    value: function updateCodeview(isCodeview) {
+    key: "upfechaCodeview",
+    value: function upfechaCodeview(isCodeview) {
       this.ui.toggleBtnActive(this.$popover.find('.btn-codeview'), isCodeview);
 
       if (isCodeview) {
@@ -9458,7 +9458,7 @@ var HintPopover_HintPopover = /*#__PURE__*/function () {
       this.lastWordRange = null;
       this.matchingWord = null;
       this.$popover = this.ui.popover({
-        className: 'note-hint-popover',
+        classnombre: 'note-hint-popover',
         hideArrow: true,
         direction: ''
       }).render().appendTo(this.options.container);
@@ -9786,7 +9786,7 @@ external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.summe
     otherStaticBar: '',
     // toolbar
     codeviewKeepButton: false,
-    toolbar: [['style', ['style']], ['font', ['bold', 'underline', 'clear']], ['fontname', ['fontname']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video']], ['view', ['fullscreen', 'codeview', 'help']]],
+    toolbar: [['style', ['style']], ['font', ['bold', 'underline', 'clear']], ['fontnombre', ['fontnombre']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video']], ['view', ['fullscreen', 'codeview', 'help']]],
     // popover
     popatmouse: true,
     popover: {
@@ -9828,21 +9828,21 @@ external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.summe
     hintSelect: 'after',
     hintDirection: 'bottom',
     styleTags: ['p', 'blockquote', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-    fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande', 'Tahoma', 'Times New Roman', 'Verdana'],
-    fontNamesIgnoreCheck: [],
+    fontnombres: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande', 'Tahoma', 'Times New Roman', 'Verdana'],
+    fontnombresIgnoreCheck: [],
     addDefaultFonts: true,
     fontSizes: ['8', '9', '10', '11', '12', '14', '18', '24', '36'],
     fontSizeUnits: ['px', 'pt'],
     // pallete colors(n x n)
     colors: [['#000000', '#424242', '#636363', '#9C9C94', '#CEC6CE', '#EFEFEF', '#F7F7F7', '#FFFFFF'], ['#FF0000', '#FF9C00', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#9C00FF', '#FF00FF'], ['#F7C6CE', '#FFE7CE', '#FFEFC6', '#D6EFD6', '#CEDEE7', '#CEE7F7', '#D6D6E7', '#E7D6DE'], ['#E79C9C', '#FFC69C', '#FFE79C', '#B5D6A5', '#A5C6CE', '#9CC6EF', '#B5A5D6', '#D6A5BD'], ['#E76363', '#F7AD6B', '#FFD663', '#94BD7B', '#73A5AD', '#6BADDE', '#8C7BC6', '#C67BA5'], ['#CE0000', '#E79439', '#EFC631', '#6BA54A', '#4A7B8C', '#3984C6', '#634AA5', '#A54A7B'], ['#9C0000', '#B56308', '#BD9400', '#397B21', '#104A5A', '#085294', '#311873', '#731842'], ['#630000', '#7B3900', '#846300', '#295218', '#083139', '#003163', '#21104A', '#4A1031']],
-    // http://chir.ag/projects/name-that-color/
-    colorsName: [['Black', 'Tundora', 'Dove Gray', 'Star Dust', 'Pale Slate', 'Gallery', 'Alabaster', 'White'], ['Red', 'Orange Peel', 'Yellow', 'Green', 'Cyan', 'Blue', 'Electric Violet', 'Magenta'], ['Azalea', 'Karry', 'Egg White', 'Zanah', 'Botticelli', 'Tropical Blue', 'Mischka', 'Twilight'], ['Tonys Pink', 'Peach Orange', 'Cream Brulee', 'Sprout', 'Casper', 'Perano', 'Cold Purple', 'Careys Pink'], ['Mandy', 'Rajah', 'Dandelion', 'Olivine', 'Gulf Stream', 'Viking', 'Blue Marguerite', 'Puce'], ['Guardsman Red', 'Fire Bush', 'Golden Dream', 'Chelsea Cucumber', 'Smalt Blue', 'Boston Blue', 'Butterfly Bush', 'Cadillac'], ['Sangria', 'Mai Tai', 'Buddha Gold', 'Forest Green', 'Eden', 'Venice Blue', 'Meteorite', 'Claret'], ['Rosewood', 'Cinnamon', 'Olive', 'Parsley', 'Tiber', 'Midnight Blue', 'Valentino', 'Loulou']],
+    // http://chir.ag/projects/nombre-that-color/
+    colorsnombre: [['Black', 'Tundora', 'Dove Gray', 'Star Dust', 'Pale Slate', 'Gallery', 'Alabaster', 'White'], ['Red', 'Orange Peel', 'Yellow', 'Green', 'Cyan', 'Blue', 'Electric Violet', 'Magenta'], ['Azalea', 'Karry', 'Egg White', 'Zanah', 'Botticelli', 'Tropical Blue', 'Mischka', 'Twilight'], ['Tonys Pink', 'Peach Orange', 'Cream Brulee', 'Sprout', 'Casper', 'Perano', 'Cold Purple', 'Careys Pink'], ['Mandy', 'Rajah', 'Dandelion', 'Olivine', 'Gulf Stream', 'Viking', 'Blue Marguerite', 'Puce'], ['Guardsman Red', 'Fire Bush', 'Golden Dream', 'Chelsea Cucumber', 'Smalt Blue', 'Boston Blue', 'Butterfly Bush', 'Cadillac'], ['Sangria', 'Mai Tai', 'Buddha Gold', 'Forest Green', 'Eden', 'Venice Blue', 'Meteorite', 'Claret'], ['Rosewood', 'Cinnamon', 'Olive', 'Parsley', 'Tiber', 'Midnight Blue', 'Valentino', 'Loulou']],
     colorButton: {
       foreColor: '#000000',
       backColor: '#FFFF00'
     },
     lineHeights: ['1.0', '1.2', '1.4', '1.5', '1.6', '1.8', '2.0', '3.0'],
-    tableClassName: 'table table-bordered',
+    tableClassnombre: 'table table-bordered',
     insertTableMaxSize: {
       col: 10,
       row: 10
@@ -10058,7 +10058,7 @@ var dropdownCheck = renderer["a" /* default */].create('<ul class="note-dropdown
   var markup = Array.isArray(options.items) ? options.items.map(function (item) {
     var value = typeof item === 'string' ? item : item.value || '';
     var content = options.template ? options.template(item) : item;
-    return '<li aria-label="' + item + '"><a href="#" data-value="' + value + '">' + icon(options.checkClassName) + ' ' + content + '</a></li>';
+    return '<li aria-label="' + item + '"><a href="#" data-value="' + value + '">' + icon(options.checkClassnombre) + ' ' + content + '</a></li>';
   }).join('') : options.items;
   $node.html(markup).attr({
     'aria-label': options.title
@@ -10090,9 +10090,9 @@ var ui_checkbox = renderer["a" /* default */].create('<div class="checkbox"></di
   $node.html(['<label' + (options.id ? ' for="note-' + options.id + '"' : '') + '>', '<input type="checkbox"' + (options.id ? ' id="note-' + options.id + '"' : ''), options.checked ? ' checked' : '', ' aria-checked="' + (options.checked ? 'true' : 'false') + '"/>', options.text ? options.text : '', '</label>'].join(''));
 });
 
-var icon = function icon(iconClassName, tagName) {
-  tagName = tagName || 'i';
-  return '<' + tagName + ' class="' + iconClassName + '"></' + tagName + '>';
+var icon = function icon(iconClassnombre, tagnombre) {
+  tagnombre = tagnombre || 'i';
+  return '<' + tagnombre + ' class="' + iconClassnombre + '"></' + tagnombre + '>';
 };
 
 var ui_ui = function ui(editorOptions) {
@@ -10119,15 +10119,15 @@ var ui_ui = function ui(editorOptions) {
         var contents = [];
 
         for (var row = 0, rowSize = options.colors.length; row < rowSize; row++) {
-          var eventName = options.eventName;
+          var eventnombre = options.eventnombre;
           var colors = options.colors[row];
-          var colorsName = options.colorsName[row];
+          var colorsnombre = options.colorsnombre[row];
           var buttons = [];
 
           for (var col = 0, colSize = colors.length; col < colSize; col++) {
             var color = colors[col];
-            var colorName = colorsName[col];
-            buttons.push(['<button type="button" class="note-color-btn"', 'style="background-color:', color, '" ', 'data-event="', eventName, '" ', 'data-value="', color, '" ', 'title="', colorName, '" ', 'aria-label="', colorName, '" ', 'data-toggle="button" tabindex="-1"></button>'].join(''));
+            var colornombre = colorsnombre[col];
+            buttons.push(['<button type="button" class="note-color-btn"', 'style="background-color:', color, '" ', 'data-event="', eventnombre, '" ', 'data-value="', color, '" ', 'title="', colornombre, '" ', 'aria-label="', colornombre, '" ', 'data-toggle="button" tabindex="-1"></button>'].join(''));
           }
 
           contents.push('<div class="note-color-row">' + buttons.join('') + '</div>');

@@ -37,7 +37,7 @@ CodeMirror.defineMode("pegjs", function (config) {
       if (!state.inString && !state.inComment && ((stream.peek() == '"') || (stream.peek() == "'"))) {
         state.stringType = stream.peek();
         stream.next(); // Skip quote
-        state.inString = true; // Update state
+        state.inString = true; // Upfecha state
       }
       if (!state.inString && !state.inComment && stream.match(/^\/\*/)) {
         state.inComment = true;
@@ -65,7 +65,7 @@ CodeMirror.defineMode("pegjs", function (config) {
             stream.match(/^.[^\*]*/);
           }
         }
-        return "comment";
+        return "comentario";
       } else if (state.inCharacterClass) {
           while (state.inCharacterClass && !stream.eol()) {
             if (!(stream.match(/^[^\]\\]+/) || stream.match(/^\\./))) {
@@ -78,7 +78,7 @@ CodeMirror.defineMode("pegjs", function (config) {
         return 'bracket';
       } else if (stream.match(/^\/\//)) {
         stream.skipToEnd();
-        return "comment";
+        return "comentario";
       } else if (state.braced || stream.peek() === '{') {
         if (state.localState === null) {
           state.localState = CodeMirror.startState(jsMode);

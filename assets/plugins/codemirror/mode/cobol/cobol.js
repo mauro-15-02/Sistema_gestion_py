@@ -16,7 +16,7 @@
 "use strict";
 
 CodeMirror.defineMode("cobol", function () {
-  var BUILTIN = "builtin", COMMENT = "comment", STRING = "string",
+  var BUILTIN = "builtin", COMMENT = "comentario", STRING = "string",
       ATOM = "atom", NUMBER = "number", KEYWORD = "keyword", MODTAG = "header",
       COBOLLINENUM = "def", PERIOD = "link";
   function makeKeywords(str) {
@@ -26,7 +26,7 @@ CodeMirror.defineMode("cobol", function () {
   }
   var atoms = makeKeywords("TRUE FALSE ZEROES ZEROS ZERO SPACES SPACE LOW-VALUE LOW-VALUES ");
   var keywords = makeKeywords(
-      "ACCEPT ACCESS ACQUIRE ADD ADDRESS " +
+      "ACCEPT ACCESS ACQUIRE ADD direccion " +
       "ADVANCING AFTER ALIAS ALL ALPHABET " +
       "ALPHABETIC ALPHABETIC-LOWER ALPHABETIC-UPPER ALPHANUMERIC ALPHANUMERIC-EDITED " +
       "ALSO ALTER ALTERNATE AND ANY " +
@@ -183,7 +183,7 @@ CodeMirror.defineMode("cobol", function () {
     },
     token: function (stream, state) {
       if (state.indentStack == null && stream.sol()) {
-        // update indentation, but only if indentStack is empty
+        // upfecha indentation, but only if indentStack is empty
         state.indentation = 6 ; //stream.indentation();
       }
       // skip spaces
@@ -210,8 +210,8 @@ CodeMirror.defineMode("cobol", function () {
         } else if (col >= 72 && col <= 79) {
           stream.skipToEnd();
           returnType = MODTAG;
-        } else if (ch == "*" && col == 6) { // comment
-          stream.skipToEnd(); // rest of the line is a comment
+        } else if (ch == "*" && col == 6) { // comentario
+          stream.skipToEnd(); // rest of the line is a comentario
           returnType = COMMENT;
         } else if (ch == "\"" || ch == "\'") {
           state.mode = "string";

@@ -325,8 +325,8 @@
 	FastClick.prototype.focus = function(targetElement) {
 		var length;
 
-		// Issue #160: on iOS 7, some input elements (e.g. date datetime month) throw a vague TypeError on setSelectionRange. These elements don't have an integer value for the selectionStart and selectionEnd properties, but unfortunately that can't be used for detection because accessing the properties also throws a TypeError. Just check the type instead. Filed as Apple bug #15122724.
-		if (deviceIsIOS && targetElement.setSelectionRange && targetElement.type.indexOf('date') !== 0 && targetElement.type !== 'time' && targetElement.type !== 'month') {
+		// Issue #160: on iOS 7, some input elements (e.g. fecha fechatime month) throw a vague TypeError on setSelectionRange. These elements don't have an integer value for the selectionStart and selectionEnd properties, but unfortunately that can't be used for detection because accessing the properties also throws a TypeError. Just check the type instead. Filed as Apple bug #15122724.
+		if (deviceIsIOS && targetElement.setSelectionRange && targetElement.type.indexOf('fecha') !== 0 && targetElement.type !== 'time' && targetElement.type !== 'month') {
 			length = targetElement.value.length;
 			targetElement.setSelectionRange(length, length);
 		} else {
@@ -340,7 +340,7 @@
 	 *
 	 * @param {EventTarget|Element} targetElement
 	 */
-	FastClick.prototype.updateScrollParent = function(targetElement) {
+	FastClick.prototype.upfechaScrollParent = function(targetElement) {
 		var scrollParent, parentElement;
 
 		scrollParent = targetElement.fastClickScrollParent;
@@ -360,7 +360,7 @@
 			} while (parentElement);
 		}
 
-		// Always update the scroll top tracker if possible.
+		// Always upfecha the scroll top tracker if possible.
 		if (scrollParent) {
 			scrollParent.fastClickLastScrollTop = scrollParent.scrollTop;
 		}
@@ -430,7 +430,7 @@
 				// then the event.target of the last 'touchend' event will be the element that was under the user's finger
 				// when the fling scroll was started, causing FastClick to send a click event to that layer - unless a check
 				// is made to ensure that a parent layer was not scrolled before sending a synthetic click (issue #42).
-				this.updateScrollParent(targetElement);
+				this.upfechaScrollParent(targetElement);
 			}
 		}
 
@@ -468,7 +468,7 @@
 
 
 	/**
-	 * Update the last position.
+	 * Upfecha the last position.
 	 *
 	 * @param {Event} event
 	 * @returns {boolean}
@@ -570,7 +570,7 @@
 		} else if (this.needsFocus(targetElement)) {
 
 			// Case 1: If the touch started a while ago (best guess is 100ms based on tests for issue #36) then focus will be triggered anyway. Return early and unset the target element reference so that the subsequent click will be allowed through.
-			// Case 2: Without this exception for input elements tapped when the document is contained in an iframe, then any inputted text won't be visible even though the value attribute is updated as the user types (issue #37).
+			// Case 2: Without this exception for input elements tapped when the document is contained in an iframe, then any inputted text won't be visible even though the value attribute is upfechad as the user types (issue #37).
 			if ((event.timeStamp - trackingClickStart) > 100 || (deviceIsIOS && window.top !== window && targetTagName === 'input')) {
 				this.targetElement = null;
 				return false;

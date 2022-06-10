@@ -131,10 +131,10 @@
           return 'variable' + stt.state;
         }
 
-        // comments
+        // comentarios
         if (mat[1] === '\\') {
           stream.skipToEnd();
-            return 'comment' + stt.state;
+            return 'comentario' + stt.state;
           }
 
           // core words
@@ -148,7 +148,7 @@
           if (mat[1] === '(') {
             stream.eatWhile(function (s) { return s !== ')'; });
             stream.eat(')');
-            return 'comment' + stt.state;
+            return 'comentario' + stt.state;
           }
 
           // // strings

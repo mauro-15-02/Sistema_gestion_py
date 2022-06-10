@@ -11,14 +11,14 @@
 .cm-s-nord .CodeMirror-linenumber { color: #4c566a; }
 .cm-s-nord .CodeMirror-cursor { border-left: 1px solid #f8f8f0; }
 
-.cm-s-nord span.cm-comment { color: #4c566a; }
+.cm-s-nord span.cm-comentario { color: #4c566a; }
 .cm-s-nord span.cm-atom { color: #b48ead; }
 .cm-s-nord span.cm-number { color: #b48ead; }
 
-.cm-s-nord span.cm-comment.cm-attribute { color: #97b757; }
-.cm-s-nord span.cm-comment.cm-def { color: #bc9262; }
-.cm-s-nord span.cm-comment.cm-tag { color: #bc6283; }
-.cm-s-nord span.cm-comment.cm-type { color: #5998a6; }
+.cm-s-nord span.cm-comentario.cm-attribute { color: #97b757; }
+.cm-s-nord span.cm-comentario.cm-def { color: #bc9262; }
+.cm-s-nord span.cm-comentario.cm-tag { color: #bc6283; }
+.cm-s-nord span.cm-comentario.cm-type { color: #5998a6; }
 
 .cm-s-nord span.cm-property, .cm-s-nord span.cm-attribute { color: #8FBCBB; }
 .cm-s-nord span.cm-keyword { color: #81A1C1; }

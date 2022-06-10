@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Harap benarkan kolom ini.",
 	email: "Silakan masukkan format email yang benar.",
 	url: "Silakan masukkan format URL yang benar.",
-	date: "Silakan masukkan format tanggal yang benar.",
-	dateISO: "Silakan masukkan format tanggal(ISO) yang benar.",
+	fecha: "Silakan masukkan format tanggal yang benar.",
+	fechaISO: "Silakan masukkan format tanggal(ISO) yang benar.",
 	number: "Silakan masukkan angka yang benar.",
 	digits: "Harap masukan angka saja.",
 	creditcard: "Harap masukkan format kartu kredit yang benar.",

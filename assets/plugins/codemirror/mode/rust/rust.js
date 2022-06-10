@@ -32,8 +32,8 @@ CodeMirror.defineSimpleMode("rust",{
     {regex: /\b(fn)(\s+)([a-zA-Z_][a-zA-Z0-9_]*)/,
      token: ["keyword", null ,"def"]},
     {regex: /#!?\[.*\]/, token: "meta"},
-    {regex: /\/\/.*/, token: "comment"},
-    {regex: /\/\*/, token: "comment", next: "comment"},
+    {regex: /\/\/.*/, token: "comentario"},
+    {regex: /\/\*/, token: "comentario", next: "comentario"},
     {regex: /[-+\/*=<>!]+/, token: "operator"},
     {regex: /[a-zA-Z_]\w*!/,token: "variable-3"},
     {regex: /[a-zA-Z_]\w*/, token: "variable"},
@@ -52,12 +52,12 @@ CodeMirror.defineSimpleMode("rust",{
     {regex: /"#+/, token: "string", next: "start"},
     {regex: /(?:[^"]|"(?!#))*/, token: "string"}
   ],
-  comment: [
-    {regex: /.*?\*\//, token: "comment", next: "start"},
-    {regex: /.*/, token: "comment"}
+  comentario: [
+    {regex: /.*?\*\//, token: "comentario", next: "start"},
+    {regex: /.*/, token: "comentario"}
   ],
   meta: {
-    dontIndentStates: ["comment"],
+    dontIndentStates: ["comentario"],
     electricInput: /^\s*\}$/,
     blockCommentStart: "/*",
     blockCommentEnd: "*/",

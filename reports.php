@@ -34,23 +34,23 @@
                 if($_SESSION['login_type'] == 2){
                   $where = " where manager_id = '{$_SESSION['login_id']}' ";
                 }elseif($_SESSION['login_type'] == 3){
-                  $where = " where concat('[',REPLACE(user_ids,',','],['),']') LIKE '%[{$_SESSION['login_id']}]%' ";
+                  $where = " where concat('[',REPLACE(usuario_ids,',','],['),']') LIKE '%[{$_SESSION['login_id']}]%' ";
                 }
-                $qry = $conn->query("SELECT * FROM project_list $where order by name asc");
+                $qry = $conn->query("SELECT * FROM proyecto_list $where order by nombre asc");
                 while($row= $qry->fetch_assoc()):
-                $tprog = $conn->query("SELECT * FROM task_list where project_id = {$row['id']}")->num_rows;
-                $cprog = $conn->query("SELECT * FROM task_list where project_id = {$row['id']} and status = 3")->num_rows;
+                $tprog = $conn->query("SELECT * FROM tarea_list where proyecto_id = {$row['id']}")->num_rows;
+                $cprog = $conn->query("SELECT * FROM tarea_list where proyecto_id = {$row['id']} and status = 3")->num_rows;
                 $prog = $tprog > 0 ? ($cprog/$tprog) * 100 : 0;
                 $prog = $prog > 0 ?  number_format($prog,2) : $prog;
-                $prod = $conn->query("SELECT * FROM user_productivity where project_id = {$row['id']}")->num_rows;
-                $dur = $conn->query("SELECT sum(time_rendered) as duration FROM user_productivity where project_id = {$row['id']}");
+                $prod = $conn->query("SELECT * FROM productividad_usuario where proyecto_id = {$row['id']}")->num_rows;
+                $dur = $conn->query("SELECT sum(tiempo_prestado) as duration FROM productividad_usuario where proyecto_id = {$row['id']}");
                 $dur = $dur->num_rows > 0 ? $dur->fetch_assoc()['duration'] : 0;
-                if($row['status'] == 0 && strtotime(date('Y-m-d')) >= strtotime($row['start_date'])):
+                if($row['status'] == 0 && strtotime(date('Y-m-d')) >= strtotime($row['fecha_de_inicio'])):
                 if($prod  > 0  || $cprog > 0)
                   $row['status'] = 2;
                 else
                   $row['status'] = 1;
-                elseif($row['status'] == 0 && strtotime(date('Y-m-d')) > strtotime($row['end_date'])):
+                elseif($row['status'] == 0 && strtotime(date('Y-m-d')) > strtotime($row['fin_fecha'])):
                 $row['status'] = 4;
                 endif;
                   ?>
@@ -60,11 +60,11 @@
                       </td>
                       <td>
                           <a>
-                              <?php echo ucwords($row['name']) ?>
+                              <?php echo ucwords($row['nombre']) ?>
                           </a>
                           <br>
                           <small>
-                              Hasta: <?php echo date("d-m-Y",strtotime($row['end_date'])) ?>
+                              Hasta: <?php echo date("d-m-Y",strtotime($row['fin_fecha'])) ?>
                           </small>
                       </td>
                       <td class="text-center">

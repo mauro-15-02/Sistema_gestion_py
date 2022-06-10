@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Sila betulkan medan ini.",
 	email: "Sila masukkan alamat emel yang betul.",
 	url: "Sila masukkan URL yang betul.",
-	date: "Sila masukkan tarikh yang betul.",
-	dateISO: "Sila masukkan tarikh(ISO) yang betul.",
+	fecha: "Sila masukkan tarikh yang betul.",
+	fechaISO: "Sila masukkan tarikh(ISO) yang betul.",
 	number: "Sila masukkan nombor yang betul.",
 	digits: "Sila masukkan nilai digit sahaja.",
 	creditcard: "Sila masukkan nombor kredit kad yang betul.",

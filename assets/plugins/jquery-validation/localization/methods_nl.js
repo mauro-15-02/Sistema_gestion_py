@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -13,7 +13,7 @@
  * Locale: NL
  */
 $.extend( $.validator.methods, {
-	date: function( value, element ) {
+	fecha: function( value, element ) {
 		return this.optional( element ) || /^\d\d?[\.\/\-]\d\d?[\.\/\-]\d\d\d?\d?$/.test( value );
 	},
 	number: function( value, element ) {

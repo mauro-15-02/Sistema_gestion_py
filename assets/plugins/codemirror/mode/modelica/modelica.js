@@ -30,7 +30,7 @@
     function tokenLineComment(stream, state) {
       stream.skipToEnd();
       state.tokenize = null;
-      return "comment";
+      return "comentario";
     }
 
     function tokenBlockComment(stream, state) {
@@ -42,7 +42,7 @@
         }
         maybeEnd = (ch == "*");
       }
-      return "comment";
+      return "comentario";
     }
 
     function tokenString(stream, state) {

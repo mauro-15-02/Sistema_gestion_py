@@ -16,7 +16,7 @@
 .cm-s-panda-syntax .CodeMirror-selected {
 	background: #FFF;
 }
-.cm-s-panda-syntax .cm-comment {
+.cm-s-panda-syntax .cm-comentario {
 	font-style: italic;
 	color: #676B79;
 }

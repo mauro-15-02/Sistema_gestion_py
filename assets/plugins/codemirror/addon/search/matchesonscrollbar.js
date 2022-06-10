@@ -28,10 +28,10 @@
     this.caseFold = caseFold;
     this.gap = {from: cm.firstLine(), to: cm.lastLine() + 1};
     this.matches = [];
-    this.update = null;
+    this.upfecha = null;
 
     this.findMatches();
-    this.annotation.update(this.matches);
+    this.annotation.upfecha(this.matches);
 
     var self = this;
     cm.on("change", this.changeHandler = function(_cm, change) { self.onChange(change); });
@@ -80,14 +80,14 @@
       var newTo = offsetLine(match.to.line, startLine, sizeChange);
       if (newTo != match.to.line) match.to = CodeMirror.Pos(newTo, match.to.ch);
     }
-    clearTimeout(this.update);
+    clearTimeout(this.upfecha);
     var self = this;
-    this.update = setTimeout(function() { self.updateAfterChange(); }, 250);
+    this.upfecha = setTimeout(function() { self.upfechaAfterChange(); }, 250);
   };
 
-  SearchAnnotation.prototype.updateAfterChange = function() {
+  SearchAnnotation.prototype.upfechaAfterChange = function() {
     this.findMatches();
-    this.annotation.update(this.matches);
+    this.annotation.upfecha(this.matches);
   };
 
   SearchAnnotation.prototype.clear = function() {

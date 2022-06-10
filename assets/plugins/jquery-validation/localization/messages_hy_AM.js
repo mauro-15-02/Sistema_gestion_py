@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Ներմուծեք ճիշտ արժեքը",
 	email: "Ներմուծեք վավեր էլեկտրոնային փոստի հասցե",
 	url: "Ներմուծեք վավեր URL",
-	date: "Ներմուծեք վավեր ամսաթիվ",
-	dateISO: "Ներմուծեք ISO ֆորմատով վավեր ամսաթիվ։",
+	fecha: "Ներմուծեք վավեր ամսաթիվ",
+	fechaISO: "Ներմուծեք ISO ֆորմատով վավեր ամսաթիվ։",
 	number: "Ներմուծեք թիվ",
 	digits: "Ներմուծեք միայն թվեր",
 	creditcard: "Ներմուծեք ճիշտ բանկային քարտի համար",

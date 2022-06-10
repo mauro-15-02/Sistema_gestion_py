@@ -84,11 +84,11 @@
   var Rules = {
     start: [
       {
-        token: 'comment.doc',
+        token: 'comentario.doc',
         regex: '/\\*',
-        next: 'comment'
+        next: 'comentario'
       }, {
-        token: 'comment',
+        token: 'comentario',
         regex: '#.*'
       }, {
         token: 'keyword',
@@ -187,7 +187,7 @@
         token: 'string.regex',
         regex: '\\s*#{'
       }, {
-        token: 'comment.regex',
+        token: 'comentario.regex',
         regex: '\\s+(?:#.*)?'
       }, {
         token: 'string.regex',
@@ -208,13 +208,13 @@
         next: 'start'
       }
     ],
-    comment: [
+    comentario: [
       {
-        token: 'comment.doc',
+        token: 'comentario.doc',
         regex: '.*?\\*/',
         next: 'start'
       }, {
-        token: 'comment.doc',
+        token: 'comentario.doc',
         regex: '.+'
       }
     ],

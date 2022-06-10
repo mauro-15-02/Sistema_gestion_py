@@ -4,11 +4,11 @@
 
 /**
  * @summary     ColReorder
- * @description Provide the ability to reorder columns in a DataTable
+ * @descripcion Provide the ability to reorder columns in a DataTable
  * @version     1.5.2
  * @file        dataTables.colReorder.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contact     www.sprymedia.co.uk/contact
+ * @contacto     www.sprymedia.co.uk/contacto
  * @copyright   Copyright 2010-2019 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
@@ -124,10 +124,10 @@ function fnDomSwitch( nParent, iFrom, iTo )
  *  @param   int iTo and insert it into this point
  *  @param   bool drop Indicate if the reorder is the final one (i.e. a drop)
  *    not a live reorder
- *  @param   bool invalidateRows speeds up processing if false passed
+ *  @param   bool invalifechaRows speeds up processing if false passed
  *  @returns void
  */
-$.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, invalidateRows )
+$.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, invalifechaRows )
 {
 	var i, iLen, j, jLen, jen, iCols=oSettings.aoColumns.length, nTrs, oCol;
 	var attrMap = function ( obj, prop, mapping ) {
@@ -203,16 +203,16 @@ $.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, in
 			oCol.aDataSort[j] = aiInvertMapping[ oCol.aDataSort[j] ];
 		}
 
-		// Update the column indexes
+		// Upfecha the column indexes
 		oCol.idx = aiInvertMapping[ oCol.idx ];
 	}
 
-	// Update 1.10 optimised sort class removal variable
+	// Upfecha 1.10 optimised sort class removal variable
 	$.each( oSettings.aLastSort, function (i, val) {
 		oSettings.aLastSort[i].src = aiInvertMapping[ val.src ];
 	} );
 
-	/* Update the Get and Set functions for each column */
+	/* Upfecha the Get and Set functions for each column */
 	for ( i=0, iLen=iCols ; i<iLen ; i++ )
 	{
 		oCol = oSettings.aoColumns[i];
@@ -298,7 +298,7 @@ $.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, in
 		if ( cells ) {
 			fnArraySwitch( cells, iFrom, iTo );
 
-			// Longer term, should this be moved into the DataTables' invalidate
+			// Longer term, should this be moved into the DataTables' invalifecha
 			// methods?
 			for ( j=0, jen=cells.length ; j<jen ; j++ ) {
 				if ( cells[j] && cells[j]._DT_CellIndex ) {
@@ -307,7 +307,7 @@ $.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, in
 			}
 		}
 
-		// For DOM sourced data, the invalidate will reread the cell into
+		// For DOM sourced data, the invalifecha will reread the cell into
 		// the data array, but for data sources as an array, they need to
 		// be flipped
 		if ( data.src !== 'dom' && $.isArray( data._aData ) ) {
@@ -329,13 +329,13 @@ $.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, in
 		}
 	}
 
-	if ( invalidateRows || invalidateRows === undefined )
+	if ( invalifechaRows || invalifechaRows === undefined )
 	{
-		$.fn.dataTable.Api( oSettings ).rows().invalidate();
+		$.fn.dataTable.Api( oSettings ).rows().invalifecha();
 	}
 
 	/*
-	 * Update DataTables' event handlers
+	 * Upfecha DataTables' event handlers
 	 */
 
 	/* Sort listener */
@@ -346,7 +346,7 @@ $.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, in
 	}
 
 
-	/* Fire an event so other plug-ins can update */
+	/* Fire an event so other plug-ins can upfecha */
 	$(oSettings.oInstance).trigger( 'column-reorder.dt', [ oSettings, {
 		from: iFrom,
 		to: iTo,
@@ -820,7 +820,7 @@ $.extend( ColReorder.prototype, {
 			return;
 		}
 
-		$.fn.dataTable.Api( this.s.dt ).rows().invalidate();
+		$.fn.dataTable.Api( this.s.dt ).rows().invalifecha();
 
 		/* When scrolling we need to recalculate the column sizes to allow for the shift */
 		if ( this.s.dt.oScroll.sX !== "" || this.s.dt.oScroll.sY !== "" )
@@ -1462,9 +1462,9 @@ $.fn.dataTable.Api.register( 'colReorder.transpose()', function ( idx, dir ) {
 		idx;
 } );
 
-$.fn.dataTable.Api.register( 'colReorder.move()', function( from, to, drop, invalidateRows ) {
+$.fn.dataTable.Api.register( 'colReorder.move()', function( from, to, drop, invalifechaRows ) {
 	if (this.context.length) {
-		this.context[0]._colReorder.s.dt.oInstance.fnColReorder( from, to, drop, invalidateRows );
+		this.context[0]._colReorder.s.dt.oInstance.fnColReorder( from, to, drop, invalifechaRows );
 		this.context[0]._colReorder._fnSetColumnIndexes();
 	}
 	return this;

@@ -382,7 +382,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
         style = style[0];
       }
       override = style;
-      if (type != "comment")
+      if (type != "comentario")
         state.state = states[state.state](type, stream, state);
       return override;
     },
@@ -732,7 +732,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
       }
       maybeEnd = (ch == "*");
     }
-    return ["comment", "comment"];
+    return ["comentario", "comentario"];
   }
 
   CodeMirror.defineMIME("text/css", {
@@ -771,7 +771,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
       "/": function(stream, state) {
         if (stream.eat("/")) {
           stream.skipToEnd();
-          return ["comment", "comment"];
+          return ["comentario", "comentario"];
         } else if (stream.eat("*")) {
           state.tokenize = tokenCComment;
           return tokenCComment(stream, state);
@@ -814,7 +814,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
       "/": function(stream, state) {
         if (stream.eat("/")) {
           stream.skipToEnd();
-          return ["comment", "comment"];
+          return ["comentario", "comentario"];
         } else if (stream.eat("*")) {
           state.tokenize = tokenCComment;
           return tokenCComment(stream, state);

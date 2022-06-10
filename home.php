@@ -19,13 +19,13 @@ $where = "";
 if ($_SESSION['login_type'] == 2) {
   $where = " where manager_id = '{$_SESSION['login_id']}' ";
 } elseif ($_SESSION['login_type'] == 3) {
-  $where = " where concat('[',REPLACE(user_ids,',','],['),']') LIKE '%[{$_SESSION['login_id']}]%' ";
+  $where = " where concat('[',REPLACE(usuario_ids,',','],['),']') LIKE '%[{$_SESSION['login_id']}]%' ";
 }
 $where2 = "";
 if ($_SESSION['login_type'] == 2) {
   $where2 = " where p.manager_id = '{$_SESSION['login_id']}' ";
 } elseif ($_SESSION['login_type'] == 3) {
-  $where2 = " where concat('[',REPLACE(p.user_ids,',','],['),']') LIKE '%[{$_SESSION['login_id']}]%' ";
+  $where2 = " where concat('[',REPLACE(p.usuario_ids,',','],['),']') LIKE '%[{$_SESSION['login_id']}]%' ";
 }
 ?>
 
@@ -60,22 +60,22 @@ if ($_SESSION['login_type'] == 2) {
               if ($_SESSION['login_type'] == 2) {
                 $where = " where manager_id = '{$_SESSION['login_id']}' ";
               } elseif ($_SESSION['login_type'] == 3) {
-                $where = " where concat('[',REPLACE(user_ids,',','],['),']') LIKE '%[{$_SESSION['login_id']}]%' ";
+                $where = " where concat('[',REPLACE(usuario_ids,',','],['),']') LIKE '%[{$_SESSION['login_id']}]%' ";
               }
-              $qry = $conn->query("SELECT * FROM project_list $where order by name asc");
+              $qry = $conn->query("SELECT * FROM proyecto_list $where order by nombre asc");
               while ($row = $qry->fetch_assoc()) :
                 $prog = 0;
-                $tprog = $conn->query("SELECT * FROM task_list where project_id = {$row['id']}")->num_rows;
-                $cprog = $conn->query("SELECT * FROM task_list where project_id = {$row['id']} and status = 3")->num_rows;
+                $tprog = $conn->query("SELECT * FROM tarea_list where proyecto_id = {$row['id']}")->num_rows;
+                $cprog = $conn->query("SELECT * FROM tarea_list where proyecto_id = {$row['id']} and status = 3")->num_rows;
                 $prog = $tprog > 0 ? ($cprog / $tprog) * 100 : 0;
                 $prog = $prog > 0 ?  number_format($prog, 2) : $prog;
-                $prod = $conn->query("SELECT * FROM user_productivity where project_id = {$row['id']}")->num_rows;
-                if ($row['status'] == 0 && strtotime(date('Y-m-d')) >= strtotime($row['start_date'])) :
+                $prod = $conn->query("SELECT * FROM productividad_usuario where proyecto_id = {$row['id']}")->num_rows;
+                if ($row['status'] == 0 && strtotime(date('Y-m-d')) >= strtotime($row['fecha_de_inicio'])) :
                   if ($prod  > 0  || $cprog > 0)
                     $row['status'] = 2;
                   else
                     $row['status'] = 1;
-                elseif ($row['status'] == 0 && strtotime(date('Y-m-d')) > strtotime($row['end_date'])) :
+                elseif ($row['status'] == 0 && strtotime(date('Y-m-d')) > strtotime($row['fin_fecha'])) :
                   $row['status'] = 4;
                 endif;
               ?>
@@ -85,11 +85,11 @@ if ($_SESSION['login_type'] == 2) {
                   </td>
                   <td>
                     <a>
-                      <?php echo ucwords($row['name']) ?>
+                      <?php echo ucwords($row['nombre']) ?>
                     </a>
                     <br>
                     <small>
-                      Hasta: <?php echo date("Y-m-d", strtotime($row['end_date'])) ?>
+                      Hasta: <?php echo date("Y-m-d", strtotime($row['fin_fecha'])) ?>
                     </small>
                   </td>
                   <td class="project_progress">
@@ -138,7 +138,7 @@ if ($_SESSION['login_type'] == 2) {
       <div class="col-12 col-sm-6 col-md-12">
         <div class="small-box bg-light shadow-sm border">
           <div class="inner">
-            <h3><?php echo $conn->query("SELECT * FROM project_list $where")->num_rows; ?></h3>
+            <h3><?php echo $conn->query("SELECT * FROM proyecto_list $where")->num_rows; ?></h3>
 
             <p>Proyectos Totales</p>
           </div>
@@ -150,11 +150,11 @@ if ($_SESSION['login_type'] == 2) {
       <div class="col-12 col-sm-6 col-md-12">
         <div class="small-box bg-light shadow-sm border">
           <div class="inner">
-            <h3><?php echo $conn->query("SELECT t.*,p.name as pname,p.start_date,p.status as pstatus, p.end_date,p.id as pid FROM task_list t inner join project_list p on p.id = t.project_id $where2")->num_rows; ?></h3>
+            <h3><?php echo $conn->query("SELECT t.*,p.nombre as pnombre,p.fecha_de_inicio,p.status as pstatus, p.fin_fecha,p.id as pid FROM tarea_list t inner join proyecto_list p on p.id = t.proyecto_id $where2")->num_rows; ?></h3>
             <p>Tareas Totales</p>
           </div>
           <div class="icon">
-            <i class="fa fa-tasks"></i>
+            <i class="fa fa-tareas"></i>
           </div>
         </div>
       </div>

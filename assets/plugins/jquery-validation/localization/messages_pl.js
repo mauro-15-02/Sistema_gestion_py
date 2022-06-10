@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Proszę o wypełnienie tego pola.",
 	email: "Proszę o podanie prawidłowego adresu email.",
 	url: "Proszę o podanie prawidłowego URL.",
-	date: "Proszę o podanie prawidłowej daty.",
-	dateISO: "Proszę o podanie prawidłowej daty (ISO).",
+	fecha: "Proszę o podanie prawidłowej daty.",
+	fechaISO: "Proszę o podanie prawidłowej daty (ISO).",
 	number: "Proszę o podanie prawidłowej liczby.",
 	digits: "Proszę o podanie samych cyfr.",
 	creditcard: "Proszę o podanie prawidłowej karty kredytowej.",

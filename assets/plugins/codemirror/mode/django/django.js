@@ -17,12 +17,12 @@
     var keywords = ["block", "endblock", "for", "endfor", "true", "false", "filter", "endfilter",
                     "loop", "none", "self", "super", "if", "elif", "endif", "as", "else", "import",
                     "with", "endwith", "without", "context", "ifequal", "endifequal", "ifnotequal",
-                    "endifnotequal", "extends", "include", "load", "comment", "endcomment",
+                    "endifnotequal", "extends", "include", "load", "comentario", "endcomentario",
                     "empty", "url", "static", "trans", "blocktrans", "endblocktrans", "now",
                     "regroup", "lorem", "ifchanged", "endifchanged", "firstof", "debug", "cycle",
                     "csrf_token", "autoescape", "endautoescape", "spaceless", "endspaceless",
                     "ssi", "templatetag", "verbatim", "endverbatim", "widthratio"],
-        filters = ["add", "addslashes", "capfirst", "center", "cut", "date",
+        filters = ["add", "addslashes", "capfirst", "center", "cut", "fecha",
                    "default", "default_if_none", "dictsort",
                    "dictsortreversed", "divisibleby", "escape", "escapejs",
                    "filesizeformat", "first", "floatformat", "force_escape",
@@ -47,7 +47,7 @@
     // styling as the default, when using Django templates inside HTML
     // element attributes
     function tokenBase (stream, state) {
-      // Attempt to identify a variable, template or comment tag respectively
+      // Attempt to identify a variable, template or comentario tag respectively
       if (stream.match("{{")) {
         state.tokenize = inVariable;
         return "tag";
@@ -56,7 +56,7 @@
         return "tag";
       } else if (stream.match("{#")) {
         state.tokenize = inComment;
-        return "comment";
+        return "comentario";
       }
 
       // Ignore completely any stream series that do not match the
@@ -280,7 +280,7 @@
       // Attempt to match a keyword
       var keywordMatch = stream.match(keywords);
       if (keywordMatch) {
-        if (keywordMatch[0] == "comment") {
+        if (keywordMatch[0] == "comentario") {
           state.blockCommentTag = true;
         }
         return "keyword";
@@ -299,8 +299,8 @@
         state.waitFilter = null;
         state.waitDot = null;
         state.waitPipe = null;
-        // If the tag that closes is a block comment tag, we want to mark the
-        // following code as comment, until the tag closes.
+        // If the tag that closes is a block comentario tag, we want to mark the
+        // following code as comentario, until the tag closes.
         if (state.blockCommentTag) {
           state.blockCommentTag = false;  // Release the "lock"
           state.tokenize = inBlockComment;
@@ -315,22 +315,22 @@
       return "null";
     }
 
-    // Mark everything as comment inside the tag and the tag itself.
+    // Mark everything as comentario inside the tag and the tag itself.
     function inComment (stream, state) {
       if (stream.match(/^.*?#\}/)) state.tokenize = tokenBase
       else stream.skipToEnd()
-      return "comment";
+      return "comentario";
     }
 
-    // Mark everything as a comment until the `blockcomment` tag closes.
+    // Mark everything as a comentario until the `blockcomentario` tag closes.
     function inBlockComment (stream, state) {
-      if (stream.match(/\{%\s*endcomment\s*%\}/, false)) {
+      if (stream.match(/\{%\s*endcomentario\s*%\}/, false)) {
         state.tokenize = inTag;
         stream.match("{%");
         return "tag";
       } else {
         stream.next();
-        return "comment";
+        return "comentario";
       }
     }
 
@@ -341,8 +341,8 @@
       token: function (stream, state) {
         return state.tokenize(stream, state);
       },
-      blockCommentStart: "{% comment %}",
-      blockCommentEnd: "{% endcomment %}"
+      blockCommentStart: "{% comentario %}",
+      blockCommentEnd: "{% endcomentario %}"
     };
   });
 

@@ -315,13 +315,13 @@
     if (_typeof(args[0]) === 'object' && !isElement(args[0])) {
       _extends(params, args[0]);
     } else {
-      ['title', 'html', 'icon'].forEach(function (name, index) {
+      ['title', 'html', 'icon'].forEach(function (nombre, index) {
         var arg = args[index];
 
         if (typeof arg === 'string' || isElement(arg)) {
-          params[name] = arg;
+          params[nombre] = arg;
         } else if (arg !== undefined) {
-          error("Unexpected type of ".concat(name, "! Expected \"string\" or \"Element\", got ").concat(_typeof(arg)));
+          error("Unexpected type of ".concat(nombre, "! Expected \"string\" or \"Element\", got ").concat(_typeof(arg)));
         }
       });
     }
@@ -350,8 +350,8 @@
     return container ? container.querySelector(selectorString) : null;
   };
 
-  var elementByClass = function elementByClass(className) {
-    return elementBySelector(".".concat(className));
+  var elementByClass = function elementByClass(classnombre) {
+    return elementBySelector(".".concat(classnombre));
   };
 
   var getPopup = function getPopup() {
@@ -457,12 +457,12 @@
       });
     }
   };
-  var hasClass = function hasClass(elem, className) {
-    if (!className) {
+  var hasClass = function hasClass(elem, classnombre) {
+    if (!classnombre) {
       return false;
     }
 
-    var classList = className.split(/\s+/);
+    var classList = classnombre.split(/\s+/);
 
     for (var i = 0; i < classList.length; i++) {
       if (!elem.classList.contains(classList[i])) {
@@ -474,22 +474,22 @@
   };
 
   var removeCustomClasses = function removeCustomClasses(elem, params) {
-    toArray(elem.classList).forEach(function (className) {
-      if (!(objectValues(swalClasses).indexOf(className) !== -1) && !(objectValues(iconTypes).indexOf(className) !== -1) && !(objectValues(params.showClass).indexOf(className) !== -1)) {
-        elem.classList.remove(className);
+    toArray(elem.classList).forEach(function (classnombre) {
+      if (!(objectValues(swalClasses).indexOf(classnombre) !== -1) && !(objectValues(iconTypes).indexOf(classnombre) !== -1) && !(objectValues(params.showClass).indexOf(classnombre) !== -1)) {
+        elem.classList.remove(classnombre);
       }
     });
   };
 
-  var applyCustomClass = function applyCustomClass(elem, params, className) {
+  var applyCustomClass = function applyCustomClass(elem, params, classnombre) {
     removeCustomClasses(elem, params);
 
-    if (params.customClass && params.customClass[className]) {
-      if (typeof params.customClass[className] !== 'string' && !params.customClass[className].forEach) {
-        return warn("Invalid type of customClass.".concat(className, "! Expected string or iterable object, got \"").concat(_typeof(params.customClass[className]), "\""));
+    if (params.customClass && params.customClass[classnombre]) {
+      if (typeof params.customClass[classnombre] !== 'string' && !params.customClass[classnombre].forEach) {
+        return warn("Invalid type of customClass.".concat(classnombre, "! Expected string or iterable object, got \"").concat(_typeof(params.customClass[classnombre]), "\""));
       }
 
-      addClass(elem, params.customClass[className]);
+      addClass(elem, params.customClass[classnombre]);
     }
   };
   function getInput(content, inputType) {
@@ -535,13 +535,13 @@
       classList = classList.split(/\s+/).filter(Boolean);
     }
 
-    classList.forEach(function (className) {
+    classList.forEach(function (classnombre) {
       if (target.forEach) {
         target.forEach(function (elem) {
-          condition ? elem.classList.add(className) : elem.classList.remove(className);
+          condition ? elem.classList.add(classnombre) : elem.classList.remove(classnombre);
         });
       } else {
-        condition ? target.classList.add(className) : target.classList.remove(className);
+        condition ? target.classList.add(classnombre) : target.classList.remove(classnombre);
       }
     });
   };
@@ -551,9 +551,9 @@
   var removeClass = function removeClass(target, classList) {
     toggleClass(target, classList, false);
   };
-  var getChildByClass = function getChildByClass(elem, className) {
+  var getChildByClass = function getChildByClass(elem, classnombre) {
     for (var i = 0; i < elem.childNodes.length; i++) {
-      if (hasClass(elem.childNodes[i], className)) {
+      if (hasClass(elem.childNodes[i], classnombre)) {
         return elem.childNodes[i];
       }
     }
@@ -715,7 +715,7 @@
     }
 
     var container = document.createElement('div');
-    container.className = swalClasses.container;
+    container.classnombre = swalClasses.container;
 
     if (oldContainerExisted) {
       addClass(container, swalClasses['no-transition']);
@@ -770,15 +770,15 @@
     }
 
     var testEl = document.createElement('div');
-    var transEndEventNames = {
+    var transEndEventnombres = {
       WebkitAnimation: 'webkitAnimationEnd',
       OAnimation: 'oAnimationEnd oanimationend',
       animation: 'animationend'
     };
 
-    for (var i in transEndEventNames) {
-      if (Object.prototype.hasOwnProperty.call(transEndEventNames, i) && typeof testEl.style[i] !== 'undefined') {
-        return transEndEventNames[i];
+    for (var i in transEndEventnombres) {
+      if (Object.prototype.hasOwnProperty.call(transEndEventnombres, i) && typeof testEl.style[i] !== 'undefined') {
+        return transEndEventnombres[i];
       }
     }
 
@@ -789,7 +789,7 @@
 
   var measureScrollbar = function measureScrollbar() {
     var scrollDiv = document.createElement('div');
-    scrollDiv.className = swalClasses['scrollbar-measure'];
+    scrollDiv.classnombre = swalClasses['scrollbar-measure'];
     document.body.appendChild(scrollDiv);
     var scrollbarWidth = scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth;
     document.body.removeChild(scrollDiv);
@@ -851,7 +851,7 @@
     button.setAttribute('aria-label', params["".concat(buttonType, "ButtonAriaLabel")]); // ARIA label
     // Add buttons custom classes
 
-    button.className = swalClasses[buttonType];
+    button.classnombre = swalClasses[buttonType];
     applyCustomClass(button, params, "".concat(buttonType, "Button"));
     addClass(button, params["".concat(buttonType, "ButtonClass")]);
   }
@@ -935,7 +935,7 @@
 
       setAttributes(inputType, params.inputAttributes); // set class
 
-      inputContainer.className = inputClass;
+      inputContainer.classnombre = inputClass;
 
       if (rerender) {
         hide(inputContainer);
@@ -968,10 +968,10 @@
 
   var removeAttributes = function removeAttributes(input) {
     for (var i = 0; i < input.attributes.length; i++) {
-      var attrName = input.attributes[i].name;
+      var attrnombre = input.attributes[i].nombre;
 
-      if (!(['type', 'value', 'style'].indexOf(attrName) !== -1)) {
-        input.removeAttribute(attrName);
+      if (!(['type', 'value', 'style'].indexOf(attrnombre) !== -1)) {
+        input.removeAttribute(attrnombre);
       }
     }
   };
@@ -1226,7 +1226,7 @@
     applyNumericalStyle(image, 'width', params.imageWidth);
     applyNumericalStyle(image, 'height', params.imageHeight); // Class
 
-    image.className = swalClasses.image;
+    image.classnombre = swalClasses.image;
     applyCustomClass(image, params, 'image');
   };
 
@@ -1391,8 +1391,8 @@
   };
 
   var addClasses = function addClasses(popup, params) {
-    // Default Class + showClass when updating Swal.update({})
-    popup.className = "".concat(swalClasses.popup, " ").concat(isVisible(popup) ? params.showClass.popup : '');
+    // Default Class + showClass when updating Swal.upfecha({})
+    popup.classnombre = "".concat(swalClasses.popup, " ").concat(isVisible(popup) ? params.showClass.popup : '');
 
     if (params.toast) {
       addClass([document.documentElement, document.body], swalClasses['toast-shown']);
@@ -1467,13 +1467,13 @@
    *
    * Before:
    * const textPromptOptions = { input: 'text', showCancelButton: true }
-   * const {value: firstName} = await Swal.fire({ ...textPromptOptions, title: 'What is your first name?' })
-   * const {value: lastName} = await Swal.fire({ ...textPromptOptions, title: 'What is your last name?' })
+   * const {value: primer_nombre} = await Swal.fire({ ...textPromptOptions, title: 'What is your first nombre?' })
+   * const {value: apellido} = await Swal.fire({ ...textPromptOptions, title: 'What is your last nombre?' })
    *
    * After:
    * const TextPrompt = Swal.mixin({ input: 'text', showCancelButton: true })
-   * const {value: firstName} = await TextPrompt('What is your first name?')
-   * const {value: lastName} = await TextPrompt('What is your last name?')
+   * const {value: primer_nombre} = await TextPrompt('What is your first nombre?')
+   * const {value: apellido} = await TextPrompt('What is your last nombre?')
    *
    * @param mixinParams
    */
@@ -1598,7 +1598,7 @@
     return timer && (timer.running ? stopTimer() : resumeTimer());
   };
   /**
-   * Increase timer. Returns number of milliseconds of an updated timer.
+   * Increase timer. Returns number of milliseconds of an upfechad timer.
    * If `timer` parameter isn't set, returns undefined.
    */
 
@@ -1702,27 +1702,27 @@
   var toastIncompatibleParams = ['allowOutsideClick', 'allowEnterKey', 'backdrop', 'focusConfirm', 'focusCancel', 'heightAuto', 'keydownListenerCapture'];
   /**
    * Is valid parameter
-   * @param {String} paramName
+   * @param {String} paramnombre
    */
 
-  var isValidParameter = function isValidParameter(paramName) {
-    return Object.prototype.hasOwnProperty.call(defaultParams, paramName);
+  var isValidParameter = function isValidParameter(paramnombre) {
+    return Object.prototype.hasOwnProperty.call(defaultParams, paramnombre);
   };
   /**
-   * Is valid parameter for Swal.update() method
-   * @param {String} paramName
+   * Is valid parameter for Swal.upfecha() method
+   * @param {String} paramnombre
    */
 
-  var isUpdatableParameter = function isUpdatableParameter(paramName) {
-    return updatableParams.indexOf(paramName) !== -1;
+  var isUpdatableParameter = function isUpdatableParameter(paramnombre) {
+    return updatableParams.indexOf(paramnombre) !== -1;
   };
   /**
    * Is deprecated parameter
-   * @param {String} paramName
+   * @param {String} paramnombre
    */
 
-  var isDeprecatedParameter = function isDeprecatedParameter(paramName) {
-    return deprecatedParams[paramName];
+  var isDeprecatedParameter = function isDeprecatedParameter(paramnombre) {
+    return deprecatedParams[paramnombre];
   };
 
   var checkIfParamIsValid = function checkIfParamIsValid(param) {
@@ -1915,7 +1915,7 @@
       return true;
     }
 
-    if (!isScrollable(container) && target.tagName !== 'INPUT' && // #1603
+    if (!isScrollable(container) && target.tagnombre !== 'INPUT' && // #1603
     !(isScrollable(getContent()) && // #1944
     getContent().contains(target))) {
       return true;
@@ -2260,7 +2260,7 @@
 
   var defaultInputValidators = {
     email: function email(string, validationMessage) {
-      return /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9-]{2,24}$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid email address');
+      return /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9-]{2,24}$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid email direccion');
     },
     url: function url(string, validationMessage) {
       // taken from https://stackoverflow.com/a/3809435 with a small change from #1306 and #2013
@@ -2279,7 +2279,7 @@
     }
   }
 
-  function validateCustomTargetElement(params) {
+  function valifechaCustomTargetElement(params) {
     // Determine if the custom target element is valid
     if (!params.target || typeof params.target === 'string' && !document.querySelector(params.target) || typeof params.target !== 'string' && !params.target.appendChild) {
       warn('Target parameter is not valid, defaulting to "body"');
@@ -2306,7 +2306,7 @@
 
 
     params.animation = callIfFunction(params.animation);
-    validateCustomTargetElement(params); // Replace newlines with <br> in title
+    valifechaCustomTargetElement(params); // Replace newlines with <br> in title
 
     if (typeof params.title === 'string') {
       params.title = params.title.split('\n').join('<br />');
@@ -2526,7 +2526,7 @@
         var radioInput = document.createElement('input');
         var radioLabelElement = document.createElement('label');
         radioInput.type = 'radio';
-        radioInput.name = swalClasses.radio;
+        radioInput.nombre = swalClasses.radio;
         radioInput.value = radioValue;
 
         if (params.inputValue.toString() === radioValue.toString()) {
@@ -2535,7 +2535,7 @@
 
         var label = document.createElement('span');
         setInnerHtml(label, radioLabel);
-        label.className = swalClasses.label;
+        label.classnombre = swalClasses.label;
         radioLabelElement.appendChild(radioInput);
         radioLabelElement.appendChild(label);
         radio.appendChild(radioLabelElement);
@@ -2996,15 +2996,15 @@
   };
 
   /**
-   * Updates popup parameters.
+   * Upfechas popup parameters.
    */
 
-  function update(params) {
+  function upfecha(params) {
     var popup = getPopup();
     var innerParams = privateProps.innerParams.get(this);
 
     if (!popup || hasClass(popup, innerParams.hideClass.popup)) {
-      return warn("You're trying to update the closed or closing popup, that won't work. Use the update() method in preConfirm parameter or show a new popup.");
+      return warn("You're trying to upfecha the closed or closing popup, that won't work. Use the upfecha() method in preConfirm parameter or show a new popup.");
     }
 
     var validUpdatableParams = {}; // assign valid params from `params` to `defaults`
@@ -3013,14 +3013,14 @@
       if (Swal.isUpdatableParameter(param)) {
         validUpdatableParams[param] = params[param];
       } else {
-        warn("Invalid parameter to update: \"".concat(param, "\". Updatable params are listed here: https://github.com/sweetalert2/sweetalert2/blob/master/src/utils/params.js"));
+        warn("Invalid parameter to upfecha: \"".concat(param, "\". Updatable params are listed here: https://github.com/sweetalert2/sweetalert2/blob/master/src/utils/params.js"));
       }
     });
 
-    var updatedParams = _extends({}, innerParams, validUpdatableParams);
+    var upfechadParams = _extends({}, innerParams, validUpdatableParams);
 
-    render(this, updatedParams);
-    privateProps.innerParams.set(this, updatedParams);
+    render(this, upfechadParams);
+    privateProps.innerParams.set(this, upfechadParams);
     Object.defineProperties(this, {
       params: {
         value: _extends({}, this.params, params),
@@ -3092,7 +3092,7 @@
     resetValidationMessage: resetValidationMessage$1,
     getProgressSteps: getProgressSteps$1,
     _main: _main,
-    update: update,
+    upfecha: upfecha,
     _destroy: _destroy
   });
 
@@ -3131,7 +3131,7 @@
       var promise = this._main(this.params);
 
       privateProps.promise.set(this, promise);
-    } // `catch` cannot be the name of a module export, so we define our thenable methods here instead
+    } // `catch` cannot be the nombre of a module export, so we define our thenable methods here instead
 
 
     _createClass(SweetAlert, [{

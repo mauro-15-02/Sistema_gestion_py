@@ -1,6 +1,6 @@
 /*! jQuery UI - v1.12.1 - 2016-09-14
 * http://jqueryui.com
-* Includes: widget.js, position.js, data.js, disable-selection.js, effect.js, effects/effect-blind.js, effects/effect-bounce.js, effects/effect-clip.js, effects/effect-drop.js, effects/effect-explode.js, effects/effect-fade.js, effects/effect-fold.js, effects/effect-highlight.js, effects/effect-puff.js, effects/effect-pulsate.js, effects/effect-scale.js, effects/effect-shake.js, effects/effect-size.js, effects/effect-slide.js, effects/effect-transfer.js, focusable.js, form-reset-mixin.js, jquery-1-7.js, keycode.js, labels.js, scroll-parent.js, tabbable.js, unique-id.js, widgets/accordion.js, widgets/autocomplete.js, widgets/button.js, widgets/checkboxradio.js, widgets/controlgroup.js, widgets/datepicker.js, widgets/dialog.js, widgets/draggable.js, widgets/droppable.js, widgets/menu.js, widgets/mouse.js, widgets/progressbar.js, widgets/resizable.js, widgets/selectable.js, widgets/selectmenu.js, widgets/slider.js, widgets/sortable.js, widgets/spinner.js, widgets/tabs.js, widgets/tooltip.js
+* Includes: widget.js, position.js, data.js, disable-selection.js, effect.js, effects/effect-blind.js, effects/effect-bounce.js, effects/effect-clip.js, effects/effect-drop.js, effects/effect-explode.js, effects/effect-fade.js, effects/effect-fold.js, effects/effect-highlight.js, effects/effect-puff.js, effects/effect-pulsate.js, effects/effect-scale.js, effects/effect-shake.js, effects/effect-size.js, effects/effect-slide.js, effects/effect-transfer.js, focusable.js, form-reset-mixin.js, jquery-1-7.js, keycode.js, labels.js, scroll-parent.js, tabbable.js, unique-id.js, widgets/accordion.js, widgets/autocomplete.js, widgets/button.js, widgets/checkboxradio.js, widgets/controlgroup.js, widgets/fechapicker.js, widgets/dialog.js, widgets/draggable.js, widgets/droppable.js, widgets/menu.js, widgets/mouse.js, widgets/progressbar.js, widgets/resizable.js, widgets/selectable.js, widgets/selectmenu.js, widgets/slider.js, widgets/sortable.js, widgets/spinner.js, widgets/tabs.js, widgets/tooltip.js
 * Copyright jQuery Foundation and other contributors; Licensed MIT */
 
 (function( factory ) {
@@ -31,7 +31,7 @@ var version = $.ui.version = "1.12.1";
 
 //>>label: Widget
 //>>group: Core
-//>>description: Provides a factory for creating stateful widgets with a common API.
+//>>descripcion: Provides a factory for creating stateful widgets with a common API.
 //>>docs: http://api.jqueryui.com/jQuery.widget/
 //>>demos: http://jqueryui.com/widget/
 
@@ -59,16 +59,16 @@ $.cleanData = ( function( orig ) {
 	};
 } )( $.cleanData );
 
-$.widget = function( name, base, prototype ) {
+$.widget = function( nombre, base, prototype ) {
 	var existingConstructor, constructor, basePrototype;
 
 	// ProxiedPrototype allows the provided prototype to remain unmodified
 	// so that it can be used as a mixin for multiple widgets (#8876)
 	var proxiedPrototype = {};
 
-	var namespace = name.split( "." )[ 0 ];
-	name = name.split( "." )[ 1 ];
-	var fullName = namespace + "-" + name;
+	var nombrespace = nombre.split( "." )[ 0 ];
+	nombre = nombre.split( "." )[ 1 ];
+	var fullnombre = nombrespace + "-" + nombre;
 
 	if ( !prototype ) {
 		prototype = base;
@@ -80,13 +80,13 @@ $.widget = function( name, base, prototype ) {
 	}
 
 	// Create selector for plugin
-	$.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
-		return !!$.data( elem, fullName );
+	$.expr[ ":" ][ fullnombre.toLowerCase() ] = function( elem ) {
+		return !!$.data( elem, fullnombre );
 	};
 
-	$[ namespace ] = $[ namespace ] || {};
-	existingConstructor = $[ namespace ][ name ];
-	constructor = $[ namespace ][ name ] = function( options, element ) {
+	$[ nombrespace ] = $[ nombrespace ] || {};
+	existingConstructor = $[ nombrespace ][ nombre ];
+	constructor = $[ nombrespace ][ nombre ] = function( options, element ) {
 
 		// Allow instantiation without "new" keyword
 		if ( !this._createWidget ) {
@@ -153,14 +153,14 @@ $.widget = function( name, base, prototype ) {
 	constructor.prototype = $.widget.extend( basePrototype, {
 
 		// TODO: remove support for widgetEventPrefix
-		// always use the name + a colon as the prefix, e.g., draggable:start
+		// always use the nombre + a colon as the prefix, e.g., draggable:start
 		// don't prefix for widgets that aren't DOM-based
-		widgetEventPrefix: existingConstructor ? ( basePrototype.widgetEventPrefix || name ) : name
+		widgetEventPrefix: existingConstructor ? ( basePrototype.widgetEventPrefix || nombre ) : nombre
 	}, proxiedPrototype, {
 		constructor: constructor,
-		namespace: namespace,
-		widgetName: name,
-		widgetFullName: fullName
+		nombrespace: nombrespace,
+		widgetnombre: nombre,
+		widgetFullnombre: fullnombre
 	} );
 
 	// If this widget is being redefined then we need to find all widgets that
@@ -173,7 +173,7 @@ $.widget = function( name, base, prototype ) {
 
 			// Redefine the child widget using the same prototype that was
 			// originally used, but inherit from the new version of the base
-			$.widget( childPrototype.namespace + "." + childPrototype.widgetName, constructor,
+			$.widget( childPrototype.nombrespace + "." + childPrototype.widgetnombre, constructor,
 				child._proto );
 		} );
 
@@ -184,7 +184,7 @@ $.widget = function( name, base, prototype ) {
 		base._childConstructors.push( constructor );
 	}
 
-	$.widget.bridge( name, constructor );
+	$.widget.bridge( nombre, constructor );
 
 	return constructor;
 };
@@ -219,9 +219,9 @@ $.widget.extend = function( target ) {
 	return target;
 };
 
-$.widget.bridge = function( name, object ) {
-	var fullName = object.prototype.widgetFullName || name;
-	$.fn[ name ] = function( options ) {
+$.widget.bridge = function( nombre, object ) {
+	var fullnombre = object.prototype.widgetFullnombre || nombre;
+	$.fn[ nombre ] = function( options ) {
 		var isMethodCall = typeof options === "string";
 		var args = widgetSlice.call( arguments, 1 );
 		var returnValue = this;
@@ -235,7 +235,7 @@ $.widget.bridge = function( name, object ) {
 			} else {
 				this.each( function() {
 					var methodValue;
-					var instance = $.data( this, fullName );
+					var instance = $.data( this, fullnombre );
 
 					if ( options === "instance" ) {
 						returnValue = instance;
@@ -243,13 +243,13 @@ $.widget.bridge = function( name, object ) {
 					}
 
 					if ( !instance ) {
-						return $.error( "cannot call methods on " + name +
+						return $.error( "cannot call methods on " + nombre +
 							" prior to initialization; " +
 							"attempted to call method '" + options + "'" );
 					}
 
 					if ( !$.isFunction( instance[ options ] ) || options.charAt( 0 ) === "_" ) {
-						return $.error( "no such method '" + options + "' for " + name +
+						return $.error( "no such method '" + options + "' for " + nombre +
 							" widget instance" );
 					}
 
@@ -271,14 +271,14 @@ $.widget.bridge = function( name, object ) {
 			}
 
 			this.each( function() {
-				var instance = $.data( this, fullName );
+				var instance = $.data( this, fullnombre );
 				if ( instance ) {
 					instance.option( options || {} );
 					if ( instance._init ) {
 						instance._init();
 					}
 				} else {
-					$.data( this, fullName, new object( options, this ) );
+					$.data( this, fullnombre, new object( options, this ) );
 				}
 			} );
 		}
@@ -291,7 +291,7 @@ $.Widget = function( /* options, element */ ) {};
 $.Widget._childConstructors = [];
 
 $.Widget.prototype = {
-	widgetName: "widget",
+	widgetnombre: "widget",
 	widgetEventPrefix: "",
 	defaultElement: "<div>",
 
@@ -307,7 +307,7 @@ $.Widget.prototype = {
 		element = $( element || this.defaultElement || this )[ 0 ];
 		this.element = $( element );
 		this.uuid = widgetUuid++;
-		this.eventNamespace = "." + this.widgetName + this.uuid;
+		this.eventnombrespace = "." + this.widgetnombre + this.uuid;
 
 		this.bindings = $();
 		this.hoverable = $();
@@ -315,7 +315,7 @@ $.Widget.prototype = {
 		this.classesElementLookup = {};
 
 		if ( element !== this ) {
-			$.data( element, this.widgetFullName, this );
+			$.data( element, this.widgetFullnombre, this );
 			this._on( true, this.element, {
 				remove: function( event ) {
 					if ( event.target === element ) {
@@ -369,14 +369,14 @@ $.Widget.prototype = {
 		// We can probably remove the unbind calls in 2.0
 		// all event bindings should go through this._on()
 		this.element
-			.off( this.eventNamespace )
-			.removeData( this.widgetFullName );
+			.off( this.eventnombrespace )
+			.removeData( this.widgetFullnombre );
 		this.widget()
-			.off( this.eventNamespace )
+			.off( this.eventnombrespace )
 			.removeAttr( "aria-disabled" );
 
 		// Clean up events and states
-		this.bindings.off( this.eventNamespace );
+		this.bindings.off( this.eventnombrespace );
 	},
 
 	_destroy: $.noop,
@@ -483,7 +483,7 @@ $.Widget.prototype = {
 	},
 
 	_setOptionDisabled: function( value ) {
-		this._toggleClass( this.widget(), this.widgetFullName + "-disabled", null, !!value );
+		this._toggleClass( this.widget(), this.widgetFullnombre + "-disabled", null, !!value );
 
 		// If the widget is becoming disabled, then nothing is interactive
 		if ( value ) {
@@ -613,21 +613,21 @@ $.Widget.prototype = {
 			}
 
 			var match = event.match( /^([\w:-]*)\s*(.*)$/ );
-			var eventName = match[ 1 ] + instance.eventNamespace;
+			var eventnombre = match[ 1 ] + instance.eventnombrespace;
 			var selector = match[ 2 ];
 
 			if ( selector ) {
-				delegateElement.on( eventName, selector, handlerProxy );
+				delegateElement.on( eventnombre, selector, handlerProxy );
 			} else {
-				element.on( eventName, handlerProxy );
+				element.on( eventnombre, handlerProxy );
 			}
 		} );
 	},
 
-	_off: function( element, eventName ) {
-		eventName = ( eventName || "" ).split( " " ).join( this.eventNamespace + " " ) +
-			this.eventNamespace;
-		element.off( eventName ).off( eventName );
+	_off: function( element, eventnombre ) {
+		eventnombre = ( eventnombre || "" ).split( " " ).join( this.eventnombrespace + " " ) +
+			this.eventnombrespace;
+		element.off( eventnombre ).off( eventnombre );
 
 		// Clear the stack to avoid memory leaks (#10056)
 		this.bindings = $( this.bindings.not( element ).get() );
@@ -706,7 +706,7 @@ $.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
 		}
 
 		var hasOptions;
-		var effectName = !options ?
+		var effectnombre = !options ?
 			method :
 			options === true || typeof options === "number" ?
 				defaultEffect :
@@ -724,10 +724,10 @@ $.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
 			element.delay( options.delay );
 		}
 
-		if ( hasOptions && $.effects && $.effects.effect[ effectName ] ) {
+		if ( hasOptions && $.effects && $.effects.effect[ effectnombre ] ) {
 			element[ method ]( options );
-		} else if ( effectName !== method && element[ effectName ] ) {
-			element[ effectName ]( options.duration, options.easing, callback );
+		} else if ( effectnombre !== method && element[ effectnombre ] ) {
+			element[ effectnombre ]( options.duration, options.easing, callback );
 		} else {
 			element.queue( function( next ) {
 				$( this )[ method ]();
@@ -756,7 +756,7 @@ var widget = $.widget;
 
 //>>label: Position
 //>>group: Core
-//>>description: Positions elements relative to other elements.
+//>>descripcion: Positions elements relative to other elements.
 //>>docs: http://api.jqueryui.com/position/
 //>>demos: http://jqueryui.com/position/
 
@@ -1242,15 +1242,15 @@ var position = $.ui.position;
 
 //>>label: :data Selector
 //>>group: Core
-//>>description: Selects elements which have data stored under the specified key.
+//>>descripcion: Selects elements which have data stored under the specified key.
 //>>docs: http://api.jqueryui.com/data-selector/
 
 
 var data = $.extend( $.expr[ ":" ], {
 	data: $.expr.createPseudo ?
-		$.expr.createPseudo( function( dataName ) {
+		$.expr.createPseudo( function( datanombre ) {
 			return function( elem ) {
-				return !!$.data( elem, dataName );
+				return !!$.data( elem, datanombre );
 			};
 		} ) :
 
@@ -1271,7 +1271,7 @@ var data = $.extend( $.expr[ ":" ], {
 
 //>>label: disableSelection
 //>>group: Core
-//>>description: Disable selection of text content within the set of matched elements.
+//>>descripcion: Disable selection of text content within the set of matched elements.
 //>>docs: http://api.jqueryui.com/disableSelection/
 
 // This file is deprecated
@@ -1308,7 +1308,7 @@ var disableSelection = $.fn.extend( {
 //>>label: Effects Core
 //>>group: Effects
 // jscs:disable maximumLineLength
-//>>description: Extends the internal jQuery effects. Includes morphing and easing. Required by all other effects.
+//>>descripcion: Extends the internal jQuery effects. Includes morphing and easing. Required by all other effects.
 // jscs:enable maximumLineLength
 //>>docs: http://api.jqueryui.com/category/effects-core/
 //>>demos: http://jqueryui.com/effect/
@@ -1458,7 +1458,7 @@ $.effects = {
 	// Element for support tests
 	supportElem = jQuery( "<p>" )[ 0 ],
 
-	// Colors = jQuery.Color.names
+	// Colors = jQuery.Color.nombres
 	colors,
 
 	// Local aliases of functions called often
@@ -1468,10 +1468,10 @@ $.effects = {
 supportElem.style.cssText = "background-color:rgba(1,1,1,.5)";
 support.rgba = supportElem.style.backgroundColor.indexOf( "rgba" ) > -1;
 
-// Define cache name and alpha properties
+// Define cache nombre and alpha properties
 // for rgba and hsla spaces
-each( spaces, function( spaceName, space ) {
-	space.cache = "_" + spaceName;
+each( spaces, function( spacenombre, space ) {
+	space.cache = "_" + spacenombre;
 	space.props.alpha = {
 		idx: 3,
 		type: "percent",
@@ -1516,14 +1516,14 @@ function stringParse( string ) {
 		var parsed,
 			match = parser.re.exec( string ),
 			values = match && parser.parse( match ),
-			spaceName = parser.space || "rgba";
+			spacenombre = parser.space || "rgba";
 
 		if ( values ) {
-			parsed = inst[ spaceName ]( values );
+			parsed = inst[ spacenombre ]( values );
 
 			// If this was an rgba parse the assignment might happen twice
 			// oh well....
-			inst[ spaces[ spaceName ].cache ] = parsed[ spaces[ spaceName ].cache ];
+			inst[ spaces[ spacenombre ].cache ] = parsed[ spaces[ spacenombre ].cache ];
 			rgba = inst._rgba = parsed._rgba;
 
 			// Exit each( stringParsers ) here because we matched
@@ -1542,7 +1542,7 @@ function stringParse( string ) {
 		return inst;
 	}
 
-	// Named colors
+	// nombred colors
 	return colors[ string ];
 }
 
@@ -1580,13 +1580,13 @@ color.fn = jQuery.extend( color.prototype, {
 
 		if ( type === "object" ) {
 			if ( red instanceof color ) {
-				each( spaces, function( spaceName, space ) {
+				each( spaces, function( spacenombre, space ) {
 					if ( red[ space.cache ] ) {
 						inst[ space.cache ] = red[ space.cache ].slice();
 					}
 				} );
 			} else {
-				each( spaces, function( spaceName, space ) {
+				each( spaces, function( spacenombre, space ) {
 					var cache = space.cache;
 					each( space.props, function( key, prop ) {
 
@@ -1645,17 +1645,17 @@ color.fn = jQuery.extend( color.prototype, {
 	_space: function() {
 		var used = [],
 			inst = this;
-		each( spaces, function( spaceName, space ) {
+		each( spaces, function( spacenombre, space ) {
 			if ( inst[ space.cache ] ) {
-				used.push( spaceName );
+				used.push( spacenombre );
 			}
 		} );
 		return used.pop();
 	},
 	transition: function( other, distance ) {
 		var end = color( other ),
-			spaceName = end._space(),
-			space = spaces[ spaceName ],
+			spacenombre = end._space(),
+			space = spaces[ spacenombre ],
 			startColor = this.alpha() === 0 ? color( "transparent" ) : this,
 			start = startColor[ space.cache ] || space.to( startColor._rgba ),
 			result = start.slice();
@@ -1686,7 +1686,7 @@ color.fn = jQuery.extend( color.prototype, {
 				result[ index ] = clamp( ( endValue - startValue ) * distance + startValue, prop );
 			}
 		} );
-		return this[ spaceName ]( result );
+		return this[ spacenombre ]( result );
 	},
 	blend: function( opaque ) {
 
@@ -1830,14 +1830,14 @@ spaces.hsla.from = function( hsla ) {
 	];
 };
 
-each( spaces, function( spaceName, space ) {
+each( spaces, function( spacenombre, space ) {
 	var props = space.props,
 		cache = space.cache,
 		to = space.to,
 		from = space.from;
 
 	// Makes rgba() and hsla()
-	color.fn[ spaceName ] = function( value ) {
+	color.fn[ spacenombre ] = function( value ) {
 
 		// Generate a cache for this space if it doesn't exist
 		if ( to && !this[ cache ] ) {
@@ -1878,7 +1878,7 @@ each( spaces, function( spaceName, space ) {
 		}
 		color.fn[ key ] = function( value ) {
 			var vtype = jQuery.type( value ),
-				fn = ( key === "alpha" ? ( this._hsla ? "hsla" : "rgba" ) : spaceName ),
+				fn = ( key === "alpha" ? ( this._hsla ? "hsla" : "rgba" ) : spacenombre ),
 				local = this[ fn ](),
 				cur = local[ prop.idx ],
 				match;
@@ -1906,7 +1906,7 @@ each( spaces, function( spaceName, space ) {
 	} );
 } );
 
-// Add cssHook and .fx.step function for each named hook.
+// Add cssHook and .fx.step function for each nombred hook.
 // accept a space separated string of properties
 color.hook = function( hook ) {
 	var hooks = hook.split( " " );
@@ -1973,10 +1973,10 @@ jQuery.cssHooks.borderColor = {
 	}
 };
 
-// Basic color names only.
-// Usage of any of the other color names requires adding yourself or including
-// jquery.color.svg-names.js.
-colors = jQuery.Color.names = {
+// Basic color nombres only.
+// Usage of any of the other color nombres requires adding yourself or including
+// jquery.color.svg-nombres.js.
+colors = jQuery.Color.nombres = {
 
 	// 4.1. Basic color keywords
 	aqua: "#00ffff",
@@ -2064,14 +2064,14 @@ function getElementStyles( elem ) {
 
 function styleDifference( oldStyle, newStyle ) {
 	var diff = {},
-		name, value;
+		nombre, value;
 
-	for ( name in newStyle ) {
-		value = newStyle[ name ];
-		if ( oldStyle[ name ] !== value ) {
-			if ( !shorthandStyles[ name ] ) {
-				if ( $.fx.step[ name ] || !isNaN( parseFloat( value ) ) ) {
-					diff[ name ] = value;
+	for ( nombre in newStyle ) {
+		value = newStyle[ nombre ];
+		if ( oldStyle[ nombre ] !== value ) {
+			if ( !shorthandStyles[ nombre ] ) {
+				if ( $.fx.step[ nombre ] || !isNaN( parseFloat( value ) ) ) {
+					diff[ nombre ] = value;
 				}
 			}
 		}
@@ -2166,25 +2166,25 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 
 $.fn.extend( {
 	addClass: ( function( orig ) {
-		return function( classNames, speed, easing, callback ) {
+		return function( classnombres, speed, easing, callback ) {
 			return speed ?
 				$.effects.animateClass.call( this,
-					{ add: classNames }, speed, easing, callback ) :
+					{ add: classnombres }, speed, easing, callback ) :
 				orig.apply( this, arguments );
 		};
 	} )( $.fn.addClass ),
 
 	removeClass: ( function( orig ) {
-		return function( classNames, speed, easing, callback ) {
+		return function( classnombres, speed, easing, callback ) {
 			return arguments.length > 1 ?
 				$.effects.animateClass.call( this,
-					{ remove: classNames }, speed, easing, callback ) :
+					{ remove: classnombres }, speed, easing, callback ) :
 				orig.apply( this, arguments );
 		};
 	} )( $.fn.removeClass ),
 
 	toggleClass: ( function( orig ) {
-		return function( classNames, force, speed, easing, callback ) {
+		return function( classnombres, force, speed, easing, callback ) {
 			if ( typeof force === "boolean" || force === undefined ) {
 				if ( !speed ) {
 
@@ -2192,14 +2192,14 @@ $.fn.extend( {
 					return orig.apply( this, arguments );
 				} else {
 					return $.effects.animateClass.call( this,
-						( force ? { add: classNames } : { remove: classNames } ),
+						( force ? { add: classnombres } : { remove: classnombres } ),
 						speed, easing, callback );
 				}
 			} else {
 
 				// Without force parameter
 				return $.effects.animateClass.call( this,
-					{ toggle: classNames }, force, speed, easing );
+					{ toggle: classnombres }, force, speed, easing );
 			}
 		};
 	} )( $.fn.toggleClass ),
@@ -2358,14 +2358,14 @@ if ( $.uiBackCompat !== false ) {
 $.extend( $.effects, {
 	version: "1.12.1",
 
-	define: function( name, mode, effect ) {
+	define: function( nombre, mode, effect ) {
 		if ( !effect ) {
 			effect = mode;
 			mode = "effect";
 		}
 
-		$.effects.effect[ name ] = effect;
-		$.effects.effect[ name ].mode = mode;
+		$.effects.effect[ nombre ] = effect;
+		$.effects.effect[ nombre ].mode = mode;
 
 		return effect;
 	},
@@ -2493,7 +2493,7 @@ $.extend( $.effects, {
 		if ( /^(static|relative)/.test( cssPosition ) ) {
 			cssPosition = "absolute";
 
-			placeholder = $( "<" + element[ 0 ].nodeName + ">" ).insertAfter( element ).css( {
+			placeholder = $( "<" + element[ 0 ].nodenombre + ">" ).insertAfter( element ).css( {
 
 				// Convert inline to inline block to account for inline elements
 				// that turn to inline block based on content (like img)
@@ -2609,7 +2609,7 @@ function _normalizeArguments( effect, options, speed, callback ) {
 
 function standardAnimationOption( option ) {
 
-	// Valid standard speeds (nothing, number, named speed)
+	// Valid standard speeds (nothing, number, nombred speed)
 	if ( !option || typeof option === "number" || $.fx.speeds[ option ] ) {
 		return true;
 	}
@@ -2639,7 +2639,7 @@ $.fn.extend( {
 			effectMethod = $.effects.effect[ args.effect ],
 			defaultMode = effectMethod.mode,
 			queue = args.queue,
-			queueName = queue || "fx",
+			queuenombre = queue || "fx",
 			complete = args.complete,
 			mode = args.mode,
 			modes = [],
@@ -2739,7 +2739,7 @@ $.fn.extend( {
 		// which ensures that any layout changes are correctly captured.
 		return queue === false ?
 			this.each( prefilter ).each( run ) :
-			this.queue( queueName, prefilter ).queue( queueName, run );
+			this.queue( queuenombre, prefilter ).queue( queuenombre, run );
 	},
 
 	show: ( function( orig ) {
@@ -2815,7 +2815,7 @@ $.fn.extend( {
 			startPosition = element.offset(),
 			transfer = $( "<div class='ui-effects-transfer'></div>" )
 				.appendTo( "body" )
-				.addClass( options.className )
+				.addClass( options.classnombre )
 				.css( {
 					top: startPosition.top - fixTop,
 					left: startPosition.left - fixLeft,
@@ -2875,8 +2875,8 @@ $.fx.step.clip = function( fx ) {
 
 var baseEasings = {};
 
-$.each( [ "Quad", "Cubic", "Quart", "Quint", "Expo" ], function( i, name ) {
-	baseEasings[ name ] = function( p ) {
+$.each( [ "Quad", "Cubic", "Quart", "Quint", "Expo" ], function( i, nombre ) {
+	baseEasings[ nombre ] = function( p ) {
 		return Math.pow( p, i + 2 );
 	};
 } );
@@ -2904,12 +2904,12 @@ $.extend( baseEasings, {
 	}
 } );
 
-$.each( baseEasings, function( name, easeIn ) {
-	$.easing[ "easeIn" + name ] = easeIn;
-	$.easing[ "easeOut" + name ] = function( p ) {
+$.each( baseEasings, function( nombre, easeIn ) {
+	$.easing[ "easeIn" + nombre ] = easeIn;
+	$.easing[ "easeOut" + nombre ] = function( p ) {
 		return 1 - easeIn( 1 - p );
 	};
-	$.easing[ "easeInOut" + name ] = function( p ) {
+	$.easing[ "easeInOut" + nombre ] = function( p ) {
 		return p < 0.5 ?
 			easeIn( p * 2 ) / 2 :
 			1 - easeIn( p * -2 + 2 ) / 2;
@@ -2932,7 +2932,7 @@ var effect = $.effects;
 
 //>>label: Blind Effect
 //>>group: Effects
-//>>description: Blinds the element.
+//>>descripcion: Blinds the element.
 //>>docs: http://api.jqueryui.com/blind-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -2988,7 +2988,7 @@ var effectsEffectBlind = $.effects.define( "blind", "hide", function( options, d
 
 //>>label: Bounce Effect
 //>>group: Effects
-//>>description: Bounces an element horizontally or vertically n times.
+//>>descripcion: Bounces an element horizontally or vertically n times.
 //>>docs: http://api.jqueryui.com/bounce-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -3084,7 +3084,7 @@ var effectsEffectBounce = $.effects.define( "bounce", function( options, done ) 
 
 //>>label: Clip Effect
 //>>group: Effects
-//>>description: Clips the element on and off like an old TV.
+//>>descripcion: Clips the element on and off like an old TV.
 //>>docs: http://api.jqueryui.com/clip-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -3135,7 +3135,7 @@ var effectsEffectClip = $.effects.define( "clip", "hide", function( options, don
 
 //>>label: Drop Effect
 //>>group: Effects
-//>>description: Moves an element in one direction and hides it at the same time.
+//>>descripcion: Moves an element in one direction and hides it at the same time.
 //>>docs: http://api.jqueryui.com/drop-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -3191,7 +3191,7 @@ var effectsEffectDrop = $.effects.define( "drop", "hide", function( options, don
 //>>label: Explode Effect
 //>>group: Effects
 // jscs:disable maximumLineLength
-//>>description: Explodes an element in all directions into n pieces. Implodes an element to its original wholeness.
+//>>descripcion: Explodes an element in all directions into n pieces. Implodes an element to its original wholeness.
 // jscs:enable maximumLineLength
 //>>docs: http://api.jqueryui.com/explode-effect/
 //>>demos: http://jqueryui.com/effect/
@@ -3287,7 +3287,7 @@ var effectsEffectExplode = $.effects.define( "explode", "hide", function( option
 
 //>>label: Fade Effect
 //>>group: Effects
-//>>description: Fades the element.
+//>>descripcion: Fades the element.
 //>>docs: http://api.jqueryui.com/fade-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -3320,7 +3320,7 @@ var effectsEffectFade = $.effects.define( "fade", "toggle", function( options, d
 
 //>>label: Fold Effect
 //>>group: Effects
-//>>description: Folds an element first horizontally and then vertically.
+//>>descripcion: Folds an element first horizontally and then vertically.
 //>>docs: http://api.jqueryui.com/fold-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -3395,7 +3395,7 @@ var effectsEffectFold = $.effects.define( "fold", "hide", function( options, don
 
 //>>label: Highlight Effect
 //>>group: Effects
-//>>description: Highlights the background of an element in a defined color for a custom duration.
+//>>descripcion: Highlights the background of an element in a defined color for a custom duration.
 //>>docs: http://api.jqueryui.com/highlight-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -3438,7 +3438,7 @@ var effectsEffectHighlight = $.effects.define( "highlight", "show", function( op
 
 //>>label: Size Effect
 //>>group: Effects
-//>>description: Resize an element to a specified width and height.
+//>>descripcion: Resize an element to a specified width and height.
 //>>docs: http://api.jqueryui.com/size-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -3615,7 +3615,7 @@ var effectsEffectSize = $.effects.define( "size", function( options, done ) {
 
 //>>label: Scale Effect
 //>>group: Effects
-//>>description: Grows or shrinks an element and its content.
+//>>descripcion: Grows or shrinks an element and its content.
 //>>docs: http://api.jqueryui.com/scale-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -3656,7 +3656,7 @@ var effectsEffectScale = $.effects.define( "scale", function( options, done ) {
 
 //>>label: Puff Effect
 //>>group: Effects
-//>>description: Creates a puff effect by scaling the element up and hiding it at the same time.
+//>>descripcion: Creates a puff effect by scaling the element up and hiding it at the same time.
 //>>docs: http://api.jqueryui.com/puff-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -3683,7 +3683,7 @@ var effectsEffectPuff = $.effects.define( "puff", "hide", function( options, don
 
 //>>label: Pulsate Effect
 //>>group: Effects
-//>>description: Pulsates an element n times by changing the opacity to zero and back.
+//>>descripcion: Pulsates an element n times by changing the opacity to zero and back.
 //>>docs: http://api.jqueryui.com/pulsate-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -3733,7 +3733,7 @@ var effectsEffectPulsate = $.effects.define( "pulsate", "show", function( option
 
 //>>label: Shake Effect
 //>>group: Effects
-//>>description: Shakes an element horizontally or vertically n times.
+//>>descripcion: Shakes an element horizontally or vertically n times.
 //>>docs: http://api.jqueryui.com/shake-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -3793,7 +3793,7 @@ var effectsEffectShake = $.effects.define( "shake", function( options, done ) {
 
 //>>label: Slide Effect
 //>>group: Effects
-//>>description: Slides an element in and out of the viewport.
+//>>descripcion: Slides an element in and out of the viewport.
 //>>docs: http://api.jqueryui.com/slide-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -3855,7 +3855,7 @@ var effectsEffectSlide = $.effects.define( "slide", "show", function( options, d
 
 //>>label: Transfer Effect
 //>>group: Effects
-//>>description: Displays a transfer effect from one element to another.
+//>>descripcion: Displays a transfer effect from one element to another.
 //>>docs: http://api.jqueryui.com/transfer-effect/
 //>>demos: http://jqueryui.com/effect/
 
@@ -3881,27 +3881,27 @@ var effectsEffectTransfer = effect;
 
 //>>label: :focusable Selector
 //>>group: Core
-//>>description: Selects elements which can be focused.
+//>>descripcion: Selects elements which can be focused.
 //>>docs: http://api.jqueryui.com/focusable-selector/
 
 
 
 // Selectors
 $.ui.focusable = function( element, hasTabindex ) {
-	var map, mapName, img, focusableIfVisible, fieldset,
-		nodeName = element.nodeName.toLowerCase();
+	var map, mapnombre, img, focusableIfVisible, fieldset,
+		nodenombre = element.nodenombre.toLowerCase();
 
-	if ( "area" === nodeName ) {
+	if ( "area" === nodenombre ) {
 		map = element.parentNode;
-		mapName = map.name;
-		if ( !element.href || !mapName || map.nodeName.toLowerCase() !== "map" ) {
+		mapnombre = map.nombre;
+		if ( !element.href || !mapnombre || map.nodenombre.toLowerCase() !== "map" ) {
 			return false;
 		}
-		img = $( "img[usemap='#" + mapName + "']" );
+		img = $( "img[usemap='#" + mapnombre + "']" );
 		return img.length > 0 && img.is( ":visible" );
 	}
 
-	if ( /^(input|select|textarea|button|object)$/.test( nodeName ) ) {
+	if ( /^(input|select|textarea|button|object)$/.test( nodenombre ) ) {
 		focusableIfVisible = !element.disabled;
 
 		if ( focusableIfVisible ) {
@@ -3915,7 +3915,7 @@ $.ui.focusable = function( element, hasTabindex ) {
 				focusableIfVisible = !fieldset.disabled;
 			}
 		}
-	} else if ( "a" === nodeName ) {
+	} else if ( "a" === nodenombre ) {
 		focusableIfVisible = element.href || hasTabindex;
 	} else {
 		focusableIfVisible = hasTabindex;
@@ -3965,7 +3965,7 @@ var form = $.fn.form = function() {
 
 //>>label: Form Reset Mixin
 //>>group: Core
-//>>description: Refresh input widgets when their form is reset
+//>>descripcion: Refresh input widgets when their form is reset
 //>>docs: http://api.jqueryui.com/form-reset-mixin/
 
 
@@ -4029,7 +4029,7 @@ var formResetMixin = $.ui.formResetMixin = {
 
 //>>label: jQuery 1.7 Support
 //>>group: Core
-//>>description: Support version 1.7.x of jQuery core
+//>>descripcion: Support version 1.7.x of jQuery core
 
 
 
@@ -4044,9 +4044,9 @@ if ( $.fn.jquery.substring( 0, 3 ) === "1.7" ) {
 	// Setters for .innerWidth(), .innerHeight(), .outerWidth(), .outerHeight()
 	// Unlike jQuery Core 1.8+, these only support numeric values to set the
 	// dimensions in pixels
-	$.each( [ "Width", "Height" ], function( i, name ) {
-		var side = name === "Width" ? [ "Left", "Right" ] : [ "Top", "Bottom" ],
-			type = name.toLowerCase(),
+	$.each( [ "Width", "Height" ], function( i, nombre ) {
+		var side = nombre === "Width" ? [ "Left", "Right" ] : [ "Top", "Bottom" ],
+			type = nombre.toLowerCase(),
 			orig = {
 				innerWidth: $.fn.innerWidth,
 				innerHeight: $.fn.innerHeight,
@@ -4067,9 +4067,9 @@ if ( $.fn.jquery.substring( 0, 3 ) === "1.7" ) {
 			return size;
 		}
 
-		$.fn[ "inner" + name ] = function( size ) {
+		$.fn[ "inner" + nombre ] = function( size ) {
 			if ( size === undefined ) {
-				return orig[ "inner" + name ].call( this );
+				return orig[ "inner" + nombre ].call( this );
 			}
 
 			return this.each( function() {
@@ -4077,9 +4077,9 @@ if ( $.fn.jquery.substring( 0, 3 ) === "1.7" ) {
 			} );
 		};
 
-		$.fn[ "outer" + name ] = function( size, margin ) {
+		$.fn[ "outer" + nombre ] = function( size, margin ) {
 			if ( typeof size !== "number" ) {
-				return orig[ "outer" + name ].call( this, size );
+				return orig[ "outer" + nombre ].call( this, size );
 			}
 
 			return this.each( function() {
@@ -4107,7 +4107,7 @@ if ( $.fn.jquery.substring( 0, 3 ) === "1.7" ) {
 
 //>>label: Keycode
 //>>group: Core
-//>>description: Provide keycodes as keynames
+//>>descripcion: Provide keycodes as keynombres
 //>>docs: http://api.jqueryui.com/jQuery.ui.keyCode/
 
 
@@ -4153,7 +4153,7 @@ var escapeSelector = $.ui.escapeSelector = ( function() {
 
 //>>label: labels
 //>>group: Core
-//>>description: Find all the labels associated with a given input
+//>>descripcion: Find all the labels associated with a given input
 //>>docs: http://api.jqueryui.com/labels/
 
 
@@ -4205,7 +4205,7 @@ var labels = $.fn.labels = function() {
 
 //>>label: scrollParent
 //>>group: Core
-//>>description: Get the closest ancestor element that is scrollable.
+//>>descripcion: Get the closest ancestor element that is scrollable.
 //>>docs: http://api.jqueryui.com/scrollParent/
 
 
@@ -4240,7 +4240,7 @@ var scrollParent = $.fn.scrollParent = function( includeHidden ) {
 
 //>>label: :tabbable Selector
 //>>group: Core
-//>>description: Selects elements which can be tabbed to.
+//>>descripcion: Selects elements which can be tabbed to.
 //>>docs: http://api.jqueryui.com/tabbable-selector/
 
 
@@ -4265,7 +4265,7 @@ var tabbable = $.extend( $.expr[ ":" ], {
 
 //>>label: uniqueId
 //>>group: Core
-//>>description: Functions to generate and remove uniqueId's
+//>>descripcion: Functions to generate and remove uniqueId's
 //>>docs: http://api.jqueryui.com/uniqueId/
 
 
@@ -4305,7 +4305,7 @@ var uniqueId = $.fn.extend( {
 //>>label: Accordion
 //>>group: Widgets
 // jscs:disable maximumLineLength
-//>>description: Displays collapsible content panels for presenting information in a limited amount of space.
+//>>descripcion: Displays collapsible content panels for presenting information in a limited amount of space.
 // jscs:enable maximumLineLength
 //>>docs: http://api.jqueryui.com/accordion/
 //>>demos: http://jqueryui.com/accordion/
@@ -4430,7 +4430,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 	_setOption: function( key, value ) {
 		if ( key === "active" ) {
 
-			// _activate() will handle invalid values and update this.options
+			// _activate() will handle invalid values and upfecha this.options
 			this._activate( value );
 			return;
 		}
@@ -4695,8 +4695,8 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 			keydown: "_keydown"
 		};
 		if ( event ) {
-			$.each( event.split( " " ), function( index, eventName ) {
-				events[ eventName ] = "_eventHandler";
+			$.each( event.split( " " ), function( index, eventnombre ) {
+				events[ eventnombre ] = "_eventHandler";
 			} );
 		}
 
@@ -4883,7 +4883,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 
 		// Work around for rendering bug in IE (#5421)
 		if ( toHide.length ) {
-			toHide.parent()[ 0 ].className = toHide.parent()[ 0 ].className;
+			toHide.parent()[ 0 ].classnombre = toHide.parent()[ 0 ].classnombre;
 		}
 		this._trigger( "activate", null, data );
 	}
@@ -4912,7 +4912,7 @@ var safeActiveElement = $.ui.safeActiveElement = function( document ) {
 	// Support: IE 11 only
 	// IE11 returns a seemingly empty object in some cases when accessing
 	// document.activeElement from an <iframe>
-	if ( !activeElement.nodeName ) {
+	if ( !activeElement.nodenombre ) {
 		activeElement = document.body;
 	}
 
@@ -4931,7 +4931,7 @@ var safeActiveElement = $.ui.safeActiveElement = function( document ) {
 
 //>>label: Menu
 //>>group: Widgets
-//>>description: Creates nestable menus.
+//>>descripcion: Creates nestable menus.
 //>>docs: http://api.jqueryui.com/menu/
 //>>demos: http://jqueryui.com/menu/
 //>>css.structure: ../../themes/base/core.css
@@ -5288,7 +5288,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 		focused = this.active.children( ".ui-menu-item-wrapper" );
 		this._addClass( focused, null, "ui-state-active" );
 
-		// Only update aria-activedescendant if there's a role
+		// Only upfecha aria-activedescendant if there's a role
 		// otherwise we assume focus is managed elsewhere
 		if ( this.options.role ) {
 			this.element.attr( "aria-activedescendant", focused.attr( "id" ) );
@@ -5586,7 +5586,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 
 //>>label: Autocomplete
 //>>group: Widgets
-//>>description: Lists suggested words as the user is typing.
+//>>descripcion: Lists suggested words as the user is typing.
 //>>docs: http://api.jqueryui.com/autocomplete/
 //>>demos: http://jqueryui.com/autocomplete/
 //>>css.structure: ../../themes/base/core.css
@@ -5633,9 +5633,9 @@ $.widget( "ui.autocomplete", {
 		// events when we know the keydown event was used to modify the
 		// search term. #7799
 		var suppressKeyPress, suppressKeyPressRepeat, suppressInput,
-			nodeName = this.element[ 0 ].nodeName.toLowerCase(),
-			isTextarea = nodeName === "textarea",
-			isInput = nodeName === "input";
+			nodenombre = this.element[ 0 ].nodenombre.toLowerCase(),
+			isTextarea = nodenombre === "textarea",
+			isInput = nodenombre === "input";
 
 		// Textareas are always multi-line
 		// Inputs are always single-line, even if inside a contentEditable element
@@ -6250,7 +6250,7 @@ var widgetsAutocomplete = $.ui.autocomplete;
 
 //>>label: Controlgroup
 //>>group: Widgets
-//>>description: Visually groups form control widgets
+//>>descripcion: Visually groups form control widgets
 //>>docs: http://api.jqueryui.com/controlgroup/
 //>>demos: http://jqueryui.com/controlgroup/
 //>>css.structure: ../../themes/base/core.css
@@ -6392,7 +6392,7 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 		} );
 	},
 
-	_updateCornerClass: function( element, position ) {
+	_upfechaCornerClass: function( element, position ) {
 		var remove = "ui-corner-top ui-corner-bottom ui-corner-left ui-corner-right ui-corner-all";
 		var add = this._buildSimpleOptions( position, "label" ).classes.label;
 
@@ -6507,14 +6507,14 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 			$.each( [ "first", "last" ], function( index, value ) {
 				var instance = children[ value ]().data( "ui-controlgroup-data" );
 
-				if ( instance && that[ "_" + instance.widgetName + "Options" ] ) {
-					var options = that[ "_" + instance.widgetName + "Options" ](
+				if ( instance && that[ "_" + instance.widgetnombre + "Options" ] ) {
+					var options = that[ "_" + instance.widgetnombre + "Options" ](
 						children.length === 1 ? "only" : value
 					);
 					options.classes = that._resolveClassesValues( options.classes, instance );
-					instance.element[ instance.widgetName ]( options );
+					instance.element[ instance.widgetnombre ]( options );
 				} else {
-					that._updateCornerClass( children[ value ](), value );
+					that._upfechaCornerClass( children[ value ](), value );
 				}
 			} );
 
@@ -6535,7 +6535,7 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 
 //>>label: Checkboxradio
 //>>group: Widgets
-//>>description: Enhances a form with multiple themeable checkboxes or radio buttons.
+//>>descripcion: Enhances a form with multiple themeable checkboxes or radio buttons.
 //>>docs: http://api.jqueryui.com/checkboxradio/
 //>>demos: http://jqueryui.com/checkboxradio/
 //>>css.structure: ../../themes/base/core.css
@@ -6616,7 +6616,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 		}
 
 		if ( this.options.label && this.options.label !== this.originalLabel ) {
-			this._updateLabel();
+			this._upfechaLabel();
 		} else if ( this.originalLabel ) {
 			this.options.label = this.originalLabel;
 		}
@@ -6642,17 +6642,17 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 	},
 
 	_readType: function() {
-		var nodeName = this.element[ 0 ].nodeName.toLowerCase();
+		var nodenombre = this.element[ 0 ].nodenombre.toLowerCase();
 		this.type = this.element[ 0 ].type;
-		if ( nodeName !== "input" || !/radio|checkbox/.test( this.type ) ) {
-			$.error( "Can't create checkboxradio on element.nodeName=" + nodeName +
+		if ( nodenombre !== "input" || !/radio|checkbox/.test( this.type ) ) {
+			$.error( "Can't create checkboxradio on element.nodenombre=" + nodenombre +
 				" and element.type=" + this.type );
 		}
 	},
 
 	// Support jQuery Mobile enhanced option
 	_enhance: function() {
-		this._updateIcon( this.element[ 0 ].checked );
+		this._upfechaIcon( this.element[ 0 ].checked );
 	},
 
 	widget: function() {
@@ -6661,19 +6661,19 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 
 	_getRadioGroup: function() {
 		var group;
-		var name = this.element[ 0 ].name;
-		var nameSelector = "input[name='" + $.ui.escapeSelector( name ) + "']";
+		var nombre = this.element[ 0 ].nombre;
+		var nombreSelector = "input[nombre='" + $.ui.escapeSelector( nombre ) + "']";
 
-		if ( !name ) {
+		if ( !nombre ) {
 			return $( [] );
 		}
 
 		if ( this.form.length ) {
-			group = $( this.form[ 0 ].elements ).filter( nameSelector );
+			group = $( this.form[ 0 ].elements ).filter( nombreSelector );
 		} else {
 
 			// Not inside a form, check all inputs that also are not inside a form
-			group = $( nameSelector ).filter( function() {
+			group = $( nombreSelector ).filter( function() {
 				return $( this ).form().length === 0;
 			} );
 		}
@@ -6731,7 +6731,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 		this.refresh();
 	},
 
-	_updateIcon: function( checked ) {
+	_upfechaIcon: function( checked ) {
 		var toAdd = "ui-icon ui-icon-background ";
 
 		if ( this.options.icon ) {
@@ -6759,7 +6759,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 		}
 	},
 
-	_updateLabel: function() {
+	_upfechaLabel: function() {
 
 		// Remove the contents of the label ( minus the icon, icon space, and input )
 		var contents = this.label.contents().not( this.element[ 0 ] );
@@ -6778,10 +6778,10 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 		var checked = this.element[ 0 ].checked,
 			isDisabled = this.element[ 0 ].disabled;
 
-		this._updateIcon( checked );
+		this._upfechaIcon( checked );
 		this._toggleClass( this.label, "ui-checkboxradio-checked", "ui-state-active", checked );
 		if ( this.options.label !== null ) {
-			this._updateLabel();
+			this._upfechaLabel();
 		}
 
 		if ( isDisabled !== this.options.disabled ) {
@@ -6805,7 +6805,7 @@ var widgetsCheckboxradio = $.ui.checkboxradio;
 
 //>>label: Button
 //>>group: Widgets
-//>>description: Enhances a form with themeable buttons.
+//>>descripcion: Enhances a form with themeable buttons.
 //>>docs: http://api.jqueryui.com/button/
 //>>demos: http://jqueryui.com/button/
 //>>css.structure: ../../themes/base/core.css
@@ -6902,12 +6902,12 @@ $.widget( "ui.button", {
 		}
 
 		if ( this.options.icon ) {
-			this._updateIcon( "icon", this.options.icon );
-			this._updateTooltip();
+			this._upfechaIcon( "icon", this.options.icon );
+			this._upfechaTooltip();
 		}
 	},
 
-	_updateTooltip: function() {
+	_upfechaTooltip: function() {
 		this.title = this.element.attr( "title" );
 
 		if ( !this.options.showLabel && !this.title ) {
@@ -6915,7 +6915,7 @@ $.widget( "ui.button", {
 		}
 	},
 
-	_updateIcon: function( option, value ) {
+	_upfechaIcon: function( option, value ) {
 		var icon = option !== "iconPosition",
 			position = icon ? this.options.iconPosition : value,
 			displayBlock = position === "top" || position === "bottom";
@@ -6999,7 +6999,7 @@ $.widget( "ui.button", {
 	_setOption: function( key, value ) {
 		if ( key === "icon" ) {
 			if ( value ) {
-				this._updateIcon( key, value );
+				this._upfechaIcon( key, value );
 			} else if ( this.icon ) {
 				this.icon.remove();
 				if ( this.iconSpace ) {
@@ -7009,13 +7009,13 @@ $.widget( "ui.button", {
 		}
 
 		if ( key === "iconPosition" ) {
-			this._updateIcon( key, value );
+			this._upfechaIcon( key, value );
 		}
 
 		// Make sure we can't end up with a button that has neither text nor icon
 		if ( key === "showLabel" ) {
 				this._toggleClass( "ui-button-icon-only", null, !value );
-				this._updateTooltip();
+				this._upfechaTooltip();
 		}
 
 		if ( key === "label" ) {
@@ -7055,7 +7055,7 @@ $.widget( "ui.button", {
 			this._setOptions( { disabled: isDisabled } );
 		}
 
-		this._updateTooltip();
+		this._upfechaTooltip();
 	}
 } );
 
@@ -7119,8 +7119,8 @@ if ( $.uiBackCompat !== false ) {
 
 	$.fn.button = ( function( orig ) {
 		return function() {
-			if ( !this.length || ( this.length && this[ 0 ].tagName !== "INPUT" ) ||
-					( this.length && this[ 0 ].tagName === "INPUT" && (
+			if ( !this.length || ( this.length && this[ 0 ].tagnombre !== "INPUT" ) ||
+					( this.length && this[ 0 ].tagnombre === "INPUT" && (
 						this.attr( "type" ) !== "checkbox" && this.attr( "type" ) !== "radio"
 					) ) ) {
 				return orig.apply( this, arguments );
@@ -7173,18 +7173,18 @@ var widgetsButton = $.ui.button;
 
 //>>label: Datepicker
 //>>group: Widgets
-//>>description: Displays a calendar from an input or inline for selecting dates.
-//>>docs: http://api.jqueryui.com/datepicker/
-//>>demos: http://jqueryui.com/datepicker/
+//>>descripcion: Displays a calendar from an input or inline for selecting fechas.
+//>>docs: http://api.jqueryui.com/fechapicker/
+//>>demos: http://jqueryui.com/fechapicker/
 //>>css.structure: ../../themes/base/core.css
-//>>css.structure: ../../themes/base/datepicker.css
+//>>css.structure: ../../themes/base/fechapicker.css
 //>>css.theme: ../../themes/base/theme.css
 
 
 
-$.extend( $.ui, { datepicker: { version: "1.12.1" } } );
+$.extend( $.ui, { fechapicker: { version: "1.12.1" } } );
 
-var datepicker_instActive;
+var fechapicker_instActive;
 
 function datepicker_getZindex( elem ) {
 	var position, value;
@@ -7211,50 +7211,50 @@ function datepicker_getZindex( elem ) {
 	return 0;
 }
 /* Date picker manager.
-   Use the singleton instance of this class, $.datepicker, to interact with the date picker.
-   Settings for (groups of) date pickers are maintained in an instance object,
+   Use the singleton instance of this class, $.fechapicker, to interact with the fecha picker.
+   Settings for (groups of) fecha pickers are maintained in an instance object,
    allowing multiple different settings on the same page. */
 
 function Datepicker() {
 	this._curInst = null; // The current instance in use
 	this._keyEvent = false; // If the last event was a key event
-	this._disabledInputs = []; // List of date picker inputs that have been disabled
-	this._datepickerShowing = false; // True if the popup picker is showing , false if not
+	this._disabledInputs = []; // List of fecha picker inputs that have been disabled
+	this._fechapickerShowing = false; // True if the popup picker is showing , false if not
 	this._inDialog = false; // True if showing within a "dialog", false if not
-	this._mainDivId = "ui-datepicker-div"; // The ID of the main datepicker division
-	this._inlineClass = "ui-datepicker-inline"; // The name of the inline marker class
-	this._appendClass = "ui-datepicker-append"; // The name of the append marker class
-	this._triggerClass = "ui-datepicker-trigger"; // The name of the trigger marker class
-	this._dialogClass = "ui-datepicker-dialog"; // The name of the dialog marker class
-	this._disableClass = "ui-datepicker-disabled"; // The name of the disabled covering marker class
-	this._unselectableClass = "ui-datepicker-unselectable"; // The name of the unselectable cell marker class
-	this._currentClass = "ui-datepicker-current-day"; // The name of the current day marker class
-	this._dayOverClass = "ui-datepicker-days-cell-over"; // The name of the day hover marker class
+	this._mainDivId = "ui-fechapicker-div"; // The ID of the main fechapicker division
+	this._inlineClass = "ui-fechapicker-inline"; // The nombre of the inline marker class
+	this._appendClass = "ui-fechapicker-append"; // The nombre of the append marker class
+	this._triggerClass = "ui-fechapicker-trigger"; // The nombre of the trigger marker class
+	this._dialogClass = "ui-fechapicker-dialog"; // The nombre of the dialog marker class
+	this._disableClass = "ui-fechapicker-disabled"; // The nombre of the disabled covering marker class
+	this._unselectableClass = "ui-fechapicker-unselectable"; // The nombre of the unselectable cell marker class
+	this._currentClass = "ui-fechapicker-current-day"; // The nombre of the current day marker class
+	this._dayOverClass = "ui-fechapicker-days-cell-over"; // The nombre of the day hover marker class
 	this.regional = []; // Available regional settings, indexed by language code
 	this.regional[ "" ] = { // Default regional settings
 		closeText: "Done", // Display text for close link
 		prevText: "Prev", // Display text for previous month link
 		nextText: "Next", // Display text for next month link
 		currentText: "Today", // Display text for current month link
-		monthNames: [ "January","February","March","April","May","June",
-			"July","August","September","October","November","December" ], // Names of months for drop-down and formatting
-		monthNamesShort: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ], // For formatting
-		dayNames: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ], // For formatting
-		dayNamesShort: [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ], // For formatting
-		dayNamesMin: [ "Su","Mo","Tu","We","Th","Fr","Sa" ], // Column headings for days starting at Sunday
+		monthnombres: [ "January","February","March","April","May","June",
+			"July","August","September","October","November","December" ], // nombres of months for drop-down and formatting
+		monthnombresShort: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ], // For formatting
+		daynombres: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ], // For formatting
+		daynombresShort: [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ], // For formatting
+		daynombresMin: [ "Su","Mo","Tu","We","Th","Fr","Sa" ], // Column headings for days starting at Sunday
 		weekHeader: "Wk", // Column header for week of the year
-		dateFormat: "mm/dd/yy", // See format options on parseDate
+		fechaFormat: "mm/dd/yy", // See format options on parseDate
 		firstDay: 0, // The first day of the week, Sun = 0, Mon = 1, ...
 		isRTL: false, // True if right-to-left language, false if left-to-right
 		showMonthAfterYear: false, // True if the year select precedes month, false for month then year
 		yearSuffix: "" // Additional text to append to the year in the month headers
 	};
-	this._defaults = { // Global defaults for all the date picker instances
+	this._defaults = { // Global defaults for all the fecha picker instances
 		showOn: "focus", // "focus" for popup on focus,
 			// "button" for trigger button, or "both" for either
-		showAnim: "fadeIn", // Name of jQuery animation for popup
+		showAnim: "fadeIn", // nombre of jQuery animation for popup
 		showOptions: {}, // Options for enhanced animations
-		defaultDate: null, // Used when field is blank: actual date,
+		defaultDate: null, // Used when field is blank: actual fecha,
 			// +/-number for offset from today, null for today
 		appendText: "", // Display text following the input box, e.g. showing the format
 		buttonText: "...", // Text for trigger button
@@ -7262,85 +7262,85 @@ function Datepicker() {
 		buttonImageOnly: false, // True if the image appears alone, false if it appears on a button
 		hideIfNoPrevNext: false, // True to hide next/previous month links
 			// if not applicable, false to just disable them
-		navigationAsDateFormat: false, // True if date formatting applied to prev/today/next links
+		navigationAsDateFormat: false, // True if fecha formatting applied to prev/today/next links
 		gotoCurrent: false, // True if today link goes back to current selection instead
 		changeMonth: false, // True if month can be selected directly, false if only prev/next
 		changeYear: false, // True if year can be selected directly, false if only prev/next
 		yearRange: "c-10:c+10", // Range of years to display in drop-down,
 			// either relative to today's year (-nn:+nn), relative to currently displayed year
 			// (c-nn:c+nn), absolute (nnnn:nnnn), or a combination of the above (nnnn:-n)
-		showOtherMonths: false, // True to show dates in other months, false to leave blank
-		selectOtherMonths: false, // True to allow selection of dates in other months, false for unselectable
+		showOtherMonths: false, // True to show fechas in other months, false to leave blank
+		selectOtherMonths: false, // True to allow selection of fechas in other months, false for unselectable
 		showWeek: false, // True to show week of the year, false to not show it
 		calculateWeek: this.iso8601Week, // How to calculate the week of the year,
 			// takes a Date and returns the number of the week for it
 		shortYearCutoff: "+10", // Short year values < this are in the current century,
 			// > this are in the previous century,
 			// string value starting with "+" for current year + value
-		minDate: null, // The earliest selectable date, or null for no limit
-		maxDate: null, // The latest selectable date, or null for no limit
+		minDate: null, // The earliest selectable fecha, or null for no limit
+		maxDate: null, // The latest selectable fecha, or null for no limit
 		duration: "fast", // Duration of display/closure
-		beforeShowDay: null, // Function that takes a date and returns an array with
-			// [0] = true if selectable, false if not, [1] = custom CSS class name(s) or "",
-			// [2] = cell title (optional), e.g. $.datepicker.noWeekends
+		beforeShowDay: null, // Function that takes a fecha and returns an array with
+			// [0] = true if selectable, false if not, [1] = custom CSS class nombre(s) or "",
+			// [2] = cell title (optional), e.g. $.fechapicker.noWeekends
 		beforeShow: null, // Function that takes an input field and
-			// returns a set of custom settings for the date picker
-		onSelect: null, // Define a callback function when a date is selected
+			// returns a set of custom settings for the fecha picker
+		onSelect: null, // Define a callback function when a fecha is selected
 		onChangeMonthYear: null, // Define a callback function when the month or year is changed
-		onClose: null, // Define a callback function when the datepicker is closed
+		onClose: null, // Define a callback function when the fechapicker is closed
 		numberOfMonths: 1, // Number of months to show at a time
 		showCurrentAtPos: 0, // The position in multipe months at which to show the current month (starting at 0)
 		stepMonths: 1, // Number of months to step back/forward
 		stepBigMonths: 12, // Number of months to step back/forward for the big links
-		altField: "", // Selector for an alternate field to store selected dates into
-		altFormat: "", // The date format to use for the alternate field
-		constrainInput: true, // The input is constrained by the current date format
+		altField: "", // Selector for an alternate field to store selected fechas into
+		altFormat: "", // The fecha format to use for the alternate field
+		constrainInput: true, // The input is constrained by the current fecha format
 		showButtonPanel: false, // True to show button panel, false to not show it
-		autoSize: false, // True to size the input for the date format, false to leave as is
+		autoSize: false, // True to size the input for the fecha format, false to leave as is
 		disabled: false // The initial disabled state
 	};
 	$.extend( this._defaults, this.regional[ "" ] );
 	this.regional.en = $.extend( true, {}, this.regional[ "" ] );
 	this.regional[ "en-US" ] = $.extend( true, {}, this.regional.en );
-	this.dpDiv = datepicker_bindHover( $( "<div id='" + this._mainDivId + "' class='ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>" ) );
+	this.dpDiv = fechapicker_bindHover( $( "<div id='" + this._mainDivId + "' class='ui-fechapicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>" ) );
 }
 
 $.extend( Datepicker.prototype, {
-	/* Class name added to elements to indicate already configured with a date picker. */
-	markerClassName: "hasDatepicker",
+	/* Class nombre added to elements to indicate already configured with a fecha picker. */
+	markerClassnombre: "hasDatepicker",
 
 	//Keep track of the maximum number of rows displayed (see #7043)
 	maxRows: 4,
 
-	// TODO rename to "widget" when switching to widget factory
+	// TODO renombre to "widget" when switching to widget factory
 	_widgetDatepicker: function() {
 		return this.dpDiv;
 	},
 
-	/* Override the default settings for all instances of the date picker.
+	/* Override the default settings for all instances of the fecha picker.
 	 * @param  settings  object - the new settings to use as defaults (anonymous object)
 	 * @return the manager object
 	 */
 	setDefaults: function( settings ) {
-		datepicker_extendRemove( this._defaults, settings || {} );
+		fechapicker_extendRemove( this._defaults, settings || {} );
 		return this;
 	},
 
-	/* Attach the date picker to a jQuery selection.
+	/* Attach the fecha picker to a jQuery selection.
 	 * @param  target	element - the target input field or division or span
-	 * @param  settings  object - the new settings to use for this date picker instance (anonymous)
+	 * @param  settings  object - the new settings to use for this fecha picker instance (anonymous)
 	 */
 	_attachDatepicker: function( target, settings ) {
-		var nodeName, inline, inst;
-		nodeName = target.nodeName.toLowerCase();
-		inline = ( nodeName === "div" || nodeName === "span" );
+		var nodenombre, inline, inst;
+		nodenombre = target.nodenombre.toLowerCase();
+		inline = ( nodenombre === "div" || nodenombre === "span" );
 		if ( !target.id ) {
 			this.uuid += 1;
 			target.id = "dp" + this.uuid;
 		}
 		inst = this._newInst( $( target ), inline );
 		inst.settings = $.extend( {}, settings || {} );
-		if ( nodeName === "input" ) {
+		if ( nodenombre === "input" ) {
 			this._connectDatepicker( target, inst );
 		} else if ( inline ) {
 			this._inlineDatepicker( target, inst );
@@ -7353,26 +7353,26 @@ $.extend( Datepicker.prototype, {
 		return { id: id, input: target, // associated target
 			selectedDay: 0, selectedMonth: 0, selectedYear: 0, // current selection
 			drawMonth: 0, drawYear: 0, // month being drawn
-			inline: inline, // is datepicker inline or not
+			inline: inline, // is fechapicker inline or not
 			dpDiv: ( !inline ? this.dpDiv : // presentation div
-			datepicker_bindHover( $( "<div class='" + this._inlineClass + " ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>" ) ) ) };
+			fechapicker_bindHover( $( "<div class='" + this._inlineClass + " ui-fechapicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>" ) ) ) };
 	},
 
-	/* Attach the date picker to an input field. */
+	/* Attach the fecha picker to an input field. */
 	_connectDatepicker: function( target, inst ) {
 		var input = $( target );
 		inst.append = $( [] );
 		inst.trigger = $( [] );
-		if ( input.hasClass( this.markerClassName ) ) {
+		if ( input.hasClass( this.markerClassnombre ) ) {
 			return;
 		}
 		this._attachments( input, inst );
-		input.addClass( this.markerClassName ).on( "keydown", this._doKeyDown ).
+		input.addClass( this.markerClassnombre ).on( "keydown", this._doKeyDown ).
 			on( "keypress", this._doKeyPress ).on( "keyup", this._doKeyUp );
 		this._autoSize( inst );
-		$.data( target, "datepicker", inst );
+		$.data( target, "fechapicker", inst );
 
-		//If disabled option is true, disable the datepicker once it has been attached to the input (see ticket #5665)
+		//If disabled option is true, disable the fechapicker once it has been attached to the input (see ticket #5665)
 		if ( inst.settings.disabled ) {
 			this._disableDatepicker( target );
 		}
@@ -7399,10 +7399,10 @@ $.extend( Datepicker.prototype, {
 		}
 
 		showOn = this._get( inst, "showOn" );
-		if ( showOn === "focus" || showOn === "both" ) { // pop-up date picker when in the marked field
+		if ( showOn === "focus" || showOn === "both" ) { // pop-up fecha picker when in the marked field
 			input.on( "focus", this._showDatepicker );
 		}
-		if ( showOn === "button" || showOn === "both" ) { // pop-up date picker when button clicked
+		if ( showOn === "button" || showOn === "both" ) { // pop-up fecha picker when button clicked
 			buttonText = this._get( inst, "buttonText" );
 			buttonImage = this._get( inst, "buttonImage" );
 			inst.trigger = $( this._get( inst, "buttonImageOnly" ) ?
@@ -7413,60 +7413,60 @@ $.extend( Datepicker.prototype, {
 					{ src:buttonImage, alt:buttonText, title:buttonText } ) ) );
 			input[ isRTL ? "before" : "after" ]( inst.trigger );
 			inst.trigger.on( "click", function() {
-				if ( $.datepicker._datepickerShowing && $.datepicker._lastInput === input[ 0 ] ) {
-					$.datepicker._hideDatepicker();
-				} else if ( $.datepicker._datepickerShowing && $.datepicker._lastInput !== input[ 0 ] ) {
-					$.datepicker._hideDatepicker();
-					$.datepicker._showDatepicker( input[ 0 ] );
+				if ( $.fechapicker._fechapickerShowing && $.fechapicker._lastInput === input[ 0 ] ) {
+					$.fechapicker._hideDatepicker();
+				} else if ( $.fechapicker._fechapickerShowing && $.fechapicker._lastInput !== input[ 0 ] ) {
+					$.fechapicker._hideDatepicker();
+					$.fechapicker._showDatepicker( input[ 0 ] );
 				} else {
-					$.datepicker._showDatepicker( input[ 0 ] );
+					$.fechapicker._showDatepicker( input[ 0 ] );
 				}
 				return false;
 			} );
 		}
 	},
 
-	/* Apply the maximum length for the date format. */
+	/* Apply the maximum length for the fecha format. */
 	_autoSize: function( inst ) {
 		if ( this._get( inst, "autoSize" ) && !inst.inline ) {
 			var findMax, max, maxI, i,
-				date = new Date( 2009, 12 - 1, 20 ), // Ensure double digits
-				dateFormat = this._get( inst, "dateFormat" );
+				fecha = new Date( 2009, 12 - 1, 20 ), // Ensure double digits
+				fechaFormat = this._get( inst, "fechaFormat" );
 
-			if ( dateFormat.match( /[DM]/ ) ) {
-				findMax = function( names ) {
+			if ( fechaFormat.match( /[DM]/ ) ) {
+				findMax = function( nombres ) {
 					max = 0;
 					maxI = 0;
-					for ( i = 0; i < names.length; i++ ) {
-						if ( names[ i ].length > max ) {
-							max = names[ i ].length;
+					for ( i = 0; i < nombres.length; i++ ) {
+						if ( nombres[ i ].length > max ) {
+							max = nombres[ i ].length;
 							maxI = i;
 						}
 					}
 					return maxI;
 				};
-				date.setMonth( findMax( this._get( inst, ( dateFormat.match( /MM/ ) ?
-					"monthNames" : "monthNamesShort" ) ) ) );
-				date.setDate( findMax( this._get( inst, ( dateFormat.match( /DD/ ) ?
-					"dayNames" : "dayNamesShort" ) ) ) + 20 - date.getDay() );
+				fecha.setMonth( findMax( this._get( inst, ( fechaFormat.match( /MM/ ) ?
+					"monthnombres" : "monthnombresShort" ) ) ) );
+				fecha.setDate( findMax( this._get( inst, ( fechaFormat.match( /DD/ ) ?
+					"daynombres" : "daynombresShort" ) ) ) + 20 - fecha.getDay() );
 			}
-			inst.input.attr( "size", this._formatDate( inst, date ).length );
+			inst.input.attr( "size", this._formatDate( inst, fecha ).length );
 		}
 	},
 
-	/* Attach an inline date picker to a div. */
+	/* Attach an inline fecha picker to a div. */
 	_inlineDatepicker: function( target, inst ) {
 		var divSpan = $( target );
-		if ( divSpan.hasClass( this.markerClassName ) ) {
+		if ( divSpan.hasClass( this.markerClassnombre ) ) {
 			return;
 		}
-		divSpan.addClass( this.markerClassName ).append( inst.dpDiv );
-		$.data( target, "datepicker", inst );
+		divSpan.addClass( this.markerClassnombre ).append( inst.dpDiv );
+		$.data( target, "fechapicker", inst );
 		this._setDate( inst, this._getDefaultDate( inst ), true );
-		this._updateDatepicker( inst );
-		this._updateAlternate( inst );
+		this._upfechaDatepicker( inst );
+		this._upfechaAlternate( inst );
 
-		//If disabled option is true, disable the datepicker before showing it (see ticket #5665)
+		//If disabled option is true, disable the fechapicker before showing it (see ticket #5665)
 		if ( inst.settings.disabled ) {
 			this._disableDatepicker( target );
 		}
@@ -7476,17 +7476,17 @@ $.extend( Datepicker.prototype, {
 		inst.dpDiv.css( "display", "block" );
 	},
 
-	/* Pop-up the date picker in a "dialog" box.
+	/* Pop-up the fecha picker in a "dialog" box.
 	 * @param  input element - ignored
-	 * @param  date	string or Date - the initial date to display
-	 * @param  onSelect  function - the function to call when a date is selected
-	 * @param  settings  object - update the dialog date picker instance's settings (anonymous object)
+	 * @param  fecha	string or Date - the initial fecha to display
+	 * @param  onSelect  function - the function to call when a fecha is selected
+	 * @param  settings  object - upfecha the dialog fecha picker instance's settings (anonymous object)
 	 * @param  pos int[2] - coordinates for the dialog's position within the screen or
 	 *					event - with x/y coordinates or
 	 *					leave empty for default (screen centre)
 	 * @return the manager object
 	 */
-	_dialogDatepicker: function( input, date, onSelect, settings, pos ) {
+	_dialogDatepicker: function( input, fecha, onSelect, settings, pos ) {
 		var id, browserWidth, browserHeight, scrollX, scrollY,
 			inst = this._dialogInst; // internal instance
 
@@ -7499,11 +7499,11 @@ $.extend( Datepicker.prototype, {
 			$( "body" ).append( this._dialogInput );
 			inst = this._dialogInst = this._newInst( this._dialogInput, false );
 			inst.settings = {};
-			$.data( this._dialogInput[ 0 ], "datepicker", inst );
+			$.data( this._dialogInput[ 0 ], "fechapicker", inst );
 		}
-		datepicker_extendRemove( inst.settings, settings || {} );
-		date = ( date && date.constructor === Date ? this._formatDate( inst, date ) : date );
-		this._dialogInput.val( date );
+		fechapicker_extendRemove( inst.settings, settings || {} );
+		fecha = ( fecha && fecha.constructor === Date ? this._formatDate( inst, fecha ) : fecha );
+		this._dialogInput.val( fecha );
 
 		this._pos = ( pos ? ( pos.length ? pos : [ pos.pageX, pos.pageY ] ) : null );
 		if ( !this._pos ) {
@@ -7524,91 +7524,91 @@ $.extend( Datepicker.prototype, {
 		if ( $.blockUI ) {
 			$.blockUI( this.dpDiv );
 		}
-		$.data( this._dialogInput[ 0 ], "datepicker", inst );
+		$.data( this._dialogInput[ 0 ], "fechapicker", inst );
 		return this;
 	},
 
-	/* Detach a datepicker from its control.
+	/* Detach a fechapicker from its control.
 	 * @param  target	element - the target input field or division or span
 	 */
 	_destroyDatepicker: function( target ) {
-		var nodeName,
+		var nodenombre,
 			$target = $( target ),
-			inst = $.data( target, "datepicker" );
+			inst = $.data( target, "fechapicker" );
 
-		if ( !$target.hasClass( this.markerClassName ) ) {
+		if ( !$target.hasClass( this.markerClassnombre ) ) {
 			return;
 		}
 
-		nodeName = target.nodeName.toLowerCase();
-		$.removeData( target, "datepicker" );
-		if ( nodeName === "input" ) {
+		nodenombre = target.nodenombre.toLowerCase();
+		$.removeData( target, "fechapicker" );
+		if ( nodenombre === "input" ) {
 			inst.append.remove();
 			inst.trigger.remove();
-			$target.removeClass( this.markerClassName ).
+			$target.removeClass( this.markerClassnombre ).
 				off( "focus", this._showDatepicker ).
 				off( "keydown", this._doKeyDown ).
 				off( "keypress", this._doKeyPress ).
 				off( "keyup", this._doKeyUp );
-		} else if ( nodeName === "div" || nodeName === "span" ) {
-			$target.removeClass( this.markerClassName ).empty();
+		} else if ( nodenombre === "div" || nodenombre === "span" ) {
+			$target.removeClass( this.markerClassnombre ).empty();
 		}
 
-		if ( datepicker_instActive === inst ) {
-			datepicker_instActive = null;
+		if ( fechapicker_instActive === inst ) {
+			fechapicker_instActive = null;
 		}
 	},
 
-	/* Enable the date picker to a jQuery selection.
+	/* Enable the fecha picker to a jQuery selection.
 	 * @param  target	element - the target input field or division or span
 	 */
 	_enableDatepicker: function( target ) {
-		var nodeName, inline,
+		var nodenombre, inline,
 			$target = $( target ),
-			inst = $.data( target, "datepicker" );
+			inst = $.data( target, "fechapicker" );
 
-		if ( !$target.hasClass( this.markerClassName ) ) {
+		if ( !$target.hasClass( this.markerClassnombre ) ) {
 			return;
 		}
 
-		nodeName = target.nodeName.toLowerCase();
-		if ( nodeName === "input" ) {
+		nodenombre = target.nodenombre.toLowerCase();
+		if ( nodenombre === "input" ) {
 			target.disabled = false;
 			inst.trigger.filter( "button" ).
 				each( function() { this.disabled = false; } ).end().
 				filter( "img" ).css( { opacity: "1.0", cursor: "" } );
-		} else if ( nodeName === "div" || nodeName === "span" ) {
+		} else if ( nodenombre === "div" || nodenombre === "span" ) {
 			inline = $target.children( "." + this._inlineClass );
 			inline.children().removeClass( "ui-state-disabled" );
-			inline.find( "select.ui-datepicker-month, select.ui-datepicker-year" ).
+			inline.find( "select.ui-fechapicker-month, select.ui-fechapicker-year" ).
 				prop( "disabled", false );
 		}
 		this._disabledInputs = $.map( this._disabledInputs,
 			function( value ) { return ( value === target ? null : value ); } ); // delete entry
 	},
 
-	/* Disable the date picker to a jQuery selection.
+	/* Disable the fecha picker to a jQuery selection.
 	 * @param  target	element - the target input field or division or span
 	 */
 	_disableDatepicker: function( target ) {
-		var nodeName, inline,
+		var nodenombre, inline,
 			$target = $( target ),
-			inst = $.data( target, "datepicker" );
+			inst = $.data( target, "fechapicker" );
 
-		if ( !$target.hasClass( this.markerClassName ) ) {
+		if ( !$target.hasClass( this.markerClassnombre ) ) {
 			return;
 		}
 
-		nodeName = target.nodeName.toLowerCase();
-		if ( nodeName === "input" ) {
+		nodenombre = target.nodenombre.toLowerCase();
+		if ( nodenombre === "input" ) {
 			target.disabled = true;
 			inst.trigger.filter( "button" ).
 				each( function() { this.disabled = true; } ).end().
 				filter( "img" ).css( { opacity: "0.5", cursor: "default" } );
-		} else if ( nodeName === "div" || nodeName === "span" ) {
+		} else if ( nodenombre === "div" || nodenombre === "span" ) {
 			inline = $target.children( "." + this._inlineClass );
 			inline.children().addClass( "ui-state-disabled" );
-			inline.find( "select.ui-datepicker-month, select.ui-datepicker-year" ).
+			inline.find( "select.ui-fechapicker-month, select.ui-fechapicker-year" ).
 				prop( "disabled", true );
 		}
 		this._disabledInputs = $.map( this._disabledInputs,
@@ -7616,7 +7616,7 @@ $.extend( Datepicker.prototype, {
 		this._disabledInputs[ this._disabledInputs.length ] = target;
 	},
 
-	/* Is the first field in a jQuery collection disabled as a datepicker?
+	/* Is the first field in a jQuery collection disabled as a fechapicker?
 	 * @param  target	element - the target input field or division or span
 	 * @return boolean - true if disabled, false if enabled
 	 */
@@ -7639,36 +7639,36 @@ $.extend( Datepicker.prototype, {
 	 */
 	_getInst: function( target ) {
 		try {
-			return $.data( target, "datepicker" );
+			return $.data( target, "fechapicker" );
 		}
 		catch ( err ) {
-			throw "Missing instance data for this datepicker";
+			throw "Missing instance data for this fechapicker";
 		}
 	},
 
-	/* Update or retrieve the settings for a date picker attached to an input field or division.
+	/* Upfecha or retrieve the settings for a fecha picker attached to an input field or division.
 	 * @param  target  element - the target input field or division or span
-	 * @param  name	object - the new settings to update or
-	 *				string - the name of the setting to change or retrieve,
+	 * @param  nombre	object - the new settings to upfecha or
+	 *				string - the nombre of the setting to change or retrieve,
 	 *				when retrieving also "all" for all instance settings or
 	 *				"defaults" for all global defaults
 	 * @param  value   any - the new value for the setting
 	 *				(omit if above is an object or to retrieve a value)
 	 */
-	_optionDatepicker: function( target, name, value ) {
-		var settings, date, minDate, maxDate,
+	_optionDatepicker: function( target, nombre, value ) {
+		var settings, fecha, minDate, maxDate,
 			inst = this._getInst( target );
 
-		if ( arguments.length === 2 && typeof name === "string" ) {
-			return ( name === "defaults" ? $.extend( {}, $.datepicker._defaults ) :
-				( inst ? ( name === "all" ? $.extend( {}, inst.settings ) :
-				this._get( inst, name ) ) : null ) );
+		if ( arguments.length === 2 && typeof nombre === "string" ) {
+			return ( nombre === "defaults" ? $.extend( {}, $.fechapicker._defaults ) :
+				( inst ? ( nombre === "all" ? $.extend( {}, inst.settings ) :
+				this._get( inst, nombre ) ) : null ) );
 		}
 
-		settings = name || {};
-		if ( typeof name === "string" ) {
+		settings = nombre || {};
+		if ( typeof nombre === "string" ) {
 			settings = {};
-			settings[ name ] = value;
+			settings[ nombre ] = value;
 		}
 
 		if ( inst ) {
@@ -7676,16 +7676,16 @@ $.extend( Datepicker.prototype, {
 				this._hideDatepicker();
 			}
 
-			date = this._getDateDatepicker( target, true );
+			fecha = this._getDateDatepicker( target, true );
 			minDate = this._getMinMaxDate( inst, "min" );
 			maxDate = this._getMinMaxDate( inst, "max" );
-			datepicker_extendRemove( inst.settings, settings );
+			fechapicker_extendRemove( inst.settings, settings );
 
-			// reformat the old minDate/maxDate values if dateFormat changes and a new minDate/maxDate isn't provided
-			if ( minDate !== null && settings.dateFormat !== undefined && settings.minDate === undefined ) {
+			// reformat the old minDate/maxDate values if fechaFormat changes and a new minDate/maxDate isn't provided
+			if ( minDate !== null && settings.fechaFormat !== undefined && settings.minDate === undefined ) {
 				inst.settings.minDate = this._formatDate( inst, minDate );
 			}
-			if ( maxDate !== null && settings.dateFormat !== undefined && settings.maxDate === undefined ) {
+			if ( maxDate !== null && settings.fechaFormat !== undefined && settings.maxDate === undefined ) {
 				inst.settings.maxDate = this._formatDate( inst, maxDate );
 			}
 			if ( "disabled" in settings ) {
@@ -7697,44 +7697,44 @@ $.extend( Datepicker.prototype, {
 			}
 			this._attachments( $( target ), inst );
 			this._autoSize( inst );
-			this._setDate( inst, date );
-			this._updateAlternate( inst );
-			this._updateDatepicker( inst );
+			this._setDate( inst, fecha );
+			this._upfechaAlternate( inst );
+			this._upfechaDatepicker( inst );
 		}
 	},
 
 	// Change method deprecated
-	_changeDatepicker: function( target, name, value ) {
-		this._optionDatepicker( target, name, value );
+	_changeDatepicker: function( target, nombre, value ) {
+		this._optionDatepicker( target, nombre, value );
 	},
 
-	/* Redraw the date picker attached to an input field or division.
+	/* Redraw the fecha picker attached to an input field or division.
 	 * @param  target  element - the target input field or division or span
 	 */
 	_refreshDatepicker: function( target ) {
 		var inst = this._getInst( target );
 		if ( inst ) {
-			this._updateDatepicker( inst );
+			this._upfechaDatepicker( inst );
 		}
 	},
 
-	/* Set the dates for a jQuery selection.
+	/* Set the fechas for a jQuery selection.
 	 * @param  target element - the target input field or division or span
-	 * @param  date	Date - the new date
+	 * @param  fecha	Date - the new fecha
 	 */
-	_setDateDatepicker: function( target, date ) {
+	_setDateDatepicker: function( target, fecha ) {
 		var inst = this._getInst( target );
 		if ( inst ) {
-			this._setDate( inst, date );
-			this._updateDatepicker( inst );
-			this._updateAlternate( inst );
+			this._setDate( inst, fecha );
+			this._upfechaDatepicker( inst );
+			this._upfechaAlternate( inst );
 		}
 	},
 
-	/* Get the date(s) for the first entry in a jQuery selection.
+	/* Get the fecha(s) for the first entry in a jQuery selection.
 	 * @param  target element - the target input field or division or span
-	 * @param  noDefault boolean - true if no default date is to be used
-	 * @return Date - the current date
+	 * @param  noDefault boolean - true if no default fecha is to be used
+	 * @return Date - the current fecha
 	 */
 	_getDateDatepicker: function( target, noDefault ) {
 		var inst = this._getInst( target );
@@ -7746,96 +7746,96 @@ $.extend( Datepicker.prototype, {
 
 	/* Handle keystrokes. */
 	_doKeyDown: function( event ) {
-		var onSelect, dateStr, sel,
-			inst = $.datepicker._getInst( event.target ),
+		var onSelect, fechaStr, sel,
+			inst = $.fechapicker._getInst( event.target ),
 			handled = true,
-			isRTL = inst.dpDiv.is( ".ui-datepicker-rtl" );
+			isRTL = inst.dpDiv.is( ".ui-fechapicker-rtl" );
 
 		inst._keyEvent = true;
-		if ( $.datepicker._datepickerShowing ) {
+		if ( $.fechapicker._fechapickerShowing ) {
 			switch ( event.keyCode ) {
-				case 9: $.datepicker._hideDatepicker();
+				case 9: $.fechapicker._hideDatepicker();
 						handled = false;
 						break; // hide on tab out
-				case 13: sel = $( "td." + $.datepicker._dayOverClass + ":not(." +
-									$.datepicker._currentClass + ")", inst.dpDiv );
+				case 13: sel = $( "td." + $.fechapicker._dayOverClass + ":not(." +
+									$.fechapicker._currentClass + ")", inst.dpDiv );
 						if ( sel[ 0 ] ) {
-							$.datepicker._selectDay( event.target, inst.selectedMonth, inst.selectedYear, sel[ 0 ] );
+							$.fechapicker._selectDay( event.target, inst.selectedMonth, inst.selectedYear, sel[ 0 ] );
 						}
 
-						onSelect = $.datepicker._get( inst, "onSelect" );
+						onSelect = $.fechapicker._get( inst, "onSelect" );
 						if ( onSelect ) {
-							dateStr = $.datepicker._formatDate( inst );
+							fechaStr = $.fechapicker._formatDate( inst );
 
 							// Trigger custom callback
-							onSelect.apply( ( inst.input ? inst.input[ 0 ] : null ), [ dateStr, inst ] );
+							onSelect.apply( ( inst.input ? inst.input[ 0 ] : null ), [ fechaStr, inst ] );
 						} else {
-							$.datepicker._hideDatepicker();
+							$.fechapicker._hideDatepicker();
 						}
 
 						return false; // don't submit the form
-				case 27: $.datepicker._hideDatepicker();
+				case 27: $.fechapicker._hideDatepicker();
 						break; // hide on escape
-				case 33: $.datepicker._adjustDate( event.target, ( event.ctrlKey ?
-							-$.datepicker._get( inst, "stepBigMonths" ) :
-							-$.datepicker._get( inst, "stepMonths" ) ), "M" );
+				case 33: $.fechapicker._adjustDate( event.target, ( event.ctrlKey ?
+							-$.fechapicker._get( inst, "stepBigMonths" ) :
+							-$.fechapicker._get( inst, "stepMonths" ) ), "M" );
 						break; // previous month/year on page up/+ ctrl
-				case 34: $.datepicker._adjustDate( event.target, ( event.ctrlKey ?
-							+$.datepicker._get( inst, "stepBigMonths" ) :
-							+$.datepicker._get( inst, "stepMonths" ) ), "M" );
+				case 34: $.fechapicker._adjustDate( event.target, ( event.ctrlKey ?
+							+$.fechapicker._get( inst, "stepBigMonths" ) :
+							+$.fechapicker._get( inst, "stepMonths" ) ), "M" );
 						break; // next month/year on page down/+ ctrl
 				case 35: if ( event.ctrlKey || event.metaKey ) {
-							$.datepicker._clearDate( event.target );
+							$.fechapicker._clearDate( event.target );
 						}
 						handled = event.ctrlKey || event.metaKey;
 						break; // clear on ctrl or command +end
 				case 36: if ( event.ctrlKey || event.metaKey ) {
-							$.datepicker._gotoToday( event.target );
+							$.fechapicker._gotoToday( event.target );
 						}
 						handled = event.ctrlKey || event.metaKey;
 						break; // current on ctrl or command +home
 				case 37: if ( event.ctrlKey || event.metaKey ) {
-							$.datepicker._adjustDate( event.target, ( isRTL ? +1 : -1 ), "D" );
+							$.fechapicker._adjustDate( event.target, ( isRTL ? +1 : -1 ), "D" );
 						}
 						handled = event.ctrlKey || event.metaKey;
 
 						// -1 day on ctrl or command +left
 						if ( event.originalEvent.altKey ) {
-							$.datepicker._adjustDate( event.target, ( event.ctrlKey ?
-								-$.datepicker._get( inst, "stepBigMonths" ) :
-								-$.datepicker._get( inst, "stepMonths" ) ), "M" );
+							$.fechapicker._adjustDate( event.target, ( event.ctrlKey ?
+								-$.fechapicker._get( inst, "stepBigMonths" ) :
+								-$.fechapicker._get( inst, "stepMonths" ) ), "M" );
 						}
 
 						// next month/year on alt +left on Mac
 						break;
 				case 38: if ( event.ctrlKey || event.metaKey ) {
-							$.datepicker._adjustDate( event.target, -7, "D" );
+							$.fechapicker._adjustDate( event.target, -7, "D" );
 						}
 						handled = event.ctrlKey || event.metaKey;
 						break; // -1 week on ctrl or command +up
 				case 39: if ( event.ctrlKey || event.metaKey ) {
-							$.datepicker._adjustDate( event.target, ( isRTL ? -1 : +1 ), "D" );
+							$.fechapicker._adjustDate( event.target, ( isRTL ? -1 : +1 ), "D" );
 						}
 						handled = event.ctrlKey || event.metaKey;
 
 						// +1 day on ctrl or command +right
 						if ( event.originalEvent.altKey ) {
-							$.datepicker._adjustDate( event.target, ( event.ctrlKey ?
-								+$.datepicker._get( inst, "stepBigMonths" ) :
-								+$.datepicker._get( inst, "stepMonths" ) ), "M" );
+							$.fechapicker._adjustDate( event.target, ( event.ctrlKey ?
+								+$.fechapicker._get( inst, "stepBigMonths" ) :
+								+$.fechapicker._get( inst, "stepMonths" ) ), "M" );
 						}
 
 						// next month/year on alt +right
 						break;
 				case 40: if ( event.ctrlKey || event.metaKey ) {
-							$.datepicker._adjustDate( event.target, +7, "D" );
+							$.fechapicker._adjustDate( event.target, +7, "D" );
 						}
 						handled = event.ctrlKey || event.metaKey;
 						break; // +1 week on ctrl or command +down
 				default: handled = false;
 			}
-		} else if ( event.keyCode === 36 && event.ctrlKey ) { // display the date picker on ctrl+home
-			$.datepicker._showDatepicker( this );
+		} else if ( event.keyCode === 36 && event.ctrlKey ) { // display the fecha picker on ctrl+home
+			$.fechapicker._showDatepicker( this );
 		} else {
 			handled = false;
 		}
@@ -7846,13 +7846,13 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Filter entered characters - based on date format. */
+	/* Filter entered characters - based on fecha format. */
 	_doKeyPress: function( event ) {
 		var chars, chr,
-			inst = $.datepicker._getInst( event.target );
+			inst = $.fechapicker._getInst( event.target );
 
-		if ( $.datepicker._get( inst, "constrainInput" ) ) {
-			chars = $.datepicker._possibleChars( $.datepicker._get( inst, "dateFormat" ) );
+		if ( $.fechapicker._get( inst, "constrainInput" ) ) {
+			chars = $.fechapicker._possibleChars( $.fechapicker._get( inst, "fechaFormat" ) );
 			chr = String.fromCharCode( event.charCode == null ? event.keyCode : event.charCode );
 			return event.ctrlKey || event.metaKey || ( chr < " " || !chars || chars.indexOf( chr ) > -1 );
 		}
@@ -7860,19 +7860,19 @@ $.extend( Datepicker.prototype, {
 
 	/* Synchronise manual entry and field/alternate field. */
 	_doKeyUp: function( event ) {
-		var date,
-			inst = $.datepicker._getInst( event.target );
+		var fecha,
+			inst = $.fechapicker._getInst( event.target );
 
 		if ( inst.input.val() !== inst.lastVal ) {
 			try {
-				date = $.datepicker.parseDate( $.datepicker._get( inst, "dateFormat" ),
+				fecha = $.fechapicker.parseDate( $.fechapicker._get( inst, "fechaFormat" ),
 					( inst.input ? inst.input.val() : null ),
-					$.datepicker._getFormatConfig( inst ) );
+					$.fechapicker._getFormatConfig( inst ) );
 
-				if ( date ) { // only if valid
-					$.datepicker._setDateFromField( inst );
-					$.datepicker._updateAlternate( inst );
-					$.datepicker._updateDatepicker( inst );
+				if ( fecha ) { // only if valid
+					$.fechapicker._setDateFromField( inst );
+					$.fechapicker._upfechaAlternate( inst );
+					$.fechapicker._upfechaDatepicker( inst );
 				}
 			}
 			catch ( err ) {
@@ -7881,49 +7881,49 @@ $.extend( Datepicker.prototype, {
 		return true;
 	},
 
-	/* Pop-up the date picker for a given input field.
+	/* Pop-up the fecha picker for a given input field.
 	 * If false returned from beforeShow event handler do not show.
-	 * @param  input  element - the input field attached to the date picker or
+	 * @param  input  element - the input field attached to the fecha picker or
 	 *					event - if triggered by focus
 	 */
 	_showDatepicker: function( input ) {
 		input = input.target || input;
-		if ( input.nodeName.toLowerCase() !== "input" ) { // find from button/image trigger
+		if ( input.nodenombre.toLowerCase() !== "input" ) { // find from button/image trigger
 			input = $( "input", input.parentNode )[ 0 ];
 		}
 
-		if ( $.datepicker._isDisabledDatepicker( input ) || $.datepicker._lastInput === input ) { // already here
+		if ( $.fechapicker._isDisabledDatepicker( input ) || $.fechapicker._lastInput === input ) { // already here
 			return;
 		}
 
 		var inst, beforeShow, beforeShowSettings, isFixed,
 			offset, showAnim, duration;
 
-		inst = $.datepicker._getInst( input );
-		if ( $.datepicker._curInst && $.datepicker._curInst !== inst ) {
-			$.datepicker._curInst.dpDiv.stop( true, true );
-			if ( inst && $.datepicker._datepickerShowing ) {
-				$.datepicker._hideDatepicker( $.datepicker._curInst.input[ 0 ] );
+		inst = $.fechapicker._getInst( input );
+		if ( $.fechapicker._curInst && $.fechapicker._curInst !== inst ) {
+			$.fechapicker._curInst.dpDiv.stop( true, true );
+			if ( inst && $.fechapicker._fechapickerShowing ) {
+				$.fechapicker._hideDatepicker( $.fechapicker._curInst.input[ 0 ] );
 			}
 		}
 
-		beforeShow = $.datepicker._get( inst, "beforeShow" );
+		beforeShow = $.fechapicker._get( inst, "beforeShow" );
 		beforeShowSettings = beforeShow ? beforeShow.apply( input, [ input, inst ] ) : {};
 		if ( beforeShowSettings === false ) {
 			return;
 		}
-		datepicker_extendRemove( inst.settings, beforeShowSettings );
+		fechapicker_extendRemove( inst.settings, beforeShowSettings );
 
 		inst.lastVal = null;
-		$.datepicker._lastInput = input;
-		$.datepicker._setDateFromField( inst );
+		$.fechapicker._lastInput = input;
+		$.fechapicker._setDateFromField( inst );
 
-		if ( $.datepicker._inDialog ) { // hide cursor
+		if ( $.fechapicker._inDialog ) { // hide cursor
 			input.value = "";
 		}
-		if ( !$.datepicker._pos ) { // position below input
-			$.datepicker._pos = $.datepicker._findPos( input );
-			$.datepicker._pos[ 1 ] += input.offsetHeight; // add the height
+		if ( !$.fechapicker._pos ) { // position below input
+			$.fechapicker._pos = $.fechapicker._findPos( input );
+			$.fechapicker._pos[ 1 ] += input.offsetHeight; // add the height
 		}
 
 		isFixed = false;
@@ -7932,47 +7932,47 @@ $.extend( Datepicker.prototype, {
 			return !isFixed;
 		} );
 
-		offset = { left: $.datepicker._pos[ 0 ], top: $.datepicker._pos[ 1 ] };
-		$.datepicker._pos = null;
+		offset = { left: $.fechapicker._pos[ 0 ], top: $.fechapicker._pos[ 1 ] };
+		$.fechapicker._pos = null;
 
 		//to avoid flashes on Firefox
 		inst.dpDiv.empty();
 
 		// determine sizing offscreen
 		inst.dpDiv.css( { position: "absolute", display: "block", top: "-1000px" } );
-		$.datepicker._updateDatepicker( inst );
+		$.fechapicker._upfechaDatepicker( inst );
 
-		// fix width for dynamic number of date pickers
+		// fix width for dynamic number of fecha pickers
 		// and adjust position before showing
-		offset = $.datepicker._checkOffset( inst, offset, isFixed );
-		inst.dpDiv.css( { position: ( $.datepicker._inDialog && $.blockUI ?
+		offset = $.fechapicker._checkOffset( inst, offset, isFixed );
+		inst.dpDiv.css( { position: ( $.fechapicker._inDialog && $.blockUI ?
 			"static" : ( isFixed ? "fixed" : "absolute" ) ), display: "none",
 			left: offset.left + "px", top: offset.top + "px" } );
 
 		if ( !inst.inline ) {
-			showAnim = $.datepicker._get( inst, "showAnim" );
-			duration = $.datepicker._get( inst, "duration" );
-			inst.dpDiv.css( "z-index", datepicker_getZindex( $( input ) ) + 1 );
-			$.datepicker._datepickerShowing = true;
+			showAnim = $.fechapicker._get( inst, "showAnim" );
+			duration = $.fechapicker._get( inst, "duration" );
+			inst.dpDiv.css( "z-index", fechapicker_getZindex( $( input ) ) + 1 );
+			$.fechapicker._fechapickerShowing = true;
 
 			if ( $.effects && $.effects.effect[ showAnim ] ) {
-				inst.dpDiv.show( showAnim, $.datepicker._get( inst, "showOptions" ), duration );
+				inst.dpDiv.show( showAnim, $.fechapicker._get( inst, "showOptions" ), duration );
 			} else {
 				inst.dpDiv[ showAnim || "show" ]( showAnim ? duration : null );
 			}
 
-			if ( $.datepicker._shouldFocusInput( inst ) ) {
+			if ( $.fechapicker._shouldFocusInput( inst ) ) {
 				inst.input.trigger( "focus" );
 			}
 
-			$.datepicker._curInst = inst;
+			$.fechapicker._curInst = inst;
 		}
 	},
 
-	/* Generate the date picker content. */
-	_updateDatepicker: function( inst ) {
+	/* Generate the fecha picker content. */
+	_upfechaDatepicker: function( inst ) {
 		this.maxRows = 4; //Reset the max number of rows being displayed (see #7043)
-		datepicker_instActive = inst; // for delegate hover events
+		fechapicker_instActive = inst; // for delegate hover events
 		inst.dpDiv.empty().append( this._generateHTML( inst ) );
 		this._attachHandlers( inst );
 
@@ -7983,19 +7983,19 @@ $.extend( Datepicker.prototype, {
 			activeCell = inst.dpDiv.find( "." + this._dayOverClass + " a" );
 
 		if ( activeCell.length > 0 ) {
-			datepicker_handleMouseover.apply( activeCell.get( 0 ) );
+			fechapicker_handleMouseover.apply( activeCell.get( 0 ) );
 		}
 
-		inst.dpDiv.removeClass( "ui-datepicker-multi-2 ui-datepicker-multi-3 ui-datepicker-multi-4" ).width( "" );
+		inst.dpDiv.removeClass( "ui-fechapicker-multi-2 ui-fechapicker-multi-3 ui-fechapicker-multi-4" ).width( "" );
 		if ( cols > 1 ) {
-			inst.dpDiv.addClass( "ui-datepicker-multi-" + cols ).css( "width", ( width * cols ) + "em" );
+			inst.dpDiv.addClass( "ui-fechapicker-multi-" + cols ).css( "width", ( width * cols ) + "em" );
 		}
 		inst.dpDiv[ ( numMonths[ 0 ] !== 1 || numMonths[ 1 ] !== 1 ? "add" : "remove" ) +
-			"Class" ]( "ui-datepicker-multi" );
+			"Class" ]( "ui-fechapicker-multi" );
 		inst.dpDiv[ ( this._get( inst, "isRTL" ) ? "add" : "remove" ) +
-			"Class" ]( "ui-datepicker-rtl" );
+			"Class" ]( "ui-fechapicker-rtl" );
 
-		if ( inst === $.datepicker._curInst && $.datepicker._datepickerShowing && $.datepicker._shouldFocusInput( inst ) ) {
+		if ( inst === $.fechapicker._curInst && $.fechapicker._fechapickerShowing && $.fechapicker._shouldFocusInput( inst ) ) {
 			inst.input.trigger( "focus" );
 		}
 
@@ -8006,7 +8006,7 @@ $.extend( Datepicker.prototype, {
 
 				//assure that inst.yearshtml didn't change.
 				if ( origyearshtml === inst.yearshtml && inst.yearshtml ) {
-					inst.dpDiv.find( "select.ui-datepicker-year:first" ).replaceWith( inst.yearshtml );
+					inst.dpDiv.find( "select.ui-fechapicker-year:first" ).replaceWith( inst.yearshtml );
 				}
 				origyearshtml = inst.yearshtml = null;
 			}, 0 );
@@ -8033,7 +8033,7 @@ $.extend( Datepicker.prototype, {
 		offset.left -= ( isFixed && offset.left === inst.input.offset().left ) ? $( document ).scrollLeft() : 0;
 		offset.top -= ( isFixed && offset.top === ( inst.input.offset().top + inputHeight ) ) ? $( document ).scrollTop() : 0;
 
-		// Now check if datepicker is showing outside window viewport - move to a better place if so.
+		// Now check if fechapicker is showing outside window viewport - move to a better place if so.
 		offset.left -= Math.min( offset.left, ( offset.left + dpWidth > viewWidth && viewWidth > dpWidth ) ?
 			Math.abs( offset.left + dpWidth - viewWidth ) : 0 );
 		offset.top -= Math.min( offset.top, ( offset.top + dpHeight > viewHeight && viewHeight > dpHeight ) ?
@@ -8056,27 +8056,27 @@ $.extend( Datepicker.prototype, {
 		return [ position.left, position.top ];
 	},
 
-	/* Hide the date picker from view.
-	 * @param  input  element - the input field attached to the date picker
+	/* Hide the fecha picker from view.
+	 * @param  input  element - the input field attached to the fecha picker
 	 */
 	_hideDatepicker: function( input ) {
 		var showAnim, duration, postProcess, onClose,
 			inst = this._curInst;
 
-		if ( !inst || ( input && inst !== $.data( input, "datepicker" ) ) ) {
+		if ( !inst || ( input && inst !== $.data( input, "fechapicker" ) ) ) {
 			return;
 		}
 
-		if ( this._datepickerShowing ) {
+		if ( this._fechapickerShowing ) {
 			showAnim = this._get( inst, "showAnim" );
 			duration = this._get( inst, "duration" );
 			postProcess = function() {
-				$.datepicker._tidyDialog( inst );
+				$.fechapicker._tidyDialog( inst );
 			};
 
 			// DEPRECATED: after BC for 1.8.x $.effects[ showAnim ] is not needed
 			if ( $.effects && ( $.effects.effect[ showAnim ] || $.effects[ showAnim ] ) ) {
-				inst.dpDiv.hide( showAnim, $.datepicker._get( inst, "showOptions" ), duration, postProcess );
+				inst.dpDiv.hide( showAnim, $.fechapicker._get( inst, "showOptions" ), duration, postProcess );
 			} else {
 				inst.dpDiv[ ( showAnim === "slideDown" ? "slideUp" :
 					( showAnim === "fadeIn" ? "fadeOut" : "hide" ) ) ]( ( showAnim ? duration : null ), postProcess );
@@ -8085,7 +8085,7 @@ $.extend( Datepicker.prototype, {
 			if ( !showAnim ) {
 				postProcess();
 			}
-			this._datepickerShowing = false;
+			this._fechapickerShowing = false;
 
 			onClose = this._get( inst, "onClose" );
 			if ( onClose ) {
@@ -8106,29 +8106,29 @@ $.extend( Datepicker.prototype, {
 
 	/* Tidy up after a dialog display. */
 	_tidyDialog: function( inst ) {
-		inst.dpDiv.removeClass( this._dialogClass ).off( ".ui-datepicker-calendar" );
+		inst.dpDiv.removeClass( this._dialogClass ).off( ".ui-fechapicker-calendar" );
 	},
 
-	/* Close date picker if clicked elsewhere. */
+	/* Close fecha picker if clicked elsewhere. */
 	_checkExternalClick: function( event ) {
-		if ( !$.datepicker._curInst ) {
+		if ( !$.fechapicker._curInst ) {
 			return;
 		}
 
 		var $target = $( event.target ),
-			inst = $.datepicker._getInst( $target[ 0 ] );
+			inst = $.fechapicker._getInst( $target[ 0 ] );
 
-		if ( ( ( $target[ 0 ].id !== $.datepicker._mainDivId &&
-				$target.parents( "#" + $.datepicker._mainDivId ).length === 0 &&
-				!$target.hasClass( $.datepicker.markerClassName ) &&
-				!$target.closest( "." + $.datepicker._triggerClass ).length &&
-				$.datepicker._datepickerShowing && !( $.datepicker._inDialog && $.blockUI ) ) ) ||
-			( $target.hasClass( $.datepicker.markerClassName ) && $.datepicker._curInst !== inst ) ) {
-				$.datepicker._hideDatepicker();
+		if ( ( ( $target[ 0 ].id !== $.fechapicker._mainDivId &&
+				$target.parents( "#" + $.fechapicker._mainDivId ).length === 0 &&
+				!$target.hasClass( $.fechapicker.markerClassnombre ) &&
+				!$target.closest( "." + $.fechapicker._triggerClass ).length &&
+				$.fechapicker._fechapickerShowing && !( $.fechapicker._inDialog && $.blockUI ) ) ) ||
+			( $target.hasClass( $.fechapicker.markerClassnombre ) && $.fechapicker._curInst !== inst ) ) {
+				$.fechapicker._hideDatepicker();
 		}
 	},
 
-	/* Adjust one of the date sub-fields. */
+	/* Adjust one of the fecha sub-fields. */
 	_adjustDate: function( id, offset, period ) {
 		var target = $( id ),
 			inst = this._getInst( target[ 0 ] );
@@ -8139,12 +8139,12 @@ $.extend( Datepicker.prototype, {
 		this._adjustInstDate( inst, offset +
 			( period === "M" ? this._get( inst, "showCurrentAtPos" ) : 0 ), // undo positioning
 			period );
-		this._updateDatepicker( inst );
+		this._upfechaDatepicker( inst );
 	},
 
 	/* Action for current link. */
 	_gotoToday: function( id ) {
-		var date,
+		var fecha,
 			target = $( id ),
 			inst = this._getInst( target[ 0 ] );
 
@@ -8153,10 +8153,10 @@ $.extend( Datepicker.prototype, {
 			inst.drawMonth = inst.selectedMonth = inst.currentMonth;
 			inst.drawYear = inst.selectedYear = inst.currentYear;
 		} else {
-			date = new Date();
-			inst.selectedDay = date.getDate();
-			inst.drawMonth = inst.selectedMonth = date.getMonth();
-			inst.drawYear = inst.selectedYear = date.getFullYear();
+			fecha = new Date();
+			inst.selectedDay = fecha.getDate();
+			inst.drawMonth = inst.selectedMonth = fecha.getMonth();
+			inst.drawYear = inst.selectedYear = fecha.getFullYear();
 		}
 		this._notifyChange( inst );
 		this._adjustDate( target );
@@ -8192,33 +8192,33 @@ $.extend( Datepicker.prototype, {
 			inst.currentDay, inst.currentMonth, inst.currentYear ) );
 	},
 
-	/* Erase the input field and hide the date picker. */
+	/* Erase the input field and hide the fecha picker. */
 	_clearDate: function( id ) {
 		var target = $( id );
 		this._selectDate( target, "" );
 	},
 
-	/* Update the input field with the selected date. */
-	_selectDate: function( id, dateStr ) {
+	/* Upfecha the input field with the selected fecha. */
+	_selectDate: function( id, fechaStr ) {
 		var onSelect,
 			target = $( id ),
 			inst = this._getInst( target[ 0 ] );
 
-		dateStr = ( dateStr != null ? dateStr : this._formatDate( inst ) );
+		fechaStr = ( fechaStr != null ? fechaStr : this._formatDate( inst ) );
 		if ( inst.input ) {
-			inst.input.val( dateStr );
+			inst.input.val( fechaStr );
 		}
-		this._updateAlternate( inst );
+		this._upfechaAlternate( inst );
 
 		onSelect = this._get( inst, "onSelect" );
 		if ( onSelect ) {
-			onSelect.apply( ( inst.input ? inst.input[ 0 ] : null ), [ dateStr, inst ] );  // trigger custom callback
+			onSelect.apply( ( inst.input ? inst.input[ 0 ] : null ), [ fechaStr, inst ] );  // trigger custom callback
 		} else if ( inst.input ) {
 			inst.input.trigger( "change" ); // fire the change event
 		}
 
 		if ( inst.inline ) {
-			this._updateDatepicker( inst );
+			this._upfechaDatepicker( inst );
 		} else {
 			this._hideDatepicker();
 			this._lastInput = inst.input[ 0 ];
@@ -8229,35 +8229,35 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Update any alternate field to synchronise with the main field. */
-	_updateAlternate: function( inst ) {
-		var altFormat, date, dateStr,
+	/* Upfecha any alternate field to synchronise with the main field. */
+	_upfechaAlternate: function( inst ) {
+		var altFormat, fecha, fechaStr,
 			altField = this._get( inst, "altField" );
 
-		if ( altField ) { // update alternate field too
-			altFormat = this._get( inst, "altFormat" ) || this._get( inst, "dateFormat" );
-			date = this._getDate( inst );
-			dateStr = this.formatDate( altFormat, date, this._getFormatConfig( inst ) );
-			$( altField ).val( dateStr );
+		if ( altField ) { // upfecha alternate field too
+			altFormat = this._get( inst, "altFormat" ) || this._get( inst, "fechaFormat" );
+			fecha = this._getDate( inst );
+			fechaStr = this.formatDate( altFormat, fecha, this._getFormatConfig( inst ) );
+			$( altField ).val( fechaStr );
 		}
 	},
 
 	/* Set as beforeShowDay function to prevent selection of weekends.
-	 * @param  date  Date - the date to customise
-	 * @return [boolean, string] - is this date selectable?, what is its CSS class?
+	 * @param  fecha  Date - the fecha to customise
+	 * @return [boolean, string] - is this fecha selectable?, what is its CSS class?
 	 */
-	noWeekends: function( date ) {
-		var day = date.getDay();
+	noWeekends: function( fecha ) {
+		var day = fecha.getDay();
 		return [ ( day > 0 && day < 6 ), "" ];
 	},
 
 	/* Set as calculateWeek to determine the week of the year based on the ISO 8601 definition.
-	 * @param  date  Date - the date to get the week for
-	 * @return  number - the number of the week within the year that contains this date
+	 * @param  fecha  Date - the fecha to get the week for
+	 * @return  number - the number of the week within the year that contains this fecha
 	 */
-	iso8601Week: function( date ) {
+	iso8601Week: function( fecha ) {
 		var time,
-			checkDate = new Date( date.getTime() );
+			checkDate = new Date( fecha.getTime() );
 
 		// Find Thursday of this week starting on Monday
 		checkDate.setDate( checkDate.getDate() + 4 - ( checkDate.getDay() || 7 ) );
@@ -8268,18 +8268,18 @@ $.extend( Datepicker.prototype, {
 		return Math.floor( Math.round( ( time - checkDate ) / 86400000 ) / 7 ) + 1;
 	},
 
-	/* Parse a string value into a date object.
+	/* Parse a string value into a fecha object.
 	 * See formatDate below for the possible formats.
 	 *
-	 * @param  format string - the expected format of the date
-	 * @param  value string - the date in the above format
+	 * @param  format string - the expected format of the fecha
+	 * @param  value string - the fecha in the above format
 	 * @param  settings Object - attributes include:
 	 *					shortYearCutoff  number - the cutoff year for determining the century (optional)
-	 *					dayNamesShort	string[7] - abbreviated names of the days from Sunday (optional)
-	 *					dayNames		string[7] - names of the days from Sunday (optional)
-	 *					monthNamesShort string[12] - abbreviated names of the months (optional)
-	 *					monthNames		string[12] - names of the months (optional)
-	 * @return  Date - the extracted date value or null if value is blank
+	 *					daynombresShort	string[7] - abbreviated nombres of the days from Sunday (optional)
+	 *					daynombres		string[7] - nombres of the days from Sunday (optional)
+	 *					monthnombresShort string[12] - abbreviated nombres of the months (optional)
+	 *					monthnombres		string[12] - nombres of the months (optional)
+	 * @return  Date - the extracted fecha value or null if value is blank
 	 */
 	parseDate: function( format, value, settings ) {
 		if ( format == null || value == null ) {
@@ -8296,16 +8296,16 @@ $.extend( Datepicker.prototype, {
 			shortYearCutoffTemp = ( settings ? settings.shortYearCutoff : null ) || this._defaults.shortYearCutoff,
 			shortYearCutoff = ( typeof shortYearCutoffTemp !== "string" ? shortYearCutoffTemp :
 				new Date().getFullYear() % 100 + parseInt( shortYearCutoffTemp, 10 ) ),
-			dayNamesShort = ( settings ? settings.dayNamesShort : null ) || this._defaults.dayNamesShort,
-			dayNames = ( settings ? settings.dayNames : null ) || this._defaults.dayNames,
-			monthNamesShort = ( settings ? settings.monthNamesShort : null ) || this._defaults.monthNamesShort,
-			monthNames = ( settings ? settings.monthNames : null ) || this._defaults.monthNames,
+			daynombresShort = ( settings ? settings.daynombresShort : null ) || this._defaults.daynombresShort,
+			daynombres = ( settings ? settings.daynombres : null ) || this._defaults.daynombres,
+			monthnombresShort = ( settings ? settings.monthnombresShort : null ) || this._defaults.monthnombresShort,
+			monthnombres = ( settings ? settings.monthnombres : null ) || this._defaults.monthnombres,
 			year = -1,
 			month = -1,
 			day = -1,
 			doy = -1,
 			literal = false,
-			date,
+			fecha,
 
 			// Check whether a format character is doubled
 			lookAhead = function( match ) {
@@ -8331,27 +8331,27 @@ $.extend( Datepicker.prototype, {
 				return parseInt( num[ 0 ], 10 );
 			},
 
-			// Extract a name from the string value and convert to an index
-			getName = function( match, shortNames, longNames ) {
+			// Extract a nombre from the string value and convert to an index
+			getnombre = function( match, shortnombres, longnombres ) {
 				var index = -1,
-					names = $.map( lookAhead( match ) ? longNames : shortNames, function( v, k ) {
+					nombres = $.map( lookAhead( match ) ? longnombres : shortnombres, function( v, k ) {
 						return [ [ k, v ] ];
 					} ).sort( function( a, b ) {
 						return -( a[ 1 ].length - b[ 1 ].length );
 					} );
 
-				$.each( names, function( i, pair ) {
-					var name = pair[ 1 ];
-					if ( value.substr( iValue, name.length ).toLowerCase() === name.toLowerCase() ) {
+				$.each( nombres, function( i, pair ) {
+					var nombre = pair[ 1 ];
+					if ( value.substr( iValue, nombre.length ).toLowerCase() === nombre.toLowerCase() ) {
 						index = pair[ 0 ];
-						iValue += name.length;
+						iValue += nombre.length;
 						return false;
 					}
 				} );
 				if ( index !== -1 ) {
 					return index + 1;
 				} else {
-					throw "Unknown name at position " + iValue;
+					throw "Unknown nombre at position " + iValue;
 				}
 			},
 
@@ -8376,7 +8376,7 @@ $.extend( Datepicker.prototype, {
 						day = getNumber( "d" );
 						break;
 					case "D":
-						getName( "D", dayNamesShort, dayNames );
+						getnombre( "D", daynombresShort, daynombres );
 						break;
 					case "o":
 						doy = getNumber( "o" );
@@ -8385,22 +8385,22 @@ $.extend( Datepicker.prototype, {
 						month = getNumber( "m" );
 						break;
 					case "M":
-						month = getName( "M", monthNamesShort, monthNames );
+						month = getnombre( "M", monthnombresShort, monthnombres );
 						break;
 					case "y":
 						year = getNumber( "y" );
 						break;
 					case "@":
-						date = new Date( getNumber( "@" ) );
-						year = date.getFullYear();
-						month = date.getMonth() + 1;
-						day = date.getDate();
+						fecha = new Date( getNumber( "@" ) );
+						year = fecha.getFullYear();
+						month = fecha.getMonth() + 1;
+						day = fecha.getDate();
 						break;
 					case "!":
-						date = new Date( ( getNumber( "!" ) - this._ticksTo1970 ) / 10000 );
-						year = date.getFullYear();
-						month = date.getMonth() + 1;
-						day = date.getDate();
+						fecha = new Date( ( getNumber( "!" ) - this._ticksTo1970 ) / 10000 );
+						year = fecha.getFullYear();
+						month = fecha.getMonth() + 1;
+						day = fecha.getDate();
 						break;
 					case "'":
 						if ( lookAhead( "'" ) ) {
@@ -8418,7 +8418,7 @@ $.extend( Datepicker.prototype, {
 		if ( iValue < value.length ) {
 			extra = value.substr( iValue );
 			if ( !/^\s+/.test( extra ) ) {
-				throw "Extra/unparsed characters found in date: " + extra;
+				throw "Extra/unparsed characters found in fecha: " + extra;
 			}
 		}
 
@@ -8442,14 +8442,14 @@ $.extend( Datepicker.prototype, {
 			} while ( true );
 		}
 
-		date = this._daylightSavingAdjust( new Date( year, month - 1, day ) );
-		if ( date.getFullYear() !== year || date.getMonth() + 1 !== month || date.getDate() !== day ) {
-			throw "Invalid date"; // E.g. 31/02/00
+		fecha = this._daylightSavingAdjust( new Date( year, month - 1, day ) );
+		if ( fecha.getFullYear() !== year || fecha.getMonth() + 1 !== month || fecha.getDate() !== day ) {
+			throw "Invalid fecha"; // E.g. 31/02/00
 		}
-		return date;
+		return fecha;
 	},
 
-	/* Standard date formats. */
+	/* Standard fecha formats. */
 	ATOM: "yy-mm-dd", // RFC 3339 (ISO 8601)
 	COOKIE: "D, dd M yy",
 	ISO_8601: "yy-mm-dd",
@@ -8466,18 +8466,18 @@ $.extend( Datepicker.prototype, {
 	_ticksTo1970: ( ( ( 1970 - 1 ) * 365 + Math.floor( 1970 / 4 ) - Math.floor( 1970 / 100 ) +
 		Math.floor( 1970 / 400 ) ) * 24 * 60 * 60 * 10000000 ),
 
-	/* Format a date object into a string value.
+	/* Format a fecha object into a string value.
 	 * The format can be combinations of the following:
 	 * d  - day of month (no leading zero)
 	 * dd - day of month (two digit)
 	 * o  - day of year (no leading zeros)
 	 * oo - day of year (three digit)
-	 * D  - day name short
-	 * DD - day name long
+	 * D  - day nombre short
+	 * DD - day nombre long
 	 * m  - month of year (no leading zero)
 	 * mm - month of year (two digit)
-	 * M  - month name short
-	 * MM - month name long
+	 * M  - month nombre short
+	 * MM - month nombre long
 	 * y  - year (two digit)
 	 * yy - year (four digit)
 	 * @ - Unix timestamp (ms since 01/01/1970)
@@ -8485,25 +8485,25 @@ $.extend( Datepicker.prototype, {
 	 * "..." - literal text
 	 * '' - single quote
 	 *
-	 * @param  format string - the desired format of the date
-	 * @param  date Date - the date value to format
+	 * @param  format string - the desired format of the fecha
+	 * @param  fecha Date - the fecha value to format
 	 * @param  settings Object - attributes include:
-	 *					dayNamesShort	string[7] - abbreviated names of the days from Sunday (optional)
-	 *					dayNames		string[7] - names of the days from Sunday (optional)
-	 *					monthNamesShort string[12] - abbreviated names of the months (optional)
-	 *					monthNames		string[12] - names of the months (optional)
-	 * @return  string - the date in the above format
+	 *					daynombresShort	string[7] - abbreviated nombres of the days from Sunday (optional)
+	 *					daynombres		string[7] - nombres of the days from Sunday (optional)
+	 *					monthnombresShort string[12] - abbreviated nombres of the months (optional)
+	 *					monthnombres		string[12] - nombres of the months (optional)
+	 * @return  string - the fecha in the above format
 	 */
-	formatDate: function( format, date, settings ) {
-		if ( !date ) {
+	formatDate: function( format, fecha, settings ) {
+		if ( !fecha ) {
 			return "";
 		}
 
 		var iFormat,
-			dayNamesShort = ( settings ? settings.dayNamesShort : null ) || this._defaults.dayNamesShort,
-			dayNames = ( settings ? settings.dayNames : null ) || this._defaults.dayNames,
-			monthNamesShort = ( settings ? settings.monthNamesShort : null ) || this._defaults.monthNamesShort,
-			monthNames = ( settings ? settings.monthNames : null ) || this._defaults.monthNames,
+			daynombresShort = ( settings ? settings.daynombresShort : null ) || this._defaults.daynombresShort,
+			daynombres = ( settings ? settings.daynombres : null ) || this._defaults.daynombres,
+			monthnombresShort = ( settings ? settings.monthnombresShort : null ) || this._defaults.monthnombresShort,
+			monthnombres = ( settings ? settings.monthnombres : null ) || this._defaults.monthnombres,
 
 			// Check whether a format character is doubled
 			lookAhead = function( match ) {
@@ -8525,14 +8525,14 @@ $.extend( Datepicker.prototype, {
 				return num;
 			},
 
-			// Format a name, short or long as requested
-			formatName = function( match, value, shortNames, longNames ) {
-				return ( lookAhead( match ) ? longNames[ value ] : shortNames[ value ] );
+			// Format a nombre, short or long as requested
+			formatnombre = function( match, value, shortnombres, longnombres ) {
+				return ( lookAhead( match ) ? longnombres[ value ] : shortnombres[ value ] );
 			},
 			output = "",
 			literal = false;
 
-		if ( date ) {
+		if ( fecha ) {
 			for ( iFormat = 0; iFormat < format.length; iFormat++ ) {
 				if ( literal ) {
 					if ( format.charAt( iFormat ) === "'" && !lookAhead( "'" ) ) {
@@ -8543,30 +8543,30 @@ $.extend( Datepicker.prototype, {
 				} else {
 					switch ( format.charAt( iFormat ) ) {
 						case "d":
-							output += formatNumber( "d", date.getDate(), 2 );
+							output += formatNumber( "d", fecha.getDate(), 2 );
 							break;
 						case "D":
-							output += formatName( "D", date.getDay(), dayNamesShort, dayNames );
+							output += formatnombre( "D", fecha.getDay(), daynombresShort, daynombres );
 							break;
 						case "o":
 							output += formatNumber( "o",
-								Math.round( ( new Date( date.getFullYear(), date.getMonth(), date.getDate() ).getTime() - new Date( date.getFullYear(), 0, 0 ).getTime() ) / 86400000 ), 3 );
+								Math.round( ( new Date( fecha.getFullYear(), fecha.getMonth(), fecha.getDate() ).getTime() - new Date( fecha.getFullYear(), 0, 0 ).getTime() ) / 86400000 ), 3 );
 							break;
 						case "m":
-							output += formatNumber( "m", date.getMonth() + 1, 2 );
+							output += formatNumber( "m", fecha.getMonth() + 1, 2 );
 							break;
 						case "M":
-							output += formatName( "M", date.getMonth(), monthNamesShort, monthNames );
+							output += formatnombre( "M", fecha.getMonth(), monthnombresShort, monthnombres );
 							break;
 						case "y":
-							output += ( lookAhead( "y" ) ? date.getFullYear() :
-								( date.getFullYear() % 100 < 10 ? "0" : "" ) + date.getFullYear() % 100 );
+							output += ( lookAhead( "y" ) ? fecha.getFullYear() :
+								( fecha.getFullYear() % 100 < 10 ? "0" : "" ) + fecha.getFullYear() % 100 );
 							break;
 						case "@":
-							output += date.getTime();
+							output += fecha.getTime();
 							break;
 						case "!":
-							output += date.getTime() * 10000 + this._ticksTo1970;
+							output += fecha.getTime() * 10000 + this._ticksTo1970;
 							break;
 						case "'":
 							if ( lookAhead( "'" ) ) {
@@ -8584,7 +8584,7 @@ $.extend( Datepicker.prototype, {
 		return output;
 	},
 
-	/* Extract all possible characters from the date format. */
+	/* Extract all possible characters from the fecha format. */
 	_possibleChars: function( format ) {
 		var iFormat,
 			chars = "",
@@ -8629,65 +8629,65 @@ $.extend( Datepicker.prototype, {
 	},
 
 	/* Get a setting value, defaulting if necessary. */
-	_get: function( inst, name ) {
-		return inst.settings[ name ] !== undefined ?
-			inst.settings[ name ] : this._defaults[ name ];
+	_get: function( inst, nombre ) {
+		return inst.settings[ nombre ] !== undefined ?
+			inst.settings[ nombre ] : this._defaults[ nombre ];
 	},
 
-	/* Parse existing date and initialise date picker. */
+	/* Parse existing fecha and initialise fecha picker. */
 	_setDateFromField: function( inst, noDefault ) {
 		if ( inst.input.val() === inst.lastVal ) {
 			return;
 		}
 
-		var dateFormat = this._get( inst, "dateFormat" ),
-			dates = inst.lastVal = inst.input ? inst.input.val() : null,
+		var fechaFormat = this._get( inst, "fechaFormat" ),
+			fechas = inst.lastVal = inst.input ? inst.input.val() : null,
 			defaultDate = this._getDefaultDate( inst ),
-			date = defaultDate,
+			fecha = defaultDate,
 			settings = this._getFormatConfig( inst );
 
 		try {
-			date = this.parseDate( dateFormat, dates, settings ) || defaultDate;
+			fecha = this.parseDate( fechaFormat, fechas, settings ) || defaultDate;
 		} catch ( event ) {
-			dates = ( noDefault ? "" : dates );
+			fechas = ( noDefault ? "" : fechas );
 		}
-		inst.selectedDay = date.getDate();
-		inst.drawMonth = inst.selectedMonth = date.getMonth();
-		inst.drawYear = inst.selectedYear = date.getFullYear();
-		inst.currentDay = ( dates ? date.getDate() : 0 );
-		inst.currentMonth = ( dates ? date.getMonth() : 0 );
-		inst.currentYear = ( dates ? date.getFullYear() : 0 );
+		inst.selectedDay = fecha.getDate();
+		inst.drawMonth = inst.selectedMonth = fecha.getMonth();
+		inst.drawYear = inst.selectedYear = fecha.getFullYear();
+		inst.currentDay = ( fechas ? fecha.getDate() : 0 );
+		inst.currentMonth = ( fechas ? fecha.getMonth() : 0 );
+		inst.currentYear = ( fechas ? fecha.getFullYear() : 0 );
 		this._adjustInstDate( inst );
 	},
 
-	/* Retrieve the default date shown on opening. */
+	/* Retrieve the default fecha shown on opening. */
 	_getDefaultDate: function( inst ) {
 		return this._restrictMinMax( inst,
 			this._determineDate( inst, this._get( inst, "defaultDate" ), new Date() ) );
 	},
 
-	/* A date may be specified as an exact value or a relative one. */
-	_determineDate: function( inst, date, defaultDate ) {
+	/* A fecha may be specified as an exact value or a relative one. */
+	_determineDate: function( inst, fecha, defaultDate ) {
 		var offsetNumeric = function( offset ) {
-				var date = new Date();
-				date.setDate( date.getDate() + offset );
-				return date;
+				var fecha = new Date();
+				fecha.setDate( fecha.getDate() + offset );
+				return fecha;
 			},
 			offsetString = function( offset ) {
 				try {
-					return $.datepicker.parseDate( $.datepicker._get( inst, "dateFormat" ),
-						offset, $.datepicker._getFormatConfig( inst ) );
+					return $.fechapicker.parseDate( $.fechapicker._get( inst, "fechaFormat" ),
+						offset, $.fechapicker._getFormatConfig( inst ) );
 				}
 				catch ( e ) {
 
 					// Ignore
 				}
 
-				var date = ( offset.toLowerCase().match( /^c/ ) ?
-					$.datepicker._getDate( inst ) : null ) || new Date(),
-					year = date.getFullYear(),
-					month = date.getMonth(),
-					day = date.getDate(),
+				var fecha = ( offset.toLowerCase().match( /^c/ ) ?
+					$.fechapicker._getDate( inst ) : null ) || new Date(),
+					year = fecha.getFullYear(),
+					month = fecha.getMonth(),
+					day = fecha.getDate(),
 					pattern = /([+\-]?[0-9]+)\s*(d|D|w|W|m|M|y|Y)?/g,
 					matches = pattern.exec( offset );
 
@@ -8699,19 +8699,19 @@ $.extend( Datepicker.prototype, {
 							day += parseInt( matches[ 1 ], 10 ) * 7; break;
 						case "m" : case "M" :
 							month += parseInt( matches[ 1 ], 10 );
-							day = Math.min( day, $.datepicker._getDaysInMonth( year, month ) );
+							day = Math.min( day, $.fechapicker._getDaysInMonth( year, month ) );
 							break;
 						case "y": case "Y" :
 							year += parseInt( matches[ 1 ], 10 );
-							day = Math.min( day, $.datepicker._getDaysInMonth( year, month ) );
+							day = Math.min( day, $.fechapicker._getDaysInMonth( year, month ) );
 							break;
 					}
 					matches = pattern.exec( offset );
 				}
 				return new Date( year, month, day );
 			},
-			newDate = ( date == null || date === "" ? defaultDate : ( typeof date === "string" ? offsetString( date ) :
-				( typeof date === "number" ? ( isNaN( date ) ? defaultDate : offsetNumeric( date ) ) : new Date( date.getTime() ) ) ) );
+			newDate = ( fecha == null || fecha === "" ? defaultDate : ( typeof fecha === "string" ? offsetString( fecha ) :
+				( typeof fecha === "number" ? ( isNaN( fecha ) ? defaultDate : offsetNumeric( fecha ) ) : new Date( fecha.getTime() ) ) ) );
 
 		newDate = ( newDate && newDate.toString() === "Invalid Date" ? defaultDate : newDate );
 		if ( newDate ) {
@@ -8726,24 +8726,24 @@ $.extend( Datepicker.prototype, {
 	/* Handle switch to/from daylight saving.
 	 * Hours may be non-zero on daylight saving cut-over:
 	 * > 12 when midnight changeover, but then cannot generate
-	 * midnight datetime, so jump to 1AM, otherwise reset.
-	 * @param  date  (Date) the date to check
-	 * @return  (Date) the corrected date
+	 * midnight fechatime, so jump to 1AM, otherwise reset.
+	 * @param  fecha  (Date) the fecha to check
+	 * @return  (Date) the corrected fecha
 	 */
-	_daylightSavingAdjust: function( date ) {
-		if ( !date ) {
+	_daylightSavingAdjust: function( fecha ) {
+		if ( !fecha ) {
 			return null;
 		}
-		date.setHours( date.getHours() > 12 ? date.getHours() + 2 : 0 );
-		return date;
+		fecha.setHours( fecha.getHours() > 12 ? fecha.getHours() + 2 : 0 );
+		return fecha;
 	},
 
-	/* Set the date(s) directly. */
-	_setDate: function( inst, date, noChange ) {
-		var clear = !date,
+	/* Set the fecha(s) directly. */
+	_setDate: function( inst, fecha, noChange ) {
+		var clear = !fecha,
 			origMonth = inst.selectedMonth,
 			origYear = inst.selectedYear,
-			newDate = this._restrictMinMax( inst, this._determineDate( inst, date, new Date() ) );
+			newDate = this._restrictMinMax( inst, this._determineDate( inst, fecha, new Date() ) );
 
 		inst.selectedDay = inst.currentDay = newDate.getDate();
 		inst.drawMonth = inst.selectedMonth = inst.currentMonth = newDate.getMonth();
@@ -8757,7 +8757,7 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Retrieve the date(s) directly. */
+	/* Retrieve the fecha(s) directly. */
 	_getDate: function( inst ) {
 		var startDate = ( !inst.currentYear || ( inst.input && inst.input.val() === "" ) ? null :
 			this._daylightSavingAdjust( new Date(
@@ -8774,27 +8774,27 @@ $.extend( Datepicker.prototype, {
 		inst.dpDiv.find( "[data-handler]" ).map( function() {
 			var handler = {
 				prev: function() {
-					$.datepicker._adjustDate( id, -stepMonths, "M" );
+					$.fechapicker._adjustDate( id, -stepMonths, "M" );
 				},
 				next: function() {
-					$.datepicker._adjustDate( id, +stepMonths, "M" );
+					$.fechapicker._adjustDate( id, +stepMonths, "M" );
 				},
 				hide: function() {
-					$.datepicker._hideDatepicker();
+					$.fechapicker._hideDatepicker();
 				},
 				today: function() {
-					$.datepicker._gotoToday( id );
+					$.fechapicker._gotoToday( id );
 				},
 				selectDay: function() {
-					$.datepicker._selectDay( id, +this.getAttribute( "data-month" ), +this.getAttribute( "data-year" ), this );
+					$.fechapicker._selectDay( id, +this.getAttribute( "data-month" ), +this.getAttribute( "data-year" ), this );
 					return false;
 				},
 				selectMonth: function() {
-					$.datepicker._selectMonthYear( id, this, "M" );
+					$.fechapicker._selectMonthYear( id, this, "M" );
 					return false;
 				},
 				selectYear: function() {
-					$.datepicker._selectMonthYear( id, this, "Y" );
+					$.fechapicker._selectMonthYear( id, this, "Y" );
 					return false;
 				}
 			};
@@ -8802,11 +8802,11 @@ $.extend( Datepicker.prototype, {
 		} );
 	},
 
-	/* Generate the HTML for the current state of the date picker. */
+	/* Generate the HTML for the current state of the fecha picker. */
 	_generateHTML: function( inst ) {
 		var maxDraw, prevText, prev, nextText, next, currentText, gotoDate,
-			controls, buttonPanel, firstDay, showWeek, dayNames, dayNamesMin,
-			monthNames, monthNamesShort, beforeShowDay, showOtherMonths,
+			controls, buttonPanel, firstDay, showWeek, daynombres, daynombresMin,
+			monthnombres, monthnombresShort, beforeShowDay, showOtherMonths,
 			selectOtherMonths, defaultDate, html, dow, row, group, col, selectedDate,
 			cornerClass, calender, thead, day, daysInMonth, leadDays, curRows, numRows,
 			printDate, dRow, tbody, daySettings, otherMonth, unselectable,
@@ -8853,9 +8853,9 @@ $.extend( Datepicker.prototype, {
 			this._getFormatConfig( inst ) ) );
 
 		prev = ( this._canAdjustMonth( inst, -1, drawYear, drawMonth ) ?
-			"<a class='ui-datepicker-prev ui-corner-all' data-handler='prev' data-event='click'" +
+			"<a class='ui-fechapicker-prev ui-corner-all' data-handler='prev' data-event='click'" +
 			" title='" + prevText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w" ) + "'>" + prevText + "</span></a>" :
-			( hideIfNoPrevNext ? "" : "<a class='ui-datepicker-prev ui-corner-all ui-state-disabled' title='" + prevText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w" ) + "'>" + prevText + "</span></a>" ) );
+			( hideIfNoPrevNext ? "" : "<a class='ui-fechapicker-prev ui-corner-all ui-state-disabled' title='" + prevText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w" ) + "'>" + prevText + "</span></a>" ) );
 
 		nextText = this._get( inst, "nextText" );
 		nextText = ( !navigationAsDateFormat ? nextText : this.formatDate( nextText,
@@ -8863,30 +8863,30 @@ $.extend( Datepicker.prototype, {
 			this._getFormatConfig( inst ) ) );
 
 		next = ( this._canAdjustMonth( inst, +1, drawYear, drawMonth ) ?
-			"<a class='ui-datepicker-next ui-corner-all' data-handler='next' data-event='click'" +
+			"<a class='ui-fechapicker-next ui-corner-all' data-handler='next' data-event='click'" +
 			" title='" + nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e" ) + "'>" + nextText + "</span></a>" :
-			( hideIfNoPrevNext ? "" : "<a class='ui-datepicker-next ui-corner-all ui-state-disabled' title='" + nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e" ) + "'>" + nextText + "</span></a>" ) );
+			( hideIfNoPrevNext ? "" : "<a class='ui-fechapicker-next ui-corner-all ui-state-disabled' title='" + nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e" ) + "'>" + nextText + "</span></a>" ) );
 
 		currentText = this._get( inst, "currentText" );
 		gotoDate = ( this._get( inst, "gotoCurrent" ) && inst.currentDay ? currentDate : today );
 		currentText = ( !navigationAsDateFormat ? currentText :
 			this.formatDate( currentText, gotoDate, this._getFormatConfig( inst ) ) );
 
-		controls = ( !inst.inline ? "<button type='button' class='ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all' data-handler='hide' data-event='click'>" +
+		controls = ( !inst.inline ? "<button type='button' class='ui-fechapicker-close ui-state-default ui-priority-primary ui-corner-all' data-handler='hide' data-event='click'>" +
 			this._get( inst, "closeText" ) + "</button>" : "" );
 
-		buttonPanel = ( showButtonPanel ) ? "<div class='ui-datepicker-buttonpane ui-widget-content'>" + ( isRTL ? controls : "" ) +
-			( this._isInRange( inst, gotoDate ) ? "<button type='button' class='ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all' data-handler='today' data-event='click'" +
+		buttonPanel = ( showButtonPanel ) ? "<div class='ui-fechapicker-buttonpane ui-widget-content'>" + ( isRTL ? controls : "" ) +
+			( this._isInRange( inst, gotoDate ) ? "<button type='button' class='ui-fechapicker-current ui-state-default ui-priority-secondary ui-corner-all' data-handler='today' data-event='click'" +
 			">" + currentText + "</button>" : "" ) + ( isRTL ? "" : controls ) + "</div>" : "";
 
 		firstDay = parseInt( this._get( inst, "firstDay" ), 10 );
 		firstDay = ( isNaN( firstDay ) ? 0 : firstDay );
 
 		showWeek = this._get( inst, "showWeek" );
-		dayNames = this._get( inst, "dayNames" );
-		dayNamesMin = this._get( inst, "dayNamesMin" );
-		monthNames = this._get( inst, "monthNames" );
-		monthNamesShort = this._get( inst, "monthNamesShort" );
+		daynombres = this._get( inst, "daynombres" );
+		daynombresMin = this._get( inst, "daynombresMin" );
+		monthnombres = this._get( inst, "monthnombres" );
+		monthnombresShort = this._get( inst, "monthnombresShort" );
 		beforeShowDay = this._get( inst, "beforeShowDay" );
 		showOtherMonths = this._get( inst, "showOtherMonths" );
 		selectOtherMonths = this._get( inst, "selectOtherMonths" );
@@ -8901,30 +8901,30 @@ $.extend( Datepicker.prototype, {
 				cornerClass = " ui-corner-all";
 				calender = "";
 				if ( isMultiMonth ) {
-					calender += "<div class='ui-datepicker-group";
+					calender += "<div class='ui-fechapicker-group";
 					if ( numMonths[ 1 ] > 1 ) {
 						switch ( col ) {
-							case 0: calender += " ui-datepicker-group-first";
+							case 0: calender += " ui-fechapicker-group-first";
 								cornerClass = " ui-corner-" + ( isRTL ? "right" : "left" ); break;
-							case numMonths[ 1 ] - 1: calender += " ui-datepicker-group-last";
+							case numMonths[ 1 ] - 1: calender += " ui-fechapicker-group-last";
 								cornerClass = " ui-corner-" + ( isRTL ? "left" : "right" ); break;
-							default: calender += " ui-datepicker-group-middle"; cornerClass = ""; break;
+							default: calender += " ui-fechapicker-group-middle"; cornerClass = ""; break;
 						}
 					}
 					calender += "'>";
 				}
-				calender += "<div class='ui-datepicker-header ui-widget-header ui-helper-clearfix" + cornerClass + "'>" +
+				calender += "<div class='ui-fechapicker-header ui-widget-header ui-helper-clearfix" + cornerClass + "'>" +
 					( /all|left/.test( cornerClass ) && row === 0 ? ( isRTL ? next : prev ) : "" ) +
 					( /all|right/.test( cornerClass ) && row === 0 ? ( isRTL ? prev : next ) : "" ) +
 					this._generateMonthYearHeader( inst, drawMonth, drawYear, minDate, maxDate,
-					row > 0 || col > 0, monthNames, monthNamesShort ) + // draw month headers
-					"</div><table class='ui-datepicker-calendar'><thead>" +
+					row > 0 || col > 0, monthnombres, monthnombresShort ) + // draw month headers
+					"</div><table class='ui-fechapicker-calendar'><thead>" +
 					"<tr>";
-				thead = ( showWeek ? "<th class='ui-datepicker-week-col'>" + this._get( inst, "weekHeader" ) + "</th>" : "" );
+				thead = ( showWeek ? "<th class='ui-fechapicker-week-col'>" + this._get( inst, "weekHeader" ) + "</th>" : "" );
 				for ( dow = 0; dow < 7; dow++ ) { // days of the week
 					day = ( dow + firstDay ) % 7;
-					thead += "<th scope='col'" + ( ( dow + firstDay + 6 ) % 7 >= 5 ? " class='ui-datepicker-week-end'" : "" ) + ">" +
-						"<span title='" + dayNames[ day ] + "'>" + dayNamesMin[ day ] + "</span></th>";
+					thead += "<th scope='col'" + ( ( dow + firstDay + 6 ) % 7 >= 5 ? " class='ui-fechapicker-week-end'" : "" ) + ">" +
+						"<span title='" + daynombres[ day ] + "'>" + daynombresMin[ day ] + "</span></th>";
 				}
 				calender += thead + "</tr></thead><tbody>";
 				daysInMonth = this._getDaysInMonth( drawYear, drawMonth );
@@ -8936,36 +8936,36 @@ $.extend( Datepicker.prototype, {
 				numRows = ( isMultiMonth ? this.maxRows > curRows ? this.maxRows : curRows : curRows ); //If multiple months, use the higher number of rows (see #7043)
 				this.maxRows = numRows;
 				printDate = this._daylightSavingAdjust( new Date( drawYear, drawMonth, 1 - leadDays ) );
-				for ( dRow = 0; dRow < numRows; dRow++ ) { // create date picker rows
+				for ( dRow = 0; dRow < numRows; dRow++ ) { // create fecha picker rows
 					calender += "<tr>";
-					tbody = ( !showWeek ? "" : "<td class='ui-datepicker-week-col'>" +
+					tbody = ( !showWeek ? "" : "<td class='ui-fechapicker-week-col'>" +
 						this._get( inst, "calculateWeek" )( printDate ) + "</td>" );
-					for ( dow = 0; dow < 7; dow++ ) { // create date picker days
+					for ( dow = 0; dow < 7; dow++ ) { // create fecha picker days
 						daySettings = ( beforeShowDay ?
 							beforeShowDay.apply( ( inst.input ? inst.input[ 0 ] : null ), [ printDate ] ) : [ true, "" ] );
 						otherMonth = ( printDate.getMonth() !== drawMonth );
 						unselectable = ( otherMonth && !selectOtherMonths ) || !daySettings[ 0 ] ||
 							( minDate && printDate < minDate ) || ( maxDate && printDate > maxDate );
 						tbody += "<td class='" +
-							( ( dow + firstDay + 6 ) % 7 >= 5 ? " ui-datepicker-week-end" : "" ) + // highlight weekends
-							( otherMonth ? " ui-datepicker-other-month" : "" ) + // highlight days from other months
+							( ( dow + firstDay + 6 ) % 7 >= 5 ? " ui-fechapicker-week-end" : "" ) + // highlight weekends
+							( otherMonth ? " ui-fechapicker-other-month" : "" ) + // highlight days from other months
 							( ( printDate.getTime() === selectedDate.getTime() && drawMonth === inst.selectedMonth && inst._keyEvent ) || // user pressed key
 							( defaultDate.getTime() === printDate.getTime() && defaultDate.getTime() === selectedDate.getTime() ) ?
 
 							// or defaultDate is current printedDate and defaultDate is selectedDate
 							" " + this._dayOverClass : "" ) + // highlight selected day
 							( unselectable ? " " + this._unselectableClass + " ui-state-disabled" : "" ) +  // highlight unselectable days
-							( otherMonth && !showOtherMonths ? "" : " " + daySettings[ 1 ] + // highlight custom dates
+							( otherMonth && !showOtherMonths ? "" : " " + daySettings[ 1 ] + // highlight custom fechas
 							( printDate.getTime() === currentDate.getTime() ? " " + this._currentClass : "" ) + // highlight selected day
-							( printDate.getTime() === today.getTime() ? " ui-datepicker-today" : "" ) ) + "'" + // highlight today (if different)
+							( printDate.getTime() === today.getTime() ? " ui-fechapicker-today" : "" ) ) + "'" + // highlight today (if different)
 							( ( !otherMonth || showOtherMonths ) && daySettings[ 2 ] ? " title='" + daySettings[ 2 ].replace( /'/g, "&#39;" ) + "'" : "" ) + // cell title
 							( unselectable ? "" : " data-handler='selectDay' data-event='click' data-month='" + printDate.getMonth() + "' data-year='" + printDate.getFullYear() + "'" ) + ">" + // actions
 							( otherMonth && !showOtherMonths ? "&#xa0;" : // display for other months
 							( unselectable ? "<span class='ui-state-default'>" + printDate.getDate() + "</span>" : "<a class='ui-state-default" +
 							( printDate.getTime() === today.getTime() ? " ui-state-highlight" : "" ) +
 							( printDate.getTime() === currentDate.getTime() ? " ui-state-active" : "" ) + // highlight selected day
-							( otherMonth ? " ui-priority-secondary" : "" ) + // distinguish dates from other months
-							"' href='#'>" + printDate.getDate() + "</a>" ) ) + "</td>"; // display selectable date
+							( otherMonth ? " ui-priority-secondary" : "" ) + // distinguish fechas from other months
+							"' href='#'>" + printDate.getDate() + "</a>" ) ) + "</td>"; // display selectable fecha
 						printDate.setDate( printDate.getDate() + 1 );
 						printDate = this._daylightSavingAdjust( printDate );
 					}
@@ -8977,7 +8977,7 @@ $.extend( Datepicker.prototype, {
 					drawYear++;
 				}
 				calender += "</tbody></table>" + ( isMultiMonth ? "</div>" +
-							( ( numMonths[ 0 ] > 0 && col === numMonths[ 1 ] - 1 ) ? "<div class='ui-datepicker-row-break'></div>" : "" ) : "" );
+							( ( numMonths[ 0 ] > 0 && col === numMonths[ 1 ] - 1 ) ? "<div class='ui-fechapicker-row-break'></div>" : "" ) : "" );
 				group += calender;
 			}
 			html += group;
@@ -8989,27 +8989,27 @@ $.extend( Datepicker.prototype, {
 
 	/* Generate the month and year header. */
 	_generateMonthYearHeader: function( inst, drawMonth, drawYear, minDate, maxDate,
-			secondary, monthNames, monthNamesShort ) {
+			secondary, monthnombres, monthnombresShort ) {
 
 		var inMinYear, inMaxYear, month, years, thisYear, determineYear, year, endYear,
 			changeMonth = this._get( inst, "changeMonth" ),
 			changeYear = this._get( inst, "changeYear" ),
 			showMonthAfterYear = this._get( inst, "showMonthAfterYear" ),
-			html = "<div class='ui-datepicker-title'>",
+			html = "<div class='ui-fechapicker-title'>",
 			monthHtml = "";
 
 		// Month selection
 		if ( secondary || !changeMonth ) {
-			monthHtml += "<span class='ui-datepicker-month'>" + monthNames[ drawMonth ] + "</span>";
+			monthHtml += "<span class='ui-fechapicker-month'>" + monthnombres[ drawMonth ] + "</span>";
 		} else {
 			inMinYear = ( minDate && minDate.getFullYear() === drawYear );
 			inMaxYear = ( maxDate && maxDate.getFullYear() === drawYear );
-			monthHtml += "<select class='ui-datepicker-month' data-handler='selectMonth' data-event='change'>";
+			monthHtml += "<select class='ui-fechapicker-month' data-handler='selectMonth' data-event='change'>";
 			for ( month = 0; month < 12; month++ ) {
 				if ( ( !inMinYear || month >= minDate.getMonth() ) && ( !inMaxYear || month <= maxDate.getMonth() ) ) {
 					monthHtml += "<option value='" + month + "'" +
 						( month === drawMonth ? " selected='selected'" : "" ) +
-						">" + monthNamesShort[ month ] + "</option>";
+						">" + monthnombresShort[ month ] + "</option>";
 				}
 			}
 			monthHtml += "</select>";
@@ -9023,7 +9023,7 @@ $.extend( Datepicker.prototype, {
 		if ( !inst.yearshtml ) {
 			inst.yearshtml = "";
 			if ( secondary || !changeYear ) {
-				html += "<span class='ui-datepicker-year'>" + drawYear + "</span>";
+				html += "<span class='ui-fechapicker-year'>" + drawYear + "</span>";
 			} else {
 
 				// determine range of years to display
@@ -9039,7 +9039,7 @@ $.extend( Datepicker.prototype, {
 				endYear = Math.max( year, determineYear( years[ 1 ] || "" ) );
 				year = ( minDate ? Math.max( year, minDate.getFullYear() ) : year );
 				endYear = ( maxDate ? Math.min( endYear, maxDate.getFullYear() ) : endYear );
-				inst.yearshtml += "<select class='ui-datepicker-year' data-handler='selectYear' data-event='change'>";
+				inst.yearshtml += "<select class='ui-fechapicker-year' data-handler='selectYear' data-event='change'>";
 				for ( ; year <= endYear; year++ ) {
 					inst.yearshtml += "<option value='" + year + "'" +
 						( year === drawYear ? " selected='selected'" : "" ) +
@@ -9056,30 +9056,30 @@ $.extend( Datepicker.prototype, {
 		if ( showMonthAfterYear ) {
 			html += ( secondary || !( changeMonth && changeYear ) ? "&#xa0;" : "" ) + monthHtml;
 		}
-		html += "</div>"; // Close datepicker_header
+		html += "</div>"; // Close fechapicker_header
 		return html;
 	},
 
-	/* Adjust one of the date sub-fields. */
+	/* Adjust one of the fecha sub-fields. */
 	_adjustInstDate: function( inst, offset, period ) {
 		var year = inst.selectedYear + ( period === "Y" ? offset : 0 ),
 			month = inst.selectedMonth + ( period === "M" ? offset : 0 ),
 			day = Math.min( inst.selectedDay, this._getDaysInMonth( year, month ) ) + ( period === "D" ? offset : 0 ),
-			date = this._restrictMinMax( inst, this._daylightSavingAdjust( new Date( year, month, day ) ) );
+			fecha = this._restrictMinMax( inst, this._daylightSavingAdjust( new Date( year, month, day ) ) );
 
-		inst.selectedDay = date.getDate();
-		inst.drawMonth = inst.selectedMonth = date.getMonth();
-		inst.drawYear = inst.selectedYear = date.getFullYear();
+		inst.selectedDay = fecha.getDate();
+		inst.drawMonth = inst.selectedMonth = fecha.getMonth();
+		inst.drawYear = inst.selectedYear = fecha.getFullYear();
 		if ( period === "M" || period === "Y" ) {
 			this._notifyChange( inst );
 		}
 	},
 
-	/* Ensure a date is within any min/max bounds. */
-	_restrictMinMax: function( inst, date ) {
+	/* Ensure a fecha is within any min/max bounds. */
+	_restrictMinMax: function( inst, fecha ) {
 		var minDate = this._getMinMaxDate( inst, "min" ),
 			maxDate = this._getMinMaxDate( inst, "max" ),
-			newDate = ( minDate && date < minDate ? minDate : date );
+			newDate = ( minDate && fecha < minDate ? minDate : fecha );
 		return ( maxDate && newDate > maxDate ? maxDate : newDate );
 	},
 
@@ -9098,7 +9098,7 @@ $.extend( Datepicker.prototype, {
 		return ( numMonths == null ? [ 1, 1 ] : ( typeof numMonths === "number" ? [ 1, numMonths ] : numMonths ) );
 	},
 
-	/* Determine the current maximum date - ensure no time components are set. */
+	/* Determine the current maximum fecha - ensure no time components are set. */
 	_getMinMaxDate: function( inst, minMax ) {
 		return this._determineDate( inst, this._get( inst, minMax + "Date" ), null );
 	},
@@ -9116,17 +9116,17 @@ $.extend( Datepicker.prototype, {
 	/* Determines if we should allow a "next/prev" month display change. */
 	_canAdjustMonth: function( inst, offset, curYear, curMonth ) {
 		var numMonths = this._getNumberOfMonths( inst ),
-			date = this._daylightSavingAdjust( new Date( curYear,
+			fecha = this._daylightSavingAdjust( new Date( curYear,
 			curMonth + ( offset < 0 ? offset : numMonths[ 0 ] * numMonths[ 1 ] ), 1 ) );
 
 		if ( offset < 0 ) {
-			date.setDate( this._getDaysInMonth( date.getFullYear(), date.getMonth() ) );
+			fecha.setDate( this._getDaysInMonth( fecha.getFullYear(), fecha.getMonth() ) );
 		}
-		return this._isInRange( inst, date );
+		return this._isInRange( inst, fecha );
 	},
 
-	/* Is the given date in the accepted range? */
-	_isInRange: function( inst, date ) {
+	/* Is the given fecha in the accepted range? */
+	_isInRange: function( inst, fecha ) {
 		var yearSplit, currentYear,
 			minDate = this._getMinMaxDate( inst, "min" ),
 			maxDate = this._getMinMaxDate( inst, "max" ),
@@ -9146,10 +9146,10 @@ $.extend( Datepicker.prototype, {
 				}
 			}
 
-		return ( ( !minDate || date.getTime() >= minDate.getTime() ) &&
-			( !maxDate || date.getTime() <= maxDate.getTime() ) &&
-			( !minYear || date.getFullYear() >= minYear ) &&
-			( !maxYear || date.getFullYear() <= maxYear ) );
+		return ( ( !minDate || fecha.getTime() >= minDate.getTime() ) &&
+			( !maxDate || fecha.getTime() <= maxDate.getTime() ) &&
+			( !minYear || fecha.getFullYear() >= minYear ) &&
+			( !maxYear || fecha.getFullYear() <= maxYear ) );
 	},
 
 	/* Provide the configuration settings for formatting/parsing. */
@@ -9158,52 +9158,52 @@ $.extend( Datepicker.prototype, {
 		shortYearCutoff = ( typeof shortYearCutoff !== "string" ? shortYearCutoff :
 			new Date().getFullYear() % 100 + parseInt( shortYearCutoff, 10 ) );
 		return { shortYearCutoff: shortYearCutoff,
-			dayNamesShort: this._get( inst, "dayNamesShort" ), dayNames: this._get( inst, "dayNames" ),
-			monthNamesShort: this._get( inst, "monthNamesShort" ), monthNames: this._get( inst, "monthNames" ) };
+			daynombresShort: this._get( inst, "daynombresShort" ), daynombres: this._get( inst, "daynombres" ),
+			monthnombresShort: this._get( inst, "monthnombresShort" ), monthnombres: this._get( inst, "monthnombres" ) };
 	},
 
-	/* Format the given date for display. */
+	/* Format the given fecha for display. */
 	_formatDate: function( inst, day, month, year ) {
 		if ( !day ) {
 			inst.currentDay = inst.selectedDay;
 			inst.currentMonth = inst.selectedMonth;
 			inst.currentYear = inst.selectedYear;
 		}
-		var date = ( day ? ( typeof day === "object" ? day :
+		var fecha = ( day ? ( typeof day === "object" ? day :
 			this._daylightSavingAdjust( new Date( year, month, day ) ) ) :
 			this._daylightSavingAdjust( new Date( inst.currentYear, inst.currentMonth, inst.currentDay ) ) );
-		return this.formatDate( this._get( inst, "dateFormat" ), date, this._getFormatConfig( inst ) );
+		return this.formatDate( this._get( inst, "fechaFormat" ), fecha, this._getFormatConfig( inst ) );
 	}
 } );
 
 /*
- * Bind hover events for datepicker elements.
+ * Bind hover events for fechapicker elements.
  * Done via delegate so the binding only occurs once in the lifetime of the parent div.
- * Global datepicker_instActive, set by _updateDatepicker allows the handlers to find their way back to the active picker.
+ * Global fechapicker_instActive, set by _upfechaDatepicker allows the handlers to find their way back to the active picker.
  */
 function datepicker_bindHover( dpDiv ) {
-	var selector = "button, .ui-datepicker-prev, .ui-datepicker-next, .ui-datepicker-calendar td a";
+	var selector = "button, .ui-fechapicker-prev, .ui-fechapicker-next, .ui-fechapicker-calendar td a";
 	return dpDiv.on( "mouseout", selector, function() {
 			$( this ).removeClass( "ui-state-hover" );
-			if ( this.className.indexOf( "ui-datepicker-prev" ) !== -1 ) {
-				$( this ).removeClass( "ui-datepicker-prev-hover" );
+			if ( this.classnombre.indexOf( "ui-fechapicker-prev" ) !== -1 ) {
+				$( this ).removeClass( "ui-fechapicker-prev-hover" );
 			}
-			if ( this.className.indexOf( "ui-datepicker-next" ) !== -1 ) {
-				$( this ).removeClass( "ui-datepicker-next-hover" );
+			if ( this.classnombre.indexOf( "ui-fechapicker-next" ) !== -1 ) {
+				$( this ).removeClass( "ui-fechapicker-next-hover" );
 			}
 		} )
-		.on( "mouseover", selector, datepicker_handleMouseover );
+		.on( "mouseover", selector, fechapicker_handleMouseover );
 }
 
 function datepicker_handleMouseover() {
-	if ( !$.datepicker._isDisabledDatepicker( datepicker_instActive.inline ? datepicker_instActive.dpDiv.parent()[ 0 ] : datepicker_instActive.input[ 0 ] ) ) {
-		$( this ).parents( ".ui-datepicker-calendar" ).find( "a" ).removeClass( "ui-state-hover" );
+	if ( !$.fechapicker._isDisabledDatepicker( fechapicker_instActive.inline ? fechapicker_instActive.dpDiv.parent()[ 0 ] : fechapicker_instActive.input[ 0 ] ) ) {
+		$( this ).parents( ".ui-fechapicker-calendar" ).find( "a" ).removeClass( "ui-state-hover" );
 		$( this ).addClass( "ui-state-hover" );
-		if ( this.className.indexOf( "ui-datepicker-prev" ) !== -1 ) {
-			$( this ).addClass( "ui-datepicker-prev-hover" );
+		if ( this.classnombre.indexOf( "ui-fechapicker-prev" ) !== -1 ) {
+			$( this ).addClass( "ui-fechapicker-prev-hover" );
 		}
-		if ( this.className.indexOf( "ui-datepicker-next" ) !== -1 ) {
-			$( this ).addClass( "ui-datepicker-next-hover" );
+		if ( this.classnombre.indexOf( "ui-fechapicker-next" ) !== -1 ) {
+			$( this ).addClass( "ui-fechapicker-next-hover" );
 		}
 	}
 }
@@ -9211,59 +9211,59 @@ function datepicker_handleMouseover() {
 /* jQuery extend now ignores nulls! */
 function datepicker_extendRemove( target, props ) {
 	$.extend( target, props );
-	for ( var name in props ) {
-		if ( props[ name ] == null ) {
-			target[ name ] = props[ name ];
+	for ( var nombre in props ) {
+		if ( props[ nombre ] == null ) {
+			target[ nombre ] = props[ nombre ];
 		}
 	}
 	return target;
 }
 
-/* Invoke the datepicker functionality.
+/* Invoke the fechapicker functionality.
    @param  options  string - a command, optionally followed by additional parameters or
-					Object - settings for attaching new datepicker functionality
+					Object - settings for attaching new fechapicker functionality
    @return  jQuery object */
-$.fn.datepicker = function( options ) {
+$.fn.fechapicker = function( options ) {
 
 	/* Verify an empty collection wasn't passed - Fixes #6976 */
 	if ( !this.length ) {
 		return this;
 	}
 
-	/* Initialise the date picker. */
-	if ( !$.datepicker.initialized ) {
-		$( document ).on( "mousedown", $.datepicker._checkExternalClick );
-		$.datepicker.initialized = true;
+	/* Initialise the fecha picker. */
+	if ( !$.fechapicker.initialized ) {
+		$( document ).on( "mousedown", $.fechapicker._checkExternalClick );
+		$.fechapicker.initialized = true;
 	}
 
-	/* Append datepicker main container to body if not exist. */
-	if ( $( "#" + $.datepicker._mainDivId ).length === 0 ) {
-		$( "body" ).append( $.datepicker.dpDiv );
+	/* Append fechapicker main container to body if not exist. */
+	if ( $( "#" + $.fechapicker._mainDivId ).length === 0 ) {
+		$( "body" ).append( $.fechapicker.dpDiv );
 	}
 
 	var otherArgs = Array.prototype.slice.call( arguments, 1 );
 	if ( typeof options === "string" && ( options === "isDisabled" || options === "getDate" || options === "widget" ) ) {
-		return $.datepicker[ "_" + options + "Datepicker" ].
-			apply( $.datepicker, [ this[ 0 ] ].concat( otherArgs ) );
+		return $.fechapicker[ "_" + options + "Datepicker" ].
+			apply( $.fechapicker, [ this[ 0 ] ].concat( otherArgs ) );
 	}
 	if ( options === "option" && arguments.length === 2 && typeof arguments[ 1 ] === "string" ) {
-		return $.datepicker[ "_" + options + "Datepicker" ].
-			apply( $.datepicker, [ this[ 0 ] ].concat( otherArgs ) );
+		return $.fechapicker[ "_" + options + "Datepicker" ].
+			apply( $.fechapicker, [ this[ 0 ] ].concat( otherArgs ) );
 	}
 	return this.each( function() {
 		typeof options === "string" ?
-			$.datepicker[ "_" + options + "Datepicker" ].
-				apply( $.datepicker, [ this ].concat( otherArgs ) ) :
-			$.datepicker._attachDatepicker( this, options );
+			$.fechapicker[ "_" + options + "Datepicker" ].
+				apply( $.fechapicker, [ this ].concat( otherArgs ) ) :
+			$.fechapicker._attachDatepicker( this, options );
 	} );
 };
 
-$.datepicker = new Datepicker(); // singleton instance
-$.datepicker.initialized = false;
-$.datepicker.uuid = new Date().getTime();
-$.datepicker.version = "1.12.1";
+$.fechapicker = new Datepicker(); // singleton instance
+$.fechapicker.initialized = false;
+$.fechapicker.uuid = new Date().getTime();
+$.fechapicker.version = "1.12.1";
 
-var widgetsDatepicker = $.datepicker;
+var widgetsDatepicker = $.fechapicker;
 
 
 
@@ -9282,7 +9282,7 @@ var ie = $.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
 
 //>>label: Mouse
 //>>group: Widgets
-//>>description: Abstracts mouse-based interactions to assist in creating certain widgets.
+//>>descripcion: Abstracts mouse-based interactions to assist in creating certain widgets.
 //>>docs: http://api.jqueryui.com/mouse/
 
 
@@ -9303,12 +9303,12 @@ var widgetsMouse = $.widget( "ui.mouse", {
 		var that = this;
 
 		this.element
-			.on( "mousedown." + this.widgetName, function( event ) {
+			.on( "mousedown." + this.widgetnombre, function( event ) {
 				return that._mouseDown( event );
 			} )
-			.on( "click." + this.widgetName, function( event ) {
-				if ( true === $.data( event.target, that.widgetName + ".preventClickEvent" ) ) {
-					$.removeData( event.target, that.widgetName + ".preventClickEvent" );
+			.on( "click." + this.widgetnombre, function( event ) {
+				if ( true === $.data( event.target, that.widgetnombre + ".preventClickEvent" ) ) {
+					$.removeData( event.target, that.widgetnombre + ".preventClickEvent" );
 					event.stopImmediatePropagation();
 					return false;
 				}
@@ -9320,11 +9320,11 @@ var widgetsMouse = $.widget( "ui.mouse", {
 	// TODO: make sure destroying one instance of mouse doesn't mess with
 	// other instances of mouse
 	_mouseDestroy: function() {
-		this.element.off( "." + this.widgetName );
+		this.element.off( "." + this.widgetnombre );
 		if ( this._mouseMoveDelegate ) {
 			this.document
-				.off( "mousemove." + this.widgetName, this._mouseMoveDelegate )
-				.off( "mouseup." + this.widgetName, this._mouseUpDelegate );
+				.off( "mousemove." + this.widgetnombre, this._mouseMoveDelegate )
+				.off( "mouseup." + this.widgetnombre, this._mouseUpDelegate );
 		}
 	},
 
@@ -9345,9 +9345,9 @@ var widgetsMouse = $.widget( "ui.mouse", {
 		var that = this,
 			btnIsLeft = ( event.which === 1 ),
 
-			// event.target.nodeName works around a bug in IE 8 with
+			// event.target.nodenombre works around a bug in IE 8 with
 			// disabled inputs (#7620)
-			elIsCancel = ( typeof this.options.cancel === "string" && event.target.nodeName ?
+			elIsCancel = ( typeof this.options.cancel === "string" && event.target.nodenombre ?
 				$( event.target ).closest( this.options.cancel ).length : false );
 		if ( !btnIsLeft || elIsCancel || !this._mouseCapture( event ) ) {
 			return true;
@@ -9369,8 +9369,8 @@ var widgetsMouse = $.widget( "ui.mouse", {
 		}
 
 		// Click event may never have fired (Gecko & Opera)
-		if ( true === $.data( event.target, this.widgetName + ".preventClickEvent" ) ) {
-			$.removeData( event.target, this.widgetName + ".preventClickEvent" );
+		if ( true === $.data( event.target, this.widgetnombre + ".preventClickEvent" ) ) {
+			$.removeData( event.target, this.widgetnombre + ".preventClickEvent" );
 		}
 
 		// These delegates are required to keep context
@@ -9382,8 +9382,8 @@ var widgetsMouse = $.widget( "ui.mouse", {
 		};
 
 		this.document
-			.on( "mousemove." + this.widgetName, this._mouseMoveDelegate )
-			.on( "mouseup." + this.widgetName, this._mouseUpDelegate );
+			.on( "mousemove." + this.widgetnombre, this._mouseMoveDelegate )
+			.on( "mouseup." + this.widgetnombre, this._mouseUpDelegate );
 
 		event.preventDefault();
 
@@ -9439,14 +9439,14 @@ var widgetsMouse = $.widget( "ui.mouse", {
 
 	_mouseUp: function( event ) {
 		this.document
-			.off( "mousemove." + this.widgetName, this._mouseMoveDelegate )
-			.off( "mouseup." + this.widgetName, this._mouseUpDelegate );
+			.off( "mousemove." + this.widgetnombre, this._mouseMoveDelegate )
+			.off( "mouseup." + this.widgetnombre, this._mouseUpDelegate );
 
 		if ( this._mouseStarted ) {
 			this._mouseStarted = false;
 
 			if ( event.target === this._mouseDownEvent.target ) {
-				$.data( event.target, this.widgetName + ".preventClickEvent", true );
+				$.data( event.target, this.widgetnombre + ".preventClickEvent", true );
 			}
 
 			this._mouseStop( event );
@@ -9494,9 +9494,9 @@ var plugin = $.ui.plugin = {
 			proto.plugins[ i ].push( [ option, set[ i ] ] );
 		}
 	},
-	call: function( instance, name, args, allowDisconnected ) {
+	call: function( instance, nombre, args, allowDisconnected ) {
 		var i,
-			set = instance.plugins[ name ];
+			set = instance.plugins[ nombre ];
 
 		if ( !set ) {
 			return;
@@ -9521,7 +9521,7 @@ var safeBlur = $.ui.safeBlur = function( element ) {
 
 	// Support: IE9 - 10 only
 	// If the <body> is blurred, IE will switch windows, see #9420
-	if ( element && element.nodeName.toLowerCase() !== "body" ) {
+	if ( element && element.nodenombre.toLowerCase() !== "body" ) {
 		$( element ).trigger( "blur" );
 	}
 };
@@ -9538,7 +9538,7 @@ var safeBlur = $.ui.safeBlur = function( element ) {
 
 //>>label: Draggable
 //>>group: Interactions
-//>>description: Enables dragging functionality for any element.
+//>>descripcion: Enables dragging functionality for any element.
 //>>docs: http://api.jqueryui.com/draggable/
 //>>demos: http://jqueryui.com/draggable/
 //>>css.structure: ../../themes/base/draggable.css
@@ -9587,7 +9587,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		if ( this.options.addClasses ) {
 			this._addClass( "ui-draggable" );
 		}
-		this._setHandleClassName();
+		this._setHandleClassnombre();
 
 		this._mouseInit();
 	},
@@ -9595,8 +9595,8 @@ $.widget( "ui.draggable", $.ui.mouse, {
 	_setOption: function( key, value ) {
 		this._super( key, value );
 		if ( key === "handle" ) {
-			this._removeHandleClassName();
-			this._setHandleClassName();
+			this._removeHandleClassnombre();
+			this._setHandleClassnombre();
 		}
 	},
 
@@ -9605,7 +9605,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 			this.destroyOnClear = true;
 			return;
 		}
-		this._removeHandleClassName();
+		this._removeHandleClassnombre();
 		this._mouseDestroy();
 	},
 
@@ -9864,13 +9864,13 @@ $.widget( "ui.draggable", $.ui.mouse, {
 			true;
 	},
 
-	_setHandleClassName: function() {
+	_setHandleClassnombre: function() {
 		this.handleElement = this.options.handle ?
 			this.element.find( this.options.handle ) : this.element;
 		this._addClass( this.handleElement, "ui-draggable-handle" );
 	},
 
-	_removeHandleClassName: function() {
+	_removeHandleClassnombre: function() {
 		this._removeClass( this.handleElement, "ui-draggable-handle" );
 	},
 
@@ -9934,7 +9934,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 	},
 
 	_isRootNode: function( element ) {
-		return ( /(html|body)/i ).test( element.tagName ) || element === this.document[ 0 ];
+		return ( /(html|body)/i ).test( element.tagnombre ) || element === this.document[ 0 ];
 	},
 
 	_getParentOffset: function() {
@@ -10002,7 +10002,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 
 	_setContainment: function() {
 
-		var isUserScrollable, c, ce,
+		var isusuarioscrollable, c, ce,
 			o = this.options,
 			document = this.document[ 0 ];
 
@@ -10053,20 +10053,20 @@ $.widget( "ui.draggable", $.ui.mouse, {
 			return;
 		}
 
-		isUserScrollable = /(scroll|auto)/.test( c.css( "overflow" ) );
+		isusuarioscrollable = /(scroll|auto)/.test( c.css( "overflow" ) );
 
 		this.containment = [
 			( parseInt( c.css( "borderLeftWidth" ), 10 ) || 0 ) +
 				( parseInt( c.css( "paddingLeft" ), 10 ) || 0 ),
 			( parseInt( c.css( "borderTopWidth" ), 10 ) || 0 ) +
 				( parseInt( c.css( "paddingTop" ), 10 ) || 0 ),
-			( isUserScrollable ? Math.max( ce.scrollWidth, ce.offsetWidth ) : ce.offsetWidth ) -
+			( isusuarioscrollable ? Math.max( ce.scrollWidth, ce.offsetWidth ) : ce.offsetWidth ) -
 				( parseInt( c.css( "borderRightWidth" ), 10 ) || 0 ) -
 				( parseInt( c.css( "paddingRight" ), 10 ) || 0 ) -
 				this.helperProportions.width -
 				this.margins.left -
 				this.margins.right,
-			( isUserScrollable ? Math.max( ce.scrollHeight, ce.offsetHeight ) : ce.offsetHeight ) -
+			( isusuarioscrollable ? Math.max( ce.scrollHeight, ce.offsetHeight ) : ce.offsetHeight ) -
 				( parseInt( c.css( "borderBottomWidth" ), 10 ) || 0 ) -
 				( parseInt( c.css( "paddingBottom" ), 10 ) || 0 ) -
 				this.helperProportions.height -
@@ -10418,7 +10418,7 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 						this.refreshPositions();
 					} );
 
-					// Hack so receive/update callbacks work (mostly)
+					// Hack so receive/upfecha callbacks work (mostly)
 					draggable.currentItem = draggable.element;
 					sortable.fromOutside = draggable;
 				}
@@ -10522,7 +10522,7 @@ $.ui.plugin.add( "draggable", "scroll", {
 		}
 
 		if ( i.scrollParentNotHidden[ 0 ] !== i.document[ 0 ] &&
-				i.scrollParentNotHidden[ 0 ].tagName !== "HTML" ) {
+				i.scrollParentNotHidden[ 0 ].tagnombre !== "HTML" ) {
 			i.overflowOffset = i.scrollParentNotHidden.offset();
 		}
 	},
@@ -10533,7 +10533,7 @@ $.ui.plugin.add( "draggable", "scroll", {
 			scrollParent = i.scrollParentNotHidden[ 0 ],
 			document = i.document[ 0 ];
 
-		if ( scrollParent !== document && scrollParent.tagName !== "HTML" ) {
+		if ( scrollParent !== document && scrollParent.tagnombre !== "HTML" ) {
 			if ( !o.axis || o.axis !== "x" ) {
 				if ( ( i.overflowOffset.top + scrollParent.offsetHeight ) - event.pageY <
 						o.scrollSensitivity ) {
@@ -10768,7 +10768,7 @@ var widgetsDraggable = $.ui.draggable;
 
 //>>label: Resizable
 //>>group: Interactions
-//>>description: Enables resize functionality for any element.
+//>>descripcion: Enables resize functionality for any element.
 //>>docs: http://api.jqueryui.com/resizable/
 //>>demos: http://jqueryui.com/resizable/
 //>>css.structure: ../../themes/base/core.css
@@ -10855,7 +10855,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 		} );
 
 		// Wrap the element if it cannot hold child nodes
-		if ( this.element[ 0 ].nodeName.match( /^(canvas|textarea|input|select|button|img)$/i ) ) {
+		if ( this.element[ 0 ].nodenombre.match( /^(canvas|textarea|input|select|button|img)$/i ) ) {
 
 			this.element.wrap(
 				$( "<div class='ui-wrapper' style='overflow: hidden;'></div>" ).css( {
@@ -10974,7 +10974,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 	},
 
 	_setupHandles: function() {
-		var o = this.options, handle, i, n, hname, axis, that = this;
+		var o = this.options, handle, i, n, hnombre, axis, that = this;
 		this.handles = o.handles ||
 			( !$( ".ui-resizable-handle", this.element ).length ?
 				"e,s,se" : {
@@ -11001,9 +11001,9 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			for ( i = 0; i < n.length; i++ ) {
 
 				handle = $.trim( n[ i ] );
-				hname = "ui-resizable-" + handle;
+				hnombre = "ui-resizable-" + handle;
 				axis = $( "<div>" );
-				this._addClass( axis, "ui-resizable-handle " + hname );
+				this._addClass( axis, "ui-resizable-handle " + hnombre );
 
 				axis.css( { zIndex: o.zIndex } );
 
@@ -11030,7 +11030,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 
 				if ( this.elementIsWrapper &&
 						this.originalElement[ 0 ]
-							.nodeName
+							.nodenombre
 							.match( /^(textarea|input|select|button)$/i ) ) {
 					axis = $( this.handles[ i ], this.element );
 
@@ -11060,8 +11060,8 @@ $.widget( "ui.resizable", $.ui.mouse, {
 
 		this._handles.on( "mouseover", function() {
 			if ( !that.resizing ) {
-				if ( this.className ) {
-					axis = this.className.match( /ui-resizable-(se|sw|ne|nw|n|e|s|w)/i );
+				if ( this.classnombre ) {
+					axis = this.classnombre.match( /ui-resizable-(se|sw|ne|nw|n|e|s|w)/i );
 				}
 				that.axis = axis && axis[ 1 ] ? axis[ 1 ] : "se";
 			}
@@ -11157,7 +11157,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			dy = ( event.pageY - smp.top ) || 0,
 			trigger = this._change[ a ];
 
-		this._updatePrevProperties();
+		this._upfechaPrevProperties();
 
 		if ( !trigger ) {
 			return false;
@@ -11165,14 +11165,14 @@ $.widget( "ui.resizable", $.ui.mouse, {
 
 		data = trigger.apply( this, [ event, dx, dy ] );
 
-		this._updateVirtualBoundaries( event.shiftKey );
+		this._upfechaVirtualBoundaries( event.shiftKey );
 		if ( this._aspectRatio || event.shiftKey ) {
-			data = this._updateRatio( data, event );
+			data = this._upfechaRatio( data, event );
 		}
 
 		data = this._respectSize( data, event );
 
-		this._updateCache( data );
+		this._upfechaCache( data );
 
 		this._propagate( "resize", event );
 
@@ -11183,7 +11183,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 		}
 
 		if ( !$.isEmptyObject( props ) ) {
-			this._updatePrevProperties();
+			this._upfechaPrevProperties();
 			this._trigger( "resize", event, this.ui() );
 			this._applyChanges();
 		}
@@ -11200,7 +11200,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 		if ( this._helper ) {
 
 			pr = this._proportionallyResizeElements;
-			ista = pr.length && ( /textarea/i ).test( pr[ 0 ].nodeName );
+			ista = pr.length && ( /textarea/i ).test( pr[ 0 ].nodenombre );
 			soffseth = ista && this._hasScroll( pr[ 0 ], "left" ) ? 0 : that.sizeDiff.height;
 			soffsetw = ista ? 0 : that.sizeDiff.width;
 
@@ -11239,7 +11239,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 
 	},
 
-	_updatePrevProperties: function() {
+	_upfechaPrevProperties: function() {
 		this.prevPosition = {
 			top: this.position.top,
 			left: this.position.left
@@ -11271,7 +11271,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 		return props;
 	},
 
-	_updateVirtualBoundaries: function( forceAspectRatio ) {
+	_upfechaVirtualBoundaries: function( forceAspectRatio ) {
 		var pMinWidth, pMaxWidth, pMinHeight, pMaxHeight, b,
 			o = this.options;
 
@@ -11304,7 +11304,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 		this._vBoundaries = b;
 	},
 
-	_updateCache: function( data ) {
+	_upfechaCache: function( data ) {
 		this.offset = this.helper.offset();
 		if ( this._isNumber( data.left ) ) {
 			this.position.left = data.left;
@@ -11320,7 +11320,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 		}
 	},
 
-	_updateRatio: function( data ) {
+	_upfechaRatio: function( data ) {
 
 		var cpos = this.position,
 			csize = this.size,
@@ -11540,7 +11540,7 @@ $.ui.plugin.add( "resizable", "animate", {
 		var that = $( this ).resizable( "instance" ),
 			o = that.options,
 			pr = that._proportionallyResizeElements,
-			ista = pr.length && ( /textarea/i ).test( pr[ 0 ].nodeName ),
+			ista = pr.length && ( /textarea/i ).test( pr[ 0 ].nodenombre ),
 			soffseth = ista && that._hasScroll( pr[ 0 ], "left" ) ? 0 : that.sizeDiff.height,
 			soffsetw = ista ? 0 : that.sizeDiff.width,
 			style = {
@@ -11570,7 +11570,7 @@ $.ui.plugin.add( "resizable", "animate", {
 					}
 
 					// Propagating resize, and updating values for each animation step
-					that._updateCache( data );
+					that._upfechaCache( data );
 					that._propagate( "resize", event );
 
 				}
@@ -11618,8 +11618,8 @@ $.ui.plugin.add( "resizable", "containment", {
 		} else {
 			element = $( ce );
 			p = [];
-			$( [ "Top", "Right", "Left", "Bottom" ] ).each( function( i, name ) {
-				p[ i ] = that._num( element.css( "padding" + name ) );
+			$( [ "Top", "Right", "Left", "Bottom" ] ).each( function( i, nombre ) {
+				p[ i ] = that._num( element.css( "padding" + nombre ) );
 			} );
 
 			that.containerOffset = element.offset();
@@ -11952,7 +11952,7 @@ var widgetsResizable = $.ui.resizable;
 
 //>>label: Dialog
 //>>group: Widgets
-//>>description: Displays customizable dialog windows.
+//>>descripcion: Displays customizable dialog windows.
 //>>docs: http://api.jqueryui.com/dialog/
 //>>demos: http://jqueryui.com/dialog/
 //>>css.structure: ../../themes/base/core.css
@@ -12313,7 +12313,7 @@ $.widget( "ui.dialog", {
 
 		// We assume that any existing aria-describedby attribute means
 		// that the dialog content is marked up properly
-		// otherwise we brute force the content as the description
+		// otherwise we brute force the content as the descripcion
 		if ( !this.element.find( "[aria-describedby]" ).length ) {
 			this.uiDialog.attr( {
 				"aria-describedby": this.element.uniqueId().attr( "id" )
@@ -12404,10 +12404,10 @@ $.widget( "ui.dialog", {
 			return;
 		}
 
-		$.each( buttons, function( name, props ) {
+		$.each( buttons, function( nombre, props ) {
 			var click, buttonOptions;
 			props = $.isFunction( props ) ?
-				{ click: props, text: name } :
+				{ click: props, text: nombre } :
 				props;
 
 			// Default to a non-submitting button
@@ -12761,9 +12761,9 @@ $.widget( "ui.dialog", {
 			return true;
 		}
 
-		// TODO: Remove hack when datepicker implements
+		// TODO: Remove hack when fechapicker implements
 		// the .ui-front logic (#8989)
-		return !!$( event.target ).closest( ".ui-datepicker" ).length;
+		return !!$( event.target ).closest( ".ui-fechapicker" ).length;
 	},
 
 	_createOverlay: function() {
@@ -12867,7 +12867,7 @@ var widgetsDialog = $.ui.dialog;
 
 //>>label: Droppable
 //>>group: Interactions
-//>>description: Enables drop targets for draggable elements.
+//>>descripcion: Enables drop targets for draggable elements.
 //>>docs: http://api.jqueryui.com/droppable/
 //>>demos: http://jqueryui.com/droppable/
 
@@ -13349,7 +13349,7 @@ var widgetsDroppable = $.ui.droppable;
 //>>label: Progressbar
 //>>group: Widgets
 // jscs:disable maximumLineLength
-//>>description: Displays a status indicator for loading state, standard percentage, and other progress indicators.
+//>>descripcion: Displays a status indicator for loading state, standard percentage, and other progress indicators.
 // jscs:enable maximumLineLength
 //>>docs: http://api.jqueryui.com/progressbar/
 //>>demos: http://jqueryui.com/progressbar/
@@ -13512,7 +13512,7 @@ var widgetsProgressbar = $.widget( "ui.progressbar", {
 
 //>>label: Selectable
 //>>group: Interactions
-//>>description: Allows groups of elements to be selected with the mouse.
+//>>descripcion: Allows groups of elements to be selected with the mouse.
 //>>docs: http://api.jqueryui.com/selectable/
 //>>demos: http://jqueryui.com/selectable/
 //>>css.structure: ../../themes/base/selectable.css
@@ -13808,7 +13808,7 @@ var widgetsSelectable = $.widget( "ui.selectable", $.ui.mouse, {
 //>>label: Selectmenu
 //>>group: Widgets
 // jscs:disable maximumLineLength
-//>>description: Duplicates and extends the functionality of a native HTML select element, allowing it to be customizable in behavior and appearance far beyond the limitations of a native select.
+//>>descripcion: Duplicates and extends the functionality of a native HTML select element, allowing it to be customizable in behavior and appearance far beyond the limitations of a native select.
 // jscs:enable maximumLineLength
 //>>docs: http://api.jqueryui.com/selectmenu/
 //>>demos: http://jqueryui.com/selectmenu/
@@ -14018,7 +14018,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 
 		item = this._getSelectedItem();
 
-		// Update the menu to have the correct item focused
+		// Upfecha the menu to have the correct item focused
 		this.menuInstance.focus( null, item );
 		this._setAria( item.data( "ui-selectmenu-item" ) );
 
@@ -14473,7 +14473,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 
 //>>label: Slider
 //>>group: Widgets
-//>>description: Displays a flexible slider with ranges and accessibility via keyboard.
+//>>descripcion: Displays a flexible slider with ranges and accessibility via keyboard.
 //>>docs: http://api.jqueryui.com/slider/
 //>>demos: http://jqueryui.com/slider/
 //>>css.structure: ../../themes/base/core.css
@@ -15209,7 +15209,7 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 
 //>>label: Sortable
 //>>group: Interactions
-//>>description: Enables items in a list to be sorted using the mouse.
+//>>descripcion: Enables items in a list to be sorted using the mouse.
 //>>docs: http://api.jqueryui.com/sortable/
 //>>demos: http://jqueryui.com/sortable/
 //>>css.structure: ../../themes/base/sortable.css
@@ -15256,7 +15256,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		sort: null,
 		start: null,
 		stop: null,
-		update: null
+		upfecha: null
 	},
 
 	_isOverAxis: function( x, reference, size ) {
@@ -15281,7 +15281,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		//Initialize mouse events for interaction
 		this._mouseInit();
 
-		this._setHandleClassName();
+		this._setHandleClassnombre();
 
 		//We're ready to go
 		this.ready = true;
@@ -15292,11 +15292,11 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		this._super( key, value );
 
 		if ( key === "handle" ) {
-			this._setHandleClassName();
+			this._setHandleClassnombre();
 		}
 	},
 
-	_setHandleClassName: function() {
+	_setHandleClassnombre: function() {
 		var that = this;
 		this._removeClass( this.element.find( ".ui-sortable-handle" ), "ui-sortable-handle" );
 		$.each( this.items, function() {
@@ -15313,7 +15313,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		this._mouseDestroy();
 
 		for ( var i = this.items.length - 1; i >= 0; i-- ) {
-			this.items[ i ].item.removeData( this.widgetName + "-item" );
+			this.items[ i ].item.removeData( this.widgetnombre + "-item" );
 		}
 
 		return this;
@@ -15337,12 +15337,12 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 		//Find out if the clicked node (or one of its parents) is a actual item in this.items
 		$( event.target ).parents().each( function() {
-			if ( $.data( this, that.widgetName + "-item" ) === that ) {
+			if ( $.data( this, that.widgetnombre + "-item" ) === that ) {
 				currentItem = $( this );
 				return false;
 			}
 		} );
-		if ( $.data( event.target, that.widgetName + "-item" ) === that ) {
+		if ( $.data( event.target, that.widgetnombre + "-item" ) === that ) {
 			currentItem = $( event.target );
 		}
 
@@ -15473,7 +15473,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 		//Prepare scrolling
 		if ( this.scrollParent[ 0 ] !== this.document[ 0 ] &&
-				this.scrollParent[ 0 ].tagName !== "HTML" ) {
+				this.scrollParent[ 0 ].tagnombre !== "HTML" ) {
 			this.overflowOffset = this.scrollParent.offset();
 		}
 
@@ -15528,7 +15528,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		//Do scrolling
 		if ( this.options.scroll ) {
 			if ( this.scrollParent[ 0 ] !== this.document[ 0 ] &&
-					this.scrollParent[ 0 ].tagName !== "HTML" ) {
+					this.scrollParent[ 0 ].tagnombre !== "HTML" ) {
 
 				if ( ( this.overflowOffset.top + this.scrollParent[ 0 ].offsetHeight ) -
 						event.pageY < o.scrollSensitivity ) {
@@ -15634,7 +15634,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		}
 
 		//Post events to containers
-		this._contactContainers( event );
+		this._contactoContainers( event );
 
 		//Interconnect with droppables
 		if ( $.ui.ddmanager ) {
@@ -15878,7 +15878,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 	refresh: function( event ) {
 		this._refreshItems( event );
-		this._setHandleClassName();
+		this._setHandleClassnombre();
 		this.refreshPositions();
 		return this;
 	},
@@ -15901,7 +15901,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			for ( i = connectWith.length - 1; i >= 0; i-- ) {
 				cur = $( connectWith[ i ], this.document[ 0 ] );
 				for ( j = cur.length - 1; j >= 0; j-- ) {
-					inst = $.data( cur[ j ], this.widgetFullName );
+					inst = $.data( cur[ j ], this.widgetFullnombre );
 					if ( inst && inst !== this && !inst.options.disabled ) {
 						queries.push( [ $.isFunction( inst.options.items ) ?
 							inst.options.items.call( inst.element ) :
@@ -15933,7 +15933,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 	_removeCurrentsFromItems: function() {
 
-		var list = this.currentItem.find( ":data(" + this.widgetName + "-item)" );
+		var list = this.currentItem.find( ":data(" + this.widgetnombre + "-item)" );
 
 		this.items = $.grep( this.items, function( item ) {
 			for ( var j = 0; j < list.length; j++ ) {
@@ -15963,7 +15963,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			for ( i = connectWith.length - 1; i >= 0; i-- ) {
 				cur = $( connectWith[ i ], this.document[ 0 ] );
 				for ( j = cur.length - 1; j >= 0; j-- ) {
-					inst = $.data( cur[ j ], this.widgetFullName );
+					inst = $.data( cur[ j ], this.widgetFullnombre );
 					if ( inst && inst !== this && !inst.options.disabled ) {
 						queries.push( [ $.isFunction( inst.options.items ) ?
 							inst.options.items
@@ -15983,7 +15983,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				item = $( _queries[ j ] );
 
 				// Data for target checking (mouse manager)
-				item.data( this.widgetName + "-item", targetData );
+				item.data( this.widgetnombre + "-item", targetData );
 
 				items.push( {
 					item: item,
@@ -16053,45 +16053,45 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 	_createPlaceholder: function( that ) {
 		that = that || this;
-		var className,
+		var classnombre,
 			o = that.options;
 
 		if ( !o.placeholder || o.placeholder.constructor === String ) {
-			className = o.placeholder;
+			classnombre = o.placeholder;
 			o.placeholder = {
 				element: function() {
 
-					var nodeName = that.currentItem[ 0 ].nodeName.toLowerCase(),
-						element = $( "<" + nodeName + ">", that.document[ 0 ] );
+					var nodenombre = that.currentItem[ 0 ].nodenombre.toLowerCase(),
+						element = $( "<" + nodenombre + ">", that.document[ 0 ] );
 
 						that._addClass( element, "ui-sortable-placeholder",
-								className || that.currentItem[ 0 ].className )
+								classnombre || that.currentItem[ 0 ].classnombre )
 							._removeClass( element, "ui-sortable-helper" );
 
-					if ( nodeName === "tbody" ) {
+					if ( nodenombre === "tbody" ) {
 						that._createTrPlaceholder(
 							that.currentItem.find( "tr" ).eq( 0 ),
 							$( "<tr>", that.document[ 0 ] ).appendTo( element )
 						);
-					} else if ( nodeName === "tr" ) {
+					} else if ( nodenombre === "tr" ) {
 						that._createTrPlaceholder( that.currentItem, element );
-					} else if ( nodeName === "img" ) {
+					} else if ( nodenombre === "img" ) {
 						element.attr( "src", that.currentItem.attr( "src" ) );
 					}
 
-					if ( !className ) {
+					if ( !classnombre ) {
 						element.css( "visibility", "hidden" );
 					}
 
 					return element;
 				},
-				update: function( container, p ) {
+				upfecha: function( container, p ) {
 
-					// 1. If a className is set as 'placeholder option, we don't force sizes -
+					// 1. If a classnombre is set as 'placeholder option, we don't force sizes -
 					// the class is responsible for that
 					// 2. The option 'forcePlaceholderSize can be enabled to force it even if a
-					// class name is specified
-					if ( className && !o.forcePlaceholderSize ) {
+					// class nombre is specified
+					if ( classnombre && !o.forcePlaceholderSize ) {
 						return;
 					}
 
@@ -16119,8 +16119,8 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		//Append it after the actual current item
 		that.currentItem.after( that.placeholder );
 
-		//Update the size of the placeholder (TODO: Logic to fuzzy, see line 316/317)
-		o.placeholder.update( that, that.placeholder );
+		//Upfecha the size of the placeholder (TODO: Logic to fuzzy, see line 316/317)
+		o.placeholder.upfecha( that, that.placeholder );
 
 	},
 
@@ -16134,7 +16134,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		} );
 	},
 
-	_contactContainers: function( event ) {
+	_contactoContainers: function( event ) {
 		var i, j, dist, itemWithLeastDistance, posProperty, sizeProperty, cur, nearBottom,
 			floating, axis,
 			innermostContainer = null,
@@ -16237,8 +16237,8 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			this.containers[ innermostIndex ]._trigger( "change", event, this._uiHash( this ) );
 			this.currentContainer = this.containers[ innermostIndex ];
 
-			//Update the placeholder
-			this.options.placeholder.update( this.currentContainer, this.placeholder );
+			//Upfecha the placeholder
+			this.options.placeholder.upfecha( this.currentContainer, this.placeholder );
 
 			this.containers[ innermostIndex ]._trigger( "over", event, this._uiHash( this ) );
 			this.containers[ innermostIndex ].containerCache.over = 1;
@@ -16324,8 +16324,8 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		// This needs to be actually done for all browsers, since pageX/pageY includes this
 		// information with an ugly IE fix
 		if ( this.offsetParent[ 0 ] === this.document[ 0 ].body ||
-				( this.offsetParent[ 0 ].tagName &&
-				this.offsetParent[ 0 ].tagName.toLowerCase() === "html" && $.ui.ie ) ) {
+				( this.offsetParent[ 0 ].tagnombre &&
+				this.offsetParent[ 0 ].tagnombre.toLowerCase() === "html" && $.ui.ie ) ) {
 			po = { top: 0, left: 0 };
 		}
 
@@ -16421,7 +16421,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				$.contains( this.scrollParent[ 0 ], this.offsetParent[ 0 ] ) ) ?
 					this.offsetParent :
 					this.scrollParent,
-			scrollIsRootNode = ( /(html|body)/i ).test( scroll[ 0 ].tagName );
+			scrollIsRootNode = ( /(html|body)/i ).test( scroll[ 0 ].tagnombre );
 
 		return {
 			top: (
@@ -16467,7 +16467,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				$.contains( this.scrollParent[ 0 ], this.offsetParent[ 0 ] ) ) ?
 					this.offsetParent :
 					this.scrollParent,
-				scrollIsRootNode = ( /(html|body)/i ).test( scroll[ 0 ].tagName );
+				scrollIsRootNode = ( /(html|body)/i ).test( scroll[ 0 ].tagnombre );
 
 		// This is another very weird special case that only happens for relative elements:
 		// 1. If the css position is relative
@@ -16597,7 +16597,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		var i,
 			delayedTriggers = [];
 
-		// We first have to update the dom position of the actual currentItem
+		// We first have to upfecha the dom position of the actual currentItem
 		// Note: don't do it if the current item is already removed (by a user), or it gets
 		// reappended (see #4088)
 		if ( !this._noFinalSort && this.currentItem.parent().length ) {
@@ -16627,9 +16627,9 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				this.currentItem.prev().not( ".ui-sortable-helper" )[ 0 ] ||
 				this.domPosition.parent !== this.currentItem.parent()[ 0 ] ) && !noPropagation ) {
 
-			// Trigger update callback if the DOM position has changed
+			// Trigger upfecha callback if the DOM position has changed
 			delayedTriggers.push( function( event ) {
-				this._trigger( "update", event, this._uiHash() );
+				this._trigger( "upfecha", event, this._uiHash() );
 			} );
 		}
 
@@ -16647,7 +16647,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 				} ).call( this, this.currentContainer ) );
 				delayedTriggers.push( ( function( c ) {
 					return function( event ) {
-						c._trigger( "update", event, this._uiHash( this ) );
+						c._trigger( "upfecha", event, this._uiHash( this ) );
 					};
 				} ).call( this, this.currentContainer ) );
 			}
@@ -16745,7 +16745,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 //>>label: Spinner
 //>>group: Widgets
-//>>description: Displays buttons to easily input numbers via the keyboard or mouse.
+//>>descripcion: Displays buttons to easily input numbers via the keyboard or mouse.
 //>>docs: http://api.jqueryui.com/spinner/
 //>>demos: http://jqueryui.com/spinner/
 //>>css.structure: ../../themes/base/core.css
@@ -16973,7 +16973,7 @@ $.widget( "ui.spinner", {
 				}
 			} );
 
-		// TODO: Right now button does not support classes this is already updated in button PR
+		// TODO: Right now button does not support classes this is already upfechad in button PR
 		this._removeClass( this.buttons, "ui-corner-all" );
 
 		this._addClass( this.buttons.first(), "ui-spinner-button ui-spinner-up" );
@@ -17200,7 +17200,7 @@ $.widget( "ui.spinner", {
 		return value === this._adjustValue( value );
 	},
 
-	// Update the value without triggering change
+	// Upfecha the value without triggering change
 	_value: function( value, allowAny ) {
 		var parsed;
 		if ( value !== "" ) {
@@ -17303,7 +17303,7 @@ var widgetsSpinner = $.ui.spinner;
 
 //>>label: Tabs
 //>>group: Widgets
-//>>description: Transforms a set of container elements into a tab structure.
+//>>descripcion: Transforms a set of container elements into a tab structure.
 //>>docs: http://api.jqueryui.com/tabs/
 //>>demos: http://jqueryui.com/tabs/
 //>>css.structure: ../../themes/base/core.css
@@ -17370,7 +17370,7 @@ $.widget( "ui.tabs", {
 		options.active = this._initialActive();
 
 		// Take disabling tabs via class attribute from HTML
-		// into account and update option properly.
+		// into account and upfecha option properly.
 		if ( $.isArray( options.disabled ) ) {
 			options.disabled = $.unique( options.disabled.concat(
 				$.map( this.tabs.filter( ".ui-state-disabled" ), function( li ) {
@@ -17497,7 +17497,7 @@ $.widget( "ui.tabs", {
 		// Navigating with control/command key will prevent automatic activation
 		if ( !event.ctrlKey && !event.metaKey ) {
 
-			// Update aria-selected immediately so that AT think the tab is already selected.
+			// Upfecha aria-selected immediately so that AT think the tab is already selected.
 			// Otherwise AT may confuse the user by stating that they need to activate the tab,
 			// but the tab will already be activated by the time the announcement finishes.
 			focusedTab.attr( "aria-selected", "false" );
@@ -17562,7 +17562,7 @@ $.widget( "ui.tabs", {
 	_setOption: function( key, value ) {
 		if ( key === "active" ) {
 
-			// _activate() will handle invalid values and update this.options
+			// _activate() will handle invalid values and upfecha this.options
 			this._activate( value );
 			return;
 		}
@@ -17676,9 +17676,9 @@ $.widget( "ui.tabs", {
 		this._addClass( this.tablist, "ui-tabs-nav",
 			"ui-helper-reset ui-helper-clearfix ui-widget-header" );
 
-		// Prevent users from focusing disabled tabs via click
+		// Prevent usuarios from focusing disabled tabs via click
 		this.tablist
-			.on( "mousedown" + this.eventNamespace, "> li", function( event ) {
+			.on( "mousedown" + this.eventnombrespace, "> li", function( event ) {
 				if ( $( this ).is( ".ui-state-disabled" ) ) {
 					event.preventDefault();
 				}
@@ -17690,7 +17690,7 @@ $.widget( "ui.tabs", {
 			// We don't have to worry about focusing the previously focused
 			// element since clicking on a non-focusable element should focus
 			// the body anyway.
-			.on( "focus" + this.eventNamespace, ".ui-tabs-anchor", function() {
+			.on( "focus" + this.eventnombrespace, ".ui-tabs-anchor", function() {
 				if ( $( this ).closest( "li" ).is( ".ui-state-disabled" ) ) {
 					this.blur();
 				}
@@ -17801,15 +17801,15 @@ $.widget( "ui.tabs", {
 
 		this.options.disabled = disabled;
 
-		this._toggleClass( this.widget(), this.widgetFullName + "-disabled", null,
+		this._toggleClass( this.widget(), this.widgetFullnombre + "-disabled", null,
 			disabled === true );
 	},
 
 	_setupEvents: function( event ) {
 		var events = {};
 		if ( event ) {
-			$.each( event.split( " " ), function( index, eventName ) {
-				events[ eventName ] = "_eventHandler";
+			$.each( event.split( " " ), function( index, eventnombre ) {
+				events[ eventnombre ] = "_eventHandler";
 			} );
 		}
 
@@ -18007,7 +18007,7 @@ $.widget( "ui.tabs", {
 
 	_getIndex: function( index ) {
 
-		// meta-function to give users option to provide a href string instead of a numerical index.
+		// meta-function to give usuarios option to provide a href string instead of a numerical index.
 		if ( typeof index === "string" ) {
 			index = this.anchors.index( this.anchors.filter( "[href$='" +
 				$.ui.escapeSelector( index ) + "']" ) );
@@ -18023,7 +18023,7 @@ $.widget( "ui.tabs", {
 
 		this.tablist
 			.removeAttr( "role" )
-			.off( this.eventNamespace );
+			.off( this.eventnombrespace );
 
 		this.anchors
 			.removeAttr( "role tabIndex" )
@@ -18209,7 +18209,7 @@ var widgetsTabs = $.ui.tabs;
 
 //>>label: Tooltip
 //>>group: Widgets
-//>>description: Shows additional information for any element on hover or focus.
+//>>descripcion: Shows additional information for any element on hover or focus.
 //>>docs: http://api.jqueryui.com/tooltip/
 //>>demos: http://jqueryui.com/tooltip/
 //>>css.structure: ../../themes/base/core.css
@@ -18308,7 +18308,7 @@ $.widget( "ui.tooltip", {
 
 		if ( key === "content" ) {
 			$.each( this.tooltips, function( id, tooltipData ) {
-				that._updateContent( tooltipData.element );
+				that._upfechaContent( tooltipData.element );
 			} );
 		}
 	},
@@ -18394,10 +18394,10 @@ $.widget( "ui.tooltip", {
 		}
 
 		this._registerCloseHandlers( event, target );
-		this._updateContent( target, event );
+		this._upfechaContent( target, event );
 	},
 
-	_updateContent: function( target, event ) {
+	_upfechaContent: function( target, event ) {
 		var content,
 			contentOption = this.options.content,
 			that = this,
@@ -18443,8 +18443,8 @@ $.widget( "ui.tooltip", {
 			return;
 		}
 
-		// Content can be updated multiple times. If the tooltip already
-		// exists, then just update the content and bail.
+		// Content can be upfechad multiple times. If the tooltip already
+		// exists, then just upfecha the content and bail.
 		tooltipData = this._find( target );
 		if ( tooltipData ) {
 			tooltipData.tooltip.find( ".ui-tooltip-content" ).html( content );
@@ -18476,7 +18476,7 @@ $.widget( "ui.tooltip", {
 		// Voiceover will sometimes re-read the entire log region's contents from the beginning
 		this.liveRegion.children().hide();
 		a11yContent = $( "<div>" ).html( tooltip.find( ".ui-tooltip-content" ).html() );
-		a11yContent.removeAttr( "name" ).find( "[name]" ).removeAttr( "name" );
+		a11yContent.removeAttr( "nombre" ).find( "[nombre]" ).removeAttr( "nombre" );
 		a11yContent.removeAttr( "id" ).find( "[id]" ).removeAttr( "id" );
 		a11yContent.appendTo( this.liveRegion );
 
@@ -18576,7 +18576,7 @@ $.widget( "ui.tooltip", {
 		// Clear the interval for delayed tracking tooltips
 		clearInterval( this.delayedShow );
 
-		// Only set title if we had one before (see comment in _open())
+		// Only set title if we had one before (see comentario in _open())
 		// If the title attribute has changed since open(), don't restore
 		if ( target.data( "ui-tooltip-title" ) && !target.attr( "title" ) ) {
 			target.attr( "title", target.data( "ui-tooltip-title" ) );

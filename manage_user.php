@@ -2,7 +2,7 @@
 include('db_connect.php');
 session_start();
 if(isset($_GET['id'])){
-$user = $conn->query("SELECT * FROM users where id =".$_GET['id']);
+$user = $conn->query("SELECT * FROM usuarios where id =".$_GET['id']);
 foreach($user->fetch_array() as $k =>$v){
 	$meta[$k] = $v;
 }
@@ -12,28 +12,28 @@ foreach($user->fetch_array() as $k =>$v){
 	<div id="msg"></div>
 	
 	<form action="" id="manage-user">	
-		<input type="hidden" name="id" value="<?php echo isset($meta['id']) ? $meta['id']: '' ?>">
+		<input type="hidden" nombre="id" value="<?php echo isset($meta['id']) ? $meta['id']: '' ?>">
 		<div class="form-group">
-			<label for="name">Nombre</label>
-			<input type="text" name="firstname" id="firstname" class="form-control" value="<?php echo isset($meta['firstname']) ? $meta['firstname']: '' ?>" required>
+			<label for="nombre">Nombre</label>
+			<input type="text" nombre="primer_nombre" id="primer_nombre" class="form-control" value="<?php echo isset($meta['primer_nombre']) ? $meta['primer_nombre']: '' ?>" required>
 		</div>
 		<div class="form-group">
-			<label for="name">Apellido</label>
-			<input type="text" name="lastname" id="lastname" class="form-control" value="<?php echo isset($meta['lastname']) ? $meta['lastname']: '' ?>" required>
+			<label for="nombre">Apellido</label>
+			<input type="text" nombre="apellido" id="apellido" class="form-control" value="<?php echo isset($meta['apellido']) ? $meta['apellido']: '' ?>" required>
 		</div>
 		<div class="form-group">
 			<label for="email">Email</label>
-			<input type="text" name="email" id="email" class="form-control" value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>" required  autocomplete="off">
+			<input type="text" nombre="email" id="email" class="form-control" value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>" required  autocomplete="off">
 		</div>
 		<div class="form-group">
 			<label for="password">Contraseña</label>
-			<input type="password" name="password" id="password" class="form-control" value="" autocomplete="off">
+			<input type="password" nombre="password" id="password" class="form-control" value="" autocomplete="off">
 			<small><i>Deja este campo en blanco si no desea cambiar la contraseña.</i></small>
 		</div>
 		<div class="form-group">
 			<label for="" class="control-label">Avatar</label>
 			<div class="custom-file">
-              <input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this,$(this))">
+              <input type="file" class="custom-file-input rounded-circle" id="customFile" nombre="img" onchange="displayImg(this,$(this))">
               <label class="custom-file-label" for="customFile">Elegir Archivo</label>
             </div>
 		</div>
@@ -67,7 +67,7 @@ foreach($user->fetch_array() as $k =>$v){
 		e.preventDefault();
 		start_load()
 		$.ajax({
-			url:'ajax.php?action=update_user',
+			url:'ajax.php?action=upfecha_user',
 			data: new FormData($(this)[0]),
 		    cache: false,
 		    contentType: false,

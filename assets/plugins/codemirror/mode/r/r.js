@@ -38,7 +38,7 @@ CodeMirror.defineMode("r", function(config) {
     var ch = stream.next();
     if (ch == "#") {
       stream.skipToEnd();
-      return "comment";
+      return "comentario";
     } else if (ch == "0" && stream.eat("x")) {
       stream.eatWhile(/[\da-f]/i);
       return "number";
@@ -155,7 +155,7 @@ CodeMirror.defineMode("r", function(config) {
       }
       if (stream.eatSpace()) return null;
       var style = state.tokenize(stream, state);
-      if (style != "comment" && (state.ctx.flags & ALIGN_NO) == 0) setFlag(state, ALIGN_YES)
+      if (style != "comentario" && (state.ctx.flags & ALIGN_NO) == 0) setFlag(state, ALIGN_YES)
 
       if ((curPunc == ";" || curPunc == "{" || curPunc == "}") && state.ctx.type == "block") pop(state);
       if (curPunc == "{") push(state, "}", stream);
@@ -166,7 +166,7 @@ CodeMirror.defineMode("r", function(config) {
       else if (curPunc == "[") push(state, "]", stream);
       else if (curPunc == "block") push(state, "block", stream);
       else if (curPunc == state.ctx.type) pop(state);
-      else if (state.ctx.type == "block" && style != "comment") setFlag(state, BRACELESS)
+      else if (state.ctx.type == "block" && style != "comentario") setFlag(state, BRACELESS)
       state.afterIdent = style == "variable" || style == "keyword";
       return style;
     },

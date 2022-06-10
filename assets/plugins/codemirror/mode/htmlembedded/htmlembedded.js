@@ -18,10 +18,10 @@
     return CodeMirror.multiplexingMode(CodeMirror.getMode(config, "htmlmixed"), {
       open: parserConfig.openComment || "<%--",
       close: closeComment,
-      delimStyle: "comment",
+      delimStyle: "comentario",
       mode: {token: function(stream) {
         stream.skipTo(closeComment) || stream.skipToEnd()
-        return "comment"
+        return "comentario"
       }}
     }, {
       open: parserConfig.open || parserConfig.scriptStartRegex || "<%",

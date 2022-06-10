@@ -35,8 +35,8 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
   if (modeCfg.maxBlockquoteDepth === undefined)
     modeCfg.maxBlockquoteDepth = 0;
 
-  // Turn on task lists? ("- [ ] " and "- [x] ")
-  if (modeCfg.taskLists === undefined) modeCfg.taskLists = false;
+  // Turn on tarea lists? ("- [ ] " and "- [x] ")
+  if (modeCfg.tareaLists === undefined) modeCfg.tareaLists = false;
 
   // Turn on strikethrough syntax
   if (modeCfg.strikethrough === undefined)
@@ -60,7 +60,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
 
   var tokenTypes = {
     header: "header",
-    code: "comment",
+    code: "comentario",
     quote: "quote",
     list1: "variable-2",
     list2: "variable-3",
@@ -88,7 +88,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
 
   var hrRE = /^([*\-_])(?:\s*\1){2,}\s*$/
   ,   listRE = /^(?:[*\-+]|^[0-9]+([.)]))\s+/
-  ,   taskListRE = /^\[(x| )\](?=\s)/i // Must follow listRE
+  ,   tareaListRE = /^\[(x| )\](?=\s)/i // Must follow listRE
   ,   atxHeaderRE = modeCfg.allowAtxHeaderWithoutSpace ? /^(#+)/ : /^(#+)(?: |$)/
   ,   setextHeaderRE = /^ {0,3}(?:\={1,}|-{2,})\s*$/
   ,   textRE = /^[^#!\[\]*_\\<>` "'(~:]+/
@@ -168,7 +168,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
         state.list = null;
         // While this list item's marker's indentation is less than the deepest
         //  list item's content's indentation,pop the deepest list item
-        //  indentation off the stack, and update block indentation state
+        //  indentation off the stack, and upfecha block indentation state
         while (lineIndentation < state.listStack[state.listStack.length - 1]) {
           state.listStack.pop();
           if (state.listStack.length) {
@@ -229,8 +229,8 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
       state.code = false;
       state.strikethrough = false;
 
-      if (modeCfg.taskLists && stream.match(taskListRE, false)) {
-        state.taskList = true;
+      if (modeCfg.tareaLists && stream.match(tareaListRE, false)) {
+        state.tareaList = true;
       }
       state.f = state.inline;
       if (modeCfg.highlightFormatting) state.formatting = ["list", "list-" + listType];
@@ -348,11 +348,11 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
       }
     }
 
-    if (state.taskOpen) {
+    if (state.tareaOpen) {
       styles.push("meta");
       return styles.length ? styles.join(' ') : null;
     }
-    if (state.taskClosed) {
+    if (state.tareaClosed) {
       styles.push("property");
       return styles.length ? styles.join(' ') : null;
     }
@@ -421,17 +421,17 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
       return getType(state);
     }
 
-    if (state.taskList) {
-      var taskOpen = stream.match(taskListRE, true)[1] === " ";
-      if (taskOpen) state.taskOpen = true;
-      else state.taskClosed = true;
-      if (modeCfg.highlightFormatting) state.formatting = "task";
-      state.taskList = false;
+    if (state.tareaList) {
+      var tareaOpen = stream.match(tareaListRE, true)[1] === " ";
+      if (tareaOpen) state.tareaOpen = true;
+      else state.tareaClosed = true;
+      if (modeCfg.highlightFormatting) state.formatting = "tarea";
+      state.tareaList = false;
       return getType(state);
     }
 
-    state.taskOpen = false;
-    state.taskClosed = false;
+    state.tareaOpen = false;
+    state.tareaClosed = false;
 
     if (state.header && stream.match(/^#+$/, true)) {
       if (modeCfg.highlightFormatting) state.formatting = "header";
@@ -454,7 +454,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
       }
     }
 
-    // If this block is changed, it may need to be updated in GFM mode
+    // If this block is changed, it may need to be upfechad in GFM mode
     if (ch === '`') {
       var previousFormatting = state.formatting;
       if (modeCfg.highlightFormatting) state.formatting = "code";
@@ -766,7 +766,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
         header: 0,
         setext: 0,
         hr: false,
-        taskList: false,
+        tareaList: false,
         list: false,
         listStack: [],
         quote: 0,
@@ -806,7 +806,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
         header: s.header,
         setext: s.setext,
         hr: s.hr,
-        taskList: s.taskList,
+        tareaList: s.tareaList,
         list: s.list,
         listStack: s.listStack.slice(0),
         quote: s.quote,
@@ -835,8 +835,8 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
         state.prevLine = state.thisLine
         state.thisLine = {stream: stream}
 
-        // Reset state.taskList
-        state.taskList = false;
+        // Reset state.tareaList
+        state.tareaList = false;
 
         // Reset state.trailingSpace
         state.trailingSpace = 0;

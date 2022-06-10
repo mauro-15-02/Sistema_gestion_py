@@ -12,8 +12,8 @@
   "use strict";
 
   CodeMirror.defineMode("ebnf", function (config) {
-    var commentType = {slash: 0, parenthesis: 1};
-    var stateType = {comment: 0, _string: 1, characterClass: 2};
+    var comentarioType = {slash: 0, parenthesis: 1};
+    var stateType = {comentario: 0, _string: 1, characterClass: 2};
     var bracesMode = null;
 
     if (config.bracesMode)
@@ -23,7 +23,7 @@
       startState: function () {
         return {
           stringType: null,
-          commentType: null,
+          comentarioType: null,
           braced: 0,
           lhs: true,
           localState: null,
@@ -41,12 +41,12 @@
             state.stringType = stream.peek();
             stream.next(); // Skip quote
             state.stack.unshift(stateType._string);
-          } else if (stream.match(/^\/\*/)) { //comments starting with /*
-            state.stack.unshift(stateType.comment);
-            state.commentType = commentType.slash;
-          } else if (stream.match(/^\(\*/)) { //comments starting with (*
-            state.stack.unshift(stateType.comment);
-            state.commentType = commentType.parenthesis;
+          } else if (stream.match(/^\/\*/)) { //comentarios starting with /*
+            state.stack.unshift(stateType.comentario);
+            state.comentarioType = comentarioType.slash;
+          } else if (stream.match(/^\(\*/)) { //comentarios starting with (*
+            state.stack.unshift(stateType.comentario);
+            state.comentarioType = comentarioType.parenthesis;
           }
         }
 
@@ -67,19 +67,19 @@
           }
           return state.lhs ? "property string" : "string"; // Token style
 
-        case stateType.comment:
-          while (state.stack[0] === stateType.comment && !stream.eol()) {
-            if (state.commentType === commentType.slash && stream.match(/\*\//)) {
+        case stateType.comentario:
+          while (state.stack[0] === stateType.comentario && !stream.eol()) {
+            if (state.comentarioType === comentarioType.slash && stream.match(/\*\//)) {
               state.stack.shift(); // Clear flag
-              state.commentType = null;
-            } else if (state.commentType === commentType.parenthesis && stream.match(/\*\)/)) {
+              state.comentarioType = null;
+            } else if (state.comentarioType === comentarioType.parenthesis && stream.match(/\*\)/)) {
               state.stack.shift(); // Clear flag
-              state.commentType = null;
+              state.comentarioType = null;
             } else {
               stream.match(/^.[^\*]*/);
             }
           }
-          return "comment";
+          return "comentario";
 
         case stateType.characterClass:
           while (state.stack[0] === stateType.characterClass && !stream.eol()) {
@@ -170,7 +170,7 @@
 
         if (stream.match(/^\/\//)) {
           stream.skipToEnd();
-          return "comment";
+          return "comentario";
         } else if (stream.match(/return/)) {
           return "operator";
         } else if (stream.match(/^[a-zA-Z_][a-zA-Z0-9_]*/)) {

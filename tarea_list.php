@@ -37,27 +37,27 @@
 					if($_SESSION['login_type'] == 2){
 						$where = " where p.manager_id = '{$_SESSION['login_id']}' ";
 					}elseif($_SESSION['login_type'] == 3){
-						$where = " where concat('[',REPLACE(p.user_ids,',','],['),']') LIKE '%[{$_SESSION['login_id']}]%' ";
+						$where = " where concat('[',REPLACE(p.usuario_ids,',','],['),']') LIKE '%[{$_SESSION['login_id']}]%' ";
 					}
 					
 					$stat = array("Pendiente", "Empezado", "En progreso", "En espera", "Vencido", "Terminado");
-					$qry = $conn->query("SELECT t.*,p.name as pname,p.start_date,p.status as pstatus, p.end_date,p.id as pid FROM task_list t inner join project_list p on p.id = t.project_id $where order by p.name asc");
+					$qry = $conn->query("SELECT t.*,p.nombre as pnombre,p.fecha_de_inicio,p.status as pstatus, p.fin_fecha,p.id as pid FROM tarea_list t inner join proyecto_list p on p.id = t.proyecto_id $where order by p.nombre asc");
 					while($row= $qry->fetch_assoc()):
 						$trans = get_html_translation_table(HTML_ENTITIES,ENT_QUOTES);
 						unset($trans["\""], $trans["<"], $trans[">"], $trans["<h2"]);
-						$desc = strtr(html_entity_decode($row['description']),$trans);
+						$desc = strtr(html_entity_decode($row['descripcion']),$trans);
 						$desc=str_replace(array("<li>","</li>"), array("",", "), $desc);
-						$tprog = $conn->query("SELECT * FROM task_list where project_id = {$row['pid']}")->num_rows;
-		                $cprog = $conn->query("SELECT * FROM task_list where project_id = {$row['pid']} and status = 3")->num_rows;
+						$tprog = $conn->query("SELECT * FROM tarea_list where proyecto_id = {$row['pid']}")->num_rows;
+		                $cprog = $conn->query("SELECT * FROM tarea_list where proyecto_id = {$row['pid']} and status = 3")->num_rows;
 						$prog = $tprog > 0 ? ($cprog/$tprog) * 100 : 0;
 		                $prog = $prog > 0 ?  number_format($prog,2) : $prog;
-		                $prod = $conn->query("SELECT * FROM user_productivity where project_id = {$row['pid']}")->num_rows;
-		                if($row['pstatus'] == 0 && strtotime(date('Y-m-d')) >= strtotime($row['start_date'])):
+		                $prod = $conn->query("SELECT * FROM productividad_usuario where proyecto_id = {$row['pid']}")->num_rows;
+		                if($row['pstatus'] == 0 && strtotime(date('Y-m-d')) >= strtotime($row['fecha_de_inicio'])):
 		                if($prod  > 0  || $cprog > 0)
 		                  $row['pstatus'] = 2;
 		                else
 		                  $row['pstatus'] = 1;
-		                elseif($row['pstatus'] == 0 && strtotime(date('Y-m-d')) > strtotime($row['end_date'])):
+		                elseif($row['pstatus'] == 0 && strtotime(date('Y-m-d')) > strtotime($row['fin_fecha'])):
 		                $row['pstatus'] = 4;
 		                endif;
 
@@ -66,14 +66,14 @@
 					<tr>
 						<td class="text-center"><?php echo $i++ ?></td>
 						<td>
-							<p><b><?php echo ucwords($row['pname']) ?></b></p>
+							<p><b><?php echo ucwords($row['pnombre']) ?></b></p>
 						</td>
 						<td>
-							<p><b><?php echo ucwords($row['task']) ?></b></p>
+							<p><b><?php echo ucwords($row['tarea']) ?></b></p>
 							<p class="truncate"><?php echo strip_tags($desc) ?></p>
 						</td>
-						<td><b><?php echo date("d-m-Y",strtotime($row['start_date'])) ?></b></td>
-						<td><b><?php echo date("d-m-Y",strtotime($row['end_date'])) ?></b></td>
+						<td><b><?php echo date("d-m-Y",strtotime($row['fecha_de_inicio'])) ?></b></td>
+						<td><b><?php echo date("d-m-Y",strtotime($row['fin_fecha'])) ?></b></td>
 						<td class="text-center">
 							<?php
 							  if($stat[$row['pstatus']] =='Pendiente'){
@@ -107,7 +107,7 @@
 		                      Acción
 		                    </button>
 			                    <div class="dropdown-menu" style="">
-			                      <a class="dropdown-item new_productivity" data-pid = '<?php echo $row['pid'] ?>' data-tid = '<?php echo $row['id'] ?>'  data-task = '<?php echo ucwords($row['task']) ?>'  href="javascript:void(0)">Agregar Productividad</a>
+			                      <a class="dropdown-item new_productivity" data-pid = '<?php echo $row['pid'] ?>' data-tid = '<?php echo $row['id'] ?>'  data-tarea = '<?php echo ucwords($row['tarea']) ?>'  href="javascript:void(0)">Agregar Productividad</a>
 								</div>
 						</td>
 					</tr>	
@@ -129,7 +129,7 @@
 	$(document).ready(function(){
 		$('#list').dataTable()
 	$('.new_productivity').click(function(){
-		uni_modal("<i class='fa fa-plus'></i> Nuevo Progreso para: "+$(this).attr('data-task'),"manage_progress.php?pid="+$(this).attr('data-pid')+"&tid="+$(this).attr('data-tid'),'large')
+		uni_modal("<i class='fa fa-plus'></i> Nuevo Progreso para: "+$(this).attr('data-tarea'),"manage_progress.php?pid="+$(this).attr('data-pid')+"&tid="+$(this).attr('data-tid'),'large')
 	})
 	})
 	function delete_project($id){

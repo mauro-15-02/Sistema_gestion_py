@@ -51,7 +51,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * furnished to do so, tema to the following conditions:
  *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
@@ -842,7 +842,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             file.previewElement.parentNode.removeChild(file.previewElement);
           }
 
-          return this._updateMaxFilesReachedClass();
+          return this._upfechaMaxFilesReachedClass();
         },
         // Called when a thumbnail has been generated
         // Receives `file` and `dataUrl`
@@ -909,7 +909,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           }
         },
         processingmultiple: function processingmultiple() {},
-        // Called whenever the upload progress gets updated.
+        // Called whenever the upload progress gets upfechad.
         // Receives `file`, `progress` (percentage 0-100) and `bytesSent`.
         // To get the total number of bytes of the file, use `file.size`
         uploadprogress: function uploadprogress(file, progress, bytesSent) {
@@ -929,7 +929,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             }
           }
         },
-        // Called whenever the total upload progress gets updated.
+        // Called whenever the total upload progress gets upfechad.
         // Called with totalUploadProgress (0-100), totalBytes and totalBytesSent
         totaluploadprogress: function totaluploadprogress() {},
         // Called just before the file is sent. Gets the `xhr` object as second
@@ -1244,10 +1244,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       }
 
       this.on("uploadprogress", function () {
-        return _this3.updateTotalUploadProgress();
+        return _this3.upfechaTotalUploadProgress();
       });
       this.on("removedfile", function () {
-        return _this3.updateTotalUploadProgress();
+        return _this3.upfechaTotalUploadProgress();
       });
       this.on("canceled", function (file) {
         return _this3.emit("complete", file);
@@ -1365,8 +1365,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       return Dropzone.instances.splice(Dropzone.instances.indexOf(this), 1);
     }
   }, {
-    key: "updateTotalUploadProgress",
-    value: function updateTotalUploadProgress() {
+    key: "upfechaTotalUploadProgress",
+    value: function upfechaTotalUploadProgress() {
       var totalUploadProgress;
       var totalBytesSent = 0;
       var totalBytes = 0;
@@ -1570,8 +1570,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     } // Adds or removes the `dz-max-files-reached` class from the form.
 
   }, {
-    key: "_updateMaxFilesReachedClass",
-    value: function _updateMaxFilesReachedClass() {
+    key: "_upfechaMaxFilesReachedClass",
+    value: function _upfechaMaxFilesReachedClass() {
       if (this.options.maxFiles != null && this.getAcceptedFiles().length >= this.options.maxFiles) {
         if (this.getAcceptedFiles().length === this.options.maxFiles) {
           this.emit('maxfilesreached', this.files);
@@ -1804,7 +1804,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
         }
 
-        _this7._updateMaxFilesReachedClass();
+        _this7._upfechaMaxFilesReachedClass();
       });
     } // Wrapper for enqueueFile
 
@@ -2425,7 +2425,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       var progressObj = xhr.upload != null ? xhr.upload : xhr;
 
       progressObj.onprogress = function (e) {
-        return _this16._updateFilesUploadProgress(files, xhr, e);
+        return _this16._upfechaFilesUploadProgress(files, xhr, e);
       };
 
       var headers = {
@@ -2575,15 +2575,15 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     // If e is not provided, it is assumed that the upload is finished.
 
   }, {
-    key: "_updateFilesUploadProgress",
-    value: function _updateFilesUploadProgress(files, xhr, e) {
+    key: "_upfechaFilesUploadProgress",
+    value: function _upfechaFilesUploadProgress(files, xhr, e) {
       var progress;
 
       if (typeof e !== 'undefined') {
         progress = 100 * e.loaded / e.total;
 
         if (files[0].upload.chunked) {
-          var file = files[0]; // Since this is a chunked upload, we need to update the appropriate chunk progress.
+          var file = files[0]; // Since this is a chunked upload, we need to upfecha the appropriate chunk progress.
 
           var chunk = this._getChunk(file, xhr);
 
@@ -2708,7 +2708,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         }
       }
 
-      this._updateFilesUploadProgress(files);
+      this._upfechaFilesUploadProgress(files);
 
       if (!(200 <= xhr.status && xhr.status < 300)) {
         this._handleUploadError(files, xhr, response);
@@ -3113,7 +3113,7 @@ Dropzone.confirm = function (question, accepted, rejected) {
   } else if (rejected != null) {
     return rejected();
   }
-}; // Validates the mime type like this:
+}; // Valifechas the mime type like this:
 //
 // https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept
 
@@ -3437,7 +3437,7 @@ ExifRestore.initClass();
  *
  * Author: Diego Perini (diego.perini at gmail.com)
  * Summary: cross-browser wrapper for DOMContentLoaded
- * Updated: 20101020
+ * Upfechad: 20101020
  * License: MIT
  * Version: 1.2
  *

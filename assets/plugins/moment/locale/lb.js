@@ -107,7 +107,7 @@
             nextWeek: 'dddd [um] LT',
             lastDay: '[Gëschter um] LT',
             lastWeek: function () {
-                // Different date string for 'Dënschdeg' (Tuesday) and 'Donneschdeg' (Thursday) due to phonological rule
+                // Different fecha string for 'Dënschdeg' (Tuesday) and 'Donneschdeg' (Thursday) due to phonological rule
                 switch (this.day()) {
                     case 2:
                     case 4:

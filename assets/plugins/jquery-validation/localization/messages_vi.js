@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -10,15 +10,15 @@
 
 /*
  * Translated default messages for the jQuery validation plugin.
- * Locale: VI (Vietnamese; Tiếng Việt)
+ * Locale: VI (Vietnombrese; Tiếng Việt)
  */
 $.extend( $.validator.messages, {
 	required: "Hãy nhập.",
 	remote: "Hãy sửa cho đúng.",
 	email: "Hãy nhập email.",
 	url: "Hãy nhập URL.",
-	date: "Hãy nhập ngày.",
-	dateISO: "Hãy nhập ngày (ISO).",
+	fecha: "Hãy nhập ngày.",
+	fechaISO: "Hãy nhập ngày (ISO).",
 	number: "Hãy nhập số.",
 	digits: "Hãy nhập chữ số.",
 	creditcard: "Hãy nhập số thẻ tín dụng.",

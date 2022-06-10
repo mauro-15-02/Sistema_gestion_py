@@ -36,7 +36,7 @@ CodeMirror.defineMode("commonlisp", function (config) {
     if (ch == '"') return (state.tokenize = inString)(stream, state);
     else if (ch == "(") { type = "open"; return "bracket"; }
     else if (ch == ")" || ch == "]") { type = "close"; return "bracket"; }
-    else if (ch == ";") { stream.skipToEnd(); type = "ws"; return "comment"; }
+    else if (ch == ";") { stream.skipToEnd(); type = "ws"; return "comentario"; }
     else if (/['`,@]/.test(ch)) return null;
     else if (ch == "|") {
       if (stream.skipTo("|")) { stream.next(); return "symbol"; }
@@ -77,7 +77,7 @@ CodeMirror.defineMode("commonlisp", function (config) {
       last = next;
     }
     type = "ws";
-    return "comment";
+    return "comentario";
   }
 
   return {

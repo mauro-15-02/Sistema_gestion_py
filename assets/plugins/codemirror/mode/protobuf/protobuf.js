@@ -35,7 +35,7 @@
     // Handle one line Comments
     if (stream.match("//")) {
       stream.skipToEnd();
-      return "comment";
+      return "comentario";
     }
 
     // Handle Number Literals

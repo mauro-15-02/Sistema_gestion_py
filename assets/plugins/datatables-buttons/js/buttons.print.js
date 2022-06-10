@@ -58,7 +58,7 @@ var _styleToAbs = function( el ) {
 };
 
 /**
- * Convert a URL from a relative to an absolute address so it will work
+ * Convert a URL from a relative to an absolute direccion so it will work
  * correctly in the popup window which has no base URL.
  *
  * @param  {string} href URL

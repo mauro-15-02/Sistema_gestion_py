@@ -10,7 +10,7 @@
 .cm-s-night .CodeMirror-linenumber { color: #f8f8f8; }
 .cm-s-night .CodeMirror-cursor { border-left: 1px solid white; }
 
-.cm-s-night span.cm-comment { color: #8900d1; }
+.cm-s-night span.cm-comentario { color: #8900d1; }
 .cm-s-night span.cm-atom { color: #845dc4; }
 .cm-s-night span.cm-number, .cm-s-night span.cm-attribute { color: #ffd500; }
 .cm-s-night span.cm-keyword { color: #599eff; }

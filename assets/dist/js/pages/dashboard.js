@@ -1,7 +1,7 @@
 /*
  * Author: Abdullah A Almsaeed
  * Date: 4 Jan 2014
- * Description:
+ * descripcion:
  *      This is a demo file used only for the main dashboard (index.html)
  **/
 
@@ -31,7 +31,7 @@ $(function () {
   // bootstrap WYSIHTML5 - text editor
   $('.textarea').summernote()
 
-  $('.daterange').daterangepicker({
+  $('.fecharange').fecharangepicker({
     ranges: {
       Today: [moment(), moment()],
       Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -101,7 +101,7 @@ $(function () {
   sparkline3.draw([15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21])
 
   // The Calender
-  $('#calendar').datetimepicker({
+  $('#calendar').fechatimepicker({
     format: 'L',
     inline: true
   })

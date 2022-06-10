@@ -11,7 +11,7 @@ percentages internally.
 
 * Created by Brian Medendorp
 
-* Updated with contributions from btburnett3, Anthony Aragues and Xavi Ivars
+* Upfechad with contributions from btburnett3, Anthony Aragues and Xavi Ivars
 
 The plugin supports these options:
 

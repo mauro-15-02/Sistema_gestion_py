@@ -26,7 +26,7 @@
                 searchButtonTooltip: "搜尋",
                 clearFilterButtonTooltip: "清除搜尋條件",
                 insertButtonTooltip: "新增",
-                updateButtonTooltip: "修改",
+                upfechaButtonTooltip: "修改",
                 cancelEditButtonTooltip: "取消編輯"
             }
         },

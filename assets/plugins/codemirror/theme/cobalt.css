@@ -8,7 +8,7 @@
 .cm-s-cobalt .CodeMirror-linenumber { color: #d0d0d0; }
 .cm-s-cobalt .CodeMirror-cursor { border-left: 1px solid white; }
 
-.cm-s-cobalt span.cm-comment { color: #08f; }
+.cm-s-cobalt span.cm-comentario { color: #08f; }
 .cm-s-cobalt span.cm-atom { color: #845dc4; }
 .cm-s-cobalt span.cm-number, .cm-s-cobalt span.cm-attribute { color: #ff80e1; }
 .cm-s-cobalt span.cm-keyword { color: #ffee80; }

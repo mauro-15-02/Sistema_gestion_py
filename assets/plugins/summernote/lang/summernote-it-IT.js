@@ -56,9 +56,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 	__webpack_require__.d = function(exports, nombre, getter) {
+/******/ 		if(!__webpack_require__.o(exports, nombre)) {
+/******/ 			Object.defineProperty(exports, nombre, { enumerable: true, get: getter });
 /******/ 		}
 /******/ 	};
 /******/
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 	};
 /******/
-/******/ 	// create a fake namespace object
+/******/ 	// create a fake nombrespace object
 /******/ 	// mode & 1: value is a module id, require it
 /******/ 	// mode & 2: merge all properties of value into the ns
 /******/ 	// mode & 4: return value when already ns object
@@ -120,7 +120,7 @@ return /******/ (function(modules) { // webpackBootstrap
         underline: 'Testo sottolineato',
         clear: 'Elimina la formattazione del testo',
         height: 'Altezza della linea di testo',
-        name: 'Famiglia Font',
+        nombre: 'Famiglia Font',
         strikethrough: 'Testo barrato',
         subscript: 'Subscript',
         superscript: 'Superscript',
@@ -134,7 +134,7 @@ return /******/ (function(modules) { // webpackBootstrap
         resizeQuarter: 'Ridimensiona al 25%',
         floatLeft: 'Posiziona a sinistra',
         floatRight: 'Posiziona a destra',
-        floatNone: 'Nessun posizionamento',
+        floatNone: 'Nessun posizionombrento',
         shapeRounded: 'Shape: Rounded',
         shapeCircle: 'Shape: Circle',
         shapeThumbnail: 'Shape: Thumbnail',

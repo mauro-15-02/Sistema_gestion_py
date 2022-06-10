@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Veuillez corriger ce champ.",
 	email: "Veuillez fournir une adresse électronique valide.",
 	url: "Veuillez fournir une adresse URL valide.",
-	date: "Veuillez fournir une date valide.",
-	dateISO: "Veuillez fournir une date valide (ISO).",
+	fecha: "Veuillez fournir une fecha valide.",
+	fechaISO: "Veuillez fournir une fecha valide (ISO).",
 	number: "Veuillez fournir un numéro valide.",
 	digits: "Veuillez fournir seulement des chiffres.",
 	creditcard: "Veuillez fournir un numéro de carte de crédit valide.",
@@ -42,7 +42,7 @@ $.extend( $.validator.messages, {
 	ziprange: "Veuillez fournir un code postal entre 902xx-xxxx et 905-xx-xxxx.",
 	integer: "Veuillez fournir un nombre non décimal qui est positif ou négatif.",
 	vinUS: "Veuillez fournir un numéro d'identification du véhicule (VIN).",
-	dateITA: "Veuillez fournir une date valide.",
+	fechaITA: "Veuillez fournir une fecha valide.",
 	time: "Veuillez fournir une heure valide entre 00:00 et 23:59.",
 	phoneUS: "Veuillez fournir un numéro de téléphone valide.",
 	phoneUK: "Veuillez fournir un numéro de téléphone valide.",

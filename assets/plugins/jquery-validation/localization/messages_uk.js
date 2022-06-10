@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Будь ласка, введіть правильне значення.",
 	email: "Будь ласка, введіть коректну адресу електронної пошти.",
 	url: "Будь ласка, введіть коректний URL.",
-	date: "Будь ласка, введіть коректну дату.",
-	dateISO: "Будь ласка, введіть коректну дату у форматі ISO.",
+	fecha: "Будь ласка, введіть коректну дату.",
+	fechaISO: "Будь ласка, введіть коректну дату у форматі ISO.",
 	number: "Будь ласка, введіть число.",
 	digits: "Вводите потрібно лише цифри.",
 	creditcard: "Будь ласка, введіть правильний номер кредитної карти.",

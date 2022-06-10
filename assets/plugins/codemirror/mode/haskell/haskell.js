@@ -37,11 +37,11 @@ CodeMirror.defineMode("haskell", function(_config, modeConfig) {
     var ch = source.next();
     if (specialRE.test(ch)) {
       if (ch == '{' && source.eat('-')) {
-        var t = "comment";
+        var t = "comentario";
         if (source.eat('#')) {
           t = "meta";
         }
-        return switchState(source, setState, ncomment(t, 1));
+        return switchState(source, setState, ncomentario(t, 1));
       }
       return null;
     }
@@ -108,7 +108,7 @@ CodeMirror.defineMode("haskell", function(_config, modeConfig) {
         source.eatWhile(/-/);
         if (!source.eat(symbolRE)) {
           source.skipToEnd();
-          return "comment";
+          return "comentario";
         }
       }
       var t = "variable";
@@ -122,7 +122,7 @@ CodeMirror.defineMode("haskell", function(_config, modeConfig) {
     return "error";
   }
 
-  function ncomment(type, nest) {
+  function ncomentario(type, nest) {
     if (nest == 0) {
       return normal;
     }
@@ -141,7 +141,7 @@ CodeMirror.defineMode("haskell", function(_config, modeConfig) {
           }
         }
       }
-      setState(ncomment(type, currNest));
+      setState(ncomentario(type, currNest));
       return type;
     };
   }

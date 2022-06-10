@@ -31,7 +31,7 @@
   function scriptHint(editor, keywords, getToken, options) {
     // Find the token at the cursor
     var cur = editor.getCursor(), token = getToken(editor, cur);
-    if (/\b(?:string|comment)\b/.test(token.type)) return;
+    if (/\b(?:string|comentario)\b/.test(token.type)) return;
     var innerMode = CodeMirror.innerMode(editor.getMode(), token.state);
     if (innerMode.mode.helperType === "json") return;
     token.state = innerMode.state;

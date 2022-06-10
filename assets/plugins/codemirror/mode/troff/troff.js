@@ -45,7 +45,7 @@ CodeMirror.defineMode('troff', function() {
     if (sol && (ch === '.' || ch === '\'')) {
       if (stream.eat('\\') && stream.eat('\"')) {
         stream.skipToEnd();
-        return 'comment';
+        return 'comentario';
       }
     }
     if (sol && ch === '.') {

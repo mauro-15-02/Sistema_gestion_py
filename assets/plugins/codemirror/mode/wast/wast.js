@@ -18,19 +18,19 @@ CodeMirror.defineSimpleMode('wast', {
     {regex: /\b(anyfunc|[fi](32|64))\b/, token: "atom"},
     {regex: /\$([a-zA-Z0-9_`\+\-\*\/\\\^~=<>!\?@#$%&|:\.]+)/, token: "variable-2"},
     {regex: /"(?:[^"\\\x00-\x1f\x7f]|\\[nt\\'"]|\\[0-9a-fA-F][0-9a-fA-F])*"/, token: "string"},
-    {regex: /\(;.*?/, token: "comment", next: "comment"},
-    {regex: /;;.*$/, token: "comment"},
+    {regex: /\(;.*?/, token: "comentario", next: "comentario"},
+    {regex: /;;.*$/, token: "comentario"},
     {regex: /\(/, indent: true},
     {regex: /\)/, dedent: true},
   ],
 
-  comment: [
-    {regex: /.*?;\)/, token: "comment", next: "start"},
-    {regex: /.*/, token: "comment"},
+  comentario: [
+    {regex: /.*?;\)/, token: "comentario", next: "start"},
+    {regex: /.*/, token: "comentario"},
   ],
 
   meta: {
-    dontIndentStates: ['comment'],
+    dontIndentStates: ['comentario'],
   },
 });
 

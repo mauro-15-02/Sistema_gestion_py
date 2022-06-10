@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Lūdzu, pārbaudiet šo lauku.",
 	email: "Lūdzu, ievadiet derīgu e-pasta adresi.",
 	url: "Lūdzu, ievadiet derīgu URL adresi.",
-	date: "Lūdzu, ievadiet derīgu datumu.",
-	dateISO: "Lūdzu, ievadiet derīgu datumu (ISO).",
+	fecha: "Lūdzu, ievadiet derīgu datumu.",
+	fechaISO: "Lūdzu, ievadiet derīgu datumu (ISO).",
 	number: "Lūdzu, ievadiet derīgu numuru.",
 	digits: "Lūdzu, ievadiet tikai ciparus.",
 	creditcard: "Lūdzu, ievadiet derīgu kredītkartes numuru.",

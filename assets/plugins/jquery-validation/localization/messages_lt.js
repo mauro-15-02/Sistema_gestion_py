@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Prašau pataisyti šį lauką.",
 	email: "Prašau įvesti teisingą elektroninio pašto adresą.",
 	url: "Prašau įvesti teisingą URL.",
-	date: "Prašau įvesti teisingą datą.",
-	dateISO: "Prašau įvesti teisingą datą (ISO).",
+	fecha: "Prašau įvesti teisingą datą.",
+	fechaISO: "Prašau įvesti teisingą datą (ISO).",
 	number: "Prašau įvesti teisingą skaičių.",
 	digits: "Prašau naudoti tik skaitmenis.",
 	creditcard: "Prašau įvesti teisingą kreditinės kortelės numerį.",

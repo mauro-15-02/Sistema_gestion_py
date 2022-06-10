@@ -18,7 +18,7 @@
 .cm-s-paraiso-dark .CodeMirror-linenumber { color: #776e71; }
 .cm-s-paraiso-dark .CodeMirror-cursor { border-left: 1px solid #8d8687; }
 
-.cm-s-paraiso-dark span.cm-comment { color: #e96ba8; }
+.cm-s-paraiso-dark span.cm-comentario { color: #e96ba8; }
 .cm-s-paraiso-dark span.cm-atom { color: #815ba4; }
 .cm-s-paraiso-dark span.cm-number { color: #815ba4; }
 

@@ -34,10 +34,10 @@
       if (to.line >= minLine) to = Pos(minLine, 0);
       minLine = from.line;
       if (mode == null) {
-        if (cm.uncomment(from, to, options)) mode = "un";
+        if (cm.uncomentario(from, to, options)) mode = "un";
         else { cm.lineComment(from, to, options); mode = "line"; }
       } else if (mode == "un") {
-        cm.uncomment(from, to, options);
+        cm.uncomentario(from, to, options);
       } else {
         cm.lineComment(from, to, options);
       }
@@ -60,8 +60,8 @@
     var firstLine = self.getLine(from.line);
     if (firstLine == null || probablyInsideString(self, from, firstLine)) return;
 
-    var commentString = options.lineComment || mode.lineComment;
-    if (!commentString) {
+    var comentarioString = options.lineComment || mode.lineComment;
+    if (!comentarioString) {
       if (options.blockCommentStart || mode.blockCommentStart) {
         options.fullLines = true;
         self.blockComment(from, to, options);
@@ -71,7 +71,7 @@
 
     var end = Math.min(to.ch != 0 || to.line == from.line ? to.line + 1 : to.line, self.lastLine() + 1);
     var pad = options.padding == null ? " " : options.padding;
-    var blankLines = options.commentBlankLines || from.line == to.line;
+    var blankLines = options.comentarioBlankLines || from.line == to.line;
 
     self.operation(function() {
       if (options.indent) {
@@ -87,12 +87,12 @@
           var line = self.getLine(i), cut = baseString.length;
           if (!blankLines && !nonWS.test(line)) continue;
           if (line.slice(0, cut) != baseString) cut = firstNonWS(line);
-          self.replaceRange(baseString + commentString + pad, Pos(i, 0), Pos(i, cut));
+          self.replaceRange(baseString + comentarioString + pad, Pos(i, 0), Pos(i, cut));
         }
       } else {
         for (var i = from.line; i < end; ++i) {
           if (blankLines || nonWS.test(self.getLine(i)))
-            self.replaceRange(commentString + pad, Pos(i, 0));
+            self.replaceRange(comentarioString + pad, Pos(i, 0));
         }
       }
     });
@@ -108,7 +108,7 @@
         self.lineComment(from, to, options);
       return;
     }
-    if (/\bcomment\b/.test(self.getTokenTypeAt(Pos(from.line, 0)))) return
+    if (/\bcomentario\b/.test(self.getTokenTypeAt(Pos(from.line, 0)))) return
 
     var end = Math.min(to.line, self.lastLine());
     if (end != from.line && to.ch == 0 && nonWS.test(self.getLine(end))) --end;
@@ -134,12 +134,12 @@
     });
   });
 
-  CodeMirror.defineExtension("uncomment", function(from, to, options) {
+  CodeMirror.defineExtension("uncomentario", function(from, to, options) {
     if (!options) options = noOptions;
     var self = this, mode = getMode(self, from);
     var end = Math.min(to.ch != 0 || to.line == from.line ? to.line : to.line - 1, self.lastLine()), start = Math.min(from.line, end);
 
-    // Try finding line comments
+    // Try finding line comentarios
     var lineString = options.lineComment || mode.lineComment, lines = [];
     var pad = options.padding == null ? " " : options.padding, didSomething;
     lineComment: {
@@ -147,7 +147,7 @@
       for (var i = start; i <= end; ++i) {
         var line = self.getLine(i);
         var found = line.indexOf(lineString);
-        if (found > -1 && !/comment/.test(self.getTokenTypeAt(Pos(i, found + 1)))) found = -1;
+        if (found > -1 && !/comentario/.test(self.getTokenTypeAt(Pos(i, found + 1)))) found = -1;
         if (found == -1 && nonWS.test(line)) break lineComment;
         if (found > -1 && nonWS.test(line.slice(0, found))) break lineComment;
         lines.push(line);
@@ -165,7 +165,7 @@
       if (didSomething) return true;
     }
 
-    // Try block comments
+    // Try block comentarios
     var startString = options.blockCommentStart || mode.blockCommentStart;
     var endString = options.blockCommentEnd || mode.blockCommentEnd;
     if (!startString || !endString) return false;
@@ -176,12 +176,12 @@
     var close = endLine.indexOf(endString, end == start ? open + startString.length : 0);
     var insideStart = Pos(start, open + 1), insideEnd = Pos(end, close + 1)
     if (close == -1 ||
-        !/comment/.test(self.getTokenTypeAt(insideStart)) ||
-        !/comment/.test(self.getTokenTypeAt(insideEnd)) ||
+        !/comentario/.test(self.getTokenTypeAt(insideStart)) ||
+        !/comentario/.test(self.getTokenTypeAt(insideEnd)) ||
         self.getRange(insideStart, insideEnd, "\n").indexOf(endString) > -1)
       return false;
 
-    // Avoid killing block comments completely outside the selection.
+    // Avoid killing block comentarios completely outside the selection.
     // Positions of the last startString before the start of the selection, and the first endString after it.
     var lastStart = startLine.lastIndexOf(startString, from.ch);
     var firstEnd = lastStart == -1 ? -1 : startLine.slice(0, from.ch).indexOf(endString, lastStart + startString.length);

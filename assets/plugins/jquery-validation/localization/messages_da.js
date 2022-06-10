@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,7 +17,7 @@ $.extend( $.validator.messages, {
 	remote: "Ret venligst dette felt",
 	email: "Indtast en gyldig email-adresse.",
 	url: "Indtast en gyldig URL.",
-	date: "Indtast en gyldig dato.",
+	fecha: "Indtast en gyldig dato.",
 	number: "Indtast et tal.",
 	digits: "Indtast kun cifre.",
 	creditcard: "Indtast et gyldigt kreditkortnummer.",

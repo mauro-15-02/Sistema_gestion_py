@@ -20,8 +20,8 @@
       "parsed", "regroup", "reversed", "spaceless",
       "endspaceless", "ssi", "templatetag", "openblock",
       "closeblock", "openvariable", "closevariable",
-      "openbrace", "closebrace", "opencomment",
-      "closecomment", "widthratio", "url", "with", "endwith",
+      "openbrace", "closebrace", "opencomentario",
+      "closecomentario", "widthratio", "url", "with", "endwith",
       "get_current_language", "trans", "endtrans", "noop", "blocktrans",
       "endblocktrans", "get_available_languages",
       "get_current_language_bidi", "plural"],
@@ -37,14 +37,14 @@
       var ch = stream.peek();
 
       //Comment
-      if (state.incomment) {
+      if (state.incomentario) {
         if(!stream.skipTo("#}")) {
           stream.skipToEnd();
         } else {
           stream.eatWhile(/\#|}/);
-          state.incomment = false;
+          state.incomentario = false;
         }
-        return "comment";
+        return "comentario";
       //Tag
       } else if (state.intag) {
         //After operator
@@ -108,14 +108,14 @@
         return "variable";
       } else if (stream.eat("{")) {
         if (stream.eat("#")) {
-          state.incomment = true;
+          state.incomentario = true;
           if(!stream.skipTo("#}")) {
             stream.skipToEnd();
           } else {
             stream.eatWhile(/\#|}/);
-            state.incomment = false;
+            state.incomentario = false;
           }
-          return "comment";
+          return "comentario";
         //Open tag
         } else if (ch = stream.eat(/\{|%/)) {
           //Cache close tag

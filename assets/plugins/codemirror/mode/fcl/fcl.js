@@ -66,7 +66,7 @@ CodeMirror.defineMode("fcl", function(config) {
       }
       if (stream.eat("/")) {
         stream.skipToEnd();
-        return "comment";
+        return "comentario";
       }
     }
     if (isOperatorChar.test(ch)) {
@@ -95,7 +95,7 @@ CodeMirror.defineMode("fcl", function(config) {
       }
       maybeEnd = (ch == "*");
     }
-    return "comment";
+    return "comentario";
   }
 
   function Context(indented, column, type, align, prev) {
@@ -140,7 +140,7 @@ CodeMirror.defineMode("fcl", function(config) {
         if (stream.eatSpace()) return null;
 
         var style = (state.tokenize || tokenBase)(stream, state);
-        if (style == "comment") return style;
+        if (style == "comentario") return style;
         if (ctx.align == null) ctx.align = true;
 
         var cur = stream.current().toLowerCase();

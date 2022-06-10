@@ -72,7 +72,7 @@
       // Comments
       if (stream.peek() == "#") {
         stream.skipToEnd();
-        return "comment";
+        return "comentario";
       }
 
       // Variables and keywords
@@ -405,7 +405,7 @@
         var style = state.tokenize[state.tokenize.length - 1](stream, state);
         var token = stream.current();
 
-        if (style && style != "comment") {
+        if (style && style != "comentario") {
           state.lastToken = token;
           state.lastStyle = style;
         }

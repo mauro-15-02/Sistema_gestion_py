@@ -4,11 +4,11 @@
 
 /**
  * @summary     KeyTable
- * @description Spreadsheet like keyboard navigation for DataTables
+ * @descripcion Spreadsheet like keyboard navigation for DataTables
  * @version     2.5.3
  * @file        dataTables.keyTable.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contact     www.sprymedia.co.uk/contact
+ * @contacto     www.sprymedia.co.uk/contacto
  * @copyright   Copyright 2009-2020 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
@@ -223,8 +223,8 @@ $.extend( KeyTable.prototype, {
 					return;
 				}
 
-				// Or an Editor date input
-				if ( $(e.target).parents('div.editor-datetime').length ) {
+				// Or an Editor fecha input
+				if ( $(e.target).parents('div.editor-fechatime').length ) {
 					return;
 				}
 
@@ -386,7 +386,7 @@ $.extend( KeyTable.prototype, {
 	/**
 	 * Blur the control
 	 *
-	 * @param {boolean} [noEvents=false] Don't trigger updates / events (for destroying)
+	 * @param {boolean} [noEvents=false] Don't trigger upfechas / events (for destroying)
 	 * @private
 	 */
 	_blur: function (noEvents)
@@ -401,7 +401,7 @@ $.extend( KeyTable.prototype, {
 		this.s.lastFocus = null;
 
 		if ( ! noEvents ) {
-			this._updateFixedColumns(cell.index().column);
+			this._upfechaFixedColumns(cell.index().column);
 
 			this._emitEvent( 'key-blur', [ this.s.dt, cell ] );
 		}
@@ -733,7 +733,7 @@ $.extend( KeyTable.prototype, {
 		var node = $( cell.node() );
 		node.addClass( this.c.className );
 
-		this._updateFixedColumns(column);
+		this._upfechaFixedColumns(column);
 
 		// Shift viewpoint and page to make cell visible
 		if ( shift === undefined || shift === true ) {
@@ -1085,12 +1085,12 @@ $.extend( KeyTable.prototype, {
 	},
 
 	/**
-	 * Update fixed columns if they are enabled and if the cell we are
+	 * Upfecha fixed columns if they are enabled and if the cell we are
 	 * focusing is inside a fixed column
 	 * @param  {integer} column Index of the column being changed
 	 * @private
 	 */
-	_updateFixedColumns: function( column )
+	_upfechaFixedColumns: function( column )
 	{
 		var dt = this.s.dt;
 		var settings = dt.settings()[0];
@@ -1100,7 +1100,7 @@ $.extend( KeyTable.prototype, {
 			var rightCols = settings.aoColumns.length - settings._oFixedColumns.s.iRightColumns;
 
 			if (column < leftCols || column >= rightCols) {
-				dt.fixedColumns().update();
+				dt.fixedColumns().upfecha();
 			}
 		}
 	}

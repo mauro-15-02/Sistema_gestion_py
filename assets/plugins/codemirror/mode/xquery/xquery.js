@@ -33,7 +33,7 @@ CodeMirror.defineMode("xquery", function() {
     // {type: basic[i], style: "keyword"} e.g. 'after' --> {type: "after", style: "keyword"}
     var basic = ['after', 'all', 'allowing', 'ancestor', 'ancestor-or-self', 'any', 'array', 'as',
     'ascending', 'at', 'attribute', 'base-uri', 'before', 'boundary-space', 'by', 'case', 'cast',
-    'castable', 'catch', 'child', 'collation', 'comment', 'construction', 'contains', 'content',
+    'castable', 'catch', 'child', 'collation', 'comentario', 'construction', 'contains', 'content',
     'context', 'copy', 'copy-namespaces', 'count', 'decimal-format', 'declare', 'default', 'delete',
     'descendant', 'descendant-or-self', 'descending', 'diacritics', 'different', 'distance',
     'document', 'document-node', 'element', 'else', 'empty', 'empty-sequence', 'encoding', 'end',
@@ -49,14 +49,14 @@ CodeMirror.defineMode("xquery", function() {
     'self', 'sensitive', 'sentence', 'sentences', 'sequence', 'skip', 'sliding', 'some', 'stable',
     'start', 'stemming', 'stop', 'strict', 'strip', 'switch', 'text', 'then', 'thesaurus', 'times',
     'to', 'transform', 'treat', 'try', 'tumbling', 'type', 'typeswitch', 'union', 'unordered',
-    'update', 'updating', 'uppercase', 'using', 'validate', 'value', 'variable', 'version',
+    'upfecha', 'updating', 'uppercase', 'using', 'valifecha', 'value', 'variable', 'version',
     'weight', 'when', 'where', 'wildcards', 'window', 'with', 'without', 'word', 'words', 'xquery'];
     for(var i=0, l=basic.length; i < l; i++) { kwObj[basic[i]] = kw(basic[i]);};
 
     // a list of types. For each add a property to kwObj with the value of
     // {type: "atom", style: "atom"}
     var types = ['xs:anyAtomicType', 'xs:anySimpleType', 'xs:anyType', 'xs:anyURI',
-    'xs:base64Binary', 'xs:boolean', 'xs:byte', 'xs:date', 'xs:dateTime', 'xs:dateTimeStamp',
+    'xs:base64Binary', 'xs:boolean', 'xs:byte', 'xs:fecha', 'xs:fechaTime', 'xs:fechaTimeStamp',
     'xs:dayTimeDuration', 'xs:decimal', 'xs:double', 'xs:duration', 'xs:ENTITIES', 'xs:ENTITY',
     'xs:float', 'xs:gDay', 'xs:gMonth', 'xs:gMonthDay', 'xs:gYear', 'xs:gYearMonth', 'xs:hexBinary',
     'xs:ID', 'xs:IDREF', 'xs:IDREFS', 'xs:int', 'xs:integer', 'xs:item', 'xs:java', 'xs:language',
@@ -137,9 +137,9 @@ CodeMirror.defineMode("xquery", function() {
       stream.match(/^\d*(?:\.\d*)?(?:E[+\-]?\d+)?/);
       return "atom";
     }
-    // comment start
+    // comentario start
     else if (ch === "(" && stream.eat(":")) {
-      pushStateStack(state, { type: "comment"});
+      pushStateStack(state, { type: "comentario"});
       return chain(stream, state, tokenComment);
     }
     // quoted string
@@ -217,7 +217,7 @@ CodeMirror.defineMode("xquery", function() {
     }
   }
 
-  // handle comments, including nested
+  // handle comentarios, including nested
   function tokenComment(stream, state) {
     var maybeEnd = false, maybeNested = false, nestedCount = 0, ch;
     while (ch = stream.next()) {
@@ -236,7 +236,7 @@ CodeMirror.defineMode("xquery", function() {
       maybeNested = (ch == "(");
     }
 
-    return "comment";
+    return "comentario";
   }
 
   // tokenizer for string literals
@@ -355,13 +355,13 @@ CodeMirror.defineMode("xquery", function() {
     return "attribute";
   }
 
-  // handle comments, including nested
+  // handle comentarios, including nested
   function tokenXMLComment(stream, state) {
     var ch;
     while (ch = stream.next()) {
       if (ch == "-" && stream.match("->", true)) {
         state.tokenize = tokenBase;
-        return "comment";
+        return "comentario";
       }
     }
   }
@@ -373,7 +373,7 @@ CodeMirror.defineMode("xquery", function() {
     while (ch = stream.next()) {
       if (ch == "]" && stream.match("]", true)) {
         state.tokenize = tokenBase;
-        return "comment";
+        return "comentario";
       }
     }
   }
@@ -384,7 +384,7 @@ CodeMirror.defineMode("xquery", function() {
     while (ch = stream.next()) {
       if (ch == "?" && stream.match(">", true)) {
         state.tokenize = tokenBase;
-        return "comment meta";
+        return "comentario meta";
       }
     }
   }

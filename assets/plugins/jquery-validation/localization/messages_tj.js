@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Илтимос, маълумоти саҳеҳ ворид кунед.",
 	email: "Илтимос, почтаи электронии саҳеҳ ворид кунед.",
 	url: "Илтимос, URL адреси саҳеҳ ворид кунед.",
-	date: "Илтимос, таърихи саҳеҳ ворид кунед.",
-	dateISO: "Илтимос, таърихи саҳеҳи (ISO)ӣ ворид кунед.",
+	fecha: "Илтимос, таърихи саҳеҳ ворид кунед.",
+	fechaISO: "Илтимос, таърихи саҳеҳи (ISO)ӣ ворид кунед.",
 	number: "Илтимос, рақамҳои саҳеҳ ворид кунед.",
 	digits: "Илтимос, танҳо рақам ворид кунед.",
 	creditcard: "Илтимос, кредит карди саҳеҳ ворид кунед.",

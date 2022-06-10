@@ -26,7 +26,7 @@
                 searchButtonTooltip: "ძებნა",
                 clearFilterButtonTooltip: "ფილტრის გასუფთავება",
                 insertButtonTooltip: "დამატება",
-                updateButtonTooltip: "შენახვა",
+                upfechaButtonTooltip: "შენახვა",
                 cancelEditButtonTooltip: "გაუქმება"
             }
         },

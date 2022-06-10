@@ -51,7 +51,7 @@
     var defaultController = {
         loadData: $.noop,
         insertItem: $.noop,
-        updateItem: $.noop,
+        upfechaItem: $.noop,
         deleteItem: $.noop
     };
 
@@ -78,7 +78,7 @@
     Grid.prototype = {
         width: "auto",
         height: "auto",
-        updateOnResize: true,
+        upfechaOnResize: true,
 
         rowClass: $.noop,
         rowRenderer: null,
@@ -174,7 +174,7 @@
         onItemInserted: $.noop,
         onItemEditing: $.noop,
         onItemUpdating: $.noop,
-        onItemUpdated: $.noop,
+        onItemUpfechad: $.noop,
         onItemInvalid: $.noop,
         onDataLoading: $.noop,
         onDataLoaded: $.noop,
@@ -250,7 +250,7 @@
         },
 
         _attachWindowResizeCallback: function() {
-            if(this.updateOnResize) {
+            if(this.upfechaOnResize) {
                 $(window).on("resize", $.proxy(this._refreshSize, this));
             }
         },
@@ -292,10 +292,10 @@
             this._renderGrid();
         },
 
-        _handleOptionChange: function(name, value) {
-            this[name] = value;
+        _handleOptionChange: function(nombre, value) {
+            this[nombre] = value;
 
-            switch(name) {
+            switch(nombre) {
                 case "width":
                 case "height":
                     this._refreshSize();
@@ -355,7 +355,7 @@
                 case "editRowClass":
                     this.cancelEdit();
                     break;
-                case "updateOnResize":
+                case "upfechaOnResize":
                     this._detachWindowResizeCallback();
                     this._attachWindowResizeCallback();
                     break;
@@ -677,7 +677,7 @@
         },
 
         _getItemFieldValue: function(item, field) {
-            var props = field.name.split('.');
+            var props = field.nombre.split('.');
             var result = item[props.shift()];
 
             while(result && props.length) {
@@ -688,7 +688,7 @@
         },
 
         _setItemFieldValue: function(item, field, value) {
-            var props = field.name.split('.');
+            var props = field.nombre.split('.');
             var current = item;
             var prop = props[0];
 
@@ -741,7 +741,7 @@
 
             if(typeof field === "string") {
                 return $.grep(this.fields, function(f) {
-                    return f.name === field;
+                    return f.nombre === field;
                 })[0];
             }
 
@@ -769,7 +769,7 @@
 
             if(sortField) {
                 this.data.sort(function(item1, item2) {
-                    return sortFactor * sortField.sortingFunc(item1[sortField.name], item2[sortField.name]);
+                    return sortFactor * sortField.sortingFunc(item1[sortField.nombre], item2[sortField.nombre]);
                 });
             }
         },
@@ -1094,7 +1094,7 @@
         _sortingParams: function() {
             if(this.sorting && this._sortField) {
                 return {
-                    sortField: this._sortField.name,
+                    sortField: this._sortField.nombre,
                     sortOrder: this._sortOrder
                 };
             }
@@ -1117,7 +1117,7 @@
         },
 
         insertItem: function(item) {
-            var insertingItem = item || this._getValidatedInsertItem();
+            var insertingItem = item || this._getValifechadInsertItem();
 
             if(!insertingItem)
                 return $.Deferred().reject().promise();
@@ -1136,9 +1136,9 @@
             });
         },
 
-        _getValidatedInsertItem: function() {
+        _getValifechadInsertItem: function() {
             var item = this._getInsertItem();
-            return this._validateItem(item, this._insertRow) ? item : null;
+            return this._valifechaItem(item, this._insertRow) ? item : null;
         },
 
         _getInsertItem: function() {
@@ -1151,7 +1151,7 @@
             return result;
         },
 
-        _validateItem: function(item, $row) {
+        _valifechaItem: function(item, $row) {
             var validationErrors = [];
 
             var args = {
@@ -1161,16 +1161,16 @@
             };
 
             this._eachField(function(field) {
-                if(!field.validate ||
+                if(!field.valifecha ||
                    ($row === this._insertRow && !field.inserting) ||
                    ($row === this._getEditRow() && !field.editing))
                     return;
 
                 var fieldValue = this._getItemFieldValue(item, field);
 
-                var errors = this._validation.validate($.extend({
+                var errors = this._validation.valifecha($.extend({
                     value: fieldValue,
-                    rules: field.validate
+                    rules: field.valifecha
                 }, args));
 
                 this._setCellValidity($row.children().eq(this._visibleFieldIndex(field)), errors);
@@ -1270,46 +1270,46 @@
             return $result;
         },
 
-        updateItem: function(item, editedItem) {
+        upfechaItem: function(item, editedItem) {
             if(arguments.length === 1) {
                 editedItem = item;
             }
 
             var $row = item ? this.rowByItem(item) : this._editingRow;
-            editedItem = editedItem || this._getValidatedEditedItem();
+            editedItem = editedItem || this._getValifechadEditedItem();
 
             if(!editedItem)
                 return;
 
-            return this._updateRow($row, editedItem);
+            return this._upfechaRow($row, editedItem);
         },
 
-        _getValidatedEditedItem: function() {
+        _getValifechadEditedItem: function() {
             var item = this._getEditedItem();
-            return this._validateItem(item, this._getEditRow()) ? item : null;
+            return this._valifechaItem(item, this._getEditRow()) ? item : null;
         },
 
-        _updateRow: function($updatingRow, editedItem) {
+        _upfechaRow: function($updatingRow, editedItem) {
             var updatingItem = $updatingRow.data(JSGRID_ROW_DATA_KEY),
                 updatingItemIndex = this._itemIndex(updatingItem),
-                updatedItem = $.extend(true, {}, updatingItem, editedItem);
+                upfechadItem = $.extend(true, {}, updatingItem, editedItem);
 
             var args = this._callEventHandler(this.onItemUpdating, {
                 row: $updatingRow,
-                item: updatedItem,
+                item: upfechadItem,
                 itemIndex: updatingItemIndex,
                 previousItem: updatingItem
             });
 
-            return this._controllerCall("updateItem", updatedItem, args.cancel, function(loadedUpdatedItem) {
+            return this._controllerCall("upfechaItem", upfechadItem, args.cancel, function(loadedUpfechadItem) {
                 var previousItem = $.extend(true, {}, updatingItem);
-                updatedItem = loadedUpdatedItem || $.extend(true, updatingItem, editedItem);
+                upfechadItem = loadedUpfechadItem || $.extend(true, updatingItem, editedItem);
 
-                var $updatedRow = this._finishUpdate($updatingRow, updatedItem, updatingItemIndex);
+                var $upfechadRow = this._finishUpfecha($updatingRow, upfechadItem, updatingItemIndex);
 
-                this._callEventHandler(this.onItemUpdated, {
-                    row: $updatedRow,
-                    item: updatedItem,
+                this._callEventHandler(this.onItemUpfechad, {
+                    row: $upfechadRow,
+                    item: upfechadItem,
                     itemIndex: updatingItemIndex,
                     previousItem: previousItem
                 });
@@ -1324,13 +1324,13 @@
             return $.inArray(item, this.data);
         },
 
-        _finishUpdate: function($updatingRow, updatedItem, updatedItemIndex) {
+        _finishUpfecha: function($updatingRow, upfechadItem, upfechadItemIndex) {
             this.cancelEdit();
-            this.data[updatedItemIndex] = updatedItem;
+            this.data[upfechadItemIndex] = upfechadItem;
 
-            var $updatedRow = this._createRow(updatedItem, updatedItemIndex);
-            $updatingRow.replaceWith($updatedRow);
-            return $updatedRow;
+            var $upfechadRow = this._createRow(upfechadItem, upfechadItemIndex);
+            $updatingRow.replaceWith($upfechadRow);
+            return $upfechadRow;
         },
 
         _getEditedItem: function() {
@@ -1702,7 +1702,7 @@
             return n1 - n2;
         },
 
-        date: function(dt1, dt2) {
+        fecha: function(dt1, dt2) {
             return dt1 - dt2;
         },
 
@@ -1727,7 +1727,7 @@
             $.extend(true, this, config);
         },
 
-        validate: function(args) {
+        valifecha: function(args) {
             var errors = [];
 
             $.each(this._normalizeRules(args.rules), function(_, rule) {
@@ -1765,15 +1765,15 @@
             if($.isFunction(rule.validator))
                 return rule;
 
-            return this._applyNamedValidator(rule, rule.validator);
+            return this._applynombredValidator(rule, rule.validator);
         },
 
-        _applyNamedValidator: function(rule, validatorName) {
+        _applynombredValidator: function(rule, validatornombre) {
             delete rule.validator;
 
-            var validator = validators[validatorName];
+            var validator = validators[validatornombre];
             if(!validator)
-                throw Error("unknown validator \"" + validatorName + "\"");
+                throw Error("unknown validator \"" + validatornombre + "\"");
 
             if($.isFunction(validator)) {
                 validator = { validator: validator };
@@ -1859,7 +1859,7 @@
     }
 
     Field.prototype = {
-        name: "",
+        nombre: "",
         title: null,
         css: "",
         align: "",
@@ -1870,10 +1870,10 @@
         inserting: true,
         editing: true,
         sorting: true,
-        sorter: "string", // name of SortStrategy or function to compare elements
+        sorter: "string", // nombre of SortStrategy or function to compare elements
 
         headerTemplate: function() {
-            return (this.title === undefined || this.title === null) ? this.name : this.title;
+            return (this.title === undefined || this.title === null) ? this.nombre : this.title;
         },
 
         itemTemplate: function(value, item) {
@@ -1916,7 +1916,7 @@
                 return jsGrid.sortStrategies[sorter];
             }
 
-            throw Error("wrong sorter for the field \"" + this.name + "\"!");
+            throw Error("wrong sorter for the field \"" + this.nombre + "\"!");
         }
     };
 
@@ -2320,7 +2320,7 @@
         searchButtonClass: "jsgrid-search-button",
         clearFilterButtonClass: "jsgrid-clear-filter-button",
         insertButtonClass: "jsgrid-insert-button",
-        updateButtonClass: "jsgrid-update-button",
+        upfechaButtonClass: "jsgrid-upfecha-button",
         cancelEditButtonClass: "jsgrid-cancel-edit-button",
 
         searchModeButtonTooltip: "Switch to searching",
@@ -2330,7 +2330,7 @@
         searchButtonTooltip: "Search",
         clearFilterButtonTooltip: "Clear filter",
         insertButtonTooltip: "Insert",
-        updateButtonTooltip: "Update",
+        upfechaButtonTooltip: "Upfecha",
         cancelEditButtonTooltip: "Cancel edit",
 
         editButton: true,
@@ -2393,7 +2393,7 @@
         },
 
         editTemplate: function() {
-            return this._createUpdateButton().add(this._createCancelEditButton());
+            return this._createUpfechaButton().add(this._createCancelEditButton());
         },
 
         _createFilterSwitchButton: function() {
@@ -2407,17 +2407,17 @@
         _createOnOffSwitchButton: function(option, cssClass, isOnInitially) {
             var isOn = isOnInitially;
 
-            var updateButtonState = $.proxy(function() {
+            var upfechaButtonState = $.proxy(function() {
                 $button.toggleClass(this.modeOnButtonClass, isOn);
             }, this);
 
             var $button = this._createGridButton(this.modeButtonClass + " " + cssClass, "", function(grid) {
                 isOn = !isOn;
                 grid.option(option, isOn);
-                updateButtonState();
+                upfechaButtonState();
             });
 
-            updateButtonState();
+            upfechaButtonState();
 
             return $button;
         },
@@ -2425,7 +2425,7 @@
         _createModeSwitchButton: function() {
             var isInserting = false;
 
-            var updateButtonState = $.proxy(function() {
+            var upfechaButtonState = $.proxy(function() {
                 $button.attr("title", isInserting ? this.searchModeButtonTooltip : this.insertModeButtonTooltip)
                     .toggleClass(this.insertModeButtonClass, !isInserting)
                     .toggleClass(this.searchModeButtonClass, isInserting);
@@ -2435,10 +2435,10 @@
                 isInserting = !isInserting;
                 grid.option("inserting", isInserting);
                 grid.option("filtering", !isInserting);
-                updateButtonState();
+                upfechaButtonState();
             });
 
-            updateButtonState();
+            upfechaButtonState();
 
             return $button;
         },
@@ -2477,9 +2477,9 @@
             });
         },
 
-        _createUpdateButton: function() {
-            return this._createGridButton(this.updateButtonClass, this.updateButtonTooltip, function(grid, e) {
-                grid.updateItem();
+        _createUpfechaButton: function() {
+            return this._createGridButton(this.upfechaButtonClass, this.upfechaButtonTooltip, function(grid, e) {
+                grid.upfechaItem();
                 e.stopPropagation();
             });
         },

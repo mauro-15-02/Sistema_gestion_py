@@ -3,7 +3,7 @@
 
 /***
     |''Name''|tiddlywiki.js|
-    |''Description''|Enables TiddlyWikiy syntax highlighting using CodeMirror|
+    |''descripcion''|Enables TiddlyWikiy syntax highlighting using CodeMirror|
     |''Author''|PMario|
     |''Version''|0.1.7|
     |''Status''|''stable''|
@@ -77,9 +77,9 @@ CodeMirror.defineMode("tiddlywiki", function () {
       if (stream.match(reBlockQuote))
         return 'quote';
       if (stream.match(reWikiCommentStart) || stream.match(reWikiCommentStop))
-        return 'comment';
+        return 'comentario';
       if (stream.match(reJsCodeStart) || stream.match(reJsCodeStop) || stream.match(reXmlCodeStart) || stream.match(reXmlCodeStop))
-        return 'comment';
+        return 'comentario';
       if (stream.match(reHR))
         return 'hr';
     }
@@ -92,19 +92,19 @@ CodeMirror.defineMode("tiddlywiki", function () {
       }
       if (ch == "*") { // tw list
         stream.eatWhile('*');
-        return "comment";
+        return "comentario";
       }
       if (ch == "#") { // tw numbered list
         stream.eatWhile('#');
-        return "comment";
+        return "comentario";
       }
       if (ch == ";") { // definition list, term
         stream.eatWhile(';');
-        return "comment";
+        return "comentario";
       }
-      if (ch == ":") { // definition list, description
+      if (ch == ":") { // definition list, descripcion
         stream.eatWhile(':');
-        return "comment";
+        return "comentario";
       }
       if (ch == ">") { // single line quote
         stream.eatWhile(">");
@@ -143,7 +143,7 @@ CodeMirror.defineMode("tiddlywiki", function () {
       return "number";
     }
 
-    if (ch == "/") { // tw invisible comment
+    if (ch == "/") { // tw invisible comentario
       if (stream.eat("%")) {
         return chain(stream, state, twTokenComment);
       } else if (stream.eat("/")) { //
@@ -175,7 +175,7 @@ CodeMirror.defineMode("tiddlywiki", function () {
     return textwords.propertyIsEnumerable(stream.current()) ? "keyword" : null
   }
 
-  // tw invisible comment
+  // tw invisible comentario
   function twTokenComment(stream, state) {
     var maybeEnd = false, ch;
     while (ch = stream.next()) {
@@ -185,7 +185,7 @@ CodeMirror.defineMode("tiddlywiki", function () {
       }
       maybeEnd = (ch == "%");
     }
-    return "comment";
+    return "comentario";
   }
 
   // tw strong / bold
@@ -207,21 +207,21 @@ CodeMirror.defineMode("tiddlywiki", function () {
     var sb = state.block;
 
     if (sb && stream.current()) {
-      return "comment";
+      return "comentario";
     }
 
     if (!sb && stream.match(reUntilCodeStop)) {
       state.tokenize = tokenBase;
-      return "comment";
+      return "comentario";
     }
 
     if (sb && stream.sol() && stream.match(reCodeBlockStop)) {
       state.tokenize = tokenBase;
-      return "comment";
+      return "comentario";
     }
 
     stream.next();
-    return "comment";
+    return "comentario";
   }
 
   // tw em / italic

@@ -43,7 +43,7 @@ CodeMirror.defineMode("ruby", function(config) {
   function tokenBase(stream, state) {
     if (stream.sol() && stream.match("=begin") && stream.eol()) {
       state.tokenize.push(readBlockComment);
-      return "comment";
+      return "comentario";
     }
     if (stream.eatSpace()) return null;
     var ch = stream.next(), m;
@@ -66,7 +66,7 @@ CodeMirror.defineMode("ruby", function(config) {
       return chain(readQuoted(delim, style, embed, true), stream, state);
     } else if (ch == "#") {
       stream.skipToEnd();
-      return "comment";
+      return "comentario";
     } else if (ch == "<" && (m = stream.match(/^<([-~])[\`\"\']?([a-zA-Z_?]\w*)[\`\"\']?(?:;|$)/))) {
       return chain(readHereDoc(m[2], m[1]), stream, state);
     } else if (ch == "0") {
@@ -232,7 +232,7 @@ CodeMirror.defineMode("ruby", function(config) {
     if (stream.sol() && stream.match("=end") && stream.eol())
       state.tokenize.pop();
     stream.skipToEnd();
-    return "comment";
+    return "comentario";
   }
 
   return {
@@ -267,7 +267,7 @@ CodeMirror.defineMode("ruby", function(config) {
             kwtype = "indent";
         }
       }
-      if (curPunc || (style && style != "comment")) state.lastTok = thisTok;
+      if (curPunc || (style && style != "comentario")) state.lastTok = thisTok;
       if (curPunc == "|") state.varList = !state.varList;
 
       if (kwtype == "indent" || /[\(\[\{]/.test(curPunc))

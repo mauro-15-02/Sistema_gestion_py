@@ -14,8 +14,8 @@
   "use strict";
 
   CodeMirror.defineMode("tornado:inner", function() {
-    var keywords = ["and","as","assert","autoescape","block","break","class","comment","context",
-                    "continue","datetime","def","del","elif","else","end","escape","except",
+    var keywords = ["and","as","assert","autoescape","block","break","class","comentario","context",
+                    "continue","fechatime","def","del","elif","else","end","escape","except",
                     "exec","extends","false","finally","for","from","global","if","import","in",
                     "include","is","json_encode","lambda","length","linkify","load","module",
                     "none","not","or","pass","print","put","raise","raw","return","self","set",
@@ -45,7 +45,7 @@
         if (stream.match(keywords)) {
           return "keyword";
         }
-        return close == "#" ? "comment" : "string";
+        return close == "#" ? "comentario" : "string";
       };
     }
     return {

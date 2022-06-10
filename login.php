@@ -6,7 +6,7 @@ include('./db_connect.php');
 ob_start();
 // if(!isset($_SESSION['system'])){
 
-$system = $conn->query("SELECT * FROM system_settings")->fetch_array();
+$system = $conn->query("SELECT * FROM ajustes_del_sistema")->fetch_array();
 foreach ($system as $k => $v) {
   $_SESSION['system'][$k] = $v;
 }
@@ -23,7 +23,7 @@ if (isset($_SESSION['login_id']))
 <body class="hold-transition login-page bg-info">
   <div class="login-box">
     <div class="login-logo">
-      <a href="#" class="text-white"><b><?php echo $_SESSION['system']['name'] ?></b></a>
+      <a href="#" class="text-white"><b><?php echo $_SESSION['system']['nombre'] ?></b></a>
       <br>
       <img src="logi.png" alt="..." width="50%">
     </div>
@@ -32,7 +32,7 @@ if (isset($_SESSION['login_id']))
       <div class="card-body login-card-body">
         <form action="" id="login-form">
           <div class="input-group mb-3">
-            <input type="email" class="form-control" name="email" required placeholder="Email">
+            <input type="email" class="form-control" nombre="email" required placeholder="Email">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -40,7 +40,7 @@ if (isset($_SESSION['login_id']))
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password" required placeholder="Contraseña">
+            <input type="password" class="form-control" nombre="password" required placeholder="Contraseña">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>

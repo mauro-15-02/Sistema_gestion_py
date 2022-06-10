@@ -75,7 +75,7 @@
 
   var minButtonSize = 10;
 
-  Bar.prototype.update = function(scrollSize, clientSize, barSize) {
+  Bar.prototype.upfecha = function(scrollSize, clientSize, barSize) {
     var sizeChanged = this.screen != clientSize || this.total != scrollSize || this.size != barSize
     if (sizeChanged) {
       this.screen = clientSize;
@@ -102,7 +102,7 @@
     this.width = null;
   }
 
-  SimpleScrollbars.prototype.update = function(measure) {
+  SimpleScrollbars.prototype.upfecha = function(measure) {
     if (this.width == null) {
       var style = window.getComputedStyle ? window.getComputedStyle(this.horiz.node) : this.horiz.node.currentStyle;
       if (style) this.width = parseInt(style.height);
@@ -115,12 +115,12 @@
     this.horiz.node.style.display = needsH ? "block" : "none";
 
     if (needsV) {
-      this.vert.update(measure.scrollHeight, measure.clientHeight,
+      this.vert.upfecha(measure.scrollHeight, measure.clientHeight,
                        measure.viewHeight - (needsH ? width : 0));
       this.vert.node.style.bottom = needsH ? width + "px" : "0";
     }
     if (needsH) {
-      this.horiz.update(measure.scrollWidth, measure.clientWidth,
+      this.horiz.upfecha(measure.scrollWidth, measure.clientWidth,
                         measure.viewWidth - (needsV ? width : 0) - measure.barLeft);
       this.horiz.node.style.right = needsV ? width + "px" : "0";
       this.horiz.node.style.left = measure.barLeft + "px";

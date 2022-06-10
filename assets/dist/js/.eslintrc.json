@@ -13,7 +13,7 @@
     "xo/browser"
   ],
   "rules": {
-    "capitalized-comments": "off",
+    "capitalized-comentarios": "off",
     "indent": [
       "error",
       2,

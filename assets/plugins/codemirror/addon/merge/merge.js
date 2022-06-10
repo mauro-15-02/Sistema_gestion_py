@@ -58,7 +58,7 @@
       this.showDifferences = options.showDifferences !== false;
     },
     registerEvents: function(otherDv) {
-      this.forceUpdate = registerUpdate(this);
+      this.forceUpfecha = registerUpfecha(this);
       setScrollLock(this, true, false);
       registerScroll(this, otherDv);
     },
@@ -66,7 +66,7 @@
       val = val !== false;
       if (val != this.showDifferences) {
         this.showDifferences = val;
-        this.forceUpdate("full");
+        this.forceUpfecha("full");
       }
     }
   };
@@ -76,16 +76,16 @@
       dv.diff = getDiff(dv.orig.getValue(), dv.edit.getValue(), dv.mv.options.ignoreWhitespace);
       dv.chunks = getChunks(dv.diff);
       dv.diffOutOfDate = false;
-      CodeMirror.signal(dv.edit, "updateDiff", dv.diff);
+      CodeMirror.signal(dv.edit, "upfechaDiff", dv.diff);
     }
   }
 
   var updating = false;
-  function registerUpdate(dv) {
+  function registerUpfecha(dv) {
     var edit = {from: 0, to: 0, marked: []};
     var orig = {from: 0, to: 0, marked: []};
     var debounceChange, updatingFast = false;
-    function update(mode) {
+    function upfecha(mode) {
       updating = true;
       updatingFast = false;
       if (mode == "full") {
@@ -97,8 +97,8 @@
       }
       ensureDiff(dv);
       if (dv.showDifferences) {
-        updateMarks(dv.edit, dv.diff, edit, DIFF_INSERT, dv.classes);
-        updateMarks(dv.orig, dv.diff, orig, DIFF_DELETE, dv.classes);
+        upfechaMarks(dv.edit, dv.diff, edit, DIFF_INSERT, dv.classes);
+        upfechaMarks(dv.orig, dv.diff, orig, DIFF_DELETE, dv.classes);
       }
 
       if (dv.mv.options.connect == "align")
@@ -117,20 +117,20 @@
       if (updating || updatingFast) return;
       clearTimeout(debounceChange);
       if (fast === true) updatingFast = true;
-      debounceChange = setTimeout(update, fast === true ? 20 : 250);
+      debounceChange = setTimeout(upfecha, fast === true ? 20 : 250);
     }
     function change(_cm, change) {
       if (!dv.diffOutOfDate) {
         dv.diffOutOfDate = true;
         edit.from = edit.to = orig.from = orig.to = 0;
       }
-      // Update faster when a line was added/removed
+      // Upfecha faster when a line was added/removed
       setDealign(change.text.length - 1 != change.to.line - change.from.line);
     }
     function swapDoc() {
       dv.diffOutOfDate = true;
       dv.dealigned = true;
-      update("full");
+      upfecha("full");
     }
     dv.edit.on("change", change);
     dv.orig.on("change", change);
@@ -142,8 +142,8 @@
     }
     dv.edit.on("viewportChange", function() { set(false); });
     dv.orig.on("viewportChange", function() { set(false); });
-    update();
-    return update;
+    upfecha();
+    return upfecha;
   }
 
   function registerScroll(dv, otherDv) {
@@ -157,7 +157,7 @@
   }
 
   function syncScroll(dv, toOrig) {
-    // Change handler will do a refresh after a timeout when diff is out of date
+    // Change handler will do a refresh after a timeout when diff is out of fecha
     if (dv.diffOutOfDate) {
       if (dv.lockScroll && dv.needsScrollSync == null) dv.needsScrollSync = toOrig
       return false
@@ -237,8 +237,8 @@
     arr.length = 0;
   }
 
-  // FIXME maybe add a margin around viewport to prevent too many updates
-  function updateMarks(editor, diff, state, type, classes) {
+  // FIXME maybe add a margin around viewport to prevent too many upfechas
+  function upfechaMarks(editor, diff, state, type, classes) {
     var vp = editor.getViewport();
     editor.operation(function() {
       if (state.from == state.to || vp.from - state.to > 20 || state.from - vp.to > 20) {

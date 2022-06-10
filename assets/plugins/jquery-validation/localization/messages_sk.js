@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -19,7 +19,7 @@ $.extend( $.validator.messages, {
 	rangelength: $.validator.format( "Minimálne {0} a maximálne {1} znakov." ),
 	email: "E-mailová adresa musí byť platná.",
 	url: "URL musí byť platná.",
-	date: "Musí byť dátum.",
+	fecha: "Musí byť dátum.",
 	number: "Musí byť číslo.",
 	digits: "Môže obsahovať iba číslice.",
 	equalTo: "Dve hodnoty sa musia rovnať.",

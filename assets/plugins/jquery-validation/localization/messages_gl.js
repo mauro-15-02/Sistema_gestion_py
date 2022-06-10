@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -18,8 +18,8 @@
 		remote: "Por favor, cubre este campo.",
 		email: "Por favor, escribe unha dirección de correo válida.",
 		url: "Por favor, escribe unha URL válida.",
-		date: "Por favor, escribe unha data válida.",
-		dateISO: "Por favor, escribe unha data (ISO) válida.",
+		fecha: "Por favor, escribe unha data válida.",
+		fechaISO: "Por favor, escribe unha data (ISO) válida.",
 		number: "Por favor, escribe un número válido.",
 		digits: "Por favor, escribe só díxitos.",
 		creditcard: "Por favor, escribe un número de tarxeta válido.",

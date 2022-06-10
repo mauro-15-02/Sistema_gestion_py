@@ -5801,7 +5801,7 @@
             {
                 since: '2019-05-01',
                 offset: 1,
-                name: '令和',
+                nombre: '令和',
                 narrow: '㋿',
                 abbr: 'R',
             },
@@ -5809,7 +5809,7 @@
                 since: '1989-01-08',
                 until: '2019-04-30',
                 offset: 1,
-                name: '平成',
+                nombre: '平成',
                 narrow: '㍻',
                 abbr: 'H',
             },
@@ -5817,7 +5817,7 @@
                 since: '1926-12-25',
                 until: '1989-01-07',
                 offset: 1,
-                name: '昭和',
+                nombre: '昭和',
                 narrow: '㍼',
                 abbr: 'S',
             },
@@ -5825,7 +5825,7 @@
                 since: '1912-07-30',
                 until: '1926-12-24',
                 offset: 1,
-                name: '大正',
+                nombre: '大正',
                 narrow: '㍽',
                 abbr: 'T',
             },
@@ -5833,7 +5833,7 @@
                 since: '1873-01-01',
                 until: '1912-07-29',
                 offset: 6,
-                name: '明治',
+                nombre: '明治',
                 narrow: '㍾',
                 abbr: 'M',
             },
@@ -5841,7 +5841,7 @@
                 since: '0001-01-01',
                 until: '1873-12-31',
                 offset: 1,
-                name: '西暦',
+                nombre: '西暦',
                 narrow: 'AD',
                 abbr: 'AD',
             },
@@ -5849,7 +5849,7 @@
                 since: '0000-12-31',
                 until: -Infinity,
                 offset: 1,
-                name: '紀元前',
+                nombre: '紀元前',
                 narrow: 'BC',
                 abbr: 'BC',
             },
@@ -6762,7 +6762,7 @@
             nextWeek: 'dddd [um] LT',
             lastDay: '[Gëschter um] LT',
             lastWeek: function () {
-                // Different date string for 'Dënschdeg' (Tuesday) and 'Donneschdeg' (Thursday) due to phonological rule
+                // Different fecha string for 'Dënschdeg' (Tuesday) and 'Donneschdeg' (Thursday) due to phonological rule
                 switch (this.day()) {
                     case 2:
                     case 4:
@@ -8502,7 +8502,7 @@
         };
 
     moment.defineLocale('pa-in', {
-        // There are months name as per Nanakshahi Calendar but they are not used as rigidly in modern Punjabi.
+        // There are months nombre as per Nanakshahi Calendar but they are not used as rigidly in modern Punjabi.
         months: 'ਜਨਵਰੀ_ਫ਼ਰਵਰੀ_ਮਾਰਚ_ਅਪ੍ਰੈਲ_ਮਈ_ਜੂਨ_ਜੁਲਾਈ_ਅਗਸਤ_ਸਤੰਬਰ_ਅਕਤੂਬਰ_ਨਵੰਬਰ_ਦਸੰਬਰ'.split(
             '_'
         ),

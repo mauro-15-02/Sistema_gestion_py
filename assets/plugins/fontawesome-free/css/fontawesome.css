@@ -204,10 +204,10 @@ readers do not read off random characters that represent icons */
 .fa-ad:before {
   content: "\f641"; }
 
-.fa-address-book:before {
+.fa-direccion-book:before {
   content: "\f2b9"; }
 
-.fa-address-card:before {
+.fa-direccion-card:before {
   content: "\f2bb"; }
 
 .fa-adjust:before {
@@ -408,7 +408,7 @@ readers do not read off random characters that represent icons */
 .fa-audible:before {
   content: "\f373"; }
 
-.fa-audio-description:before {
+.fa-audio-descripcion:before {
   content: "\f29e"; }
 
 .fa-autoprefixer:before {
@@ -1047,28 +1047,28 @@ readers do not read off random characters that represent icons */
 .fa-columns:before {
   content: "\f0db"; }
 
-.fa-comment:before {
+.fa-comentario:before {
   content: "\f075"; }
 
-.fa-comment-alt:before {
+.fa-comentario-alt:before {
   content: "\f27a"; }
 
-.fa-comment-dollar:before {
+.fa-comentario-dollar:before {
   content: "\f651"; }
 
-.fa-comment-dots:before {
+.fa-comentario-dots:before {
   content: "\f4ad"; }
 
-.fa-comment-medical:before {
+.fa-comentario-medical:before {
   content: "\f7f5"; }
 
-.fa-comment-slash:before {
+.fa-comentario-slash:before {
   content: "\f4b3"; }
 
-.fa-comments:before {
+.fa-comentarios:before {
   content: "\f086"; }
 
-.fa-comments-dollar:before {
+.fa-comentarios-dollar:before {
   content: "\f653"; }
 
 .fa-compact-disc:before {
@@ -3882,7 +3882,7 @@ readers do not read off random characters that represent icons */
 .fa-tape:before {
   content: "\f4db"; }
 
-.fa-tasks:before {
+.fa-tareas:before {
   content: "\f0ae"; }
 
 .fa-taxi:before {
@@ -4254,13 +4254,13 @@ readers do not read off random characters that represent icons */
 .fa-user-times:before {
   content: "\f235"; }
 
-.fa-users:before {
+.fa-usuarios:before {
   content: "\f0c0"; }
 
-.fa-users-cog:before {
+.fa-usuarios-cog:before {
   content: "\f509"; }
 
-.fa-users-slash:before {
+.fa-usuarios-slash:before {
   content: "\e073"; }
 
 .fa-usps:before {

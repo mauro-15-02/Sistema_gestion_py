@@ -2330,7 +2330,7 @@ var helpers = {
 
 	/**
 	 * Recursively deep copies `source` properties into `target` with the given `options`.
-	 * IMPORTANT: `target` is not cloned and will be updated with `source` properties.
+	 * IMPORTANT: `target` is not cloned and will be upfechad with `source` properties.
 	 * @param {object} target - The target object in which all sources are merged into.
 	 * @param {object|object[]} source - Object(s) to merge into `target`.
 	 * @param {object} [options] - Merging options:
@@ -2366,7 +2366,7 @@ var helpers = {
 
 	/**
 	 * Recursively deep copies `source` properties into `target` *only* if not defined in target.
-	 * IMPORTANT: `target` is not cloned and will be updated with `source` properties.
+	 * IMPORTANT: `target` is not cloned and will be upfechad with `source` properties.
 	 * @param {object} target - The target object in which all sources are merged into.
 	 * @param {object|object[]} source - Object(s) to merge into `target`.
 	 * @returns {object} The `target` object.
@@ -3673,7 +3673,7 @@ helpers$1.extend(DatasetController.prototype, {
 		me._type = me.getMeta().type;
 	},
 
-	updateIndex: function(datasetIndex) {
+	upfechaIndex: function(datasetIndex) {
 		this.index = datasetIndex;
 	},
 
@@ -3734,7 +3734,7 @@ helpers$1.extend(DatasetController.prototype, {
 	},
 
 	reset: function() {
-		this._update(true);
+		this._upfecha(true);
 	},
 
 	/**
@@ -3782,10 +3782,10 @@ helpers$1.extend(DatasetController.prototype, {
 	addElementAndReset: function(index) {
 		var element = this.createMetaData(index);
 		this.getMeta().data.splice(index, 0, element);
-		this.updateElement(element, index, true);
+		this.upfechaElement(element, index, true);
 	},
 
-	buildOrUpdateElements: function() {
+	buildOrUpfechaElements: function() {
 		var me = this;
 		var dataset = me.getDataset();
 		var data = dataset.data || (dataset.data = []);
@@ -3806,7 +3806,7 @@ helpers$1.extend(DatasetController.prototype, {
 		}
 
 		// Re-sync meta data in case the user replaced the data array or if we missed
-		// any updates and so make sure that we handle number of datapoints changing.
+		// any upfechas and so make sure that we handle number of datapoints changing.
 		me.resyncElements();
 	},
 
@@ -3828,14 +3828,14 @@ helpers$1.extend(DatasetController.prototype, {
 		});
 	},
 
-	_update: function(reset) {
+	_upfecha: function(reset) {
 		var me = this;
 		me._configure();
 		me._cachedDataOpts = null;
-		me.update(reset);
+		me.upfecha(reset);
 	},
 
-	update: helpers$1.noop,
+	upfecha: helpers$1.noop,
 
 	transition: function(easingValue) {
 		var meta = this.getMeta();
@@ -4888,7 +4888,7 @@ var controller_bar = core_datasetController.extend({
 		deprecated('bar chart', scaleOpts.maxBarThickness, 'scales.[x/y]Axes.maxBarThickness', 'dataset.maxBarThickness');
 	},
 
-	update: function(reset) {
+	upfecha: function(reset) {
 		var me = this;
 		var rects = me.getMeta().data;
 		var i, ilen;
@@ -4896,11 +4896,11 @@ var controller_bar = core_datasetController.extend({
 		me._ruler = me.getRuler();
 
 		for (i = 0, ilen = rects.length; i < ilen; ++i) {
-			me.updateElement(rects[i], i, reset);
+			me.upfechaElement(rects[i], i, reset);
 		}
 	},
 
-	updateElement: function(rectangle, index, reset) {
+	upfechaElement: function(rectangle, index, reset) {
 		var me = this;
 		var meta = me.getMeta();
 		var dataset = me.getDataset();
@@ -4923,7 +4923,7 @@ var controller_bar = core_datasetController.extend({
 			rectangle._model.borderSkipped = null;
 		}
 
-		me._updateElementGeometry(rectangle, index, reset, options);
+		me._upfechaElementGeometry(rectangle, index, reset, options);
 
 		rectangle.pivot();
 	},
@@ -4931,7 +4931,7 @@ var controller_bar = core_datasetController.extend({
 	/**
 	 * @private
 	 */
-	_updateElementGeometry: function(rectangle, index, reset, options) {
+	_upfechaElementGeometry: function(rectangle, index, reset, options) {
 		var me = this;
 		var model = rectangle._model;
 		var vscale = me._getValueScale();
@@ -5216,21 +5216,21 @@ var controller_bubble = core_datasetController.extend({
 	/**
 	 * @protected
 	 */
-	update: function(reset) {
+	upfecha: function(reset) {
 		var me = this;
 		var meta = me.getMeta();
 		var points = meta.data;
 
-		// Update Points
+		// Upfecha Points
 		helpers$1.each(points, function(point, index) {
-			me.updateElement(point, index, reset);
+			me.upfechaElement(point, index, reset);
 		});
 	},
 
 	/**
 	 * @protected
 	 */
-	updateElement: function(point, index, reset) {
+	upfechaElement: function(point, index, reset) {
 		var me = this;
 		var meta = me.getMeta();
 		var custom = point.custom || {};
@@ -5396,7 +5396,7 @@ core_defaults._set('doughnut', {
 				}
 			}
 
-			chart.update();
+			chart.upfecha();
 		}
 	},
 
@@ -5466,7 +5466,7 @@ var controller_doughnut = core_datasetController.extend({
 		return ringIndex;
 	},
 
-	update: function(reset) {
+	upfecha: function(reset) {
 		var me = this;
 		var chart = me.chart;
 		var chartArea = chart.chartArea;
@@ -5524,11 +5524,11 @@ var controller_doughnut = core_datasetController.extend({
 		me.innerRadius = Math.max(me.outerRadius - chart.radiusLength * chartWeight, 0);
 
 		for (i = 0, ilen = arcs.length; i < ilen; ++i) {
-			me.updateElement(arcs[i], i, reset);
+			me.upfechaElement(arcs[i], i, reset);
 		}
 	},
 
-	updateElement: function(arc, index, reset) {
+	upfechaElement: function(arc, index, reset) {
 		var me = this;
 		var chart = me.chart;
 		var chartArea = chart.chartArea;
@@ -5871,7 +5871,7 @@ var controller_line = core_datasetController.extend({
 		rotation: 'pointRotation'
 	},
 
-	update: function(reset) {
+	upfecha: function(reset) {
 		var me = this;
 		var meta = me.getMeta();
 		var line = meta.dataset;
@@ -5884,7 +5884,7 @@ var controller_line = core_datasetController.extend({
 		me._xScale = me.getScaleForId(meta.xAxisID);
 		me._yScale = me.getScaleForId(meta.yAxisID);
 
-		// Update Line
+		// Upfecha Line
 		if (showLine) {
 			// Compatibility: If the properties are defined with only the old name, use those values
 			if (config.tension !== undefined && config.lineTension === undefined) {
@@ -5902,13 +5902,13 @@ var controller_line = core_datasetController.extend({
 			line.pivot();
 		}
 
-		// Update Points
+		// Upfecha Points
 		for (i = 0, ilen = points.length; i < ilen; ++i) {
-			me.updateElement(points[i], i, reset);
+			me.upfechaElement(points[i], i, reset);
 		}
 
 		if (showLine && line._model.tension !== 0) {
-			me.updateBezierControlPoints();
+			me.upfechaBezierControlPoints();
 		}
 
 		// Now pivot the point for animation
@@ -5917,7 +5917,7 @@ var controller_line = core_datasetController.extend({
 		}
 	},
 
-	updateElement: function(point, index, reset) {
+	upfechaElement: function(point, index, reset) {
 		var me = this;
 		var meta = me.getMeta();
 		var custom = point.custom || {};
@@ -5972,7 +5972,7 @@ var controller_line = core_datasetController.extend({
 		var values = core_datasetController.prototype._resolveDatasetElementOptions.apply(me, arguments);
 
 		// The default behavior of lines is to break at null values, according
-		// to https://github.com/chartjs/Chart.js/issues/2435#issuecomment-216718158
+		// to https://github.com/chartjs/Chart.js/issues/2435#issuecomentario-216718158
 		// This option gives lines the ability to span gaps
 		values.spanGaps = valueOrDefault$6(config.spanGaps, options.spanGaps);
 		values.tension = valueOrDefault$6(config.lineTension, lineOptions.tension);
@@ -6020,7 +6020,7 @@ var controller_line = core_datasetController.extend({
 		return yScale.getPixelForValue(value);
 	},
 
-	updateBezierControlPoints: function() {
+	upfechaBezierControlPoints: function() {
 		var me = this;
 		var chart = me.chart;
 		var meta = me.getMeta();
@@ -6211,7 +6211,7 @@ core_defaults._set('polarArea', {
 				meta.data[index].hidden = !meta.data[index].hidden;
 			}
 
-			chart.update();
+			chart.upfecha();
 		}
 	},
 
@@ -6261,7 +6261,7 @@ var controller_polarArea = core_datasetController.extend({
 		return this.chart.scale.id;
 	},
 
-	update: function(reset) {
+	upfecha: function(reset) {
 		var me = this;
 		var dataset = me.getDataset();
 		var meta = me.getMeta();
@@ -6271,7 +6271,7 @@ var controller_polarArea = core_datasetController.extend({
 		var arcs = meta.data;
 		var i, ilen, angle;
 
-		me._updateRadius();
+		me._upfechaRadius();
 
 		meta.count = me.countVisibleElements();
 
@@ -6284,14 +6284,14 @@ var controller_polarArea = core_datasetController.extend({
 
 		for (i = 0, ilen = arcs.length; i < ilen; ++i) {
 			arcs[i]._options = me._resolveDataElementOptions(arcs[i], i);
-			me.updateElement(arcs[i], i, reset);
+			me.upfechaElement(arcs[i], i, reset);
 		}
 	},
 
 	/**
 	 * @private
 	 */
-	_updateRadius: function() {
+	_upfechaRadius: function() {
 		var me = this;
 		var chart = me.chart;
 		var chartArea = chart.chartArea;
@@ -6306,7 +6306,7 @@ var controller_polarArea = core_datasetController.extend({
 		me.innerRadius = me.outerRadius - chart.radiusLength;
 	},
 
-	updateElement: function(arc, index, reset) {
+	upfechaElement: function(arc, index, reset) {
 		var me = this;
 		var chart = me.chart;
 		var dataset = me.getDataset();
@@ -6489,7 +6489,7 @@ var controller_radar = core_datasetController.extend({
 		return this.chart.scale.id;
 	},
 
-	update: function(reset) {
+	upfecha: function(reset) {
 		var me = this;
 		var meta = me.getMeta();
 		var line = meta.dataset;
@@ -6514,13 +6514,13 @@ var controller_radar = core_datasetController.extend({
 
 		line.pivot();
 
-		// Update Points
+		// Upfecha Points
 		for (i = 0, ilen = points.length; i < ilen; ++i) {
-			me.updateElement(points[i], i, reset);
+			me.upfechaElement(points[i], i, reset);
 		}
 
-		// Update bezier control points
-		me.updateBezierControlPoints();
+		// Upfecha bezier control points
+		me.upfechaBezierControlPoints();
 
 		// Now pivot the point for animation
 		for (i = 0, ilen = points.length; i < ilen; ++i) {
@@ -6528,7 +6528,7 @@ var controller_radar = core_datasetController.extend({
 		}
 	},
 
-	updateElement: function(point, index, reset) {
+	upfechaElement: function(point, index, reset) {
 		var me = this;
 		var custom = point.custom || {};
 		var dataset = me.getDataset();
@@ -6579,7 +6579,7 @@ var controller_radar = core_datasetController.extend({
 		return values;
 	},
 
-	updateBezierControlPoints: function() {
+	upfechaBezierControlPoints: function() {
 		var me = this;
 		var meta = me.getMeta();
 		var area = me.chart.chartArea;
@@ -7058,7 +7058,7 @@ function getCombinedMax(maxPadding, chartArea, a, b) {
 	return Math.max(maxPadding[a], chartArea[a]) + Math.max(maxPadding[b], chartArea[b]);
 }
 
-function updateDims(chartArea, params, layout) {
+function upfechaDims(chartArea, params, layout) {
 	var box = layout.box;
 	var maxPadding = chartArea.maxPadding;
 	var newWidth, newHeight;
@@ -7093,15 +7093,15 @@ function updateDims(chartArea, params, layout) {
 function handleMaxPadding(chartArea) {
 	var maxPadding = chartArea.maxPadding;
 
-	function updatePos(pos) {
+	function upfechaPos(pos) {
 		var change = Math.max(maxPadding[pos] - chartArea[pos], 0);
 		chartArea[pos] += change;
 		return change;
 	}
-	chartArea.y += updatePos('top');
-	chartArea.x += updatePos('left');
-	updatePos('right');
-	updatePos('bottom');
+	chartArea.y += upfechaPos('top');
+	chartArea.x += upfechaPos('left');
+	upfechaPos('right');
+	upfechaPos('bottom');
 }
 
 function getMargins(horizontal, chartArea) {
@@ -7128,12 +7128,12 @@ function fitBoxes(boxes, chartArea, params) {
 		layout = boxes[i];
 		box = layout.box;
 
-		box.update(
+		box.upfecha(
 			layout.width || chartArea.w,
 			layout.height || chartArea.h,
 			getMargins(layout.horizontal, chartArea)
 		);
-		if (updateDims(chartArea, params, layout)) {
+		if (upfechaDims(chartArea, params, layout)) {
 			changed = true;
 			if (refitBoxes.length) {
 				// Dimensions changed and there were non full width boxes before this
@@ -7197,14 +7197,14 @@ core_defaults._set('global', {
  * @prop {number} weight - The weight used to sort the item. Higher weights are further away from the chart area
  * @prop {boolean} fullWidth - if true, and the item is horizontal, then push vertical boxes down
  * @prop {function} isHorizontal - returns true if the layout item is horizontal (ie. top or bottom)
- * @prop {function} update - Takes two parameters: width and height. Returns size of item
+ * @prop {function} upfecha - Takes two parameters: width and height. Returns size of item
  * @prop {function} getPadding -  Returns an object with padding on the edges
- * @prop {number} width - Width of item. Must be valid after update()
- * @prop {number} height - Height of item. Must be valid after update()
- * @prop {number} left - Left edge of the item. Set by layout system and cannot be used in update
- * @prop {number} top - Top edge of the item. Set by layout system and cannot be used in update
- * @prop {number} right - Right edge of the item. Set by layout system and cannot be used in update
- * @prop {number} bottom - Bottom edge of the item. Set by layout system and cannot be used in update
+ * @prop {number} width - Width of item. Must be valid after upfecha()
+ * @prop {number} height - Height of item. Must be valid after upfecha()
+ * @prop {number} left - Left edge of the item. Set by layout system and cannot be used in upfecha
+ * @prop {number} top - Top edge of the item. Set by layout system and cannot be used in upfecha
+ * @prop {number} right - Right edge of the item. Set by layout system and cannot be used in upfecha
+ * @prop {number} bottom - Bottom edge of the item. Set by layout system and cannot be used in upfecha
  */
 
 // The layout service is very self explanatory.  It's responsible for the layout within a chart.
@@ -7253,7 +7253,7 @@ var core_layouts = {
 	},
 
 	/**
-	 * Sets (or updates) options on the given `item`.
+	 * Sets (or upfechas) options on the given `item`.
 	 * @param {Chart} chart - the chart in which the item lives (or will be added to)
 	 * @param {ILayoutItem} item - the item to configure with the given options
 	 * @param {object} options - the new item options.
@@ -7279,7 +7279,7 @@ var core_layouts = {
 	 * @param {number} width - the width to fit into
 	 * @param {number} height - the height to fit into
 	 */
-	update: function(chart, width, height) {
+	upfecha: function(chart, width, height) {
 		if (!chart) {
 			return;
 		}
@@ -7365,18 +7365,18 @@ var core_layouts = {
 			bottom: chartArea.top + chartArea.h
 		};
 
-		// Finally update boxes in chartArea (radial scale for example)
+		// Finally upfecha boxes in chartArea (radial scale for example)
 		helpers$1.each(boxes.chartArea, function(layout) {
 			var box = layout.box;
 			extend(box, chart.chartArea);
-			box.update(chartArea.w, chartArea.h);
+			box.upfecha(chartArea.w, chartArea.h);
 		});
 	}
 };
 
 /**
  * Platform fallback implementation (minimal).
- * @see https://github.com/chartjs/Chart.js/pull/4591#issuecomment-319575939
+ * @see https://github.com/chartjs/Chart.js/pull/4591#issuecomentario-319575939
  */
 
 var platform_basic = {
@@ -7930,7 +7930,7 @@ var core_plugins = {
 	_plugins: [],
 
 	/**
-	 * This identifier is used to invalidate the descriptors cache attached to each chart
+	 * This identifier is used to invalifecha the descriptors cache attached to each chart
 	 * when a global plugin is registered or unregistered. In this case, the cache ID is
 	 * incremented and descriptors are regenerated during following API calls.
 	 * @private
@@ -8000,7 +8000,7 @@ var core_plugins = {
 	 * This method immediately returns as soon as a plugin explicitly returns false. The
 	 * returned value can be used, for instance, to interrupt the current action.
 	 * @param {Chart} chart - The chart instance for which plugins should be called.
-	 * @param {string} hook - The name of the plugin method to call (e.g. 'beforeUpdate').
+	 * @param {string} hook - The name of the plugin method to call (e.g. 'beforeUpfecha').
 	 * @param {Array} [args] - Extra arguments to apply to the hook call.
 	 * @returns {boolean} false if any of the plugins return false, else returns true.
 	 */
@@ -8070,12 +8070,12 @@ var core_plugins = {
 	},
 
 	/**
-	 * Invalidates cache for the given chart: descriptors hold a reference on plugin option,
+	 * Invalifechas cache for the given chart: descriptors hold a reference on plugin option,
 	 * but in some cases, this reference can be changed by the user when updating options.
-	 * https://github.com/chartjs/Chart.js/issues/5111#issuecomment-355934167
+	 * https://github.com/chartjs/Chart.js/issues/5111#issuecomentario-355934167
 	 * @private
 	 */
-	_invalidate: function(chart) {
+	_invalifecha: function(chart) {
 		delete chart.$plugins;
 	}
 };
@@ -8100,7 +8100,7 @@ var core_scaleService = {
 		// Return the scale defaults merged with the global settings so that we always use the latest ones
 		return this.defaults.hasOwnProperty(type) ? helpers$1.merge({}, [core_defaults.scale, this.defaults[type]]) : {};
 	},
-	updateScaleDefaults: function(type, additions) {
+	upfechaScaleDefaults: function(type, additions) {
 		var me = this;
 		if (me.defaults.hasOwnProperty(type)) {
 			me.defaults[type] = helpers$1.extend(me.defaults[type], additions);
@@ -8684,12 +8684,12 @@ var exports$4 = core_element.extend({
 		return lines;
 	},
 
-	update: function(changed) {
+	upfecha: function(changed) {
 		var me = this;
 		var opts = me._options;
 
 		// Need to regenerate the model because its faster than using extend and it is necessary due to the optimization in Chart.Element.transition
-		// that does _view = _model if ease === 1. This causes the 2nd tooltip update to set properties in both the view and model at the same time
+		// that does _view = _model if ease === 1. This causes the 2nd tooltip upfecha to set properties in both the view and model at the same time
 		// which breaks any animations.
 		var existingModel = me._model;
 		var model = me._model = getBaseModel(opts);
@@ -9127,7 +9127,7 @@ var exports$4 = core_element.extend({
 					y: e.y
 				};
 
-				me.update(true);
+				me.upfecha(true);
 				me.pivot();
 			}
 		}
@@ -9235,7 +9235,7 @@ function initConfig(config) {
 	config = config || {};
 
 	// Do NOT use mergeConfig for the data object because this method merges arrays
-	// and so would change references to labels and datasets, preventing data updates.
+	// and so would change references to labels and datasets, preventing data upfechas.
 	var data = config.data = config.data || {};
 	data.datasets = data.datasets || [];
 	data.labels = data.labels || [];
@@ -9248,7 +9248,7 @@ function initConfig(config) {
 	return config;
 }
 
-function updateConfig(chart) {
+function upfechaConfig(chart) {
 	var newOptions = chart.options;
 
 	helpers$1.each(chart.scales, function(scale) {
@@ -9262,7 +9262,7 @@ function updateConfig(chart) {
 
 	chart.options = chart.config.options = newOptions;
 	chart.ensureScalesHaveIDs();
-	chart.buildOrUpdateScales();
+	chart.buildOrUpfechaScales();
 
 	// Tooltip
 	chart.tooltip._options = newOptions.tooltips;
@@ -9358,7 +9358,7 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 		}
 
 		me.initialize();
-		me.update();
+		me.upfecha();
 	},
 
 	/**
@@ -9433,7 +9433,7 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 			}
 
 			me.stop();
-			me.update({
+			me.upfecha({
 				duration: options.responsiveAnimationDuration
 			});
 		}
@@ -9464,12 +9464,12 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 	/**
 	 * Builds a map of scale ID to scale object for future lookup.
 	 */
-	buildOrUpdateScales: function() {
+	buildOrUpfechaScales: function() {
 		var me = this;
 		var options = me.options;
 		var scales = me.scales || {};
 		var items = [];
-		var updated = Object.keys(scales).reduce(function(obj, id) {
+		var upfechad = Object.keys(scales).reduce(function(obj, id) {
 			obj[id] = false;
 			return obj;
 		}, {});
@@ -9503,7 +9503,7 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 				scaleOptions.position = item.dposition;
 			}
 
-			updated[id] = true;
+			upfechad[id] = true;
 			var scale = null;
 			if (id in scales && scales[id].type === scaleType) {
 				scale = scales[id];
@@ -9535,8 +9535,8 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 			}
 		});
 		// clear up discarded scales
-		helpers$1.each(updated, function(hasUpdated, id) {
-			if (!hasUpdated) {
+		helpers$1.each(upfechad, function(hasUpfechad, id) {
+			if (!hasUpfechad) {
 				delete scales[id];
 			}
 		});
@@ -9546,7 +9546,7 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 		core_scaleService.addScalesToLayout(this);
 	},
 
-	buildOrUpdateControllers: function() {
+	buildOrUpfechaControllers: function() {
 		var me = this;
 		var newControllers = [];
 		var datasets = me.data.datasets;
@@ -9566,7 +9566,7 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 			meta.index = i;
 
 			if (meta.controller) {
-				meta.controller.updateIndex(i);
+				meta.controller.upfechaIndex(i);
 				meta.controller.linkScales();
 			} else {
 				var ControllerClass = controllers[meta.type];
@@ -9601,7 +9601,7 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 		this.tooltip.initialize();
 	},
 
-	update: function(config) {
+	upfecha: function(config) {
 		var me = this;
 		var i, ilen;
 
@@ -9613,48 +9613,48 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 			};
 		}
 
-		updateConfig(me);
+		upfechaConfig(me);
 
-		// plugins options references might have change, let's invalidate the cache
-		// https://github.com/chartjs/Chart.js/issues/5111#issuecomment-355934167
-		core_plugins._invalidate(me);
+		// plugins options references might have change, let's invalifecha the cache
+		// https://github.com/chartjs/Chart.js/issues/5111#issuecomentario-355934167
+		core_plugins._invalifecha(me);
 
-		if (core_plugins.notify(me, 'beforeUpdate') === false) {
+		if (core_plugins.notify(me, 'beforeUpfecha') === false) {
 			return;
 		}
 
 		// In case the entire data object changed
 		me.tooltip._data = me.data;
 
-		// Make sure dataset controllers are updated and new controllers are reset
-		var newControllers = me.buildOrUpdateControllers();
+		// Make sure dataset controllers are upfechad and new controllers are reset
+		var newControllers = me.buildOrUpfechaControllers();
 
 		// Make sure all dataset controllers have correct meta data counts
 		for (i = 0, ilen = me.data.datasets.length; i < ilen; i++) {
-			me.getDatasetMeta(i).controller.buildOrUpdateElements();
+			me.getDatasetMeta(i).controller.buildOrUpfechaElements();
 		}
 
-		me.updateLayout();
+		me.upfechaLayout();
 
-		// Can only reset the new controllers after the scales have been updated
+		// Can only reset the new controllers after the scales have been upfechad
 		if (me.options.animation && me.options.animation.duration) {
 			helpers$1.each(newControllers, function(controller) {
 				controller.reset();
 			});
 		}
 
-		me.updateDatasets();
+		me.upfechaDatasets();
 
 		// Need to reset tooltip in case it is displayed with elements that are removed
-		// after update.
+		// after upfecha.
 		me.tooltip.initialize();
 
 		// Last active contains items that were previously in the tooltip.
 		// When we reset the tooltip, we need to clear it
 		me.lastActive = [];
 
-		// Do this before render so that any plugins that need final scale updates can use it
-		core_plugins.notify(me, 'afterUpdate');
+		// Do this before render so that any plugins that need final scale upfechas can use it
+		core_plugins.notify(me, 'afterUpfecha');
 
 		me._layers.sort(compare2Level('z', '_idx'));
 
@@ -9670,23 +9670,23 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 	},
 
 	/**
-	 * Updates the chart layout unless a plugin returns `false` to the `beforeLayout`
+	 * Upfechas the chart layout unless a plugin returns `false` to the `beforeLayout`
 	 * hook, in which case, plugins will not be called on `afterLayout`.
 	 * @private
 	 */
-	updateLayout: function() {
+	upfechaLayout: function() {
 		var me = this;
 
 		if (core_plugins.notify(me, 'beforeLayout') === false) {
 			return;
 		}
 
-		core_layouts.update(this, this.width, this.height);
+		core_layouts.upfecha(this, this.width, this.height);
 
 		me._layers = [];
 		helpers$1.each(me.boxes, function(box) {
-			// _configure is called twice, once in core.scale.update and once here.
-			// Here the boxes are fully updated and at their final positions.
+			// _configure is called twice, once in core.scale.upfecha and once here.
+			// Here the boxes are fully upfechad and at their final positions.
 			if (box._configure) {
 				box._configure();
 			}
@@ -9699,40 +9699,40 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 
 		/**
 		 * Provided for backward compatibility, use `afterLayout` instead.
-		 * @method IPlugin#afterScaleUpdate
+		 * @method IPlugin#afterScaleUpfecha
 		 * @deprecated since version 2.5.0
 		 * @todo remove at version 3
 		 * @private
 		 */
-		core_plugins.notify(me, 'afterScaleUpdate');
+		core_plugins.notify(me, 'afterScaleUpfecha');
 		core_plugins.notify(me, 'afterLayout');
 	},
 
 	/**
-	 * Updates all datasets unless a plugin returns `false` to the `beforeDatasetsUpdate`
-	 * hook, in which case, plugins will not be called on `afterDatasetsUpdate`.
+	 * Upfechas all datasets unless a plugin returns `false` to the `beforeDatasetsUpfecha`
+	 * hook, in which case, plugins will not be called on `afterDatasetsUpfecha`.
 	 * @private
 	 */
-	updateDatasets: function() {
+	upfechaDatasets: function() {
 		var me = this;
 
-		if (core_plugins.notify(me, 'beforeDatasetsUpdate') === false) {
+		if (core_plugins.notify(me, 'beforeDatasetsUpfecha') === false) {
 			return;
 		}
 
 		for (var i = 0, ilen = me.data.datasets.length; i < ilen; ++i) {
-			me.updateDataset(i);
+			me.upfechaDataset(i);
 		}
 
-		core_plugins.notify(me, 'afterDatasetsUpdate');
+		core_plugins.notify(me, 'afterDatasetsUpfecha');
 	},
 
 	/**
-	 * Updates dataset at index unless a plugin returns `false` to the `beforeDatasetUpdate`
-	 * hook, in which case, plugins will not be called on `afterDatasetUpdate`.
+	 * Upfechas dataset at index unless a plugin returns `false` to the `beforeDatasetUpfecha`
+	 * hook, in which case, plugins will not be called on `afterDatasetUpfecha`.
 	 * @private
 	 */
-	updateDataset: function(index) {
+	upfechaDataset: function(index) {
 		var me = this;
 		var meta = me.getDatasetMeta(index);
 		var args = {
@@ -9740,13 +9740,13 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 			index: index
 		};
 
-		if (core_plugins.notify(me, 'beforeDatasetUpdate', [args]) === false) {
+		if (core_plugins.notify(me, 'beforeDatasetUpfecha', [args]) === false) {
 			return;
 		}
 
-		meta.controller._update();
+		meta.controller._upfecha();
 
-		core_plugins.notify(me, 'afterDatasetUpdate', [args]);
+		core_plugins.notify(me, 'afterDatasetUpfecha', [args]);
 	},
 
 	render: function(config) {
@@ -9991,7 +9991,7 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 				data: [],
 				dataset: null,
 				controller: null,
-				hidden: null,			// See isDatasetVisible() comment
+				hidden: null,			// See isDatasetVisible() comentario
 				xAxisID: null,
 				yAxisID: null,
 				order: dataset.order || 0,
@@ -10120,7 +10120,7 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 		});
 	},
 
-	updateHoverStyle: function(elements, mode, enabled) {
+	upfechaHoverStyle: function(elements, mode, enabled) {
 		var prefix = enabled ? 'set' : 'remove';
 		var element, i, ilen;
 
@@ -10147,7 +10147,7 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 			return;
 		}
 
-		// Buffer any update calls so that renders do not occur
+		// Buffer any upfecha calls so that renders do not occur
 		me._bufferedRender = true;
 		me._bufferedRequest = null;
 
@@ -10166,7 +10166,7 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 
 		var bufferedRequest = me._bufferedRequest;
 		if (bufferedRequest) {
-			// If we have an update that was triggered, we need to do a normal render
+			// If we have an upfecha that was triggered, we need to do a normal render
 			me.render(bufferedRequest);
 		} else if (changed && !me.animating) {
 			// If entering, leaving, or changing elements, animate the change via pivot
@@ -10220,12 +10220,12 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 
 		// Remove styling for last active (even if it may still be active)
 		if (me.lastActive.length) {
-			me.updateHoverStyle(me.lastActive, hoverOptions.mode, false);
+			me.upfechaHoverStyle(me.lastActive, hoverOptions.mode, false);
 		}
 
 		// Built in hover styling
 		if (me.active.length && hoverOptions.mode) {
-			me.updateHoverStyle(me.active, hoverOptions.mode, true);
+			me.upfechaHoverStyle(me.active, hoverOptions.mode, true);
 		}
 
 		changed = !helpers$1.arrayEquals(me.active, me.lastActive);
@@ -10650,7 +10650,7 @@ var core_helpers = function() {
 		}
 
 		// Scale mouse coordinates into canvas coordinates
-		// by following the pattern laid out by 'jerryj' in the comments of
+		// by following the pattern laid out by 'jerryj' in the comentarios of
 		// https://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/
 		var paddingLeft = parseFloat(helpers$1.getStyle(canvas, 'padding-left'));
 		var paddingTop = parseFloat(helpers$1.getStyle(canvas, 'padding-top'));
@@ -10906,7 +10906,7 @@ function abstract() {
 
 /**
  * Date adapter (current used by the time scale)
- * @namespace Chart._adapters._date
+ * @namespace Chart._adapters._fecha
  * @memberof Chart._adapters
  * @private
  */
@@ -10914,7 +10914,7 @@ function abstract() {
 /**
  * Currently supported unit string values.
  * @typedef {('millisecond'|'second'|'minute'|'hour'|'day'|'week'|'month'|'quarter'|'year')}
- * @memberof Chart._adapters._date
+ * @memberof Chart._adapters._fecha
  * @name Unit
  */
 
@@ -10928,7 +10928,7 @@ function DateAdapter(options) {
 helpers$1.extend(DateAdapter.prototype, /** @lends DateAdapter */ {
 	/**
 	 * Returns a map of time formats for the supported formatting units defined
-	 * in Unit as well as 'datetime' representing a detailed date/time string.
+	 * in Unit as well as 'fechatime' representing a detailed fecha/time string.
 	 * @returns {{string: string}}
 	 */
 	formats: abstract,
@@ -10943,9 +10943,9 @@ helpers$1.extend(DateAdapter.prototype, /** @lends DateAdapter */ {
 	parse: abstract,
 
 	/**
-	 * Returns the formatted date in the specified `format` for a given `timestamp`.
+	 * Returns the formatted fecha in the specified `format` for a given `timestamp`.
 	 * @param {number} timestamp - the timestamp to format
-	 * @param {string} format - the date/time token
+	 * @param {string} format - the fecha/time token
 	 * @return {string}
 	 * @function
 	 */
@@ -11007,10 +11007,10 @@ DateAdapter.override = function(members) {
 	helpers$1.extend(DateAdapter.prototype, members);
 };
 
-var _date = DateAdapter;
+var _fecha = DateAdapter;
 
 var core_adapters = {
-	_date: _date
+	_fecha: _fecha
 };
 
 /**
@@ -11456,8 +11456,8 @@ var Scale = core_element.extend({
 		// noop
 	},
 
-	beforeUpdate: function() {
-		helpers$1.callback(this.options.beforeUpdate, [this]);
+	beforeUpfecha: function() {
+		helpers$1.callback(this.options.beforeUpfecha, [this]);
 	},
 
 	/**
@@ -11468,14 +11468,14 @@ var Scale = core_element.extend({
 	 *     - padding - space that's required to show the labels at the edges of the scale
 	 *     - thickness of scales or legends in another orientation
 	 */
-	update: function(maxWidth, maxHeight, margins) {
+	upfecha: function(maxWidth, maxHeight, margins) {
 		var me = this;
 		var tickOpts = me.options.ticks;
 		var sampleSize = tickOpts.sampleSize;
 		var i, ilen, labels, ticks, samplingEnabled;
 
-		// Update Lifecycle - Probably don't want to ever extend or overwrite this function ;)
-		me.beforeUpdate();
+		// Upfecha Lifecycle - Probably don't want to ever extend or overwrite this function ;)
+		me.beforeUpfecha();
 
 		// Absorb the master measurements
 		me.maxWidth = maxWidth;
@@ -11540,7 +11540,7 @@ var Scale = core_element.extend({
 		samplingEnabled = sampleSize < ticks.length;
 		labels = me._convertTicksToLabels(samplingEnabled ? sample(ticks, sampleSize) : ticks);
 
-		// _configure is called twice, once here, once from core.controller.updateLayout.
+		// _configure is called twice, once here, once from core.controller.upfechaLayout.
 		// Here we haven't been positioned yet, but dimensions are correct.
 		// Variables set in _configure are needed for calculateTickRotation, and
 		// it's ok that coordinates are not correct there, only dimensions matter.
@@ -11567,7 +11567,7 @@ var Scale = core_element.extend({
 
 		// IMPORTANT: after this point, we consider that `this.ticks` will NEVER change!
 
-		me.afterUpdate();
+		me.afterUpfecha();
 
 		// TODO(v3): remove minSize as a public property and return value from all layout boxes. It is unused
 		// make maxWidth and maxHeight private
@@ -11597,8 +11597,8 @@ var Scale = core_element.extend({
 		me._length = endPixel - startPixel;
 	},
 
-	afterUpdate: function() {
-		helpers$1.callback(this.options.afterUpdate, [this]);
+	afterUpfecha: function() {
+		helpers$1.callback(this.options.afterUpfecha, [this]);
 	},
 
 	//
@@ -12859,7 +12859,7 @@ var scale_linearbase = core_scale.extend({
 
 		me.handleDirectionalChanges();
 
-		// At this point, we need to update our max and min given the tick values since we have expanded the
+		// At this point, we need to upfecha our max and min given the tick values since we have expanded the
 		// range of the scale
 		me.max = helpers$1.max(ticks);
 		me.min = helpers$1.min(ticks);
@@ -12959,7 +12959,7 @@ function stackData(scale, stacks, meta, data) {
 	}
 }
 
-function updateMinMax(scale, meta, data) {
+function upfechaMinMax(scale, meta, data) {
 	var ilen = data.length;
 	var i, value;
 
@@ -13002,7 +13002,7 @@ var scale_linear = scale_linearbase.extend({
 			if (hasStacks) {
 				stackData(me, stacks, meta, data);
 			} else {
-				updateMinMax(me, meta, data);
+				upfechaMinMax(me, meta, data);
 			}
 		}
 
@@ -13277,7 +13277,7 @@ var scale_logarithmic = core_scale.extend({
 		};
 		var ticks = me.ticks = generateTicks$1(generationOptions, me);
 
-		// At this point, we need to update our max and min given the tick values since we have expanded the
+		// At this point, we need to upfecha our max and min given the tick values since we have expanded the
 		// range of the scale
 		me.max = helpers$1.max(ticks);
 		me.min = helpers$1.min(ticks);
@@ -14363,13 +14363,13 @@ var scale_time = core_scale.extend({
 		core_scale.prototype.initialize.call(this);
 	},
 
-	update: function() {
+	upfecha: function() {
 		var me = this;
 		var options = me.options;
 		var time = options.time || (options.time = {});
-		var adapter = me._adapter = new core_adapters._date(options.adapters.date);
+		var adapter = me._adapter = new core_adapters._fecha(options.adapters.fecha);
 
-		// DEPRECATIONS: output a message only one time per update
+		// DEPRECATIONS: output a message only one time per upfecha
 		deprecated$1('time scale', time.format, 'time.format', 'time.parser');
 		deprecated$1('time scale', time.min, 'time.min', 'ticks.min');
 		deprecated$1('time scale', time.max, 'time.max', 'ticks.max');
@@ -14377,10 +14377,10 @@ var scale_time = core_scale.extend({
 		// Backward compatibility: before introducing adapter, `displayFormats` was
 		// supposed to contain *all* unit/string pairs but this can't be resolved
 		// when loading the scale (adapters are loaded afterward), so let's populate
-		// missing formats on update
+		// missing formats on upfecha
 		helpers$1.mergeIf(time.displayFormats, adapter.formats());
 
-		return core_scale.prototype.update.apply(me, arguments);
+		return core_scale.prototype.upfecha.apply(me, arguments);
 	},
 
 	/**
@@ -14544,7 +14544,7 @@ var scale_time = core_scale.extend({
 		if (typeof label === 'string') {
 			return label;
 		}
-		return adapter.format(toTimestamp(me, label), timeOpts.displayFormats.datetime);
+		return adapter.format(toTimestamp(me, label), timeOpts.displayFormats.fechatime);
 	},
 
 	/**
@@ -14786,7 +14786,7 @@ var moment = createCommonjsModule(function (module, exports) {
             nullInput       : false,
             invalidMonth    : null,
             invalidFormat   : false,
-            userInvalidated : false,
+            userInvalifechad : false,
             iso             : false,
             parsedDateParts : [],
             meridiem        : null,
@@ -14834,7 +14834,7 @@ var moment = createCommonjsModule(function (module, exports) {
                 !flags.weekdayMismatch &&
                 !flags.nullInput &&
                 !flags.invalidFormat &&
-                !flags.userInvalidated &&
+                !flags.userInvalifechad &&
                 (!flags.meridiem || (flags.meridiem && parsedParts));
 
             if (m._strict) {
@@ -14860,7 +14860,7 @@ var moment = createCommonjsModule(function (module, exports) {
             extend(getParsingFlags(m), flags);
         }
         else {
-            getParsingFlags(m).userInvalidated = true;
+            getParsingFlags(m).userInvalifechad = true;
         }
 
         return m;
@@ -14917,7 +14917,7 @@ var moment = createCommonjsModule(function (module, exports) {
         return to;
     }
 
-    var updateInProgress = false;
+    var upfechaInProgress = false;
 
     // Moment prototype object
     function Moment(config) {
@@ -14926,12 +14926,12 @@ var moment = createCommonjsModule(function (module, exports) {
         if (!this.isValid()) {
             this._d = new Date(NaN);
         }
-        // Prevent infinite loop in case updateOffset creates new moment
+        // Prevent infinite loop in case upfechaOffset creates new moment
         // objects.
-        if (updateInProgress === false) {
-            updateInProgress = true;
-            hooks.updateOffset(this);
-            updateInProgress = false;
+        if (upfechaInProgress === false) {
+            upfechaInProgress = true;
+            hooks.upfechaOffset(this);
+            upfechaInProgress = false;
         }
     }
 
@@ -15135,7 +15135,7 @@ var moment = createCommonjsModule(function (module, exports) {
         return this._longDateFormat[key];
     }
 
-    var defaultInvalidDate = 'Invalid date';
+    var defaultInvalidDate = 'Invalid fecha';
 
     function invalidDate () {
         return this._invalidDate;
@@ -15291,7 +15291,7 @@ var moment = createCommonjsModule(function (module, exports) {
         };
     }
 
-    // format date using native date object
+    // format fecha using native fecha object
     function formatMoment(m, format) {
         if (!m.isValid()) {
             return m.localeData().invalidDate();
@@ -15481,7 +15481,7 @@ var moment = createCommonjsModule(function (module, exports) {
         return function (value) {
             if (value != null) {
                 set$1(this, unit, value);
-                hooks.updateOffset(this, keepTime);
+                hooks.upfechaOffset(this, keepTime);
                 return this;
             } else {
                 return get(this, unit);
@@ -15496,7 +15496,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
     function set$1 (mom, unit, value) {
         if (mom.isValid() && !isNaN(value)) {
-            if (unit === 'FullYear' && isLeapYear(mom.year()) && mom.month() === 1 && mom.date() === 29) {
+            if (unit === 'FullYear' && isLeapYear(mom.year()) && mom.month() === 1 && mom.fecha() === 29) {
                 mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value, mom.month(), daysInMonth(value, mom.month()));
             }
             else {
@@ -15601,7 +15601,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
     addParseToken(['MMM', 'MMMM'], function (input, array, config, token) {
         var month = config._locale.monthsParse(input, token, config._strict);
-        // if we didn't find a month name, mark the date as invalid.
+        // if we didn't find a month name, mark the fecha as invalid.
         if (month != null) {
             array[MONTH] = month;
         } else {
@@ -15733,7 +15733,7 @@ var moment = createCommonjsModule(function (module, exports) {
             }
         }
 
-        dayOfMonth = Math.min(mom.date(), daysInMonth(mom.year(), value));
+        dayOfMonth = Math.min(mom.fecha(), daysInMonth(mom.year(), value));
         mom._d['set' + (mom._isUTC ? 'UTC' : '') + 'Month'](value, dayOfMonth);
         return mom;
     }
@@ -15741,7 +15741,7 @@ var moment = createCommonjsModule(function (module, exports) {
     function getSetMonth (value) {
         if (value != null) {
             setMonth(this, value);
-            hooks.updateOffset(this, true);
+            hooks.upfechaOffset(this, true);
             return this;
         } else {
             return get(this, 'Month');
@@ -15827,39 +15827,39 @@ var moment = createCommonjsModule(function (module, exports) {
     }
 
     function createDate (y, m, d, h, M, s, ms) {
-        // can't just apply() to create a date:
+        // can't just apply() to create a fecha:
         // https://stackoverflow.com/q/181348
-        var date;
-        // the date constructor remaps years 0-99 to 1900-1999
+        var fecha;
+        // the fecha constructor remaps years 0-99 to 1900-1999
         if (y < 100 && y >= 0) {
             // preserve leap years using a full 400 year cycle, then reset
-            date = new Date(y + 400, m, d, h, M, s, ms);
-            if (isFinite(date.getFullYear())) {
-                date.setFullYear(y);
+            fecha = new Date(y + 400, m, d, h, M, s, ms);
+            if (isFinite(fecha.getFullYear())) {
+                fecha.setFullYear(y);
             }
         } else {
-            date = new Date(y, m, d, h, M, s, ms);
+            fecha = new Date(y, m, d, h, M, s, ms);
         }
 
-        return date;
+        return fecha;
     }
 
     function createUTCDate (y) {
-        var date;
+        var fecha;
         // the Date.UTC function remaps years 0-99 to 1900-1999
         if (y < 100 && y >= 0) {
             var args = Array.prototype.slice.call(arguments);
             // preserve leap years using a full 400 year cycle, then reset
             args[0] = y + 400;
-            date = new Date(Date.UTC.apply(null, args));
-            if (isFinite(date.getUTCFullYear())) {
-                date.setUTCFullYear(y);
+            fecha = new Date(Date.UTC.apply(null, args));
+            if (isFinite(fecha.getUTCFullYear())) {
+                fecha.setUTCFullYear(y);
             }
         } else {
-            date = new Date(Date.UTC.apply(null, arguments));
+            fecha = new Date(Date.UTC.apply(null, arguments));
         }
 
-        return date;
+        return fecha;
     }
 
     // start-of-first-week - start-of-year
@@ -15872,7 +15872,7 @@ var moment = createCommonjsModule(function (module, exports) {
         return -fwdlw + fwd - 1;
     }
 
-    // https://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
+    // https://en.wikipedia.org/wiki/ISO_week_fecha#Calculating_a_fecha_given_the_year.2C_week_number_and_weekday
     function dayOfYearFromWeeks(year, week, weekday, dow, doy) {
         var localWeekday = (7 + weekday - dow) % 7,
             weekOffset = firstWeekOffset(year, dow, doy),
@@ -16030,7 +16030,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
     addWeekParseToken(['dd', 'ddd', 'dddd'], function (input, week, config, token) {
         var weekday = config._locale.weekdaysParse(input, token, config._strict);
-        // if we didn't get a weekday name, mark the date as invalid
+        // if we didn't get a weekday name, mark the fecha as invalid
         if (weekday != null) {
             week.d = weekday;
         } else {
@@ -16578,7 +16578,7 @@ var moment = createCommonjsModule(function (module, exports) {
             config.abbr = name;
             if (locales[name] != null) {
                 deprecateSimple('defineLocaleOverride',
-                        'use moment.updateLocale(localeName, config) to change ' +
+                        'use moment.upfechaLocale(localeName, config) to change ' +
                         'an existing locale. moment.defineLocale(localeName, ' +
                         'config) should only be used for creating a new locale ' +
                         'See http://momentjs.com/guides/#/warnings/define-locale/ for more info.');
@@ -16624,7 +16624,7 @@ var moment = createCommonjsModule(function (module, exports) {
         }
     }
 
-    function updateLocale(name, config) {
+    function upfechaLocale(name, config) {
         if (config != null) {
             var locale, tmpLocale, parentConfig = baseConfig;
             // MERGE
@@ -16640,7 +16640,7 @@ var moment = createCommonjsModule(function (module, exports) {
             // backwards compat for now: also set the locale
             getSetGlobalLocale(name);
         } else {
-            // pass null for config to unupdate, useful for tests
+            // pass null for config to unupfecha, useful for tests
             if (locales[name] != null) {
                 if (locales[name].parentLocale != null) {
                     locales[name] = locales[name].parentLocale;
@@ -16730,12 +16730,12 @@ var moment = createCommonjsModule(function (module, exports) {
         return [nowValue.getFullYear(), nowValue.getMonth(), nowValue.getDate()];
     }
 
-    // convert an array to a date.
+    // convert an array to a fecha.
     // the array should mirror the parameters below
     // note: all values past the year are optional and will default to the lowest possible value.
     // [year, month, day , hour, minute, second, millisecond]
     function configFromArray (config) {
-        var i, date, input = [], currentDate, expectedWeekday, yearToUse;
+        var i, fecha, input = [], currentDate, expectedWeekday, yearToUse;
 
         if (config._d) {
             return;
@@ -16756,12 +16756,12 @@ var moment = createCommonjsModule(function (module, exports) {
                 getParsingFlags(config)._overflowDayOfYear = true;
             }
 
-            date = createUTCDate(yearToUse, 0, config._dayOfYear);
-            config._a[MONTH] = date.getUTCMonth();
-            config._a[DATE] = date.getUTCDate();
+            fecha = createUTCDate(yearToUse, 0, config._dayOfYear);
+            config._a[MONTH] = fecha.getUTCMonth();
+            config._a[DATE] = fecha.getUTCDate();
         }
 
-        // Default to current date.
+        // Default to current fecha.
         // * if no year, month, day of month are given, default to today
         // * if day of month is given, default month and year
         // * if month is given, default only year
@@ -16897,24 +16897,24 @@ var moment = createCommonjsModule(function (module, exports) {
 
     var aspNetJsonRegex = /^\/?Date\((\-?\d+)/i;
 
-    // date from iso format
+    // fecha from iso format
     function configFromISO(config) {
         var i, l,
             string = config._i,
             match = extendedIsoRegex.exec(string) || basicIsoRegex.exec(string),
-            allowTime, dateFormat, timeFormat, tzFormat;
+            allowTime, fechaFormat, timeFormat, tzFormat;
 
         if (match) {
             getParsingFlags(config).iso = true;
 
             for (i = 0, l = isoDates.length; i < l; i++) {
                 if (isoDates[i][1].exec(match[1])) {
-                    dateFormat = isoDates[i][0];
+                    fechaFormat = isoDates[i][0];
                     allowTime = isoDates[i][2] !== false;
                     break;
                 }
             }
-            if (dateFormat == null) {
+            if (fechaFormat == null) {
                 config._isValid = false;
                 return;
             }
@@ -16943,7 +16943,7 @@ var moment = createCommonjsModule(function (module, exports) {
                     return;
                 }
             }
-            config._f = dateFormat + (timeFormat || '') + (tzFormat || '');
+            config._f = fechaFormat + (timeFormat || '') + (tzFormat || '');
             configFromStringAndFormat(config);
         } else {
             config._isValid = false;
@@ -16980,7 +16980,7 @@ var moment = createCommonjsModule(function (module, exports) {
     }
 
     function preprocessRFC2822(s) {
-        // Remove comments and folding whitespace and replace multiple-spaces with a single space
+        // Remove comentarios and folding whitespace and replace multiple-spaces with a single space
         return s.replace(/\([^)]*\)|[\n\t]/g, ' ').replace(/(\s\s+)/g, ' ').replace(/^\s\s*/, '').replace(/\s\s*$/, '');
     }
 
@@ -17024,7 +17024,7 @@ var moment = createCommonjsModule(function (module, exports) {
         }
     }
 
-    // date and time from ref 2822 format
+    // fecha and time from ref 2822 format
     function configFromRFC2822(config) {
         var match = rfc2822.exec(preprocessRFC2822(config._i));
         if (match) {
@@ -17045,7 +17045,7 @@ var moment = createCommonjsModule(function (module, exports) {
         }
     }
 
-    // date from iso format or fallback
+    // fecha from iso format or fallback
     function configFromString(config) {
         var matched = aspNetJsonRegex.exec(config._i);
 
@@ -17074,9 +17074,9 @@ var moment = createCommonjsModule(function (module, exports) {
 
     hooks.createFromInputFallback = deprecate(
         'value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), ' +
-        'which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are ' +
+        'which is not reliable across all browsers and versions. Non RFC2822/ISO fecha formats are ' +
         'discouraged and will be removed in an upcoming major release. Please refer to ' +
-        'http://momentjs.com/guides/#/warnings/js-date/ for more info.',
+        'http://momentjs.com/guides/#/warnings/js-fecha/ for more info.',
         function (config) {
             config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
         }
@@ -17088,7 +17088,7 @@ var moment = createCommonjsModule(function (module, exports) {
     // constant that refers to the RFC 2822 form
     hooks.RFC_2822 = function () {};
 
-    // date from string and format string
+    // fecha from string and format string
     function configFromStringAndFormat(config) {
         // TODO: Move this to another part of the creation flow to prevent circular deps
         if (config._f === hooks.ISO_8601) {
@@ -17186,7 +17186,7 @@ var moment = createCommonjsModule(function (module, exports) {
         }
     }
 
-    // date from string and array of format strings
+    // fecha from string and array of format strings
     function configFromStringAndArray(config) {
         var tempConfig,
             bestMoment,
@@ -17237,7 +17237,7 @@ var moment = createCommonjsModule(function (module, exports) {
         }
 
         var i = normalizeObjectUnits(config._i);
-        config._a = map([i.year, i.month, i.day || i.date, i.hour, i.minute, i.second, i.millisecond], function (obj) {
+        config._a = map([i.year, i.month, i.day || i.fecha, i.hour, i.minute, i.second, i.millisecond], function (obj) {
             return obj && parseInt(obj, 10);
         });
 
@@ -17448,12 +17448,12 @@ var moment = createCommonjsModule(function (module, exports) {
 
         this._isValid = isDurationValid(normalizedInput);
 
-        // representation for dateAddRemove
+        // representation for fechaAddRemove
         this._milliseconds = +milliseconds +
             seconds * 1e3 + // 1000
             minutes * 6e4 + // 1000 * 60
             hours * 1000 * 60 * 60; //using 1000 * 60 * 60 instead of 36e5 to avoid floating point rounding errors https://github.com/moment/moment/issues/2978
-        // Because of dateAddRemove treats 24 hours as different from a
+        // Because of fechaAddRemove treats 24 hours as different from a
         // day when working around DST, we need to store them separately
         this._days = +days +
             weeks * 7;
@@ -17540,7 +17540,7 @@ var moment = createCommonjsModule(function (module, exports) {
             diff = (isMoment(input) || isDate(input) ? input.valueOf() : createLocal(input).valueOf()) - res.valueOf();
             // Use low-level api, because this fn is low-level api.
             res._d.setTime(res._d.valueOf() + diff);
-            hooks.updateOffset(res, false);
+            hooks.upfechaOffset(res, false);
             return res;
         } else {
             return createLocal(input).local();
@@ -17557,7 +17557,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
     // This function will be called whenever a moment is mutated.
     // It is intended to keep the offset in sync with the timezone.
-    hooks.updateOffset = function () {};
+    hooks.upfechaOffset = function () {};
 
     // MOMENTS
 
@@ -17567,7 +17567,7 @@ var moment = createCommonjsModule(function (module, exports) {
     // +0200, so we adjust the time as needed, to be valid.
     //
     // Keeping the time actually adds/subtracts (one hour)
-    // from the actual represented time. That is why we call updateOffset
+    // from the actual represented time. That is why we call upfechaOffset
     // a second time. In case it wants us to change the offset again
     // _changeInProgress == true case, then we have to adjust, because
     // there is no such time in the given timezone.
@@ -17599,7 +17599,7 @@ var moment = createCommonjsModule(function (module, exports) {
                     addSubtract(this, createDuration(input - offset, 'm'), 1, false);
                 } else if (!this._changeInProgress) {
                     this._changeInProgress = true;
-                    hooks.updateOffset(this, true);
+                    hooks.upfechaOffset(this, true);
                     this._changeInProgress = null;
                 }
             }
@@ -17703,10 +17703,10 @@ var moment = createCommonjsModule(function (module, exports) {
         return this.isValid() ? this._isUTC && this._offset === 0 : false;
     }
 
-    // ASP.NET json date format regex
+    // ASP.NET json fecha format regex
     var aspNetRegex = /^(\-|\+)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/;
 
-    // from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
+    // from http://docs.closure-library.googlecode.com/git/closure_goog_fecha_fecha.js.source.html
     // somewhat more in line with 4.4.3.2 2004 spec, but allows decimal anywhere
     // and further modified to allow for strings containing both week and day
     var isoRegex = /^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)W)?(?:([-+]?[0-9,.]*)D)?(?:T(?:([-+]?[0-9,.]*)H)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)S)?)?$/;
@@ -17834,7 +17834,7 @@ var moment = createCommonjsModule(function (module, exports) {
         };
     }
 
-    function addSubtract (mom, duration, isAdding, updateOffset) {
+    function addSubtract (mom, duration, isAdding, upfechaOffset) {
         var milliseconds = duration._milliseconds,
             days = absRound(duration._days),
             months = absRound(duration._months);
@@ -17844,7 +17844,7 @@ var moment = createCommonjsModule(function (module, exports) {
             return;
         }
 
-        updateOffset = updateOffset == null ? true : updateOffset;
+        upfechaOffset = upfechaOffset == null ? true : upfechaOffset;
 
         if (months) {
             setMonth(mom, get(mom, 'Month') + months * isAdding);
@@ -17855,8 +17855,8 @@ var moment = createCommonjsModule(function (module, exports) {
         if (milliseconds) {
             mom._d.setTime(mom._d.valueOf() + milliseconds * isAdding);
         }
-        if (updateOffset) {
-            hooks.updateOffset(mom, days || months);
+        if (upfechaOffset) {
+            hooks.upfechaOffset(mom, days || months);
         }
     }
 
@@ -18049,10 +18049,10 @@ var moment = createCommonjsModule(function (module, exports) {
         }
         var prefix = '[' + func + '("]';
         var year = (0 <= this.year() && this.year() <= 9999) ? 'YYYY' : 'YYYYYY';
-        var datetime = '-MM-DD[T]HH:mm:ss.SSS';
+        var fechatime = '-MM-DD[T]HH:mm:ss.SSS';
         var suffix = zone + '[")]';
 
-        return this.format(prefix + year + datetime + suffix);
+        return this.format(prefix + year + fechatime + suffix);
     }
 
     function format (inputString) {
@@ -18128,13 +18128,13 @@ var moment = createCommonjsModule(function (module, exports) {
     var MS_PER_HOUR = 60 * MS_PER_MINUTE;
     var MS_PER_400_YEARS = (365 * 400 + 97) * 24 * MS_PER_HOUR;
 
-    // actual modulo - handles negative numbers (for dates before 1970):
+    // actual modulo - handles negative numbers (for fechas before 1970):
     function mod$1(dividend, divisor) {
         return (dividend % divisor + divisor) % divisor;
     }
 
     function localStartOfDate(y, m, d) {
-        // the date constructor remaps years 0-99 to 1900-1999
+        // the fecha constructor remaps years 0-99 to 1900-1999
         if (y < 100 && y >= 0) {
             // preserve leap years using a full 400 year cycle, then reset
             return new Date(y + 400, m, d) - MS_PER_400_YEARS;
@@ -18173,14 +18173,14 @@ var moment = createCommonjsModule(function (module, exports) {
                 time = startOfDate(this.year(), this.month(), 1);
                 break;
             case 'week':
-                time = startOfDate(this.year(), this.month(), this.date() - this.weekday());
+                time = startOfDate(this.year(), this.month(), this.fecha() - this.weekday());
                 break;
             case 'isoWeek':
-                time = startOfDate(this.year(), this.month(), this.date() - (this.isoWeekday() - 1));
+                time = startOfDate(this.year(), this.month(), this.fecha() - (this.isoWeekday() - 1));
                 break;
             case 'day':
-            case 'date':
-                time = startOfDate(this.year(), this.month(), this.date());
+            case 'fecha':
+                time = startOfDate(this.year(), this.month(), this.fecha());
                 break;
             case 'hour':
                 time = this._d.valueOf();
@@ -18197,7 +18197,7 @@ var moment = createCommonjsModule(function (module, exports) {
         }
 
         this._d.setTime(time);
-        hooks.updateOffset(this, true);
+        hooks.upfechaOffset(this, true);
         return this;
     }
 
@@ -18221,14 +18221,14 @@ var moment = createCommonjsModule(function (module, exports) {
                 time = startOfDate(this.year(), this.month() + 1, 1) - 1;
                 break;
             case 'week':
-                time = startOfDate(this.year(), this.month(), this.date() - this.weekday() + 7) - 1;
+                time = startOfDate(this.year(), this.month(), this.fecha() - this.weekday() + 7) - 1;
                 break;
             case 'isoWeek':
-                time = startOfDate(this.year(), this.month(), this.date() - (this.isoWeekday() - 1) + 7) - 1;
+                time = startOfDate(this.year(), this.month(), this.fecha() - (this.isoWeekday() - 1) + 7) - 1;
                 break;
             case 'day':
-            case 'date':
-                time = startOfDate(this.year(), this.month(), this.date() + 1) - 1;
+            case 'fecha':
+                time = startOfDate(this.year(), this.month(), this.fecha() + 1) - 1;
                 break;
             case 'hour':
                 time = this._d.valueOf();
@@ -18245,7 +18245,7 @@ var moment = createCommonjsModule(function (module, exports) {
         }
 
         this._d.setTime(time);
-        hooks.updateOffset(this, true);
+        hooks.upfechaOffset(this, true);
         return this;
     }
 
@@ -18263,7 +18263,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
     function toArray () {
         var m = this;
-        return [m.year(), m.month(), m.date(), m.hour(), m.minute(), m.second(), m.millisecond()];
+        return [m.year(), m.month(), m.fecha(), m.hour(), m.minute(), m.second(), m.millisecond()];
     }
 
     function toObject () {
@@ -18271,7 +18271,7 @@ var moment = createCommonjsModule(function (module, exports) {
         return {
             years: m.year(),
             months: m.month(),
-            date: m.date(),
+            fecha: m.fecha(),
             hours: m.hours(),
             minutes: m.minutes(),
             seconds: m.seconds(),
@@ -18395,11 +18395,11 @@ var moment = createCommonjsModule(function (module, exports) {
 
     function setWeekAll(weekYear, week, weekday, dow, doy) {
         var dayOfYearData = dayOfYearFromWeeks(weekYear, week, weekday, dow, doy),
-            date = createUTCDate(dayOfYearData.year, 0, dayOfYearData.dayOfYear);
+            fecha = createUTCDate(dayOfYearData.year, 0, dayOfYearData.dayOfYear);
 
-        this.year(date.getUTCFullYear());
-        this.month(date.getUTCMonth());
-        this.date(date.getUTCDate());
+        this.year(fecha.getUTCFullYear());
+        this.month(fecha.getUTCMonth());
+        this.fecha(fecha.getUTCDate());
         return this;
     }
 
@@ -18430,14 +18430,14 @@ var moment = createCommonjsModule(function (module, exports) {
 
     // FORMATTING
 
-    addFormatToken('D', ['DD', 2], 'Do', 'date');
+    addFormatToken('D', ['DD', 2], 'Do', 'fecha');
 
     // ALIASES
 
-    addUnitAlias('date', 'D');
+    addUnitAlias('fecha', 'D');
 
     // PRIORITY
-    addUnitPriority('date', 9);
+    addUnitPriority('fecha', 9);
 
     // PARSING
 
@@ -18658,7 +18658,7 @@ var moment = createCommonjsModule(function (module, exports) {
     proto.isoWeek        = proto.isoWeeks     = getSetISOWeek;
     proto.weeksInYear    = getWeeksInYear;
     proto.isoWeeksInYear = getISOWeeksInYear;
-    proto.date       = getSetDayOfMonth;
+    proto.fecha       = getSetDayOfMonth;
     proto.day        = proto.days             = getSetDayOfWeek;
     proto.weekday    = getSetLocaleDayOfWeek;
     proto.isoWeekday = getSetISODayOfWeek;
@@ -18679,7 +18679,7 @@ var moment = createCommonjsModule(function (module, exports) {
     proto.isUTC                = isUtc;
     proto.zoneAbbr = getZoneAbbr;
     proto.zoneName = getZoneName;
-    proto.dates  = deprecate('dates accessor is deprecated. Use date instead.', getSetDayOfMonth);
+    proto.fechas  = deprecate('fechas accessor is deprecated. Use fecha instead.', getSetDayOfMonth);
     proto.months = deprecate('months accessor is deprecated. Use month instead', getSetMonth);
     proto.years  = deprecate('years accessor is deprecated. Use year instead', getSetYear);
     proto.zone   = deprecate('moment().zone is deprecated, use moment().utcOffset instead. http://momentjs.com/guides/#/warnings/zone/', getSetZone);
@@ -19160,8 +19160,8 @@ var moment = createCommonjsModule(function (module, exports) {
         var total = this.asSeconds();
 
         if (!total) {
-            // this is the same as C#'s (Noda) and python (isodate)...
-            // but not other JS (goog.date)
+            // this is the same as C#'s (Noda) and python (isofecha)...
+            // but not other JS (goog.fecha)
             return 'P0D';
         }
 
@@ -19262,7 +19262,7 @@ var moment = createCommonjsModule(function (module, exports) {
     hooks.monthsShort           = listMonthsShort;
     hooks.weekdaysMin           = listWeekdaysMin;
     hooks.defineLocale          = defineLocale;
-    hooks.updateLocale          = updateLocale;
+    hooks.upfechaLocale          = upfechaLocale;
     hooks.locales               = listLocales;
     hooks.weekdaysShort         = listWeekdaysShort;
     hooks.normalizeUnits        = normalizeUnits;
@@ -19273,10 +19273,10 @@ var moment = createCommonjsModule(function (module, exports) {
 
     // currently HTML5 input type only supports 24-hour formats
     hooks.HTML5_FMT = {
-        DATETIME_LOCAL: 'YYYY-MM-DDTHH:mm',             // <input type="datetime-local" />
-        DATETIME_LOCAL_SECONDS: 'YYYY-MM-DDTHH:mm:ss',  // <input type="datetime-local" step="1" />
-        DATETIME_LOCAL_MS: 'YYYY-MM-DDTHH:mm:ss.SSS',   // <input type="datetime-local" step="0.001" />
-        DATE: 'YYYY-MM-DD',                             // <input type="date" />
+        DATETIME_LOCAL: 'YYYY-MM-DDTHH:mm',             // <input type="fechatime-local" />
+        DATETIME_LOCAL_SECONDS: 'YYYY-MM-DDTHH:mm:ss',  // <input type="fechatime-local" step="1" />
+        DATETIME_LOCAL_MS: 'YYYY-MM-DDTHH:mm:ss.SSS',   // <input type="fechatime-local" step="0.001" />
+        DATE: 'YYYY-MM-DD',                             // <input type="fecha" />
         TIME: 'HH:mm',                                  // <input type="time" />
         TIME_SECONDS: 'HH:mm:ss',                       // <input type="time" step="1" />
         TIME_MS: 'HH:mm:ss.SSS',                        // <input type="time" step="0.001" />
@@ -19290,7 +19290,7 @@ var moment = createCommonjsModule(function (module, exports) {
 });
 
 var FORMATS = {
-	datetime: 'MMM D, YYYY, h:mm:ss a',
+	fechatime: 'MMM D, YYYY, h:mm:ss a',
 	millisecond: 'h:mm:ss.SSS a',
 	second: 'h:mm:ss a',
 	minute: 'h:mm a',
@@ -19302,7 +19302,7 @@ var FORMATS = {
 	year: 'YYYY'
 };
 
-core_adapters._date.override(typeof moment === 'function' ? {
+core_adapters._fecha.override(typeof moment === 'function' ? {
 	_id: 'moment', // DEBUG ONLY
 
 	formats: function() {
@@ -19662,7 +19662,7 @@ function doFill(ctx, points, mapper, view, color, loop) {
 var plugin_filler = {
 	id: 'filler',
 
-	afterDatasetsUpdate: function(chart, options) {
+	afterDatasetsUpfecha: function(chart, options) {
 		var count = (chart.data.datasets || []).length;
 		var propagate = options.propagate;
 		var sources = [];
@@ -19744,11 +19744,11 @@ core_defaults._set('global', {
 			var ci = this.chart;
 			var meta = ci.getDatasetMeta(index);
 
-			// See controller.isDatasetVisible comment
+			// See controller.isDatasetVisible comentario
 			meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
 
 			// We hid a dataset ... rerender the chart
-			ci.update();
+			ci.upfecha();
 		},
 
 		onHover: null,
@@ -19854,12 +19854,12 @@ var Legend = core_element.extend({
 	// Any function defined here is inherited by all legend types.
 	// Any function can be extended by the legend type
 
-	beforeUpdate: noop$1,
-	update: function(maxWidth, maxHeight, margins) {
+	beforeUpfecha: noop$1,
+	upfecha: function(maxWidth, maxHeight, margins) {
 		var me = this;
 
-		// Update Lifecycle - Probably don't want to ever extend or overwrite this function ;)
-		me.beforeUpdate();
+		// Upfecha Lifecycle - Probably don't want to ever extend or overwrite this function ;)
+		me.beforeUpfecha();
 
 		// Absorb the master measurements
 		me.maxWidth = maxWidth;
@@ -19880,11 +19880,11 @@ var Legend = core_element.extend({
 		me.fit();
 		me.afterFit();
 		//
-		me.afterUpdate();
+		me.afterUpfecha();
 
 		return me.minSize;
 	},
-	afterUpdate: noop$1,
+	afterUpfecha: noop$1,
 
 	//
 
@@ -19995,7 +19995,7 @@ var Legend = core_element.extend({
 					lineWidths[lineWidths.length - (i > 0 ? 0 : 1)] = 0;
 				}
 
-				// Store the hitbox width and height here. Final position will be updated in `draw`
+				// Store the hitbox width and height here. Final position will be upfechad in `draw`
 				hitboxes[i] = {
 					left: 0,
 					top: 0,
@@ -20033,7 +20033,7 @@ var Legend = core_element.extend({
 				currentColWidth = Math.max(currentColWidth, itemWidth);
 				currentColHeight += fontSize + vPadding;
 
-				// Store the hitbox width and height here. Final position will be updated in `draw`
+				// Store the hitbox width and height here. Final position will be upfechad in `draw`
 				hitboxes[i] = {
 					left: 0,
 					top: 0,
@@ -20327,7 +20327,7 @@ var plugin_legend = {
 		}
 	},
 
-	beforeUpdate: function(chart) {
+	beforeUpfecha: function(chart) {
 		var legendOpts = chart.options.legend;
 		var legend = chart.legend;
 
@@ -20382,12 +20382,12 @@ var Title = core_element.extend({
 
 	// These methods are ordered by lifecycle. Utilities then follow.
 
-	beforeUpdate: noop$2,
-	update: function(maxWidth, maxHeight, margins) {
+	beforeUpfecha: noop$2,
+	upfecha: function(maxWidth, maxHeight, margins) {
 		var me = this;
 
-		// Update Lifecycle - Probably don't want to ever extend or overwrite this function ;)
-		me.beforeUpdate();
+		// Upfecha Lifecycle - Probably don't want to ever extend or overwrite this function ;)
+		me.beforeUpfecha();
 
 		// Absorb the master measurements
 		me.maxWidth = maxWidth;
@@ -20408,12 +20408,12 @@ var Title = core_element.extend({
 		me.fit();
 		me.afterFit();
 		//
-		me.afterUpdate();
+		me.afterUpfecha();
 
 		return me.minSize;
 
 	},
-	afterUpdate: noop$2,
+	afterUpfecha: noop$2,
 
 	//
 
@@ -20571,7 +20571,7 @@ var plugin_title = {
 		}
 	},
 
-	beforeUpdate: function(chart) {
+	beforeUpfecha: function(chart) {
 		var titleOpts = chart.options.title;
 		var titleBlock = chart.titleBlock;
 

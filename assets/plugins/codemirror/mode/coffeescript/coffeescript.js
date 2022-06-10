@@ -72,22 +72,22 @@ CodeMirror.defineMode("coffeescript", function(conf, parserConf) {
 
     var ch = stream.peek();
 
-    // Handle docco title comment (single line)
+    // Handle docco title comentario (single line)
     if (stream.match("####")) {
       stream.skipToEnd();
-      return "comment";
+      return "comentario";
     }
 
-    // Handle multi line comments
+    // Handle multi line comentarios
     if (stream.match("###")) {
       state.tokenize = longComment;
       return state.tokenize(stream, state);
     }
 
-    // Single line comment
+    // Single line comentario
     if (ch === "#") {
       stream.skipToEnd();
-      return "comment";
+      return "comentario";
     }
 
     // Handle number literals
@@ -212,7 +212,7 @@ CodeMirror.defineMode("coffeescript", function(conf, parserConf) {
       }
       stream.eatWhile("#");
     }
-    return "comment";
+    return "comentario";
   }
 
   function indent(stream, state, type) {
@@ -323,7 +323,7 @@ CodeMirror.defineMode("coffeescript", function(conf, parserConf) {
       if (fillAlign && stream.sol()) fillAlign.align = false;
 
       var style = tokenLexer(stream, state);
-      if (style && style != "comment") {
+      if (style && style != "comentario") {
         if (fillAlign) fillAlign.align = true;
         state.prop = style == "punctuation" && stream.current() == "."
       }

@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
     remote: "هنن جاين جي ضرورت آهي",
     email: "لکيل اي ميل غلط آهي",
     url: "لکيل ايڊريس غلط آهي",
-    date: "لکيل تاريخ غلط آهي",
-    dateISO: "جي معيار جي مطابق نه آهي (ISO) لکيل تاريخ",
+    fecha: "لکيل تاريخ غلط آهي",
+    fechaISO: "جي معيار جي مطابق نه آهي (ISO) لکيل تاريخ",
     number: "لکيل انگ صحيح ناهي",
     digits: "رڳو انگ داخل ڪري سگهجي ٿو",
     creditcard: "لکيل ڪارڊ نمبر صحيح نه آهي",

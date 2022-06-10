@@ -8,10 +8,10 @@
       <stop offset="0" stop-color="#952d1a"/>
       <stop offset="1" stop-color="#570a00"/>
     </radialGradient>
-    <radialGradient id="c" cx="247.1" cy="238.3" r="36" fx="247.1" fy="238.3" gradientTransform="scale(1.22624 .8155)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
-    <radialGradient id="d" cx="322" cy="152.9" r="10.6" fx="322" fy="152.9" gradientTransform="scale(.93615 1.06821)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
-    <radialGradient id="e" cx="364.2" cy="237.8" r="36" fx="364.2" fy="237.8" gradientTransform="scale(1.2242 .81686)" gradientUnits="userSpaceOnUse" xlink:href="#b"/>
-    <radialGradient id="f" cx="468.1" cy="156.1" r="10.7" fx="468.1" fy="156.1" gradientTransform="scale(.95596 1.04607)" gradientUnits="userSpaceOnUse" xlink:href="#b"/>
+    <radialGradient id="c" cx="247.1" cy="238.3" r="36" fx="247.1" fy="238.3" gradientTransform="scale(1.22624 .8155)" gradientUnits="usuariospaceOnUse" xlink:href="#a"/>
+    <radialGradient id="d" cx="322" cy="152.9" r="10.6" fx="322" fy="152.9" gradientTransform="scale(.93615 1.06821)" gradientUnits="usuariospaceOnUse" xlink:href="#a"/>
+    <radialGradient id="e" cx="364.2" cy="237.8" r="36" fx="364.2" fy="237.8" gradientTransform="scale(1.2242 .81686)" gradientUnits="usuariospaceOnUse" xlink:href="#b"/>
+    <radialGradient id="f" cx="468.1" cy="156.1" r="10.7" fx="468.1" fy="156.1" gradientTransform="scale(.95596 1.04607)" gradientUnits="usuariospaceOnUse" xlink:href="#b"/>
   </defs>
   <path fill="#ce1126" d="M0 0h512v512H0z"/>
   <path fill="#003f87" d="M0 36.6h512v438.8H0z"/>

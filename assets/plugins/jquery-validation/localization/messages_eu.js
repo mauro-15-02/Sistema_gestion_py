@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Mesedez, bete eremu hau.",
 	email: "Mesedez, idatzi baliozko posta helbide bat.",
 	url: "Mesedez, idatzi baliozko URL bat.",
-	date: "Mesedez, idatzi baliozko data bat.",
-	dateISO: "Mesedez, idatzi baliozko (ISO) data bat.",
+	fecha: "Mesedez, idatzi baliozko data bat.",
+	fechaISO: "Mesedez, idatzi baliozko (ISO) data bat.",
 	number: "Mesedez, idatzi baliozko zenbaki oso bat.",
 	digits: "Mesedez, idatzi digituak soilik.",
 	creditcard: "Mesedez, idatzi baliozko txartel zenbaki bat.",

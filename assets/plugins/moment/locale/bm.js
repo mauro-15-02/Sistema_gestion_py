@@ -1,6 +1,6 @@
 //! moment.js locale configuration
 //! locale : Bambara [bm]
-//! author : Estelle Comment : https://github.com/estellecomment
+//! author : Estelle Comment : https://github.com/estellecomentario
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'

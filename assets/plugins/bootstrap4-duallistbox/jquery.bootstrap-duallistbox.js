@@ -35,7 +35,7 @@
       moveAllLabel: 'Move all',
       removeSelectedLabel: 'Remove selected',
       removeAllLabel: 'Remove all',
-      moveOnSelect: true,                                                                 // true/false (forced true on androids, see the comment later)
+      moveOnSelect: true,                                                                 // true/false (forced true on androids, see the comentario later)
       moveOnDoubleClick: true,                                                            // true/false (forced false on androids, cause moveOnSelect is forced to true)
       preserveSelectionOnMove: false,                                                     // 'all' / 'moved' / false
       selectedListLabel: false,                                                           // 'string', false
@@ -81,7 +81,7 @@
     dualListbox.element.trigger('change');
   }
 
-  function updateSelectionStates(dualListbox) {
+  function upfechaSelectionStates(dualListbox) {
     dualListbox.element.find('option').each(function(index, item) {
       var $item = $(item);
       if (typeof($item.data('original-index')) === 'undefined') {
@@ -480,7 +480,7 @@
       this.setHelperSelectNamePostfix(this.settings.helperSelectNamePostfix);
       this.setSelectOrMinimalHeight(this.settings.selectorMinimalHeight);
 
-      updateSelectionStates(this);
+      upfechaSelectionStates(this);
 
       this.setShowFilterInputs(this.settings.showFilterInputs);
       this.setNonSelectedFilter(this.settings.nonSelectedFilter);
@@ -826,7 +826,7 @@
       return this.container;
     },
     refresh: function(mustClearSelections) {
-      updateSelectionStates(this);
+      upfechaSelectionStates(this);
 
       if (!mustClearSelections) {
         saveSelections(this, 1);

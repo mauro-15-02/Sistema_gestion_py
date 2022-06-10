@@ -58,7 +58,7 @@ CodeMirror.defineMode("sparql", function(config) {
     }
     else if (ch == "#") {
       stream.skipToEnd();
-      return "comment";
+      return "comentario";
     }
     else if (operatorChars.test(ch)) {
       stream.eatWhile(operatorChars);
@@ -126,7 +126,7 @@ CodeMirror.defineMode("sparql", function(config) {
       if (stream.eatSpace()) return null;
       var style = state.tokenize(stream, state);
 
-      if (style != "comment" && state.context && state.context.align == null && state.context.type != "pattern") {
+      if (style != "comentario" && state.context && state.context.align == null && state.context.type != "pattern") {
         state.context.align = true;
       }
 

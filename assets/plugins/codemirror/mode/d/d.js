@@ -53,7 +53,7 @@ CodeMirror.defineMode("d", function(config, parserConfig) {
       }
       if (stream.eat("/")) {
         stream.skipToEnd();
-        return "comment";
+        return "comentario";
       }
     }
     if (isOperatorChar.test(ch)) {
@@ -96,7 +96,7 @@ CodeMirror.defineMode("d", function(config, parserConfig) {
       }
       maybeEnd = (ch == "*");
     }
-    return "comment";
+    return "comentario";
   }
 
   function tokenNestedComment(stream, state) {
@@ -108,7 +108,7 @@ CodeMirror.defineMode("d", function(config, parserConfig) {
       }
       maybeEnd = (ch == "+");
     }
-    return "comment";
+    return "comentario";
   }
 
   function Context(indented, column, type, align, prev) {
@@ -153,7 +153,7 @@ CodeMirror.defineMode("d", function(config, parserConfig) {
       if (stream.eatSpace()) return null;
       curPunc = null;
       var style = (state.tokenize || tokenBase)(stream, state);
-      if (style == "comment" || style == "meta") return style;
+      if (style == "comentario" || style == "meta") return style;
       if (ctx.align == null) ctx.align = true;
 
       if ((curPunc == ";" || curPunc == ":" || curPunc == ",") && ctx.type == "statement") popContext(state);

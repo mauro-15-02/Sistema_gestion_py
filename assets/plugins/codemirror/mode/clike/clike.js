@@ -98,7 +98,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
       }
       if (stream.eat("/")) {
         stream.skipToEnd();
-        return "comment";
+        return "comentario";
       }
     }
     if (isOperatorChar.test(ch)) {
@@ -147,7 +147,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
       }
       maybeEnd = (ch == "*");
     }
-    return "comment";
+    return "comentario";
   }
 
   function maybeEOL(stream, state) {
@@ -178,7 +178,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
       if (stream.eatSpace()) { maybeEOL(stream, state); return null; }
       curPunc = isDefKeyword = null;
       var style = (state.tokenize || tokenBase)(stream, state);
-      if (style == "comment" || style == "meta") return style;
+      if (style == "comentario" || style == "meta") return style;
       if (ctx.align == null) ctx.align = true;
 
       if (curPunc == ";" || curPunc == ":" || (curPunc == "," && stream.match(/^\s*(?:\/\/.*)?$/, false)))
@@ -513,7 +513,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
                     " unsafe using virtual void volatile while add alias ascending descending dynamic from get" +
                     " global group into join let orderby partial remove select set value var yield"),
     types: words("Action Boolean Byte Char DateTime DateTimeOffset Decimal Double Func" +
-                 " Guid Int16 Int32 Int64 Object SByte Single String Task TimeSpan UInt16 UInt32" +
+                 " Guid Int16 Int32 Int64 Object SByte Single String tarea TimeSpan UInt16 UInt32" +
                  " UInt64 bool byte char decimal double short int long object"  +
                  " sbyte float string ushort uint ulong"),
     blockKeywords: words("catch class do else finally for foreach if struct switch try while"),
@@ -561,7 +561,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
           return state.tokenize(stream, state)
         }
       }
-      return "comment"
+      return "comentario"
     }
   }
 
@@ -772,7 +772,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     name: "clike",
     keywords: words(cKeywords + " as atomic async call command component components configuration event generic " +
                     "implementation includes interface module new norace nx_struct nx_union post provides " +
-                    "signal task uses abstract extends"),
+                    "signal tarea uses abstract extends"),
     types: cTypes,
     blockKeywords: words(cBlockKeywords),
     atoms: words("null true false"),

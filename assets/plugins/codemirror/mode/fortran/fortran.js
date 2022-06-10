@@ -58,7 +58,7 @@ CodeMirror.defineMode("fortran", function() {
                           "c_alert", "c_backspace", "c_form_feed",
                           "c_new_line", "c_carriage_return",
                           "c_horizontal_tab", "c_vertical_tab", "dabs",
-                          "dacos", "dasin", "datan", "date_and_time",
+                          "dacos", "dasin", "datan", "fecha_and_time",
                           "dbesj", "dbesj", "dbesjn", "dbesy", "dbesy",
                           "dbesyn", "dble", "dcos", "dcosh", "ddim", "derf",
                           "derfc", "dexp", "digits", "dim", "dint", "dlog",
@@ -67,7 +67,7 @@ CodeMirror.defineMode("fortran", function() {
                           "dsin", "dsqrt", "dtanh", "dtan", "dtime",
                           "eoshift", "epsilon", "erf", "erfc", "etime",
                           "exit", "exp", "exponent", "extends_type_of",
-                          "fdate", "fget", "fgetc", "float", "floor",
+                          "ffecha", "fget", "fgetc", "float", "floor",
                           "flush", "fnum", "fputc", "fput", "fraction",
                           "fseek", "fstat", "ftell", "gerror", "getarg",
                           "get_command", "get_command_argument",
@@ -75,7 +75,7 @@ CodeMirror.defineMode("fortran", function() {
                           "getenv", "getgid", "getlog", "getpid",
                           "getuid", "gmtime", "hostnm", "huge", "iabs",
                           "iachar", "iand", "iargc", "ibclr", "ibits",
-                          "ibset", "ichar", "idate", "idim", "idint",
+                          "ibset", "ichar", "ifecha", "idim", "idint",
                           "idnint", "ieor", "ierrno", "ifix", "imag",
                           "imagpart", "index", "int", "ior", "irand",
                           "isatty", "ishft", "ishftc", "isign",
@@ -123,7 +123,7 @@ CodeMirror.defineMode("fortran", function() {
     var ch = stream.next();
     if (ch == "!") {
       stream.skipToEnd();
-      return "comment";
+      return "comentario";
     }
     if (ch == '"' || ch == "'") {
       state.tokenize = tokenString(ch);
@@ -177,7 +177,7 @@ CodeMirror.defineMode("fortran", function() {
     token: function(stream, state) {
       if (stream.eatSpace()) return null;
       var style = (state.tokenize || tokenBase)(stream, state);
-      if (style == "comment" || style == "meta") return style;
+      if (style == "comentario" || style == "meta") return style;
       return style;
     }
   };

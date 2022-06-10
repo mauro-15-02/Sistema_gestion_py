@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Prosím, opravte tento údaj.",
 	email: "Prosím, zadejte platný e-mail.",
 	url: "Prosím, zadejte platné URL.",
-	date: "Prosím, zadejte platné datum.",
-	dateISO: "Prosím, zadejte platné datum (ISO).",
+	fecha: "Prosím, zadejte platné datum.",
+	fechaISO: "Prosím, zadejte platné datum (ISO).",
 	number: "Prosím, zadejte číslo.",
 	digits: "Prosím, zadávejte pouze číslice.",
 	creditcard: "Prosím, zadejte číslo kreditní karty.",

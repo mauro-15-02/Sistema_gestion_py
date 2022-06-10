@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Zəhmət olmasa, düzgün məna daxil edin.",
 	email: "Zəhmət olmasa, düzgün elektron poçt daxil edin.",
 	url: "Zəhmət olmasa, düzgün URL daxil edin.",
-	date: "Zəhmət olmasa, düzgün tarix daxil edin.",
-	dateISO: "Zəhmət olmasa, düzgün ISO formatlı tarix daxil edin.",
+	fecha: "Zəhmət olmasa, düzgün tarix daxil edin.",
+	fechaISO: "Zəhmət olmasa, düzgün ISO formatlı tarix daxil edin.",
 	number: "Zəhmət olmasa, düzgün rəqəm daxil edin.",
 	digits: "Zəhmət olmasa, yalnız rəqəm daxil edin.",
 	creditcard: "Zəhmət olmasa, düzgün kredit kart nömrəsini daxil edin.",

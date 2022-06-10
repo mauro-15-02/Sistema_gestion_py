@@ -48,9 +48,9 @@ CodeMirror.defineMode("vbscript", function(conf, parserConf) {
     //This list was from: http://msdn.microsoft.com/en-us/library/f8tbc79x(v=vs.84).aspx
     var atomWords = ['true', 'false', 'nothing', 'empty', 'null'];
     //This list was from: http://msdn.microsoft.com/en-us/library/3ca8tfek(v=vs.84).aspx
-    var builtinFuncsWords = ['abs', 'array', 'asc', 'atn', 'cbool', 'cbyte', 'ccur', 'cdate', 'cdbl', 'chr', 'cint', 'clng', 'cos', 'csng', 'cstr', 'date', 'dateadd', 'datediff', 'datepart',
-                        'dateserial', 'datevalue', 'day', 'escape', 'eval', 'execute', 'exp', 'filter', 'formatcurrency', 'formatdatetime', 'formatnumber', 'formatpercent', 'getlocale', 'getobject',
-                        'getref', 'hex', 'hour', 'inputbox', 'instr', 'instrrev', 'int', 'fix', 'isarray', 'isdate', 'isempty', 'isnull', 'isnumeric', 'isobject', 'join', 'lbound', 'lcase', 'left',
+    var builtinFuncsWords = ['abs', 'array', 'asc', 'atn', 'cbool', 'cbyte', 'ccur', 'cfecha', 'cdbl', 'chr', 'cint', 'clng', 'cos', 'csng', 'cstr', 'fecha', 'fechaadd', 'fechadiff', 'fechapart',
+                        'fechaserial', 'fechavalue', 'day', 'escape', 'eval', 'execute', 'exp', 'filter', 'formatcurrency', 'formatfechatime', 'formatnumber', 'formatpercent', 'getlocale', 'getobject',
+                        'getref', 'hex', 'hour', 'inputbox', 'instr', 'instrrev', 'int', 'fix', 'isarray', 'isfecha', 'isempty', 'isnull', 'isnumeric', 'isobject', 'join', 'lbound', 'lcase', 'left',
                         'len', 'loadpicture', 'log', 'ltrim', 'rtrim', 'trim', 'maths', 'mid', 'minute', 'month', 'monthname', 'msgbox', 'now', 'oct', 'replace', 'rgb', 'right', 'rnd', 'round',
                         'scriptengine', 'scriptenginebuildversion', 'scriptenginemajorversion', 'scriptengineminorversion', 'second', 'setlocale', 'sgn', 'sin', 'space', 'split', 'sqr', 'strcomp',
                         'string', 'strreverse', 'tan', 'time', 'timer', 'timeserial', 'timevalue', 'typename', 'ubound', 'ucase', 'unescape', 'vartype', 'weekday', 'weekdayname', 'year'];
@@ -65,8 +65,8 @@ CodeMirror.defineMode("vbscript", function(conf, parserConf) {
                          'vbEmpty', 'vbNull', 'vbInteger', 'vbLong', 'vbSingle', 'vbDouble', 'vbCurrency', 'vbDate', 'vbString', 'vbObject', 'vbError', 'vbBoolean', 'vbVariant', 'vbDataObject', 'vbDecimal', 'vbByte', 'vbArray'];
     //This list was from: http://msdn.microsoft.com/en-us/library/hkc375ea(v=vs.84).aspx
     var builtinObjsWords = ['WScript', 'err', 'debug', 'RegExp'];
-    var knownProperties = ['description', 'firstindex', 'global', 'helpcontext', 'helpfile', 'ignorecase', 'length', 'number', 'pattern', 'source', 'value', 'count'];
-    var knownMethods = ['clear', 'execute', 'raise', 'replace', 'test', 'write', 'writeline', 'close', 'open', 'state', 'eof', 'update', 'addnew', 'end', 'createobject', 'quit'];
+    var knownProperties = ['descripcion', 'firstindex', 'global', 'helpcontext', 'helpfile', 'ignorecase', 'length', 'number', 'pattern', 'source', 'value', 'count'];
+    var knownMethods = ['clear', 'execute', 'raise', 'replace', 'test', 'write', 'writeline', 'close', 'open', 'state', 'eof', 'upfecha', 'addnew', 'end', 'createobject', 'quit'];
 
     var aspBuiltinObjsWords = ['server', 'response', 'request', 'session', 'application'];
     var aspKnownProperties = ['buffer', 'cachecontrol', 'charset', 'contenttype', 'expires', 'expiresabsolute', 'isclientconnected', 'pics', 'status', //response
@@ -102,7 +102,7 @@ CodeMirror.defineMode("vbscript", function(conf, parserConf) {
     var doubleClosing = wordRegexp(['end']);
     var doOpening = wordRegexp(['do']);
     var noIndentWords = wordRegexp(['on error resume next', 'exit']);
-    var comment = wordRegexp(['rem']);
+    var comentario = wordRegexp(['rem']);
 
 
     function indent(_stream, state) {
@@ -124,11 +124,11 @@ CodeMirror.defineMode("vbscript", function(conf, parserConf) {
         // Handle Comments
         if (ch === "'") {
             stream.skipToEnd();
-            return 'comment';
+            return 'comentario';
         }
-        if (stream.match(comment)){
+        if (stream.match(comentario)){
             stream.skipToEnd();
-            return 'comment';
+            return 'comentario';
         }
 
 

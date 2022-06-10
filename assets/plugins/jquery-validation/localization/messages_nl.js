@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Controleer dit veld.",
 	email: "Vul hier een geldig e-mailadres in.",
 	url: "Vul hier een geldige URL in.",
-	date: "Vul hier een geldige datum in.",
-	dateISO: "Vul hier een geldige datum in (ISO-formaat).",
+	fecha: "Vul hier een geldige datum in.",
+	fechaISO: "Vul hier een geldige datum in (ISO-formaat).",
 	number: "Vul hier een geldig getal in.",
 	digits: "Vul hier alleen getallen in.",
 	creditcard: "Vul hier een geldig creditcardnummer in.",
@@ -34,7 +34,7 @@ $.extend( $.validator.messages, {
 
 	// For validations in additional-methods.js
 	iban: "Vul hier een geldig IBAN in.",
-	dateNL: "Vul hier een geldige datum in.",
+	fechaNL: "Vul hier een geldige datum in.",
 	phoneNL: "Vul hier een geldig Nederlands telefoonnummer in.",
 	mobileNL: "Vul hier een geldig Nederlands mobiel telefoonnummer in.",
 	postalcodeNL: "Vul hier een geldige postcode in.",

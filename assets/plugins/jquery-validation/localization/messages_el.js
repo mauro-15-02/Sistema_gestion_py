@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Παρακαλώ διορθώστε αυτό το πεδίο.",
 	email: "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση email.",
 	url: "Παρακαλώ εισάγετε ένα έγκυρο URL.",
-	date: "Παρακαλώ εισάγετε μια έγκυρη ημερομηνία.",
-	dateISO: "Παρακαλώ εισάγετε μια έγκυρη ημερομηνία (ISO).",
+	fecha: "Παρακαλώ εισάγετε μια έγκυρη ημερομηνία.",
+	fechaISO: "Παρακαλώ εισάγετε μια έγκυρη ημερομηνία (ISO).",
 	number: "Παρακαλώ εισάγετε έναν έγκυρο αριθμό.",
 	digits: "Παρακαλώ εισάγετε μόνο αριθμητικά ψηφία.",
 	creditcard: "Παρακαλώ εισάγετε έναν έγκυρο αριθμό πιστωτικής κάρτας.",

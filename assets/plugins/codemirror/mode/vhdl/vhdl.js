@@ -73,7 +73,7 @@ CodeMirror.defineMode("vhdl", function(config, parserConfig) {
     if (ch == "-") {
       if (stream.eat("-")) {
         stream.skipToEnd();
-        return "comment";
+        return "comentario";
       }
     }
     if (isOperatorChar.test(ch)) {
@@ -153,7 +153,7 @@ CodeMirror.defineMode("vhdl", function(config, parserConfig) {
       if (stream.eatSpace()) return null;
       curPunc = null;
       var style = (state.tokenize || tokenBase)(stream, state);
-      if (style == "comment" || style == "meta") return style;
+      if (style == "comentario" || style == "meta") return style;
       if (ctx.align == null) ctx.align = true;
 
       if ((curPunc == ";" || curPunc == ":") && ctx.type == "statement") popContext(state);

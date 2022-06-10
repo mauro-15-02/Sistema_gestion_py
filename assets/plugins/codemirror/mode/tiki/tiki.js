@@ -72,7 +72,7 @@ CodeMirror.defineMode('tiki', function(config) {
       break;
     case "|": //table
       if (stream.eat("|"))
-        return chain(inBlock("comment", "||"));
+        return chain(inBlock("comentario", "||"));
       break;
     case "-":
       if (stream.eat("=")) {//titleBar
@@ -87,7 +87,7 @@ CodeMirror.defineMode('tiki', function(config) {
       break;
     case ":":
       if (stream.eat(":"))
-        return chain(inBlock("comment", "::"));
+        return chain(inBlock("comentario", "::"));
       break;
     case "^": //box
       return chain(inBlock("tw-box", "^"));
@@ -283,7 +283,7 @@ return {
 
     setStyle = type = pluginName = null;
     var style = state.tokenize(stream, state);
-    if ((style || type) && style != "comment") {
+    if ((style || type) && style != "comentario") {
       curState = state;
       while (true) {
         var comb = state.cc.pop() || element;

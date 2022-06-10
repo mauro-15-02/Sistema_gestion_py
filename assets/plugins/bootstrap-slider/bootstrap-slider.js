@@ -27,7 +27,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * restriction, including without limitation the rights to use,
  * copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following
+ * Software is furnished to do so, tema to the following
  * conditions:
  *
  * The above copyright notice and this permission notice shall be
@@ -404,7 +404,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			}
 
 			/*
-   	Validate `tooltip_position` against 'orientation`
+   	Valifecha `tooltip_position` against 'orientation`
    	- if `tooltip_position` is incompatible with orientation, switch it to a default compatible with specified `orientation`
    		-- default for "vertical" -> "right", "left" if rtl
    		-- default for "horizontal" -> "top"
@@ -436,7 +436,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
    	**************************************************/
 
 			var origWidth = this.element.style.width;
-			var updateSlider = false;
+			var upfechaSlider = false;
 			var parent = this.element.parentNode;
 			var sliderTrackSelection;
 			var sliderTrackLow, sliderTrackHigh;
@@ -444,7 +444,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			var sliderMaxHandle;
 
 			if (this.sliderElem) {
-				updateSlider = true;
+				upfechaSlider = true;
 			} else {
 				/* Create elements needed for slider */
 				this.sliderElem = document.createElement("div");
@@ -627,7 +627,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				this.options.scale = SliderScale[this.options.scale];
 			}
 
-			if (updateSlider === true) {
+			if (upfechaSlider === true) {
 				// Reset classes
 				this._removeClass(this.sliderElem, 'slider-horizontal');
 				this._removeClass(this.sliderElem, 'slider-vertical');
@@ -721,7 +721,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			this.handle1 = sliderMinHandle || this.handle1;
 			this.handle2 = sliderMaxHandle || this.handle2;
 
-			if (updateSlider === true) {
+			if (upfechaSlider === true) {
 				// Reset classes
 				this._removeClass(this.handle1, 'round triangle');
 				this._removeClass(this.handle2, 'round triangle hide');
@@ -899,7 +899,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					val = 0;
 				}
 				var oldValue = this.getValue();
-				this._state.value = this._validateInputValue(val);
+				this._state.value = this._valifechaInputValue(val);
 				var applyPrecision = this._applyPrecision.bind(this);
 
 				if (this.options.range) {
@@ -1076,7 +1076,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			/******************************+
    				HELPERS
    	- Any method that is not part of the public interface.
-   - Place it underneath this comment block and write its signature like so:
+   - Place it underneath this comentario block and write its signature like so:
    		_fnName : function() {...}
    	********************************/
 			_removeTooltipListener: function _removeTooltipListener(event, handler) {
@@ -1857,17 +1857,17 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				// 100% corresponds to the 'max' value of the slide
 				return Math.max(0, Math.min(100, percentage));
 			},
-			_validateInputValue: function _validateInputValue(val) {
+			_valifechaInputValue: function _valifechaInputValue(val) {
 				if (!isNaN(+val)) {
 					return +val;
 				} else if (Array.isArray(val)) {
-					this._validateArray(val);
+					this._valifechaArray(val);
 					return val;
 				} else {
 					throw new Error(ErrorMsgs.formatInvalidInputErrorMsg(val));
 				}
 			},
-			_validateArray: function _validateArray(val) {
+			_valifechaArray: function _valifechaArray(val) {
 				for (var i = 0; i < val.length; i++) {
 					var input = val[i];
 					if (typeof input !== 'number') {

@@ -4,11 +4,11 @@
 
 /**
  * @summary     AutoFill
- * @description Add Excel like click and drag auto-fill options to DataTables
+ * @descripcion Add Excel like click and drag auto-fill options to DataTables
  * @version     2.3.5
  * @file        dataTables.autoFill.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contact     www.sprymedia.co.uk/contact
+ * @contacto     www.sprymedia.co.uk/contacto
  * @copyright   Copyright 2010-2020 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
@@ -292,7 +292,7 @@ $.extend( AutoFill.prototype, {
 		if ( available.length === 1 && this.c.alwaysAsk === false ) {
 			// Only one action available - enact it immediately
 			var result = actions[ available[0] ].execute( dt, cells );
-			this._update( result, cells );
+			this._upfecha( result, cells );
 		}
 		else if ( available.length > 1 ) {
 			// Multiple actions available - ask the end user what they want to do
@@ -314,7 +314,7 @@ $.extend( AutoFill.prototype, {
 								var result = actions[ name ].execute(
 									dt, cells, $(this).closest('li')
 								);
-								that._update( result, cells );
+								that._upfecha( result, cells );
 
 								that.dom.background.remove();
 								that.dom.list.remove();
@@ -422,7 +422,7 @@ $.extend( AutoFill.prototype, {
 
 
 	/**
-	 * Use the Editor API to perform an update based on the new data for the
+	 * Use the Editor API to perform an upfecha based on the new data for the
 	 * cells
 	 *
 	 * @param {array} cells Information about the selected cells from the key
@@ -674,7 +674,7 @@ $.extend( AutoFill.prototype, {
 
 
 	/**
-	 * Mouse drag - selects the end cell and update the selection display for
+	 * Mouse drag - selects the end cell and upfecha the selection display for
 	 * the end user
 	 *
 	 * @param  {object} e Mouse move event
@@ -695,7 +695,7 @@ $.extend( AutoFill.prototype, {
 
 
 	/**
-	 * End mouse drag - perform the update actions
+	 * End mouse drag - perform the upfecha actions
 	 *
 	 * @param  {object} e Mouse up event
 	 * @private
@@ -930,7 +930,7 @@ $.extend( AutoFill.prototype, {
 
 
 	/**
-	 * Update the DataTable after the user has selected what they want to do
+	 * Upfecha the DataTable after the user has selected what they want to do
 	 *
 	 * @param  {false|undefined} result Return from the `execute` method - can
 	 *   be false internally to do nothing. This is not documented for plug-ins
@@ -939,7 +939,7 @@ $.extend( AutoFill.prototype, {
 	 *     up function, argumented with the set values
 	 * @private
 	 */
-	_update: function ( result, cells )
+	_upfecha: function ( result, cells )
 	{
 		// Do nothing on `false` return from an execute function
 		if ( result === false ) {
@@ -955,16 +955,16 @@ $.extend( AutoFill.prototype, {
 
 		this._editor( cells );
 
-		// Automatic updates are not performed if `update` is null and the
+		// Automatic upfechas are not performed if `upfecha` is null and the
 		// `editor` parameter is passed in - the reason being that Editor will
-		// update the data once submitted
-		var update = this.c.update !== null ?
-			this.c.update :
+		// upfecha the data once submitted
+		var upfecha = this.c.upfecha !== null ?
+			this.c.upfecha :
 			this.c.editor ?
 				false :
 				true;
 
-		if ( update ) {
+		if ( upfecha ) {
 			for ( var i=0, ien=cells.length ; i<ien ; i++ ) {
 				for ( var j=0, jen=cells[i].length ; j<jen ; j++ ) {
 					cell = cells[i][j];
@@ -1123,8 +1123,8 @@ AutoFill.defaults = {
 	/** @type {Boolean} Enable AutoFill on load */
 	enable: true,
 
-	/** @type {boolean|null} Update the cells after a drag */
-	update: null, // false is editor given, true otherwise
+	/** @type {boolean|null} Upfecha the cells after a drag */
+	upfecha: null, // false is editor given, true otherwise
 
 	/** @type {DataTable.Editor} Editor instance for automatic submission */
 	editor: null,

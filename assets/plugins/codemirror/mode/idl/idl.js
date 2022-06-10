@@ -22,7 +22,7 @@
     'arrow', 'ascii_template', 'asin', 'assoc', 'atan',
     'axis', 'axis', 'bandpass_filter', 'bandreject_filter', 'barplot',
     'bar_plot', 'beseli', 'beselj', 'beselk', 'besely',
-    'beta', 'biginteger', 'bilinear', 'bin_date', 'binary_template',
+    'beta', 'biginteger', 'bilinear', 'bin_fecha', 'binary_template',
     'bindgen', 'binomial', 'bit_ffs', 'bit_population', 'blas_axpy',
     'blk_con', 'boolarr', 'boolean', 'boxplot', 'box_cursor',
     'breakpoint', 'broyden', 'bubbleplot', 'butterworth', 'bytarr',
@@ -106,7 +106,7 @@
     'la_least_square_equality', 'la_least_squares', 'la_linear_equation',
     'la_ludc', 'la_lumprove', 'la_lusol',
     'la_svd', 'la_tridc', 'la_trimprove', 'la_triql', 'la_trired',
-    'la_trisol', 'label_date', 'label_region', 'ladfit', 'laguerre',
+    'la_trisol', 'label_fecha', 'label_region', 'ladfit', 'laguerre',
     'lambda', 'lambdap', 'lambertw', 'laplacian', 'least_squares_filter',
     'leefilt', 'legend', 'legendre', 'linbcg', 'lindgen',
     'linfit', 'linkimage', 'list', 'll_arc_distance', 'lmfit',
@@ -123,7 +123,7 @@
     'mesh_clip', 'mesh_decimate', 'mesh_issolid',
     'mesh_merge', 'mesh_numtriangles',
     'mesh_obj', 'mesh_smooth', 'mesh_surfacearea',
-    'mesh_validate', 'mesh_volume',
+    'mesh_valifecha', 'mesh_volume',
     'message', 'min', 'min_curve_surf', 'mk_html_help', 'modifyct',
     'moment', 'morph_close', 'morph_distance',
     'morph_gradient', 'morph_hitormiss',
@@ -191,7 +191,7 @@
     'tvcrs', 'tvlct', 'tvrd', 'tvscl', 'typename',
     'uindgen', 'uint', 'uintarr', 'ul64indgen', 'ulindgen',
     'ulon64arr', 'ulonarr', 'ulong', 'ulong64', 'uniq',
-    'unsharp_mask', 'usersym', 'value_locate', 'variance', 'vector',
+    'unsharp_mask', 'usuariosym', 'value_locate', 'variance', 'vector',
     'vector_field', 'vel', 'velovect', 'vert_t3d', 'voigt',
     'volume', 'voronoi', 'voxel_proj', 'wait', 'warp_tri',
     'watershed', 'wdelete', 'wf_draw', 'where', 'widget_base',
@@ -248,7 +248,7 @@
     // Handle one line Comments
     if (stream.match(';')) {
       stream.skipToEnd();
-      return 'comment';
+      return 'comentario';
     }
 
     // Handle Number Literals

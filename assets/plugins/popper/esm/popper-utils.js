@@ -9,7 +9,7 @@
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * furnished to do so, tema to the following conditions:
  *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
@@ -47,7 +47,7 @@ function getStyleComputedProperty(element, property) {
  * @returns {Element} parent
  */
 function getParentNode(element) {
-  if (element.nodeName === 'HTML') {
+  if (element.nodenombre === 'HTML') {
     return element;
   }
   return element.parentNode || element.host;
@@ -66,7 +66,7 @@ function getScrollParent(element) {
     return document.body;
   }
 
-  switch (element.nodeName) {
+  switch (element.nodenombre) {
     case 'HTML':
     case 'BODY':
       return element.ownerDocument.body;
@@ -142,15 +142,15 @@ function getOffsetParent(element) {
     offsetParent = (element = element.nextElementSibling).offsetParent;
   }
 
-  var nodeName = offsetParent && offsetParent.nodeName;
+  var nodenombre = offsetParent && offsetParent.nodenombre;
 
-  if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
+  if (!nodenombre || nodenombre === 'BODY' || nodenombre === 'HTML') {
     return element ? element.ownerDocument.documentElement : document.documentElement;
   }
 
   // .offsetParent will return the closest TH, TD or TABLE in case
   // no offsetParent is present, I hate this job...
-  if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
+  if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodenombre) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
     return getOffsetParent(offsetParent);
   }
 
@@ -158,12 +158,12 @@ function getOffsetParent(element) {
 }
 
 function isOffsetContainer(element) {
-  var nodeName = element.nodeName;
+  var nodenombre = element.nodenombre;
 
-  if (nodeName === 'BODY') {
+  if (nodenombre === 'BODY') {
     return false;
   }
-  return nodeName === 'HTML' || getOffsetParent(element.firstElementChild) === element;
+  return nodenombre === 'HTML' || getOffsetParent(element.firstElementChild) === element;
 }
 
 /**
@@ -237,9 +237,9 @@ function getScroll(element) {
   var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
 
   var upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
-  var nodeName = element.nodeName;
+  var nodenombre = element.nodenombre;
 
-  if (nodeName === 'BODY' || nodeName === 'HTML') {
+  if (nodenombre === 'BODY' || nodenombre === 'HTML') {
     var html = element.ownerDocument.documentElement;
     var scrollingElement = element.ownerDocument.scrollingElement || html;
     return scrollingElement[upperSide];
@@ -365,7 +365,7 @@ function getBoundingClientRect(element) {
   };
 
   // subtract scrollbar size from sizes
-  var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
+  var sizes = element.nodenombre === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
   var width = sizes.width || element.clientWidth || result.width;
   var height = sizes.height || element.clientHeight || result.height;
 
@@ -390,7 +390,7 @@ function getOffsetRectRelativeToArbitraryNode(children, parent) {
   var fixedPosition = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
   var isIE10 = isIE(10);
-  var isHTML = parent.nodeName === 'HTML';
+  var isHTML = parent.nodenombre === 'HTML';
   var childrenRect = getBoundingClientRect(children);
   var parentRect = getBoundingClientRect(parent);
   var scrollParent = getScrollParent(children);
@@ -431,7 +431,7 @@ function getOffsetRectRelativeToArbitraryNode(children, parent) {
     offsets.marginLeft = marginLeft;
   }
 
-  if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodeName !== 'BODY') {
+  if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodenombre !== 'BODY') {
     offsets = includeScroll(offsets, parent);
   }
 
@@ -468,8 +468,8 @@ function getViewportOffsetRectRelativeToArtbitraryNode(element) {
  * @returns {Boolean} answer to "isFixed?"
  */
 function isFixed(element) {
-  var nodeName = element.nodeName;
-  if (nodeName === 'BODY' || nodeName === 'HTML') {
+  var nodenombre = element.nodenombre;
+  if (nodenombre === 'BODY' || nodenombre === 'HTML') {
     return false;
   }
   if (getStyleComputedProperty(element, 'position') === 'fixed') {
@@ -529,7 +529,7 @@ function getBoundaries(popper, reference, padding, boundariesElement) {
     var boundariesNode = void 0;
     if (boundariesElement === 'scrollParent') {
       boundariesNode = getScrollParent(getParentNode(reference));
-      if (boundariesNode.nodeName === 'BODY') {
+      if (boundariesNode.nodenombre === 'BODY') {
         boundariesNode = popper.ownerDocument.documentElement;
       }
     } else if (boundariesElement === 'window') {
@@ -541,7 +541,7 @@ function getBoundaries(popper, reference, padding, boundariesElement) {
     var offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
 
     // In case of HTML, we need a different computation
-    if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
+    if (boundariesNode.nodenombre === 'HTML' && !isFixed(offsetParent)) {
       var _getWindowSizes = getWindowSizes(popper.ownerDocument),
           height = _getWindowSizes.height,
           width = _getWindowSizes.width;
@@ -579,7 +579,7 @@ function getArea(_ref) {
  * available space.
  * @method
  * @memberof Popper.Utils
- * @argument {Object} data - The data object generated by update method
+ * @argument {Object} data - The data object generated by upfecha method
  * @argument {Object} options - Modifiers configuration and options
  * @returns {Object} The data object, properly modified
  */
@@ -644,7 +644,7 @@ var timeoutDuration = function () {
   return 0;
 }();
 
-function microtaskDebounce(fn) {
+function microtareaDebounce(fn) {
   var called = false;
   return function () {
     if (called) {
@@ -658,7 +658,7 @@ function microtaskDebounce(fn) {
   };
 }
 
-function taskDebounce(fn) {
+function tareaDebounce(fn) {
   var scheduled = false;
   return function () {
     if (!scheduled) {
@@ -671,7 +671,7 @@ function taskDebounce(fn) {
   };
 }
 
-var supportsMicroTasks = isBrowser && window.Promise;
+var supportsMicrotareas = isBrowser && window.Promise;
 
 /**
 * Create a debounced version of a method, that's asynchronously deferred
@@ -682,7 +682,7 @@ var supportsMicroTasks = isBrowser && window.Promise;
 * @argument {Function} fn
 * @returns {Function}
 */
-var debounce = supportsMicroTasks ? microtaskDebounce : taskDebounce;
+var debounce = supportsMicrotareas ? microtareaDebounce : tareaDebounce;
 
 /**
  * Mimics the `find` method of Array
@@ -736,7 +736,7 @@ function findIndex(arr, prop, value) {
  */
 function getOffsetRect(element) {
   var elementRect = void 0;
-  if (element.nodeName === 'HTML') {
+  if (element.nodenombre === 'HTML') {
     var _getWindowSizes = getWindowSizes(element.ownerDocument),
         width = _getWindowSizes.width,
         height = _getWindowSizes.height;
@@ -850,13 +850,13 @@ function getReferenceOffsets(state, popper, reference) {
 }
 
 /**
- * Get the prefixed supported property name
+ * Get the prefixed supported property nombre
  * @method
  * @memberof Popper.Utils
  * @argument {String} property (camelCase)
  * @returns {String} prefixed property (camelCase or PascalCase, depending on the vendor prefix)
  */
-function getSupportedPropertyName(property) {
+function getSupportedPropertynombre(property) {
   var prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
   var upperProp = property.charAt(0).toUpperCase() + property.slice(1);
 
@@ -888,11 +888,11 @@ function isFunction(functionToCheck) {
  * @memberof Popper.Utils
  * @returns {Boolean}
  */
-function isModifierEnabled(modifiers, modifierName) {
+function isModifierEnabled(modifiers, modifiernombre) {
   return modifiers.some(function (_ref) {
-    var name = _ref.name,
+    var nombre = _ref.nombre,
         enabled = _ref.enabled;
-    return enabled && name === modifierName;
+    return enabled && nombre === modifiernombre;
   });
 }
 
@@ -902,23 +902,23 @@ function isModifierEnabled(modifiers, modifierName) {
  * @method
  * @memberof Popper.Utils
  * @param {Array} modifiers - list of modifiers
- * @param {String} requestingName - name of requesting modifier
- * @param {String} requestedName - name of requested modifier
+ * @param {String} requestingnombre - nombre of requesting modifier
+ * @param {String} requestednombre - nombre of requested modifier
  * @returns {Boolean}
  */
-function isModifierRequired(modifiers, requestingName, requestedName) {
+function isModifierRequired(modifiers, requestingnombre, requestednombre) {
   var requesting = find(modifiers, function (_ref) {
-    var name = _ref.name;
-    return name === requestingName;
+    var nombre = _ref.nombre;
+    return nombre === requestingnombre;
   });
 
   var isRequired = !!requesting && modifiers.some(function (modifier) {
-    return modifier.name === requestedName && modifier.enabled && modifier.order < requesting.order;
+    return modifier.nombre === requestednombre && modifier.enabled && modifier.order < requesting.order;
   });
 
   if (!isRequired) {
-    var _requesting = '`' + requestingName + '`';
-    var requested = '`' + requestedName + '`';
+    var _requesting = '`' + requestingnombre + '`';
+    var requested = '`' + requestednombre + '`';
     console.warn(requested + ' modifier is required by ' + _requesting + ' modifier in order to work, be sure to include it before ' + _requesting + '!');
   }
   return isRequired;
@@ -946,22 +946,22 @@ function getWindow(element) {
 }
 
 /**
- * Remove event listeners used to update the popper position
+ * Remove event listeners used to upfecha the popper position
  * @method
  * @memberof Popper.Utils
  * @private
  */
 function removeEventListeners(reference, state) {
   // Remove resize event listener on window
-  getWindow(reference).removeEventListener('resize', state.updateBound);
+  getWindow(reference).removeEventListener('resize', state.upfechaBound);
 
   // Remove scroll event listener on scroll parents
   state.scrollParents.forEach(function (target) {
-    target.removeEventListener('scroll', state.updateBound);
+    target.removeEventListener('scroll', state.upfechaBound);
   });
 
   // Reset state
-  state.updateBound = null;
+  state.upfechaBound = null;
   state.scrollParents = [];
   state.scrollElement = null;
   state.eventsEnabled = false;
@@ -975,11 +975,11 @@ function removeEventListeners(reference, state) {
  * @memberof Popper.Utils
  * @param {dataObject} data
  * @param {Array} modifiers
- * @param {String} ends - Optional modifier name used as stopper
+ * @param {String} ends - Optional modifier nombre used as stopper
  * @returns {dataObject}
  */
 function runModifiers(modifiers, data, ends) {
-  var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'name', ends));
+  var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'nombre', ends));
 
   modifiersToRun.forEach(function (modifier) {
     if (modifier['function']) {
@@ -1040,7 +1040,7 @@ function setStyles(element, styles) {
 }
 
 function attachToScrollParents(scrollParent, event, callback, scrollParents) {
-  var isBody = scrollParent.nodeName === 'BODY';
+  var isBody = scrollParent.nodenombre === 'BODY';
   var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
   target.addEventListener(event, callback, { passive: true });
 
@@ -1051,19 +1051,19 @@ function attachToScrollParents(scrollParent, event, callback, scrollParents) {
 }
 
 /**
- * Setup needed event listeners used to update the popper position
+ * Setup needed event listeners used to upfecha the popper position
  * @method
  * @memberof Popper.Utils
  * @private
  */
-function setupEventListeners(reference, options, state, updateBound) {
+function setupEventListeners(reference, options, state, upfechaBound) {
   // Resize event listener on window
-  state.updateBound = updateBound;
-  getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
+  state.upfechaBound = upfechaBound;
+  getWindow(reference).addEventListener('resize', state.upfechaBound, { passive: true });
 
   // Scroll event listener on scroll parents
   var scrollElement = getScrollParent(reference);
-  attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
+  attachToScrollParents(scrollElement, 'scroll', state.upfechaBound, state.scrollParents);
   state.scrollElement = scrollElement;
   state.eventsEnabled = true;
 
@@ -1071,7 +1071,7 @@ function setupEventListeners(reference, options, state, updateBound) {
 }
 
 // This is here just for backward compatibility with versions lower than v1.10.3
-// you should import the utilities using named exports, if you want them all use:
+// you should import the utilities using nombred exports, if you want them all use:
 // ```
 // import * as PopperUtils from 'popper-utils';
 // ```
@@ -1094,7 +1094,7 @@ var index = {
   getScroll: getScroll,
   getScrollParent: getScrollParent,
   getStyleComputedProperty: getStyleComputedProperty,
-  getSupportedPropertyName: getSupportedPropertyName,
+  getSupportedPropertynombre: getSupportedPropertynombre,
   getWindowSizes: getWindowSizes,
   isFixed: isFixed,
   isFunction: isFunction,
@@ -1108,6 +1108,6 @@ var index = {
   setupEventListeners: setupEventListeners
 };
 
-export { computeAutoPlacement, debounce, findIndex, getBordersSize, getBoundaries, getBoundingClientRect, getClientRect, getOffsetParent, getOffsetRect, getOffsetRectRelativeToArbitraryNode, getOuterSizes, getParentNode, getPopperOffsets, getReferenceOffsets, getScroll, getScrollParent, getStyleComputedProperty, getSupportedPropertyName, getWindowSizes, isFixed, isFunction, isModifierEnabled, isModifierRequired, isNumeric, removeEventListeners, runModifiers, setAttributes, setStyles, setupEventListeners };
+export { computeAutoPlacement, debounce, findIndex, getBordersSize, getBoundaries, getBoundingClientRect, getClientRect, getOffsetParent, getOffsetRect, getOffsetRectRelativeToArbitraryNode, getOuterSizes, getParentNode, getPopperOffsets, getReferenceOffsets, getScroll, getScrollParent, getStyleComputedProperty, getSupportedPropertynombre, getWindowSizes, isFixed, isFunction, isModifierEnabled, isModifierRequired, isNumeric, removeEventListeners, runModifiers, setAttributes, setStyles, setupEventListeners };
 export default index;
 //# sourceMappingURL=popper-utils.js.map

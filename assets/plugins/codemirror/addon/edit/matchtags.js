@@ -14,13 +14,13 @@
   CodeMirror.defineOption("matchTags", false, function(cm, val, old) {
     if (old && old != CodeMirror.Init) {
       cm.off("cursorActivity", doMatchTags);
-      cm.off("viewportChange", maybeUpdateMatch);
+      cm.off("viewportChange", maybeUpfechaMatch);
       clear(cm);
     }
     if (val) {
       cm.state.matchBothTags = typeof val == "object" && val.bothTags;
       cm.on("cursorActivity", doMatchTags);
-      cm.on("viewportChange", maybeUpdateMatch);
+      cm.on("viewportChange", maybeUpfechaMatch);
       doMatchTags(cm);
     }
   });
@@ -52,7 +52,7 @@
     });
   }
 
-  function maybeUpdateMatch(cm) {
+  function maybeUpfechaMatch(cm) {
     if (cm.state.failedTagMatch) doMatchTags(cm);
   }
 

@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Te rugăm să completezi acest câmp.",
 	email: "Te rugăm să introduci o adresă de email validă",
 	url: "Te rugăm sa introduci o adresă URL validă.",
-	date: "Te rugăm să introduci o dată corectă.",
-	dateISO: "Te rugăm să introduci o dată (ISO) corectă.",
+	fecha: "Te rugăm să introduci o dată corectă.",
+	fechaISO: "Te rugăm să introduci o dată (ISO) corectă.",
 	number: "Te rugăm să introduci un număr întreg valid.",
 	digits: "Te rugăm să introduci doar cifre.",
 	creditcard: "Te rugăm să introduci un numar de carte de credit valid.",

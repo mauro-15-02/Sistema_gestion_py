@@ -56,7 +56,7 @@
       if (nextMatch == stream.pos) {
         stream.match(leftDelimiter);
         if (stream.eat("*")) {
-          return chain(stream, state, tokenBlock("comment", "*" + rightDelimiter));
+          return chain(stream, state, tokenBlock("comentario", "*" + rightDelimiter));
         } else {
           state.depth++;
           state.tokenize = tokenSmarty;

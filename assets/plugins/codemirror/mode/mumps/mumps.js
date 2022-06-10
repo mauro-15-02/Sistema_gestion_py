@@ -41,7 +41,7 @@
       // spaces would interfere with interpreting whether the next non-space
       // character belongs to the command or argument context.
 
-      // Examine each character and update a mode variable whose interpretation is:
+      // Examine each character and upfecha a mode variable whose interpretation is:
       //   >0 => command    0 => argument    <0 => command post-conditional
       var ch = stream.peek();
 
@@ -62,10 +62,10 @@
       if ((ch === "(") || (ch === "\u0009"))
         state.label = false;
 
-      // MUMPS comment starts with ";"
+      // MUMPS comentario starts with ";"
       if (ch === ";") {
         stream.skipToEnd();
-        return "comment";
+        return "comentario";
       }
 
       // Number Literals // SIS/RLM - MUMPS permits canonic number followed by concatenate operator

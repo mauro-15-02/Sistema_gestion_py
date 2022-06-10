@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "请修正此字段",
 	email: "请输入有效的电子邮件地址",
 	url: "请输入有效的网址",
-	date: "请输入有效的日期",
-	dateISO: "请输入有效的日期 (YYYY-MM-DD)",
+	fecha: "请输入有效的日期",
+	fechaISO: "请输入有效的日期 (YYYY-MM-DD)",
 	number: "请输入有效的数字",
 	digits: "只能输入数字",
 	creditcard: "请输入有效的信用卡号码",

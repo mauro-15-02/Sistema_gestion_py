@@ -33,7 +33,7 @@
     function ruby(stream, state) {
       if (stream.match("-#")) {
         stream.skipToEnd();
-        return "comment";
+        return "comentario";
       }
       return rubyMode.token(stream, state.rubyState);
     }
@@ -43,10 +43,10 @@
 
       // handle haml declarations. All declarations that cant be handled here
       // will be passed to html mode
-      if (state.previousToken.style == "comment" ) {
+      if (state.previousToken.style == "comentario" ) {
         if (state.indented > state.previousToken.indented) {
           stream.skipToEnd();
-          return "commentLine";
+          return "comentarioLine";
         }
       }
 
@@ -61,7 +61,7 @@
           return "hamlTag";
         } else if (ch == "/" ) {
           stream.skipToEnd();
-          return "comment";
+          return "comentario";
         }
       }
 
@@ -72,7 +72,7 @@
         }
       }
 
-      // donot handle --> as valid ruby, make it HTML close comment instead
+      // donot handle --> as valid ruby, make it HTML close comentario instead
       if (state.startOfLine && !stream.match("-->", false) && (ch == "=" || ch == "-" )) {
         state.tokenize = ruby;
         return state.tokenize(stream, state);
@@ -127,9 +127,9 @@
         if (stream.eatSpace()) return null;
         var style = state.tokenize(stream, state);
         state.startOfLine = false;
-        // dont record comment line as we only want to measure comment line with
-        // the opening comment block
-        if (style && style != "commentLine") {
+        // dont record comentario line as we only want to measure comentario line with
+        // the opening comentario block
+        if (style && style != "comentarioLine") {
           state.previousToken = { style: style, indented: state.indented };
         }
         // if current state is ruby and the previous token is not `,` reset the
@@ -145,8 +145,8 @@
         // reprocess some of the specific style tag when finish setting previousToken
         if (style == "hamlTag") {
           style = "tag";
-        } else if (style == "commentLine") {
-          style = "comment";
+        } else if (style == "comentarioLine") {
+          style = "comentario";
         } else if (style == "hamlAttribute") {
           style = "attribute";
         } else if (style == "closeAttributeTag") {

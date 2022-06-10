@@ -95,23 +95,23 @@ function readToken(stream, state) {
   // whitespace
   if (stream.eatSpace()) return null;
 
-  // comment
+  // comentario
   if (state.inComment) {
     if (stream.match(multilineCommentsEnd)) {
       state.inComment = false;
-      return "comment";
+      return "comentario";
     }
     stream.skipToEnd();
-    return "comment";
+    return "comentario";
   }
   if (stream.match("//")) {
     stream.skipToEnd();
-    return "comment";
+    return "comentario";
   }
-  if (stream.match(multilineComments)) return "comment";
+  if (stream.match(multilineComments)) return "comentario";
   if (stream.match(multilineCommentsStart)) {
     state.inComment = true;
-    return "comment";
+    return "comentario";
   }
 
   // integer and float
@@ -162,7 +162,7 @@ CodeMirror.defineMode("webidl", function() {
   return {
     startState: function() {
       return {
-        // Is in multiline comment
+        // Is in multiline comentario
         inComment: false,
         // Last non-whitespace, matched token
         lastToken: "",

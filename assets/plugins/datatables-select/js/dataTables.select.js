@@ -4,12 +4,12 @@
 
 /**
  * @summary     Select for DataTables
- * @description A collection of API methods, events and buttons for DataTables
+ * @descripcion A collection of API methods, events and buttons for DataTables
  *   that provides selection options of the items in a DataTable
  * @version     1.3.1
  * @file        dataTables.select.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contact     datatables.net/forums
+ * @contacto     datatables.net/forums
  * @copyright   Copyright 2015-2019 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
@@ -467,10 +467,10 @@ function eventTrigger ( api, type, args, any )
 }
 
 /**
- * Update the information element of the DataTable showing information about the
+ * Upfecha the information element of the DataTable showing information about the
  * items selected. This is done by adding tags to the existing text
  * 
- * @param {DataTable.Api} api DataTable to update
+ * @param {DataTable.Api} api DataTable to upfecha
  * @private
  */
 function info ( api )
@@ -589,7 +589,7 @@ function init ( ctx ) {
 		} );
 	} );
 
-	// Update the table information element with selected item summary
+	// Upfecha the table information element with selected item summary
 	api.on( 'draw.dtSelect.dt select.dtSelect.dt deselect.dtSelect.dt info.dt', function () {
 		info( api );
 	} );
@@ -1192,7 +1192,7 @@ $.each( [ 'Row', 'Column', 'Cell' ], function ( i, item ) {
 // DataTables creation - check if select has been defined in the options. Note
 // this required that the table be in the document! If it isn't then something
 // needs to trigger this method unfortunately. The next major release of
-// DataTables will rework the events and address this.
+// DataTables will rework the events and direccion this.
 $(document).on( 'preInit.dt.dtSelect', function (e, ctx) {
 	if ( e.namespace !== 'dt' ) {
 		return;

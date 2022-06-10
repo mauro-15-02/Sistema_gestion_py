@@ -50,7 +50,7 @@
     if (ch == "/") {
       if (stream.match("//")) {
         stream.skipToEnd()
-        return "comment"
+        return "comentario"
       }
       if (stream.match("/*")) {
         state.tokenize.push(tokenComment)
@@ -153,7 +153,7 @@
         state.tokenize.pop()
       }
     }
-    return "comment"
+    return "comentario"
   }
 
   function Context(prev, align, indented) {
@@ -190,7 +190,7 @@
         state.prev = null
         var tokenize = state.tokenize[state.tokenize.length - 1] || tokenBase
         var style = tokenize(stream, state, prev)
-        if (!style || style == "comment") state.prev = prev
+        if (!style || style == "comentario") state.prev = prev
         else if (!state.prev) state.prev = style
 
         if (style == "punctuation") {

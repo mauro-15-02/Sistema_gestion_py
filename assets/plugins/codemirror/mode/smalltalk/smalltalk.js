@@ -101,7 +101,7 @@ CodeMirror.defineMode('smalltalk', function(config) {
 
   var nextComment = function(stream, context) {
     stream.eatWhile(/[^"]/);
-    return new Token('comment', stream.eat('"') ? context.parent : context, true);
+    return new Token('comentario', stream.eat('"') ? context.parent : context, true);
   };
 
   var nextString = function(stream, context) {

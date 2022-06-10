@@ -64,7 +64,7 @@ CodeMirror.defineMode("pascal", function() {
     if (ch == "/") {
       if (stream.eat("/")) {
         stream.skipToEnd();
-        return "comment";
+        return "comentario";
       }
     }
     if (isOperatorChar.test(ch)) {
@@ -99,7 +99,7 @@ CodeMirror.defineMode("pascal", function() {
       }
       maybeEnd = (ch == "*");
     }
-    return "comment";
+    return "comentario";
   }
 
   function tokenCommentBraces(stream, state) {
@@ -110,7 +110,7 @@ CodeMirror.defineMode("pascal", function() {
         break;
       }
     }
-    return "comment";
+    return "comentario";
   }
 
   // Interface
@@ -123,7 +123,7 @@ CodeMirror.defineMode("pascal", function() {
     token: function(stream, state) {
       if (stream.eatSpace()) return null;
       var style = (state.tokenize || tokenBase)(stream, state);
-      if (style == "comment" || style == "meta") return style;
+      if (style == "comentario" || style == "meta") return style;
       return style;
     },
 

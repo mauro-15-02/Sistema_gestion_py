@@ -73,7 +73,7 @@ function _fadeOut(el, duration, fn) {
 }
 
 /**
- * [Buttons description]
+ * [Buttons descripcion]
  * @param {[type]}
  * @param {[type]}
  */
@@ -2020,7 +2020,7 @@ var _exportData = function ( dt, inOpts )
 		// Always remove script tags
 		str = str.replace( /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '' );
 
-		// Always remove comments
+		// Always remove comentarios
 		str = str.replace( /<!\-\-.*?\-\->/g, '' );
 
 		if ( config.stripHtml ) {

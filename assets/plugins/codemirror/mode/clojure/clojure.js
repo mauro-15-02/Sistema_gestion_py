@@ -44,7 +44,7 @@ CodeMirror.defineMode("clojure", function (options) {
       "char-escape-string", "char-name-string", "char?", "chars", "chunk",
       "chunk-append", "chunk-buffer", "chunk-cons", "chunk-first", "chunk-next",
       "chunk-rest", "chunked-seq?", "class", "class?", "clear-agent-errors",
-      "clojure-version", "coll?", "comment", "commute", "comp", "comparator",
+      "clojure-version", "coll?", "comentario", "commute", "comp", "comparator",
       "compare", "compare-and-set!", "compile", "complement", "completing",
       "concat", "cond", "cond->", "cond->>", "condp", "conj", "conj!", "cons",
       "constantly", "construct-proxy", "contains?", "count", "counted?",
@@ -128,8 +128,8 @@ CodeMirror.defineMode("clojure", function (options) {
       "unchecked-multiply", "unchecked-multiply-int", "unchecked-negate",
       "unchecked-negate-int", "unchecked-remainder-int", "unchecked-short",
       "unchecked-subtract", "unchecked-subtract-int", "underive", "unquote",
-      "unquote-splicing", "unreduced", "unsigned-bit-shift-right", "update",
-      "update-in", "update-proxy", "uri?", "use", "uuid?", "val", "vals",
+      "unquote-splicing", "unreduced", "unsigned-bit-shift-right", "upfecha",
+      "upfecha-in", "upfecha-proxy", "uri?", "use", "uuid?", "val", "vals",
       "var-get", "var-set", "var?", "vary-meta", "vec", "vector", "vector-of",
       "vector?", "volatile!", "volatile?", "vreset!", "vswap!", "when",
       "when-first", "when-let", "when-not", "when-some", "while",
@@ -138,7 +138,7 @@ CodeMirror.defineMode("clojure", function (options) {
       "with-precision", "with-redefs", "with-redefs-fn", "xml-seq", "zero?",
       "zipmap"];
   var haveBodyParameter = [
-      "->", "->>", "as->", "binding", "bound-fn", "case", "catch", "comment",
+      "->", "->>", "as->", "binding", "bound-fn", "case", "catch", "comentario",
       "cond", "cond->", "cond->>", "condp", "def", "definterface", "defmethod",
       "defn", "defmacro", "defprotocol", "defrecord", "defstruct", "deftype",
       "do", "doseq", "dotimes", "doto", "extend", "extend-protocol",
@@ -172,7 +172,7 @@ CodeMirror.defineMode("clojure", function (options) {
     if (stream.eat(/^"/)) return (state.tokenize = inString)(stream, state);
     if (stream.eat(/^[(\[{]/)) return ["open", "bracket"];
     if (stream.eat(/^[)\]}]/)) return ["close", "bracket"];
-    if (stream.eat(/^;/)) {stream.skipToEnd(); return ["space", "comment"];}
+    if (stream.eat(/^;/)) {stream.skipToEnd(); return ["space", "comentario"];}
     if (stream.eat(/^[#'@^`~]/)) return [null, "meta"];
 
     var matches = stream.match(qualifiedSymbol);
@@ -185,7 +185,7 @@ CodeMirror.defineMode("clojure", function (options) {
       return [null, "error"];
     }
 
-    if (symbol === "comment" && state.lastToken === "(")
+    if (symbol === "comentario" && state.lastToken === "(")
       return (state.tokenize = inComment)(stream, state);
     if (is(symbol, atom) || symbol.charAt(0) === ":") return ["symbol", "atom"];
     if (is(symbol, specialForm) || is(symbol, coreSymbol)) return ["symbol", "keyword"];
@@ -219,7 +219,7 @@ CodeMirror.defineMode("clojure", function (options) {
       }
     }
 
-    return ["space", "comment"];
+    return ["space", "comentario"];
   }
 
   function createLookupMap(words) {

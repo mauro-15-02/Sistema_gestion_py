@@ -265,7 +265,7 @@
       return document.body.classList.add('pace-done');
     };
 
-    Bar.prototype.update = function(prog) {
+    Bar.prototype.upfecha = function(prog) {
       this.progress = prog;
       return this.render();
     };
@@ -318,10 +318,10 @@
       this.bindings = {};
     }
 
-    Events.prototype.trigger = function(name, val) {
+    Events.prototype.trigger = function(nombre, val) {
       var binding, l, len1, ref1, results;
-      if (this.bindings[name] != null) {
-        ref1 = this.bindings[name];
+      if (this.bindings[nombre] != null) {
+        ref1 = this.bindings[nombre];
         results = [];
         for (l = 0, len1 = ref1.length; l < len1; l++) {
           binding = ref1[l];
@@ -331,12 +331,12 @@
       }
     };
 
-    Events.prototype.on = function(name, fn) {
+    Events.prototype.on = function(nombre, fn) {
       var base;
-      if ((base = this.bindings)[name] == null) {
-        base[name] = [];
+      if ((base = this.bindings)[nombre] == null) {
+        base[nombre] = [];
       }
-      return this.bindings[name].push(fn);
+      return this.bindings[nombre].push(fn);
     };
 
     return Events;
@@ -750,7 +750,7 @@
   Scaler = (function() {
     function Scaler(source1) {
       this.source = source1;
-      this.last = this.sinceLastUpdate = 0;
+      this.last = this.sinceLastUpfecha = 0;
       this.rate = options.initialRate;
       this.catchup = 0;
       this.progress = this.lastProgress = 0;
@@ -768,13 +768,13 @@
         this.done = true;
       }
       if (val === this.last) {
-        this.sinceLastUpdate += frameTime;
+        this.sinceLastUpfecha += frameTime;
       } else {
-        if (this.sinceLastUpdate) {
-          this.rate = (val - this.last) / this.sinceLastUpdate;
+        if (this.sinceLastUpfecha) {
+          this.rate = (val - this.last) / this.sinceLastUpfecha;
         }
         this.catchup = (val - this.progress) / options.catchupTime;
-        this.sinceLastUpdate = 0;
+        this.sinceLastUpfecha = 0;
         this.last = val;
       }
       if (val > this.progress) {
@@ -903,9 +903,9 @@
         }
       }
       avg = sum / count;
-      bar.update(uniScaler.tick(frameTime, avg));
+      bar.upfecha(uniScaler.tick(frameTime, avg));
       if (bar.done() || done || cancelAnimation) {
-        bar.update(100);
+        bar.upfecha(100);
         Pace.trigger('done');
         return setTimeout(function() {
           bar.finish();

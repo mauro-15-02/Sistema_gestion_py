@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "このフィールドを修正してください。",
 	email: "有効なEメールアドレスを入力してください。",
 	url: "有効なURLを入力してください。",
-	date: "有効な日付を入力してください。",
-	dateISO: "有効な日付（ISO）を入力してください。",
+	fecha: "有効な日付を入力してください。",
+	fechaISO: "有効な日付（ISO）を入力してください。",
 	number: "有効な数字を入力してください。",
 	digits: "数字のみを入力してください。",
 	creditcard: "有効なクレジットカード番号を入力してください。",

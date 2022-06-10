@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valifecha"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -18,8 +18,8 @@ $.extend( $.validator.messages, {
 	remote: "請修正此欄位",
 	email: "請輸入有效的電子郵件",
 	url: "請輸入有效的網址",
-	date: "請輸入有效的日期",
-	dateISO: "請輸入有效的日期 (YYYY-MM-DD)",
+	fecha: "請輸入有效的日期",
+	fechaISO: "請輸入有效的日期 (YYYY-MM-DD)",
 	number: "請輸入正確的數值",
 	digits: "只可輸入數字",
 	creditcard: "請輸入有效的信用卡號碼",
