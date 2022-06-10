@@ -1,6 +1,7 @@
 <?php
 session_start();
 ini_set('display_errors', 1);
+/**aaaaa */
 Class Action {
 	private $db;
 
