@@ -1,6 +1,6 @@
 <head>
   <meta charset="utf-8">
-  <meta nombre="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <?php
   date_default_timezone_set("America/Argentina/Buenos_Aires");
 
@@ -12,10 +12,10 @@
     if ($_GET['page'] == "new_project"){
       $title = "Nuevo proyecto";
     }
-    if ($_GET['page'] == "proyecto_list"){
+    if ($_GET['page'] == "project_list"){
       $title = "Lista de proyectos";
     }
-    if ($_GET['page'] == "tarea_list"){
+    if ($_GET['page'] == "task_list"){
       $title = "Lista de tareas";
     }
     if ($_GET['page'] == "reports"){
@@ -41,7 +41,7 @@
     $title = "Inicio";
   }
   ?>
-  <title><?php echo $title ?> | <?php echo $_SESSION['system']['nombre'] ?></title>
+  <title><?php echo $title ?> | <?php echo $_SESSION['system']['name'] ?></title>
   <?php ob_end_flush(); 
   ?>
   
@@ -66,7 +66,7 @@
   <!-- dropzonejs -->
   <link rel="stylesheet" href="assets/plugins/dropzone/min/dropzone.min.css">
   <!-- DateTimePicker -->
-  <link rel="stylesheet" href="assets/dist/css/jquery.fechatimepicker.min.css">
+  <link rel="stylesheet" href="assets/dist/css/jquery.datetimepicker.min.css">
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Switch Toggle -->

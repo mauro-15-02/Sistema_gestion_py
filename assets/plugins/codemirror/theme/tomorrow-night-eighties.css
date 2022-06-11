@@ -18,7 +18,7 @@
 .cm-s-tomorrow-night-eighties .CodeMirror-linenumber { color: #515151; }
 .cm-s-tomorrow-night-eighties .CodeMirror-cursor { border-left: 1px solid #6A6A6A; }
 
-.cm-s-tomorrow-night-eighties span.cm-comentario { color: #d27b53; }
+.cm-s-tomorrow-night-eighties span.cm-comment { color: #d27b53; }
 .cm-s-tomorrow-night-eighties span.cm-atom { color: #a16a94; }
 .cm-s-tomorrow-night-eighties span.cm-number { color: #a16a94; }
 

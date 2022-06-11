@@ -14,7 +14,7 @@
 .cm-s-gruvbox-dark div.CodeMirror-selected { background: #928374; }
 .cm-s-gruvbox-dark span.cm-meta { color: #83a598; }
 
-.cm-s-gruvbox-dark span.cm-comentario { color: #928374; }
+.cm-s-gruvbox-dark span.cm-comment { color: #928374; }
 .cm-s-gruvbox-dark span.cm-number, span.cm-atom { color: #d3869b; }
 .cm-s-gruvbox-dark span.cm-keyword { color: #f84934; }
 

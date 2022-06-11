@@ -430,11 +430,11 @@ CodeMirror.defineMode("pug", function (config) {
     }
   }
 
-  function comentario(stream, state) {
+  function comment(stream, state) {
     if (stream.match(/^ *\/\/(-)?([^\n]*)/)) {
       state.indentOf = stream.indentation();
-      state.indentToken = 'comentario';
-      return 'comentario';
+      state.indentToken = 'comment';
+      return 'comment';
     }
   }
 
@@ -571,7 +571,7 @@ CodeMirror.defineMode("pug", function (config) {
       || attributesBlock(stream, state)
       || indent(stream)
       || text(stream, state)
-      || comentario(stream, state)
+      || comment(stream, state)
       || colon(stream)
       || dot(stream, state)
       || fail(stream);

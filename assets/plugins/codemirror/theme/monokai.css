@@ -10,14 +10,14 @@
 .cm-s-monokai .CodeMirror-linenumber { color: #d0d0d0; }
 .cm-s-monokai .CodeMirror-cursor { border-left: 1px solid #f8f8f0; }
 
-.cm-s-monokai span.cm-comentario { color: #75715e; }
+.cm-s-monokai span.cm-comment { color: #75715e; }
 .cm-s-monokai span.cm-atom { color: #ae81ff; }
 .cm-s-monokai span.cm-number { color: #ae81ff; }
 
-.cm-s-monokai span.cm-comentario.cm-attribute { color: #97b757; }
-.cm-s-monokai span.cm-comentario.cm-def { color: #bc9262; }
-.cm-s-monokai span.cm-comentario.cm-tag { color: #bc6283; }
-.cm-s-monokai span.cm-comentario.cm-type { color: #5998a6; }
+.cm-s-monokai span.cm-comment.cm-attribute { color: #97b757; }
+.cm-s-monokai span.cm-comment.cm-def { color: #bc9262; }
+.cm-s-monokai span.cm-comment.cm-tag { color: #bc6283; }
+.cm-s-monokai span.cm-comment.cm-type { color: #5998a6; }
 
 .cm-s-monokai span.cm-property, .cm-s-monokai span.cm-attribute { color: #a6e22e; }
 .cm-s-monokai span.cm-keyword { color: #f92672; }

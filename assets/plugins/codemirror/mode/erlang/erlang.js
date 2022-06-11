@@ -71,8 +71,8 @@ CodeMirror.defineMode("erlang", function(cmCfg) {
     "abs","adler32","adler32_combine","alive","apply","atom_to_binary",
     "atom_to_list","binary_to_atom","binary_to_existing_atom",
     "binary_to_list","binary_to_term","bit_size","bitstring_to_list",
-    "byte_size","check_process_code","contacto_binary","crc32",
-    "crc32_combine","fecha","decode_packet","delete_module",
+    "byte_size","check_process_code","contact_binary","crc32",
+    "crc32_combine","date","decode_packet","delete_module",
     "disconnect_node","element","erase","exit","float","float_to_list",
     "garbage_collect","get","get_keys","group_leader","halt","hd",
     "integer_to_list","internal_bif","iolist_size","iolist_to_binary",
@@ -130,10 +130,10 @@ CodeMirror.defineMode("erlang", function(cmCfg) {
 
     var ch = stream.next();
 
-    // comentario
+    // comment
     if (ch == '%') {
       stream.skipToEnd();
-      return rval(state,stream,"comentario");
+      return rval(state,stream,"comment");
     }
 
     // colon
@@ -361,7 +361,7 @@ CodeMirror.defineMode("erlang", function(cmCfg) {
       case "builtin":     return "builtin";
       case "close_paren": return null;
       case "colon":       return null;
-      case "comentario":     return "comentario";
+      case "comment":     return "comment";
       case "dot":         return null;
       case "error":       return "error";
       case "fun":         return "meta";
@@ -412,7 +412,7 @@ CodeMirror.defineMode("erlang", function(cmCfg) {
 
   function pushToken(state,token) {
 
-    if (!(token.type == "comentario" || token.type == "whitespace")) {
+    if (!(token.type == "comment" || token.type == "whitespace")) {
       state.tokenStack = maybe_drop_pre(state.tokenStack,token);
       state.tokenStack = maybe_drop_post(state.tokenStack);
     }

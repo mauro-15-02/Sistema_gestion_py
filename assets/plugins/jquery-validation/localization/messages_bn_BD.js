@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "এই তথ্যটি ঠিক করুন।",
 	email: "অনুগ্রহ করে একটি সঠিক মেইল ঠিকানা লিখুন।",
 	url: "অনুগ্রহ করে একটি সঠিক লিঙ্ক দিন।",
-	fecha: "তারিখ সঠিক নয়।",
-	fechaISO: "অনুগ্রহ করে একটি সঠিক (ISO) তারিখ লিখুন।",
+	date: "তারিখ সঠিক নয়।",
+	dateISO: "অনুগ্রহ করে একটি সঠিক (ISO) তারিখ লিখুন।",
 	number: "অনুগ্রহ করে একটি সঠিক নম্বর লিখুন।",
 	digits: "এখানে শুধু সংখ্যা ব্যবহার করা যাবে।",
 	creditcard: "অনুগ্রহ করে একটি ক্রেডিট কার্ডের সঠিক নম্বর লিখুন।",

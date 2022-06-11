@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "נא לתקן שדה זה",
 	email: "נא למלא כתובת דוא\"ל חוקית",
 	url: "נא למלא כתובת אינטרנט חוקית",
-	fecha: "נא למלא תאריך חוקי",
-	fechaISO: "נא למלא תאריך חוקי (ISO)",
+	date: "נא למלא תאריך חוקי",
+	dateISO: "נא למלא תאריך חוקי (ISO)",
 	number: "נא למלא מספר",
 	digits: "נא למלא רק מספרים",
 	creditcard: "נא למלא מספר כרטיס אשראי חוקי",

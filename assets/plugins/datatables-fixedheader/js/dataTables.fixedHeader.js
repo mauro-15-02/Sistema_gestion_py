@@ -4,12 +4,12 @@
 
 /**
  * @summary     FixedHeader
- * @descripcion Fix a table's header or footer, so it is always visible while
+ * @description Fix a table's header or footer, so it is always visible while
  *              scrolling
  * @version     3.1.7
  * @file        dataTables.fixedHeader.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contacto     www.sprymedia.co.uk/contacto
+ * @contact     www.sprymedia.co.uk/contact
  * @copyright   Copyright 2009-2020 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
@@ -156,11 +156,11 @@ $.extend( FixedHeader.prototype, {
 	 *
 	 * @param  {boolean} enable `true` to enable, `false` to disable
 	 */
-	enable: function ( enable, upfecha )
+	enable: function ( enable, update )
 	{
 		this.s.enable = enable;
 
-		if ( upfecha || upfecha === undefined ) {
+		if ( update || update === undefined ) {
 			this._positions();
 			this._scroll( true );
 		}
@@ -183,7 +183,7 @@ $.extend( FixedHeader.prototype, {
 	{
 		if ( offset !== undefined ) {
 			this.c.headerOffset = offset;
-			this.upfecha();
+			this.update();
 		}
 
 		return this.c.headerOffset;
@@ -198,7 +198,7 @@ $.extend( FixedHeader.prototype, {
 	{
 		if ( offset !== undefined ) {
 			this.c.footerOffset = offset;
-			this.upfecha();
+			this.update();
 		}
 
 		return this.c.footerOffset;
@@ -208,7 +208,7 @@ $.extend( FixedHeader.prototype, {
 	/**
 	 * Recalculate the position of the fixed elements and force them into place
 	 */
-	upfecha: function ()
+	update: function ()
 	{
 		var table = this.s.dt.table().node();
 
@@ -245,7 +245,7 @@ $.extend( FixedHeader.prototype, {
 			} )
 			.on( 'resize'+this.s.namespace, DataTable.util.throttle( function () {
 				that.s.position.windowHeight = $(window).height();
-				that.upfecha();
+				that.update();
 			}, 50 ) );
 
 		var autoHeader = $('.fh-fixedHeader');
@@ -259,7 +259,7 @@ $.extend( FixedHeader.prototype, {
 		}
 
 		dt.on( 'column-reorder.dt.dtfc column-visibility.dt.dtfc draw.dt.dtfc column-sizing.dt.dtfc responsive-display.dt.dtfc', function () {
-			that.upfecha();
+			that.update();
 		} );
 
 		dt.on( 'destroy.dtfc', function () {
@@ -673,7 +673,7 @@ DataTable.Api.register( 'fixedHeader.adjust()', function () {
 		var fh = ctx._fixedHeader;
 
 		if ( fh ) {
-			fh.upfecha();
+			fh.update();
 		}
 	} );
 } );

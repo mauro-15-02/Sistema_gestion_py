@@ -34,7 +34,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
     "bins binsof bit break buf bufif0 bufif1 byte case casex casez cell chandle checker class clocking cmos config " +
     "const constraint context continue cover covergroup coverpoint cross deassign default defparam design disable " +
     "dist do edge else end endcase endchecker endclass endclocking endconfig endfunction endgenerate endgroup " +
-    "endinterface endmodule endpackage endprimitive endprogram endproperty endspecify endsequence endtable endtarea " +
+    "endinterface endmodule endpackage endprimitive endprogram endproperty endspecify endsequence endtable endtask " +
     "enum event eventually expect export extends extern final first_match for force foreach forever fork forkjoin " +
     "function generate genvar global highz0 highz1 if iff ifnone ignore_bins illegal_bins implements implies import " +
     "incdir include initial inout input inside instance int integer interconnect interface intersect join join_any " +
@@ -45,7 +45,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
     "reject_on release repeat restrict return rnmos rpmos rtran rtranif0 rtranif1 s_always s_eventually s_nexttime " +
     "s_until s_until_with scalared sequence shortint shortreal showcancelled signed small soft solve specify " +
     "specparam static string strong strong0 strong1 struct super supply0 supply1 sync_accept_on sync_reject_on " +
-    "table tagged tarea this throughout time timeprecision timeunit tran tranif0 tranif1 tri tri0 tri1 triand trior " +
+    "table tagged task this throughout time timeprecision timeunit tran tranif0 tranif1 tri tri0 tri1 triand trior " +
     "trireg type typedef union unique unique0 unsigned until until_with untyped use uwire var vectored virtual void " +
     "wait wait_order wand weak weak0 weak1 while wildcard wire with within wor xnor xor");
 
@@ -79,10 +79,10 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
   var curKeyword;
 
   // Block openings which are closed by a matching keyword in the form of ("end" + keyword)
-  // E.g. "tarea" => "endtarea"
+  // E.g. "task" => "endtask"
   var blockKeywords = words(
     "case checker class clocking config function generate interface module package " +
-    "primitive program property specify sequence table tarea"
+    "primitive program property specify sequence table task"
   );
 
   // Opening/closing pairs
@@ -160,7 +160,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
       }
       if (stream.eat("/")) {
         stream.skipToEnd();
-        return "comentario";
+        return "comment";
       }
       stream.backUp(1);
     }
@@ -223,7 +223,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
       }
       maybeEnd = (ch == "*");
     }
-    return "comentario";
+    return "comment";
   }
 
   function Context(indented, column, type, align, prev) {
@@ -313,7 +313,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
       curPunc = null;
       curKeyword = null;
       var style = (state.tokenize || tokenBase)(stream, state);
-      if (style == "comentario" || style == "meta" || style == "variable") return style;
+      if (style == "comment" || style == "meta" || style == "variable") return style;
       if (ctx.align == null) ctx.align = true;
 
       if (curPunc == ctx.type) {
@@ -337,8 +337,8 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
           // The 'function' keyword can appear in some other contexts where it actually does not
           // indicate a function (import/export DPI and covergroup definitions).
           // Do nothing in this case
-        } else if (curKeyword == "tarea" && ctx && ctx.type == "statement") {
-          // Same thing for tarea
+        } else if (curKeyword == "task" && ctx && ctx.type == "statement") {
+          // Same thing for task
         } else {
           var close = openClose[curKeyword];
           pushContext(state, stream.column(), close);
@@ -387,7 +387,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
   // TL-Verilog mode.
   // See tl-x.org for language spec.
   // See the mode in action at makerchip.com.
-  // contacto: steve.hoover@redwoodeda.com
+  // Contact: steve.hoover@redwoodeda.com
 
   // TLV Identifier prefixes.
   // Note that sign is not treated separately, so "+/-" versions of numeric identifiers
@@ -422,7 +422,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
     "*": "variable-2",
     "**": "variable-2",
     "\\": "keyword",
-    "\"": "comentario"
+    "\"": "comment"
   };
 
   // Lines starting with these characters define scope (result in indentation).
@@ -538,20 +538,20 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
           var beginStatement = false;
           if (tlvTrackStatements) {
             // This starts a statement if the position is at the scope level
-            // and we're not within a statement leading comentario.
+            // and we're not within a statement leading comment.
             beginStatement =
                    (stream.peek() != " ") &&   // not a space
                    (style === undefined) &&    // not a region identifier
-                   !state.tlvInBlockComment && // not in block comentario
-                   //!stream.match(tlvCommentMatch, false) && // not comentario start
+                   !state.tlvInBlockComment && // not in block comment
+                   //!stream.match(tlvCommentMatch, false) && // not comment start
                    (stream.column() == state.tlvIndentationStyle.length * tlvIndentUnit);  // at scope level
             if (beginStatement) {
               if (state.statementComment) {
-                // statement already started by comentario
+                // statement already started by comment
                 beginStatement = false;
               }
               state.statementComment =
-                   stream.match(tlvCommentMatch, false); // comentario start
+                   stream.match(tlvCommentMatch, false); // comment start
             }
           }
 
@@ -576,28 +576,28 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
               style += " " + tlvScopeStyle(state, stream.pos, "before-scope-ident");
             }
           } else if (state.tlvInBlockComment) {
-            // In a block comentario.
+            // In a block comment.
             if (stream.match(/^.*?\*\//)) {
-              // Exit block comentario.
+              // Exit block comment.
               state.tlvInBlockComment = false;
               if (tlvTrackStatements && !stream.eol()) {
-                // Anything after comentario is assumed to be real statement content.
+                // Anything after comment is assumed to be real statement content.
                 state.statementComment = false;
               }
             } else {
               stream.skipToEnd();
             }
-            style = "comentario";
+            style = "comment";
           } else if ((match = stream.match(tlvCommentMatch)) && !state.tlvInBlockComment) {
-            // Start comentario.
+            // Start comment.
             if (match[0] == "//") {
-              // Line comentario.
+              // Line comment.
               stream.skipToEnd();
             } else {
-              // Block comentario.
+              // Block comment.
               state.tlvInBlockComment = true;
             }
-            style = "comentario";
+            style = "comment";
           } else if (match = stream.match(tlvIdentMatch)) {
             // looks like an identifier (or identifier prefix)
             var prefix = match[1];
@@ -615,7 +615,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
               // Just swallow one character and try again.
               // This enables subsequent identifier match with preceding symbol character, which
               //   is legal within a statement.  (Eg, !$reset).  It also enables detection of
-              //   comentario start with preceding symbols.
+              //   comment start with preceding symbols.
               stream.backUp(stream.current().length - 1);
               style = "tlv-default";
             }
@@ -665,9 +665,9 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
         state.tlvIndentationStyle = [];  // Styles to use for each level of indentation.
         state.tlvCodeActive = true;  // True when we're in a TLV region (and at beginning of file).
         state.tlvNextIndent = -1;    // The number of spaces to autoindent the next line if tlvCodeActive.
-        state.tlvInBlockComment = false;  // True inside /**/ comentario.
+        state.tlvInBlockComment = false;  // True inside /**/ comment.
         if (tlvTrackStatements) {
-          state.statementComment = false;  // True inside a statement's header comentario.
+          state.statementComment = false;  // True inside a statement's header comment.
         }
       }
 

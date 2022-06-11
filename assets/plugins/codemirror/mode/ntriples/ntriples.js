@@ -11,9 +11,9 @@
 /*
     The following expression defines the defined ASF grammar transitions.
 
-    pre_tema ->
+    pre_subject ->
         {
-        ( writing_tema_uri | writing_bnode_uri )
+        ( writing_subject_uri | writing_bnode_uri )
             -> pre_predicate
                 -> writing_predicate_uri
                     -> pre_object

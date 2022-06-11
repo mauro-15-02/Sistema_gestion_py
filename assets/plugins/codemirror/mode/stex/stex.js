@@ -141,7 +141,7 @@
       var ch = source.next();
       if (ch == "%") {
         source.skipToEnd();
-        return "comentario";
+        return "comment";
       } else if (ch == '}' || ch == ']') {
         plug = peekCommand(state);
         if (plug) {
@@ -209,7 +209,7 @@
 
       if (ch == "%") {
         source.skipToEnd();
-        return "comentario";
+        return "comment";
       }
       return "error";
     }

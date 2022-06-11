@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "โปรดแก้ไขให้ถูกต้อง",
 	email: "โปรดระบุที่อยู่อีเมล์ที่ถูกต้อง",
 	url: "โปรดระบุ URL ที่ถูกต้อง",
-	fecha: "โปรดระบุวันที่ ที่ถูกต้อง",
-	fechaISO: "โปรดระบุวันที่ ที่ถูกต้อง (ระบบ ISO).",
+	date: "โปรดระบุวันที่ ที่ถูกต้อง",
+	dateISO: "โปรดระบุวันที่ ที่ถูกต้อง (ระบบ ISO).",
 	number: "โปรดระบุทศนิยมที่ถูกต้อง",
 	digits: "โปรดระบุจำนวนเต็มที่ถูกต้อง",
 	creditcard: "โปรดระบุรหัสบัตรเครดิตที่ถูกต้อง",

@@ -39,7 +39,7 @@
                 return;
             }
 
-            upfechaOnMultipleTouches(e);
+            updateOnMultipleTouches(e);
             mainEventHolder.dispatchEvent(new CustomEvent('touchevent', { detail: e }));
 
             if (isPinchEvent(e)) {
@@ -95,9 +95,9 @@
 
         var pan = {
             touchstart: function(e) {
-                upfechaPrevForDoubleTap();
-                upfechaCurrentForDoubleTap(e);
-                upfechaStateForLongTapStart(e);
+                updatePrevForDoubleTap();
+                updateCurrentForDoubleTap(e);
+                updateStateForLongTapStart(e);
 
                 mainEventHolder.dispatchEvent(new CustomEvent('panstart', { detail: e }));
             },
@@ -105,8 +105,8 @@
             touchmove: function(e) {
                 preventEventBehaviors(e);
 
-                upfechaCurrentForDoubleTap(e);
-                upfechaStateForLongTapEnd(e);
+                updateCurrentForDoubleTap(e);
+                updateStateForLongTapEnd(e);
 
                 if (!gestureState.isUnsupportedGesture) {
                     mainEventHolder.dispatchEvent(new CustomEvent('pandrag', { detail: e }));
@@ -222,21 +222,21 @@
             plot.hooks.shutdown.push(shutdown);
         };
 
-        function upfechaPrevForDoubleTap() {
+        function updatePrevForDoubleTap() {
             gestureState.prevTap = {
                 x: gestureState.currentTap.x,
                 y: gestureState.currentTap.y
             };
         };
 
-        function upfechaCurrentForDoubleTap(e) {
+        function updateCurrentForDoubleTap(e) {
             gestureState.currentTap = {
                 x: e.touches[0].pageX,
                 y: e.touches[0].pageY
             };
         }
 
-        function upfechaStateForLongTapStart(e) {
+        function updateStateForLongTapStart(e) {
             gestureState.tapStartTime = new Date().getTime();
             gestureState.interceptedLongTap = false;
             gestureState.currentTapStart = {
@@ -249,7 +249,7 @@
             };
         };
 
-        function upfechaStateForLongTapEnd(e) {
+        function updateStateForLongTapEnd(e) {
             gestureState.currentTapEnd = {
                 x: e.touches[0].pageX,
                 y: e.touches[0].pageY
@@ -292,7 +292,7 @@
             return (gestureState.twoTouches && e.touches.length === 1);
         }
 
-        function upfechaOnMultipleTouches(e) {
+        function updateOnMultipleTouches(e) {
             if (e.touches.length >= 3) {
                 gestureState.isUnsupportedGesture = true;
             } else {

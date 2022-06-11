@@ -41,10 +41,10 @@ CodeMirror.defineMode('mathematica', function(_config, _parserConfig) {
       return state.tokenize(stream, state);
     }
 
-    // comentario
+    // comment
     if (ch === '(') {
       if (stream.eat('*')) {
-        state.comentarioLevel++;
+        state.commentLevel++;
         state.tokenize = tokenComment;
         return state.tokenize(stream, state);
       }
@@ -147,19 +147,19 @@ CodeMirror.defineMode('mathematica', function(_config, _parserConfig) {
 
   function tokenComment(stream, state) {
     var prev, next;
-    while(state.comentarioLevel > 0 && (next = stream.next()) != null) {
-      if (prev === '(' && next === '*') state.comentarioLevel++;
-      if (prev === '*' && next === ')') state.comentarioLevel--;
+    while(state.commentLevel > 0 && (next = stream.next()) != null) {
+      if (prev === '(' && next === '*') state.commentLevel++;
+      if (prev === '*' && next === ')') state.commentLevel--;
       prev = next;
     }
-    if (state.comentarioLevel <= 0) {
+    if (state.commentLevel <= 0) {
       state.tokenize = tokenBase;
     }
-    return 'comentario';
+    return 'comment';
   }
 
   return {
-    startState: function() {return {tokenize: tokenBase, comentarioLevel: 0};},
+    startState: function() {return {tokenize: tokenBase, commentLevel: 0};},
     token: function(stream, state) {
       if (stream.eatSpace()) return null;
       return state.tokenize(stream, state);

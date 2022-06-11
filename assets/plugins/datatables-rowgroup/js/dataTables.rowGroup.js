@@ -4,11 +4,11 @@
 
 /**
  * @summary     RowGroup
- * @descripcion RowGrouping for DataTables
+ * @description RowGrouping for DataTables
  * @version     1.1.2
  * @file        dataTables.rowGroup.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contacto     datatables.net
+ * @contact     datatables.net
  * @copyright   Copyright 2017-2020 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
@@ -197,7 +197,7 @@ $.extend( RowGroup.prototype, {
 
 
 	/**
-	 * Upfecha function that is called whenever we need to draw the grouping rows.
+	 * Update function that is called whenever we need to draw the grouping rows.
 	 * This is basically a bootstrap for the self iterative _group and _groupDisplay
 	 * methods
 	 * @private

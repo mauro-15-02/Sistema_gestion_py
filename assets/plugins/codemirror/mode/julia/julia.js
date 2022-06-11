@@ -79,7 +79,7 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
 
   // tokenizers
   function tokenBase(stream, state) {
-    // Handle multiline comentarios
+    // Handle multiline comments
     if (stream.match(/^#=/, false)) {
       state.tokenize = tokenComment;
       return state.tokenize(stream, state);
@@ -110,10 +110,10 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
 
     var ch = stream.peek();
 
-    // Handle single line comentarios
+    // Handle single line comments
     if (ch === '#') {
       stream.skipToEnd();
-      return "comentario";
+      return "comment";
     }
 
     if (ch === '[') {
@@ -319,7 +319,7 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
       if (state.nestedComments == 0)
         state.tokenize = tokenBase;
     }
-    return "comentario";
+    return "comment";
   }
 
   function tokenChar(stream, state) {

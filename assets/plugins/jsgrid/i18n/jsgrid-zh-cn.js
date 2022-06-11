@@ -26,7 +26,7 @@
                 searchButtonTooltip: "搜索",
                 clearFilterButtonTooltip: "清空过滤",
                 insertButtonTooltip: "插入",
-                upfechaButtonTooltip: "更新",
+                updateButtonTooltip: "更新",
                 cancelEditButtonTooltip: "取消编辑"
             }
         },

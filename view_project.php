@@ -1,24 +1,24 @@
 <?php
 include 'db_connect.php';
 $stat = array("Pendiente", "Empezado", "En progreso", "En espera", "Vencido", "Terminado");
-$qry = $conn->query("SELECT * FROM proyecto_list where id = ".$_GET['id'])->fetch_array();
+$qry = $conn->query("SELECT * FROM project_list where id = ".$_GET['id'])->fetch_array();
 foreach($qry as $k => $v){
 	$$k = $v;
 }
-$tprog = $conn->query("SELECT * FROM tarea_list where proyecto_id = {$id}")->num_rows;
-$cprog = $conn->query("SELECT * FROM tarea_list where proyecto_id = {$id} and status = 3")->num_rows;
+$tprog = $conn->query("SELECT * FROM task_list where project_id = {$id}")->num_rows;
+$cprog = $conn->query("SELECT * FROM task_list where project_id = {$id} and status = 3")->num_rows;
 $prog = $tprog > 0 ? ($cprog/$tprog) * 100 : 0;
 $prog = $prog > 0 ?  number_format($prog,2) : $prog;
-$prod = $conn->query("SELECT * FROM productividad_usuario where proyecto_id = {$id}")->num_rows;
-if($status == 0 && strtotime(date('Y-m-d')) >= strtotime($fecha_de_inicio)):
+$prod = $conn->query("SELECT * FROM user_productivity where project_id = {$id}")->num_rows;
+if($status == 0 && strtotime(date('Y-m-d')) >= strtotime($start_date)):
 if($prod  > 0  || $cprog > 0)
   $status = 2;
 else
   $status = 1;
-elseif($status == 0 && strtotime(date('Y-m-d')) > strtotime($fin_fecha)):
+elseif($status == 0 && strtotime(date('Y-m-d')) > strtotime($end_date)):
 $status = 4;
 endif;
-$manager = $conn->query("SELECT *,concat(primer_nombre,' ',apellido) as nombre FROM usuarios where id = $manager_id");
+$manager = $conn->query("SELECT *,concat(firstname,' ',lastname) as name FROM users where id = $manager_id");
 $manager = $manager->num_rows > 0 ? $manager->fetch_array() : array();
 ?>
 <div class="col-lg-12">
@@ -30,19 +30,19 @@ $manager = $manager->num_rows > 0 ? $manager->fetch_array() : array();
 						<div class="col-sm-6">
 							<dl>
 								<dt><b class="border-bottom border-primary">Nombre del Proyecto</b></dt>
-								<dd><?php echo ucwords($nombre) ?></dd>
+								<dd><?php echo ucwords($name) ?></dd>
 								<dt><b class="border-bottom border-primary">Descripción</b></dt>
-								<dd><?php echo html_entity_decode($descripcion) ?></dd>
+								<dd><?php echo html_entity_decode($description) ?></dd>
 							</dl>
 						</div>
 						<div class="col-md-6">
 							<dl>
 								<dt><b class="border-bottom border-primary">Fecha de comienzo</b></dt>
-								<dd><?php echo date("d-m-Y",strtotime($fecha_de_inicio)) ?></dd>
+								<dd><?php echo date("d-m-Y",strtotime($start_date)) ?></dd>
 							</dl>
 							<dl>
 								<dt><b class="border-bottom border-primary">Fecha de finalización</b></dt>
-								<dd><?php echo date("d-m-Y",strtotime($fin_fecha)) ?></dd>
+								<dd><?php echo date("d-m-Y",strtotime($end_date)) ?></dd>
 							</dl>
 							<dl>
 								<dt><b class="border-bottom border-primary">Estado</b></dt>
@@ -70,7 +70,7 @@ $manager = $manager->num_rows > 0 ? $manager->fetch_array() : array();
 									<?php if(isset($manager['id'])) : ?>
 									<div class="d-flex align-items-center mt-1">
 										<img class="img-circle img-thumbnail p-0 shadow-sm border-info img-sm mr-3" src="assets/uploads/<?php echo $manager['avatar'] ?>" alt="Avatar">
-										<b><?php echo ucwords($manager['nombre']) ?></b>
+										<b><?php echo ucwords($manager['name']) ?></b>
 									</div>
 									<?php else: ?>
 										<small><i>Manager eliminado de la base de datos</i></small>
@@ -93,16 +93,16 @@ $manager = $manager->num_rows > 0 ? $manager->fetch_array() : array();
 					</div>
 				</div>
 				<div class="card-body">
-					<ul class="usuarios-list clearfix">
+					<ul class="users-list clearfix">
 						<?php 
-						if(!empty($usuario_ids)):
-							$members = $conn->query("SELECT *,concat(primer_nombre,' ',apellido) as nombre FROM usuarios where id in ($usuario_ids) order by concat(primer_nombre,' ',apellido) asc");
+						if(!empty($user_ids)):
+							$members = $conn->query("SELECT *,concat(firstname,' ',lastname) as name FROM users where id in ($user_ids) order by concat(firstname,' ',lastname) asc");
 							while($row=$members->fetch_assoc()):
 						?>
 								<li>
 			                        <img src="assets/uploads/<?php echo $row['avatar'] ?>" alt="User Image">
-			                        <a class="usuarios-list-nombre" href="javascript:void(0)"><?php echo ucwords($row['nombre']) ?></a>
-			                        <!-- <span class="usuarios-list-fecha">Today</span> -->
+			                        <a class="users-list-name" href="javascript:void(0)"><?php echo ucwords($row['name']) ?></a>
+			                        <!-- <span class="users-list-date">Today</span> -->
 		                    	</li>
 						<?php 
 							endwhile;
@@ -118,7 +118,7 @@ $manager = $manager->num_rows > 0 ? $manager->fetch_array() : array();
 					<span><b>Lista de Tareas:</b></span>
 					<?php if($_SESSION['login_type'] != 3): ?>
 					<div class="card-tools">
-						<button class="btn btn-primary bg-gradient-primary btn-sm" type="button" id="new_tarea"><i class="fa fa-plus"></i> Nueva Tarea</button>
+						<button class="btn btn-primary bg-gradient-primary btn-sm" type="button" id="new_task"><i class="fa fa-plus"></i> Nueva Tarea</button>
 					</div>
 				<?php endif; ?>
 				</div>
@@ -142,16 +142,16 @@ $manager = $manager->num_rows > 0 ? $manager->fetch_array() : array();
 						<tbody>
 							<?php 
 							$i = 1;
-							$tareas = $conn->query("SELECT * FROM tarea_list where proyecto_id = {$id} order by tarea asc");
-							while($row=$tareas->fetch_assoc()):
+							$tasks = $conn->query("SELECT * FROM task_list where project_id = {$id} order by task asc");
+							while($row=$tasks->fetch_assoc()):
 								$trans = get_html_translation_table(HTML_ENTITIES,ENT_QUOTES);
 								unset($trans["\""], $trans["<"], $trans[">"], $trans["<h2"]);
-								$desc = strtr(html_entity_decode($row['descripcion']),$trans);
+								$desc = strtr(html_entity_decode($row['description']),$trans);
 								$desc=str_replace(array("<li>","</li>"), array("",", "), $desc);
 							?>
 								<tr>
 			                        <td class="text-center"><?php echo $i++ ?></td>
-			                        <td class=""><b><?php echo ucwords($row['tarea']) ?></b></td>
+			                        <td class=""><b><?php echo ucwords($row['task']) ?></b></td>
 			                        <td class=""><p class="truncate"><?php echo strip_tags($desc) ?></p></td>
 			                        <td>
 			                        	<?php 
@@ -169,12 +169,12 @@ $manager = $manager->num_rows > 0 ? $manager->fetch_array() : array();
 					                      Acción
 					                    </button>
 					                    <div class="dropdown-menu" style="">
-					                      <a class="dropdown-item view_tarea" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"  data-tarea="<?php echo $row['tarea'] ?>">ver</a>
+					                      <a class="dropdown-item view_task" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"  data-task="<?php echo $row['task'] ?>">View</a>
 					                      <div class="dropdown-divider"></div>
 					                      <?php if($_SESSION['login_type'] != 3): ?>
-					                      <a class="dropdown-item edit_tarea" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"  data-tarea="<?php echo $row['tarea'] ?>">Editar</a>
+					                      <a class="dropdown-item edit_task" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"  data-task="<?php echo $row['task'] ?>">Edit</a>
 					                      <div class="dropdown-divider"></div>
-					                      <a class="dropdown-item delete_tarea" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>">Eliminar</a>
+					                      <a class="dropdown-item delete_task" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>">Delete</a>
 					                  <?php endif; ?>
 					                    </div>
 									</td>
@@ -200,35 +200,35 @@ $manager = $manager->num_rows > 0 ? $manager->fetch_array() : array();
 				</div>
 				<div class="card-body">
 					<?php 
-					$progress = $conn->query("SELECT p.*,concat(u.primer_nombre,' ',u.apellido) as unombre,u.avatar,t.tarea FROM productividad_usuario p inner join usuarios u on u.id = p.usuario_id inner join tarea_list t on t.id = p.tarea_id where p.proyecto_id = $id order by unix_timestamp(p.fecha_de_creacion) desc ");
+					$progress = $conn->query("SELECT p.*,concat(u.firstname,' ',u.lastname) as uname,u.avatar,t.task FROM user_productivity p inner join users u on u.id = p.user_id inner join task_list t on t.id = p.task_id where p.project_id = $id order by unix_timestamp(p.date_created) desc ");
 					while($row = $progress->fetch_assoc()):
 					?>
 						<div class="post">
 
 		                      <div class="user-block">
-		                      	<?php if($_SESSION['login_id'] == $row['usuario_id']): ?>
+		                      	<?php if($_SESSION['login_id'] == $row['user_id']): ?>
 		                      	<span class="btn-group dropleft float-right">
 								  <span class="btndropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
 								    <i class="fa fa-ellipsis-v"></i>
 								  </span>
 								  <div class="dropdown-menu">
-								  	<a class="dropdown-item manage_progress" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"  data-tarea="<?php echo $row['tarea'] ?>">Editar</a>
+								  	<a class="dropdown-item manage_progress" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"  data-task="<?php echo $row['task'] ?>">Editar</a>
 			                      	<div class="dropdown-divider"></div>
 				                     <a class="dropdown-item delete_progress" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>">Eliminar</a>
 								  </div>
 								</span>
 								<?php endif; ?>
 		                        <img class="img-circle img-bordered-sm" src="assets/uploads/<?php echo $row['avatar'] ?>" alt="user image">
-		                        <span class="usernombre">
-		                          <a href="#"><?php echo ucwords($row['unombre']) ?>[ <?php echo ucwords($row['tarea']) ?> ]</a>
+		                        <span class="username">
+		                          <a href="#"><?php echo ucwords($row['uname']) ?>[ <?php echo ucwords($row['task']) ?> ]</a>
 		                        </span>
-		                        <span class="descripcion">
+		                        <span class="description">
 		                        	<span class="fa fa-calendar-day"></span>
-		                        	<span><b><?php echo date('d-m-Y',strtotime($row['fecha'])) ?></b></span>
+		                        	<span><b><?php echo date('d-m-Y',strtotime($row['date'])) ?></b></span>
 		                        	<span class="fa fa-user-clock"></span>
-                      				<span>Comienzo: <b><?php echo date('h:i A',strtotime($row['fecha'].' '.$row['hora_de_inicio'])) ?></b></span>
+                      				<span>Comienzo: <b><?php echo date('h:i A',strtotime($row['date'].' '.$row['start_time'])) ?></b></span>
 		                        	<span> | </span>
-                      				<span>Finalización: <b><?php echo date('h:i A',strtotime($row['fecha'].' '.$row['fin_tiempo'])) ?></b></span>
+                      				<span>Finalización: <b><?php echo date('h:i A',strtotime($row['date'].' '.$row['end_time'])) ?></b></span>
 	                        	</span>
 
 	                        	
@@ -236,7 +236,7 @@ $manager = $manager->num_rows > 0 ? $manager->fetch_array() : array();
 		                      </div>
 		                      <!-- /.user-block -->
 		                      <div>
-		                       <?php echo html_entity_decode($row['comentario']) ?>
+		                       <?php echo html_entity_decode($row['comment']) ?>
 		                      </div>
 
 		                      <p>
@@ -251,13 +251,13 @@ $manager = $manager->num_rows > 0 ? $manager->fetch_array() : array();
 	</div>
 </div>
 <style>
-	.usuarios-list>li img {
+	.users-list>li img {
 	    border-radius: 50%;
 	    height: 67px;
 	    width: 67px;
 	    object-fit: cover;
 	}
-	.usuarios-list>li {
+	.users-list>li {
 		width: 33.33% !important
 	}
 	.truncate {
@@ -265,14 +265,14 @@ $manager = $manager->num_rows > 0 ? $manager->fetch_array() : array();
 	}
 </style>
 <script>
-	$('#new_tarea').click(function(){
-		uni_modal("New tarea For <?php echo ucwords($nombre) ?>","manage_tarea.php?pid=<?php echo $id ?>","mid-large")
+	$('#new_task').click(function(){
+		uni_modal("New Task For <?php echo ucwords($name) ?>","manage_task.php?pid=<?php echo $id ?>","mid-large")
 	})
-	$('.edit_tarea').click(function(){
-		uni_modal("Editar Tarea: "+$(this).attr('data-tarea'),"manage_tarea.php?pid=<?php echo $id ?>&id="+$(this).attr('data-id'),"mid-large")
+	$('.edit_task').click(function(){
+		uni_modal("Editar Tarea: "+$(this).attr('data-task'),"manage_task.php?pid=<?php echo $id ?>&id="+$(this).attr('data-id'),"mid-large")
 	})
-	$('.view_tarea').click(function(){
-		uni_modal("Detalles de la Tarea","view_tarea.php?id="+$(this).attr('data-id'),"mid-large")
+	$('.view_task').click(function(){
+		uni_modal("Detalles de la Tarea","view_task.php?id="+$(this).attr('data-id'),"mid-large")
 	})
 	$('#new_productivity').click(function(){
 		uni_modal("<i class='fa fa-plus'></i> Nuevo Progreso","manage_progress.php?pid=<?php echo $id ?>",'large')

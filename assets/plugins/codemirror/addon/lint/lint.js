@@ -135,7 +135,7 @@
       cm.off("change", abort)
       if (state.waitingFor != id) return
       if (arg2 && annotations instanceof CodeMirror) annotations = arg2
-      cm.operation(function() {upfechaLinting(cm, annotations)})
+      cm.operation(function() {updateLinting(cm, annotations)})
     }, passOptions, cm);
   }
 
@@ -143,7 +143,7 @@
     var state = cm.state.lint, options = state.options;
     /*
      * Passing rules in `options` property prevents JSHint (and other linters) from complaining
-     * about unrecognized rules like `onUpfechaLinting`, `delay`, `lintOnChange`, etc.
+     * about unrecognized rules like `onUpdateLinting`, `delay`, `lintOnChange`, etc.
      */
     var passOptions = options.options || options;
     var getAnnotations = options.getAnnotations || cm.getHelper(CodeMirror.Pos(0, 0), "lint");
@@ -154,13 +154,13 @@
       var annotations = getAnnotations(cm.getValue(), passOptions, cm);
       if (!annotations) return;
       if (annotations.then) annotations.then(function(issues) {
-        cm.operation(function() {upfechaLinting(cm, issues)})
+        cm.operation(function() {updateLinting(cm, issues)})
       });
-      else cm.operation(function() {upfechaLinting(cm, annotations)})
+      else cm.operation(function() {updateLinting(cm, annotations)})
     }
   }
 
-  function upfechaLinting(cm, annotationsNotSorted) {
+  function updateLinting(cm, annotationsNotSorted) {
     clearMarks(cm);
     var state = cm.state.lint, options = state.options;
 
@@ -192,7 +192,7 @@
         cm.setGutterMarker(line, GUTTER_ID, makeMarker(cm, tipLabel, maxSeverity, anns.length > 1,
                                                        state.options.tooltips));
     }
-    if (options.onUpfechaLinting) options.onUpfechaLinting(annotationsNotSorted, annotations, cm);
+    if (options.onUpdateLinting) options.onUpdateLinting(annotationsNotSorted, annotations, cm);
   }
 
   function onChange(cm) {

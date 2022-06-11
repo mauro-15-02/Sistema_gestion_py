@@ -58,7 +58,7 @@ CodeMirror.defineMode("cmake", function () {
     }
     if (ch == "#") {
       stream.skipToEnd();
-      return "comentario";
+      return "comment";
     }
     // Have we found a string?
     if (ch == "'" || ch == '"') {

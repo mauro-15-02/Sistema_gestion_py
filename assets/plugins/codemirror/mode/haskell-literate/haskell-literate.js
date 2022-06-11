@@ -30,7 +30,7 @@
           return baseMode.token(stream, state.baseState)
         } else {
           stream.skipToEnd()
-          return "comentario"
+          return "comment"
         }
       },
       innerMode: function (state) {

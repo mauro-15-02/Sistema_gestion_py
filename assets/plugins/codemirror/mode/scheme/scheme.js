@@ -16,7 +16,7 @@
 "use strict";
 
 CodeMirror.defineMode("scheme", function () {
-    var BUILTIN = "builtin", COMMENT = "comentario", STRING = "string",
+    var BUILTIN = "builtin", COMMENT = "comment", STRING = "string",
         ATOM = "atom", NUMBER = "number", BRACKET = "bracket";
     var INDENT_WORD_SKIP = 2;
 
@@ -80,7 +80,7 @@ CodeMirror.defineMode("scheme", function () {
 
         token: function (stream, state) {
             if (state.indentStack == null && stream.sol()) {
-                // upfecha indentation, but only if indentStack is empty
+                // update indentation, but only if indentStack is empty
                 state.indentation = stream.indentation();
             }
 
@@ -103,7 +103,7 @@ CodeMirror.defineMode("scheme", function () {
                     }
                     returnType = STRING; // continue on in scheme-string mode
                     break;
-                case "comentario": // comentario parsing mode
+                case "comment": // comment parsing mode
                     var next, maybeEnd = false;
                     while ((next = stream.next()) != null) {
                         if (next == "#" && maybeEnd) {
@@ -115,13 +115,13 @@ CodeMirror.defineMode("scheme", function () {
                     }
                     returnType = COMMENT;
                     break;
-                case "s-expr-comentario": // s-expr comentarioing mode
+                case "s-expr-comment": // s-expr commenting mode
                     state.mode = false;
                     if(stream.peek() == "(" || stream.peek() == "["){
-                        // actually start scheme s-expr comentarioing mode
+                        // actually start scheme s-expr commenting mode
                         state.sExprComment = 0;
                     }else{
-                        // if not we just comentario the entire of the next token
+                        // if not we just comment the entire of the next token
                         stream.eatWhile(/[^\s\(\)\[\]]/); // eat symbol atom
                         returnType = COMMENT;
                         break;
@@ -144,13 +144,13 @@ CodeMirror.defineMode("scheme", function () {
                             returnType = ATOM;
                         }
                     } else if (ch == '#') {
-                        if (stream.eat("|")) {                    // Multi-line comentario
-                            state.mode = "comentario"; // toggle to comentario mode
+                        if (stream.eat("|")) {                    // Multi-line comment
+                            state.mode = "comment"; // toggle to comment mode
                             returnType = COMMENT;
                         } else if (stream.eat(/[tf]/i)) {            // #t/#f (atom)
                             returnType = ATOM;
-                        } else if (stream.eat(';')) {                // S-Expr comentario
-                            state.mode = "s-expr-comentario";
+                        } else if (stream.eat(';')) {                // S-Expr comment
+                            state.mode = "s-expr-comment";
                             returnType = COMMENT;
                         } else {
                             var numTest = null, hasExactness = false, hasRadix = true;
@@ -185,8 +185,8 @@ CodeMirror.defineMode("scheme", function () {
                         }
                     } else if (/^[-+0-9.]/.test(ch) && isDecimalNumber(stream, true)) { // match non-prefixed number, must be decimal
                         returnType = NUMBER;
-                    } else if (ch == ";") { // comentario
-                        stream.skipToEnd(); // rest of the line is a comentario
+                    } else if (ch == ";") { // comment
+                        stream.skipToEnd(); // rest of the line is a comment
                         returnType = COMMENT;
                     } else if (ch == "(" || ch == "[") {
                       var keyWord = ''; var indentTemp = stream.column(), letter;
@@ -229,7 +229,7 @@ CodeMirror.defineMode("scheme", function () {
                             if(typeof state.sExprComment == "number"){
                                 if(--state.sExprComment == 0){
                                     returnType = COMMENT; // final closing bracket
-                                    state.sExprComment = false; // turn off s-expr comentarioing mode
+                                    state.sExprComment = false; // turn off s-expr commenting mode
                                 }
                             }
                             if(typeof state.sExprQuote == "number"){

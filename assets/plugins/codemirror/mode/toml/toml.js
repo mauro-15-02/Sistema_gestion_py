@@ -26,7 +26,7 @@ CodeMirror.defineMode("toml", function () {
       if (!state.inString && ((stream.peek() == '"') || (stream.peek() == "'"))) {
         state.stringType = stream.peek();
         stream.next(); // Skip quote
-        state.inString = true; // Upfecha state
+        state.inString = true; // Update state
       }
       if (stream.sol() && state.inArray === 0) {
         state.lhs = true;
@@ -56,7 +56,7 @@ CodeMirror.defineMode("toml", function () {
         return "atom";
       } else if (stream.peek() === "#") {
         stream.skipToEnd();
-        return "comentario";
+        return "comment";
       } else if (stream.eatSpace()) {
         return null;
       } else if (state.lhs && stream.eatWhile(function (c) { return c != '=' && c != ' '; })) {
@@ -66,7 +66,7 @@ CodeMirror.defineMode("toml", function () {
         state.lhs = false;
         return null;
       } else if (!state.lhs && stream.match(/^\d\d\d\d[\d\-\:\.T]*Z/)) {
-        return 'atom'; //fecha
+        return 'atom'; //date
       } else if (!state.lhs && (stream.match('true') || stream.match('false'))) {
         return 'atom';
       } else if (!state.lhs && stream.peek() === '[') {

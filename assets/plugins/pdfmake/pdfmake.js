@@ -45,9 +45,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, nombre, getter) {
-/******/ 		if(!__webpack_require__.o(exports, nombre)) {
-/******/ 			Object.defineProperty(exports, nombre, { enumerable: true, get: getter });
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
 /******/ 	};
 /******/
@@ -59,7 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 	};
 /******/
-/******/ 	// create a fake nombrespace object
+/******/ 	// create a fake namespace object
 /******/ 	// mode & 1: value is a module id, require it
 /******/ 	// mode & 2: merge all properties of value into the ns
 /******/ 	// mode & 4: return value when already ns object
@@ -228,7 +228,7 @@ var copyConstructorProperties = __webpack_require__(200);
 var isForced = __webpack_require__(144);
 
 /*
-  options.target      - nombre of the target object
+  options.target      - name of the target object
   options.global      - target is the global object
   options.stat        - export as static methods of target
   options.proto       - export as prototype methods of target
@@ -311,12 +311,12 @@ module.exports = function (options, source) {
 	    }())
 
 	    /**
-	     * CryptoJS nombrespace.
+	     * CryptoJS namespace.
 	     */
 	    var C = {};
 
 	    /**
-	     * Library nombrespace.
+	     * Library namespace.
 	     */
 	    var C_lib = C.lib = {};
 
@@ -416,9 +416,9 @@ module.exports = function (options, source) {
 	             *     });
 	             */
 	            mixIn: function (properties) {
-	                for (var propertynombre in properties) {
-	                    if (properties.hasOwnProperty(propertynombre)) {
-	                        this[propertynombre] = properties[propertynombre];
+	                for (var propertyName in properties) {
+	                    if (properties.hasOwnProperty(propertyName)) {
+	                        this[propertyName] = properties[propertyName];
 	                    }
 	                }
 
@@ -605,7 +605,7 @@ module.exports = function (options, source) {
 	    });
 
 	    /**
-	     * Encoder nombrespace.
+	     * Encoder namespace.
 	     */
 	    var C_enc = C.enc = {};
 
@@ -931,22 +931,22 @@ module.exports = function (options, source) {
 	        },
 
 	        /**
-	         * Upfechas this hasher with a message.
+	         * Updates this hasher with a message.
 	         *
-	         * @param {WordArray|string} messageUpfecha The message to append.
+	         * @param {WordArray|string} messageUpdate The message to append.
 	         *
 	         * @return {Hasher} This hasher.
 	         *
 	         * @example
 	         *
-	         *     hasher.upfecha('message');
-	         *     hasher.upfecha(wordArray);
+	         *     hasher.update('message');
+	         *     hasher.update(wordArray);
 	         */
-	        upfecha: function (messageUpfecha) {
+	        update: function (messageUpdate) {
 	            // Append
-	            this._append(messageUpfecha);
+	            this._append(messageUpdate);
 
-	            // Upfecha the hash
+	            // Update the hash
 	            this._process();
 
 	            // Chainable
@@ -957,7 +957,7 @@ module.exports = function (options, source) {
 	         * Finalizes the hash computation.
 	         * Note that the finalize operation is effectively a destructive, read-once operation.
 	         *
-	         * @param {WordArray|string} messageUpfecha (Optional) A final message upfecha.
+	         * @param {WordArray|string} messageUpdate (Optional) A final message update.
 	         *
 	         * @return {WordArray} The hash.
 	         *
@@ -967,10 +967,10 @@ module.exports = function (options, source) {
 	         *     var hash = hasher.finalize('message');
 	         *     var hash = hasher.finalize(wordArray);
 	         */
-	        finalize: function (messageUpfecha) {
-	            // Final message upfecha
-	            if (messageUpfecha) {
-	                this._append(messageUpfecha);
+	        finalize: function (messageUpdate) {
+	            // Final message update
+	            if (messageUpdate) {
+	                this._append(messageUpdate);
 	            }
 
 	            // Perform concrete-hasher logic
@@ -1021,7 +1021,7 @@ module.exports = function (options, source) {
 	    });
 
 	    /**
-	     * Algorithm nombrespace.
+	     * Algorithm namespace.
 	     */
 	    var C_algo = C.algo = {};
 
@@ -1041,7 +1041,7 @@ module.exports = function (options, source) {
   return it && it.Math == Math && it;
 };
 
-// https://github.com/zloirock/core-js/issues/86#issuecomentario-115759028
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 module.exports =
   // eslint-disable-next-line no-undef
   check(typeof globalThis == 'object' && globalThis) ||
@@ -1100,7 +1100,7 @@ var TYPED_ARRAY_TAG = uid('TYPED_ARRAY_TAG');
 // Fixing native typed arrays in Opera Presto crashes the browser, see #595
 var NATIVE_ARRAY_BUFFER_VIEWS = NATIVE_ARRAY_BUFFER && !!setPrototypeOf && classof(global.opera) !== 'Opera';
 var TYPED_ARRAY_TAG_REQIRED = false;
-var nombre;
+var NAME;
 
 var TypedArrayConstructorsList = {
   Int8Array: 1,
@@ -1131,7 +1131,7 @@ var aTypedArray = function (it) {
 var aTypedArrayConstructor = function (C) {
   if (setPrototypeOf) {
     if (isPrototypeOf.call(TypedArray, C)) return C;
-  } else for (var ARRAY in TypedArrayConstructorsList) if (has(TypedArrayConstructorsList, nombre)) {
+  } else for (var ARRAY in TypedArrayConstructorsList) if (has(TypedArrayConstructorsList, NAME)) {
     var TypedArrayConstructor = global[ARRAY];
     if (TypedArrayConstructor && (C === TypedArrayConstructor || isPrototypeOf.call(TypedArrayConstructor, C))) {
       return C;
@@ -1178,8 +1178,8 @@ var exportTypedArrayStaticMethod = function (KEY, property, forced) {
   }
 };
 
-for (nombre in TypedArrayConstructorsList) {
-  if (!global[nombre]) NATIVE_ARRAY_BUFFER_VIEWS = false;
+for (NAME in TypedArrayConstructorsList) {
+  if (!global[NAME]) NATIVE_ARRAY_BUFFER_VIEWS = false;
 }
 
 // WebKit bug - typed arrays constructors prototype is Object.prototype
@@ -1188,15 +1188,15 @@ if (!NATIVE_ARRAY_BUFFER_VIEWS || typeof TypedArray != 'function' || TypedArray 
   TypedArray = function TypedArray() {
     throw TypeError('Incorrect invocation');
   };
-  if (NATIVE_ARRAY_BUFFER_VIEWS) for (nombre in TypedArrayConstructorsList) {
-    if (global[nombre]) setPrototypeOf(global[nombre], TypedArray);
+  if (NATIVE_ARRAY_BUFFER_VIEWS) for (NAME in TypedArrayConstructorsList) {
+    if (global[NAME]) setPrototypeOf(global[NAME], TypedArray);
   }
 }
 
 if (!NATIVE_ARRAY_BUFFER_VIEWS || !TypedArrayPrototype || TypedArrayPrototype === ObjectPrototype) {
   TypedArrayPrototype = TypedArray.prototype;
-  if (NATIVE_ARRAY_BUFFER_VIEWS) for (nombre in TypedArrayConstructorsList) {
-    if (global[nombre]) setPrototypeOf(global[nombre].prototype, TypedArrayPrototype);
+  if (NATIVE_ARRAY_BUFFER_VIEWS) for (NAME in TypedArrayConstructorsList) {
+    if (global[NAME]) setPrototypeOf(global[NAME].prototype, TypedArrayPrototype);
   }
 }
 
@@ -1210,8 +1210,8 @@ if (DESCRIPTORS && !has(TypedArrayPrototype, TO_STRING_TAG)) {
   defineProperty(TypedArrayPrototype, TO_STRING_TAG, { get: function () {
     return isObject(this) ? this[TYPED_ARRAY_TAG] : undefined;
   } });
-  for (nombre in TypedArrayConstructorsList) if (global[nombre]) {
-    createNonEnumerableProperty(global[nombre], TYPED_ARRAY_TAG, nombre);
+  for (NAME in TypedArrayConstructorsList) if (global[NAME]) {
+    createNonEnumerableProperty(global[NAME], TYPED_ARRAY_TAG, NAME);
   }
 }
 
@@ -1244,11 +1244,11 @@ var WellKnownSymbolsStore = shared('wks');
 var Symbol = global.Symbol;
 var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol : Symbol && Symbol.withoutSetter || uid;
 
-module.exports = function (nombre) {
-  if (!has(WellKnownSymbolsStore, nombre)) {
-    if (NATIVE_SYMBOL && has(Symbol, nombre)) WellKnownSymbolsStore[nombre] = Symbol[nombre];
-    else WellKnownSymbolsStore[nombre] = createWellKnownSymbol('Symbol.' + nombre);
-  } return WellKnownSymbolsStore[nombre];
+module.exports = function (name) {
+  if (!has(WellKnownSymbolsStore, name)) {
+    if (NATIVE_SYMBOL && has(Symbol, name)) WellKnownSymbolsStore[name] = Symbol[name];
+    else WellKnownSymbolsStore[name] = createWellKnownSymbol('Symbol.' + name);
+  } return WellKnownSymbolsStore[name];
 };
 
 
@@ -1286,25 +1286,25 @@ var hide = __webpack_require__(41);
 var has = __webpack_require__(51);
 var PROTOTYPE = 'prototype';
 
-var $export = function (type, nombre, source) {
+var $export = function (type, name, source) {
   var IS_FORCED = type & $export.F;
   var IS_GLOBAL = type & $export.G;
   var IS_STATIC = type & $export.S;
   var IS_PROTO = type & $export.P;
   var IS_BIND = type & $export.B;
   var IS_WRAP = type & $export.W;
-  var exports = IS_GLOBAL ? core : core[nombre] || (core[nombre] = {});
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
   var expProto = exports[PROTOTYPE];
-  var target = IS_GLOBAL ? global : IS_STATIC ? global[nombre] : (global[nombre] || {})[PROTOTYPE];
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE];
   var key, own, out;
-  if (IS_GLOBAL) source = nombre;
+  if (IS_GLOBAL) source = name;
   for (key in source) {
     // contains in native
     own = !IS_FORCED && target && target[key] !== undefined;
     if (own && has(exports, key)) continue;
     // export native or passed
     out = own ? target[key] : source[key];
-    // prevent global pollution for nombrespaces
+    // prevent global pollution for namespaces
     exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
     // bind timers to global for call from export context
     : IS_BIND && own ? ctx(out, global)
@@ -1323,10 +1323,10 @@ var $export = function (type, nombre, source) {
       return F;
     // make static versions for prototype methods
     })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
-    // export proto methods to core.%CONSTRUCTOR%.methods.%nombre%
+    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
     if (IS_PROTO) {
       (exports.virtual || (exports.virtual = {}))[key] = out;
-      // export proto methods to core.%CONSTRUCTOR%.prototype.%nombre%
+      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
       if (type & $export.R && expProto && !expProto[key]) hide(expProto, key, out);
     }
   }
@@ -3273,7 +3273,7 @@ module.exports = !fails(function () {
 	        /**
 	         * Adds data to be encrypted or decrypted.
 	         *
-	         * @param {WordArray|string} dataUpfecha The data to encrypt or decrypt.
+	         * @param {WordArray|string} dataUpdate The data to encrypt or decrypt.
 	         *
 	         * @return {WordArray} The data after processing.
 	         *
@@ -3282,9 +3282,9 @@ module.exports = !fails(function () {
 	         *     var encrypted = cipher.process('data');
 	         *     var encrypted = cipher.process(wordArray);
 	         */
-	        process: function (dataUpfecha) {
+	        process: function (dataUpdate) {
 	            // Append
-	            this._append(dataUpfecha);
+	            this._append(dataUpdate);
 
 	            // Process available blocks
 	            return this._process();
@@ -3294,7 +3294,7 @@ module.exports = !fails(function () {
 	         * Finalizes the encryption or decryption process.
 	         * Note that the finalize operation is effectively a destructive, read-once operation.
 	         *
-	         * @param {WordArray|string} dataUpfecha The final data to encrypt or decrypt.
+	         * @param {WordArray|string} dataUpdate The final data to encrypt or decrypt.
 	         *
 	         * @return {WordArray} The data after final processing.
 	         *
@@ -3304,10 +3304,10 @@ module.exports = !fails(function () {
 	         *     var encrypted = cipher.finalize('data');
 	         *     var encrypted = cipher.finalize(wordArray);
 	         */
-	        finalize: function (dataUpfecha) {
-	            // Final data upfecha
-	            if (dataUpfecha) {
-	                this._append(dataUpfecha);
+	        finalize: function (dataUpdate) {
+	            // Final data update
+	            if (dataUpdate) {
+	                this._append(dataUpdate);
 	            }
 
 	            // Perform concrete-cipher logic
@@ -3377,7 +3377,7 @@ module.exports = !fails(function () {
 	    });
 
 	    /**
-	     * Mode nombrespace.
+	     * Mode namespace.
 	     */
 	    var C_mode = C.mode = {};
 
@@ -3525,7 +3525,7 @@ module.exports = !fails(function () {
 	    }());
 
 	    /**
-	     * Padding nombrespace.
+	     * Padding namespace.
 	     */
 	    var C_pad = C.pad = {};
 
@@ -3716,7 +3716,7 @@ module.exports = !fails(function () {
 	    });
 
 	    /**
-	     * Format nombrespace.
+	     * Format namespace.
 	     */
 	    var C_format = C.format = {};
 
@@ -3896,7 +3896,7 @@ module.exports = !fails(function () {
 	    });
 
 	    /**
-	     * Key derivation function nombrespace.
+	     * Key derivation function namespace.
 	     */
 	    var C_kdf = C.kdf = {};
 
@@ -4093,7 +4093,7 @@ module.exports = function (it) {
 /* 17 */
 /***/ (function(module, exports) {
 
-// https://github.com/zloirock/core-js/issues/86#issuecomentario-115759028
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 var global = module.exports = typeof window != 'undefined' && window.Math == Math
   ? window : typeof self != 'undefined' && self.Math == Math ? self
   // eslint-disable-next-line no-new-func
@@ -4210,9 +4210,9 @@ var uid = __webpack_require__(131);
 var Symbol = __webpack_require__(17).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
-var $exports = module.exports = function (nombre) {
-  return store[nombre] || (store[nombre] =
-    USE_SYMBOL && Symbol[nombre] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + nombre));
+var $exports = module.exports = function (name) {
+  return store[name] || (store[name] =
+    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
 };
 
 $exports.store = store;
@@ -4283,7 +4283,7 @@ var TEMPLATE = String(String).split('String');
   var simple = options ? !!options.enumerable : false;
   var noTargetGet = options ? !!options.noTargetGet : false;
   if (typeof value == 'function') {
-    if (typeof key == 'string' && !has(value, 'nombre')) createNonEnumerableProperty(value, 'nombre', key);
+    if (typeof key == 'string' && !has(value, 'name')) createNonEnumerableProperty(value, 'name', key);
     enforceInternalState(value).source = TEMPLATE.join(typeof key == 'string' ? key : '');
   }
   if (O === global) {
@@ -4433,15 +4433,15 @@ var cache = {};
 
 var thrower = function (it) { throw it; };
 
-module.exports = function (METHOD_nombre, options) {
-  if (has(cache, METHOD_nombre)) return cache[METHOD_nombre];
+module.exports = function (METHOD_NAME, options) {
+  if (has(cache, METHOD_NAME)) return cache[METHOD_NAME];
   if (!options) options = {};
-  var method = [][METHOD_nombre];
+  var method = [][METHOD_NAME];
   var ACCESSORS = has(options, 'ACCESSORS') ? options.ACCESSORS : false;
   var argument0 = has(options, 0) ? options[0] : thrower;
   var argument1 = has(options, 1) ? options[1] : undefined;
 
-  return cache[METHOD_nombre] = !!method && !fails(function () {
+  return cache[METHOD_NAME] = !!method && !fails(function () {
     if (ACCESSORS && !DESCRIPTORS) return true;
     var O = { length: -1 };
 
@@ -4584,9 +4584,9 @@ var aFunction = function (variable) {
   return typeof variable == 'function' ? variable : undefined;
 };
 
-module.exports = function (nombrespace, method) {
-  return arguments.length < 2 ? aFunction(path[nombrespace]) || aFunction(global[nombrespace])
-    : path[nombrespace] && path[nombrespace][method] || global[nombrespace] && global[nombrespace][method];
+module.exports = function (namespace, method) {
+  return arguments.length < 2 ? aFunction(path[namespace]) || aFunction(global[namespace])
+    : path[namespace] && path[namespace][method] || global[namespace] && global[namespace][method];
 };
 
 
@@ -5078,9 +5078,9 @@ process.emit = noop;
 process.prependListener = noop;
 process.prependOnceListener = noop;
 
-process.listeners = function (nombre) { return [] }
+process.listeners = function (name) { return [] }
 
-process.binding = function (nombre) {
+process.binding = function (name) {
     throw new Error('process.binding is not supported');
 };
 
@@ -5103,7 +5103,7 @@ process.umask = function() { return 0; };
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, tema to the
+// persons to whom the Software is furnished to do so, subject to the
 // following conditions:
 //
 // The above copyright notice and this permission notice shall be included
@@ -5312,9 +5312,9 @@ Duplex.prototype._destroy = function (err, cb) {
 	            // Generate key
 	            while (derivedKeyWords.length < keySize) {
 	                if (block) {
-	                    hasher.upfecha(block);
+	                    hasher.update(block);
 	                }
-	                var block = hasher.upfecha(password).finalize(salt);
+	                var block = hasher.update(password).finalize(salt);
 	                hasher.reset();
 
 	                // Iterations
@@ -5398,23 +5398,23 @@ module.exports = function (exec) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(Buffer, __dirnombre) {
+/* WEBPACK VAR INJECTION */(function(Buffer, __dirname) {
 
 function VirtualFileSystem() {
 	this.fileSystem = {};
 	this.dataSystem = {};
 }
 
-VirtualFileSystem.prototype.existsSync = function (filenombre) {
-	filenombre = fixFilenombre(filenombre);
-	return typeof this.fileSystem[filenombre] !== 'undefined'
-		|| typeof this.dataSystem[filenombre] !== 'undefined';
+VirtualFileSystem.prototype.existsSync = function (filename) {
+	filename = fixFilename(filename);
+	return typeof this.fileSystem[filename] !== 'undefined'
+		|| typeof this.dataSystem[filename] !== 'undefined';
 }
 
-VirtualFileSystem.prototype.readFileSync = function (filenombre, options) {
-	filenombre = fixFilenombre(filenombre);
+VirtualFileSystem.prototype.readFileSync = function (filename, options) {
+	filename = fixFilename(filename);
 
-	var dataContent = this.dataSystem[filenombre];
+	var dataContent = this.dataSystem[filename];
 	if (typeof dataContent === 'string' && options === 'utf8') {
 		return dataContent;
 	}
@@ -5423,16 +5423,16 @@ VirtualFileSystem.prototype.readFileSync = function (filenombre, options) {
 		return new Buffer(dataContent, typeof dataContent === 'string' ? 'base64' : undefined);
 	}
 
-	var content = this.fileSystem[filenombre];
+	var content = this.fileSystem[filename];
 	if (content) {
 		return content;
 	}
 
-	throw 'File \'' + filenombre + '\' not found in virtual file system';
+	throw 'File \'' + filename + '\' not found in virtual file system';
 };
 
-VirtualFileSystem.prototype.writeFileSync = function (filenombre, content) {
-	this.fileSystem[fixFilenombre(filenombre)] = content;
+VirtualFileSystem.prototype.writeFileSync = function (filename, content) {
+	this.fileSystem[fixFilename(filename)] = content;
 };
 
 VirtualFileSystem.prototype.bindFS = function (data) {
@@ -5440,16 +5440,16 @@ VirtualFileSystem.prototype.bindFS = function (data) {
 };
 
 
-function fixFilenombre(filenombre) {
-	if (filenombre.indexOf(__dirnombre) === 0) {
-		filenombre = filenombre.substring(__dirnombre.length);
+function fixFilename(filename) {
+	if (filename.indexOf(__dirname) === 0) {
+		filename = filename.substring(__dirname.length);
 	}
 
-	if (filenombre.indexOf('/') === 0) {
-		filenombre = filenombre.substring(1);
+	if (filename.indexOf('/') === 0) {
+		filename = filename.substring(1);
 	}
 
-	return filenombre;
+	return filename;
 }
 
 module.exports = new VirtualFileSystem();
@@ -5518,9 +5518,9 @@ var enumBugKeys = __webpack_require__(142);
 
 var hiddenKeys = enumBugKeys.concat('length', 'prototype');
 
-// `Object.getOwnPropertynombres` method
-// https://tc39.github.io/ecma262/#sec-object.getownpropertynombres
-exports.f = Object.getOwnPropertynombres || function getOwnPropertynombres(O) {
+// `Object.getOwnPropertyNames` method
+// https://tc39.github.io/ecma262/#sec-object.getownpropertynames
+exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return internalObjectKeys(O, hiddenKeys);
 };
 
@@ -5617,8 +5617,8 @@ module.exports = Object.create || function create(O, Properties) {
 
 var fails = __webpack_require__(4);
 
-module.exports = function (METHOD_nombre, argument) {
-  var method = [][METHOD_nombre];
+module.exports = function (METHOD_NAME, argument) {
+  var method = [][METHOD_NAME];
   return !!method && fails(function () {
     // eslint-disable-next-line no-useless-call,no-throw-literal
     method.call(null, argument || function () { throw 1; }, 1);
@@ -5907,8 +5907,8 @@ var aTypedArray = ArrayBufferViewCore.aTypedArray;
 var exportTypedArrayMethod = ArrayBufferViewCore.exportTypedArrayMethod;
 var nativeTypedArrayIterator = Uint8Array && Uint8Array.prototype[ITERATOR];
 
-var CORRECT_ITER_nombre = !!nativeTypedArrayIterator
-  && (nativeTypedArrayIterator.nombre == 'values' || nativeTypedArrayIterator.nombre == undefined);
+var CORRECT_ITER_NAME = !!nativeTypedArrayIterator
+  && (nativeTypedArrayIterator.name == 'values' || nativeTypedArrayIterator.name == undefined);
 
 var typedArrayValues = function values() {
   return arrayValues.call(aTypedArray(this));
@@ -5926,10 +5926,10 @@ exportTypedArrayMethod('keys', function keys() {
 });
 // `%TypedArray%.prototype.values` method
 // https://tc39.github.io/ecma262/#sec-%typedarray%.prototype.values
-exportTypedArrayMethod('values', typedArrayValues, !CORRECT_ITER_nombre);
+exportTypedArrayMethod('values', typedArrayValues, !CORRECT_ITER_NAME);
 // `%TypedArray%.prototype[@@iterator]` method
 // https://tc39.github.io/ecma262/#sec-%typedarray%.prototype-@@iterator
-exportTypedArrayMethod(ITERATOR, typedArrayValues, !CORRECT_ITER_nombre);
+exportTypedArrayMethod(ITERATOR, typedArrayValues, !CORRECT_ITER_NAME);
 
 
 /***/ }),
@@ -6971,7 +6971,7 @@ module.exports = {};
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, tema to the
+// persons to whom the Software is furnished to do so, subject to the
 // following conditions:
 //
 // The above copyright notice and this permission notice shall be included
@@ -7121,16 +7121,16 @@ var TO_STRING_TAG = __webpack_require__(21)('toStringTag');
 
 var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' +
   'DOMTokenList,DataTransferItemList,FileList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,' +
-  'MediaList,MimeTypeArray,nombredNodeMap,NodeList,PaintRequestList,Plugin,PluginArray,SVGLengthList,SVGNumberList,' +
+  'MediaList,MimeTypeArray,NamedNodeMap,NodeList,PaintRequestList,Plugin,PluginArray,SVGLengthList,SVGNumberList,' +
   'SVGPathSegList,SVGPointList,SVGStringList,SVGTransformList,SourceBufferList,StyleSheetList,TextTrackCueList,' +
   'TextTrackList,TouchList').split(',');
 
 for (var i = 0; i < DOMIterables.length; i++) {
-  var nombre = DOMIterables[i];
-  var Collection = global[nombre];
+  var NAME = DOMIterables[i];
+  var Collection = global[NAME];
   var proto = Collection && Collection.prototype;
-  if (proto && !proto[TO_STRING_TAG]) hide(proto, TO_STRING_TAG, nombre);
-  Iterators[nombre] = Iterators.Array;
+  if (proto && !proto[TO_STRING_TAG]) hide(proto, TO_STRING_TAG, NAME);
+  Iterators[NAME] = Iterators.Array;
 }
 
 
@@ -7238,19 +7238,19 @@ var arePropertyDescriptorsSupported = function () {
 };
 var supportsDescriptors = origDefineProperty && arePropertyDescriptorsSupported();
 
-var defineProperty = function (object, nombre, value, predicate) {
-	if (nombre in object && (!isFunction(predicate) || !predicate())) {
+var defineProperty = function (object, name, value, predicate) {
+	if (name in object && (!isFunction(predicate) || !predicate())) {
 		return;
 	}
 	if (supportsDescriptors) {
-		origDefineProperty(object, nombre, {
+		origDefineProperty(object, name, {
 			configurable: true,
 			enumerable: false,
 			value: value,
 			writable: true
 		});
 	} else {
-		object[nombre] = value;
+		object[name] = value;
 	}
 };
 
@@ -7380,7 +7380,7 @@ var V8_VERSION = __webpack_require__(147);
 
 var SPECIES = wellKnownSymbol('species');
 
-module.exports = function (METHOD_nombre) {
+module.exports = function (METHOD_NAME) {
   // We can't use this feature detection in V8 since it causes
   // deoptimization and serious performance degradation
   // https://github.com/zloirock/core-js/issues/677
@@ -7390,7 +7390,7 @@ module.exports = function (METHOD_nombre) {
     constructor[SPECIES] = function () {
       return { foo: 1 };
     };
-    return array[METHOD_nombre](Boolean).foo !== 1;
+    return array[METHOD_NAME](Boolean).foo !== 1;
   });
 };
 
@@ -7549,8 +7549,8 @@ var ITERATOR = wellKnownSymbol('iterator');
 var TO_STRING_TAG = wellKnownSymbol('toStringTag');
 var ArrayValues = ArrayIteratorMethods.values;
 
-for (var COLLECTION_nombre in DOMIterables) {
-  var Collection = global[COLLECTION_nombre];
+for (var COLLECTION_NAME in DOMIterables) {
+  var Collection = global[COLLECTION_NAME];
   var CollectionPrototype = Collection && Collection.prototype;
   if (CollectionPrototype) {
     // some Chrome versions have non-configurable methods on DOMTokenList
@@ -7560,14 +7560,14 @@ for (var COLLECTION_nombre in DOMIterables) {
       CollectionPrototype[ITERATOR] = ArrayValues;
     }
     if (!CollectionPrototype[TO_STRING_TAG]) {
-      createNonEnumerableProperty(CollectionPrototype, TO_STRING_TAG, COLLECTION_nombre);
+      createNonEnumerableProperty(CollectionPrototype, TO_STRING_TAG, COLLECTION_NAME);
     }
-    if (DOMIterables[COLLECTION_nombre]) for (var METHOD_nombre in ArrayIteratorMethods) {
+    if (DOMIterables[COLLECTION_NAME]) for (var METHOD_NAME in ArrayIteratorMethods) {
       // some Chrome versions have non-configurable methods on DOMTokenList
-      if (CollectionPrototype[METHOD_nombre] !== ArrayIteratorMethods[METHOD_nombre]) try {
-        createNonEnumerableProperty(CollectionPrototype, METHOD_nombre, ArrayIteratorMethods[METHOD_nombre]);
+      if (CollectionPrototype[METHOD_NAME] !== ArrayIteratorMethods[METHOD_NAME]) try {
+        createNonEnumerableProperty(CollectionPrototype, METHOD_NAME, ArrayIteratorMethods[METHOD_NAME]);
       } catch (error) {
-        CollectionPrototype[METHOD_nombre] = ArrayIteratorMethods[METHOD_nombre];
+        CollectionPrototype[METHOD_NAME] = ArrayIteratorMethods[METHOD_NAME];
       }
     }
   }
@@ -7585,7 +7585,7 @@ for (var COLLECTION_nombre in DOMIterables) {
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, tema to the
+// persons to whom the Software is furnished to do so, subject to the
 // following conditions:
 //
 // The above copyright notice and this permission notice shall be included
@@ -7719,7 +7719,7 @@ Stream.prototype.pipe = function(dest, options) {
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, tema to the
+// persons to whom the Software is furnished to do so, subject to the
 // following conditions:
 //
 // The above copyright notice and this permission notice shall be included
@@ -7747,12 +7747,12 @@ if (R && typeof R.ownKeys === 'function') {
   ReflectOwnKeys = R.ownKeys
 } else if (Object.getOwnPropertySymbols) {
   ReflectOwnKeys = function ReflectOwnKeys(target) {
-    return Object.getOwnPropertynombres(target)
+    return Object.getOwnPropertyNames(target)
       .concat(Object.getOwnPropertySymbols(target));
   };
 } else {
   ReflectOwnKeys = function ReflectOwnKeys(target) {
-    return Object.getOwnPropertynombres(target);
+    return Object.getOwnPropertyNames(target);
   };
 }
 
@@ -7848,7 +7848,7 @@ EventEmitter.prototype.emit = function emit(type) {
     if (args.length > 0)
       er = args[0];
     if (er instanceof Error) {
-      // Note: The comentarios on the `throw` lines are intentional, they show
+      // Note: The comments on the `throw` lines are intentional, they show
       // up in Node's output if this results in an unhandled exception.
       throw er; // Unhandled 'error' event
     }
@@ -7926,7 +7926,7 @@ function _addListener(target, type, listener, prepend) {
                           existing.length + ' ' + String(type) + ' listeners ' +
                           'added. Use emitter.setMaxListeners() to ' +
                           'increase limit');
-      w.nombre = 'MaxListenersExceededWarning';
+      w.name = 'MaxListenersExceededWarning';
       w.emitter = target;
       w.type = type;
       w.count = existing.length;
@@ -8135,7 +8135,7 @@ function listenerCount(type) {
   return 0;
 }
 
-EventEmitter.prototype.eventnombres = function eventnombres() {
+EventEmitter.prototype.eventNames = function eventNames() {
   return this._eventsCount > 0 ? ReflectOwnKeys(this._events) : [];
 };
 
@@ -8160,7 +8160,7 @@ function unwrapListeners(arr) {
   return ret;
 }
 
-function once(emitter, nombre) {
+function once(emitter, name) {
   return new Promise(function (resolve, reject) {
     function eventListener() {
       if (errorListener !== undefined) {
@@ -8176,16 +8176,16 @@ function once(emitter, nombre) {
     // be fired. The result could be a silent way to create
     // memory or file descriptor leaks, which is something
     // we should avoid.
-    if (nombre !== 'error') {
+    if (name !== 'error') {
       errorListener = function errorListener(err) {
-        emitter.removeListener(nombre, eventListener);
+        emitter.removeListener(name, eventListener);
         reject(err);
       };
 
       emitter.once('error', errorListener);
     }
 
-    emitter.once(nombre, eventListener);
+    emitter.once(name, eventListener);
   });
 }
 
@@ -8323,7 +8323,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, tema to the
+// persons to whom the Software is furnished to do so, subject to the
 // following conditions:
 //
 // The above copyright notice and this permission notice shall be included
@@ -8382,7 +8382,7 @@ function _normalizeEncoding(enc) {
   }
 };
 
-// Do not cache `Buffer.isEncoding` when checking encoding nombres as some
+// Do not cache `Buffer.isEncoding` when checking encoding names as some
 // modules monkey-patch it to support additional encodings
 function normalizeEncoding(enc) {
   var nenc = _normalizeEncoding(enc);
@@ -8488,9 +8488,9 @@ function utf8CheckIncomplete(self, buf, i) {
   return 0;
 }
 
-// Valifechas as many continuation bytes for a multi-byte UTF-8 character as
+// Validates as many continuation bytes for a multi-byte UTF-8 character as
 // needed or are available. If we see a non-continuation byte where we expect
-// one, we "replace" the valifechad continuation bytes we've seen so far with
+// one, we "replace" the validated continuation bytes we've seen so far with
 // a single UTF-8 replacement character ('\ufffd'), to match v8's UTF-8 decoding
 // behavior. The continuation byte check is included three times in the case
 // where all of the continuation bytes for a character exist in the same buffer.
@@ -8745,7 +8745,7 @@ exports.setTyped(TYPED_OK);
 	    var X32WordArray = C_lib.WordArray;
 
 	    /**
-	     * x64 nombrespace.
+	     * x64 namespace.
 	     */
 	    var C_x64 = C.x64 = {};
 
@@ -9959,7 +9959,7 @@ var toIndex = __webpack_require__(222);
 var IEEE754 = __webpack_require__(321);
 var getPrototypeOf = __webpack_require__(60);
 var setPrototypeOf = __webpack_require__(45);
-var getOwnPropertynombres = __webpack_require__(57).f;
+var getOwnPropertyNames = __webpack_require__(57).f;
 var defineProperty = __webpack_require__(15).f;
 var arrayFill = __webpack_require__(148);
 var setToStringTag = __webpack_require__(95);
@@ -10129,14 +10129,14 @@ if (!NATIVE_ARRAY_BUFFER) {
     new NativeArrayBuffer(); // eslint-disable-line no-new
     new NativeArrayBuffer(1.5); // eslint-disable-line no-new
     new NativeArrayBuffer(NaN); // eslint-disable-line no-new
-    return NativeArrayBuffer.nombre != ARRAY_BUFFER;
+    return NativeArrayBuffer.name != ARRAY_BUFFER;
   })) {
     $ArrayBuffer = function ArrayBuffer(length) {
       anInstance(this, $ArrayBuffer);
       return new NativeArrayBuffer(toIndex(length));
     };
     var ArrayBufferPrototype = $ArrayBuffer[PROTOTYPE] = NativeArrayBuffer[PROTOTYPE];
-    for (var keys = getOwnPropertynombres(NativeArrayBuffer), j = 0, key; keys.length > j;) {
+    for (var keys = getOwnPropertyNames(NativeArrayBuffer), j = 0, key; keys.length > j;) {
       if (!((key = keys[j++]) in $ArrayBuffer)) {
         createNonEnumerableProperty($ArrayBuffer, key, NativeArrayBuffer[key]);
       }
@@ -10177,9 +10177,9 @@ module.exports = {
 /* 155 */
 /***/ (function(module, exports) {
 
-module.exports = function (it, Constructor, nombre) {
+module.exports = function (it, Constructor, name) {
   if (!(it instanceof Constructor)) {
-    throw TypeError('Incorrect ' + (nombre ? nombre + ' ' : '') + 'invocation');
+    throw TypeError('Incorrect ' + (name ? name + ' ' : '') + 'invocation');
   } return it;
 };
 
@@ -10197,8 +10197,8 @@ var DESCRIPTORS = __webpack_require__(11);
 
 var SPECIES = wellKnownSymbol('species');
 
-module.exports = function (CONSTRUCTOR_nombre) {
-  var Constructor = getBuiltIn(CONSTRUCTOR_nombre);
+module.exports = function (CONSTRUCTOR_NAME) {
+  var Constructor = getBuiltIn(CONSTRUCTOR_NAME);
   var defineProperty = definePropertyModule.f;
 
   if (DESCRIPTORS && Constructor && !Constructor[SPECIES]) {
@@ -10219,17 +10219,17 @@ var defineProperty = __webpack_require__(15).f;
 
 var FunctionPrototype = Function.prototype;
 var FunctionPrototypeToString = FunctionPrototype.toString;
-var nombreRE = /^\s*function ([^ (]*)/;
-var nombre = 'nombre';
+var nameRE = /^\s*function ([^ (]*)/;
+var NAME = 'name';
 
-// Function instances `.nombre` property
-// https://tc39.github.io/ecma262/#sec-function-instances-nombre
-if (DESCRIPTORS && !(nombre in FunctionPrototype)) {
-  defineProperty(FunctionPrototype, nombre, {
+// Function instances `.name` property
+// https://tc39.github.io/ecma262/#sec-function-instances-name
+if (DESCRIPTORS && !(NAME in FunctionPrototype)) {
+  defineProperty(FunctionPrototype, NAME, {
     configurable: true,
     get: function () {
       try {
-        return FunctionPrototypeToString.call(this).match(nombreRE)[1];
+        return FunctionPrototypeToString.call(this).match(nameRE)[1];
       } catch (error) {
         return '';
       }
@@ -10374,8 +10374,8 @@ var createNonEnumerableProperty = __webpack_require__(18);
 
 var SPECIES = wellKnownSymbol('species');
 
-var REPLACE_SUPPORTS_nombreD_GROUPS = !fails(function () {
-  // #replace needs built-in support for nombred groups.
+var REPLACE_SUPPORTS_NAMED_GROUPS = !fails(function () {
+  // #replace needs built-in support for named groups.
   // #match works fine because it just return the exec results, even if it has
   // a "grops" property.
   var re = /./;
@@ -10416,14 +10416,14 @@ module.exports = function (KEY, length, exec, sham) {
   var SYMBOL = wellKnownSymbol(KEY);
 
   var DELEGATES_TO_SYMBOL = !fails(function () {
-    // String methods call symbol-nombred RegEp methods
+    // String methods call symbol-named RegEp methods
     var O = {};
     O[SYMBOL] = function () { return 7; };
     return ''[KEY](O) != 7;
   });
 
   var DELEGATES_TO_EXEC = DELEGATES_TO_SYMBOL && !fails(function () {
-    // Symbol-nombred RegExp methods call .exec
+    // Symbol-named RegExp methods call .exec
     var execCalled = false;
     var re = /a/;
 
@@ -10450,7 +10450,7 @@ module.exports = function (KEY, length, exec, sham) {
     !DELEGATES_TO_SYMBOL ||
     !DELEGATES_TO_EXEC ||
     (KEY === 'replace' && !(
-      REPLACE_SUPPORTS_nombreD_GROUPS &&
+      REPLACE_SUPPORTS_NAMED_GROUPS &&
       REPLACE_KEEPS_$0 &&
       !REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE
     )) ||
@@ -10558,7 +10558,7 @@ exports.PassThrough = __webpack_require__(345);
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, tema to the
+// persons to whom the Software is furnished to do so, subject to the
 // following conditions:
 //
 // The above copyright notice and this permission notice shall be included
@@ -11006,7 +11006,7 @@ function onwriteError(stream, state, sync, er, cb) {
   }
 }
 
-function onwriteStateUpfecha(state) {
+function onwriteStateUpdate(state) {
   state.writing = false;
   state.writecb = null;
   state.length -= state.writelen;
@@ -11018,7 +11018,7 @@ function onwrite(stream, er) {
   var sync = state.sync;
   var cb = state.writecb;
 
-  onwriteStateUpfecha(state);
+  onwriteStateUpdate(state);
 
   if (er) onwriteError(stream, state, sync, er, cb);else {
     // Check if we're actually ready to finish, but don't emit yet
@@ -11251,7 +11251,7 @@ Writable.prototype._destroy = function (err, cb) {
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, tema to the
+// persons to whom the Software is furnished to do so, subject to the
 // following conditions:
 //
 // The above copyright notice and this permission notice shall be included
@@ -11430,8 +11430,8 @@ inspect.styles = {
   'undefined': 'grey',
   'null': 'bold',
   'string': 'green',
-  'fecha': 'magenta',
-  // "nombre": intentionally not styling
+  'date': 'magenta',
+  // "name": intentionally not styling
   'regexp': 'red'
 };
 
@@ -11492,27 +11492,27 @@ function formatValue(ctx, value, recurseTimes) {
   var visibleKeys = arrayToHash(keys);
 
   if (ctx.showHidden) {
-    keys = Object.getOwnPropertynombres(value);
+    keys = Object.getOwnPropertyNames(value);
   }
 
   // IE doesn't make error fields non-enumerable
   // http://msdn.microsoft.com/en-us/library/ie/dww52sbt(v=vs.94).aspx
   if (isError(value)
-      && (keys.indexOf('message') >= 0 || keys.indexOf('descripcion') >= 0)) {
+      && (keys.indexOf('message') >= 0 || keys.indexOf('description') >= 0)) {
     return formatError(value);
   }
 
   // Some type of object without properties can be shortcutted.
   if (keys.length === 0) {
     if (isFunction(value)) {
-      var nombre = value.nombre ? ': ' + value.nombre : '';
-      return ctx.stylize('[Function' + nombre + ']', 'special');
+      var name = value.name ? ': ' + value.name : '';
+      return ctx.stylize('[Function' + name + ']', 'special');
     }
     if (isRegExp(value)) {
       return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
     }
     if (isDate(value)) {
-      return ctx.stylize(Date.prototype.toString.call(value), 'fecha');
+      return ctx.stylize(Date.prototype.toString.call(value), 'date');
     }
     if (isError(value)) {
       return formatError(value);
@@ -11529,7 +11529,7 @@ function formatValue(ctx, value, recurseTimes) {
 
   // Make functions say that they are functions
   if (isFunction(value)) {
-    var n = value.nombre ? ': ' + value.nombre : '';
+    var n = value.name ? ': ' + value.name : '';
     base = ' [Function' + n + ']';
   }
 
@@ -11538,7 +11538,7 @@ function formatValue(ctx, value, recurseTimes) {
     base = ' ' + RegExp.prototype.toString.call(value);
   }
 
-  // Make fechas with properties first say the fecha
+  // Make dates with properties first say the date
   if (isDate(value)) {
     base = ' ' + Date.prototype.toUTCString.call(value);
   }
@@ -11622,7 +11622,7 @@ function formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
 
 
 function formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
-  var nombre, str, desc;
+  var name, str, desc;
   desc = Object.getOwnPropertyDescriptor(value, key) || { value: value[key] };
   if (desc.get) {
     if (desc.set) {
@@ -11636,7 +11636,7 @@ function formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
     }
   }
   if (!hasOwnProperty(visibleKeys, key)) {
-    nombre = '[' + key + ']';
+    name = '[' + key + ']';
   }
   if (!str) {
     if (ctx.seen.indexOf(desc.value) < 0) {
@@ -11660,23 +11660,23 @@ function formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
       str = ctx.stylize('[Circular]', 'special');
     }
   }
-  if (isUndefined(nombre)) {
+  if (isUndefined(name)) {
     if (array && key.match(/^\d+$/)) {
       return str;
     }
-    nombre = JSON.stringify('' + key);
-    if (nombre.match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
-      nombre = nombre.substr(1, nombre.length - 2);
-      nombre = ctx.stylize(nombre, 'nombre');
+    name = JSON.stringify('' + key);
+    if (name.match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
+      name = name.substr(1, name.length - 2);
+      name = ctx.stylize(name, 'name');
     } else {
-      nombre = nombre.replace(/'/g, "\\'")
+      name = name.replace(/'/g, "\\'")
                  .replace(/\\"/g, '"')
                  .replace(/(^"|"$)/g, "'");
-      nombre = ctx.stylize(nombre, 'string');
+      name = ctx.stylize(name, 'string');
     }
   }
 
-  return nombre + ': ' + str;
+  return name + ': ' + str;
 }
 
 
@@ -12186,23 +12186,23 @@ exports.callbackify = callbackify;
 
 	            // Reset
 	            hasher.reset();
-	            hasher.upfecha(this._iKey);
+	            hasher.update(this._iKey);
 	        },
 
 	        /**
-	         * Upfechas this HMAC with a message.
+	         * Updates this HMAC with a message.
 	         *
-	         * @param {WordArray|string} messageUpfecha The message to append.
+	         * @param {WordArray|string} messageUpdate The message to append.
 	         *
 	         * @return {HMAC} This HMAC instance.
 	         *
 	         * @example
 	         *
-	         *     hmacHasher.upfecha('message');
-	         *     hmacHasher.upfecha(wordArray);
+	         *     hmacHasher.update('message');
+	         *     hmacHasher.update(wordArray);
 	         */
-	        upfecha: function (messageUpfecha) {
-	            this._hasher.upfecha(messageUpfecha);
+	        update: function (messageUpdate) {
+	            this._hasher.update(messageUpdate);
 
 	            // Chainable
 	            return this;
@@ -12212,7 +12212,7 @@ exports.callbackify = callbackify;
 	         * Finalizes the HMAC computation.
 	         * Note that the finalize operation is effectively a destructive, read-once operation.
 	         *
-	         * @param {WordArray|string} messageUpfecha (Optional) A final message upfecha.
+	         * @param {WordArray|string} messageUpdate (Optional) A final message update.
 	         *
 	         * @return {WordArray} The HMAC.
 	         *
@@ -12222,12 +12222,12 @@ exports.callbackify = callbackify;
 	         *     var hmac = hmacHasher.finalize('message');
 	         *     var hmac = hmacHasher.finalize(wordArray);
 	         */
-	        finalize: function (messageUpfecha) {
+	        finalize: function (messageUpdate) {
 	            // Shortcut
 	            var hasher = this._hasher;
 
 	            // Compute HMAC
-	            var innerHash = hasher.finalize(messageUpfecha);
+	            var innerHash = hasher.finalize(messageUpdate);
 	            hasher.reset();
 	            var hmac = hasher.finalize(this._oKey.clone().concat(innerHash));
 
@@ -12360,7 +12360,7 @@ var Buffer = __webpack_require__(39).Buffer;
 var bomHandling = __webpack_require__(389),
     iconv = module.exports;
 
-// All codecs and aliases are kept here, keyed by encoding nombre/alias.
+// All codecs and aliases are kept here, keyed by encoding name/alias.
 // They are lazy loaded in `iconv.getCodec` from `encodings/index.js`.
 iconv.encodings = null;
 
@@ -12417,7 +12417,7 @@ iconv.getCodec = function getCodec(encoding) {
     if (!iconv.encodings)
         iconv.encodings = __webpack_require__(390); // Lazy load all encoding definitions.
     
-    // Canonicalize encoding nombre: strip all non-alphanumeric chars and appended year.
+    // Canonicalize encoding name: strip all non-alphanumeric chars and appended year.
     var enc = iconv._canonicalizeEncoding(encoding);
 
     // Traverse iconv.encodings to find actual codec.
@@ -12438,21 +12438,21 @@ iconv.getCodec = function getCodec(encoding) {
                 for (var key in codecDef)
                     codecOptions[key] = codecDef[key];
 
-                if (!codecOptions.encodingnombre)
-                    codecOptions.encodingnombre = enc;
+                if (!codecOptions.encodingName)
+                    codecOptions.encodingName = enc;
                 
                 enc = codecDef.type;
                 break;
 
             case "function": // Codec itself.
-                if (!codecOptions.encodingnombre)
-                    codecOptions.encodingnombre = enc;
+                if (!codecOptions.encodingName)
+                    codecOptions.encodingName = enc;
 
                 // The codec function must load all tables and return object with .encoder and .decoder methods.
                 // It'll be called only once (for each different options object).
                 codec = new codecDef(codecOptions, iconv);
 
-                iconv._codecDataCache[codecOptions.encodingnombre] = codec; // Save it to be reused later.
+                iconv._codecDataCache[codecOptions.encodingName] = codec; // Save it to be reused later.
                 return codec;
 
             default:
@@ -12462,7 +12462,7 @@ iconv.getCodec = function getCodec(encoding) {
 }
 
 iconv._canonicalizeEncoding = function(encoding) {
-    // Canonicalize encoding nombre: strip all non-alphanumeric chars and appended year.
+    // Canonicalize encoding name: strip all non-alphanumeric chars and appended year.
     return (''+encoding).toLowerCase().replace(/:\d{4}$|[^0-9a-z]/g, "");
 }
 
@@ -12653,8 +12653,8 @@ var VALUES = 'values';
 
 var returnThis = function () { return this; };
 
-module.exports = function (Base, nombre, Constructor, next, DEFAULT, IS_SET, FORCED) {
-  $iterCreate(Constructor, nombre, next);
+module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
+  $iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
     if (!BUGGY && kind in proto) return proto[kind];
     switch (kind) {
@@ -12662,14 +12662,14 @@ module.exports = function (Base, nombre, Constructor, next, DEFAULT, IS_SET, FOR
       case VALUES: return function values() { return new Constructor(this, kind); };
     } return function entries() { return new Constructor(this, kind); };
   };
-  var TAG = nombre + ' Iterator';
+  var TAG = NAME + ' Iterator';
   var DEF_VALUES = DEFAULT == VALUES;
   var VALUES_BUG = false;
   var proto = Base.prototype;
   var $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];
   var $default = $native || getMethod(DEFAULT);
   var $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;
-  var $anyNative = nombre == 'Array' ? proto.entries || $native : $native;
+  var $anyNative = NAME == 'Array' ? proto.entries || $native : $native;
   var methods, key, IteratorPrototype;
   // Fix native
   if ($anyNative) {
@@ -12681,8 +12681,8 @@ module.exports = function (Base, nombre, Constructor, next, DEFAULT, IS_SET, FOR
       if (!LIBRARY && typeof IteratorPrototype[ITERATOR] != 'function') hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
-  // fix Array#{values, @@iterator}.nombre in V8 / FF
-  if (DEF_VALUES && $native && $native.nombre !== VALUES) {
+  // fix Array#{values, @@iterator}.name in V8 / FF
+  if (DEF_VALUES && $native && $native.name !== VALUES) {
     VALUES_BUG = true;
     $default = function values() { return $native.call(this); };
   }
@@ -12691,7 +12691,7 @@ module.exports = function (Base, nombre, Constructor, next, DEFAULT, IS_SET, FOR
     hide(proto, ITERATOR, $default);
   }
   // Plug for library
-  Iterators[nombre] = $default;
+  Iterators[NAME] = $default;
   Iterators[TAG] = returnThis;
   if (DEFAULT) {
     methods = {
@@ -12701,7 +12701,7 @@ module.exports = function (Base, nombre, Constructor, next, DEFAULT, IS_SET, FOR
     };
     if (FORCED) for (key in methods) {
       if (!(key in proto)) redefine(proto, key, methods[key]);
-    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), nombre, methods);
+    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
   }
   return methods;
 };
@@ -12844,9 +12844,9 @@ var core = __webpack_require__(7);
 var LIBRARY = __webpack_require__(104);
 var wksExt = __webpack_require__(186);
 var defineProperty = __webpack_require__(26).f;
-module.exports = function (nombre) {
+module.exports = function (name) {
   var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
-  if (nombre.charAt(0) != '_' && !(nombre in $Symbol)) defineProperty($Symbol, nombre, { value: wksExt.f(nombre) });
+  if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
 };
 
 
@@ -12874,9 +12874,9 @@ module.exports = function (target, src, safe) {
 /* 190 */
 /***/ (function(module, exports) {
 
-module.exports = function (it, Constructor, nombre, forbiddenField) {
+module.exports = function (it, Constructor, name, forbiddenField) {
   if (!(it instanceof Constructor) || (forbiddenField !== undefined && forbiddenField in it)) {
-    throw TypeError(nombre + ': incorrect invocation!');
+    throw TypeError(name + ': incorrect invocation!');
   } return it;
 };
 
@@ -13030,7 +13030,7 @@ TextTools.prototype.sizeOfString = function (text, styleContextStack) {
 	text = text ? text.toString().replace(/\t/g, '    ') : '';
 
 	//TODO: refactor - extract from measure
-	var fontnombre = getStyleProperty({}, styleContextStack, 'font', 'Roboto');
+	var fontName = getStyleProperty({}, styleContextStack, 'font', 'Roboto');
 	var fontSize = getStyleProperty({}, styleContextStack, 'fontSize', 12);
 	var fontFeatures = getStyleProperty({}, styleContextStack, 'fontFeatures', null);
 	var bold = getStyleProperty({}, styleContextStack, 'bold', false);
@@ -13038,7 +13038,7 @@ TextTools.prototype.sizeOfString = function (text, styleContextStack) {
 	var lineHeight = getStyleProperty({}, styleContextStack, 'lineHeight', 1);
 	var characterSpacing = getStyleProperty({}, styleContextStack, 'characterSpacing', 0);
 
-	var font = this.fontProvider.provideFont(fontnombre, bold, italics);
+	var font = this.fontProvider.provideFont(fontName, bold, italics);
 
 	return {
 		width: widthOfString(text, font, fontSize, characterSpacing, fontFeatures),
@@ -13249,7 +13249,7 @@ function measure(fontProvider, textArray, styleContextStack) {
 	}
 
 	normalized.forEach(function (item) {
-		var fontnombre = getStyleProperty(item, styleContextStack, 'font', 'Roboto');
+		var fontName = getStyleProperty(item, styleContextStack, 'font', 'Roboto');
 		var fontSize = getStyleProperty(item, styleContextStack, 'fontSize', 12);
 		var fontFeatures = getStyleProperty(item, styleContextStack, 'fontFeatures', null);
 		var bold = getStyleProperty(item, styleContextStack, 'bold', false);
@@ -13269,7 +13269,7 @@ function measure(fontProvider, textArray, styleContextStack) {
 		var preserveTrailingSpaces = getStyleProperty(item, styleContextStack, 'preserveTrailingSpaces', false);
 		var opacity = getStyleProperty(item, styleContextStack, 'opacity', 1);
 
-		var font = fontProvider.provideFont(fontnombre, bold, italics);
+		var font = fontProvider.provideFont(fontName, bold, italics);
 
 		item.width = widthOfString(item.text, font, fontSize, characterSpacing, fontFeatures);
 		item.height = font.lineHeight(fontSize) * lineHeight;
@@ -13495,8 +13495,8 @@ var toPrimitive = __webpack_require__(55);
 var createPropertyDescriptor = __webpack_require__(42);
 var nativeObjectCreate = __webpack_require__(58);
 var objectKeys = __webpack_require__(94);
-var getOwnPropertynombresModule = __webpack_require__(57);
-var getOwnPropertynombresExternal = __webpack_require__(311);
+var getOwnPropertyNamesModule = __webpack_require__(57);
+var getOwnPropertyNamesExternal = __webpack_require__(311);
 var getOwnPropertySymbolsModule = __webpack_require__(143);
 var getOwnPropertyDescriptorModule = __webpack_require__(54);
 var definePropertyModule = __webpack_require__(15);
@@ -13525,7 +13525,7 @@ var $Symbol = global.Symbol;
 var $stringify = getBuiltIn('JSON', 'stringify');
 var nativeGetOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
 var nativeDefineProperty = definePropertyModule.f;
-var nativeGetOwnPropertynombres = getOwnPropertynombresExternal.f;
+var nativeGetOwnPropertyNames = getOwnPropertyNamesExternal.f;
 var nativePropertyIsEnumerable = propertyIsEnumerableModule.f;
 var AllSymbols = shared('symbols');
 var ObjectPrototypeSymbols = shared('op-symbols');
@@ -13550,14 +13550,14 @@ var setSymbolDescriptor = DESCRIPTORS && fails(function () {
   }
 } : nativeDefineProperty;
 
-var wrap = function (tag, descripcion) {
+var wrap = function (tag, description) {
   var symbol = AllSymbols[tag] = nativeObjectCreate($Symbol[PROTOTYPE]);
   setInternalState(symbol, {
     type: SYMBOL,
     tag: tag,
-    descripcion: descripcion
+    description: description
   });
-  if (!DESCRIPTORS) symbol.descripcion = descripcion;
+  if (!DESCRIPTORS) symbol.description = description;
   return symbol;
 };
 
@@ -13615,10 +13615,10 @@ var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(O, P) {
   return descriptor;
 };
 
-var $getOwnPropertynombres = function getOwnPropertynombres(O) {
-  var nombres = nativeGetOwnPropertynombres(toIndexedObject(O));
+var $getOwnPropertyNames = function getOwnPropertyNames(O) {
+  var names = nativeGetOwnPropertyNames(toIndexedObject(O));
   var result = [];
-  $forEach(nombres, function (key) {
+  $forEach(names, function (key) {
     if (!has(AllSymbols, key) && !has(hiddenKeys, key)) result.push(key);
   });
   return result;
@@ -13626,9 +13626,9 @@ var $getOwnPropertynombres = function getOwnPropertynombres(O) {
 
 var $getOwnPropertySymbols = function getOwnPropertySymbols(O) {
   var IS_OBJECT_PROTOTYPE = O === ObjectPrototype;
-  var nombres = nativeGetOwnPropertynombres(IS_OBJECT_PROTOTYPE ? ObjectPrototypeSymbols : toIndexedObject(O));
+  var names = nativeGetOwnPropertyNames(IS_OBJECT_PROTOTYPE ? ObjectPrototypeSymbols : toIndexedObject(O));
   var result = [];
-  $forEach(nombres, function (key) {
+  $forEach(names, function (key) {
     if (has(AllSymbols, key) && (!IS_OBJECT_PROTOTYPE || has(ObjectPrototype, key))) {
       result.push(AllSymbols[key]);
     }
@@ -13641,41 +13641,41 @@ var $getOwnPropertySymbols = function getOwnPropertySymbols(O) {
 if (!NATIVE_SYMBOL) {
   $Symbol = function Symbol() {
     if (this instanceof $Symbol) throw TypeError('Symbol is not a constructor');
-    var descripcion = !arguments.length || arguments[0] === undefined ? undefined : String(arguments[0]);
-    var tag = uid(descripcion);
+    var description = !arguments.length || arguments[0] === undefined ? undefined : String(arguments[0]);
+    var tag = uid(description);
     var setter = function (value) {
       if (this === ObjectPrototype) setter.call(ObjectPrototypeSymbols, value);
       if (has(this, HIDDEN) && has(this[HIDDEN], tag)) this[HIDDEN][tag] = false;
       setSymbolDescriptor(this, tag, createPropertyDescriptor(1, value));
     };
     if (DESCRIPTORS && USE_SETTER) setSymbolDescriptor(ObjectPrototype, tag, { configurable: true, set: setter });
-    return wrap(tag, descripcion);
+    return wrap(tag, description);
   };
 
   redefine($Symbol[PROTOTYPE], 'toString', function toString() {
     return getInternalState(this).tag;
   });
 
-  redefine($Symbol, 'withoutSetter', function (descripcion) {
-    return wrap(uid(descripcion), descripcion);
+  redefine($Symbol, 'withoutSetter', function (description) {
+    return wrap(uid(description), description);
   });
 
   propertyIsEnumerableModule.f = $propertyIsEnumerable;
   definePropertyModule.f = $defineProperty;
   getOwnPropertyDescriptorModule.f = $getOwnPropertyDescriptor;
-  getOwnPropertynombresModule.f = getOwnPropertynombresExternal.f = $getOwnPropertynombres;
+  getOwnPropertyNamesModule.f = getOwnPropertyNamesExternal.f = $getOwnPropertyNames;
   getOwnPropertySymbolsModule.f = $getOwnPropertySymbols;
 
-  wrappedWellKnownSymbolModule.f = function (nombre) {
-    return wrap(wellKnownSymbol(nombre), nombre);
+  wrappedWellKnownSymbolModule.f = function (name) {
+    return wrap(wellKnownSymbol(name), name);
   };
 
   if (DESCRIPTORS) {
-    // https://github.com/tc39/proposal-Symbol-descripcion
-    nativeDefineProperty($Symbol[PROTOTYPE], 'descripcion', {
+    // https://github.com/tc39/proposal-Symbol-description
+    nativeDefineProperty($Symbol[PROTOTYPE], 'description', {
       configurable: true,
-      get: function descripcion() {
-        return getInternalState(this).descripcion;
+      get: function description() {
+        return getInternalState(this).description;
       }
     });
     if (!IS_PURE) {
@@ -13688,8 +13688,8 @@ $({ global: true, wrap: true, forced: !NATIVE_SYMBOL, sham: !NATIVE_SYMBOL }, {
   Symbol: $Symbol
 });
 
-$forEach(objectKeys(WellKnownSymbolsStore), function (nombre) {
-  defineWellKnownSymbol(nombre);
+$forEach(objectKeys(WellKnownSymbolsStore), function (name) {
+  defineWellKnownSymbol(name);
 });
 
 $({ target: SYMBOL, stat: true, forced: !NATIVE_SYMBOL }, {
@@ -13729,9 +13729,9 @@ $({ target: 'Object', stat: true, forced: !NATIVE_SYMBOL, sham: !DESCRIPTORS }, 
 });
 
 $({ target: 'Object', stat: true, forced: !NATIVE_SYMBOL }, {
-  // `Object.getOwnPropertynombres` method
-  // https://tc39.github.io/ecma262/#sec-object.getownpropertynombres
-  getOwnPropertynombres: $getOwnPropertynombres,
+  // `Object.getOwnPropertyNames` method
+  // https://tc39.github.io/ecma262/#sec-object.getownpropertynames
+  getOwnPropertyNames: $getOwnPropertyNames,
   // `Object.getOwnPropertySymbols` method
   // https://tc39.github.io/ecma262/#sec-object.getownpropertysymbols
   getOwnPropertySymbols: $getOwnPropertySymbols
@@ -13847,14 +13847,14 @@ var toIndexedObject = __webpack_require__(27);
 var indexOf = __webpack_require__(93).indexOf;
 var hiddenKeys = __webpack_require__(113);
 
-module.exports = function (object, nombres) {
+module.exports = function (object, names) {
   var O = toIndexedObject(object);
   var i = 0;
   var result = [];
   var key;
   for (key in O) !has(hiddenKeys, key) && has(O, key) && result.push(key);
   // Don't enum bug & hidden keys
-  while (nombres.length > i) if (has(O, key = nombres[i++])) {
+  while (names.length > i) if (has(O, key = names[i++])) {
     ~indexOf(result, key) || result.push(key);
   }
   return result;
@@ -13901,10 +13901,10 @@ var has = __webpack_require__(14);
 var wrappedWellKnownSymbolModule = __webpack_require__(204);
 var defineProperty = __webpack_require__(15).f;
 
-module.exports = function (nombre) {
+module.exports = function (NAME) {
   var Symbol = path.Symbol || (path.Symbol = {});
-  if (!has(Symbol, nombre)) defineProperty(Symbol, nombre, {
-    value: wrappedWellKnownSymbolModule.f(nombre)
+  if (!has(Symbol, NAME)) defineProperty(Symbol, NAME, {
+    value: wrappedWellKnownSymbolModule.f(NAME)
   });
 };
 
@@ -13940,8 +13940,8 @@ module.exports = function (originalArray, length) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-// `Symbol.prototype.descripcion` getter
-// https://tc39.github.io/ecma262/#sec-symbol.prototype.descripcion
+// `Symbol.prototype.description` getter
+// https://tc39.github.io/ecma262/#sec-symbol.prototype.description
 
 var $ = __webpack_require__(1);
 var DESCRIPTORS = __webpack_require__(11);
@@ -13953,19 +13953,19 @@ var copyConstructorProperties = __webpack_require__(200);
 
 var NativeSymbol = global.Symbol;
 
-if (DESCRIPTORS && typeof NativeSymbol == 'function' && (!('descripcion' in NativeSymbol.prototype) ||
+if (DESCRIPTORS && typeof NativeSymbol == 'function' && (!('description' in NativeSymbol.prototype) ||
   // Safari 12 bug
-  NativeSymbol().descripcion !== undefined
+  NativeSymbol().description !== undefined
 )) {
-  var EmptyStringdescripcionStore = {};
-  // wrap Symbol constructor for correct work with undefined descripcion
+  var EmptyStringDescriptionStore = {};
+  // wrap Symbol constructor for correct work with undefined description
   var SymbolWrapper = function Symbol() {
-    var descripcion = arguments.length < 1 || arguments[0] === undefined ? undefined : String(arguments[0]);
+    var description = arguments.length < 1 || arguments[0] === undefined ? undefined : String(arguments[0]);
     var result = this instanceof SymbolWrapper
-      ? new NativeSymbol(descripcion)
+      ? new NativeSymbol(description)
       // in Edge 13, String(Symbol(undefined)) === 'Symbol(undefined)'
-      : descripcion === undefined ? NativeSymbol() : NativeSymbol(descripcion);
-    if (descripcion === '') EmptyStringdescripcionStore[result] = true;
+      : description === undefined ? NativeSymbol() : NativeSymbol(description);
+    if (description === '') EmptyStringDescriptionStore[result] = true;
     return result;
   };
   copyConstructorProperties(SymbolWrapper, NativeSymbol);
@@ -13975,12 +13975,12 @@ if (DESCRIPTORS && typeof NativeSymbol == 'function' && (!('descripcion' in Nati
   var symbolToString = symbolPrototype.toString;
   var native = String(NativeSymbol('test')) == 'Symbol(test)';
   var regexp = /^Symbol\((.*)\)[^)]+$/;
-  defineProperty(symbolPrototype, 'descripcion', {
+  defineProperty(symbolPrototype, 'description', {
     configurable: true,
-    get: function descripcion() {
+    get: function description() {
       var symbol = isObject(this) ? this.valueOf() : this;
       var string = symbolToString.call(symbol);
-      if (has(EmptyStringdescripcionStore, symbol)) return '';
+      if (has(EmptyStringDescriptionStore, symbol)) return '';
       var desc = native ? string.slice(7, -1) : string.replace(regexp, '$1');
       return desc === '' ? undefined : desc;
     }
@@ -14207,8 +14207,8 @@ var ENTRIES = 'entries';
 
 var returnThis = function () { return this; };
 
-module.exports = function (Iterable, nombre, IteratorConstructor, next, DEFAULT, IS_SET, FORCED) {
-  createIteratorConstructor(IteratorConstructor, nombre, next);
+module.exports = function (Iterable, NAME, IteratorConstructor, next, DEFAULT, IS_SET, FORCED) {
+  createIteratorConstructor(IteratorConstructor, NAME, next);
 
   var getIterationMethod = function (KIND) {
     if (KIND === DEFAULT && defaultIterator) return defaultIterator;
@@ -14220,14 +14220,14 @@ module.exports = function (Iterable, nombre, IteratorConstructor, next, DEFAULT,
     } return function () { return new IteratorConstructor(this); };
   };
 
-  var TO_STRING_TAG = nombre + ' Iterator';
-  var INCORRECT_VALUES_nombre = false;
+  var TO_STRING_TAG = NAME + ' Iterator';
+  var INCORRECT_VALUES_NAME = false;
   var IterablePrototype = Iterable.prototype;
   var nativeIterator = IterablePrototype[ITERATOR]
     || IterablePrototype['@@iterator']
     || DEFAULT && IterablePrototype[DEFAULT];
   var defaultIterator = !BUGGY_SAFARI_ITERATORS && nativeIterator || getIterationMethod(DEFAULT);
-  var anyNativeIterator = nombre == 'Array' ? IterablePrototype.entries || nativeIterator : nativeIterator;
+  var anyNativeIterator = NAME == 'Array' ? IterablePrototype.entries || nativeIterator : nativeIterator;
   var CurrentIteratorPrototype, methods, KEY;
 
   // fix native
@@ -14247,9 +14247,9 @@ module.exports = function (Iterable, nombre, IteratorConstructor, next, DEFAULT,
     }
   }
 
-  // fix Array#{values, @@iterator}.nombre in V8 / FF
-  if (DEFAULT == VALUES && nativeIterator && nativeIterator.nombre !== VALUES) {
-    INCORRECT_VALUES_nombre = true;
+  // fix Array#{values, @@iterator}.name in V8 / FF
+  if (DEFAULT == VALUES && nativeIterator && nativeIterator.name !== VALUES) {
+    INCORRECT_VALUES_NAME = true;
     defaultIterator = function values() { return nativeIterator.call(this); };
   }
 
@@ -14257,7 +14257,7 @@ module.exports = function (Iterable, nombre, IteratorConstructor, next, DEFAULT,
   if ((!IS_PURE || FORCED) && IterablePrototype[ITERATOR] !== defaultIterator) {
     createNonEnumerableProperty(IterablePrototype, ITERATOR, defaultIterator);
   }
-  Iterators[nombre] = defaultIterator;
+  Iterators[NAME] = defaultIterator;
 
   // export additional methods
   if (DEFAULT) {
@@ -14267,10 +14267,10 @@ module.exports = function (Iterable, nombre, IteratorConstructor, next, DEFAULT,
       entries: getIterationMethod(ENTRIES)
     };
     if (FORCED) for (KEY in methods) {
-      if (BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_nombre || !(KEY in IterablePrototype)) {
+      if (BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME || !(KEY in IterablePrototype)) {
         redefine(IterablePrototype, KEY, methods[KEY]);
       }
-    } else $({ target: nombre, proto: true, forced: BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_nombre }, methods);
+    } else $({ target: NAME, proto: true, forced: BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME }, methods);
   }
 
   return methods;
@@ -14412,7 +14412,7 @@ var inheritIfRequired = __webpack_require__(224);
 var toPrimitive = __webpack_require__(55);
 var fails = __webpack_require__(4);
 var create = __webpack_require__(58);
-var getOwnPropertynombres = __webpack_require__(57).f;
+var getOwnPropertyNames = __webpack_require__(57).f;
 var getOwnPropertyDescriptor = __webpack_require__(54).f;
 var defineProperty = __webpack_require__(15).f;
 var trim = __webpack_require__(225).trim;
@@ -14464,7 +14464,7 @@ if (isForced(NUMBER, !NativeNumber(' 0o1') || !NativeNumber('0b1') || NativeNumb
       && (BROKEN_CLASSOF ? fails(function () { NumberPrototype.valueOf.call(dummy); }) : classof(dummy) != NUMBER)
         ? inheritIfRequired(new NativeNumber(toNumber(it)), dummy, NumberWrapper) : toNumber(it);
   };
-  for (var keys = DESCRIPTORS ? getOwnPropertynombres(NativeNumber) : (
+  for (var keys = DESCRIPTORS ? getOwnPropertyNames(NativeNumber) : (
     // ES3:
     'MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,' +
     // ES2015 (in case, if modules with ES2015 Number statics required before):
@@ -14606,12 +14606,12 @@ var RegExpPrototype = RegExp.prototype;
 var nativeToString = RegExpPrototype[TO_STRING];
 
 var NOT_GENERIC = fails(function () { return nativeToString.call({ source: 'a', flags: 'b' }) != '/a/b'; });
-// FF44- RegExp#toString has a wrong nombre
-var INCORRECT_nombre = nativeToString.nombre != TO_STRING;
+// FF44- RegExp#toString has a wrong name
+var INCORRECT_NAME = nativeToString.name != TO_STRING;
 
 // `RegExp.prototype.toString` method
 // https://tc39.github.io/ecma262/#sec-regexp.prototype.tostring
-if (NOT_GENERIC || INCORRECT_nombre) {
+if (NOT_GENERIC || INCORRECT_NAME) {
   redefine(RegExp.prototype, TO_STRING, function toString() {
     var R = anObject(this);
     var p = String(R.source);
@@ -14641,7 +14641,7 @@ var max = Math.max;
 var min = Math.min;
 var floor = Math.floor;
 var SUBSTITUTION_SYMBOLS = /\$([$&'`]|\d\d?|<[^>]*>)/g;
-var SUBSTITUTION_SYMBOLS_NO_nombreD = /\$([$&'`]|\d\d?)/g;
+var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&'`]|\d\d?)/g;
 
 var maybeToString = function (it) {
   return it === undefined ? it : String(it);
@@ -14711,13 +14711,13 @@ fixRegExpWellKnownSymbolLogic('replace', 2, function (REPLACE, nativeReplace, ma
         // the slice polyfill when slicing native arrays) "doesn't work" in safari 9 and
         // causes a crash (https://pastebin.com/N21QzeQA) when trying to debug it.
         for (var j = 1; j < result.length; j++) captures.push(maybeToString(result[j]));
-        var nombredCaptures = result.groups;
+        var namedCaptures = result.groups;
         if (functionalReplace) {
           var replacerArgs = [matched].concat(captures, position, S);
-          if (nombredCaptures !== undefined) replacerArgs.push(nombredCaptures);
+          if (namedCaptures !== undefined) replacerArgs.push(namedCaptures);
           var replacement = String(replaceValue.apply(undefined, replacerArgs));
         } else {
-          replacement = getSubstitution(matched, S, position, captures, nombredCaptures, replaceValue);
+          replacement = getSubstitution(matched, S, position, captures, namedCaptures, replaceValue);
         }
         if (position >= nextSourcePosition) {
           accumulatedResult += S.slice(nextSourcePosition, position) + replacement;
@@ -14729,12 +14729,12 @@ fixRegExpWellKnownSymbolLogic('replace', 2, function (REPLACE, nativeReplace, ma
   ];
 
   // https://tc39.github.io/ecma262/#sec-getsubstitution
-  function getSubstitution(matched, str, position, captures, nombredCaptures, replacement) {
+  function getSubstitution(matched, str, position, captures, namedCaptures, replacement) {
     var tailPos = position + matched.length;
     var m = captures.length;
-    var symbols = SUBSTITUTION_SYMBOLS_NO_nombreD;
-    if (nombredCaptures !== undefined) {
-      nombredCaptures = toObject(nombredCaptures);
+    var symbols = SUBSTITUTION_SYMBOLS_NO_NAMED;
+    if (namedCaptures !== undefined) {
+      namedCaptures = toObject(namedCaptures);
       symbols = SUBSTITUTION_SYMBOLS;
     }
     return nativeReplace.call(replacement, symbols, function (match, ch) {
@@ -14745,7 +14745,7 @@ fixRegExpWellKnownSymbolLogic('replace', 2, function (REPLACE, nativeReplace, ma
         case '`': return str.slice(0, position);
         case "'": return str.slice(tailPos);
         case '<':
-          capture = nombredCaptures[ch.slice(1, -1)];
+          capture = namedCaptures[ch.slice(1, -1)];
           break;
         default: // \d\d?
           var n = +ch;
@@ -14969,9 +14969,9 @@ var fails = __webpack_require__(4);
 
 // check the existence of a method, lowercase
 // of a tag and escaping quotes in arguments
-module.exports = function (METHOD_nombre) {
+module.exports = function (METHOD_NAME) {
   return fails(function () {
-    var test = ''[METHOD_nombre]('"');
+    var test = ''[METHOD_NAME]('"');
     return test !== test.toLowerCase() || test.split('"').length > 3;
   });
 };
@@ -15001,7 +15001,7 @@ var classof = __webpack_require__(117);
 var isObject = __webpack_require__(13);
 var create = __webpack_require__(58);
 var setPrototypeOf = __webpack_require__(45);
-var getOwnPropertynombres = __webpack_require__(57).f;
+var getOwnPropertyNames = __webpack_require__(57).f;
 var typedArrayFrom = __webpack_require__(337);
 var forEach = __webpack_require__(20).forEach;
 var setSpecies = __webpack_require__(156);
@@ -15092,10 +15092,10 @@ if (DESCRIPTORS) {
 
   module.exports = function (TYPE, wrapper, CLAMPED) {
     var BYTES = TYPE.match(/\d+$/)[0] / 8;
-    var CONSTRUCTOR_nombre = TYPE + (CLAMPED ? 'Clamped' : '') + 'Array';
+    var CONSTRUCTOR_NAME = TYPE + (CLAMPED ? 'Clamped' : '') + 'Array';
     var GETTER = 'get' + TYPE;
     var SETTER = 'set' + TYPE;
-    var NativeTypedArrayConstructor = global[CONSTRUCTOR_nombre];
+    var NativeTypedArrayConstructor = global[CONSTRUCTOR_NAME];
     var TypedArrayConstructor = NativeTypedArrayConstructor;
     var TypedArrayConstructorPrototype = TypedArrayConstructor && TypedArrayConstructor.prototype;
     var exported = {};
@@ -15125,7 +15125,7 @@ if (DESCRIPTORS) {
 
     if (!NATIVE_ARRAY_BUFFER_VIEWS) {
       TypedArrayConstructor = wrapper(function (that, data, offset, $length) {
-        anInstance(that, TypedArrayConstructor, CONSTRUCTOR_nombre);
+        anInstance(that, TypedArrayConstructor, CONSTRUCTOR_NAME);
         var index = 0;
         var byteOffset = 0;
         var buffer, byteLength, length;
@@ -15165,7 +15165,7 @@ if (DESCRIPTORS) {
       TypedArrayConstructorPrototype = TypedArrayConstructor.prototype = create(TypedArrayPrototype);
     } else if (TYPED_ARRAYS_CONSTRUCTORS_REQUIRES_WRAPPERS) {
       TypedArrayConstructor = wrapper(function (dummy, data, typedArrayOffset, $length) {
-        anInstance(dummy, TypedArrayConstructor, CONSTRUCTOR_nombre);
+        anInstance(dummy, TypedArrayConstructor, CONSTRUCTOR_NAME);
         return inheritIfRequired(function () {
           if (!isObject(data)) return new NativeTypedArrayConstructor(toIndex(data));
           if (isArrayBuffer(data)) return $length !== undefined
@@ -15179,7 +15179,7 @@ if (DESCRIPTORS) {
       });
 
       if (setPrototypeOf) setPrototypeOf(TypedArrayConstructor, TypedArray);
-      forEach(getOwnPropertynombres(NativeTypedArrayConstructor), function (key) {
+      forEach(getOwnPropertyNames(NativeTypedArrayConstructor), function (key) {
         if (!(key in TypedArrayConstructor)) {
           createNonEnumerableProperty(TypedArrayConstructor, key, NativeTypedArrayConstructor[key]);
         }
@@ -15192,10 +15192,10 @@ if (DESCRIPTORS) {
     }
 
     if (TYPED_ARRAY_TAG) {
-      createNonEnumerableProperty(TypedArrayConstructorPrototype, TYPED_ARRAY_TAG, CONSTRUCTOR_nombre);
+      createNonEnumerableProperty(TypedArrayConstructorPrototype, TYPED_ARRAY_TAG, CONSTRUCTOR_NAME);
     }
 
-    exported[CONSTRUCTOR_nombre] = TypedArrayConstructor;
+    exported[CONSTRUCTOR_NAME] = TypedArrayConstructor;
 
     $({
       global: true, forced: TypedArrayConstructor != NativeTypedArrayConstructor, sham: !NATIVE_ARRAY_BUFFER_VIEWS
@@ -15209,7 +15209,7 @@ if (DESCRIPTORS) {
       createNonEnumerableProperty(TypedArrayConstructorPrototype, BYTES_PER_ELEMENT, BYTES);
     }
 
-    setSpecies(CONSTRUCTOR_nombre);
+    setSpecies(CONSTRUCTOR_NAME);
   };
 } else module.exports = function () { /* empty */ };
 
@@ -15295,7 +15295,7 @@ module.exports = {
   HTMLSelectElement: 0,
   MediaList: 0,
   MimeTypeArray: 0,
-  nombredNodeMap: 0,
+  NamedNodeMap: 0,
   NodeList: 1,
   PaintRequestList: 0,
   Plugin: 0,
@@ -15326,7 +15326,7 @@ module.exports = {
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, tema to the
+// persons to whom the Software is furnished to do so, subject to the
 // following conditions:
 //
 // The above copyright notice and this permission notice shall be included
@@ -15612,7 +15612,7 @@ function addChunk(stream, state, chunk, addToFront) {
     stream.emit('data', chunk);
     stream.read(0);
   } else {
-    // upfecha the buffer info.
+    // update the buffer info.
     state.length += state.objectMode ? 1 : chunk.length;
     if (addToFront) state.buffer.unshift(chunk);else state.buffer.push(chunk);
 
@@ -16439,7 +16439,7 @@ module.exports = {
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, tema to the
+// persons to whom the Software is furnished to do so, subject to the
 // following conditions:
 //
 // The above copyright notice and this permission notice shall be included
@@ -16455,7 +16455,7 @@ module.exports = {
 
 // a transform stream is a readable/writable stream where you do
 // something with the data.  Sometimes it's called a "filter",
-// but that's not a great nombre for it, since that implies a thing where
+// but that's not a great name for it, since that implies a thing where
 // some bits pass through, and others are simply ignored.  (That would
 // be a valid example of a transform, of course.)
 //
@@ -17233,7 +17233,7 @@ Zlib.prototype._processChunk = function (chunk, flushFlag, cb) {
 
     if (availOutAfter === 0) {
       // Not actually done.  Need to reprocess.
-      // Also, upfecha the availInBefore to the availInAfter value,
+      // Also, update the availInBefore to the availInAfter value,
       // so that if we have to hit it a third (fourth, etc.) time,
       // it'll have the correct byte counts.
       inOff += availInBefore - availInAfter;
@@ -17328,7 +17328,7 @@ function isBuffer(b) {
 // deal in the Software without restriction, including without limitation the
 // rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
 // sell copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, tema to the following conditions:
+// furnished to do so, subject to the following conditions:
 //
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
@@ -17343,8 +17343,8 @@ function isBuffer(b) {
 var util = __webpack_require__(166);
 var hasOwn = Object.prototype.hasOwnProperty;
 var pSlice = Array.prototype.slice;
-var functionsHavenombres = (function () {
-  return function foo() {}.nombre === 'foo';
+var functionsHaveNames = (function () {
+  return function foo() {}.name === 'foo';
 }());
 function pToString (obj) {
   return Object.prototype.toString.call(obj);
@@ -17382,20 +17382,20 @@ var assert = module.exports = ok;
 //                             expected: expected })
 
 var regex = /\s*function\s+([^\(\s]*)\s*/;
-// based on https://github.com/ljharb/function.prototype.nombre/blob/adeeeec8bfcc6068b187d7d9fb3d5bb1d3a30899/implementation.js
-function getnombre(func) {
+// based on https://github.com/ljharb/function.prototype.name/blob/adeeeec8bfcc6068b187d7d9fb3d5bb1d3a30899/implementation.js
+function getName(func) {
   if (!util.isFunction(func)) {
     return;
   }
-  if (functionsHavenombres) {
-    return func.nombre;
+  if (functionsHaveNames) {
+    return func.name;
   }
   var str = func.toString();
   var match = str.match(regex);
   return match && match[1];
 }
 assert.AssertionError = function AssertionError(options) {
-  this.nombre = 'AssertionError';
+  this.name = 'AssertionError';
   this.actual = options.actual;
   this.expected = options.expected;
   this.operator = options.operator;
@@ -17416,8 +17416,8 @@ assert.AssertionError = function AssertionError(options) {
       var out = err.stack;
 
       // try to strip useless frames
-      var fn_nombre = getnombre(stackStartFunction);
-      var idx = out.indexOf('\n' + fn_nombre);
+      var fn_name = getName(stackStartFunction);
+      var idx = out.indexOf('\n' + fn_name);
       if (idx >= 0) {
         // once we have located the function frame
         // we need to strip out everything before it (and its line)
@@ -17441,12 +17441,12 @@ function truncate(s, n) {
   }
 }
 function inspect(something) {
-  if (functionsHavenombres || !util.isFunction(something)) {
+  if (functionsHaveNames || !util.isFunction(something)) {
     return util.inspect(something);
   }
-  var rawnombre = getnombre(something);
-  var nombre = rawnombre ? ': ' + rawnombre : '';
-  return '[Function' +  nombre + ']';
+  var rawname = getName(something);
+  var name = rawname ? ': ' + rawname : '';
+  return '[Function' +  name + ']';
 }
 function getMessage(self) {
   return truncate(inspect(self.actual), 128) + ' ' +
@@ -17568,7 +17568,7 @@ function _deepEqual(actual, expected, strict, memos) {
   // with Object.prototype.hasOwnProperty.call), the same set of keys
   // (although not necessarily the same order), equivalent values for every
   // corresponding key, and an identical 'prototype' property. Note: this
-  // accounts for both nombred and indexed properties on Arrays.
+  // accounts for both named and indexed properties on Arrays.
   } else if (isBuffer(actual) !== isBuffer(expected)) {
     return false;
   } else {
@@ -17717,7 +17717,7 @@ function _throws(shouldThrow, block, expected, message) {
 
   actual = _tryBlock(block);
 
-  message = (expected && expected.nombre ? ' (' + expected.nombre + ').' : '.') +
+  message = (expected && expected.name ? ' (' + expected.name + ').' : '.') +
             (message ? ' ' + message : '.');
 
   if (shouldThrow && !actual) {
@@ -17797,7 +17797,7 @@ var objectKeys = Object.keys || function (obj) {
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -17855,7 +17855,7 @@ module.exports = adler32;
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -18309,7 +18309,7 @@ module.exports = crc32;
 	                var t2l = sigma0l + majl;
 	                var t2h = sigma0h + majh + ((t2l >>> 0) < (sigma0l >>> 0) ? 1 : 0);
 
-	                // Upfecha working variables
+	                // Update working variables
 	                hh = gh;
 	                hl = gl;
 	                gh = fh;
@@ -18727,14 +18727,14 @@ var toIObject = __webpack_require__(50);
 var arrayIndexOf = __webpack_require__(425)(false);
 var IE_PROTO = __webpack_require__(180)('IE_PROTO');
 
-module.exports = function (object, nombres) {
+module.exports = function (object, names) {
   var O = toIObject(object);
   var i = 0;
   var result = [];
   var key;
   for (key in O) if (key != IE_PROTO) has(O, key) && result.push(key);
   // Don't enum bug & hidden keys
-  while (nombres.length > i) if (has(O, key = nombres[i++])) {
+  while (names.length > i) if (has(O, key = names[i++])) {
     ~arrayIndexOf(result, key) || result.push(key);
   }
   return result;
@@ -18777,11 +18777,11 @@ module.exports = Array.isArray || function isArray(arg) {
 /* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertynombres(O)
+// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
 var $keys = __webpack_require__(258);
 var hiddenKeys = __webpack_require__(182).concat('length', 'prototype');
 
-exports.f = Object.getOwnPropertynombres || function getOwnPropertynombres(O) {
+exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return $keys(O, hiddenKeys);
 };
 
@@ -18809,7 +18809,7 @@ var step = __webpack_require__(255);
 var setSpecies = __webpack_require__(267);
 var DESCRIPTORS = __webpack_require__(23);
 var fastKey = __webpack_require__(132).fastKey;
-var valifecha = __webpack_require__(191);
+var validate = __webpack_require__(191);
 var SIZE = DESCRIPTORS ? '_s' : 'size';
 
 var getEntry = function (that, key) {
@@ -18824,10 +18824,10 @@ var getEntry = function (that, key) {
 };
 
 module.exports = {
-  getConstructor: function (wrapper, nombre, IS_MAP, ADDER) {
+  getConstructor: function (wrapper, NAME, IS_MAP, ADDER) {
     var C = wrapper(function (that, iterable) {
-      anInstance(that, C, nombre, '_i');
-      that._t = nombre;         // collection type
+      anInstance(that, C, NAME, '_i');
+      that._t = NAME;         // collection type
       that._i = create(null); // index
       that._f = undefined;    // first entry
       that._l = undefined;    // last entry
@@ -18838,7 +18838,7 @@ module.exports = {
       // 23.1.3.1 Map.prototype.clear()
       // 23.2.3.2 Set.prototype.clear()
       clear: function clear() {
-        for (var that = valifecha(this, nombre), data = that._i, entry = that._f; entry; entry = entry.n) {
+        for (var that = validate(this, NAME), data = that._i, entry = that._f; entry; entry = entry.n) {
           entry.r = true;
           if (entry.p) entry.p = entry.p.n = undefined;
           delete data[entry.i];
@@ -18849,7 +18849,7 @@ module.exports = {
       // 23.1.3.3 Map.prototype.delete(key)
       // 23.2.3.4 Set.prototype.delete(value)
       'delete': function (key) {
-        var that = valifecha(this, nombre);
+        var that = validate(this, NAME);
         var entry = getEntry(that, key);
         if (entry) {
           var next = entry.n;
@@ -18866,7 +18866,7 @@ module.exports = {
       // 23.2.3.6 Set.prototype.forEach(callbackfn, thisArg = undefined)
       // 23.1.3.5 Map.prototype.forEach(callbackfn, thisArg = undefined)
       forEach: function forEach(callbackfn /* , that = undefined */) {
-        valifecha(this, nombre);
+        validate(this, NAME);
         var f = ctx(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
         var entry;
         while (entry = entry ? entry.n : this._f) {
@@ -18878,12 +18878,12 @@ module.exports = {
       // 23.1.3.7 Map.prototype.has(key)
       // 23.2.3.7 Set.prototype.has(value)
       has: function has(key) {
-        return !!getEntry(valifecha(this, nombre), key);
+        return !!getEntry(validate(this, NAME), key);
       }
     });
     if (DESCRIPTORS) dP(C.prototype, 'size', {
       get: function () {
-        return valifecha(this, nombre)[SIZE];
+        return validate(this, NAME)[SIZE];
       }
     });
     return C;
@@ -18912,11 +18912,11 @@ module.exports = {
     } return that;
   },
   getEntry: getEntry,
-  setStrong: function (C, nombre, IS_MAP) {
+  setStrong: function (C, NAME, IS_MAP) {
     // add .keys, .values, .entries, [@@iterator]
     // 23.1.3.4, 23.1.3.8, 23.1.3.11, 23.1.3.12, 23.2.3.5, 23.2.3.8, 23.2.3.10, 23.2.3.11
-    $iterDefine(C, nombre, function (iterated, kind) {
-      this._t = valifecha(iterated, nombre); // target
+    $iterDefine(C, NAME, function (iterated, kind) {
+      this._t = validate(iterated, NAME); // target
       this._k = kind;                     // kind
       this._l = undefined;                // previous
     }, function () {
@@ -18938,7 +18938,7 @@ module.exports = {
     }, IS_MAP ? 'entries' : 'values', !IS_MAP, true);
 
     // add [@@species], 23.1.2.2, 23.2.2.2
-    setSpecies(nombre);
+    setSpecies(NAME);
   }
 };
 
@@ -19016,8 +19016,8 @@ var dP = __webpack_require__(26).f;
 var each = __webpack_require__(451)(0);
 var DESCRIPTORS = __webpack_require__(23);
 
-module.exports = function (nombre, wrapper, methods, common, IS_MAP, IS_WEAK) {
-  var Base = global[nombre];
+module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
+  var Base = global[NAME];
   var C = Base;
   var ADDER = IS_MAP ? 'set' : 'add';
   var proto = C && C.prototype;
@@ -19026,12 +19026,12 @@ module.exports = function (nombre, wrapper, methods, common, IS_MAP, IS_WEAK) {
     new C().entries().next();
   }))) {
     // create collection constructor
-    C = common.getConstructor(wrapper, nombre, IS_MAP, ADDER);
+    C = common.getConstructor(wrapper, NAME, IS_MAP, ADDER);
     redefineAll(C.prototype, methods);
     meta.NEED = true;
   } else {
     C = wrapper(function (target, iterable) {
-      anInstance(target, C, nombre, '_c');
+      anInstance(target, C, NAME, '_c');
       target._c = new Base();
       if (iterable != undefined) forOf(iterable, IS_MAP, target[ADDER], target);
     });
@@ -19051,12 +19051,12 @@ module.exports = function (nombre, wrapper, methods, common, IS_MAP, IS_WEAK) {
     });
   }
 
-  setToStringTag(C, nombre);
+  setToStringTag(C, NAME);
 
-  O[nombre] = C;
+  O[NAME] = C;
   $export($export.G + $export.W + $export.F, O);
 
-  if (!IS_WEAK) common.setStrong(C, nombre, IS_MAP);
+  if (!IS_WEAK) common.setStrong(C, NAME, IS_MAP);
 
   return C;
 };
@@ -19069,9 +19069,9 @@ module.exports = function (nombre, wrapper, methods, common, IS_MAP, IS_WEAK) {
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var classof = __webpack_require__(184);
 var from = __webpack_require__(455);
-module.exports = function (nombre) {
+module.exports = function (NAME) {
   return function toJSON() {
-    if (classof(this) != nombre) throw TypeError(nombre + "#toJSON isn't generic");
+    if (classof(this) != NAME) throw TypeError(NAME + "#toJSON isn't generic");
     return from(this);
   };
 };
@@ -19154,7 +19154,7 @@ keysShim.shim = function shimObjectKeys() {
 			return args && args.length === arguments.length;
 		}(1, 2));
 		if (!keysWorksWithArguments) {
-			Object.keys = function keys(object) { // eslint-disable-line func-nombre-matching
+			Object.keys = function keys(object) { // eslint-disable-line func-name-matching
 				if (isArgs(object)) {
 					return originalKeys(slice.call(object));
 				}
@@ -19408,8 +19408,8 @@ var html = __webpack_require__(260);
 var cel = __webpack_require__(176);
 var global = __webpack_require__(17);
 var process = global.process;
-var settarea = global.setImmediate;
-var cleartarea = global.clearImmediate;
+var setTask = global.setImmediate;
+var clearTask = global.clearImmediate;
 var MessageChannel = global.MessageChannel;
 var Dispatch = global.Dispatch;
 var counter = 0;
@@ -19429,8 +19429,8 @@ var listener = function (event) {
   run.call(event.data);
 };
 // Node.js 0.9+ & IE10+ has setImmediate, otherwise:
-if (!settarea || !cleartarea) {
-  settarea = function setImmediate(fn) {
+if (!setTask || !clearTask) {
+  setTask = function setImmediate(fn) {
     var args = [];
     var i = 1;
     while (arguments.length > i) args.push(arguments[i++]);
@@ -19441,7 +19441,7 @@ if (!settarea || !cleartarea) {
     defer(counter);
     return counter;
   };
-  cleartarea = function clearImmediate(id) {
+  clearTask = function clearImmediate(id) {
     delete queue[id];
   };
   // Node.js 0.8-
@@ -19483,8 +19483,8 @@ if (!settarea || !cleartarea) {
   }
 }
 module.exports = {
-  set: settarea,
-  clear: cleartarea
+  set: setTask,
+  clear: clearTask
 };
 
 
@@ -20971,7 +20971,7 @@ var isNull = __webpack_require__(0).isNull;
  *
  * @constructor
  * @this {StyleContextStack}
- * @param {Object} nombred styles dictionary
+ * @param {Object} named styles dictionary
  * @param {Object} optional default style definition
  */
 function StyleContextStack(styleDictionary, defaultStyle) {
@@ -20995,17 +20995,17 @@ StyleContextStack.prototype.clone = function () {
 };
 
 /**
- * Pushes style-nombre or style-overrides-object onto the stack for future evaluation
+ * Pushes style-name or style-overrides-object onto the stack for future evaluation
  *
- * @param {String|Object} stylenombreOrOverride style-nombre (referring to styleDictionary) or
+ * @param {String|Object} styleNameOrOverride style-name (referring to styleDictionary) or
  *                                            a new dictionary defining overriding properties
  */
-StyleContextStack.prototype.push = function (stylenombreOrOverride) {
-	this.styleOverrides.push(stylenombreOrOverride);
+StyleContextStack.prototype.push = function (styleNameOrOverride) {
+	this.styleOverrides.push(styleNameOrOverride);
 };
 
 /**
- * Removes last style-nombre or style-overrides-object from the stack
+ * Removes last style-name or style-overrides-object from the stack
  *
  * @param {Number} howMany - optional number of elements to be popped (if not specified,
  *                           one element will be removed from the stack)
@@ -21019,7 +21019,7 @@ StyleContextStack.prototype.pop = function (howMany) {
 };
 
 /**
- * Creates a set of nombred styles or/and a style-overrides-object based on the item,
+ * Creates a set of named styles or/and a style-overrides-object based on the item,
  * pushes those elements onto the stack for future evaluation and returns the number
  * of elements pushed, so they can be easily poped then.
  *
@@ -21031,18 +21031,18 @@ StyleContextStack.prototype.autopush = function (item) {
 		return 0;
 	}
 
-	var stylenombres = [];
+	var styleNames = [];
 
 	if (item.style) {
 		if (isArray(item.style)) {
-			stylenombres = item.style;
+			styleNames = item.style;
 		} else {
-			stylenombres = [item.style];
+			styleNames = [item.style];
 		}
 	}
 
-	for (var i = 0, l = stylenombres.length; i < l; i++) {
-		this.push(stylenombres[i]);
+	for (var i = 0, l = styleNames.length; i < l; i++) {
+		this.push(styleNames[i]);
 	}
 
 	var styleProperties = [
@@ -21086,7 +21086,7 @@ StyleContextStack.prototype.autopush = function (item) {
 		this.push(styleOverrideObject);
 	}
 
-	return stylenombres.length + (pushStyleOverrideObject ? 1 : 0);
+	return styleNames.length + (pushStyleOverrideObject ? 1 : 0);
 };
 
 /**
@@ -21109,9 +21109,9 @@ StyleContextStack.prototype.auto = function (item, callback) {
 };
 
 /**
- * Evaluates stack and returns value of a nombred property
+ * Evaluates stack and returns value of a named property
  *
- * @param {String} property - property nombre
+ * @param {String} property - property name
  * @return property value or null if not found
  */
 StyleContextStack.prototype.getProperty = function (property) {
@@ -21120,7 +21120,7 @@ StyleContextStack.prototype.getProperty = function (property) {
 			var item = this.styleOverrides[i];
 
 			if (isString(item)) {
-				// nombred-style-override
+				// named-style-override
 				var style = this.styleDictionary[item];
 				if (style && !isUndefined(style[property]) && !isNull(style[property])) {
 					return style[property];
@@ -21896,7 +21896,7 @@ Document.prototype._bufferToBlob = function (buffer) {
 		blob = new Blob([buffer], { type: 'application/pdf' });
 	} catch (e) {
 		// Old browser which can't handle it without making it an byte array (ie10)
-		if (e.nombre === 'InvalidStateError') {
+		if (e.name === 'InvalidStateError') {
 			var byteArray = new Uint8Array(buffer);
 			blob = new Blob([byteArray.buffer], { type: 'application/pdf' });
 		}
@@ -21964,22 +21964,22 @@ Document.prototype.print = function (options, win) {
 };
 
 /**
- * download(defaultFilenombre = 'file.pdf', cb = null, options = {})
+ * download(defaultFileName = 'file.pdf', cb = null, options = {})
  * or
  * download(cb, options = {})
  */
-Document.prototype.download = function (defaultFilenombre, cb, options) {
-	if (isFunction(defaultFilenombre)) {
+Document.prototype.download = function (defaultFileName, cb, options) {
+	if (isFunction(defaultFileName)) {
 		if (!isUndefined(cb)) {
 			options = cb;
 		}
-		cb = defaultFilenombre;
-		defaultFilenombre = null;
+		cb = defaultFileName;
+		defaultFileName = null;
 	}
 
-	defaultFilenombre = defaultFilenombre || 'file.pdf';
+	defaultFileName = defaultFileName || 'file.pdf';
 	this.getBlob(function (result) {
-		saveAs(result, defaultFilenombre);
+		saveAs(result, defaultFileName);
 
 		if (isFunction(cb)) {
 			cb();
@@ -22313,7 +22313,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open("GET",b),e.responseType="blob",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error("could not download file")},e.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.saveAs||("object"!=typeof window||window!==f?function(){}:(typeof HTMLAnchorElement !== "undefined" && "download" in HTMLAnchorElement.prototype)?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.nombre||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.nombre||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open("","_blank"),e&&(e.document.title=e.document.body.innerText="downloading..."),"string"==typeof a)return c(a,b,d);var g="application/octet-stream"===a.type,h=/constructor/i.test(f.HTMLElement)||f.safari,i=/CriOS\/[\d]+/.test(navigator.userAgent);if((i||g&&h)&&"object"==typeof FileReader){var j=new FileReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}});f.saveAs=a.saveAs=a, true&&(module.exports=a)});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open("GET",b),e.responseType="blob",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error("could not download file")},e.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.saveAs||("object"!=typeof window||window!==f?function(){}:(typeof HTMLAnchorElement !== "undefined" && "download" in HTMLAnchorElement.prototype)?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open("","_blank"),e&&(e.document.title=e.document.body.innerText="downloading..."),"string"==typeof a)return c(a,b,d);var g="application/octet-stream"===a.type,h=/constructor/i.test(f.HTMLElement)||f.safari,i=/CriOS\/[\d]+/.test(navigator.userAgent);if((i||g&&h)&&"object"==typeof FileReader){var j=new FileReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}});f.saveAs=a.saveAs=a, true&&(module.exports=a)});
 
 //# sourceMappingURL=FileSaver.min.js.map
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(24)))
@@ -22408,14 +22408,14 @@ function PdfPrinter(fontDescriptors) {
  * 	info: {
  *		title: 'awesome Document',
  *		author: 'john doe',
- *		tema: 'tema of document',
+ *		subject: 'subject of document',
  *		keywords: 'keywords for document',
  * 	},
  *	content: [
  *		'First paragraph',
  *		'Second paragraph, this time a little bit longer',
  *		{ text: 'Third paragraph, slightly bigger font size', fontSize: 20 },
- *		{ text: 'Another paragraph using a nombred style', style: 'header' },
+ *		{ text: 'Another paragraph using a named style', style: 'header' },
  *		{ text: ['playing with ', 'inlines' ] },
  *		{ text: ['and ', { text: 'restyling ', bold: true }, 'them'] },
  *	],
@@ -22487,7 +22487,7 @@ PdfPrinter.prototype.createPdfKitDocument = function (docDefinition, options) {
 	if (options.autoPrint) {
 		var printActionRef = this.pdfKitDoc.ref({
 			Type: 'Action',
-			S: 'nombred',
+			S: 'Named',
 			N: 'Print'
 		});
 		this.pdfKitDoc._root.data.OpenAction = printActionRef;
@@ -22668,7 +22668,7 @@ function pageSize2widthAndHeight(pageSize) {
 	return pageSize;
 }
 
-function upfechaPageOrientationInOptions(currentPage, pdfKitDoc) {
+function updatePageOrientationInOptions(currentPage, pdfKitDoc) {
 	var previousPageOrientation = pdfKitDoc.options.size[0] > pdfKitDoc.options.size[1] ? 'landscape' : 'portrait';
 
 	if (currentPage.pageSize.orientation !== previousPageOrientation) {
@@ -22695,7 +22695,7 @@ function renderPages(pages, fontProvider, pdfKitDoc, progressCallback) {
 
 	for (var i = 0; i < pages.length; i++) {
 		if (i > 0) {
-			upfechaPageOrientationInOptions(pages[i], pdfKitDoc);
+			updatePageOrientationInOptions(pages[i], pdfKitDoc);
 			pdfKitDoc.addPage(pdfKitDoc.options);
 		}
 
@@ -23009,7 +23009,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(Buffer, __dirnombre) {
+/* WEBPACK VAR INJECTION */(function(Buffer, __dirname) {
 
 __webpack_require__(197);
 
@@ -23310,14 +23310,14 @@ var PDFAbstractReference = /*#__PURE__*/function () {
   return PDFAbstractReference;
 }();
 
-var PDFnombreTree = /*#__PURE__*/function () {
-  function PDFnombreTree() {
-    _classCallCheck(this, PDFnombreTree);
+var PDFNameTree = /*#__PURE__*/function () {
+  function PDFNameTree() {
+    _classCallCheck(this, PDFNameTree);
 
     this._items = {};
   }
 
-  _createClass(PDFnombreTree, [{
+  _createClass(PDFNameTree, [{
     key: "add",
     value: function add(key, val) {
       return this._items[key] = val;
@@ -23342,7 +23342,7 @@ var PDFnombreTree = /*#__PURE__*/function () {
         out.push("  /Limits ".concat(PDFObject.convert([new String(first), new String(last)])));
       }
 
-      out.push('  /nombres [');
+      out.push('  /Names [');
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
@@ -23373,7 +23373,7 @@ var PDFnombreTree = /*#__PURE__*/function () {
     }
   }]);
 
-  return PDFnombreTree;
+  return PDFNameTree;
 }();
 
 var pad = function pad(str, length) {
@@ -23416,7 +23416,7 @@ var PDFObject = /*#__PURE__*/function () {
   _createClass(PDFObject, null, [{
     key: "convert",
     value: function convert(object) {
-      var encryptFn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null; // String literals are converted to the PDF nombre type
+      var encryptFn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null; // String literals are converted to the PDF name type
 
       if (typeof object === 'string') {
         return "/".concat(object); // String objects are converted to PDF strings (UTF-16)
@@ -23455,7 +23455,7 @@ var PDFObject = /*#__PURE__*/function () {
         return "(".concat(string, ")"); // Buffers are converted to PDF hex strings
       } else if (Buffer.isBuffer(object)) {
         return "<".concat(object.toString('hex'), ">");
-      } else if (object instanceof PDFAbstractReference || object instanceof PDFnombreTree) {
+      } else if (object instanceof PDFAbstractReference || object instanceof PDFNameTree) {
         return object.toString();
       } else if (object instanceof Date) {
         var _string = "D:".concat(pad(object.getUTCFullYear(), 4)) + pad(object.getUTCMonth() + 1, 2) + pad(object.getUTCDate(), 2) + pad(object.getUTCHours(), 2) + pad(object.getUTCMinutes(), 2) + pad(object.getUTCSeconds(), 2) + 'Z'; // Encrypt the string when necessary
@@ -24003,7 +24003,7 @@ var prohibited_characters = [
  * @link https://tools.ietf.org/html/rfc3454#appendix-C.7
  */
 0x2ff0, 0x2ffb
-/* [IDEOGRAPHIC descripcion CHARACTERS] */
+/* [IDEOGRAPHIC DESCRIPTION CHARACTERS] */
 ,
 /**
  * C.5 Surrogate codes
@@ -25006,8 +25006,8 @@ var ColorMixin = {
 
         var hex = parseInt(color.slice(1), 16);
         color = [hex >> 16, hex >> 8 & 0xff, hex & 0xff];
-      } else if (nombredColors[color]) {
-        color = nombredColors[color];
+      } else if (namedColors[color]) {
+        color = namedColors[color];
       }
     }
 
@@ -25093,7 +25093,7 @@ var ColorMixin = {
     return this;
   },
   _doOpacity: function _doOpacity(fillOpacity, strokeOpacity) {
-    var dictionary, nombre;
+    var dictionary, name;
 
     if (fillOpacity == null && strokeOpacity == null) {
       return;
@@ -25113,7 +25113,7 @@ var ColorMixin = {
       var _this$_opacityRegistr = _slicedToArray(this._opacityRegistry[key], 2);
 
       dictionary = _this$_opacityRegistr[0];
-      nombre = _this$_opacityRegistr[1];
+      name = _this$_opacityRegistr[1];
     } else {
       dictionary = {
         Type: 'ExtGState'
@@ -25130,12 +25130,12 @@ var ColorMixin = {
       dictionary = this.ref(dictionary);
       dictionary.end();
       var id = ++this._opacityCount;
-      nombre = "Gs".concat(id);
-      this._opacityRegistry[key] = [dictionary, nombre];
+      name = "Gs".concat(id);
+      this._opacityRegistry[key] = [dictionary, name];
     }
 
-    this.page.ext_gstates[nombre] = dictionary;
-    return this.addContent("/".concat(nombre, " gs"));
+    this.page.ext_gstates[name] = dictionary;
+    return this.addContent("/".concat(name, " gs"));
   },
   linearGradient: function linearGradient(x1, y1, x2, y2) {
     return new PDFLinearGradient$1(this, x1, y1, x2, y2);
@@ -25144,7 +25144,7 @@ var ColorMixin = {
     return new PDFRadialGradient$1(this, x1, y1, r1, x2, y2, r2);
   }
 };
-var nombredColors = {
+var namedColors = {
   aliceblue: [240, 248, 255],
   antiquewhite: [250, 235, 215],
   aqua: [0, 255, 255],
@@ -26093,8 +26093,8 @@ var characters = ".notdef       .notdef        .notdef        .notdef\n.notdef  
 var AFMFont = /*#__PURE__*/function () {
   _createClass(AFMFont, null, [{
     key: "open",
-    value: function open(filenombre) {
-      return new AFMFont(fs.readFileSync(filenombre, 'utf8'));
+    value: function open(filename) {
+      return new AFMFont(fs.readFileSync(filename, 'utf8'));
     }
   }]);
 
@@ -26169,8 +26169,8 @@ var AFMFont = /*#__PURE__*/function () {
                 continue;
               }
 
-              var nombre = line.match(/\bN\s+(\.?\w+)\s*;/)[1];
-              this.glyphWidths[nombre] = +line.match(/\bWX\s+(\d+)\s*;/)[1];
+              var name = line.match(/\bN\s+(\.?\w+)\s*;/)[1];
+              this.glyphWidths[name] = +line.match(/\bWX\s+(\d+)\s*;/)[1];
               break;
 
             case 'KernPairs':
@@ -26308,62 +26308,62 @@ var PDFFont = /*#__PURE__*/function () {
 
 var STANDARD_FONTS = {
   Courier: function Courier() {
-    return fs.readFileSync(__dirnombre + '/data/Courier.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/Courier.afm', 'utf8');
   },
   'Courier-Bold': function CourierBold() {
-    return fs.readFileSync(__dirnombre + '/data/Courier-Bold.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/Courier-Bold.afm', 'utf8');
   },
   'Courier-Oblique': function CourierOblique() {
-    return fs.readFileSync(__dirnombre + '/data/Courier-Oblique.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/Courier-Oblique.afm', 'utf8');
   },
   'Courier-BoldOblique': function CourierBoldOblique() {
-    return fs.readFileSync(__dirnombre + '/data/Courier-BoldOblique.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/Courier-BoldOblique.afm', 'utf8');
   },
   Helvetica: function Helvetica() {
-    return fs.readFileSync(__dirnombre + '/data/Helvetica.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/Helvetica.afm', 'utf8');
   },
   'Helvetica-Bold': function HelveticaBold() {
-    return fs.readFileSync(__dirnombre + '/data/Helvetica-Bold.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/Helvetica-Bold.afm', 'utf8');
   },
   'Helvetica-Oblique': function HelveticaOblique() {
-    return fs.readFileSync(__dirnombre + '/data/Helvetica-Oblique.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/Helvetica-Oblique.afm', 'utf8');
   },
   'Helvetica-BoldOblique': function HelveticaBoldOblique() {
-    return fs.readFileSync(__dirnombre + '/data/Helvetica-BoldOblique.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/Helvetica-BoldOblique.afm', 'utf8');
   },
   'Times-Roman': function TimesRoman() {
-    return fs.readFileSync(__dirnombre + '/data/Times-Roman.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/Times-Roman.afm', 'utf8');
   },
   'Times-Bold': function TimesBold() {
-    return fs.readFileSync(__dirnombre + '/data/Times-Bold.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/Times-Bold.afm', 'utf8');
   },
   'Times-Italic': function TimesItalic() {
-    return fs.readFileSync(__dirnombre + '/data/Times-Italic.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/Times-Italic.afm', 'utf8');
   },
   'Times-BoldItalic': function TimesBoldItalic() {
-    return fs.readFileSync(__dirnombre + '/data/Times-BoldItalic.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/Times-BoldItalic.afm', 'utf8');
   },
   Symbol: function Symbol() {
-    return fs.readFileSync(__dirnombre + '/data/Symbol.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/Symbol.afm', 'utf8');
   },
   ZapfDingbats: function ZapfDingbats() {
-    return fs.readFileSync(__dirnombre + '/data/ZapfDingbats.afm', 'utf8');
+    return fs.readFileSync(__dirname + '/data/ZapfDingbats.afm', 'utf8');
   }
 };
 
 var StandardFont = /*#__PURE__*/function (_PDFFont) {
   _inherits(StandardFont, _PDFFont);
 
-  function StandardFont(document, nombre, id) {
+  function StandardFont(document, name, id) {
     var _this;
 
     _classCallCheck(this, StandardFont);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(StandardFont).call(this));
     _this.document = document;
-    _this.nombre = nombre;
+    _this.name = name;
     _this.id = id;
-    _this.font = new AFMFont(STANDARD_FONTS[_this.nombre]());
+    _this.font = new AFMFont(STANDARD_FONTS[_this.name]());
     var _this$font = _this.font;
     _this.ascender = _this$font.ascender;
     _this.descender = _this$font.descender;
@@ -26379,7 +26379,7 @@ var StandardFont = /*#__PURE__*/function (_PDFFont) {
     value: function embed() {
       this.dictionary.data = {
         Type: 'Font',
-        BaseFont: this.nombre,
+        BaseFont: this.name,
         Subtype: 'Type1',
         Encoding: 'WinAnsiEncoding'
       };
@@ -26441,8 +26441,8 @@ var StandardFont = /*#__PURE__*/function (_PDFFont) {
     }
   }], [{
     key: "isStandardFont",
-    value: function isStandardFont(nombre) {
-      return nombre in STANDARD_FONTS;
+    value: function isStandardFont(name) {
+      return name in STANDARD_FONTS;
     }
   }]);
 
@@ -26468,7 +26468,7 @@ var EmbeddedFont = /*#__PURE__*/function (_PDFFont) {
     _this.subset = _this.font.createSubset();
     _this.unicode = [[0]];
     _this.widths = [_this.font.getGlyph(0).advanceWidth];
-    _this.nombre = _this.font.postscriptnombre;
+    _this.name = _this.font.postscriptName;
     _this.scale = 1000 / _this.font.unitsPerEm;
     _this.ascender = _this.font.ascent * _this.scale;
     _this.descender = _this.font.descent * _this.scale;
@@ -26632,11 +26632,11 @@ var EmbeddedFont = /*#__PURE__*/function (_PDFFont) {
       var tag = [1, 2, 3, 4, 5, 6].map(function (i) {
         return String.fromCharCode((_this2.id.charCodeAt(i) || 74) + 16);
       }).join('');
-      var nombre = tag + '+' + this.font.postscriptnombre;
+      var name = tag + '+' + this.font.postscriptName;
       var bbox = this.font.bbox;
       var descriptor = this.document.ref({
         Type: 'FontDescriptor',
-        Fontnombre: nombre,
+        FontName: name,
         Flags: flags,
         FontBBox: [bbox.minX * this.scale, bbox.minY * this.scale, bbox.maxX * this.scale, bbox.maxY * this.scale],
         ItalicAngle: this.font.italicAngle,
@@ -26657,7 +26657,7 @@ var EmbeddedFont = /*#__PURE__*/function (_PDFFont) {
       var descendantFontData = {
         Type: 'Font',
         Subtype: 'CIDFontType0',
-        BaseFont: nombre,
+        BaseFont: name,
         CIDSystemInfo: {
           Registry: new String('Adobe'),
           Ordering: new String('Identity'),
@@ -26677,7 +26677,7 @@ var EmbeddedFont = /*#__PURE__*/function (_PDFFont) {
       this.dictionary.data = {
         Type: 'Font',
         Subtype: 'Type0',
-        BaseFont: nombre,
+        BaseFont: name,
         Encoding: 'Identity-H',
         DescendantFonts: [descendantFont],
         ToUnicode: this.toUnicodeCmap()
@@ -26749,7 +26749,7 @@ var EmbeddedFont = /*#__PURE__*/function (_PDFFont) {
         }
       }
 
-      cmap.end("/CIDInit /ProcSet findresource begin\n12 dict begin\nbegincmap\n/CIDSystemInfo <<\n  /Registry (Adobe)\n  /Ordering (UCS)\n  /Supplement 0\n>> def\n/CMapnombre /Adobe-Identity-UCS def\n/CMapType 2 def\n1 begincodespacerange\n<0000><ffff>\nendcodespacerange\n1 beginbfrange\n<0000> <".concat(toHex(entries.length - 1), "> [").concat(entries.join(' '), "]\nendbfrange\nendcmap\nCMapnombre currentdict /CMap defineresource pop\nend\nend"));
+      cmap.end("/CIDInit /ProcSet findresource begin\n12 dict begin\nbegincmap\n/CIDSystemInfo <<\n  /Registry (Adobe)\n  /Ordering (UCS)\n  /Supplement 0\n>> def\n/CMapName /Adobe-Identity-UCS def\n/CMapType 2 def\n1 begincodespacerange\n<0000><ffff>\nendcodespacerange\n1 beginbfrange\n<0000> <".concat(toHex(entries.length - 1), "> [").concat(entries.join(' '), "]\nendbfrange\nendcmap\nCMapName currentdict /CMap defineresource pop\nend\nend"));
       return cmap;
     }
   }]);
@@ -26843,10 +26843,10 @@ var FontsMixin = {
 
 
     var id = "F".concat(++this._fontCount);
-    this._font = PDFFontFactory.open(this, src, family, id); // check for existing font familes with the same nombre already in the PDF
+    this._font = PDFFontFactory.open(this, src, family, id); // check for existing font familes with the same name already in the PDF
     // useful if the font was passed as a buffer
 
-    if (font = this._fontFamilies[this._font.nombre]) {
+    if (font = this._fontFamilies[this._font.name]) {
       this._font = font;
       return this;
     } // save the font for reuse later
@@ -26856,8 +26856,8 @@ var FontsMixin = {
       this._fontFamilies[cacheKey] = this._font;
     }
 
-    if (this._font.nombre) {
-      this._fontFamilies[this._font.nombre] = this._font;
+    if (this._font.name) {
+      this._fontFamilies[this._font.name] = this._font;
     }
 
     return this;
@@ -26873,8 +26873,8 @@ var FontsMixin = {
 
     return this._font.lineHeight(this._fontSize, includeGap);
   },
-  registerFont: function registerFont(nombre, src, family) {
-    this._registeredFonts[nombre] = {
+  registerFont: function registerFont(name, src, family) {
+    this._registeredFonts[name] = {
       src: src,
       family: family
     };
@@ -27447,7 +27447,7 @@ var TextMixin = {
           }
         }
       }
-    } // Upfecha the current position
+    } // Update the current position
 
 
     if (x != null) {
@@ -27582,7 +27582,7 @@ var TextMixin = {
     }
 
     if (options.destination != null) {
-      this.addnombredDestination(options.destination, 'XYZ', x, y, null);
+      this.addNamedDestination(options.destination, 'XYZ', x, y, null);
     } // create underline or strikethrough line
 
 
@@ -28199,7 +28199,7 @@ var ImagesMixin = {
     }
 
     if (options.destination != null) {
-      this.addnombredDestination(options.destination, 'XYZ', x, y, null);
+      this.addNamedDestination(options.destination, 'XYZ', x, y, null);
     } // Set the current y position to below the image if it is in the document flow
 
 
@@ -28269,7 +28269,7 @@ var AnnotationsMixin = {
     var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
     options.Subtype = 'Text';
     options.Contents = new String(contents);
-    options.nombre = 'Comment';
+    options.Name = 'Comment';
 
     if (options.color == null) {
       options.color = [243, 223, 92];
@@ -28277,12 +28277,12 @@ var AnnotationsMixin = {
 
     return this.annotate(x, y, w, h, options);
   },
-  goTo: function goTo(x, y, w, h, nombre) {
+  goTo: function goTo(x, y, w, h, name) {
     var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
     options.Subtype = 'Link';
     options.A = this.ref({
       S: 'GoTo',
-      D: new String(nombre)
+      D: new String(name)
     });
     options.A.end();
     return this.annotate(x, y, w, h, options);
@@ -28540,7 +28540,7 @@ var AcroFormMixin = {
 
     this._acroform = {
       fonts: {},
-      defaultFont: this._font.nombre
+      defaultFont: this._font.name
     };
     this._acroform.fonts[this._font.id] = this._font.ref();
     var data = {
@@ -28569,8 +28569,8 @@ var AcroFormMixin = {
       }
 
       var fontDict = this._root.data.AcroForm.data.DR.Font;
-      Object.keys(this._acroform.fonts).forEach(function (nombre) {
-        fontDict[nombre] = _this._acroform.fonts[nombre];
+      Object.keys(this._acroform.fonts).forEach(function (name) {
+        fontDict[name] = _this._acroform.fonts[name];
       });
 
       this._root.data.AcroForm.data.Fields.forEach(function (fieldRef) {
@@ -28597,15 +28597,15 @@ var AcroFormMixin = {
 
   /**
    * Creates and adds a form field to the document. Form fields are intermediate
-   * nodes in a PDF form that are used to specify form nombre heirarchy and form
+   * nodes in a PDF form that are used to specify form name heirarchy and form
    * value defaults.
-   * @param {string} nombre - field nombre (T attribute in field dictionary)
+   * @param {string} name - field name (T attribute in field dictionary)
    * @param {object} options  - other attributes to include in field dictionary
    */
-  formField: function formField(nombre) {
+  formField: function formField(name) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    var fieldDict = this._fieldDict(nombre, null, options);
+    var fieldDict = this._fieldDict(name, null, options);
 
     var fieldRef = this.ref(fieldDict);
 
@@ -28617,7 +28617,7 @@ var AcroFormMixin = {
   /**
    * Creates and adds a Form Annotation to the document. Form annotations are
    * called Widget annotations internally within a PDF file.
-   * @param {string} nombre - form field nombre (T attribute of widget annotation
+   * @param {string} name - form field name (T attribute of widget annotation
    * dictionary)
    * @param {number} x
    * @param {number} y
@@ -28625,10 +28625,10 @@ var AcroFormMixin = {
    * @param {number} h
    * @param {object} options
    */
-  formAnnotation: function formAnnotation(nombre, type, x, y, w, h) {
+  formAnnotation: function formAnnotation(name, type, x, y, w, h) {
     var options = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : {};
 
-    var fieldDict = this._fieldDict(nombre, type, options);
+    var fieldDict = this._fieldDict(name, type, options);
 
     fieldDict.Subtype = 'Widget';
 
@@ -28641,29 +28641,29 @@ var AcroFormMixin = {
     var annotRef = this.page.annotations[this.page.annotations.length - 1];
     return this._addToParent(annotRef);
   },
-  formText: function formText(nombre, x, y, w, h) {
+  formText: function formText(name, x, y, w, h) {
     var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
-    return this.formAnnotation(nombre, 'text', x, y, w, h, options);
+    return this.formAnnotation(name, 'text', x, y, w, h, options);
   },
-  formPushButton: function formPushButton(nombre, x, y, w, h) {
+  formPushButton: function formPushButton(name, x, y, w, h) {
     var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
-    return this.formAnnotation(nombre, 'pushButton', x, y, w, h, options);
+    return this.formAnnotation(name, 'pushButton', x, y, w, h, options);
   },
-  formCombo: function formCombo(nombre, x, y, w, h) {
+  formCombo: function formCombo(name, x, y, w, h) {
     var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
-    return this.formAnnotation(nombre, 'combo', x, y, w, h, options);
+    return this.formAnnotation(name, 'combo', x, y, w, h, options);
   },
-  formList: function formList(nombre, x, y, w, h) {
+  formList: function formList(name, x, y, w, h) {
     var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
-    return this.formAnnotation(nombre, 'list', x, y, w, h, options);
+    return this.formAnnotation(name, 'list', x, y, w, h, options);
   },
-  formRadioButton: function formRadioButton(nombre, x, y, w, h) {
+  formRadioButton: function formRadioButton(name, x, y, w, h) {
     var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
-    return this.formAnnotation(nombre, 'radioButton', x, y, w, h, options);
+    return this.formAnnotation(name, 'radioButton', x, y, w, h, options);
   },
-  formCheckbox: function formCheckbox(nombre, x, y, w, h) {
+  formCheckbox: function formCheckbox(name, x, y, w, h) {
     var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
-    return this.formAnnotation(nombre, 'checkbox', x, y, w, h, options);
+    return this.formAnnotation(name, 'checkbox', x, y, w, h, options);
   },
   _addToParent: function _addToParent(fieldRef) {
     var parent = fieldRef.data.Parent;
@@ -28680,7 +28680,7 @@ var AcroFormMixin = {
 
     return this;
   },
-  _fieldDict: function _fieldDict(nombre, type) {
+  _fieldDict: function _fieldDict(name, type) {
     var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
     if (!this._acroform) {
@@ -28699,7 +28699,7 @@ var AcroFormMixin = {
     opts = this._resolveStrings(opts);
     opts = this._resolveColors(opts);
     opts = this._resolveFormat(opts);
-    opts.T = new String(nombre);
+    opts.T = new String(name);
 
     if (opts.parent) {
       opts.Parent = opts.parent;
@@ -28747,7 +28747,7 @@ var AcroFormMixin = {
         fnKeystroke = "AF".concat(format, "_Keystroke");
         fnFormat = "AF".concat(format, "_Format");
 
-        if (f.type === 'fecha') {
+        if (f.type === 'date') {
           fnKeystroke += 'Ex';
           params = String(f.param);
         } else if (f.type === 'time') {
@@ -28841,7 +28841,7 @@ var AcroFormMixin = {
     } // add current font to field's resource dict (RD) if not the default acroform font
 
 
-    if (this._acroform.defaultFont !== this._font.nombre) {
+    if (this._acroform.defaultFont !== this._font.name) {
       options.DR = {
         Font: {}
       };
@@ -28956,14 +28956,14 @@ var PDFDocument = /*#__PURE__*/function (_stream$Readable) {
       Kids: []
     });
 
-    var nombres = _this.ref({
-      Dests: new PDFnombreTree()
+    var Names = _this.ref({
+      Dests: new PDFNameTree()
     });
 
     _this._root = _this.ref({
       Type: 'Catalog',
       Pages: Pages,
-      nombres: nombres
+      Names: Names
     }); // The current page
 
     _this.page = null; // Initialize mixins
@@ -29096,8 +29096,8 @@ var PDFDocument = /*#__PURE__*/function (_stream$Readable) {
       }
     }
   }, {
-    key: "addnombredDestination",
-    value: function addnombredDestination(nombre) {
+    key: "addNamedDestination",
+    value: function addNamedDestination(name) {
       for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
         args[_key - 1] = arguments[_key];
       }
@@ -29112,13 +29112,13 @@ var PDFDocument = /*#__PURE__*/function (_stream$Readable) {
 
       args.unshift(this.page.dictionary);
 
-      this._root.data.nombres.data.Dests.add(nombre, args);
+      this._root.data.Names.data.Dests.add(name, args);
     }
   }, {
-    key: "addnombredJavaScript",
-    value: function addnombredJavaScript(nombre, js) {
-      if (!this._root.data.nombres.data.JavaScript) {
-        this._root.data.nombres.data.JavaScript = new PDFnombreTree();
+    key: "addNamedJavaScript",
+    value: function addNamedJavaScript(name, js) {
+      if (!this._root.data.Names.data.JavaScript) {
+        this._root.data.Names.data.JavaScript = new PDFNameTree();
       }
 
       var data = {
@@ -29126,7 +29126,7 @@ var PDFDocument = /*#__PURE__*/function (_stream$Readable) {
         S: 'JavaScript'
       };
 
-      this._root.data.nombres.data.JavaScript.add(nombre, data);
+      this._root.data.Names.data.JavaScript.add(name, data);
     }
   }, {
     key: "ref",
@@ -29172,11 +29172,11 @@ var PDFDocument = /*#__PURE__*/function (_stream$Readable) {
     }
   }, {
     key: "write",
-    value: function write(filenombre, fn) {
+    value: function write(filename, fn) {
       // print a deprecation warning with a stacktrace
       var err = new Error("PDFDocument#write is deprecated, and will be removed in a future version of PDFKit. Please pipe the document into a Node stream.");
       console.warn(err.stack);
-      this.pipe(fs.createWriteStream(filenombre));
+      this.pipe(fs.createWriteStream(filename));
       this.end();
       return this.once('end', fn);
     }
@@ -29200,8 +29200,8 @@ var PDFDocument = /*#__PURE__*/function (_stream$Readable) {
 
       this._info.end();
 
-      for (var nombre in this._fontFamilies) {
-        var font = this._fontFamilies[nombre];
+      for (var name in this._fontFamilies) {
+        var font = this._fontFamilies[name];
         font.finalize();
       }
 
@@ -29211,7 +29211,7 @@ var PDFDocument = /*#__PURE__*/function (_stream$Readable) {
 
       this._root.data.Pages.end();
 
-      this._root.data.nombres.end();
+      this._root.data.Names.end();
 
       this.endAcroForm();
 
@@ -29331,13 +29331,13 @@ module.exports = typeof WeakMap === 'function' && /native code/.test(inspectSour
 /***/ (function(module, exports, __webpack_require__) {
 
 var getBuiltIn = __webpack_require__(36);
-var getOwnPropertynombresModule = __webpack_require__(57);
+var getOwnPropertyNamesModule = __webpack_require__(57);
 var getOwnPropertySymbolsModule = __webpack_require__(143);
 var anObject = __webpack_require__(16);
 
 // all object keys, includes non-enumerable and symbols
 module.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
-  var keys = getOwnPropertynombresModule.f(anObject(it));
+  var keys = getOwnPropertyNamesModule.f(anObject(it));
   var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
   return getOwnPropertySymbols ? keys.concat(getOwnPropertySymbols(it)) : keys;
 };
@@ -29370,26 +29370,26 @@ module.exports = DESCRIPTORS ? Object.defineProperties : function defineProperti
 /***/ (function(module, exports, __webpack_require__) {
 
 var toIndexedObject = __webpack_require__(27);
-var nativeGetOwnPropertynombres = __webpack_require__(57).f;
+var nativeGetOwnPropertyNames = __webpack_require__(57).f;
 
 var toString = {}.toString;
 
-var windownombres = typeof window == 'object' && window && Object.getOwnPropertynombres
-  ? Object.getOwnPropertynombres(window) : [];
+var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
+  ? Object.getOwnPropertyNames(window) : [];
 
-var getWindownombres = function (it) {
+var getWindowNames = function (it) {
   try {
-    return nativeGetOwnPropertynombres(it);
+    return nativeGetOwnPropertyNames(it);
   } catch (error) {
-    return windownombres.slice();
+    return windowNames.slice();
   }
 };
 
-// fallback for IE11 buggy Object.getOwnPropertynombres with iframe and window
-module.exports.f = function getOwnPropertynombres(it) {
-  return windownombres && toString.call(it) == '[object Window]'
-    ? getWindownombres(it)
-    : nativeGetOwnPropertynombres(toIndexedObject(it));
+// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
+module.exports.f = function getOwnPropertyNames(it) {
+  return windowNames && toString.call(it) == '[object Window]'
+    ? getWindowNames(it)
+    : nativeGetOwnPropertyNames(toIndexedObject(it));
 };
 
 
@@ -29519,8 +29519,8 @@ var Iterators = __webpack_require__(97);
 
 var returnThis = function () { return this; };
 
-module.exports = function (IteratorConstructor, nombre, next) {
-  var TO_STRING_TAG = nombre + ' Iterator';
+module.exports = function (IteratorConstructor, NAME, next) {
+  var TO_STRING_TAG = NAME + ' Iterator';
   IteratorConstructor.prototype = create(IteratorPrototype, { next: createPropertyDescriptor(1, next) });
   setToStringTag(IteratorConstructor, TO_STRING_TAG, false, true);
   Iterators[TO_STRING_TAG] = returnThis;
@@ -29618,7 +29618,7 @@ setSpecies(ARRAY_BUFFER);
 /***/ (function(module, exports) {
 
 // IEEE754 conversions based on https://github.com/feross/ieee754
-// eslint-disable-next-line no-shadow-restricted-nombres
+// eslint-disable-next-line no-shadow-restricted-names
 var Infinity = 1 / 0;
 var abs = Math.abs;
 var pow = Math.pow;
@@ -29968,10 +29968,10 @@ var whitespaces = __webpack_require__(226);
 var non = '\u200B\u0085\u180E';
 
 // check that a method works with the correct list
-// of whitespaces and has a correct nombre
-module.exports = function (METHOD_nombre) {
+// of whitespaces and has a correct name
+module.exports = function (METHOD_NAME) {
   return fails(function () {
-    return !!whitespaces[METHOD_nombre]() || non[METHOD_nombre]() != non || whitespaces[METHOD_nombre].nombre !== METHOD_nombre;
+    return !!whitespaces[METHOD_NAME]() || non[METHOD_NAME]() != non || whitespaces[METHOD_NAME].name !== METHOD_NAME;
   });
 };
 
@@ -30154,8 +30154,8 @@ var DOMIterables = __webpack_require__(239);
 var forEach = __webpack_require__(212);
 var createNonEnumerableProperty = __webpack_require__(18);
 
-for (var COLLECTION_nombre in DOMIterables) {
-  var Collection = global[COLLECTION_nombre];
+for (var COLLECTION_NAME in DOMIterables) {
+  var Collection = global[COLLECTION_NAME];
   var CollectionPrototype = Collection && Collection.prototype;
   // some Chrome versions have non-configurable methods on DOMTokenList
   if (CollectionPrototype && CollectionPrototype.forEach !== forEach) try {
@@ -30253,7 +30253,7 @@ module.exports = function () {
 if (util && util.inspect && util.inspect.custom) {
   module.exports.prototype[util.inspect.custom] = function () {
     var obj = util.inspect({ length: this.length });
-    return this.constructor.nombre + ' ' + obj;
+    return this.constructor.name + ' ' + obj;
   };
 }
 
@@ -30316,21 +30316,21 @@ function deprecate (fn, msg) {
 }
 
 /**
- * Checks `localStorage` for boolean values for the given `nombre`.
+ * Checks `localStorage` for boolean values for the given `name`.
  *
- * @param {String} nombre
+ * @param {String} name
  * @returns {Boolean}
  * @api private
  */
 
-function config (nombre) {
+function config (name) {
   // accessing global.localStorage can trigger a DOMException in sandboxed iframes
   try {
     if (!global.localStorage) return false;
   } catch (_) {
     return false;
   }
-  var val = global.localStorage[nombre];
+  var val = global.localStorage[name];
   if (null == val) return false;
   return String(val).toLowerCase() === 'true';
 }
@@ -30349,7 +30349,7 @@ function config (nombre) {
 // "Software"), to deal in the Software without restriction, including
 // without limitation the rights to use, copy, modify, merge, publish,
 // distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, tema to the
+// persons to whom the Software is furnished to do so, subject to the
 // following conditions:
 //
 // The above copyright notice and this permission notice shall be included
@@ -30870,7 +30870,7 @@ function shouldUseNative() {
 		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
 		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
 		test1[5] = 'de';
-		if (Object.getOwnPropertynombres(test1)[0] === '5') {
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
 			return false;
 		}
 
@@ -30879,7 +30879,7 @@ function shouldUseNative() {
 		for (var i = 0; i < 10; i++) {
 			test2['_' + String.fromCharCode(i)] = i;
 		}
-		var order2 = Object.getOwnPropertynombres(test2).map(function (n) {
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
 			return test2[n];
 		});
 		if (order2.join('') !== '0123456789') {
@@ -30987,7 +30987,7 @@ if (typeof Object.create === 'function') {
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -31041,7 +31041,7 @@ module.exports = ZStream;
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -31141,7 +31141,7 @@ var PRESET_DICT = 0x20;
 
 var INIT_STATE = 42;
 var EXTRA_STATE = 69;
-var nombre_STATE = 73;
+var NAME_STATE = 73;
 var COMMENT_STATE = 91;
 var HCRC_STATE = 103;
 var BUSY_STATE = 113;
@@ -31220,7 +31220,7 @@ function putShortMSB(s, b) {
 
 
 /* ===========================================================================
- * Read a new buffer from the current input stream, upfecha the adler32
+ * Read a new buffer from the current input stream, update the adler32
  * and total number of bytes read.  All deflate() input goes through
  * this function so some applications may wish to modify it to avoid
  * allocating a large strm->input buffer and copying from it.
@@ -31365,7 +31365,7 @@ function longest_match(s, cur_match) {
 
 /* ===========================================================================
  * Fill the window when the lookahead becomes insufficient.
- * Upfechas strstart and lookahead.
+ * Updates strstart and lookahead.
  *
  * IN assertion: lookahead < MIN_LOOKAHEAD
  * OUT assertions: strstart <= window_size-MIN_LOOKAHEAD
@@ -31461,7 +31461,7 @@ function fill_window(s) {
       /* UPDATE_HASH(s, s->ins_h, s->window[str + 1]); */
       s.ins_h = ((s.ins_h << s.hash_shift) ^ s.window[str + 1]) & s.hash_mask;
 //#if MIN_MATCH != 3
-//        Call upfecha_hash() MIN_MATCH-3 more times
+//        Call update_hash() MIN_MATCH-3 more times
 //#endif
       while (s.insert) {
         /* UPDATE_HASH(s, s->ins_h, s->window[str + MIN_MATCH-1]); */
@@ -31485,7 +31485,7 @@ function fill_window(s) {
   /* If the WIN_INIT bytes after the end of the current data have never been
    * written, then zero those bytes in order to avoid memory check reports of
    * the use of uninitialized (or uninitialised as Julian writes) bytes by
-   * the longest match routines.  Upfecha the high water mark for the next
+   * the longest match routines.  Update the high water mark for the next
    * time through here.  WIN_INIT is set to MAX_MATCH since the longest match
    * routines allow scanning to strstart + MAX_MATCH, ignoring lookahead.
    */
@@ -32123,14 +32123,14 @@ function lm_init(s) {
 
 function DeflateState() {
   this.strm = null;            /* pointer back to this zlib stream */
-  this.status = 0;            /* as the nombre implies */
+  this.status = 0;            /* as the name implies */
   this.pending_buf = null;      /* output still pending */
   this.pending_buf_size = 0;  /* size of pending_buf */
   this.pending_out = 0;       /* next pending byte to output to the stream */
   this.pending = 0;           /* nb of bytes in the pending buffer */
   this.wrap = 0;              /* bit 0 true for zlib, bit 1 true for gzip */
   this.gzhead = null;         /* gzip header information to write */
-  this.gzindex = 0;           /* where in extra, nombre, or comentario */
+  this.gzindex = 0;           /* where in extra, name, or comment */
   this.method = Z_DEFLATED; /* can only be DEFLATED */
   this.last_flush = -1;   /* value of flush param for previous deflate call */
 
@@ -32305,7 +32305,7 @@ function DeflateState() {
   /* High water mark offset in window for initialized bytes -- bytes above
    * this are set to zero in order to avoid memory check warnings when
    * longest match routines access bytes past the input.  This is then
-   * upfechad to the new high water mark.
+   * updated to the new high water mark.
    */
 }
 
@@ -32484,8 +32484,8 @@ function deflate(strm, flush) {
         put_byte(s, (s.gzhead.text ? 1 : 0) +
                     (s.gzhead.hcrc ? 2 : 0) +
                     (!s.gzhead.extra ? 0 : 4) +
-                    (!s.gzhead.nombre ? 0 : 8) +
-                    (!s.gzhead.comentario ? 0 : 16)
+                    (!s.gzhead.name ? 0 : 8) +
+                    (!s.gzhead.comment ? 0 : 16)
         );
         put_byte(s, s.gzhead.time & 0xff);
         put_byte(s, (s.gzhead.time >> 8) & 0xff);
@@ -32539,7 +32539,7 @@ function deflate(strm, flush) {
 //#ifdef GZIP
   if (s.status === EXTRA_STATE) {
     if (s.gzhead.extra/* != Z_NULL*/) {
-      beg = s.pending;  /* start of bytes to upfecha crc */
+      beg = s.pending;  /* start of bytes to update crc */
 
       while (s.gzindex < (s.gzhead.extra.length & 0xffff)) {
         if (s.pending === s.pending_buf_size) {
@@ -32560,16 +32560,16 @@ function deflate(strm, flush) {
       }
       if (s.gzindex === s.gzhead.extra.length) {
         s.gzindex = 0;
-        s.status = nombre_STATE;
+        s.status = NAME_STATE;
       }
     }
     else {
-      s.status = nombre_STATE;
+      s.status = NAME_STATE;
     }
   }
-  if (s.status === nombre_STATE) {
-    if (s.gzhead.nombre/* != Z_NULL*/) {
-      beg = s.pending;  /* start of bytes to upfecha crc */
+  if (s.status === NAME_STATE) {
+    if (s.gzhead.name/* != Z_NULL*/) {
+      beg = s.pending;  /* start of bytes to update crc */
       //int val;
 
       do {
@@ -32585,8 +32585,8 @@ function deflate(strm, flush) {
           }
         }
         // JS specific: little magic to add zero terminator to end of string
-        if (s.gzindex < s.gzhead.nombre.length) {
-          val = s.gzhead.nombre.charCodeAt(s.gzindex++) & 0xff;
+        if (s.gzindex < s.gzhead.name.length) {
+          val = s.gzhead.name.charCodeAt(s.gzindex++) & 0xff;
         } else {
           val = 0;
         }
@@ -32606,8 +32606,8 @@ function deflate(strm, flush) {
     }
   }
   if (s.status === COMMENT_STATE) {
-    if (s.gzhead.comentario/* != Z_NULL*/) {
-      beg = s.pending;  /* start of bytes to upfecha crc */
+    if (s.gzhead.comment/* != Z_NULL*/) {
+      beg = s.pending;  /* start of bytes to update crc */
       //int val;
 
       do {
@@ -32623,8 +32623,8 @@ function deflate(strm, flush) {
           }
         }
         // JS specific: little magic to add zero terminator to end of string
-        if (s.gzindex < s.gzhead.comentario.length) {
-          val = s.gzhead.comentario.charCodeAt(s.gzindex++) & 0xff;
+        if (s.gzindex < s.gzhead.comment.length) {
+          val = s.gzhead.comment.charCodeAt(s.gzindex++) & 0xff;
         } else {
           val = 0;
         }
@@ -32783,7 +32783,7 @@ function deflateEnd(strm) {
   status = strm.state.status;
   if (status !== INIT_STATE &&
     status !== EXTRA_STATE &&
-    status !== nombre_STATE &&
+    status !== NAME_STATE &&
     status !== COMMENT_STATE &&
     status !== HCRC_STATE &&
     status !== BUSY_STATE &&
@@ -32922,7 +32922,7 @@ exports.deflateTune = deflateTune;
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -33177,13 +33177,13 @@ function bi_flush(s) {
 
 
 /* ===========================================================================
- * Compute the optimal bit lengths for a tree and upfecha the total bit length
+ * Compute the optimal bit lengths for a tree and update the total bit length
  * for the current block.
  * IN assertion: the fields freq and dad are set, heap[heap_max] and
  *    above are the tree nodes sorted by increasing frequency.
  * OUT assertions: the field len is set to the optimal bit length, the
  *     array bl_count contains the frequencies for each bit length.
- *     The length opt_len is upfechad; static_len is also upfechad if stree is
+ *     The length opt_len is updated; static_len is also updated if stree is
  *     not null.
  */
 function gen_bitlen(s, desc)
@@ -33581,11 +33581,11 @@ function compress_block(s, ltree, dtree)
 
 /* ===========================================================================
  * Construct one Huffman tree and assigns the code bit strings and lengths.
- * Upfecha the total bit length for the current block.
+ * Update the total bit length for the current block.
  * IN assertion: the field freq is set for all tree elements.
  * OUT assertions: the fields len and code are set to the optimal bit length
- *     and corresponding code. The length opt_len is upfechad; static_len is
- *     also upfechad if stree is not null. The field max_code is set.
+ *     and corresponding code. The length opt_len is updated; static_len is
+ *     also updated if stree is not null. The field max_code is set.
  */
 function build_tree(s, desc)
 //    deflate_state *s;
@@ -33842,7 +33842,7 @@ function build_bl_tree(s) {
       break;
     }
   }
-  /* Upfecha opt_len to include the bit length tree and counts */
+  /* Update opt_len to include the bit length tree and counts */
   s.opt_len += 3 * (max_blindex + 1) + 5 + 5 + 4;
   //Tracev((stderr, "\ndyn trees: dyn %ld, stat %ld",
   //        s->opt_len, s->static_len));
@@ -34151,7 +34151,7 @@ exports._tr_align = _tr_align;
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -34190,7 +34190,7 @@ module.exports = {
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -34251,8 +34251,8 @@ var    TIME = 3;       /* i: waiting for modification time (gzip) */
 var    OS = 4;         /* i: waiting for extra flags and operating system (gzip) */
 var    EXLEN = 5;      /* i: waiting for extra length (gzip) */
 var    EXTRA = 6;      /* i: waiting for extra bytes (gzip) */
-var    nombre = 7;       /* i: waiting for end of file nombre (gzip) */
-var    COMMENT = 8;    /* i: waiting for end of comentario (gzip) */
+var    NAME = 7;       /* i: waiting for end of file name (gzip) */
+var    COMMENT = 8;    /* i: waiting for end of comment (gzip) */
 var    HCRC = 9;       /* i: waiting for header crc (gzip) */
 var    DICTID = 10;    /* i: waiting for dictionary check value */
 var    DICT = 11;      /* waiting for inflateSetDictionary() call */
@@ -34424,7 +34424,7 @@ function inflateReset2(strm, windowBits) {
     state.window = null;
   }
 
-  /* upfecha state and reset the rest of it */
+  /* update state and reset the rest of it */
   state.wrap = wrap;
   state.wbits = windowBits;
   return inflateReset(strm);
@@ -34504,7 +34504,7 @@ function fixedtables(state) {
 
 
 /*
- Upfecha the window with the last wsize (normally 32K) bytes written before
+ Update the window with the last wsize (normally 32K) bytes written before
  returning.  If window does not exist yet, create it.  This is only called
  when a window is already in use, or when output has been written during this
  inflate call, but the end of the deflate stream has not been reached yet.
@@ -34517,7 +34517,7 @@ function fixedtables(state) {
  output will fall in the output data, making match copies simpler and faster.
  The advantage may be dependent on the size of the processor's data caches.
  */
-function upfechawindow(strm, src, end, copy) {
+function updatewindow(strm, src, end, copy) {
   var dist;
   var state = strm.state;
 
@@ -34833,9 +34833,9 @@ function inflate(strm, flush) {
           if (state.length) { break inf_leave; }
         }
         state.length = 0;
-        state.mode = nombre;
+        state.mode = NAME;
         /* falls through */
-      case nombre:
+      case NAME:
         if (state.flags & 0x0800) {
           if (have === 0) { break inf_leave; }
           copy = 0;
@@ -34844,8 +34844,8 @@ function inflate(strm, flush) {
             len = input[next + copy++];
             /* use constant limit because in js we should not preallocate memory */
             if (state.head && len &&
-                (state.length < 65536 /*state.head.nombre_max*/)) {
-              state.head.nombre += String.fromCharCode(len);
+                (state.length < 65536 /*state.head.name_max*/)) {
+              state.head.name += String.fromCharCode(len);
             }
           } while (len && copy < have);
 
@@ -34857,7 +34857,7 @@ function inflate(strm, flush) {
           if (len) { break inf_leave; }
         }
         else if (state.head) {
-          state.head.nombre = null;
+          state.head.name = null;
         }
         state.length = 0;
         state.mode = COMMENT;
@@ -34871,7 +34871,7 @@ function inflate(strm, flush) {
             /* use constant limit because in js we should not preallocate memory */
             if (state.head && len &&
                 (state.length < 65536 /*state.head.comm_max*/)) {
-              state.head.comentario += String.fromCharCode(len);
+              state.head.comment += String.fromCharCode(len);
             }
           } while (len && copy < have);
           if (state.flags & 0x0200) {
@@ -34882,7 +34882,7 @@ function inflate(strm, flush) {
           if (len) { break inf_leave; }
         }
         else if (state.head) {
-          state.head.comentario = null;
+          state.head.comment = null;
         }
         state.mode = HCRC;
         /* falls through */
@@ -35107,7 +35107,7 @@ function inflate(strm, flush) {
         while (state.have < 19) {
           state.lens[order[state.have++]] = 0;
         }
-        // We have separate tables & no pointers. 2 comentarioed lines below not needed.
+        // We have separate tables & no pointers. 2 commented lines below not needed.
         //state.next = state.codes;
         //state.lencode = state.next;
         // Switch to use dynamic table
@@ -35241,13 +35241,13 @@ function inflate(strm, flush) {
         }
 
         /* build code tables -- note: do not change the lenbits or distbits
-           values here (9 and 6) without reading the comentarios in inftrees.h
+           values here (9 and 6) without reading the comments in inftrees.h
            concerning the ENOUGH constants, which depend on those values */
         state.lenbits = 9;
 
         opts = { bits: state.lenbits };
         ret = inflate_table(LENS, state.lens, 0, state.nlen, state.lencode, 0, state.work, opts);
-        // We have separate tables & no pointers. 2 comentarioed lines below not needed.
+        // We have separate tables & no pointers. 2 commented lines below not needed.
         // state.next_index = opts.table_index;
         state.lenbits = opts.bits;
         // state.lencode = state.next;
@@ -35264,7 +35264,7 @@ function inflate(strm, flush) {
         state.distcode = state.distdyn;
         opts = { bits: state.distbits };
         ret = inflate_table(DISTS, state.lens, state.nlen, state.ndist, state.distcode, 0, state.work, opts);
-        // We have separate tables & no pointers. 2 comentarioed lines below not needed.
+        // We have separate tables & no pointers. 2 commented lines below not needed.
         // state.next_index = opts.table_index;
         state.distbits = opts.bits;
         // state.distcode = state.next;
@@ -35613,7 +35613,7 @@ function inflate(strm, flush) {
   /*
      Return from inflate(), updating the total counts and the check value.
      If there was no progress during the inflate() call, return a buffer
-     error.  Call upfechawindow() to create and/or upfecha the window state.
+     error.  Call updatewindow() to create and/or update the window state.
      Note: a memory error from inflate() is non-recoverable.
    */
 
@@ -35628,7 +35628,7 @@ function inflate(strm, flush) {
 
   if (state.wsize || (_out !== strm.avail_out && state.mode < BAD &&
                       (state.mode < CHECK || flush !== Z_FINISH))) {
-    if (upfechawindow(strm, strm.output, strm.next_out, _out - strm.avail_out)) {
+    if (updatewindow(strm, strm.output, strm.next_out, _out - strm.avail_out)) {
       state.mode = MEM;
       return Z_MEM_ERROR;
     }
@@ -35703,9 +35703,9 @@ function inflateSetDictionary(strm, dictionary) {
       return Z_DATA_ERROR;
     }
   }
-  /* copy dictionary to window using upfechawindow(), which will amend the
+  /* copy dictionary to window using updatewindow(), which will amend the
    existing dictionary if appropriate */
-  ret = upfechawindow(strm, dictionary, dictLength, dictLength);
+  ret = updatewindow(strm, dictionary, dictLength, dictLength);
   if (ret) {
     state.mode = MEM;
     return Z_MEM_ERROR;
@@ -35753,7 +35753,7 @@ exports.inflateUndermine = inflateUndermine;
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -36078,7 +36078,7 @@ module.exports = function inflate_fast(strm, start) {
   bits -= len << 3;
   hold &= (1 << bits) - 1;
 
-  /* upfecha state and return */
+  /* update state and return */
   strm.next_in = _in;
   strm.next_out = _out;
   strm.avail_in = (_in < last ? 5 + (last - _in) : 5 - (_in - last));
@@ -36105,7 +36105,7 @@ module.exports = function inflate_fast(strm, start) {
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -36295,7 +36295,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
    used keeps track of how many table entries have been allocated from the
    provided *table space.  It is checked for LENS and DIST tables against
    the constants ENOUGH_LENS and ENOUGH_DISTS to guard against changes in
-   the initial root table size constants.  See the comentarios in inftrees.h
+   the initial root table size constants.  See the comments in inftrees.h
    for more information.
 
    sym increments through all symbols, and the loop terminates when
@@ -36379,7 +36379,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
       huff = 0;
     }
 
-    /* go to next symbol, upfecha count, len */
+    /* go to next symbol, update count, len */
     sym++;
     if (--count[len] === 0) {
       if (len === max) { break; }
@@ -36455,7 +36455,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -37581,7 +37581,7 @@ module.exports = {
 
 	            // Generate key
 	            while (derivedKeyWords.length < keySize) {
-	                var block = hmac.upfecha(salt).finalize(blockIndex);
+	                var block = hmac.update(salt).finalize(blockIndex);
 	                hmac.reset();
 
 	                // Shortcuts
@@ -38428,7 +38428,7 @@ module.exports = {
 	                var t2 = SUB_MIX_0[s2 >>> 24] ^ SUB_MIX_1[(s3 >>> 16) & 0xff] ^ SUB_MIX_2[(s0 >>> 8) & 0xff] ^ SUB_MIX_3[s1 & 0xff] ^ keySchedule[ksRow++];
 	                var t3 = SUB_MIX_0[s3 >>> 24] ^ SUB_MIX_1[(s0 >>> 16) & 0xff] ^ SUB_MIX_2[(s1 >>> 8) & 0xff] ^ SUB_MIX_3[s2 & 0xff] ^ keySchedule[ksRow++];
 
-	                // Upfecha state
+	                // Update state
 	                s0 = t0;
 	                s1 = t1;
 	                s2 = t2;
@@ -39316,7 +39316,7 @@ module.exports = {
 	            keystreamWord |= S[(S[i] + S[j]) % 256] << (24 - n * 8);
 	        }
 
-	        // Upfecha counters
+	        // Update counters
 	        this._i = i;
 	        this._j = j;
 
@@ -39797,24 +39797,24 @@ fontkit.registerFormat = function (format) {
   formats.push(format);
 };
 
-fontkit.openSync = function (filenombre, postscriptnombre) {
-  var buffer = fs.readFileSync(filenombre);
-  return fontkit.create(buffer, postscriptnombre);
+fontkit.openSync = function (filename, postscriptName) {
+  var buffer = fs.readFileSync(filename);
+  return fontkit.create(buffer, postscriptName);
 };
 
-fontkit.open = function (filenombre, postscriptnombre, callback) {
-  if (typeof postscriptnombre === 'function') {
-    callback = postscriptnombre;
-    postscriptnombre = null;
+fontkit.open = function (filename, postscriptName, callback) {
+  if (typeof postscriptName === 'function') {
+    callback = postscriptName;
+    postscriptName = null;
   }
 
-  fs.readFile(filenombre, function (err, buffer) {
+  fs.readFile(filename, function (err, buffer) {
     if (err) {
       return callback(err);
     }
 
     try {
-      var font = fontkit.create(buffer, postscriptnombre);
+      var font = fontkit.create(buffer, postscriptName);
     } catch (e) {
       return callback(e);
     }
@@ -39825,13 +39825,13 @@ fontkit.open = function (filenombre, postscriptnombre, callback) {
   return;
 };
 
-fontkit.create = function (buffer, postscriptnombre) {
+fontkit.create = function (buffer, postscriptName) {
   for (var i = 0; i < formats.length; i++) {
     var format = formats[i];
     if (format.probe(buffer)) {
       var font = new format(new r.DecodeStream(buffer));
-      if (postscriptnombre) {
-        return font.getFont(postscriptnombre);
+      if (postscriptName) {
+        return font.getFont(postscriptName);
       }
 
       return font;
@@ -40094,8 +40094,8 @@ var maxp = new r.Struct({
 });
 
 /**
- * Gets an encoding nombre from platform, encoding, and language ids.
- * Returned encoding nombres can be used in iconv-lite to decode text.
+ * Gets an encoding name from platform, encoding, and language ids.
+ * Returned encoding names can be used in iconv-lite to decode text.
  */
 function getEncoding(platformID, encodingID) {
   var languageID = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
@@ -40127,11 +40127,11 @@ var ENCODINGS = [
 // 10	Gurmukhi	            27	Mongolian
 // 11	Gujarati	            28	Geez
 // 12	Oriya	                29	Slavic
-// 13	Bengali	              30	Vietnombrese
+// 13	Bengali	              30	Vietnamese
 // 14	Tamil	                31	Sindhi
 // 15	Telugu	              32	(Uninterpreted)
 // 16	Kannada
-['macroman', 'shift-jis', 'big5', 'euc-kr', 'iso-8859-6', 'iso-8859-8', 'macgreek', 'maccyrillic', 'symbol', 'Devanagari', 'Gurmukhi', 'Gujarati', 'Oriya', 'Bengali', 'Tamil', 'Telugu', 'Kannada', 'Malayalam', 'Sinhalese', 'Burmese', 'Khmer', 'macthai', 'Laotian', 'Georgian', 'Armenian', 'gb-2312-80', 'Tibetan', 'Mongolian', 'Geez', 'maccenteuro', 'Vietnombrese', 'Sindhi'],
+['macroman', 'shift-jis', 'big5', 'euc-kr', 'iso-8859-6', 'iso-8859-8', 'macgreek', 'maccyrillic', 'symbol', 'Devanagari', 'Gurmukhi', 'Gujarati', 'Oriya', 'Bengali', 'Tamil', 'Telugu', 'Kannada', 'Malayalam', 'Sinhalese', 'Burmese', 'Khmer', 'macthai', 'Laotian', 'Georgian', 'Armenian', 'gb-2312-80', 'Tibetan', 'Mongolian', 'Geez', 'maccenteuro', 'Vietnamese', 'Sindhi'],
 
 // ISO (deprecated)
 ['ascii'],
@@ -40252,11 +40252,11 @@ var LANGUAGES = [
   0x2409: 'en-029', 0x0486: 'quc', 0x046C: 'nso'
 }];
 
-var nombreRecord = new r.Struct({
+var NameRecord = new r.Struct({
   platformID: r.uint16,
   encodingID: r.uint16,
   languageID: r.uint16,
-  nombreID: r.uint16,
+  nameID: r.uint16,
   length: r.uint16,
   string: new r.Pointer(r.uint16, new r.String('length', function (t) {
     return getEncoding(t.platformID, t.encodingID, t.languageID);
@@ -40268,26 +40268,26 @@ var LangTagRecord = new r.Struct({
   tag: new r.Pointer(r.uint16, new r.String('length', 'utf16be'), { type: 'parent', relativeTo: 'stringOffset' })
 });
 
-var nombreTable = new r.VersionedStruct(r.uint16, {
+var NameTable = new r.VersionedStruct(r.uint16, {
   0: {
     count: r.uint16,
     stringOffset: r.uint16,
-    records: new r.Array(nombreRecord, 'count')
+    records: new r.Array(NameRecord, 'count')
   },
   1: {
     count: r.uint16,
     stringOffset: r.uint16,
-    records: new r.Array(nombreRecord, 'count'),
+    records: new r.Array(NameRecord, 'count'),
     langTagCount: r.uint16,
     langTags: new r.Array(LangTagRecord, 'langTagCount')
   }
 });
 
-var nombreS = ['copyright', 'fontFamily', 'fontSubfamily', 'uniqueSubfamily', 'fullnombre', 'version', 'postscriptnombre', // Note: A font may have only one PostScript nombre and that nombre must be ASCII.
-'trademark', 'manufacturer', 'designer', 'descripcion', 'vendorURL', 'designerURL', 'license', 'licenseURL', null, // reserved
-'preferredFamily', 'preferredSubfamily', 'compatibleFull', 'sampleText', 'postscriptCIDFontnombre', 'wwsFamilynombre', 'wwsSubfamilynombre'];
+var NAMES = ['copyright', 'fontFamily', 'fontSubfamily', 'uniqueSubfamily', 'fullName', 'version', 'postscriptName', // Note: A font may have only one PostScript name and that name must be ASCII.
+'trademark', 'manufacturer', 'designer', 'description', 'vendorURL', 'designerURL', 'license', 'licenseURL', null, // reserved
+'preferredFamily', 'preferredSubfamily', 'compatibleFull', 'sampleText', 'postscriptCIDFontName', 'wwsFamilyName', 'wwsSubfamilyName'];
 
-nombreTable.process = function (stream) {
+NameTable.process = function (stream) {
   var records = {};
   for (var _iterator = this.records, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _getIterator(_iterator);;) {
     var _ref;
@@ -40314,15 +40314,15 @@ nombreTable.process = function (stream) {
       language = record.platformID + '-' + record.languageID;
     }
 
-    // if the nombreID is >= 256, it is a font feature record (AAT)
-    var key = record.nombreID >= 256 ? 'fontFeatures' : nombreS[record.nombreID] || record.nombreID;
+    // if the nameID is >= 256, it is a font feature record (AAT)
+    var key = record.nameID >= 256 ? 'fontFeatures' : NAMES[record.nameID] || record.nameID;
     if (records[key] == null) {
       records[key] = {};
     }
 
     var obj = records[key];
-    if (record.nombreID >= 256) {
-      obj = obj[record.nombreID] || (obj[record.nombreID] = {});
+    if (record.nameID >= 256) {
+      obj = obj[record.nameID] || (obj[record.nameID] = {});
     }
 
     if (typeof record.string === 'string' || typeof obj[language] !== 'string') {
@@ -40333,7 +40333,7 @@ nombreTable.process = function (stream) {
   this.records = records;
 };
 
-nombreTable.preEncode = function () {
+NameTable.preEncode = function () {
   if (Array.isArray(this.records)) return;
   this.version = 0;
 
@@ -40346,17 +40346,17 @@ nombreTable.preEncode = function () {
       platformID: 3,
       encodingID: 1,
       languageID: 0x409,
-      nombreID: nombreS.indexOf(key),
+      nameID: NAMES.indexOf(key),
       length: Buffer.byteLength(val.en, 'utf16le'),
       string: val.en
     });
 
-    if (key === 'postscriptnombre') {
+    if (key === 'postscriptName') {
       records.push({
         platformID: 1,
         encodingID: 0,
         languageID: 0,
-        nombreID: nombreS.indexOf(key),
+        nameID: NAMES.indexOf(key),
         length: val.en.length,
         string: val.en
       });
@@ -40365,7 +40365,7 @@ nombreTable.preEncode = function () {
 
   this.records = records;
   this.count = records.length;
-  this.stringOffset = nombreTable.size(this, null, false);
+  this.stringOffset = NameTable.size(this, null, false);
 };
 
 var OS2 = new r.VersionedStruct(r.uint16, {
@@ -40462,8 +40462,8 @@ var post = new r.VersionedStruct(r.fixed32, {
 
   2: {
     numberOfGlyphs: r.uint16,
-    glyphnombreIndex: new r.Array(r.uint16, 'numberOfGlyphs'),
-    nombres: new r.Array(new r.String(r.uint8))
+    glyphNameIndex: new r.Array(r.uint16, 'numberOfGlyphs'),
+    names: new r.Array(new r.String(r.uint8))
   },
 
   2.5: {
@@ -41179,7 +41179,7 @@ var CFFBlendOp = function () {
 }();
 
 var CFFPrivateDict = new CFFDict([
-// key       nombre                    type                                          default
+// key       name                    type                                          default
 [6, 'BlueValues', 'delta', null], [7, 'OtherBlues', 'delta', null], [8, 'FamilyBlues', 'delta', null], [9, 'FamilyOtherBlues', 'delta', null], [[12, 9], 'BlueScale', 'number', 0.039625], [[12, 10], 'BlueShift', 'number', 7], [[12, 11], 'BlueFuzz', 'number', 1], [10, 'StdHW', 'number', null], [11, 'StdVW', 'number', null], [[12, 12], 'StemSnapH', 'delta', null], [[12, 13], 'StemSnapV', 'delta', null], [[12, 14], 'ForceBold', 'boolean', false], [[12, 17], 'LanguageGroup', 'number', 0], [[12, 18], 'ExpansionFactor', 'number', 0.06], [[12, 19], 'initialRandomSeed', 'number', 0], [20, 'defaultWidthX', 'number', 0], [21, 'nominalWidthX', 'number', 0], [22, 'vsindex', 'number', 0], [23, 'blend', CFFBlendOp, null], [19, 'Subrs', new CFFPointer(new CFFIndex(), { type: 'local' }), null]]);
 
 // Automatically generated from Appendix A of the CFF specification; do
@@ -41677,15 +41677,15 @@ var CFFPrivateOp = function () {
 }();
 
 var FontDict = new CFFDict([
-// key       nombre                   type(s)                                 default
-[18, 'Private', new CFFPrivateOp(), null], [[12, 38], 'Fontnombre', 'sid', null], [[12, 7], 'FontMatrix', 'array', [0.001, 0, 0, 0.001, 0, 0]], [[12, 5], 'PaintType', 'number', 0]]);
+// key       name                   type(s)                                 default
+[18, 'Private', new CFFPrivateOp(), null], [[12, 38], 'FontName', 'sid', null], [[12, 7], 'FontMatrix', 'array', [0.001, 0, 0, 0.001, 0, 0]], [[12, 5], 'PaintType', 'number', 0]]);
 
 var CFFTopDict = new CFFDict([
-// key       nombre                   type(s)                                 default
-[[12, 30], 'ROS', ['sid', 'sid', 'number'], null], [0, 'version', 'sid', null], [1, 'Notice', 'sid', null], [[12, 0], 'Copyright', 'sid', null], [2, 'Fullnombre', 'sid', null], [3, 'Familynombre', 'sid', null], [4, 'Weight', 'sid', null], [[12, 1], 'isFixedPitch', 'boolean', false], [[12, 2], 'ItalicAngle', 'number', 0], [[12, 3], 'UnderlinePosition', 'number', -100], [[12, 4], 'UnderlineThickness', 'number', 50], [[12, 5], 'PaintType', 'number', 0], [[12, 6], 'CharstringType', 'number', 2], [[12, 7], 'FontMatrix', 'array', [0.001, 0, 0, 0.001, 0, 0]], [13, 'UniqueID', 'number', null], [5, 'FontBBox', 'array', [0, 0, 0, 0]], [[12, 8], 'StrokeWidth', 'number', 0], [14, 'XUID', 'array', null], [15, 'charset', CFFCharset, ISOAdobeCharset], [16, 'Encoding', CFFEncoding, StandardEncoding], [17, 'CharStrings', new CFFPointer(new CFFIndex()), null], [18, 'Private', new CFFPrivateOp(), null], [[12, 20], 'SyntheticBase', 'number', null], [[12, 21], 'PostScript', 'sid', null], [[12, 22], 'BaseFontnombre', 'sid', null], [[12, 23], 'BaseFontBlend', 'delta', null],
+// key       name                   type(s)                                 default
+[[12, 30], 'ROS', ['sid', 'sid', 'number'], null], [0, 'version', 'sid', null], [1, 'Notice', 'sid', null], [[12, 0], 'Copyright', 'sid', null], [2, 'FullName', 'sid', null], [3, 'FamilyName', 'sid', null], [4, 'Weight', 'sid', null], [[12, 1], 'isFixedPitch', 'boolean', false], [[12, 2], 'ItalicAngle', 'number', 0], [[12, 3], 'UnderlinePosition', 'number', -100], [[12, 4], 'UnderlineThickness', 'number', 50], [[12, 5], 'PaintType', 'number', 0], [[12, 6], 'CharstringType', 'number', 2], [[12, 7], 'FontMatrix', 'array', [0.001, 0, 0, 0.001, 0, 0]], [13, 'UniqueID', 'number', null], [5, 'FontBBox', 'array', [0, 0, 0, 0]], [[12, 8], 'StrokeWidth', 'number', 0], [14, 'XUID', 'array', null], [15, 'charset', CFFCharset, ISOAdobeCharset], [16, 'Encoding', CFFEncoding, StandardEncoding], [17, 'CharStrings', new CFFPointer(new CFFIndex()), null], [18, 'Private', new CFFPrivateOp(), null], [[12, 20], 'SyntheticBase', 'number', null], [[12, 21], 'PostScript', 'sid', null], [[12, 22], 'BaseFontName', 'sid', null], [[12, 23], 'BaseFontBlend', 'delta', null],
 
 // CID font specific
-[[12, 31], 'CIDFontVersion', 'number', 0], [[12, 32], 'CIDFontRevision', 'number', 0], [[12, 33], 'CIDFontType', 'number', 0], [[12, 34], 'CIDCount', 'number', 8720], [[12, 35], 'UIDBase', 'number', null], [[12, 37], 'FDSelect', new CFFPointer(FDSelect), null], [[12, 36], 'FDArray', new CFFPointer(new CFFIndex(FontDict)), null], [[12, 38], 'Fontnombre', 'sid', null]]);
+[[12, 31], 'CIDFontVersion', 'number', 0], [[12, 32], 'CIDFontRevision', 'number', 0], [[12, 33], 'CIDFontType', 'number', 0], [[12, 34], 'CIDCount', 'number', 8720], [[12, 35], 'UIDBase', 'number', null], [[12, 37], 'FDSelect', new CFFPointer(FDSelect), null], [[12, 36], 'FDArray', new CFFPointer(new CFFIndex(FontDict)), null], [[12, 38], 'FontName', 'sid', null]]);
 
 var VariationStore = new r.Struct({
   length: r.uint16,
@@ -41698,7 +41698,7 @@ var CFFTop = new r.VersionedStruct(r.fixed16, {
   1: {
     hdrSize: r.uint8,
     offSize: r.uint8,
-    nombreIndex: new CFFIndex(new r.String('length')),
+    nameIndex: new CFFIndex(new r.String('length')),
     topDictIndex: new CFFIndex(CFFTopDict),
     stringIndex: new CFFIndex(new r.String('length')),
     globalSubrIndex: new CFFIndex()
@@ -41761,13 +41761,13 @@ var CFFFont = function () {
     return this.stream.readBuffer(this.topDict.CharStrings[glyph].length);
   };
 
-  CFFFont.prototype.getGlyphnombre = function getGlyphnombre(gid) {
-    // CFF2 glyph nombres are in the post table.
+  CFFFont.prototype.getGlyphName = function getGlyphName(gid) {
+    // CFF2 glyph names are in the post table.
     if (this.version >= 2) {
       return null;
     }
 
-    // CID-keyed fonts don't have glyph nombres
+    // CID-keyed fonts don't have glyph names
     if (this.isCIDFont) {
       return null;
     }
@@ -41852,23 +41852,23 @@ var CFFFont = function () {
   };
 
   _createClass(CFFFont, [{
-    key: 'postscriptnombre',
+    key: 'postscriptName',
     get: function get() {
       if (this.version < 2) {
-        return this.nombreIndex[0];
+        return this.nameIndex[0];
       }
 
       return null;
     }
   }, {
-    key: 'fullnombre',
+    key: 'fullName',
     get: function get() {
-      return this.string(this.topDict.Fullnombre);
+      return this.string(this.topDict.FullName);
     }
   }, {
-    key: 'familynombre',
+    key: 'familyName',
     get: function get() {
-      return this.string(this.topDict.Familynombre);
+      return this.string(this.topDict.FamilyName);
     }
   }]);
 
@@ -42818,7 +42818,7 @@ var PCLT = new r.Struct({
   symbolSet: r.uint16,
   typeface: new r.String(16),
   characterComplement: new r.String(8),
-  filenombre: new r.String(6),
+  fileName: new r.String(6),
   strokeWeight: new r.String(1),
   widthType: new r.String(1),
   serifStyle: r.uint8,
@@ -42931,7 +42931,7 @@ var UnboundedArrayAccessor = function () {
   };
 
   UnboundedArrayAccessor.prototype.inspect = function inspect() {
-    return '[UnboundedArray ' + this.type.constructor.nombre + ']';
+    return '[UnboundedArray ' + this.type.constructor.name + ']';
   };
 
   return UnboundedArrayAccessor;
@@ -43134,30 +43134,30 @@ var bsln = new r.Struct({
 
 var Setting = new r.Struct({
   setting: r.uint16,
-  nombreIndex: r.int16,
-  nombre: function nombre(t) {
-    return t.parent.parent.parent.nombre.records.fontFeatures[t.nombreIndex];
+  nameIndex: r.int16,
+  name: function name(t) {
+    return t.parent.parent.parent.name.records.fontFeatures[t.nameIndex];
   }
 });
 
-var Featurenombre = new r.Struct({
+var FeatureName = new r.Struct({
   feature: r.uint16,
   nSettings: r.uint16,
   settingTable: new r.Pointer(r.uint32, new r.Array(Setting, 'nSettings'), { type: 'parent' }),
   featureFlags: new r.Bitfield(r.uint8, [null, null, null, null, null, null, 'hasDefault', 'exclusive']),
   defaultSetting: r.uint8,
-  nombreIndex: r.int16,
-  nombre: function nombre(t) {
-    return t.parent.parent.nombre.records.fontFeatures[t.nombreIndex];
+  nameIndex: r.int16,
+  name: function name(t) {
+    return t.parent.parent.name.records.fontFeatures[t.nameIndex];
   }
 });
 
 var feat = new r.Struct({
   version: r.fixed32,
-  featurenombreCount: r.uint16,
+  featureNameCount: r.uint16,
   reserved1: new r.Reserved(r.uint16),
   reserved2: new r.Reserved(r.uint32),
-  featurenombres: new r.Array(Featurenombre, 'featurenombreCount')
+  featureNames: new r.Array(FeatureName, 'featureNameCount')
 });
 
 var Axis$1 = new r.Struct({
@@ -43166,22 +43166,22 @@ var Axis$1 = new r.Struct({
   defaultValue: r.fixed32,
   maxValue: r.fixed32,
   flags: r.uint16,
-  nombreID: r.uint16,
-  nombre: function nombre(t) {
-    return t.parent.parent.nombre.records.fontFeatures[t.nombreID];
+  nameID: r.uint16,
+  name: function name(t) {
+    return t.parent.parent.name.records.fontFeatures[t.nameID];
   }
 });
 
 var Instance = new r.Struct({
-  nombreID: r.uint16,
-  nombre: function nombre(t) {
-    return t.parent.parent.nombre.records.fontFeatures[t.nombreID];
+  nameID: r.uint16,
+  name: function name(t) {
+    return t.parent.parent.name.records.fontFeatures[t.nameID];
   },
   flags: r.uint16,
   coord: new r.Array(r.fixed32, function (t) {
     return t.parent.axisCount;
   }),
-  postscriptnombreID: new r.Optional(r.uint16, function (t) {
+  postscriptNameID: new r.Optional(r.uint16, function (t) {
     return t.parent.instanceSize - t._currentOffset > 0;
   })
 });
@@ -43409,7 +43409,7 @@ tables.head = head;
 tables.hhea = hhea;
 tables.hmtx = hmtx;
 tables.maxp = maxp;
-tables.nombre = nombreTable;
+tables.name = NameTable;
 tables['OS/2'] = OS2;
 tables.post = post;
 
@@ -44984,10 +44984,10 @@ var features = {
     // exponents: 8
     mathematicalGreek: 10
   },
-  ornombrentSets: {
+  ornamentSets: {
     code: 16,
     exclusive: true,
-    noOrnombrents: 0,
+    noOrnaments: 0,
     dingbats: 1,
     piCharacters: 2,
     fleurons: 3,
@@ -45037,7 +45037,7 @@ var features = {
     JIS2004Characters: 11,
     hojoCharacters: 12,
     NLCCharacters: 13,
-    traditionalnombresCharacters: 14
+    traditionalNamesCharacters: 14
   },
   numberCase: {
     code: 21,
@@ -45217,8 +45217,8 @@ var features = {
   }
 };
 
-var feature = function feature(nombre, selector) {
-  return [features[nombre].code, features[nombre][selector]];
+var feature = function feature(name, selector) {
+  return [features[name].code, features[name][selector]];
 };
 
 var OTMapping = {
@@ -45277,7 +45277,7 @@ var OTMapping = {
   mgrk: feature('mathematicalExtras', 'mathematicalGreek'),
 
   // nalt: not enough info. what type of annotation?
-  // ornm: ditto, which ornombrent style?
+  // ornm: ditto, which ornament style?
 
   calt: feature('contextualAlternates', 'contextualAlternates'), // or more?
   vrt2: feature('verticalSubstitution', 'substituteVerticalForms'), // oh... below?
@@ -45302,7 +45302,7 @@ var OTMapping = {
   expt: feature('characterShape', 'expertCharacters'),
   hojo: feature('characterShape', 'hojoCharacters'),
   nlck: feature('characterShape', 'NLCCharacters'),
-  tnam: feature('characterShape', 'traditionalnombresCharacters'),
+  tnam: feature('characterShape', 'traditionalNamesCharacters'),
   ruby: feature('rubyKana', 'rubyKana'),
   titl: feature('styleOptions', 'titlingCaps'),
   zero: feature('typographicExtras', 'slashedZero'),
@@ -48357,7 +48357,7 @@ function initialReordering(font, glyphs, plan) {
     var hasReph = false;
 
     // If the syllable starts with Ra + Halant (in a script that has Reph)
-    // and has more than one consonant, Ra is excluded from candifechas for
+    // and has more than one consonant, Ra is excluded from candidates for
     // base consonants.
     if (indicConfig.rephPos !== POSITIONS.Ra_To_Become_Reph && features.rphf && start + 3 <= end && (indicConfig.rephMode === 'Implicit' && !isJoiner(glyphs[start + 2]) || indicConfig.rephMode === 'Explicit' && glyphs[start + 2].shaperInfo.category === CATEGORIES.ZWJ)) {
       // See if it matches the 'rphf' feature.
@@ -48440,7 +48440,7 @@ function initialReordering(font, glyphs, plan) {
     }
 
     // If the syllable starts with Ra + Halant (in a script that has Reph)
-    // and has more than one consonant, Ra is excluded from candifechas for
+    // and has more than one consonant, Ra is excluded from candidates for
     // base consonants.
     //
     //  Only do this for unforced Reph. (ie. not for Ra,H,ZWJ)
@@ -48721,7 +48721,7 @@ function finalReordering(font, glyphs, plan) {
           for (var i = base + 1; i < end; i++) {
             if (glyphs[i].features.pref) {
               if (!(glyphs[i].substituted && glyphs[i].isLigated && !glyphs[i].isMultiplied)) {
-                // Ok, this was a 'pref' candifecha but didn't form any.
+                // Ok, this was a 'pref' candidate but didn't form any.
                 // Base is around here...
                 base = i;
                 while (base < end && isHalantOrCoeng(glyphs[base])) {
@@ -49555,7 +49555,7 @@ var GSUBProcessor = function (_OTProcessor) {
             //   components, we have to attach the marks to the new ligature component
             //   positions!  Now *that*'s tricky!  And these marks may be following the
             //   last component of the whole sequence, so we should loop forward looking
-            //   for them and upfecha them.
+            //   for them and update them.
             //
             //   Eg. the sequence is LAM,LAM,SHADDA,FATHA,HEH, and the font first forms a
             //   'calt' ligature of LAM,HEH, leaving the SHADDA and FATHA with a ligature
@@ -50742,7 +50742,7 @@ for (var _i6 = 0; _i6 < _arr.length; _i6++) {
   _loop();
 }
 
-var Standardnombres = ['.notdef', '.null', 'nonmarkingreturn', 'space', 'exclam', 'quotedbl', 'numbersign', 'dollar', 'percent', 'ampersand', 'quotesingle', 'parenleft', 'parenright', 'asterisk', 'plus', 'comma', 'hyphen', 'period', 'slash', 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'colon', 'semicolon', 'less', 'equal', 'greater', 'question', 'at', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'bracketleft', 'backslash', 'bracketright', 'asciicircum', 'underscore', 'grave', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'braceleft', 'bar', 'braceright', 'asciitilde', 'Adieresis', 'Aring', 'Ccedilla', 'Eacute', 'Ntilde', 'Odieresis', 'Udieresis', 'aacute', 'agrave', 'acircumflex', 'adieresis', 'atilde', 'aring', 'ccedilla', 'eacute', 'egrave', 'ecircumflex', 'edieresis', 'iacute', 'igrave', 'icircumflex', 'idieresis', 'ntilde', 'oacute', 'ograve', 'ocircumflex', 'odieresis', 'otilde', 'uacute', 'ugrave', 'ucircumflex', 'udieresis', 'dagger', 'degree', 'cent', 'sterling', 'section', 'bullet', 'paragraph', 'germandbls', 'registered', 'copyright', 'trademark', 'acute', 'dieresis', 'notequal', 'AE', 'Oslash', 'infinity', 'plusminus', 'lessequal', 'greaterequal', 'yen', 'mu', 'partialdiff', 'summation', 'product', 'pi', 'integral', 'ordfeminine', 'ordmasculine', 'Omega', 'ae', 'oslash', 'questiondown', 'exclamdown', 'logicalnot', 'radical', 'florin', 'approxequal', 'Delta', 'guillemotleft', 'guillemotright', 'ellipsis', 'nonbreakingspace', 'Agrave', 'Atilde', 'Otilde', 'OE', 'oe', 'endash', 'emdash', 'quotedblleft', 'quotedblright', 'quoteleft', 'quoteright', 'divide', 'lozenge', 'ydieresis', 'Ydieresis', 'fraction', 'currency', 'guilsinglleft', 'guilsinglright', 'fi', 'fl', 'daggerdbl', 'periodcentered', 'quotesinglbase', 'quotedblbase', 'perthousand', 'Acircumflex', 'Ecircumflex', 'Aacute', 'Edieresis', 'Egrave', 'Iacute', 'Icircumflex', 'Idieresis', 'Igrave', 'Oacute', 'Ocircumflex', 'apple', 'Ograve', 'Uacute', 'Ucircumflex', 'Ugrave', 'dotlessi', 'circumflex', 'tilde', 'macron', 'breve', 'dotaccent', 'ring', 'cedilla', 'hungarumlaut', 'ogonek', 'caron', 'Lslash', 'lslash', 'Scaron', 'scaron', 'Zcaron', 'zcaron', 'brokenbar', 'Eth', 'eth', 'Yacute', 'yacute', 'Thorn', 'thorn', 'minus', 'multiply', 'onesuperior', 'twosuperior', 'threesuperior', 'onehalf', 'onequarter', 'threequarters', 'franc', 'Gbreve', 'gbreve', 'Idotaccent', 'Scedilla', 'scedilla', 'Cacute', 'cacute', 'Ccaron', 'ccaron', 'dcroat'];
+var StandardNames = ['.notdef', '.null', 'nonmarkingreturn', 'space', 'exclam', 'quotedbl', 'numbersign', 'dollar', 'percent', 'ampersand', 'quotesingle', 'parenleft', 'parenright', 'asterisk', 'plus', 'comma', 'hyphen', 'period', 'slash', 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'colon', 'semicolon', 'less', 'equal', 'greater', 'question', 'at', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'bracketleft', 'backslash', 'bracketright', 'asciicircum', 'underscore', 'grave', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'braceleft', 'bar', 'braceright', 'asciitilde', 'Adieresis', 'Aring', 'Ccedilla', 'Eacute', 'Ntilde', 'Odieresis', 'Udieresis', 'aacute', 'agrave', 'acircumflex', 'adieresis', 'atilde', 'aring', 'ccedilla', 'eacute', 'egrave', 'ecircumflex', 'edieresis', 'iacute', 'igrave', 'icircumflex', 'idieresis', 'ntilde', 'oacute', 'ograve', 'ocircumflex', 'odieresis', 'otilde', 'uacute', 'ugrave', 'ucircumflex', 'udieresis', 'dagger', 'degree', 'cent', 'sterling', 'section', 'bullet', 'paragraph', 'germandbls', 'registered', 'copyright', 'trademark', 'acute', 'dieresis', 'notequal', 'AE', 'Oslash', 'infinity', 'plusminus', 'lessequal', 'greaterequal', 'yen', 'mu', 'partialdiff', 'summation', 'product', 'pi', 'integral', 'ordfeminine', 'ordmasculine', 'Omega', 'ae', 'oslash', 'questiondown', 'exclamdown', 'logicalnot', 'radical', 'florin', 'approxequal', 'Delta', 'guillemotleft', 'guillemotright', 'ellipsis', 'nonbreakingspace', 'Agrave', 'Atilde', 'Otilde', 'OE', 'oe', 'endash', 'emdash', 'quotedblleft', 'quotedblright', 'quoteleft', 'quoteright', 'divide', 'lozenge', 'ydieresis', 'Ydieresis', 'fraction', 'currency', 'guilsinglleft', 'guilsinglright', 'fi', 'fl', 'daggerdbl', 'periodcentered', 'quotesinglbase', 'quotedblbase', 'perthousand', 'Acircumflex', 'Ecircumflex', 'Aacute', 'Edieresis', 'Egrave', 'Iacute', 'Icircumflex', 'Idieresis', 'Igrave', 'Oacute', 'Ocircumflex', 'apple', 'Ograve', 'Uacute', 'Ucircumflex', 'Ugrave', 'dotlessi', 'circumflex', 'tilde', 'macron', 'breve', 'dotaccent', 'ring', 'cedilla', 'hungarumlaut', 'ogonek', 'caron', 'Lslash', 'lslash', 'Scaron', 'scaron', 'Zcaron', 'zcaron', 'brokenbar', 'Eth', 'eth', 'Yacute', 'yacute', 'Thorn', 'thorn', 'minus', 'multiply', 'onesuperior', 'twosuperior', 'threesuperior', 'onehalf', 'onequarter', 'threequarters', 'franc', 'Gbreve', 'gbreve', 'Idotaccent', 'Scedilla', 'scedilla', 'Cacute', 'cacute', 'Ccaron', 'ccaron', 'dcroat'];
 
 var _class$8;
 function _applyDecoratedDescriptor$4(target, property, decorators, descriptor, context) {
@@ -50879,7 +50879,7 @@ var Glyph = (_class$8 = function () {
    * can be outside of the bounding box. Where `bbox` takes this into account,
    * `cbox` does not. Thus, cbox is less accurate, but faster to compute.
    * See [here](http://www.freetype.org/freetype2/docs/glyphs/glyphs-6.html#section-2)
-   * for a more detailed descripcion.
+   * for a more detailed description.
    *
    * @type {BBox}
    */
@@ -50901,7 +50901,7 @@ var Glyph = (_class$8 = function () {
    */
 
 
-  Glyph.prototype._getnombre = function _getnombre() {
+  Glyph.prototype._getName = function _getName() {
     var post = this._font.post;
 
     if (!post) {
@@ -50910,18 +50910,18 @@ var Glyph = (_class$8 = function () {
 
     switch (post.version) {
       case 1:
-        return Standardnombres[this.id];
+        return StandardNames[this.id];
 
       case 2:
-        var id = post.glyphnombreIndex[this.id];
-        if (id < Standardnombres.length) {
-          return Standardnombres[id];
+        var id = post.glyphNameIndex[this.id];
+        if (id < StandardNames.length) {
+          return StandardNames[id];
         }
 
-        return post.nombres[id - Standardnombres.length];
+        return post.names[id - StandardNames.length];
 
       case 2.5:
-        return Standardnombres[this.id + post.offsets[this.id]];
+        return StandardNames[this.id + post.offsets[this.id]];
 
       case 4:
         return String.fromCharCode(post.map[this.id]);
@@ -50929,7 +50929,7 @@ var Glyph = (_class$8 = function () {
   };
 
   /**
-   * The glyph's nombre
+   * The glyph's name
    * @type {string}
    */
 
@@ -51002,14 +51002,14 @@ var Glyph = (_class$8 = function () {
     key: 'ligatureCaretPositions',
     get: function get() {}
   }, {
-    key: 'nombre',
+    key: 'name',
     get: function get() {
-      return this._getnombre();
+      return this._getName();
     }
   }]);
 
   return Glyph;
-}(), (_applyDecoratedDescriptor$4(_class$8.prototype, 'cbox', [cache], _Object$getOwnPropertyDescriptor(_class$8.prototype, 'cbox'), _class$8.prototype), _applyDecoratedDescriptor$4(_class$8.prototype, 'bbox', [cache], _Object$getOwnPropertyDescriptor(_class$8.prototype, 'bbox'), _class$8.prototype), _applyDecoratedDescriptor$4(_class$8.prototype, 'path', [cache], _Object$getOwnPropertyDescriptor(_class$8.prototype, 'path'), _class$8.prototype), _applyDecoratedDescriptor$4(_class$8.prototype, 'advanceWidth', [cache], _Object$getOwnPropertyDescriptor(_class$8.prototype, 'advanceWidth'), _class$8.prototype), _applyDecoratedDescriptor$4(_class$8.prototype, 'advanceHeight', [cache], _Object$getOwnPropertyDescriptor(_class$8.prototype, 'advanceHeight'), _class$8.prototype), _applyDecoratedDescriptor$4(_class$8.prototype, 'nombre', [cache], _Object$getOwnPropertyDescriptor(_class$8.prototype, 'nombre'), _class$8.prototype)), _class$8);
+}(), (_applyDecoratedDescriptor$4(_class$8.prototype, 'cbox', [cache], _Object$getOwnPropertyDescriptor(_class$8.prototype, 'cbox'), _class$8.prototype), _applyDecoratedDescriptor$4(_class$8.prototype, 'bbox', [cache], _Object$getOwnPropertyDescriptor(_class$8.prototype, 'bbox'), _class$8.prototype), _applyDecoratedDescriptor$4(_class$8.prototype, 'path', [cache], _Object$getOwnPropertyDescriptor(_class$8.prototype, 'path'), _class$8.prototype), _applyDecoratedDescriptor$4(_class$8.prototype, 'advanceWidth', [cache], _Object$getOwnPropertyDescriptor(_class$8.prototype, 'advanceWidth'), _class$8.prototype), _applyDecoratedDescriptor$4(_class$8.prototype, 'advanceHeight', [cache], _Object$getOwnPropertyDescriptor(_class$8.prototype, 'advanceHeight'), _class$8.prototype), _applyDecoratedDescriptor$4(_class$8.prototype, 'name', [cache], _Object$getOwnPropertyDescriptor(_class$8.prototype, 'name'), _class$8.prototype)), _class$8);
 
 // The header for both simple and composite glyphs
 var GlyfHeader = new r.Struct({
@@ -51441,12 +51441,12 @@ var CFFGlyph = function (_Glyph) {
     return _possibleConstructorReturn(this, _Glyph.apply(this, arguments));
   }
 
-  CFFGlyph.prototype._getnombre = function _getnombre() {
+  CFFGlyph.prototype._getName = function _getName() {
     if (this._font.CFF2) {
-      return _Glyph.prototype._getnombre.call(this);
+      return _Glyph.prototype._getName.call(this);
     }
 
-    return this._font['CFF '].getGlyphnombre(this.id);
+    return this._font['CFF '].getGlyphName(this.id);
   };
 
   CFFGlyph.prototype.bias = function bias(s) {
@@ -53053,7 +53053,7 @@ var TTFSubset = function (_Subset) {
     //   head, hhea, loca, maxp, cvt , prep, glyf, hmtx, fpgm
     //
     // additional tables required for standalone fonts:
-    //   nombre, cmap, OS/2, post
+    //   name, cmap, OS/2, post
 
     this.glyf = [];
     this.offset = 0;
@@ -53121,7 +53121,7 @@ var TTFSubset = function (_Subset) {
         hmtx: this.hmtx,
         fpgm: this.font.fpgm
 
-        // nombre: clone @font.nombre
+        // name: clone @font.name
         // 'OS/2': clone @font['OS/2']
         // post: clone @font.post
         // cmap: cmap
@@ -53238,7 +53238,7 @@ var CFFSubset = function (_Subset) {
 
     for (var i = 0; i < topDict.FDArray.length; i++) {
       var dict = topDict.FDArray[i];
-      delete dict.Fontnombre;
+      delete dict.FontName;
       if (dict.Private && dict.Private.Subrs) {
         dict.Private = _Object$assign({}, dict.Private);
         dict.Private.Subrs = this.subsetSubrs(dict.Private.Subrs, used_subrs[i]);
@@ -53313,7 +53313,7 @@ var CFFSubset = function (_Subset) {
     topDict.Encoding = null;
     topDict.CharStrings = this.charstrings;
 
-    var _arr = ['version', 'Notice', 'Copyright', 'Fullnombre', 'Familynombre', 'Weight', 'PostScript', 'BaseFontnombre', 'Fontnombre'];
+    var _arr = ['version', 'Notice', 'Copyright', 'FullName', 'FamilyName', 'Weight', 'PostScript', 'BaseFontName', 'FontName'];
     for (var _i4 = 0; _i4 < _arr.length; _i4++) {
       var key = _arr[_i4];
       topDict[key] = this.addString(this.cff.string(topDict[key]));
@@ -53333,7 +53333,7 @@ var CFFSubset = function (_Subset) {
       hdrSize: this.cff.hdrSize,
       offSize: 4,
       header: this.cff.header,
-      nombreIndex: [this.cff.postscriptnombre],
+      nameIndex: [this.cff.postscriptName],
       topDictIndex: [topDict],
       stringIndex: this.strings,
       globalSubrIndex: this.gsubrs
@@ -53456,16 +53456,16 @@ var TTFFont = (_class = function () {
   };
 
   /**
-   * Gets a string from the font's `nombre` table
+   * Gets a string from the font's `name` table
    * `lang` is a BCP-47 language code.
    * @return {string}
    */
 
 
-  TTFFont.prototype.getnombre = function getnombre(key) {
+  TTFFont.prototype.getName = function getName(key) {
     var lang = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.defaultLanguage || fontkit.defaultLanguage;
 
-    var record = this.nombre && this.nombre.records[key];
+    var record = this.name && this.name.records[key];
     if (record) {
       // Attempt to retrieve the entry, depending on which translation is available:
       return record[lang] || record[this.defaultLanguage] || record[fontkit.defaultLanguage] || record['en'] || record[_Object$keys(record)[0]] // Seriously, ANY language would be fine
@@ -53476,7 +53476,7 @@ var TTFFont = (_class = function () {
   };
 
   /**
-   * The unique PostScript nombre for this font, e.g. "Helvetica-Bold"
+   * The unique PostScript name for this font, e.g. "Helvetica-Bold"
    * @type {string}
    */
 
@@ -53654,7 +53654,7 @@ var TTFFont = (_class = function () {
   /**
    * Returns an object describing the available variation axes
    * that this font supports. Keys are setting tags, and values
-   * contain the axis nombre, range, and default value.
+   * contain the axis name, range, and default value.
    *
    * @type {object}
    */
@@ -53662,7 +53662,7 @@ var TTFFont = (_class = function () {
 
   /**
    * Returns a new font with the given variation settings applied.
-   * Settings can either be an instance nombre, or an object containing
+   * Settings can either be an instance name, or an object containing
    * variation tags as specified by the `variationAxes` property.
    *
    * @param {object} settings
@@ -53674,11 +53674,11 @@ var TTFFont = (_class = function () {
     }
 
     if (typeof settings === 'string') {
-      settings = this.nombredVariations[settings];
+      settings = this.namedVariations[settings];
     }
 
     if ((typeof settings === 'undefined' ? 'undefined' : _typeof(settings)) !== 'object') {
-      throw new Error('Variation settings must be either a variation nombre or settings object.');
+      throw new Error('Variation settings must be either a variation name or settings object.');
     }
 
     // normalize the coordinates
@@ -53701,36 +53701,36 @@ var TTFFont = (_class = function () {
   };
 
   // Standardized format plugin API
-  TTFFont.prototype.getFont = function getFont(nombre) {
-    return this.getVariation(nombre);
+  TTFFont.prototype.getFont = function getFont(name) {
+    return this.getVariation(name);
   };
 
   _createClass(TTFFont, [{
-    key: 'postscriptnombre',
+    key: 'postscriptName',
     get: function get() {
-      return this.getnombre('postscriptnombre');
+      return this.getName('postscriptName');
     }
 
     /**
-     * The font's full nombre, e.g. "Helvetica Bold"
+     * The font's full name, e.g. "Helvetica Bold"
      * @type {string}
      */
 
   }, {
-    key: 'fullnombre',
+    key: 'fullName',
     get: function get() {
-      return this.getnombre('fullnombre');
+      return this.getName('fullName');
     }
 
     /**
-     * The font's family nombre, e.g. "Helvetica"
+     * The font's family name, e.g. "Helvetica"
      * @type {string}
      */
 
   }, {
-    key: 'familynombre',
+    key: 'familyName',
     get: function get() {
-      return this.getnombre('fontFamily');
+      return this.getName('fontFamily');
     }
 
     /**
@@ -53739,9 +53739,9 @@ var TTFFont = (_class = function () {
      */
 
   }, {
-    key: 'subfamilynombre',
+    key: 'subfamilyName',
     get: function get() {
-      return this.getnombre('fontSubfamily');
+      return this.getName('fontSubfamily');
     }
 
     /**
@@ -53752,7 +53752,7 @@ var TTFFont = (_class = function () {
   }, {
     key: 'copyright',
     get: function get() {
-      return this.getnombre('copyright');
+      return this.getName('copyright');
     }
 
     /**
@@ -53763,7 +53763,7 @@ var TTFFont = (_class = function () {
   }, {
     key: 'version',
     get: function get() {
-      return this.getnombre('version');
+      return this.getName('version');
     }
 
     /**
@@ -53939,7 +53939,7 @@ var TTFFont = (_class = function () {
         var axis = _ref;
 
         res[axis.axisTag.trim()] = {
-          nombre: axis.nombre.en,
+          name: axis.name.en,
           min: axis.minValue,
           default: axis.defaultValue,
           max: axis.maxValue
@@ -53950,15 +53950,15 @@ var TTFFont = (_class = function () {
     }
 
     /**
-     * Returns an object describing the nombred variation instances
-     * that the font designer has specified. Keys are variation nombres
+     * Returns an object describing the named variation instances
+     * that the font designer has specified. Keys are variation names
      * and values are the variation settings for this instance.
      *
      * @type {object}
      */
 
   }, {
-    key: 'nombredVariations',
+    key: 'namedVariations',
     get: function get() {
       var res = {};
       if (!this.fvar) {
@@ -53985,7 +53985,7 @@ var TTFFont = (_class = function () {
           settings[axis.axisTag.trim()] = instance.coord[i];
         }
 
-        res[instance.nombre.en] = settings;
+        res[instance.name.en] = settings;
       }
 
       return res;
@@ -54015,7 +54015,7 @@ var TTFFont = (_class = function () {
   }]);
 
   return TTFFont;
-}(), (_applyDecoratedDescriptor(_class.prototype, 'bbox', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, 'bbox'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, '_cmapProcessor', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, '_cmapProcessor'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'characterSet', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, 'characterSet'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, '_layoutEngine', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, '_layoutEngine'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'variationAxes', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, 'variationAxes'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'nombredVariations', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, 'nombredVariations'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, '_variationProcessor', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, '_variationProcessor'), _class.prototype)), _class);
+}(), (_applyDecoratedDescriptor(_class.prototype, 'bbox', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, 'bbox'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, '_cmapProcessor', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, '_cmapProcessor'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'characterSet', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, 'characterSet'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, '_layoutEngine', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, '_layoutEngine'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'variationAxes', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, 'variationAxes'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'namedVariations', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, 'namedVariations'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, '_variationProcessor', [cache], _Object$getOwnPropertyDescriptor(_class.prototype, '_variationProcessor'), _class.prototype)), _class);
 
 var WOFFDirectoryEntry = new r.Struct({
   tag: new r.String(4),
@@ -54150,7 +54150,7 @@ var Base128 = {
   }
 };
 
-var knownTags = ['cmap', 'head', 'hhea', 'hmtx', 'maxp', 'nombre', 'OS/2', 'post', 'cvt ', 'fpgm', 'glyf', 'loca', 'prep', 'CFF ', 'VORG', 'EBDT', 'EBLC', 'gasp', 'hdmx', 'kern', 'LTSH', 'PCLT', 'VDMX', 'vhea', 'vmtx', 'BASE', 'GDEF', 'GPOS', 'GSUB', 'EBSC', 'JSTF', 'MATH', 'CBDT', 'CBLC', 'COLR', 'CPAL', 'SVG ', 'sbix', 'acnt', 'avar', 'bdat', 'bloc', 'bsln', 'cvar', 'fdsc', 'feat', 'fmtx', 'fvar', 'gvar', 'hsty', 'just', 'lcar', 'mort', 'morx', 'opbd', 'prop', 'trak', 'Zapf', 'Silf', 'Glat', 'Gloc', 'Feat', 'Sill'];
+var knownTags = ['cmap', 'head', 'hhea', 'hmtx', 'maxp', 'name', 'OS/2', 'post', 'cvt ', 'fpgm', 'glyf', 'loca', 'prep', 'CFF ', 'VORG', 'EBDT', 'EBLC', 'gasp', 'hdmx', 'kern', 'LTSH', 'PCLT', 'VDMX', 'vhea', 'vmtx', 'BASE', 'GDEF', 'GPOS', 'GSUB', 'EBSC', 'JSTF', 'MATH', 'CBDT', 'CBLC', 'COLR', 'CPAL', 'SVG ', 'sbix', 'acnt', 'avar', 'bdat', 'bloc', 'bsln', 'cvar', 'fdsc', 'feat', 'fmtx', 'fvar', 'gvar', 'hsty', 'just', 'lcar', 'mort', 'morx', 'opbd', 'prop', 'trak', 'Zapf', 'Silf', 'Glat', 'Gloc', 'Feat', 'Sill'];
 
 var WOFF2DirectoryEntry = new r.Struct({
   flags: r.uint8,
@@ -54455,7 +54455,7 @@ var TrueTypeCollection = function () {
     this.header = TTCHeader.decode(stream);
   }
 
-  TrueTypeCollection.prototype.getFont = function getFont(nombre) {
+  TrueTypeCollection.prototype.getFont = function getFont(name) {
     for (var _iterator = this.header.offsets, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _getIterator(_iterator);;) {
       var _ref;
 
@@ -54473,7 +54473,7 @@ var TrueTypeCollection = function () {
       var stream = new r.DecodeStream(this.stream.buffer);
       stream.pos = offset;
       var font = new TTFFont(stream);
-      if (font.postscriptnombre === nombre) {
+      if (font.postscriptName === name) {
         return font;
       }
     }
@@ -54511,7 +54511,7 @@ var TrueTypeCollection = function () {
   return TrueTypeCollection;
 }();
 
-var DFontnombre = new r.String(r.uint8);
+var DFontName = new r.String(r.uint8);
 var DFontData = new r.Struct({
   len: r.uint32,
   buf: new r.Buffer('len')
@@ -54519,14 +54519,14 @@ var DFontData = new r.Struct({
 
 var Ref = new r.Struct({
   id: r.uint16,
-  nombreOffset: r.int16,
+  nameOffset: r.int16,
   attr: r.uint8,
   dataOffset: r.uint24,
   handle: r.uint32
 });
 
 var Type = new r.Struct({
-  nombre: new r.String(4),
+  name: new r.String(4),
   maxTypeIndex: r.uint16,
   refList: new r.Pointer(r.uint16, new r.Array(Ref, function (t) {
     return t.maxTypeIndex + 1;
@@ -54543,7 +54543,7 @@ var TypeList = new r.Struct({
 var DFontMap = new r.Struct({
   reserved: new r.Reserved(r.uint8, 24),
   typeList: new r.Pointer(r.uint16, TypeList),
-  nombreListOffset: new r.Pointer(r.uint16, 'void')
+  nameListOffset: new r.Pointer(r.uint16, 'void')
 });
 
 var DFontHeader = new r.Struct({
@@ -54577,7 +54577,7 @@ var DFont = function () {
 
       var type = _ref;
 
-      if (type.nombre === 'sfnt') {
+      if (type.name === 'sfnt') {
         return true;
       }
     }
@@ -54619,21 +54619,21 @@ var DFont = function () {
 
         var ref = _ref3;
 
-        if (ref.nombreOffset >= 0) {
-          this.stream.pos = ref.nombreOffset + this.header.map.nombreListOffset;
-          ref.nombre = DFontnombre.decode(this.stream);
+        if (ref.nameOffset >= 0) {
+          this.stream.pos = ref.nameOffset + this.header.map.nameListOffset;
+          ref.name = DFontName.decode(this.stream);
         } else {
-          ref.nombre = null;
+          ref.name = null;
         }
       }
 
-      if (type.nombre === 'sfnt') {
+      if (type.name === 'sfnt') {
         this.sfnt = type;
       }
     }
   }
 
-  DFont.prototype.getFont = function getFont(nombre) {
+  DFont.prototype.getFont = function getFont(name) {
     if (!this.sfnt) {
       return null;
     }
@@ -54655,7 +54655,7 @@ var DFont = function () {
       var pos = this.header.dataOffset + ref.dataOffset + 4;
       var stream = new r.DecodeStream(this.stream.buffer.slice(pos));
       var font = new TTFFont(stream);
-      if (font.postscriptnombre === nombre) {
+      if (font.postscriptName === name) {
         return font;
       }
     }
@@ -54978,7 +54978,7 @@ StripBOMWrapper.prototype.end = function() {
 "use strict";
 
 
-// Upfecha this array if you add/renombre/remove files in this directory.
+// Update this array if you add/rename/remove files in this directory.
 // We support Browserify by skipping automatic module discovery and requiring modules directly.
 var modules = [
     __webpack_require__(391),
@@ -55031,7 +55031,7 @@ module.exports = {
 //------------------------------------------------------------------------------
 
 function InternalCodec(codecOptions, iconv) {
-    this.enc = codecOptions.encodingnombre;
+    this.enc = codecOptions.encodingName;
     this.bomAware = codecOptions.bomAware;
 
     if (this.enc === "base64")
@@ -55257,7 +55257,7 @@ Utf32Encoder.prototype.write = function(str) {
             if (isHighSurrogate || !isLowSurrogate) {
                 // There shouldn't be two high surrogates in a row, nor a high surrogate which isn't followed by a low
                 // surrogate. If this happens, keep the pending high surrogate as a stand-alone semi-invalid character
-                // (technically wrong, but expected by some applications, like Windows file nombres).
+                // (technically wrong, but expected by some applications, like Windows file names).
                 write32.call(dst, this.highSurrogate, offset);
                 offset += 4;
             }
@@ -56782,11 +56782,11 @@ for (var i = 0; i < 0x100; i++)
 
 // Class DBCSCodec reads and initializes mapping tables.
 function DBCSCodec(codecOptions, iconv) {
-    this.encodingnombre = codecOptions.encodingnombre;
+    this.encodingName = codecOptions.encodingName;
     if (!codecOptions)
         throw new Error("DBCS codec is called without the data.")
     if (!codecOptions.table)
-        throw new Error("Encoding '" + this.encodingnombre + "' has no data.");
+        throw new Error("Encoding '" + this.encodingName + "' has no data.");
 
     // Load tables.
     var mappingTable = codecOptions.table();
@@ -56921,7 +56921,7 @@ DBCSCodec.prototype._getDecodeTrieNode = function(addr) {
             node = this.decodeTables[NODE_START - val];
         }
         else
-            throw new Error("Overwrite byte in " + this.encodingnombre + ", addr: " + addr.toString(16));
+            throw new Error("Overwrite byte in " + this.encodingName + ", addr: " + addr.toString(16));
     }
     return node;
 }
@@ -56946,7 +56946,7 @@ DBCSCodec.prototype._addDecodeChunk = function(chunk) {
                     if (0xDC00 <= codeTrail && codeTrail < 0xE000)
                         writeTable[curAddr++] = 0x10000 + (code - 0xD800) * 0x400 + (codeTrail - 0xDC00);
                     else
-                        throw new Error("Incorrect surrogate pair in "  + this.encodingnombre + " at chunk " + chunk[0]);
+                        throw new Error("Incorrect surrogate pair in "  + this.encodingName + " at chunk " + chunk[0]);
                 }
                 else if (0x0FF0 < code && code <= 0x0FFF) { // Character sequence (our own encoding used)
                     var len = 0xFFF - code + 2;
@@ -56967,10 +56967,10 @@ DBCSCodec.prototype._addDecodeChunk = function(chunk) {
                 writeTable[curAddr++] = charCode++;
         }
         else
-            throw new Error("Incorrect type '" + typeof part + "' given in "  + this.encodingnombre + " at chunk " + chunk[0]);
+            throw new Error("Incorrect type '" + typeof part + "' given in "  + this.encodingName + " at chunk " + chunk[0]);
     }
     if (curAddr > 0xFF)
-        throw new Error("Incorrect chunk in "  + this.encodingnombre + " at addr " + chunk[0] + ": too long" + curAddr);
+        throw new Error("Incorrect chunk in "  + this.encodingName + " at addr " + chunk[0] + ": too long" + curAddr);
 }
 
 // Encoder helpers
@@ -57366,7 +57366,7 @@ function findIdx(table, val) {
 "use strict";
 
 
-// descripcion of supported double byte encodings and aliases.
+// Description of supported double byte encodings and aliases.
 // Tables are not require()-d until they are needed to speed up library load.
 // require()-s are direct to support Browserify.
 
@@ -58598,9 +58598,9 @@ var IteratorPrototype = {};
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
 __webpack_require__(41)(IteratorPrototype, __webpack_require__(21)('iterator'), function () { return this; });
 
-module.exports = function (Constructor, nombre, next) {
+module.exports = function (Constructor, NAME, next) {
   Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
-  setToStringTag(Constructor, nombre + ' Iterator');
+  setToStringTag(Constructor, NAME + ' Iterator');
 };
 
 
@@ -58866,27 +58866,27 @@ var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key) {
   if (D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key])) D.enumerable = true;
   return D;
 };
-var $getOwnPropertynombres = function getOwnPropertynombres(it) {
-  var nombres = gOPN(toIObject(it));
+var $getOwnPropertyNames = function getOwnPropertyNames(it) {
+  var names = gOPN(toIObject(it));
   var result = [];
   var i = 0;
   var key;
-  while (nombres.length > i) {
-    if (!has(AllSymbols, key = nombres[i++]) && key != HIDDEN && key != META) result.push(key);
+  while (names.length > i) {
+    if (!has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META) result.push(key);
   } return result;
 };
 var $getOwnPropertySymbols = function getOwnPropertySymbols(it) {
   var IS_OP = it === ObjectProto;
-  var nombres = gOPN(IS_OP ? OPSymbols : toIObject(it));
+  var names = gOPN(IS_OP ? OPSymbols : toIObject(it));
   var result = [];
   var i = 0;
   var key;
-  while (nombres.length > i) {
-    if (has(AllSymbols, key = nombres[i++]) && (IS_OP ? has(ObjectProto, key) : true)) result.push(AllSymbols[key]);
+  while (names.length > i) {
+    if (has(AllSymbols, key = names[i++]) && (IS_OP ? has(ObjectProto, key) : true)) result.push(AllSymbols[key]);
   } return result;
 };
 
-// 19.4.1.1 Symbol([descripcion])
+// 19.4.1.1 Symbol([description])
 if (!USE_NATIVE) {
   $Symbol = function Symbol() {
     if (this instanceof $Symbol) throw TypeError('Symbol is not a constructor!');
@@ -58905,7 +58905,7 @@ if (!USE_NATIVE) {
 
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
-  __webpack_require__(262).f = gOPNExt.f = $getOwnPropertynombres;
+  __webpack_require__(262).f = gOPNExt.f = $getOwnPropertyNames;
   __webpack_require__(128).f = $propertyIsEnumerable;
   $GOPS.f = $getOwnPropertySymbols;
 
@@ -58913,8 +58913,8 @@ if (!USE_NATIVE) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
   }
 
-  wksExt.f = function (nombre) {
-    return wrap(wks(nombre));
+  wksExt.f = function (name) {
+    return wrap(wks(name));
   };
 }
 
@@ -58952,8 +58952,8 @@ $export($export.S + $export.F * !USE_NATIVE, 'Object', {
   defineProperties: $defineProperties,
   // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
   getOwnPropertyDescriptor: $getOwnPropertyDescriptor,
-  // 19.1.2.7 Object.getOwnPropertynombres(O)
-  getOwnPropertynombres: $getOwnPropertynombres,
+  // 19.1.2.7 Object.getOwnPropertyNames(O)
+  getOwnPropertyNames: $getOwnPropertyNames,
   // 19.1.2.8 Object.getOwnPropertySymbols(O)
   getOwnPropertySymbols: $getOwnPropertySymbols
 });
@@ -59027,24 +59027,24 @@ module.exports = function (it) {
 /* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// fallback for IE11 buggy Object.getOwnPropertynombres with iframe and window
+// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 var toIObject = __webpack_require__(50);
 var gOPN = __webpack_require__(262).f;
 var toString = {}.toString;
 
-var windownombres = typeof window == 'object' && window && Object.getOwnPropertynombres
-  ? Object.getOwnPropertynombres(window) : [];
+var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
+  ? Object.getOwnPropertyNames(window) : [];
 
-var getWindownombres = function (it) {
+var getWindowNames = function (it) {
   try {
     return gOPN(it);
   } catch (e) {
-    return windownombres.slice();
+    return windowNames.slice();
   }
 };
 
-module.exports.f = function getOwnPropertynombres(it) {
-  return windownombres && toString.call(it) == '[object Window]' ? getWindownombres(it) : gOPN(toIObject(it));
+module.exports.f = function getOwnPropertyNames(it) {
+  return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
 };
 
 
@@ -59186,7 +59186,7 @@ module.exports = __webpack_require__(7).Map;
 "use strict";
 
 var strong = __webpack_require__(264);
-var valifecha = __webpack_require__(191);
+var validate = __webpack_require__(191);
 var MAP = 'Map';
 
 // 23.1 Map Objects
@@ -59195,12 +59195,12 @@ module.exports = __webpack_require__(268)(MAP, function (get) {
 }, {
   // 23.1.3.6 Map.prototype.get(key)
   get: function get(key) {
-    var entry = strong.getEntry(valifecha(this, MAP), key);
+    var entry = strong.getEntry(validate(this, MAP), key);
     return entry && entry.v;
   },
   // 23.1.3.9 Map.prototype.set(key, value)
   set: function set(key, value) {
-    return strong.def(valifecha(this, MAP), key === 0 ? 0 : key, value);
+    return strong.def(validate(this, MAP), key === 0 ? 0 : key, value);
   }
 }, strong, true);
 
@@ -59528,7 +59528,7 @@ function deepEqual(actual, expected, options) {
    * with Object.prototype.hasOwnProperty.call), the same set of keys
    * (although not necessarily the same order), equivalent values for every
    * corresponding key, and an identical 'prototype' property. Note: this
-   * accounts for both nombred and indexed properties on Arrays.
+   * accounts for both named and indexed properties on Arrays.
    */
   // eslint-disable-next-line no-use-before-define
   return objEquiv(actual, expected, opts);
@@ -59721,9 +59721,9 @@ if (!Object.keys) {
 				theKeys.push(String(j));
 			}
 		} else {
-			for (var nombre in object) {
-				if (!(skipProto && nombre === 'prototype') && has.call(object, nombre)) {
-					theKeys.push(String(nombre));
+			for (var name in object) {
+				if (!(skipProto && name === 'prototype') && has.call(object, name)) {
+					theKeys.push(String(name));
 				}
 			}
 		}
@@ -60038,39 +60038,39 @@ var bind = __webpack_require__(275);
 var $replace = bind.call(Function.call, String.prototype.replace);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
-var rePropnombre = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
+var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
 var reEscapeChar = /\\(\\)?/g; /** Used to match backslashes in property paths. */
 var stringToPath = function stringToPath(string) {
 	var result = [];
-	$replace(string, rePropnombre, function (match, number, quote, subString) {
+	$replace(string, rePropName, function (match, number, quote, subString) {
 		result[result.length] = quote ? $replace(subString, reEscapeChar, '$1') : (number || match);
 	});
 	return result;
 };
 /* end adaptation */
 
-var getBaseIntrinsic = function getBaseIntrinsic(nombre, allowMissing) {
-	if (!(nombre in INTRINSICS)) {
-		throw new SyntaxError('intrinsic ' + nombre + ' does not exist!');
+var getBaseIntrinsic = function getBaseIntrinsic(name, allowMissing) {
+	if (!(name in INTRINSICS)) {
+		throw new SyntaxError('intrinsic ' + name + ' does not exist!');
 	}
 
 	// istanbul ignore if // hopefully this is impossible to test :-)
-	if (typeof INTRINSICS[nombre] === 'undefined' && !allowMissing) {
-		throw new $TypeError('intrinsic ' + nombre + ' exists, but is not available. Please file an issue!');
+	if (typeof INTRINSICS[name] === 'undefined' && !allowMissing) {
+		throw new $TypeError('intrinsic ' + name + ' exists, but is not available. Please file an issue!');
 	}
 
-	return INTRINSICS[nombre];
+	return INTRINSICS[name];
 };
 
-module.exports = function GetIntrinsic(nombre, allowMissing) {
-	if (typeof nombre !== 'string' || nombre.length === 0) {
-		throw new TypeError('intrinsic nombre must be a non-empty string');
+module.exports = function GetIntrinsic(name, allowMissing) {
+	if (typeof name !== 'string' || name.length === 0) {
+		throw new TypeError('intrinsic name must be a non-empty string');
 	}
 	if (arguments.length > 1 && typeof allowMissing !== 'boolean') {
 		throw new TypeError('"allowMissing" argument must be a boolean');
 	}
 
-	var parts = stringToPath(nombre);
+	var parts = stringToPath(name);
 
 	var value = getBaseIntrinsic('%' + (parts.length > 0 ? parts[0] : '') + '%', allowMissing);
 	for (var i = 1; i < parts.length; i += 1) {
@@ -60078,7 +60078,7 @@ module.exports = function GetIntrinsic(nombre, allowMissing) {
 			if ($gOPD && (i + 1) >= parts.length) {
 				var desc = $gOPD(value, parts[i]);
 				if (!allowMissing && !(parts[i] in value)) {
-					throw new $TypeError('base intrinsic for ' + nombre + ' exists, but the property is not available.');
+					throw new $TypeError('base intrinsic for ' + name + ' exists, but the property is not available.');
 				}
 				value = desc ? (desc.get || desc.value) : value[parts[i]];
 			} else {
@@ -60123,7 +60123,7 @@ module.exports = function hasSymbols() {
 	for (sym in obj) { return false; } // eslint-disable-line no-restricted-syntax
 	if (typeof Object.keys === 'function' && Object.keys(obj).length !== 0) { return false; }
 
-	if (typeof Object.getOwnPropertynombres === 'function' && Object.getOwnPropertynombres(obj).length !== 0) { return false; }
+	if (typeof Object.getOwnPropertyNames === 'function' && Object.getOwnPropertyNames(obj).length !== 0) { return false; }
 
 	var syms = Object.getOwnPropertySymbols(obj);
 	if (syms.length !== 1 || syms[0] !== sym) { return false; }
@@ -60292,14 +60292,14 @@ var tryDateObject = function tryDateGetDayCall(value) {
 };
 
 var toStr = Object.prototype.toString;
-var fechaClass = '[object Date]';
+var dateClass = '[object Date]';
 var hasToStringTag = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
 
 module.exports = function isDateObject(value) {
 	if (typeof value !== 'object' || value === null) {
 		return false;
 	}
-	return hasToStringTag ? tryDateObject(value) : toStr.call(value) === fechaClass;
+	return hasToStringTag ? tryDateObject(value) : toStr.call(value) === dateClass;
 };
 
 
@@ -60516,7 +60516,7 @@ module.exports = __webpack_require__(7).Set;
 "use strict";
 
 var strong = __webpack_require__(264);
-var valifecha = __webpack_require__(191);
+var validate = __webpack_require__(191);
 var SET = 'Set';
 
 // 23.2 Set Objects
@@ -60525,7 +60525,7 @@ module.exports = __webpack_require__(268)(SET, function (get) {
 }, {
   // 23.2.3.1 Set.prototype.add(value)
   add: function add(value) {
-    return strong.def(valifecha(this, SET), value = value === 0 ? 0 : value, value);
+    return strong.def(validate(this, SET), value = value === 0 ? 0 : value, value);
   }
 }, strong);
 
@@ -61409,7 +61409,7 @@ __webpack_require__(506);
 
 function _createForOfIteratorHelperLoose(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } it = o[Symbol.iterator](); return it.next.bind(it); }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.nombre; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -61628,7 +61628,7 @@ module.exports = StateMachine;
   // Dummy constructor functions that we use as the .constructor and
   // .constructor.prototype properties for functions that return Generator
   // objects. For full spec compliance, you may wish to configure your
-  // minifier not to mangle the nombres of these two functions.
+  // minifier not to mangle the names of these two functions.
   function Generator() {}
   function GeneratorFunction() {}
   function GeneratorFunctionPrototype() {}
@@ -61655,7 +61655,7 @@ module.exports = StateMachine;
   GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
   GeneratorFunctionPrototype.constructor = GeneratorFunction;
   GeneratorFunctionPrototype[toStringTagSymbol] =
-    GeneratorFunction.displaynombre = "GeneratorFunction";
+    GeneratorFunction.displayName = "GeneratorFunction";
 
   // Helper for defining the .next, .throw, and .return methods of the
   // Iterator interface in terms of a single ._invoke method.
@@ -61672,8 +61672,8 @@ module.exports = StateMachine;
     return ctor
       ? ctor === GeneratorFunction ||
         // For the native GeneratorFunction constructor, the best we can
-        // do is to check its .nombre property.
-        (ctor.displaynombre || ctor.nombre) === "GeneratorFunction"
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
       : false;
   };
 
@@ -61926,8 +61926,8 @@ module.exports = StateMachine;
 
     if (info.done) {
       // Assign the result of the finished delegate to the temporary
-      // variable specified by delegate.resultnombre (see delegateYield).
-      context[delegate.resultnombre] = info.value;
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
 
       // Resume execution at the desired location (see delegateYield).
       context.next = delegate.nextLoc;
@@ -62089,12 +62089,12 @@ module.exports = StateMachine;
       this.tryEntries.forEach(resetTryEntry);
 
       if (!skipTempReset) {
-        for (var nombre in this) {
+        for (var name in this) {
           // Not sure about the optimal order of these conditions:
-          if (nombre.charAt(0) === "t" &&
-              hasOwn.call(this, nombre) &&
-              !isNaN(+nombre.slice(1))) {
-            this[nombre] = undefined;
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
           }
         }
       }
@@ -62254,10 +62254,10 @@ module.exports = StateMachine;
       throw new Error("illegal catch attempt");
     },
 
-    delegateYield: function(iterable, resultnombre, nextLoc) {
+    delegateYield: function(iterable, resultName, nextLoc) {
       this.delegate = {
         iterator: values(iterable),
-        resultnombre: resultnombre,
+        resultName: resultName,
         nextLoc: nextLoc
       };
 
@@ -62510,8 +62510,8 @@ var aFunction = __webpack_require__(101);
 var anInstance = __webpack_require__(190);
 var forOf = __webpack_require__(107);
 var speciesConstructor = __webpack_require__(282);
-var tarea = __webpack_require__(283).set;
-var microtarea = __webpack_require__(515)();
+var task = __webpack_require__(283).set;
+var microtask = __webpack_require__(515)();
 var newPromiseCapabilityModule = __webpack_require__(193);
 var perform = __webpack_require__(284);
 var userAgent = __webpack_require__(516);
@@ -62554,7 +62554,7 @@ var notify = function (promise, isReject) {
   if (promise._n) return;
   promise._n = true;
   var chain = promise._c;
-  microtarea(function () {
+  microtask(function () {
     var value = promise._v;
     var ok = promise._s == 1;
     var i = 0;
@@ -62597,7 +62597,7 @@ var notify = function (promise, isReject) {
   });
 };
 var onUnhandled = function (promise) {
-  tarea.call(global, function () {
+  task.call(global, function () {
     var value = promise._v;
     var unhandled = isUnhandled(promise);
     var result, handler, console;
@@ -62621,7 +62621,7 @@ var isUnhandled = function (promise) {
   return promise._h !== 1 && (promise._a || promise._c).length === 0;
 };
 var onHandleUnhandled = function (promise) {
-  tarea.call(global, function () {
+  task.call(global, function () {
     var handler;
     if (isNode) {
       process.emit('rejectionHandled', promise);
@@ -62649,7 +62649,7 @@ var $resolve = function (value) {
   try {
     if (promise === value) throw TypeError("Promise can't be resolved itself");
     if (then = isThenable(value)) {
-      microtarea(function () {
+      microtask(function () {
         var wrapper = { _w: promise, _d: false }; // wrap
         try {
           then.call(value, ctx($resolve, wrapper, 1), ctx($reject, wrapper, 1));
@@ -62814,7 +62814,7 @@ module.exports = function (fn, args, that) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(17);
-var macrotarea = __webpack_require__(283).set;
+var macrotask = __webpack_require__(283).set;
 var Observer = global.MutationObserver || global.WebKitMutationObserver;
 var process = global.process;
 var Promise = global.Promise;
@@ -62860,7 +62860,7 @@ module.exports = function () {
     notify = function () {
       promise.then(flush);
     };
-  // for other environments - macrotarea based on:
+  // for other environments - macrotask based on:
   // - setImmediate
   // - MessageChannel
   // - window.postMessag
@@ -62869,17 +62869,17 @@ module.exports = function () {
   } else {
     notify = function () {
       // strange IE + webpack dev server bug - use .call(global)
-      macrotarea.call(global, flush);
+      macrotask.call(global, flush);
     };
   }
 
   return function (fn) {
-    var tarea = { fn: fn, next: undefined };
-    if (last) last.next = tarea;
+    var task = { fn: fn, next: undefined };
+    if (last) last.next = task;
     if (!head) {
-      head = tarea;
+      head = task;
       notify();
-    } last = tarea;
+    } last = task;
   };
 };
 
@@ -64293,7 +64293,7 @@ __webpack_require__(46);
  * software and associated documentation files (the "Software"), to deal in the Software
  * without restriction, including without limitation the rights to use, copy, modify, merge,
  * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
- * to whom the Software is furnished to do so, tema to the following conditions:
+ * to whom the Software is furnished to do so, subject to the following conditions:
  *
  * The above copyright notice and this permission notice shall be included in all copies or
  * substantial portions of the Software.
@@ -64719,7 +64719,7 @@ module.exports = /*#__PURE__*/function () {
 
 var isArray = __webpack_require__(0).isArray;
 
-function typenombre(bold, italics) {
+function typeName(bold, italics) {
 	var type = 'normal';
 	if (bold && italics) {
 		type = 'bolditalics';
@@ -64751,35 +64751,35 @@ function FontProvider(fontDescriptors, pdfKitDoc) {
 }
 
 FontProvider.prototype.getFontType = function (bold, italics) {
-	return typenombre(bold, italics);
+	return typeName(bold, italics);
 }
 
-FontProvider.prototype.getFontFile = function (familynombre, bold, italics) {
+FontProvider.prototype.getFontFile = function (familyName, bold, italics) {
 	var type = this.getFontType(bold, italics);
-	if (!this.fonts[familynombre] || !this.fonts[familynombre][type]) {
+	if (!this.fonts[familyName] || !this.fonts[familyName][type]) {
 		return null;
 	}
 
-	return this.fonts[familynombre][type];
+	return this.fonts[familyName][type];
 }
 
-FontProvider.prototype.provideFont = function (familynombre, bold, italics) {
+FontProvider.prototype.provideFont = function (familyName, bold, italics) {
 	var type = this.getFontType(bold, italics);
-	if (this.getFontFile(familynombre, bold, italics) === null) {
-		throw new Error('Font \'' + familynombre + '\' in style \'' + type + '\' is not defined in the font section of the document definition.');
+	if (this.getFontFile(familyName, bold, italics) === null) {
+		throw new Error('Font \'' + familyName + '\' in style \'' + type + '\' is not defined in the font section of the document definition.');
 	}
 
-	this.fontCache[familynombre] = this.fontCache[familynombre] || {};
+	this.fontCache[familyName] = this.fontCache[familyName] || {};
 
-	if (!this.fontCache[familynombre][type]) {
-		var def = this.fonts[familynombre][type];
+	if (!this.fontCache[familyName][type]) {
+		var def = this.fonts[familyName][type];
 		if (!isArray(def)) {
 			def = [def];
 		}
-		this.fontCache[familynombre][type] = this.pdfKitDoc.font.apply(this.pdfKitDoc, def)._font;
+		this.fontCache[familyName][type] = this.pdfKitDoc.font.apply(this.pdfKitDoc, def)._font;
 	}
 
-	return this.fontCache[familynombre][type];
+	return this.fontCache[familyName][type];
 };
 
 module.exports = FontProvider;
@@ -65969,8 +65969,8 @@ DocMeasure.prototype.measureNode = function (node) {
 		function flattenStyleArray(styleArray) {
 			var flattenedStyles = {};
 			for (var i = styleArray.length - 1; i >= 0; i--) {
-				var stylenombre = styleArray[i];
-				var style = self.styleStack.styleDictionary[stylenombre];
+				var styleName = styleArray[i];
+				var style = self.styleStack.styleDictionary[styleName];
 				for (var key in style) {
 					if (style.hasOwnProperty(key)) {
 						flattenedStyles[key] = style[key];
@@ -66919,7 +66919,7 @@ var getmaxdatalen = function (ver, mode, ecclevel) {
 //
 // this function does not check the length of data; it is a duty of
 // encode function below (as it depends on the version and ECC level too).
-var valifechadata = function (mode, data) {
+var validatedata = function (mode, data) {
 	switch (mode) {
 		case MODE_NUMERIC:
 			if (!data.match(NUMERIC_REGEXP))
@@ -66960,7 +66960,7 @@ var valifechadata = function (mode, data) {
 };
 
 // returns the code words (sans ECC bits) for given data and configurations.
-// requires data to be preprocessed by valifechadata. no length check is
+// requires data to be preprocessed by validatedata. no length check is
 // performed, and everything has to be checked before calling this function.
 var encode = function (ver, mode, data, maxbuflen) {
 	var buf = [];
@@ -67389,7 +67389,7 @@ function generateFrame(data, options) {
 		throw 'invalid or unsupported mode';
 	}
 
-	data = valifechadata(mode, data);
+	data = validatedata(mode, data);
 	if (data === null)
 		throw 'invalid data format';
 
@@ -67418,7 +67418,7 @@ function generateFrame(data, options) {
 // - modulesize: a number. this is a size of each modules in pixels, and
 //   defaults to 5px.
 // - margin: a number. this is a size of margin in *modules*, and defaults to
-//   4 (white modules). the specficiation manfechas the margin no less than 4
+//   4 (white modules). the specficiation mandates the margin no less than 4
 //   modules, so it is better not to alter this value unless you know what
 //   you're doing.
 function buildCanvas(data, options) {
@@ -67506,9 +67506,9 @@ function fitOnPage(self, addFct) {
 	return position;
 }
 
-PageElementWriter.prototype.addLine = function (line, dontUpfechaContextPosition, index) {
+PageElementWriter.prototype.addLine = function (line, dontUpdateContextPosition, index) {
 	return fitOnPage(this, function (self) {
-		return self.writer.addLine(line, dontUpfechaContextPosition, index);
+		return self.writer.addLine(line, dontUpdateContextPosition, index);
 	});
 };
 
@@ -67546,10 +67546,10 @@ PageElementWriter.prototype.alignCanvas = function (node) {
 	this.writer.alignCanvas(node);
 };
 
-PageElementWriter.prototype.addFragment = function (fragment, useBlockXOffset, useBlockYOffset, dontUpfechaContextPosition) {
-	if (!this.writer.addFragment(fragment, useBlockXOffset, useBlockYOffset, dontUpfechaContextPosition)) {
+PageElementWriter.prototype.addFragment = function (fragment, useBlockXOffset, useBlockYOffset, dontUpdateContextPosition) {
+	if (!this.writer.addFragment(fragment, useBlockXOffset, useBlockYOffset, dontUpdateContextPosition)) {
 		this.moveToNextPage();
-		this.writer.addFragment(fragment, useBlockXOffset, useBlockYOffset, dontUpfechaContextPosition);
+		this.writer.addFragment(fragment, useBlockXOffset, useBlockYOffset, dontUpdateContextPosition);
 	}
 };
 
@@ -67683,7 +67683,7 @@ function addPageItem(page, item, index) {
 	}
 }
 
-ElementWriter.prototype.addLine = function (line, dontUpfechaContextPosition, index) {
+ElementWriter.prototype.addLine = function (line, dontUpdateContextPosition, index) {
 	var height = line.getHeight();
 	var context = this.context;
 	var page = context.getCurrentPage(),
@@ -67704,7 +67704,7 @@ ElementWriter.prototype.addLine = function (line, dontUpfechaContextPosition, in
 	}, index);
 	this.tracker.emit('lineAdded', line);
 
-	if (!dontUpfechaContextPosition) {
+	if (!dontUpdateContextPosition) {
 		context.moveDown(height);
 	}
 
@@ -67891,7 +67891,7 @@ function cloneLine(line) {
 	return result;
 }
 
-ElementWriter.prototype.addFragment = function (block, useBlockXOffset, useBlockYOffset, dontUpfechaContextPosition) {
+ElementWriter.prototype.addFragment = function (block, useBlockXOffset, useBlockYOffset, dontUpdateContextPosition) {
 	var ctx = this.context;
 	var page = ctx.getCurrentPage();
 
@@ -67941,7 +67941,7 @@ ElementWriter.prototype.addFragment = function (block, useBlockXOffset, useBlock
 		}
 	});
 
-	if (!dontUpfechaContextPosition) {
+	if (!dontUpdateContextPosition) {
 		ctx.moveDown(block.height);
 	}
 
@@ -68020,7 +68020,7 @@ TableProcessor.prototype.beginTable = function (writer) {
 		writer.beginUnbreakableBlock();
 	}
 
-	// upfecha the border properties of all cells before drawing any lines
+	// update the border properties of all cells before drawing any lines
 	prepareCellBorders(this.tableNode.table.body);
 
 	this.drawHorizontalLine(0, writer);
@@ -68055,7 +68055,7 @@ TableProcessor.prototype.beginTable = function (writer) {
 	}
 
 	// Iterate through all cells. If the current cell is the start of a
-	// rowSpan/colSpan, upfecha the border property of the cells on its
+	// rowSpan/colSpan, update the border property of the cells on its
 	// bottom/right accordingly. This is needed since each iteration of the
 	// line-drawing loops draws lines for a single cell, not for an entire
 	// rowSpan/colSpan.
@@ -68373,7 +68373,7 @@ TableProcessor.prototype.endRow = function (rowIndex, writer, pageBreaks) {
 		if (writer.context().page != ys[yi].page) {
 			writer.context().page = ys[yi].page;
 
-			//TODO: buggy, availableHeight should be upfechad on every pageChanged event
+			//TODO: buggy, availableHeight should be updated on every pageChanged event
 			// TableProcessor should be pageChanged listener, instead of processRow
 			this.reservedAtBottom = 0;
 		}
@@ -68678,7 +68678,7 @@ function parseSVG(svgString) {
 		throw new Error('SVGMeasure: ' + err);
 	}
 
-	if (doc.nombre !== "svg") {
+	if (doc.name !== "svg") {
 		throw new Error('SVGMeasure: expected <svg> document');
 	}
 
@@ -68765,7 +68765,7 @@ function XmlElement(tag) {
   // Capture the parser object off of the XmlDocument delegate
   var parser = delegates[delegates.length - 1].parser;
 
-  this.nombre = tag.nombre;
+  this.name = tag.name;
   this.attr = tag.attributes;
   this.val = "";
   this.children = [];
@@ -68785,7 +68785,7 @@ XmlElement.prototype._addChild = function(child) {
   // add to our children array
   this.children.push(child);
 
-  // upfecha first/last pointers
+  // update first/last pointers
   if (!this.firstChild) this.firstChild = child;
   this.lastChild = child;
 };
@@ -68820,11 +68820,11 @@ XmlElement.prototype._cdata = function(cdata) {
   this._addChild(new XmlCDataNode(cdata));
 };
 
-XmlElement.prototype._comentario = function(comentario) {
+XmlElement.prototype._comment = function(comment) {
   if (typeof this.children === 'undefined')
     return
 
-  this._addChild(new XmlCommentNode(comentario));
+  this._addChild(new XmlCommentNode(comment));
 };
 
 XmlElement.prototype._error = function(err) {
@@ -68839,28 +68839,28 @@ XmlElement.prototype.eachChild = function(iterator, context) {
       if (iterator.call(context, this.children[i], i, this.children) === false) return;
 };
 
-XmlElement.prototype.childnombred = function(nombre) {
+XmlElement.prototype.childNamed = function(name) {
   for (var i=0, l=this.children.length; i<l; i++) {
     var child = this.children[i];
-    if (child.nombre === nombre) return child;
+    if (child.name === name) return child;
   }
   return undefined;
 };
 
-XmlElement.prototype.childrennombred = function(nombre) {
+XmlElement.prototype.childrenNamed = function(name) {
   var matches = [];
 
   for (var i=0, l=this.children.length; i<l; i++)
-    if (this.children[i].nombre === nombre)
+    if (this.children[i].name === name)
       matches.push(this.children[i]);
 
   return matches;
 };
 
-XmlElement.prototype.childWithAttribute = function(nombre,value) {
+XmlElement.prototype.childWithAttribute = function(name,value) {
   for (var i=0, l=this.children.length; i<l; i++) {
     var child = this.children[i];
-    if (child.type === "element" && ((value && child.attr[nombre] === value) || (!value && child.attr[nombre])))
+    if (child.type === "element" && ((value && child.attr[name] === value) || (!value && child.attr[name])))
       return child;
   }
   return undefined;
@@ -68872,7 +68872,7 @@ XmlElement.prototype.descendantWithPath = function(path) {
 
   for (var i=0, l=components.length; i<l; i++)
     if (descendant && descendant.type === "element")
-      descendant = descendant.childnombred(components[i]);
+      descendant = descendant.childNamed(components[i]);
     else
       return undefined;
 
@@ -68895,16 +68895,16 @@ XmlElement.prototype.toString = function(options) {
 };
 
 XmlElement.prototype.toStringWithIndent = function(indent, options) {
-  var s = indent + "<" + this.nombre;
+  var s = indent + "<" + this.name;
   var linebreak = options && options.compressed ? "" : "\n";
   var preserveWhitespace = options && options.preserveWhitespace;
 
-  for (var nombre in this.attr)
-    if (Object.prototype.hasOwnProperty.call(this.attr, nombre))
-        s += " " + nombre + '="' + escapeXML(this.attr[nombre]) + '"';
+  for (var name in this.attr)
+    if (Object.prototype.hasOwnProperty.call(this.attr, name))
+        s += " " + name + '="' + escapeXML(this.attr[name]) + '"';
 
   if (this.children.length === 1 && this.children[0].type !== "element") {
-    s += ">" + this.children[0].toString(options) + "</" + this.nombre + ">";
+    s += ">" + this.children[0].toString(options) + "</" + this.name + ">";
   }
   else if (this.children.length) {
     s += ">" + linebreak;
@@ -68915,15 +68915,15 @@ XmlElement.prototype.toStringWithIndent = function(indent, options) {
       s += this.children[i].toStringWithIndent(childIndent, options) + linebreak;
     }
 
-    s += indent + "</" + this.nombre + ">";
+    s += indent + "</" + this.name + ">";
   }
   else if (options && options.html) {
     var whiteList = [
       "area", "base", "br", "col", "embed", "frame", "hr", "img", "input",
       "keygen", "link", "menuitem", "meta", "param", "source", "track", "wbr"
     ];
-    if (whiteList.indexOf(this.nombre) !== -1) s += "/>";
-    else s += "></" + this.nombre + ">";
+    if (whiteList.indexOf(this.name) !== -1) s += "/>";
+    else s += "></" + this.name + ">";
   }
   else {
     s += "/>";
@@ -68958,12 +68958,12 @@ XmlCDataNode.prototype.toStringWithIndent = function(indent, options) {
   return indent+this.toString(options);
 };
 
-function XmlCommentNode (comentario) {
-  this.comentario = comentario;
+function XmlCommentNode (comment) {
+  this.comment = comment;
 }
 
 XmlCommentNode.prototype.toString = function(options) {
-  return "<!--"+formatText(escapeXML(this.comentario), options)+"-->";
+  return "<!--"+formatText(escapeXML(this.comment), options)+"-->";
 };
 
 XmlCommentNode.prototype.toStringWithIndent = function(indent, options) {
@@ -68975,7 +68975,7 @@ XmlCommentNode.prototype.toStringWithIndent = function(indent, options) {
 XmlElement.prototype.type = "element";
 XmlTextNode.prototype.type = "text";
 XmlCDataNode.prototype.type = "cdata";
-XmlCommentNode.prototype.type = "comentario";
+XmlCommentNode.prototype.type = "comment";
 
 /*
 XmlDocument is the class we expose to the user; it uses the sax parser to create a hierarchy
@@ -69034,7 +69034,7 @@ function addParserEvents(parser) {
   parser.onclosetag = parser_closetag;
   parser.ontext = parser_text;
   parser.oncdata = parser_cdata;
-  parser.oncomentario = parser_comentario;
+  parser.oncomment = parser_comment;
   parser.ondoctype = parser_doctype;
   parser.onerror = parser_error;
 }
@@ -69044,7 +69044,7 @@ function parser_opentag() { delegates[0] && delegates[0]._opentag.apply(delegate
 function parser_closetag() { delegates[0] && delegates[0]._closetag.apply(delegates[0],arguments) }
 function parser_text() { delegates[0] && delegates[0]._text.apply(delegates[0],arguments) }
 function parser_cdata() { delegates[0] && delegates[0]._cdata.apply(delegates[0],arguments) }
-function parser_comentario() { delegates[0] && delegates[0]._comentario.apply(delegates[0],arguments) }
+function parser_comment() { delegates[0] && delegates[0]._comment.apply(delegates[0],arguments) }
 function parser_doctype() { delegates[0] && delegates[0]._doctype.apply(delegates[0],arguments) }
 function parser_error() { delegates[0] && delegates[0]._error.apply(delegates[0],arguments) }
 
@@ -69104,8 +69104,8 @@ else
   sax.MAX_BUFFER_LENGTH = 64 * 1024
 
   var buffers = [
-    'comentario', 'sgmlDecl', 'textNode', 'tagnombre', 'doctype',
-    'procInstnombre', 'procInstBody', 'entity', 'attribnombre',
+    'comment', 'sgmlDecl', 'textNode', 'tagName', 'doctype',
+    'procInstName', 'procInstBody', 'entity', 'attribName',
     'attribValue', 'cdata', 'script'
   ]
 
@@ -69114,7 +69114,7 @@ else
     'processinginstruction',
     'sgmldeclaration',
     'doctype',
-    'comentario',
+    'comment',
     'opentagstart',
     'attribute',
     'opentag',
@@ -69126,8 +69126,8 @@ else
     'end',
     'ready',
     'script',
-    'opennombrespace',
-    'closenombrespace'
+    'opennamespace',
+    'closenamespace'
   ]
 
   function SAXParser (strict, opt) {
@@ -69152,7 +69152,7 @@ else
     parser.ENTITIES = parser.strictEntities ? Object.create(sax.XML_ENTITIES) : Object.create(sax.ENTITIES)
     parser.attribList = []
 
-    // nombrespaces form a prototype chain.
+    // namespaces form a prototype chain.
     // it always points at the current tag,
     // which protos to its parent tag.
     if (parser.opt.xmlns) {
@@ -69354,19 +69354,19 @@ else
   // XML allows all manner of ridiculous numbers and digits.
   var CDATA = '[CDATA['
   var DOCTYPE = 'DOCTYPE'
-  var XML_nombreSPACE = 'http://www.w3.org/XML/1998/nombrespace'
-  var XMLNS_nombreSPACE = 'http://www.w3.org/2000/xmlns/'
-  var rootNS = { xml: XML_nombreSPACE, xmlns: XMLNS_nombreSPACE }
+  var XML_NAMESPACE = 'http://www.w3.org/XML/1998/namespace'
+  var XMLNS_NAMESPACE = 'http://www.w3.org/2000/xmlns/'
+  var rootNS = { xml: XML_NAMESPACE, xmlns: XMLNS_NAMESPACE }
 
-  // http://www.w3.org/TR/REC-xml/#NT-nombreStartChar
+  // http://www.w3.org/TR/REC-xml/#NT-NameStartChar
   // This implementation works on strings, a single character at a time
   // as such, it cannot ever support astral-plane characters (10000-EFFFF)
   // without a significant breaking change to either this  parser, or the
   // JavaScript language.  Implementation of an emoji-capable xml parser
   // is left as an exercise for the reader.
-  var nombreStart = /[:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]/
+  var nameStart = /[:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]/
 
-  var nombreBody = /[:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u00B7\u0300-\u036F\u203F-\u2040.\d-]/
+  var nameBody = /[:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u00B7\u0300-\u036F\u203F-\u2040.\d-]/
 
   var entityStart = /[#:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]/
   var entityBody = /[#:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u00B7\u0300-\u036F\u203F-\u2040.\d-]/
@@ -69417,8 +69417,8 @@ else
     OPEN_TAG: S++, // <strong
     OPEN_TAG_SLASH: S++, // <strong /
     ATTRIB: S++, // <a
-    ATTRIB_nombre: S++, // <a foo
-    ATTRIB_nombre_SAW_WHITE: S++, // <a foo _
+    ATTRIB_NAME: S++, // <a foo
+    ATTRIB_NAME_SAW_WHITE: S++, // <a foo _
     ATTRIB_VALUE: S++, // <a foo=
     ATTRIB_VALUE_QUOTED: S++, // <a foo="bar
     ATTRIB_VALUE_CLOSED: S++, // <a foo="bar"
@@ -69767,9 +69767,9 @@ else
   }
 
   function newTag (parser) {
-    if (!parser.strict) parser.tagnombre = parser.tagnombre[parser.looseCase]()
+    if (!parser.strict) parser.tagName = parser.tagName[parser.looseCase]()
     var parent = parser.tags[parser.tags.length - 1] || parser
-    var tag = parser.tag = { nombre: parser.tagnombre, attributes: {} }
+    var tag = parser.tag = { name: parser.tagName, attributes: {} }
 
     // will be overridden if tag contails an xmlns="foo" or xmlns:foo="bar"
     if (parser.opt.xmlns) {
@@ -69779,14 +69779,14 @@ else
     emitNode(parser, 'onopentagstart', tag)
   }
 
-  function qnombre (nombre, attribute) {
-    var i = nombre.indexOf(':')
-    var qualnombre = i < 0 ? [ '', nombre ] : nombre.split(':')
-    var prefix = qualnombre[0]
-    var local = qualnombre[1]
+  function qname (name, attribute) {
+    var i = name.indexOf(':')
+    var qualName = i < 0 ? [ '', name ] : name.split(':')
+    var prefix = qualName[0]
+    var local = qualName[1]
 
     // <x "xmlns"="http://foo">
-    if (attribute && nombre === 'xmlns') {
+    if (attribute && name === 'xmlns') {
       prefix = 'xmlns'
       local = ''
     }
@@ -69796,29 +69796,29 @@ else
 
   function attrib (parser) {
     if (!parser.strict) {
-      parser.attribnombre = parser.attribnombre[parser.looseCase]()
+      parser.attribName = parser.attribName[parser.looseCase]()
     }
 
-    if (parser.attribList.indexOf(parser.attribnombre) !== -1 ||
-      parser.tag.attributes.hasOwnProperty(parser.attribnombre)) {
-      parser.attribnombre = parser.attribValue = ''
+    if (parser.attribList.indexOf(parser.attribName) !== -1 ||
+      parser.tag.attributes.hasOwnProperty(parser.attribName)) {
+      parser.attribName = parser.attribValue = ''
       return
     }
 
     if (parser.opt.xmlns) {
-      var qn = qnombre(parser.attribnombre, true)
+      var qn = qname(parser.attribName, true)
       var prefix = qn.prefix
       var local = qn.local
 
       if (prefix === 'xmlns') {
-        // nombrespace binding attribute. push the binding into scope
-        if (local === 'xml' && parser.attribValue !== XML_nombreSPACE) {
+        // namespace binding attribute. push the binding into scope
+        if (local === 'xml' && parser.attribValue !== XML_NAMESPACE) {
           strictFail(parser,
-            'xml: prefix must be bound to ' + XML_nombreSPACE + '\n' +
+            'xml: prefix must be bound to ' + XML_NAMESPACE + '\n' +
             'Actual: ' + parser.attribValue)
-        } else if (local === 'xmlns' && parser.attribValue !== XMLNS_nombreSPACE) {
+        } else if (local === 'xmlns' && parser.attribValue !== XMLNS_NAMESPACE) {
           strictFail(parser,
-            'xmlns: prefix must be bound to ' + XMLNS_nombreSPACE + '\n' +
+            'xmlns: prefix must be bound to ' + XMLNS_NAMESPACE + '\n' +
             'Actual: ' + parser.attribValue)
         } else {
           var tag = parser.tag
@@ -69833,40 +69833,40 @@ else
       // defer onattribute events until all attributes have been seen
       // so any new bindings can take effect. preserve attribute order
       // so deferred events can be emitted in document order
-      parser.attribList.push([parser.attribnombre, parser.attribValue])
+      parser.attribList.push([parser.attribName, parser.attribValue])
     } else {
       // in non-xmlns mode, we can emit the event right away
-      parser.tag.attributes[parser.attribnombre] = parser.attribValue
+      parser.tag.attributes[parser.attribName] = parser.attribValue
       emitNode(parser, 'onattribute', {
-        nombre: parser.attribnombre,
+        name: parser.attribName,
         value: parser.attribValue
       })
     }
 
-    parser.attribnombre = parser.attribValue = ''
+    parser.attribName = parser.attribValue = ''
   }
 
   function openTag (parser, selfClosing) {
     if (parser.opt.xmlns) {
-      // emit nombrespace binding events
+      // emit namespace binding events
       var tag = parser.tag
 
-      // add nombrespace info to tag
-      var qn = qnombre(parser.tagnombre)
+      // add namespace info to tag
+      var qn = qname(parser.tagName)
       tag.prefix = qn.prefix
       tag.local = qn.local
       tag.uri = tag.ns[qn.prefix] || ''
 
       if (tag.prefix && !tag.uri) {
-        strictFail(parser, 'Unbound nombrespace prefix: ' +
-          JSON.stringify(parser.tagnombre))
+        strictFail(parser, 'Unbound namespace prefix: ' +
+          JSON.stringify(parser.tagName))
         tag.uri = qn.prefix
       }
 
       var parent = parser.tags[parser.tags.length - 1] || parser
       if (tag.ns && parent.ns !== tag.ns) {
         Object.keys(tag.ns).forEach(function (p) {
-          emitNode(parser, 'onopennombrespace', {
+          emitNode(parser, 'onopennamespace', {
             prefix: p,
             uri: tag.ns[p]
           })
@@ -69875,31 +69875,31 @@ else
 
       // handle deferred onattribute events
       // Note: do not apply default ns to attributes:
-      //   http://www.w3.org/TR/REC-xml-nombres/#defaulting
+      //   http://www.w3.org/TR/REC-xml-names/#defaulting
       for (var i = 0, l = parser.attribList.length; i < l; i++) {
         var nv = parser.attribList[i]
-        var nombre = nv[0]
+        var name = nv[0]
         var value = nv[1]
-        var qualnombre = qnombre(nombre, true)
-        var prefix = qualnombre.prefix
-        var local = qualnombre.local
+        var qualName = qname(name, true)
+        var prefix = qualName.prefix
+        var local = qualName.local
         var uri = prefix === '' ? '' : (tag.ns[prefix] || '')
         var a = {
-          nombre: nombre,
+          name: name,
           value: value,
           prefix: prefix,
           local: local,
           uri: uri
         }
 
-        // if there's any attributes with an undefined nombrespace,
+        // if there's any attributes with an undefined namespace,
         // then fail on them now.
         if (prefix && prefix !== 'xmlns' && !uri) {
-          strictFail(parser, 'Unbound nombrespace prefix: ' +
+          strictFail(parser, 'Unbound namespace prefix: ' +
             JSON.stringify(prefix))
           a.uri = prefix
         }
-        parser.tag.attributes[nombre] = a
+        parser.tag.attributes[name] = a
         emitNode(parser, 'onattribute', a)
       }
       parser.attribList.length = 0
@@ -69913,20 +69913,20 @@ else
     emitNode(parser, 'onopentag', parser.tag)
     if (!selfClosing) {
       // special case for <script> in non-strict mode.
-      if (!parser.noscript && parser.tagnombre.toLowerCase() === 'script') {
+      if (!parser.noscript && parser.tagName.toLowerCase() === 'script') {
         parser.state = S.SCRIPT
       } else {
         parser.state = S.TEXT
       }
       parser.tag = null
-      parser.tagnombre = ''
+      parser.tagName = ''
     }
-    parser.attribnombre = parser.attribValue = ''
+    parser.attribName = parser.attribValue = ''
     parser.attribList.length = 0
   }
 
   function closeTag (parser) {
-    if (!parser.tagnombre) {
+    if (!parser.tagName) {
       strictFail(parser, 'Weird empty close tag.')
       parser.textNode += '</>'
       parser.state = S.TEXT
@@ -69934,9 +69934,9 @@ else
     }
 
     if (parser.script) {
-      if (parser.tagnombre !== 'script') {
-        parser.script += '</' + parser.tagnombre + '>'
-        parser.tagnombre = ''
+      if (parser.tagName !== 'script') {
+        parser.script += '</' + parser.tagName + '>'
+        parser.tagName = ''
         parser.state = S.SCRIPT
         return
       }
@@ -69947,14 +69947,14 @@ else
     // first make sure that the closing tag actually exists.
     // <a><b></c></b></a> will close everything, otherwise.
     var t = parser.tags.length
-    var tagnombre = parser.tagnombre
+    var tagName = parser.tagName
     if (!parser.strict) {
-      tagnombre = tagnombre[parser.looseCase]()
+      tagName = tagName[parser.looseCase]()
     }
-    var closeTo = tagnombre
+    var closeTo = tagName
     while (t--) {
       var close = parser.tags[t]
-      if (close.nombre !== closeTo) {
+      if (close.name !== closeTo) {
         // fail the first time in strict mode
         strictFail(parser, 'Unexpected close tag')
       } else {
@@ -69964,17 +69964,17 @@ else
 
     // didn't find it.  we already failed for strict, so just abort.
     if (t < 0) {
-      strictFail(parser, 'Unmatched closing tag: ' + parser.tagnombre)
-      parser.textNode += '</' + parser.tagnombre + '>'
+      strictFail(parser, 'Unmatched closing tag: ' + parser.tagName)
+      parser.textNode += '</' + parser.tagName + '>'
       parser.state = S.TEXT
       return
     }
-    parser.tagnombre = tagnombre
+    parser.tagName = tagName
     var s = parser.tags.length
     while (s-- > t) {
       var tag = parser.tag = parser.tags.pop()
-      parser.tagnombre = parser.tag.nombre
-      emitNode(parser, 'onclosetag', parser.tagnombre)
+      parser.tagName = parser.tag.name
+      emitNode(parser, 'onclosetag', parser.tagName)
 
       var x = {}
       for (var i in tag.ns) {
@@ -69983,15 +69983,15 @@ else
 
       var parent = parser.tags[parser.tags.length - 1] || parser
       if (parser.opt.xmlns && tag.ns !== parent.ns) {
-        // remove nombrespace bindings introduced by tag
+        // remove namespace bindings introduced by tag
         Object.keys(tag.ns).forEach(function (p) {
           var n = tag.ns[p]
-          emitNode(parser, 'onclosenombrespace', { prefix: p, uri: n })
+          emitNode(parser, 'onclosenamespace', { prefix: p, uri: n })
         })
       }
     }
     if (t === 0) parser.closedRoot = true
-    parser.tagnombre = parser.attribValue = parser.attribnombre = ''
+    parser.tagName = parser.attribValue = parser.attribName = ''
     parser.attribList.length = 0
     parser.state = S.TEXT
   }
@@ -70155,15 +70155,15 @@ else
             parser.sgmlDecl = ''
           } else if (isWhitespace(c)) {
             // wait for it...
-          } else if (isMatch(nombreStart, c)) {
+          } else if (isMatch(nameStart, c)) {
             parser.state = S.OPEN_TAG
-            parser.tagnombre = c
+            parser.tagName = c
           } else if (c === '/') {
             parser.state = S.CLOSE_TAG
-            parser.tagnombre = ''
+            parser.tagName = ''
           } else if (c === '?') {
             parser.state = S.PROC_INST
-            parser.procInstnombre = parser.procInstBody = ''
+            parser.procInstName = parser.procInstBody = ''
           } else {
             strictFail(parser, 'Unencoded <')
             // if there was some whitespace, then add that in.
@@ -70184,7 +70184,7 @@ else
             parser.cdata = ''
           } else if (parser.sgmlDecl + c === '--') {
             parser.state = S.COMMENT
-            parser.comentario = ''
+            parser.comment = ''
             parser.sgmlDecl = ''
           } else if ((parser.sgmlDecl + c).toUpperCase() === DOCTYPE) {
             parser.state = S.DOCTYPE
@@ -70260,30 +70260,30 @@ else
           if (c === '-') {
             parser.state = S.COMMENT_ENDING
           } else {
-            parser.comentario += c
+            parser.comment += c
           }
           continue
 
         case S.COMMENT_ENDING:
           if (c === '-') {
             parser.state = S.COMMENT_ENDED
-            parser.comentario = textopts(parser.opt, parser.comentario)
-            if (parser.comentario) {
-              emitNode(parser, 'oncomentario', parser.comentario)
+            parser.comment = textopts(parser.opt, parser.comment)
+            if (parser.comment) {
+              emitNode(parser, 'oncomment', parser.comment)
             }
-            parser.comentario = ''
+            parser.comment = ''
           } else {
-            parser.comentario += '-' + c
+            parser.comment += '-' + c
             parser.state = S.COMMENT
           }
           continue
 
         case S.COMMENT_ENDED:
           if (c !== '>') {
-            strictFail(parser, 'Malformed comentario')
+            strictFail(parser, 'Malformed comment')
             // allow <!-- blah -- bloo --> in non-strict mode,
-            // which is a comentario of " blah -- bloo "
-            parser.comentario += '--' + c
+            // which is a comment of " blah -- bloo "
+            parser.comment += '--' + c
             parser.state = S.COMMENT
           } else {
             parser.state = S.TEXT
@@ -70329,7 +70329,7 @@ else
           } else if (isWhitespace(c)) {
             parser.state = S.PROC_INST_BODY
           } else {
-            parser.procInstnombre += c
+            parser.procInstName += c
           }
           continue
 
@@ -70346,10 +70346,10 @@ else
         case S.PROC_INST_ENDING:
           if (c === '>') {
             emitNode(parser, 'onprocessinginstruction', {
-              nombre: parser.procInstnombre,
+              name: parser.procInstName,
               body: parser.procInstBody
             })
-            parser.procInstnombre = parser.procInstBody = ''
+            parser.procInstName = parser.procInstBody = ''
             parser.state = S.TEXT
           } else {
             parser.procInstBody += '?' + c
@@ -70358,8 +70358,8 @@ else
           continue
 
         case S.OPEN_TAG:
-          if (isMatch(nombreBody, c)) {
-            parser.tagnombre += c
+          if (isMatch(nameBody, c)) {
+            parser.tagName += c
           } else {
             newTag(parser)
             if (c === '>') {
@@ -70368,7 +70368,7 @@ else
               parser.state = S.OPEN_TAG_SLASH
             } else {
               if (!isWhitespace(c)) {
-                strictFail(parser, 'Invalid character in tag nombre')
+                strictFail(parser, 'Invalid character in tag name')
               }
               parser.state = S.ATTRIB
             }
@@ -70386,60 +70386,60 @@ else
           continue
 
         case S.ATTRIB:
-          // haven't read the attribute nombre yet.
+          // haven't read the attribute name yet.
           if (isWhitespace(c)) {
             continue
           } else if (c === '>') {
             openTag(parser)
           } else if (c === '/') {
             parser.state = S.OPEN_TAG_SLASH
-          } else if (isMatch(nombreStart, c)) {
-            parser.attribnombre = c
+          } else if (isMatch(nameStart, c)) {
+            parser.attribName = c
             parser.attribValue = ''
-            parser.state = S.ATTRIB_nombre
+            parser.state = S.ATTRIB_NAME
           } else {
-            strictFail(parser, 'Invalid attribute nombre')
+            strictFail(parser, 'Invalid attribute name')
           }
           continue
 
-        case S.ATTRIB_nombre:
+        case S.ATTRIB_NAME:
           if (c === '=') {
             parser.state = S.ATTRIB_VALUE
           } else if (c === '>') {
             strictFail(parser, 'Attribute without value')
-            parser.attribValue = parser.attribnombre
+            parser.attribValue = parser.attribName
             attrib(parser)
             openTag(parser)
           } else if (isWhitespace(c)) {
-            parser.state = S.ATTRIB_nombre_SAW_WHITE
-          } else if (isMatch(nombreBody, c)) {
-            parser.attribnombre += c
+            parser.state = S.ATTRIB_NAME_SAW_WHITE
+          } else if (isMatch(nameBody, c)) {
+            parser.attribName += c
           } else {
-            strictFail(parser, 'Invalid attribute nombre')
+            strictFail(parser, 'Invalid attribute name')
           }
           continue
 
-        case S.ATTRIB_nombre_SAW_WHITE:
+        case S.ATTRIB_NAME_SAW_WHITE:
           if (c === '=') {
             parser.state = S.ATTRIB_VALUE
           } else if (isWhitespace(c)) {
             continue
           } else {
             strictFail(parser, 'Attribute without value')
-            parser.tag.attributes[parser.attribnombre] = ''
+            parser.tag.attributes[parser.attribName] = ''
             parser.attribValue = ''
             emitNode(parser, 'onattribute', {
-              nombre: parser.attribnombre,
+              name: parser.attribName,
               value: ''
             })
-            parser.attribnombre = ''
+            parser.attribName = ''
             if (c === '>') {
               openTag(parser)
-            } else if (isMatch(nombreStart, c)) {
-              parser.attribnombre = c
-              parser.state = S.ATTRIB_nombre
+            } else if (isMatch(nameStart, c)) {
+              parser.attribName = c
+              parser.state = S.ATTRIB_NAME
             } else {
-              strictFail(parser, 'Invalid attribute nombre')
+              strictFail(parser, 'Invalid attribute name')
               parser.state = S.ATTRIB
             }
           }
@@ -70479,13 +70479,13 @@ else
             openTag(parser)
           } else if (c === '/') {
             parser.state = S.OPEN_TAG_SLASH
-          } else if (isMatch(nombreStart, c)) {
+          } else if (isMatch(nameStart, c)) {
             strictFail(parser, 'No whitespace between attributes')
-            parser.attribnombre = c
+            parser.attribName = c
             parser.attribValue = ''
-            parser.state = S.ATTRIB_nombre
+            parser.state = S.ATTRIB_NAME
           } else {
-            strictFail(parser, 'Invalid attribute nombre')
+            strictFail(parser, 'Invalid attribute name')
           }
           continue
 
@@ -70507,30 +70507,30 @@ else
           continue
 
         case S.CLOSE_TAG:
-          if (!parser.tagnombre) {
+          if (!parser.tagName) {
             if (isWhitespace(c)) {
               continue
-            } else if (notMatch(nombreStart, c)) {
+            } else if (notMatch(nameStart, c)) {
               if (parser.script) {
                 parser.script += '</' + c
                 parser.state = S.SCRIPT
               } else {
-                strictFail(parser, 'Invalid tagnombre in closing tag.')
+                strictFail(parser, 'Invalid tagname in closing tag.')
               }
             } else {
-              parser.tagnombre = c
+              parser.tagName = c
             }
           } else if (c === '>') {
             closeTag(parser)
-          } else if (isMatch(nombreBody, c)) {
-            parser.tagnombre += c
+          } else if (isMatch(nameBody, c)) {
+            parser.tagName += c
           } else if (parser.script) {
-            parser.script += '</' + parser.tagnombre
-            parser.tagnombre = ''
+            parser.script += '</' + parser.tagName
+            parser.tagName = ''
             parser.state = S.SCRIPT
           } else {
             if (!isWhitespace(c)) {
-              strictFail(parser, 'Invalid tagnombre in closing tag')
+              strictFail(parser, 'Invalid tagname in closing tag')
             }
             parser.state = S.CLOSE_TAG_SAW_WHITE
           }
@@ -70576,7 +70576,7 @@ else
           } else if (isMatch(parser.entity.length ? entityBody : entityStart, c)) {
             parser.entity += c
           } else {
-            strictFail(parser, 'Invalid character in entity nombre')
+            strictFail(parser, 'Invalid character in entity name')
             parser[buffer] += '&' + parser.entity + c
             parser.entity = ''
             parser.state = returnState
@@ -70854,7 +70854,7 @@ __webpack_require__(120);
 var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
   "use strict";
 
-  var nombredColors = {
+  var NamedColors = {
     aliceblue: [240, 248, 255],
     antiquewhite: [250, 235, 215],
     aqua: [0, 255, 255],
@@ -71004,9 +71004,9 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
     yellow: [255, 255, 0]
   };
   var DefaultColors = {
-    black: [nombredColors.black, 1],
-    white: [nombredColors.white, 1],
-    transparent: [nombredColors.black, 0]
+    black: [NamedColors.black, 1],
+    white: [NamedColors.white, 1],
+    transparent: [NamedColors.black, 0]
   };
   var Entities = {
     quot: 34,
@@ -71573,7 +71573,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
 
   function docBeginGroup(bbox) {
     var group = new function PDFGroup() {}();
-    group.nombre = 'G' + (doc._groupCount = (doc._groupCount || 0) + 1);
+    group.name = 'G' + (doc._groupCount = (doc._groupCount || 0) + 1);
     group.resources = doc.ref();
     group.xobj = doc.ref({
       Type: 'XObject',
@@ -71635,12 +71635,12 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
   }
 
   function docInsertGroup(group) {
-    doc.page.xobjects[group.nombre] = group.xobj;
-    doc.addContent('/' + group.nombre + ' Do');
+    doc.page.xobjects[group.name] = group.xobj;
+    doc.addContent('/' + group.name + ' Do');
   }
 
   function docApplyMask(group, clip) {
-    var nombre = 'M' + (doc._maskCount = (doc._maskCount || 0) + 1);
+    var name = 'M' + (doc._maskCount = (doc._maskCount || 0) + 1);
     var gstate = doc.ref({
       Type: 'ExtGState',
       CA: 1,
@@ -71653,8 +71653,8 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
       }
     });
     gstate.end();
-    doc.page.ext_gstates[nombre] = gstate;
-    doc.addContent('/' + nombre + ' gs');
+    doc.page.ext_gstates[name] = gstate;
+    doc.addContent('/' + name + ' gs');
   }
 
   function docCreatePattern(group, dx, dy, matrix) {
@@ -71667,7 +71667,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
   }
 
   function docUsePattern(pattern, stroke) {
-    var nombre = 'P' + (doc._patternCount = (doc._patternCount || 0) + 1);
+    var name = 'P' + (doc._patternCount = (doc._patternCount || 0) + 1);
     var ref = doc.ref({
       Type: 'Pattern',
       PatternType: 1,
@@ -71681,21 +71681,21 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
         ProcSet: ['PDF', 'Text', 'ImageB', 'ImageC', 'ImageI'],
         XObject: function () {
           var temp = {};
-          temp[pattern.group.nombre] = pattern.group.xobj;
+          temp[pattern.group.name] = pattern.group.xobj;
           return temp;
         }()
       }
     });
-    ref.write('/' + pattern.group.nombre + ' Do');
+    ref.write('/' + pattern.group.name + ' Do');
     ref.end();
-    doc.page.patterns[nombre] = ref;
+    doc.page.patterns[name] = ref;
 
     if (stroke) {
       doc.addContent('/Pattern CS');
-      doc.addContent('/' + nombre + ' SCN');
+      doc.addContent('/' + name + ' SCN');
     } else {
       doc.addContent('/Pattern cs');
-      doc.addContent('/' + nombre + ' scn');
+      doc.addContent('/' + name + ' scn');
     }
   }
 
@@ -71708,7 +71708,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
   }
 
   function docSetTextMatrix(a, b, c, d, e, f) {
-    doc.addContent(valifechaNumber(a) + ' ' + valifechaNumber(b) + ' ' + valifechaNumber(-c) + ' ' + valifechaNumber(-d) + ' ' + valifechaNumber(e) + ' ' + valifechaNumber(f) + ' Tm');
+    doc.addContent(validateNumber(a) + ' ' + validateNumber(b) + ' ' + validateNumber(-c) + ' ' + validateNumber(-d) + ' ' + validateNumber(e) + ' ' + validateNumber(f) + ' Tm');
   }
 
   function docSetTextMode(fill, stroke) {
@@ -71725,7 +71725,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
   }
 
   function docFillColor(color) {
-    if (color[0].constructor.nombre === 'PDFPattern') {
+    if (color[0].constructor.name === 'PDFPattern') {
       doc.fillOpacity(color[1]);
       docUsePattern(color[0], false);
     } else {
@@ -71734,7 +71734,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
   }
 
   function docStrokeColor(color) {
-    if (color[0].constructor.nombre === 'PDFPattern') {
+    if (color[0].constructor.name === 'PDFPattern') {
       doc.strokeOpacity(color[1]);
       docUsePattern(color[0], true);
     } else {
@@ -71760,7 +71760,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
   function parseXml(xml) {
     var SvgNode = function SvgNode(tag, type, value, error) {
       this.error = error;
-      this.nodenombre = tag;
+      this.nodeName = tag;
       this.nodeValue = value;
       this.nodeType = type;
       this.attributes = Object.create(null);
@@ -71797,12 +71797,12 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
       return result;
     };
 
-    SvgNode.prototype.getElementsByTagnombre = function (tag) {
+    SvgNode.prototype.getElementsByTagName = function (tag) {
       var result = [];
 
       (function recursive(node) {
         if (node.nodeType === 1) {
-          if (node.nodenombre === tag) {
+          if (node.nodeName === tag) {
             result.push(node);
           }
 
@@ -71858,15 +71858,15 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
 
           if (temp = parser.match(/^<\/([\w:.-]+)\s*>/, true)) {
             // Closing tag
-            if (temp[1] === node.nodenombre) {
+            if (temp[1] === node.nodeName) {
               return node;
             } else {
-              warningCallback('parseXml: tag not matching, opening "' + node.nodenombre + '" & closing "' + temp[1] + '"');
+              warningCallback('parseXml: tag not matching, opening "' + node.nodeName + '" & closing "' + temp[1] + '"');
               error = true;
               return node;
             }
           } else {
-            warningCallback('parseXml: tag not matching, opening "' + node.nodenombre + '" & not closing');
+            warningCallback('parseXml: tag not matching, opening "' + node.nodeName + '" & not closing');
             error = true;
             return node;
           }
@@ -71874,7 +71874,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
           // Self-closing tag
           return node;
         } else {
-          warningCallback('parseXml: tag could not be parsed "' + node.nodenombre + '"');
+          warningCallback('parseXml: tag could not be parsed "' + node.nodeName + '"');
           error = true;
         }
       } else if (temp = parser.match(/^<!--[\s\S]*?-->/)) {
@@ -71930,7 +71930,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
     var temp, result;
     raw = (raw || '').trim();
 
-    if (temp = nombredColors[raw]) {
+    if (temp = NamedColors[raw]) {
       result = [temp.slice(), 1];
     } else if (temp = raw.match(/^rgba\(\s*([0-9]+)\s*,\s*([0-9]+)\s*,\s*([0-9]+)\s*,\s*([0-9.]+)\s*\)$/i)) {
       temp[1] = parseInt(temp[1]);
@@ -72018,13 +72018,13 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
     return [m[3] / dt, -m[1] / dt, -m[2] / dt, m[0] / dt, (m[2] * m[5] - m[3] * m[4]) / dt, (m[1] * m[4] - m[0] * m[5]) / dt];
   }
 
-  function valifechaMatrix(m) {
-    var m0 = valifechaNumber(m[0]),
-        m1 = valifechaNumber(m[1]),
-        m2 = valifechaNumber(m[2]),
-        m3 = valifechaNumber(m[3]),
-        m4 = valifechaNumber(m[4]),
-        m5 = valifechaNumber(m[5]);
+  function validateMatrix(m) {
+    var m0 = validateNumber(m[0]),
+        m1 = validateNumber(m[1]),
+        m2 = validateNumber(m[2]),
+        m3 = validateNumber(m[3]),
+        m4 = validateNumber(m[4]),
+        m5 = validateNumber(m[5]);
 
     if (isNotEqual(m0 * m3 - m1 * m2, 0)) {
       return [m0, m1, m2, m3, m4, m5];
@@ -72065,7 +72065,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
     return Math.abs(number - ref) >= 1e-10;
   }
 
-  function valifechaNumber(n) {
+  function validateNumber(n) {
     return n > -1e21 && n < 1e21 ? Math.round(n * 1e6) / 1e6 : 0;
   }
 
@@ -72315,7 +72315,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
     }
 
     for (var i = 0; i < selector.tags.length; i++) {
-      if (selector.tags[i] !== elem.nodenombre) {
+      if (selector.tags[i] !== elem.nodeName) {
         return false;
       }
     }
@@ -72456,7 +72456,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
   }
 
   function createSVGElement(obj, inherits) {
-    switch (obj.nodenombre) {
+    switch (obj.nodeName) {
       case 'use':
         return new SvgElemUse(obj, inherits);
 
@@ -73088,7 +73088,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
   var SvgElem = function SvgElem(obj, inherits) {
     var styleCache = Object.create(null);
     var childrenCache = null;
-    this.nombre = obj.nodenombre;
+    this.name = obj.nodeName;
     this.isOuterElement = obj === svg || !obj.parentNode;
     this.inherits = inherits || (!this.isOuterElement ? createSVGElement(obj.parentNode, null) : null);
     this.stack = this.inherits ? this.inherits.stack.concat(obj) : [obj];
@@ -73400,9 +73400,9 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
 
                 if (object == null) {
                   result = fallbackColor;
-                } else if (object.nodenombre === 'linearGradient' || object.nodenombre === 'radialGradient') {
+                } else if (object.nodeName === 'linearGradient' || object.nodeName === 'radialGradient') {
                   result = new SvgElemGradient(object, null, fallbackColor);
-                } else if (object.nodenombre === 'pattern') {
+                } else if (object.nodeName === 'pattern') {
                   result = new SvgElemPattern(object, null, fallbackColor);
                 } else {
                   result = fallbackColor;
@@ -73494,7 +73494,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
       for (var i = 0; i < obj.childNodes.length; i++) {
         var child = obj.childNodes[i];
 
-        if (!child.error && this.allowedChildren.indexOf(child.nodenombre) !== -1) {
+        if (!child.error && this.allowedChildren.indexOf(child.nodeName) !== -1) {
           children.push(createSVGElement(child, this));
         }
       }
@@ -73871,7 +73871,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
     this.ref = function () {
       var ref = this.getUrl('href') || this.getUrl('xlink:href');
 
-      if (ref && ref.nodenombre === obj.nodenombre) {
+      if (ref && ref.nodeName === obj.nodeName) {
         return new SvgElemPattern(ref, inherits, fallback);
       }
     }.call(this);
@@ -73901,7 +73901,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
     };
 
     this.getPaint = function (bBox, gOpacity, isClip, isMask) {
-      var bBoxUnitsPattern = this.attr('patternUnits') !== 'usuariospaceOnUse',
+      var bBoxUnitsPattern = this.attr('patternUnits') !== 'userSpaceOnUse',
           bBoxUnitsContent = this.attr('patternContentUnits') === 'objectBoundingBox',
           x = this.getLength('x', bBoxUnitsPattern ? 1 : this.getParentVWidth(), 0),
           y = this.getLength('y', bBoxUnitsPattern ? 1 : this.getParentVHeight(), 0),
@@ -73932,7 +73932,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
 
       matrix = multiplyMatrix(matrix, [1, 0, 0, 1, x, y]);
 
-      if ((matrix = valifechaMatrix(matrix)) && (aspectRatioMatrix = valifechaMatrix(aspectRatioMatrix)) && (width = valifechaNumber(width)) && (height = valifechaNumber(height))) {
+      if ((matrix = validateMatrix(matrix)) && (aspectRatioMatrix = validateMatrix(aspectRatioMatrix)) && (width = validateNumber(width)) && (height = validateNumber(height))) {
         var group = docBeginGroup([0, 0, width, height]);
         doc.transform.apply(doc, aspectRatioMatrix);
         this.drawChildren(isClip, isMask);
@@ -73944,13 +73944,13 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
     };
 
     this.getVWidth = function () {
-      var bBoxUnitsPattern = this.attr('patternUnits') !== 'usuariospaceOnUse',
+      var bBoxUnitsPattern = this.attr('patternUnits') !== 'userSpaceOnUse',
           width = this.getLength('width', bBoxUnitsPattern ? 1 : this.getParentVWidth(), 0);
       return this.getViewbox('viewBox', [0, 0, width, 0])[2];
     };
 
     this.getVHeight = function () {
-      var bBoxUnitsPattern = this.attr('patternUnits') !== 'usuariospaceOnUse',
+      var bBoxUnitsPattern = this.attr('patternUnits') !== 'userSpaceOnUse',
           height = this.getLength('height', bBoxUnitsPattern ? 1 : this.getParentVHeight(), 0);
       return this.getViewbox('viewBox', [0, 0, 0, height])[3];
     };
@@ -73963,7 +73963,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
     this.ref = function () {
       var ref = this.getUrl('href') || this.getUrl('xlink:href');
 
-      if (ref && ref.nodenombre === obj.nodenombre) {
+      if (ref && ref.nodeName === obj.nodeName) {
         return new SvgElemGradient(ref, inherits, fallback);
       }
     }.call(this);
@@ -74010,7 +74010,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
         return opacityToColor(stopColor, child.get('stop-opacity') * gOpacity, isMask);
       }
 
-      var bBoxUnits = this.attr('gradientUnits') !== 'usuariospaceOnUse',
+      var bBoxUnits = this.attr('gradientUnits') !== 'userSpaceOnUse',
           matrix = parseTranform(this.attr('gradientTransform')),
           spread = this.attr('spreadMethod'),
           grad,
@@ -74027,8 +74027,8 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
         matrix = multiplyMatrix([bBox[2] - bBox[0], 0, 0, bBox[3] - bBox[1], bBox[0], bBox[1]], matrix);
       }
 
-      if (matrix = valifechaMatrix(matrix)) {
-        if (this.nombre === 'linearGradient') {
+      if (matrix = validateMatrix(matrix)) {
+        if (this.name === 'linearGradient') {
           x1 = this.getLength('x1', bBoxUnits ? 1 : this.getVWidth(), 0);
           x2 = this.getLength('x2', bBoxUnits ? 1 : this.getVWidth(), bBoxUnits ? 1 : this.getVWidth());
           y1 = this.getLength('y1', bBoxUnits ? 1 : this.getVHeight(), 0);
@@ -74064,7 +74064,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
               corner3 = transformPoint([bBox[2], bBox[3]], inv),
               corner4 = transformPoint([bBox[0], bBox[3]], inv);
 
-          if (this.nombre === 'linearGradient') {
+          if (this.name === 'linearGradient') {
             // See file 'gradient-repeat-maths.png'
             nAfter = Math.max((corner1[0] - x2) * (x2 - x1) + (corner1[1] - y2) * (y2 - y1), (corner2[0] - x2) * (x2 - x1) + (corner2[1] - y2) * (y2 - y1), (corner3[0] - x2) * (x2 - x1) + (corner3[1] - y2) * (y2 - y1), (corner4[0] - x2) * (x2 - x1) + (corner4[1] - y2) * (y2 - y1)) / (Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
             nBefore = Math.max((corner1[0] - x1) * (x1 - x2) + (corner1[1] - y1) * (y1 - y2), (corner2[0] - x1) * (x1 - x2) + (corner2[1] - y1) * (y1 - y2), (corner3[0] - x1) * (x1 - x2) + (corner3[1] - y1) * (y1 - y2), (corner4[0] - x1) * (x1 - x2) + (corner4[1] - y1) * (y1 - y2)) / (Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
@@ -74078,7 +74078,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
           nTotal = nBefore + 1 + nAfter; // How many times the gradient needs to be repeated to fill the object bounding box
         }
 
-        if (this.nombre === 'linearGradient') {
+        if (this.name === 'linearGradient') {
           grad = doc.linearGradient(x1 - nBefore * (x2 - x1), y1 - nBefore * (y2 - y1), x2 + nAfter * (x2 - x1), y2 + nAfter * (y2 - y1));
         } else {
           grad = doc.radialGradient(x1, y1, 0, x2, y2, r2 + nAfter * r2);
@@ -74397,7 +74397,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
       var orient = this.attr('orient'),
           units = this.attr('markerUnits'),
           rotate = orient === 'auto' ? posArray[2] : (parseFloat(orient) || 0) * Math.PI / 180,
-          scale = units === 'usuariospaceOnUse' ? 1 : strokeWidth;
+          scale = units === 'userSpaceOnUse' ? 1 : strokeWidth;
       doc.transform(Math.cos(rotate) * scale, Math.sin(rotate) * scale, -Math.sin(rotate) * scale, Math.cos(rotate) * scale, posArray[0], posArray[1]);
       var refX = this.getLength('refX', this.getVWidth(), 0),
           refY = this.getLength('refY', this.getVHeight(), 0),
@@ -74454,7 +74454,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
       doc.save();
       var x, y, w, h;
 
-      if (this.attr('maskUnits') === 'usuariospaceOnUse') {
+      if (this.attr('maskUnits') === 'userSpaceOnUse') {
         x = this.getLength('x', this.getVWidth(), -0.1 * (bBox[2] - bBox[0]) + bBox[0]);
         y = this.getLength('y', this.getVHeight(), -0.1 * (bBox[3] - bBox[1]) + bBox[1]);
         w = this.getLength('width', this.getVWidth(), 1.2 * (bBox[2] - bBox[0]));
@@ -74536,7 +74536,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
       for (var i = 0; i < children.length; i++) {
         var childElem = children[i];
 
-        switch (childElem.nombre) {
+        switch (childElem.name) {
           case 'tspan':
           case 'textPath':
           case 'a':
@@ -74627,7 +74627,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
   };
 
   var SvgElemTextNode = function SvgElemTextNode(obj, inherits) {
-    this.nombre = obj.nodenombre;
+    this.name = obj.nodeName;
     this.textContent = obj.nodeValue;
   };
 
@@ -74645,7 +74645,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
       this.pathObject = new SvgShape().path(temp);
       this.pathLength = _pathLength > 0 ? _pathLength : this.pathObject.totalLength;
       this.pathScale = this.pathObject.totalLength / this.pathLength;
-    } else if ((temp = this.getUrl('href') || this.getUrl('xlink:href')) && temp.nodenombre === 'path') {
+    } else if ((temp = this.getUrl('href') || this.getUrl('xlink:href')) && temp.nodeName === 'path') {
       var pathElem = new SvgElemPath(temp, this);
       this.pathObject = pathElem.shape.clone().transform(pathElem.get('transform'));
       this.pathLength = this.chooseValue(pathElem.pathLength, this.pathObject.totalLength);
@@ -74726,7 +74726,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
         currentElem._rot = combineArrays(currentElem.getNumberList('rotate'), parentElem ? parentElem._rot.slice(parentElem._pos.length) : []);
         currentElem._defRot = currentElem.chooseValue(currentElem._rot[currentElem._rot.length - 1], parentElem && parentElem._defRot, 0);
 
-        if (currentElem.nombre === 'textPath') {
+        if (currentElem.name === 'textPath') {
           currentElem._y = [];
         }
 
@@ -74734,12 +74734,12 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
           fauxItalic: false,
           fauxBold: false
         },
-            fontnombreorLink = fontCallback(currentElem.get('font-family'), currentElem.get('font-weight') === 'bold', currentElem.get('font-style') === 'italic', fontOptions);
+            fontNameorLink = fontCallback(currentElem.get('font-family'), currentElem.get('font-weight') === 'bold', currentElem.get('font-style') === 'italic', fontOptions);
 
         try {
-          doc.font(fontnombreorLink);
+          doc.font(fontNameorLink);
         } catch (e) {
-          warningCallback('SVGElemText: failed to open font "' + fontnombreorLink + '" in PDFKit');
+          warningCallback('SVGElemText: failed to open font "' + fontNameorLink + '" in PDFKit');
         }
 
         currentElem._pos = [];
@@ -74758,7 +74758,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
             textDirection = currentElem.get('direction'),
             baseline = getBaseline(currentElem._font.font, currentElem._font.size, currentElem.get('alignment-baseline') || currentElem.get('dominant-baseline'), currentElem.get('baseline-shift'));
 
-        if (currentElem.nombre === 'textPath') {
+        if (currentElem.name === 'textPath') {
           doAnchoring();
           currentX = currentY = 0;
         }
@@ -74768,7 +74768,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
         for (var i = 0; i < children.length; i++) {
           var childElem = children[i];
 
-          switch (childElem.nombre) {
+          switch (childElem.name) {
             case 'tspan':
             case 'textPath':
             case 'a':
@@ -74889,11 +74889,11 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
           adjustLength(currentElem._pos, textLength, spacingAndGlyphs);
         }
 
-        if (currentElem.nombre === 'textPath' || currentElem.nombre === 'text') {
+        if (currentElem.name === 'textPath' || currentElem.name === 'text') {
           doAnchoring();
         }
 
-        if (currentElem.nombre === 'textPath') {
+        if (currentElem.name === 'textPath') {
           textPaths.push(currentElem);
           var pathObject = currentElem.pathObject;
 
@@ -75124,7 +75124,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
   }
 
   if (svg) {
-    var styles = svg.getElementsByTagnombre('style');
+    var styles = svg.getElementsByTagName('style');
 
     for (var i = 0; i < styles.length; i++) {
       styleRules = styleRules.concat(parseStyleSheet(styles[i].textContent));
@@ -75148,7 +75148,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
       doc.restore();
       doc._fillColor = savedFillColor;
     } else {
-      warningCallback('SVGtoPDF: this element can\'t be rendered directly: ' + svg.nodenombre);
+      warningCallback('SVGtoPDF: this element can\'t be rendered directly: ' + svg.nodeName);
     }
   } else {
     warningCallback('SVGtoPDF: the input does not look like a valid SVG');
@@ -75335,8 +75335,8 @@ var inspectSource = __webpack_require__(140);
 var iterate = __webpack_require__(136);
 var checkCorrectnessOfIteration = __webpack_require__(153);
 var speciesConstructor = __webpack_require__(38);
-var tarea = __webpack_require__(296).set;
-var microtarea = __webpack_require__(553);
+var task = __webpack_require__(296).set;
+var microtask = __webpack_require__(553);
 var promiseResolve = __webpack_require__(298);
 var hostReportErrors = __webpack_require__(554);
 var newPromiseCapabilityModule = __webpack_require__(109);
@@ -75409,7 +75409,7 @@ var notify = function (promise, state, isReject) {
   if (state.notified) return;
   state.notified = true;
   var chain = state.reactions;
-  microtarea(function () {
+  microtask(function () {
     var value = state.value;
     var ok = state.state == FULFILLED;
     var index = 0;
@@ -75453,21 +75453,21 @@ var notify = function (promise, state, isReject) {
   });
 };
 
-var dispatchEvent = function (nombre, promise, reason) {
+var dispatchEvent = function (name, promise, reason) {
   var event, handler;
   if (DISPATCH_EVENT) {
     event = document.createEvent('Event');
     event.promise = promise;
     event.reason = reason;
-    event.initEvent(nombre, false, true);
+    event.initEvent(name, false, true);
     global.dispatchEvent(event);
   } else event = { promise: promise, reason: reason };
-  if (handler = global['on' + nombre]) handler(event);
-  else if (nombre === UNHANDLED_REJECTION) hostReportErrors('Unhandled promise rejection', reason);
+  if (handler = global['on' + name]) handler(event);
+  else if (name === UNHANDLED_REJECTION) hostReportErrors('Unhandled promise rejection', reason);
 };
 
 var onUnhandled = function (promise, state) {
-  tarea.call(global, function () {
+  task.call(global, function () {
     var value = state.value;
     var IS_UNHANDLED = isUnhandled(state);
     var result;
@@ -75489,7 +75489,7 @@ var isUnhandled = function (state) {
 };
 
 var onHandleUnhandled = function (promise, state) {
-  tarea.call(global, function () {
+  task.call(global, function () {
     if (IS_NODE) {
       process.emit('rejectionHandled', promise);
     } else dispatchEvent(REJECTION_HANDLED, promise, state.value);
@@ -75519,7 +75519,7 @@ var internalResolve = function (promise, state, value, unwrap) {
     if (promise === value) throw TypeError("Promise can't be resolved itself");
     var then = isThenable(value);
     if (then) {
-      microtarea(function () {
+      microtask(function () {
         var wrapper = { done: false };
         try {
           then.call(value,
@@ -75705,21 +75705,21 @@ $({ target: PROMISE, stat: true, forced: INCORRECT_ITERATION }, {
 var global = __webpack_require__(3);
 var getOwnPropertyDescriptor = __webpack_require__(54).f;
 var classof = __webpack_require__(30);
-var macrotarea = __webpack_require__(296).set;
+var macrotask = __webpack_require__(296).set;
 var IS_IOS = __webpack_require__(297);
 
 var MutationObserver = global.MutationObserver || global.WebKitMutationObserver;
 var process = global.process;
 var Promise = global.Promise;
 var IS_NODE = classof(process) == 'process';
-// Node.js 11 shows ExperimentalWarning on getting `queueMicrotarea`
-var queueMicrotareaDescriptor = getOwnPropertyDescriptor(global, 'queueMicrotarea');
-var queueMicrotarea = queueMicrotareaDescriptor && queueMicrotareaDescriptor.value;
+// Node.js 11 shows ExperimentalWarning on getting `queueMicrotask`
+var queueMicrotaskDescriptor = getOwnPropertyDescriptor(global, 'queueMicrotask');
+var queueMicrotask = queueMicrotaskDescriptor && queueMicrotaskDescriptor.value;
 
 var flush, head, last, notify, toggle, node, promise, then;
 
-// modern engines have queueMicrotarea method
-if (!queueMicrotarea) {
+// modern engines have queueMicrotask method
+if (!queueMicrotask) {
   flush = function () {
     var parent, fn;
     if (IS_NODE && (parent = process.domain)) parent.exit();
@@ -75758,7 +75758,7 @@ if (!queueMicrotarea) {
     notify = function () {
       then.call(promise, flush);
     };
-  // for other environments - macrotarea based on:
+  // for other environments - macrotask based on:
   // - setImmediate
   // - MessageChannel
   // - window.postMessag
@@ -75767,18 +75767,18 @@ if (!queueMicrotarea) {
   } else {
     notify = function () {
       // strange IE + webpack dev server bug - use .call(global)
-      macrotarea.call(global, flush);
+      macrotask.call(global, flush);
     };
   }
 }
 
-module.exports = queueMicrotarea || function (fn) {
-  var tarea = { fn: fn, next: undefined };
-  if (last) last.next = tarea;
+module.exports = queueMicrotask || function (fn) {
+  var task = { fn: fn, next: undefined };
+  if (last) last.next = task;
   if (!head) {
-    head = tarea;
+    head = task;
     notify();
-  } last = tarea;
+  } last = task;
 };
 
 
@@ -75876,7 +75876,7 @@ var $AggregateError = function AggregateError(errors, message) {
 $AggregateError.prototype = create(Error.prototype, {
   constructor: createPropertyDescriptor(5, $AggregateError),
   message: createPropertyDescriptor(5, ''),
-  nombre: createPropertyDescriptor(5, 'AggregateError')
+  name: createPropertyDescriptor(5, 'AggregateError')
 });
 
 if (DESCRIPTORS) defineProperty.f($AggregateError.prototype, 'errors', {
@@ -76045,7 +76045,7 @@ module.exports = {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
-// eslint-disable-next-line func-nombres
+// eslint-disable-next-line func-names
 module.exports = function () {
   if (typeof globalThis === 'object') {
     return globalThis;

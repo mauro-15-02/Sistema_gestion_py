@@ -161,7 +161,7 @@
         this.plugin_count = plugin_count;
         this.current_plugin = 0;
         this.calc_count = 0;
-        this.upfecha_tm = 0;
+        this.update_tm = 0;
         this.old_from = 0;
         this.old_to = 0;
         this.old_min_interval = null;
@@ -171,7 +171,7 @@
         this.no_diapason = false;
         this.has_tab_index = true;
         this.is_key = false;
-        this.is_upfecha = false;
+        this.is_update = false;
         this.is_start = true;
         this.is_finish = false;
         this.is_active = false;
@@ -264,7 +264,7 @@
 
 
         /**
-         * get and valifecha config
+         * get and validate config
          */
         var $inp = this.$cache.input,
             val = $inp.prop("value"),
@@ -331,12 +331,12 @@
             onStart: null,
             onChange: null,
             onFinish: null,
-            onUpfecha: null
+            onUpdate: null
         };
 
 
         // check if base element is input
-        if ($inp[0].nodenombre !== "INPUT") {
+        if ($inp[0].nodeName !== "INPUT") {
             console && console.warn && console.warn("Base element should be <input>!", $inp[0]);
         }
 
@@ -439,9 +439,9 @@
 
 
 
-        // valifecha config, to be sure that all data types are correct
-        this.upfecha_check = {};
-        this.valifecha();
+        // validate config, to be sure that all data types are correct
+        this.update_check = {};
+        this.validate();
 
 
 
@@ -470,11 +470,11 @@
     IonRangeSlider.prototype = {
 
         /**
-         * Starts or upfechas the plugin instance
+         * Starts or updates the plugin instance
          *
-         * @param [is_upfecha] {boolean}
+         * @param [is_update] {boolean}
          */
-        init: function (is_upfecha) {
+        init: function (is_update) {
             this.no_diapason = false;
             this.coords.p_step = this.convertToPercent(this.options.step, true);
 
@@ -484,12 +484,12 @@
             this.append();
             this.setMinMax();
 
-            if (is_upfecha) {
+            if (is_update) {
                 this.force_redraw = true;
                 this.calc(true);
 
                 // callbacks called
-                this.callOnUpfecha();
+                this.callOnUpdate();
             } else {
                 this.force_redraw = true;
                 this.calc(true);
@@ -498,7 +498,7 @@
                 this.callOnStart();
             }
 
-            this.upfechaScene();
+            this.updateScene();
         },
 
         /**
@@ -799,7 +799,7 @@
                 $("*").prop("unselectable", false);
             }
 
-            this.upfechaScene();
+            this.updateScene();
             this.restoreOriginalMinInterval();
 
             // callbacks call
@@ -850,7 +850,7 @@
 
             this.$cache.line.trigger("focus");
 
-            this.upfechaScene();
+            this.updateScene();
         },
 
         /**
@@ -999,16 +999,16 @@
         /**
          * All calculations and measures start here
          *
-         * @param upfecha {boolean=}
+         * @param update {boolean=}
          */
-        calc: function (upfecha) {
+        calc: function (update) {
             if (!this.options) {
                 return;
             }
 
             this.calc_count++;
 
-            if (this.calc_count === 10 || upfecha) {
+            if (this.calc_count === 10 || update) {
                 this.calc_count = 0;
                 this.coords.w_rs = this.$cache.rs.outerWidth(false);
 
@@ -1325,16 +1325,16 @@
 
         /**
          * Main function called in request animation frame
-         * to upfecha everything
+         * to update everything
          */
-        upfechaScene: function () {
+        updateScene: function () {
             if (this.raf_id) {
                 cancelAnimationFrame(this.raf_id);
                 this.raf_id = null;
             }
 
-            clearTimeout(this.upfecha_tm);
-            this.upfecha_tm = null;
+            clearTimeout(this.update_tm);
+            this.update_tm = null;
 
             if (!this.options) {
                 return;
@@ -1343,9 +1343,9 @@
             this.drawHandles();
 
             if (this.is_active) {
-                this.raf_id = requestAnimationFrame(this.upfechaScene.bind(this));
+                this.raf_id = requestAnimationFrame(this.updateScene.bind(this));
             } else {
-                this.upfecha_tm = setTimeout(this.upfechaScene.bind(this), 300);
+                this.update_tm = setTimeout(this.updateScene.bind(this), 300);
             }
         },
 
@@ -1424,7 +1424,7 @@
                 this.old_to = this.result.to;
 
                 // callbacks call
-                if (!this.is_resize && !this.is_upfecha && !this.is_start && !this.is_finish) {
+                if (!this.is_resize && !this.is_update && !this.is_start && !this.is_finish) {
                     this.callOnChange();
                 }
                 if (this.is_key || this.is_click) {
@@ -1433,7 +1433,7 @@
                     this.callOnFinish();
                 }
 
-                this.is_upfecha = false;
+                this.is_update = false;
                 this.is_resize = false;
                 this.is_finish = false;
             }
@@ -1703,14 +1703,14 @@
                 }
             }
         },
-        callOnUpfecha: function () {
+        callOnUpdate: function () {
             this.writeToInput();
 
-            if (this.options.onUpfecha && typeof this.options.onUpfecha === "function") {
+            if (this.options.onUpdate && typeof this.options.onUpdate === "function") {
                 if (this.options.scope) {
-                    this.options.onUpfecha.call(this.options.scope, this.result);
+                    this.options.onUpdate.call(this.options.scope, this.result);
                 } else {
-                    this.options.onUpfecha(this.result);
+                    this.options.onUpdate(this.result);
                 }
             }
         },
@@ -1970,7 +1970,7 @@
             return this.toFixed(left);
         },
 
-        valifecha: function () {
+        validate: function () {
             var o = this.options,
                 r = this.result,
                 v = o.values,
@@ -2038,12 +2038,12 @@
                 if (o.to < o.min) o.to = o.min;
                 if (o.to > o.max) o.to = o.max;
 
-                if (this.upfecha_check.from) {
+                if (this.update_check.from) {
 
-                    if (this.upfecha_check.from !== o.from) {
+                    if (this.update_check.from !== o.from) {
                         if (o.from > o.to) o.from = o.to;
                     }
-                    if (this.upfecha_check.to !== o.to) {
+                    if (this.update_check.to !== o.to) {
                         if (o.to < o.from) o.to = o.from;
                     }
 
@@ -2140,7 +2140,7 @@
             return decorated;
         },
 
-        upfechaFrom: function () {
+        updateFrom: function () {
             this.result.from = this.options.from;
             this.result.from_percent = this.convertToPercent(this.result.from);
             this.result.from_pretty = this._prettify(this.result.from);
@@ -2149,7 +2149,7 @@
             }
         },
 
-        upfechaTo: function () {
+        updateTo: function () {
             this.result.to = this.options.to;
             this.result.to_percent = this.convertToPercent(this.result.to);
             this.result.to_pretty = this._prettify(this.result.to);
@@ -2158,11 +2158,11 @@
             }
         },
 
-        upfechaResult: function () {
+        updateResult: function () {
             this.result.min = this.options.min;
             this.result.max = this.options.max;
-            this.upfechaFrom();
-            this.upfechaTo();
+            this.updateFrom();
+            this.updateTo();
         },
 
 
@@ -2358,21 +2358,21 @@
         // =============================================================================================================
         // Public methods
 
-        upfecha: function (options) {
+        update: function (options) {
             if (!this.input) {
                 return;
             }
 
-            this.is_upfecha = true;
+            this.is_update = true;
 
             this.options.from = this.result.from;
             this.options.to = this.result.to;
-            this.upfecha_check.from = this.result.from;
-            this.upfecha_check.to = this.result.to;
+            this.update_check.from = this.result.from;
+            this.update_check.to = this.result.to;
 
             this.options = $.extend(this.options, options);
-            this.valifecha();
-            this.upfechaResult(options);
+            this.validate();
+            this.updateResult(options);
 
             this.toggleInput();
             this.remove();
@@ -2384,8 +2384,8 @@
                 return;
             }
 
-            this.upfechaResult();
-            this.upfecha();
+            this.updateResult();
+            this.update();
         },
 
         destroy: function () {

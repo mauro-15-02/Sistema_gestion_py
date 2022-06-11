@@ -26,7 +26,7 @@
                 searchButtonTooltip: "Trouve",
                 clearFilterButtonTooltip: "Effacer",
                 insertButtonTooltip: "Ajouter",
-                upfechaButtonTooltip: "Sauvegarder",
+                updateButtonTooltip: "Sauvegarder",
                 cancelEditButtonTooltip: "Annuler"
             }
         },

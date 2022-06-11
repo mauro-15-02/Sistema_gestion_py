@@ -50,12 +50,12 @@
       state.context.line.indent = stream.indentation();
       ch = stream.peek();
 
-      // Line comentario
+      // Line comment
       if (stream.match("//")) {
         stream.skipToEnd();
-        return ["comentario", "comentario"];
+        return ["comment", "comment"];
       }
-      // Block comentario
+      // Block comment
       if (stream.match("/*")) {
         state.tokenize = tokenCComment;
         return tokenCComment(stream, state);
@@ -159,7 +159,7 @@
     }
 
     /**
-     * Token comentario
+     * Token comment
      */
     function tokenCComment(stream, state) {
       var maybeEnd = false, ch;
@@ -170,7 +170,7 @@
         }
         maybeEnd = (ch == "*");
       }
-      return ["comentario", "comentario"];
+      return ["comment", "comment"];
     }
 
     /**
@@ -303,7 +303,7 @@
      * Block
      */
     states.block = function(type, stream, state) {
-      if ((type == "comentario" && startOfLine(stream)) ||
+      if ((type == "comment" && startOfLine(stream)) ||
           (type == "," && endOfLine(stream)) ||
           type == "mixin") {
         return pushContext(state, stream, "block", 0);
@@ -728,7 +728,7 @@
   });
 
   // developer.mozilla.org/en-US/docs/Web/HTML/Element
-  var tagKeywords_ = ["a","abbr","direccion","area","article","aside","audio", "b", "base","bdi", "bdo","bgsound","blockquote","body","br","button","canvas","caption","cite", "code","col","colgroup","data","datalist","dd","del","details","dfn","div", "dl","dt","em","embed","fieldset","figcaption","figure","footer","form","h1", "h2","h3","h4","h5","h6","head","header","hgroup","hr","html","i","iframe", "img","input","ins","kbd","keygen","label","legend","li","link","main","map", "mark","marquee","menu","menuitem","meta","meter","nav","nobr","noframes", "noscript","object","ol","optgroup","option","output","p","param","pre", "progress","q","rp","rt","ruby","s","samp","script","section","select", "small","source","span","strong","style","sub","summary","sup","table","tbody","td","textarea","tfoot","th","thead","time","tr","track", "u","ul","var","video"];
+  var tagKeywords_ = ["a","abbr","address","area","article","aside","audio", "b", "base","bdi", "bdo","bgsound","blockquote","body","br","button","canvas","caption","cite", "code","col","colgroup","data","datalist","dd","del","details","dfn","div", "dl","dt","em","embed","fieldset","figcaption","figure","footer","form","h1", "h2","h3","h4","h5","h6","head","header","hgroup","hr","html","i","iframe", "img","input","ins","kbd","keygen","label","legend","li","link","main","map", "mark","marquee","menu","menuitem","meta","meter","nav","nobr","noframes", "noscript","object","ol","optgroup","option","output","p","param","pre", "progress","q","rp","rt","ruby","s","samp","script","section","select", "small","source","span","strong","style","sub","summary","sup","table","tbody","td","textarea","tfoot","th","thead","time","tr","track", "u","ul","var","video"];
 
   // github.com/codemirror/CodeMirror/blob/master/mode/css/css.js
   var documentTypes_ = ["domain", "regexp", "url", "url-prefix"];

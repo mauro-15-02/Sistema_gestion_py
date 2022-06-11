@@ -25,7 +25,7 @@ var htmlConfig = {
     'li': {'li': true},
     'option': {'option': true, 'optgroup': true},
     'optgroup': {'optgroup': true},
-    'p': {'direccion': true, 'article': true, 'aside': true, 'blockquote': true, 'dir': true,
+    'p': {'address': true, 'article': true, 'aside': true, 'blockquote': true, 'dir': true,
           'div': true, 'dl': true, 'fieldset': true, 'footer': true, 'form': true,
           'h1': true, 'h2': true, 'h3': true, 'h4': true, 'h5': true, 'h6': true,
           'header': true, 'hgroup': true, 'hr': true, 'menu': true, 'nav': true, 'ol': true,
@@ -79,7 +79,7 @@ CodeMirror.defineMode("xml", function(editorConf, config_) {
           if (stream.match("CDATA[")) return chain(inBlock("atom", "]]>"));
           else return null;
         } else if (stream.match("--")) {
-          return chain(inBlock("comentario", "-->"));
+          return chain(inBlock("comment", "-->"));
         } else if (stream.match("DOCTYPE", true, true)) {
           stream.eatWhile(/[\w\._\-]/);
           return chain(doctype(1));
@@ -324,7 +324,7 @@ CodeMirror.defineMode("xml", function(editorConf, config_) {
       if (stream.eatSpace()) return null;
       type = null;
       var style = state.tokenize(stream, state);
-      if ((style || type) && style != "comentario") {
+      if ((style || type) && style != "comment") {
         setStyle = null;
         state.state = state.state(type || style, stream, state);
         if (setStyle)

@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Средите ово поље.",
 	email: "Унесите исправну и-мејл адресу.",
 	url: "Унесите исправан URL.",
-	fecha: "Унесите исправан датум.",
-	fechaISO: "Унесите исправан датум (ISO).",
+	date: "Унесите исправан датум.",
+	dateISO: "Унесите исправан датум (ISO).",
 	number: "Унесите исправан број.",
 	digits: "Унесите само цифе.",
 	creditcard: "Унесите исправан број кредитне картице.",

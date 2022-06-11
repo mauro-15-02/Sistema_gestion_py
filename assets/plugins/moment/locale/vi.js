@@ -1,5 +1,5 @@
 //! moment.js locale configuration
-//! locale : Vietnombrese [vi]
+//! locale : Vietnamese [vi]
 //! author : Bang Nguyen : https://github.com/bangnk
 //! author : Chien Kira : https://github.com/chienkira
 

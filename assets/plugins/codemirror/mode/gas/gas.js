@@ -19,10 +19,10 @@ CodeMirror.defineMode("gas", function(_config, parserConfig) {
   // tried in the event that the standard functions do not find a match.
   var custom = [];
 
-  // The symbol used to start a line comentario changes based on the target
+  // The symbol used to start a line comment changes based on the target
   // architecture.
   // If no architecture is pased in "parserConfig" then only multiline
-  // comentarios will have syntax support.
+  // comments will have syntax support.
   var lineCommentStartSymbol = "";
 
   // These directives are architecture independent.
@@ -251,7 +251,7 @@ CodeMirror.defineMode("gas", function(_config, parserConfig) {
       }
       maybeEnd = (ch === "*");
     }
-    return "comentario";
+    return "comment";
   }
 
   return {
@@ -281,7 +281,7 @@ CodeMirror.defineMode("gas", function(_config, parserConfig) {
 
       if (ch === lineCommentStartSymbol) {
         stream.skipToEnd();
-        return "comentario";
+        return "comment";
       }
 
       if (ch === '"') {

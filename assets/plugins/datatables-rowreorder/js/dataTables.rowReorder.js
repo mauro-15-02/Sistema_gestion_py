@@ -4,11 +4,11 @@
 
 /**
  * @summary     RowReorder
- * @descripcion Row reordering extension for DataTables
+ * @description Row reordering extension for DataTables
  * @version     1.2.7
  * @file        dataTables.rowReorder.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contacto     www.sprymedia.co.uk/contacto
+ * @contact     www.sprymedia.co.uk/contact
  * @copyright   Copyright 2015-2020 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
@@ -54,7 +54,7 @@ var DataTable = $.fn.dataTable;
 /**
  * RowReorder provides the ability in DataTables to click and drag rows to
  * reorder them. When a row is dropped the data for the rows effected will be
- * upfechad to reflect the change. Normally this data point should also be the
+ * updated to reflect the change. Normally this data point should also be the
  * column being sorted upon in the DataTable but this does not need to be the
  * case. RowReorder implements a "data swap" method - so the rows being
  * reordered take the value of the data point from the row that used to occupy
@@ -286,7 +286,7 @@ $.extend( RowReorder.prototype, {
 
 
 	/**
-	 * Upfecha the cloned item's position in the document
+	 * Update the cloned item's position in the document
 	 *
 	 * @param  {object} e Event giving the mouse's position
 	 * @private
@@ -466,7 +466,7 @@ $.extend( RowReorder.prototype, {
 
 	/**
 	 * Mouse up event handler - release the event handlers and perform the
-	 * table upfechas
+	 * table updates
 	 *
 	 * @param  {object} e Mouse event
 	 * @private
@@ -533,18 +533,18 @@ $.extend( RowReorder.prototype, {
 		// Emit event
 		this._emitEvent( 'row-reorder', eventArgs );
 
-		var upfecha = function () {
-			if ( that.c.upfecha ) {
+		var update = function () {
+			if ( that.c.update ) {
 				for ( i=0, ien=fullDiff.length ; i<ien ; i++ ) {
 					var row = dt.row( fullDiff[i].node );
 					var rowData = row.data();
 
 					setDataFn( rowData, fullDiff[i].newData );
 
-					// Invalifecha the cell that has the same data source as the dataSrc
+					// Invalidate the cell that has the same data source as the dataSrc
 					dt.columns().every( function () {
 						if ( this.dataSrc() === dataSrc ) {
-							dt.cell( fullDiff[i].node, this.index() ).invalifecha( 'data' );
+							dt.cell( fullDiff[i].node, this.index() ).invalidate( 'data' );
 						}
 					} );
 				}
@@ -577,7 +577,7 @@ $.extend( RowReorder.prototype, {
 					dt.draw( false );
 				} )
 				.one( 'submitSuccess.rowReorder', function () {
-					upfecha();
+					update();
 				} )
 				.one( 'submitComplete', function () {
 					that.c.enable = true;
@@ -586,7 +586,7 @@ $.extend( RowReorder.prototype, {
 				.submit();
 		}
 		else {
-			upfecha();
+			update();
 		}
 	},
 
@@ -699,7 +699,7 @@ RowReorder.defaults = {
 	dataSrc: 0,
 
 	/**
-	 * Editor instance that will be used to perform the upfecha
+	 * Editor instance that will be used to perform the update
 	 *
 	 * @type {DataTable.Editor}
 	 */
@@ -737,11 +737,11 @@ RowReorder.defaults = {
 	snapX: false,
 
 	/**
-	 * Upfecha the table's data on drop
+	 * Update the table's data on drop
 	 *
 	 * @type {Boolean}
 	 */
-	upfecha: true,
+	update: true,
 
 	/**
 	 * Selector for children of the drag handle selector that mouseDown events

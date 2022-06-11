@@ -64,7 +64,7 @@
         }
         if (stream.eat("/")) {
           stream.skipToEnd();
-          return "comentario";
+          return "comment";
         }
       }
       if (isOperatorChar.test(ch)) {
@@ -133,7 +133,7 @@
         }
         maybeEnd = (ch == "*");
       }
-      return "comentario";
+      return "comment";
     }
 
     function Context(indented, column, type, align, prev) {
@@ -179,7 +179,7 @@
         if (stream.eatSpace()) return null;
         curPunc = null;
         var style = (state.tokenize || tokenBase)(stream, state);
-        if (style == "comentario") return style;
+        if (style == "comment") return style;
         if (ctx.align == null) ctx.align = true;
 
         if ((curPunc == ";" || curPunc == ":" || curPunc == ",")
@@ -243,7 +243,7 @@
 
   def(["text/x-ttcn", "text/x-ttcn3", "text/x-ttcnpp"], {
     name: "ttcn",
-    keywords: words("activate direccion alive all alt altstep and and4b any" +
+    keywords: words("activate address alive all alt altstep and and4b any" +
     " break case component const continue control deactivate" +
     " display do else encode enumerated except exception" +
     " execute extends extension external for from function" +

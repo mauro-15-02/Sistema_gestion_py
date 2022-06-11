@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Пожалуйста, введите правильное значение.",
 	email: "Пожалуйста, введите корректный адрес электронной почты.",
 	url: "Пожалуйста, введите корректный URL.",
-	fecha: "Пожалуйста, введите корректную дату.",
-	fechaISO: "Пожалуйста, введите корректную дату в формате ISO.",
+	date: "Пожалуйста, введите корректную дату.",
+	dateISO: "Пожалуйста, введите корректную дату в формате ISO.",
 	number: "Пожалуйста, введите число.",
 	digits: "Пожалуйста, вводите только цифры.",
 	creditcard: "Пожалуйста, введите правильный номер кредитной карты.",

@@ -57,10 +57,10 @@ CodeMirror.defineMode("octave", function() {
   function tokenComment(stream, state) {
     if (stream.match(/^.*%}/)) {
       state.tokenize = tokenBase;
-      return 'comentario';
+      return 'comment';
     };
     stream.skipToEnd();
-    return 'comentario';
+    return 'comment';
   }
 
   function tokenBase(stream, state) {
@@ -71,12 +71,12 @@ CodeMirror.defineMode("octave", function() {
     if (stream.match('%{')){
       state.tokenize = tokenComment;
       stream.skipToEnd();
-      return 'comentario';
+      return 'comment';
     }
 
     if (stream.match(/^[%#]/)){
       stream.skipToEnd();
-      return 'comentario';
+      return 'comment';
     }
 
     // Handle Number Literals

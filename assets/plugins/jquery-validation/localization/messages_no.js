@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Ugyldig verdi.",
 	email: "Angi en gyldig epostadresse.",
 	url: "Angi en gyldig URL.",
-	fecha: "Angi en gyldig dato.",
-	fechaISO: "Angi en gyldig dato (&ARING;&ARING;&ARING;&ARING;-MM-DD).",
+	date: "Angi en gyldig dato.",
+	dateISO: "Angi en gyldig dato (&ARING;&ARING;&ARING;&ARING;-MM-DD).",
 	number: "Angi et gyldig tall.",
 	digits: "Skriv kun tall.",
 	equalTo: "Skriv samme verdi igjen.",

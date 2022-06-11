@@ -203,7 +203,7 @@
         var match;
 
         switch (last(state.soyState)) {
-          case "comentario":
+          case "comment":
             if (stream.match(/^.*?\*\//)) {
               state.soyState.pop();
             } else {
@@ -216,7 +216,7 @@
                 state.variables = prepend(state.variables, match[1]);
               }
             }
-            return "comentario";
+            return "comment";
 
           case "string":
             var match = stream.match(/^.*?(["']|\\[\s\S])/);
@@ -231,10 +231,10 @@
 
         if (!state.soyState.length || last(state.soyState) != "literal") {
           if (stream.match(/^\/\*/)) {
-            state.soyState.push("comentario");
-            return "comentario";
+            state.soyState.push("comment");
+            return "comment";
           } else if (stream.match(stream.sol() ? /^\s*\/\/.*/ : /^\s+\/\/.*/)) {
-            return "comentario";
+            return "comment";
           }
         }
 
@@ -505,7 +505,7 @@
           state.context = new Context(state.context, "literal", state.variables);
           return "keyword";
 
-        // A tag-keyword must be followed by whitespace, comentario or a closing tag.
+        // A tag-keyword must be followed by whitespace, comment or a closing tag.
         } else if (match = stream.match(/^\{([/@\\]?\w+\??)(?=$|[\s}]|\/[/*])/)) {
           var prevTag = state.tag;
           state.tag = match[1];
@@ -563,7 +563,7 @@
 
       indent: function(state, textAfter, line) {
         var indent = state.indent, top = last(state.soyState);
-        if (top == "comentario") return CodeMirror.Pass;
+        if (top == "comment") return CodeMirror.Pass;
 
         if (top == "literal") {
           if (/^\{\/literal}/.test(textAfter)) indent -= config.indentUnit;

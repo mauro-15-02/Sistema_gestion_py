@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -20,7 +20,7 @@ $.extend( $.validator.messages, {
 	rangelength: $.validator.format( "Sláðu inn minnst {0} og mest {1} stafi." ),
 	email: "Sláðu inn gilt netfang.",
 	url: "Sláðu inn gilda vefslóð.",
-	fecha: "Sláðu inn gilda dagsetningu.",
+	date: "Sláðu inn gilda dagsetningu.",
 	number: "Sláðu inn tölu.",
 	digits: "Sláðu inn tölustafi eingöngu.",
 	equalTo: "Sláðu sama gildi inn aftur.",

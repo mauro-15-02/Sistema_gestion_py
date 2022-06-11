@@ -11,7 +11,7 @@
 })(function(CodeMirror) {
 "use strict";
 
-CodeMirror.registerGlobalHelper("fold", "comentario", function(mode) {
+CodeMirror.registerGlobalHelper("fold", "comment", function(mode) {
   return mode.blockCommentStart && mode.blockCommentEnd;
 }, function(cm, start) {
   var mode = cm.getModeAt(start), startToken = mode.blockCommentStart, endToken = mode.blockCommentEnd;
@@ -28,9 +28,9 @@ CodeMirror.registerGlobalHelper("fold", "comentario", function(mode) {
       continue;
     }
     if (pass == 1 && found < start.ch) return;
-    if (/comentario/.test(cm.getTokenTypeAt(CodeMirror.Pos(line, found + 1))) &&
+    if (/comment/.test(cm.getTokenTypeAt(CodeMirror.Pos(line, found + 1))) &&
         (found == 0 || lineText.slice(found - endToken.length, found) == endToken ||
-         !/comentario/.test(cm.getTokenTypeAt(CodeMirror.Pos(line, found))))) {
+         !/comment/.test(cm.getTokenTypeAt(CodeMirror.Pos(line, found))))) {
       startCh = found + startToken.length;
       break;
     }

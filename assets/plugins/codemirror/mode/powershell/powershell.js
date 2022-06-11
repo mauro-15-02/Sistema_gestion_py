@@ -121,7 +121,7 @@ CodeMirror.defineMode('powershell', function() {
     /Unblock-File/,
     /Undo-Transaction/,
     /Unregister-(Event|PSSessionConfiguration)/,
-    /Upfecha-(FormatData|Help|List|TypeData)/,
+    /Update-(FormatData|Help|List|TypeData)/,
     /Use-Transaction/,
     /Wait-(Event|Job|Process)/,
     /Where-Object/,
@@ -213,7 +213,7 @@ CodeMirror.defineMode('powershell', function() {
 
     if (ch === '#') {
       stream.skipToEnd();
-      return 'comentario';
+      return 'comment';
     }
 
     if (ch === '@') {
@@ -318,7 +318,7 @@ CodeMirror.defineMode('powershell', function() {
       }
       maybeEnd = (ch === '#');
     }
-    return 'comentario';
+    return 'comment';
   }
 
   function tokenVariable(stream, state) {

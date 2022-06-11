@@ -6,10 +6,10 @@
  *
  *       Filename:  mode/asterisk/asterisk.js
  *
- *    descripcion:  CodeMirror mode for Asterisk dialplan
+ *    Description:  CodeMirror mode for Asterisk dialplan
  *
  *        Created:  05/17/2012 09:20:25 PM
- *       Revision:  08/05/2019 AstLinux Project: Support block-comentarios
+ *       Revision:  08/05/2019 AstLinux Project: Support block-comments
  *
  *         Author:  Stas Kobzar (stas@modulis.ca),
  *        Company:  Modulis.ca Inc.
@@ -37,7 +37,7 @@ CodeMirror.defineMode("asterisk", function() {
                   "changemonitor","chanisavail","channelredirect","chanspy","clearhash","confbridge",
                   "congestion","continuewhile","controlplayback","dahdiacceptr2call","dahdibarge",
                   "dahdiras","dahdiscan","dahdisendcallreroutingfacility","dahdisendkeypadfacility",
-                  "fechatime","dbdel","dbdeltree","deadagi","dial","dictate","directory","disa",
+                  "datetime","dbdel","dbdeltree","deadagi","dial","dictate","directory","disa",
                   "dumpchan","eagi","echo","endwhile","exec","execif","execiftime","exitwhile","extenspy",
                   "externalivr","festival","flash","followme","forkcdr","getcpeid","gosub","gosubif",
                   "goto","gotoif","gotoiftime","hangup","iax2provision","ices","importvar","incomplete",
@@ -66,7 +66,7 @@ CodeMirror.defineMode("asterisk", function() {
   function basicToken(stream,state){
     var cur = '';
     var ch = stream.next();
-    // comentario
+    // comment
     if (state.blockComment) {
       if (ch == "-" && stream.match("-;", true)) {
         state.blockComment = false;
@@ -78,17 +78,17 @@ CodeMirror.defineMode("asterisk", function() {
       } else {
         stream.skipToEnd();
       }
-      return "comentario";
+      return "comment";
     }
     if(ch == ";") {
       if (stream.match("--", true)) {
-        if (!stream.match("-", false)) {  // Except ;--- is not a block comentario
+        if (!stream.match("-", false)) {  // Except ;--- is not a block comment
           state.blockComment = true;
-          return "comentario";
+          return "comment";
         }
       }
       stream.skipToEnd();
-      return "comentario";
+      return "comment";
     }
     // context
     if(ch == '[') {

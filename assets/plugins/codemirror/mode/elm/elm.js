@@ -107,7 +107,7 @@
           if (char === '-' && source.eat('-'))
           {
             source.skipToEnd();
-            return "comentario";
+            return "comment";
           }
           source.eatWhile(symbolRE);
           return "keyword";
@@ -143,12 +143,12 @@
             if (nest === 0)
             {
               setState(normal());
-              return 'comentario';
+              return 'comment';
             }
           }
         }
         setState(chompMultiComment(nest));
-        return 'comentario';
+        return 'comment';
       }
     }
 

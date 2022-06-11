@@ -24,7 +24,7 @@
     }
     if (val) {
       cm.state.activeLines = [];
-      upfechaActiveLines(cm, cm.listSelections());
+      updateActiveLines(cm, cm.listSelections());
       cm.on("beforeSelectionChange", selectionChange);
     }
   });
@@ -44,7 +44,7 @@
     return true;
   }
 
-  function upfechaActiveLines(cm, ranges) {
+  function updateActiveLines(cm, ranges) {
     var active = [];
     for (var i = 0; i < ranges.length; i++) {
       var range = ranges[i];
@@ -67,6 +67,6 @@
   }
 
   function selectionChange(cm, sel) {
-    upfechaActiveLines(cm, sel.ranges);
+    updateActiveLines(cm, sel.ranges);
   }
 });

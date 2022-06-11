@@ -1,7 +1,6 @@
 <?php
 session_start();
 ini_set('display_errors', 1);
-/**aaaaa */
 Class Action {
 	private $db;
 
@@ -18,7 +17,7 @@ Class Action {
 
 	function login(){
 		extract($_POST);
-			$qry = $this->db->query("SELECT *,concat(primer_nombre,' ',apellido) as name FROM usuarios where email = '".$email."' and password = '".md5($password)."'  ");
+			$qry = $this->db->query("SELECT *,concat(firstname,' ',lastname) as name FROM users where email = '".$email."' and password = '".md5($password)."'  ");
 		if($qry->num_rows > 0){
 			foreach ($qry->fetch_array() as $key => $value) {
 				if($key != 'password' && !is_numeric($key))
@@ -38,7 +37,7 @@ Class Action {
 	}
 	function login2(){
 		extract($_POST);
-			$qry = $this->db->query("SELECT *,concat(apellido,', ',primer_nombre,' ',middlename) as name FROM students where student_code = '".$student_code."' ");
+			$qry = $this->db->query("SELECT *,concat(lastname,', ',firstname,' ',middlename) as name FROM students where student_code = '".$student_code."' ");
 		if($qry->num_rows > 0){
 			foreach ($qry->fetch_array() as $key => $value) {
 				if($key != 'password' && !is_numeric($key))
@@ -65,7 +64,7 @@ Class Action {
 					$data .= ", password=md5('$password') ";
 
 		}
-		$check = $this->db->query("SELECT * FROM usuarios where email ='$email' ".(!empty($id) ? " and id != {$id} " : ''))->num_rows;
+		$check = $this->db->query("SELECT * FROM users where email ='$email' ".(!empty($id) ? " and id != {$id} " : ''))->num_rows;
 		if($check > 0){
 			return 2;
 			exit;
@@ -77,9 +76,9 @@ Class Action {
 
 		}
 		if(empty($id)){
-			$save = $this->db->query("INSERT INTO usuarios set $data");
+			$save = $this->db->query("INSERT INTO users set $data");
 		}else{
-			$save = $this->db->query("UPDATE usuarios set $data where id = $id");
+			$save = $this->db->query("UPDATE users set $data where id = $id");
 		}
 
 		if($save){
@@ -105,7 +104,7 @@ Class Action {
 			}
 		}
 
-		$check = $this->db->query("SELECT * FROM usuarios where email ='$email' ".(!empty($id) ? " and id != {$id} " : ''))->num_rows;
+		$check = $this->db->query("SELECT * FROM users where email ='$email' ".(!empty($id) ? " and id != {$id} " : ''))->num_rows;
 		if($check > 0){
 			return 2;
 			exit;
@@ -117,10 +116,10 @@ Class Action {
 
 		}
 		if(empty($id)){
-			$save = $this->db->query("INSERT INTO usuarios set $data");
+			$save = $this->db->query("INSERT INTO users set $data");
 
 		}else{
-			$save = $this->db->query("UPDATE usuarios set $data where id = $id");
+			$save = $this->db->query("UPDATE users set $data where id = $id");
 		}
 
 		if($save){
@@ -137,7 +136,7 @@ Class Action {
 		}
 	}
 
-	function upfecha_user(){
+	function update_user(){
 		extract($_POST);
 		$data = "";
 		foreach($_POST as $k => $v){
@@ -150,7 +149,7 @@ Class Action {
 				}
 			}
 		}
-		$check = $this->db->query("SELECT * FROM usuarios where email ='$email' ".(!empty($id) ? " and id != {$id} " : ''))->num_rows;
+		$check = $this->db->query("SELECT * FROM users where email ='$email' ".(!empty($id) ? " and id != {$id} " : ''))->num_rows;
 		if($check > 0){
 			return 2;
 			exit;
@@ -164,9 +163,9 @@ Class Action {
 		if(!empty($password))
 			$data .= " ,password=md5('$password') ";
 		if(empty($id)){
-			$save = $this->db->query("INSERT INTO usuarios set $data");
+			$save = $this->db->query("INSERT INTO users set $data");
 		}else{
-			$save = $this->db->query("UPDATE usuarios set $data where id = $id");
+			$save = $this->db->query("UPDATE users set $data where id = $id");
 		}
 
 		if($save){
@@ -181,11 +180,11 @@ Class Action {
 	}
 	function delete_user(){
 		extract($_POST);
-		$delete = $this->db->query("DELETE FROM usuarios where id = ".$id);
+		$delete = $this->db->query("DELETE FROM users where id = ".$id);
 		if($delete)
 			return 1;
 	}
-	function save_ajustes_del_sistema(){
+	function save_system_settings(){
 		extract($_POST);
 		$data = '';
 		foreach($_POST as $k => $v){
@@ -200,14 +199,14 @@ Class Action {
 		if($_FILES['cover']['tmp_name'] != ''){
 			$fname = strtotime(date('y-m-d H:i')).'_'.$_FILES['cover']['name'];
 			$move = move_uploaded_file($_FILES['cover']['tmp_name'],'../assets/uploads/'. $fname);
-			$data .= ", cubrir_img = '$fname' ";
+			$data .= ", cover_img = '$fname' ";
 
 		}
-		$chk = $this->db->query("SELECT * FROM ajustes_del_sistema");
+		$chk = $this->db->query("SELECT * FROM system_settings");
 		if($chk->num_rows > 0){
-			$save = $this->db->query("UPDATE ajustes_del_sistema set $data where id =".$chk->fetch_array()['id']);
+			$save = $this->db->query("UPDATE system_settings set $data where id =".$chk->fetch_array()['id']);
 		}else{
-			$save = $this->db->query("INSERT INTO ajustes_del_sistema set $data");
+			$save = $this->db->query("INSERT INTO system_settings set $data");
 		}
 		if($save){
 			foreach($_POST as $k => $v){
@@ -216,7 +215,7 @@ Class Action {
 				}
 			}
 			if($_FILES['cover']['tmp_name'] != ''){
-				$_SESSION['system']['cubrir_img'] = $fname;
+				$_SESSION['system']['cover_img'] = $fname;
 			}
 			return 1;
 		}
@@ -239,8 +238,8 @@ Class Action {
 		extract($_POST);
 		$data = "";
 		foreach($_POST as $k => $v){
-			if(!in_array($k, array('id','usuario_ids')) && !is_numeric($k)){
-				if($k == 'descripcion')
+			if(!in_array($k, array('id','user_ids')) && !is_numeric($k)){
+				if($k == 'description')
 					$v = htmlentities(str_replace("'","&#x2019;",$v));
 				if(empty($data)){
 					$data .= " $k='$v' ";
@@ -249,14 +248,14 @@ Class Action {
 				}
 			}
 		}
-		if(isset($usuario_ids)){
-			$data .= ", usuario_ids='".implode(',',$usuario_ids)."' ";
+		if(isset($user_ids)){
+			$data .= ", user_ids='".implode(',',$user_ids)."' ";
 		}
 		// echo $data;exit;
 		if(empty($id)){
-			$save = $this->db->query("INSERT INTO proyecto_list set $data");
+			$save = $this->db->query("INSERT INTO project_list set $data");
 		}else{
-			$save = $this->db->query("UPDATE proyecto_list set $data where id = $id");
+			$save = $this->db->query("UPDATE project_list set $data where id = $id");
 		}
 		if($save){
 			return 1;
@@ -264,17 +263,17 @@ Class Action {
 	}
 	function delete_project(){
 		extract($_POST);
-		$delete = $this->db->query("DELETE FROM proyecto_list where id = $id");
+		$delete = $this->db->query("DELETE FROM project_list where id = $id");
 		if($delete){
 			return 1;
 		}
 	}
-	function save_tarea(){
+	function save_task(){
 		extract($_POST);
 		$data = "";
 		foreach($_POST as $k => $v){
 			if(!in_array($k, array('id')) && !is_numeric($k)){
-				if($k == 'descripcion')
+				if($k == 'description')
 					$v = htmlentities(str_replace("'","&#x2019;",$v));
 				if(empty($data)){
 					$data .= " $k='$v' ";
@@ -284,17 +283,17 @@ Class Action {
 			}
 		}
 		if(empty($id)){
-			$save = $this->db->query("INSERT INTO tarea_list set $data");
+			$save = $this->db->query("INSERT INTO task_list set $data");
 		}else{
-			$save = $this->db->query("UPDATE tarea_list set $data where id = $id");
+			$save = $this->db->query("UPDATE task_list set $data where id = $id");
 		}
 		if($save){
 			return 1;
 		}
 	}
-	function delete_tarea(){
+	function delete_task(){
 		extract($_POST);
-		$delete = $this->db->query("DELETE FROM tarea_list where id = $id");
+		$delete = $this->db->query("DELETE FROM task_list where id = $id");
 		if($delete){
 			return 1;
 		}
@@ -304,7 +303,7 @@ Class Action {
 		$data = "";
 		foreach($_POST as $k => $v){
 			if(!in_array($k, array('id')) && !is_numeric($k)){
-				if($k == 'comentario')
+				if($k == 'comment')
 					$v = htmlentities(str_replace("'","&#x2019;",$v));
 				if(empty($data)){
 					$data .= " $k='$v' ";
@@ -313,16 +312,16 @@ Class Action {
 				}
 			}
 		}
-		$dur = abs(strtotime("2020-01-01 ".$fin_tiempo)) - abs(strtotime("2020-01-01 ".$hora_de_inicio));
+		$dur = abs(strtotime("2020-01-01 ".$end_time)) - abs(strtotime("2020-01-01 ".$start_time));
 		$dur = $dur / (60 * 60);
-		$data .= ", tiempo_prestado='$dur' ";
-		// echo "INSERT INTO productividad_usuario set $data"; exit;
+		$data .= ", time_rendered='$dur' ";
+		// echo "INSERT INTO user_productivity set $data"; exit;
 		if(empty($id)){
-			$data .= ", usuario_id={$_SESSION['login_id']} ";
+			$data .= ", user_id={$_SESSION['login_id']} ";
 			
-			$save = $this->db->query("INSERT INTO productividad_usuario set $data");
+			$save = $this->db->query("INSERT INTO user_productivity set $data");
 		}else{
-			$save = $this->db->query("UPDATE productividad_usuario set $data where id = $id");
+			$save = $this->db->query("UPDATE user_productivity set $data where id = $id");
 		}
 		if($save){
 			return 1;
@@ -330,7 +329,7 @@ Class Action {
 	}
 	function delete_progress(){
 		extract($_POST);
-		$delete = $this->db->query("DELETE FROM productividad_usuario where id = $id");
+		$delete = $this->db->query("DELETE FROM user_productivity where id = $id");
 		if($delete){
 			return 1;
 		}
@@ -338,9 +337,9 @@ Class Action {
 	function get_report(){
 		extract($_POST);
 		$data = array();
-		$get = $this->db->query("SELECT t.*,p.name as ticket_for FROM ticket_list t inner join pricing p on p.id = t.pricing_id where fecha(t.fecha_de_creacion) between '$fecha_from' and '$fecha_to' order by unix_timestamp(t.fecha_de_creacion) desc ");
+		$get = $this->db->query("SELECT t.*,p.name as ticket_for FROM ticket_list t inner join pricing p on p.id = t.pricing_id where date(t.date_created) between '$date_from' and '$date_to' order by unix_timestamp(t.date_created) desc ");
 		while($row= $get->fetch_assoc()){
-			$row['fecha_de_creacion'] = fecha("M d, Y",strtotime($row['fecha_de_creacion']));
+			$row['date_created'] = date("M d, Y",strtotime($row['date_created']));
 			$row['name'] = ucwords($row['name']);
 			$row['adult_price'] = number_format($row['adult_price'],2);
 			$row['child_price'] = number_format($row['child_price'],2);

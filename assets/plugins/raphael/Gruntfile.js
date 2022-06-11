@@ -9,18 +9,18 @@ module.exports = function(grunt) {
         // Metadata.
         pkg: pkg,
         banner: grunt.file.read("dev/copy.js").replace(/@VERSION/, pkg.version),
-        // tarea configuration.
+        // Task configuration.
         uglify: {
             options: {
                 banner: "<%= banner %>"
             },
             dist: {
                 src: "<%= concat.dist.dest %>",
-                dest: "<%= pkg.nombre %>-min.js"
+                dest: "<%= pkg.name %>-min.js"
             },
             nodeps: {
                 src: "<%= concat.nodeps.dest %>",
-                dest: "<%= pkg.nombre %>-nodeps-min.js"
+                dest: "<%= pkg.name %>-nodeps-min.js"
             }
         },
         replace: {
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
         },
         concat: {
             dist: {
-                dest: "<%= pkg.nombre %>.js",
+                dest: "<%= pkg.name %>.js",
                 src: [
                     "dev/eve.js",
                     "dev/raphael.core.js",
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
                 ]
             },
             nodeps: {
-                dest: "<%= pkg.nombre %>-nodeps.js",
+                dest: "<%= pkg.name %>-nodeps.js",
                 src: [
                     "dev/raphael.core.js",
                     "dev/raphael.svg.js",
@@ -62,11 +62,11 @@ module.exports = function(grunt) {
         }
     });
 
-    // These plugins provide necessary tareas.
-    grunt.loadNpmtareas("grunt-contrib-concat");
-    grunt.loadNpmtareas("grunt-contrib-uglify");
-    grunt.loadNpmtareas("grunt-replace");
+    // These plugins provide necessary tasks.
+    grunt.loadNpmTasks("grunt-contrib-concat");
+    grunt.loadNpmTasks("grunt-contrib-uglify");
+    grunt.loadNpmTasks("grunt-replace");
 
-    // Default tarea.
-    grunt.registertarea("default", ["concat", "replace", "uglify"]);
+    // Default task.
+    grunt.registerTask("default", ["concat", "replace", "uglify"]);
 };

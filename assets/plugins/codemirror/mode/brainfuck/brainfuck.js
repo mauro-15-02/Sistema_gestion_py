@@ -14,10 +14,10 @@
   "use strict"
   var reserve = "><+-.,[]".split("");
   /*
-  comentarios can be either:
+  comments can be either:
   placed behind lines
 
-        +++    this is a comentario
+        +++    this is a comment
 
   where reserved characters cannot be used
   or in a loop
@@ -30,24 +30,24 @@
     return {
       startState: function() {
         return {
-          comentarioLine: false,
+          commentLine: false,
           left: 0,
           right: 0,
-          comentarioLoop: false
+          commentLoop: false
         }
       },
       token: function(stream, state) {
         if (stream.eatSpace()) return null
         if(stream.sol()){
-          state.comentarioLine = false;
+          state.commentLine = false;
         }
         var ch = stream.next().toString();
         if(reserve.indexOf(ch) !== -1){
-          if(state.comentarioLine === true){
+          if(state.commentLine === true){
             if(stream.eol()){
-              state.comentarioLine = false;
+              state.commentLine = false;
             }
-            return "comentario";
+            return "comment";
           }
           if(ch === "]" || ch === "["){
             if(ch === "["){
@@ -69,14 +69,14 @@
           }
         }
         else{
-          state.comentarioLine = true;
+          state.commentLine = true;
           if(stream.eol()){
-            state.comentarioLine = false;
+            state.commentLine = false;
           }
-          return "comentario";
+          return "comment";
         }
         if(stream.eol()){
-          state.comentarioLine = false;
+          state.commentLine = false;
         }
       }
     };

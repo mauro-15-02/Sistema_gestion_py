@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -20,8 +20,8 @@ $.extend( $.validator.messages, {
 	remote: "Por favor, corrija este campo.",
 	email: "Por favor, forne&ccedil;a um endere&ccedil;o de email v&aacute;lido.",
 	url: "Por favor, forne&ccedil;a uma URL v&aacute;lida.",
-	fecha: "Por favor, forne&ccedil;a uma data v&aacute;lida.",
-	fechaISO: "Por favor, forne&ccedil;a uma data v&aacute;lida (ISO).",
+	date: "Por favor, forne&ccedil;a uma data v&aacute;lida.",
+	dateISO: "Por favor, forne&ccedil;a uma data v&aacute;lida (ISO).",
 	number: "Por favor, forne&ccedil;a um n&uacute;mero v&aacute;lido.",
 	digits: "Por favor, forne&ccedil;a somente d&iacute;gitos.",
 	creditcard: "Por favor, forne&ccedil;a um cart&atilde;o de cr&eacute;dito v&aacute;lido.",
@@ -46,9 +46,9 @@ $.extend( $.validator.messages, {
 	cifES: "Por favor, forne&ccedil;a um c&oacute;digo CIF v&aacute;lido.",
 	creditcardtypes: "Por favor, forne&ccedil;a um n&uacute;mero de cart&atilde;o de cr&eacute;dito v&aacute;lido.",
 	currency: "Por favor, forne&ccedil;a uma moeda v&aacute;lida.",
-	fechaFA: "Por favor, forne&ccedil;a uma data correta.",
-	fechaITA: "Por favor, forne&ccedil;a uma data correta.",
-	fechaNL: "Por favor, forne&ccedil;a uma data correta.",
+	dateFA: "Por favor, forne&ccedil;a uma data correta.",
+	dateITA: "Por favor, forne&ccedil;a uma data correta.",
+	dateNL: "Por favor, forne&ccedil;a uma data correta.",
 	extension: "Por favor, forne&ccedil;a um valor com uma extens&atilde;o v&aacute;lida.",
 	giroaccountNL: "Por favor, forne&ccedil;a um n&uacute;mero de conta corrente v&aacute;lido.",
 	iban: "Por favor, forne&ccedil;a um c&oacute;digo IBAN v&aacute;lido.",

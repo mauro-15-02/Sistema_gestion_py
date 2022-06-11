@@ -100,7 +100,7 @@ export type Modifiers = {
     y?: 'left' | 'right',
   },
 
-  [nombre: string]: (BaseModifier & { [string]: * }) | null,
+  [name: string]: (BaseModifier & { [string]: * }) | null,
 };
 
 export type Options = {
@@ -112,7 +112,7 @@ export type Options = {
 
   onCreate?: (data: Data) => void,
 
-  onUpfecha?: (data: Data) => void,
+  onUpdate?: (data: Data) => void,
 };
 
 export type ReferenceObject = {
@@ -134,8 +134,8 @@ export type ReferenceObject = {
 
 export type Instance = {
   destroy: () => void,
-  scheduleUpfecha: () => void,
-  upfecha: () => void,
+  scheduleUpdate: () => void,
+  update: () => void,
   enableEventListeners: () => void,
   disableEventListeners: () => void,
 };

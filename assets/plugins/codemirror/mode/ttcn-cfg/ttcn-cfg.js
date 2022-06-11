@@ -33,7 +33,7 @@
       }
       if (ch == "#"){
         stream.skipToEnd();
-        return "comentario";
+        return "comment";
       }
       if (/\d/.test(ch)) {
         stream.eatWhile(/[\w\.]/);
@@ -121,7 +121,7 @@
         if (stream.eatSpace()) return null;
         curPunc = null;
         var style = (state.tokenize || tokenBase)(stream, state);
-        if (style == "comentario") return style;
+        if (style == "comment") return style;
         if (ctx.align == null) ctx.align = true;
 
         if ((curPunc == ";" || curPunc == ":" || curPunc == ",")
@@ -166,7 +166,7 @@
     " LogFileNumber LogFileSize MatchingHints Detailed" +
     " Compact SubCategories Stack Single None Seconds" +
     " DateTime Time Stop Error Retry Delete TCPPort KillTimer" +
-    " NumHCs UnixSocketsEnabled Localdireccion"),
+    " NumHCs UnixSocketsEnabled LocalAddress"),
     fileNCtrlMaskOptions: words("TTCN_EXECUTOR TTCN_ERROR TTCN_WARNING" +
     " TTCN_PORTEVENT TTCN_TIMEROP TTCN_VERDICTOP" +
     " TTCN_DEFAULTOP TTCN_TESTCASE TTCN_ACTION" +

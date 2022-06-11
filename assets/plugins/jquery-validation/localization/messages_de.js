@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -19,7 +19,7 @@ $.extend( $.validator.messages, {
 	rangelength: $.validator.format( "Geben Sie bitte mindestens {0} und maximal {1} Zeichen ein." ),
 	email: "Geben Sie bitte eine gültige E-Mail-Adresse ein.",
 	url: "Geben Sie bitte eine gültige URL ein.",
-	fecha: "Geben Sie bitte ein gültiges Datum ein.",
+	date: "Geben Sie bitte ein gültiges Datum ein.",
 	number: "Geben Sie bitte eine Nummer ein.",
 	digits: "Geben Sie bitte nur Ziffern ein.",
 	equalTo: "Wiederholen Sie bitte denselben Wert.",
@@ -28,7 +28,7 @@ $.extend( $.validator.messages, {
 	min: $.validator.format( "Geben Sie bitte einen Wert größer oder gleich {0} ein." ),
 	creditcard: "Geben Sie bitte eine gültige Kreditkarten-Nummer ein.",
 	remote: "Korrigieren Sie bitte dieses Feld.",
-	fechaISO: "Geben Sie bitte ein gültiges Datum ein (ISO-Format).",
+	dateISO: "Geben Sie bitte ein gültiges Datum ein (ISO-Format).",
 	step: $.validator.format( "Geben Sie bitte ein Vielfaches von {0} ein." ),
 	maxWords: $.validator.format( "Geben Sie bitte {0} Wörter oder weniger ein." ),
 	minWords: $.validator.format( "Geben Sie bitte mindestens {0} Wörter ein." ),

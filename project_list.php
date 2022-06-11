@@ -36,37 +36,37 @@
 					if($_SESSION['login_type'] == 2){
 						$where = " where manager_id = '{$_SESSION['login_id']}' ";
 					}elseif($_SESSION['login_type'] == 3){
-						$where = " where concat('[',REPLACE(usuario_ids,',','],['),']') LIKE '%[{$_SESSION['login_id']}]%' ";
+						$where = " where concat('[',REPLACE(user_ids,',','],['),']') LIKE '%[{$_SESSION['login_id']}]%' ";
 					}
-					$qry = $conn->query("SELECT * FROM proyecto_list $where order by nombre asc");
+					$qry = $conn->query("SELECT * FROM project_list $where order by name asc");
 					while($row= $qry->fetch_assoc()):
 						$trans = get_html_translation_table(HTML_ENTITIES,ENT_QUOTES);
 						unset($trans["\""], $trans["<"], $trans[">"], $trans["<h2"]);
-						$desc = strtr(html_entity_decode($row['descripcion']),$trans);
+						$desc = strtr(html_entity_decode($row['description']),$trans);
 						$desc=str_replace(array("<li>","</li>"), array("",", "), $desc);
 
-					 	$tprog = $conn->query("SELECT * FROM tarea_list where proyecto_id = {$row['id']}")->num_rows;
-		                $cprog = $conn->query("SELECT * FROM tarea_list where proyecto_id = {$row['id']} and status = 3")->num_rows;
+					 	$tprog = $conn->query("SELECT * FROM task_list where project_id = {$row['id']}")->num_rows;
+		                $cprog = $conn->query("SELECT * FROM task_list where project_id = {$row['id']} and status = 3")->num_rows;
 						$prog = $tprog > 0 ? ($cprog/$tprog) * 100 : 0;
 		                $prog = $prog > 0 ?  number_format($prog,2) : $prog;
-		                $prod = $conn->query("SELECT * FROM productividad_usuario where proyecto_id = {$row['id']}")->num_rows;
-						if($row['status'] == 0 && strtotime(date('Y-m-d')) >= strtotime($row['fecha_de_inicio'])):
+		                $prod = $conn->query("SELECT * FROM user_productivity where project_id = {$row['id']}")->num_rows;
+						if($row['status'] == 0 && strtotime(date('Y-m-d')) >= strtotime($row['start_date'])):
 						if($prod  > 0  || $cprog > 0)
 		                  $row['status'] = 2;
 		                else
 		                  $row['status'] = 1;
-						elseif($row['status'] == 0 && strtotime(date('Y-m-d')) > strtotime($row['fin_fecha'])):
+						elseif($row['status'] == 0 && strtotime(date('Y-m-d')) > strtotime($row['end_date'])):
 						$row['status'] = 4;
 						endif;
 					?>
 					<tr>
 						<th class="text-center"><?php echo $i++ ?></th>
 						<td>
-							<p><b><?php echo ucwords($row['nombre']) ?></b></p>
+							<p><b><?php echo ucwords($row['name']) ?></b></p>
 							<p class="truncate"><?php echo strip_tags($desc) ?></p>
 						</td>
-						<td><b><?php echo date("d-m-Y",strtotime($row['fecha_de_inicio'])) ?></b></td>
-						<td><b><?php echo date("d-m-Y",strtotime($row['fin_fecha'])) ?></b></td>
+						<td><b><?php echo date("d-m-Y",strtotime($row['start_date'])) ?></b></td>
+						<td><b><?php echo date("d-m-Y",strtotime($row['end_date'])) ?></b></td>
 						<td class="text-center">
 							<?php
 							  if($stat[$row['status']] =='Pendiente'){

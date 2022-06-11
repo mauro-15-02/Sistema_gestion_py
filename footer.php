@@ -12,7 +12,7 @@
 <script src="assets/plugins/dropzone/min/dropzone.min.js"></script>
 <script src="assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- DateTimePicker -->
-  <script src="assets/dist/js/jquery.fechatimepicker.full.min.js"></script>
+  <script src="assets/dist/js/jquery.datetimepicker.full.min.js"></script>
   <!-- Bootstrap Switch -->
 <script src="assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
  <!-- MOMENT -->
@@ -105,7 +105,7 @@ $(function () {
         toolbar: [
             [ 'style', [ 'style' ] ],
             [ 'font', [ 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear'] ],
-            [ 'fontnombre', [ 'fontnombre' ] ],
+            [ 'fontname', [ 'fontname' ] ],
             [ 'fontsize', [ 'fontsize' ] ],
             [ 'color', [ 'color' ] ],
             [ 'para', [ 'ol', 'ul', 'paragraph', 'height' ] ],
@@ -114,7 +114,7 @@ $(function () {
         ]
     })
 
-     $('.fechatimepicker').fechatimepicker({
+     $('.datetimepicker').datetimepicker({
 		  format:'Y/m/d H:i',
 		})
     

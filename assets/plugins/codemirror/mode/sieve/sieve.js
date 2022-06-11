@@ -32,7 +32,7 @@ CodeMirror.defineMode("sieve", function(config) {
 
     if (ch === '#') {
       stream.skipToEnd();
-      return "comentario";
+      return "comment";
     }
 
     if (ch == "\"") {
@@ -91,7 +91,7 @@ CodeMirror.defineMode("sieve", function(config) {
     stream.eatWhile(/\w/);
     var cur = stream.current();
 
-    // "text:" *(SP / HTAB) (hash-comentario / CRLF)
+    // "text:" *(SP / HTAB) (hash-comment / CRLF)
     // *(multiline-literal / multiline-dotstart)
     // "." CRLF
     if ((cur == "text") && stream.eat(":"))
@@ -112,13 +112,13 @@ CodeMirror.defineMode("sieve", function(config) {
   function tokenMultiLineString(stream, state)
   {
     state._multiLineString = true;
-    // the first line is special it may contain a comentario
+    // the first line is special it may contain a comment
     if (!stream.sol()) {
       stream.eatSpace();
 
       if (stream.peek() == "#") {
         stream.skipToEnd();
-        return "comentario";
+        return "comment";
       }
 
       stream.skipToEnd();
@@ -143,7 +143,7 @@ CodeMirror.defineMode("sieve", function(config) {
       }
       maybeEnd = (ch == "*");
     }
-    return "comentario";
+    return "comment";
   }
 
   function tokenString(quote) {

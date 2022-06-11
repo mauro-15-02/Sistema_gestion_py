@@ -67,49 +67,49 @@ var requirejs, require, define;
     }
 
     /**
-     * Given a relative module nombre, like ./something, normalize it to
-     * a real nombre that can be mapped to a path.
-     * @param {String} nombre the relative nombre
-     * @param {String} basenombre a real nombre that the nombre arg is relative
+     * Given a relative module name, like ./something, normalize it to
+     * a real name that can be mapped to a path.
+     * @param {String} name the relative name
+     * @param {String} baseName a real name that the name arg is relative
      * to.
-     * @returns {String} normalized nombre
+     * @returns {String} normalized name
      */
-    function normalize(nombre, basenombre) {
-        var nombreParts, nombreSegment, mapValue, foundMap, lastIndex,
+    function normalize(name, baseName) {
+        var nameParts, nameSegment, mapValue, foundMap, lastIndex,
             foundI, foundStarMap, starI, i, j, part, normalizedBaseParts,
-            baseParts = basenombre && basenombre.split("/"),
+            baseParts = baseName && baseName.split("/"),
             map = config.map,
             starMap = (map && map['*']) || {};
 
         //Adjust any relative paths.
-        if (nombre) {
-            nombre = nombre.split('/');
-            lastIndex = nombre.length - 1;
+        if (name) {
+            name = name.split('/');
+            lastIndex = name.length - 1;
 
             // If wanting node ID compatibility, strip .js from end
-            // of IDs. Have to do this here, and not in nombreToUrl
+            // of IDs. Have to do this here, and not in nameToUrl
             // because node allows either .js or non .js to map
             // to same file.
-            if (config.nodeIdCompat && jsSuffixRegExp.test(nombre[lastIndex])) {
-                nombre[lastIndex] = nombre[lastIndex].replace(jsSuffixRegExp, '');
+            if (config.nodeIdCompat && jsSuffixRegExp.test(name[lastIndex])) {
+                name[lastIndex] = name[lastIndex].replace(jsSuffixRegExp, '');
             }
 
-            // Starts with a '.' so need the basenombre
-            if (nombre[0].charAt(0) === '.' && baseParts) {
-                //Convert basenombre to array, and lop off the last part,
-                //so that . matches that 'directory' and not nombre of the basenombre's
-                //module. For instance, basenombre of 'one/two/three', maps to
+            // Starts with a '.' so need the baseName
+            if (name[0].charAt(0) === '.' && baseParts) {
+                //Convert baseName to array, and lop off the last part,
+                //so that . matches that 'directory' and not name of the baseName's
+                //module. For instance, baseName of 'one/two/three', maps to
                 //'one/two/three.js', but we want the directory, 'one/two' for
                 //this normalization.
                 normalizedBaseParts = baseParts.slice(0, baseParts.length - 1);
-                nombre = normalizedBaseParts.concat(nombre);
+                name = normalizedBaseParts.concat(name);
             }
 
             //start trimDots
-            for (i = 0; i < nombre.length; i++) {
-                part = nombre[i];
+            for (i = 0; i < name.length; i++) {
+                part = name[i];
                 if (part === '.') {
-                    nombre.splice(i, 1);
+                    name.splice(i, 1);
                     i -= 1;
                 } else if (part === '..') {
                     // If at the start, or previous value is still ..,
@@ -117,38 +117,38 @@ var requirejs, require, define;
                     // still work when converted to a path, even though
                     // as an ID it is less than ideal. In larger point
                     // releases, may be better to just kick out an error.
-                    if (i === 0 || (i === 1 && nombre[2] === '..') || nombre[i - 1] === '..') {
+                    if (i === 0 || (i === 1 && name[2] === '..') || name[i - 1] === '..') {
                         continue;
                     } else if (i > 0) {
-                        nombre.splice(i - 1, 2);
+                        name.splice(i - 1, 2);
                         i -= 2;
                     }
                 }
             }
             //end trimDots
 
-            nombre = nombre.join('/');
+            name = name.join('/');
         }
 
         //Apply map config if available.
         if ((baseParts || starMap) && map) {
-            nombreParts = nombre.split('/');
+            nameParts = name.split('/');
 
-            for (i = nombreParts.length; i > 0; i -= 1) {
-                nombreSegment = nombreParts.slice(0, i).join("/");
+            for (i = nameParts.length; i > 0; i -= 1) {
+                nameSegment = nameParts.slice(0, i).join("/");
 
                 if (baseParts) {
-                    //Find the longest basenombre segment match in the config.
+                    //Find the longest baseName segment match in the config.
                     //So, do joins on the biggest to smallest lengths of baseParts.
                     for (j = baseParts.length; j > 0; j -= 1) {
                         mapValue = map[baseParts.slice(0, j).join('/')];
 
-                        //basenombre segment has  config, find if it has one for
-                        //this nombre.
+                        //baseName segment has  config, find if it has one for
+                        //this name.
                         if (mapValue) {
-                            mapValue = mapValue[nombreSegment];
+                            mapValue = mapValue[nameSegment];
                             if (mapValue) {
-                                //Match, upfecha nombre to the new value.
+                                //Match, update name to the new value.
                                 foundMap = mapValue;
                                 foundI = i;
                                 break;
@@ -164,8 +164,8 @@ var requirejs, require, define;
                 //Check for a star map match, but just hold on to it,
                 //if there is a shorter segment match later in a matching
                 //config, then favor over this star map.
-                if (!foundStarMap && starMap && starMap[nombreSegment]) {
-                    foundStarMap = starMap[nombreSegment];
+                if (!foundStarMap && starMap && starMap[nameSegment]) {
+                    foundStarMap = starMap[nameSegment];
                     starI = i;
                 }
             }
@@ -176,19 +176,19 @@ var requirejs, require, define;
             }
 
             if (foundMap) {
-                nombreParts.splice(0, foundI, foundMap);
-                nombre = nombreParts.join('/');
+                nameParts.splice(0, foundI, foundMap);
+                name = nameParts.join('/');
             }
         }
 
-        return nombre;
+        return name;
     }
 
-    function makeRequire(relnombre, forceSync) {
+    function makeRequire(relName, forceSync) {
         return function () {
-            //A version of a require function that passes a modulenombre
+            //A version of a require function that passes a moduleName
             //value for items that may need to
-            //look up paths relative to the modulenombre
+            //look up paths relative to the moduleName
             var args = aps.call(arguments, 0);
 
             //If first arg is not require('string'), and there is only
@@ -197,136 +197,136 @@ var requirejs, require, define;
             if (typeof args[0] !== 'string' && args.length === 1) {
                 args.push(null);
             }
-            return req.apply(undef, args.concat([relnombre, forceSync]));
+            return req.apply(undef, args.concat([relName, forceSync]));
         };
     }
 
-    function makeNormalize(relnombre) {
-        return function (nombre) {
-            return normalize(nombre, relnombre);
+    function makeNormalize(relName) {
+        return function (name) {
+            return normalize(name, relName);
         };
     }
 
-    function makeLoad(depnombre) {
+    function makeLoad(depName) {
         return function (value) {
-            defined[depnombre] = value;
+            defined[depName] = value;
         };
     }
 
-    function callDep(nombre) {
-        if (hasProp(waiting, nombre)) {
-            var args = waiting[nombre];
-            delete waiting[nombre];
-            defining[nombre] = true;
+    function callDep(name) {
+        if (hasProp(waiting, name)) {
+            var args = waiting[name];
+            delete waiting[name];
+            defining[name] = true;
             main.apply(undef, args);
         }
 
-        if (!hasProp(defined, nombre) && !hasProp(defining, nombre)) {
-            throw new Error('No ' + nombre);
+        if (!hasProp(defined, name) && !hasProp(defining, name)) {
+            throw new Error('No ' + name);
         }
-        return defined[nombre];
+        return defined[name];
     }
 
     //Turns a plugin!resource to [plugin, resource]
-    //with the plugin being undefined if the nombre
+    //with the plugin being undefined if the name
     //did not have a plugin prefix.
-    function splitPrefix(nombre) {
+    function splitPrefix(name) {
         var prefix,
-            index = nombre ? nombre.indexOf('!') : -1;
+            index = name ? name.indexOf('!') : -1;
         if (index > -1) {
-            prefix = nombre.substring(0, index);
-            nombre = nombre.substring(index + 1, nombre.length);
+            prefix = name.substring(0, index);
+            name = name.substring(index + 1, name.length);
         }
-        return [prefix, nombre];
+        return [prefix, name];
     }
 
-    //Creates a parts array for a relnombre where first part is plugin ID,
-    //second part is resource ID. Assumes relnombre has already been normalized.
-    function makeRelParts(relnombre) {
-        return relnombre ? splitPrefix(relnombre) : [];
+    //Creates a parts array for a relName where first part is plugin ID,
+    //second part is resource ID. Assumes relName has already been normalized.
+    function makeRelParts(relName) {
+        return relName ? splitPrefix(relName) : [];
     }
 
     /**
-     * Makes a nombre map, normalizing the nombre, and using a plugin
+     * Makes a name map, normalizing the name, and using a plugin
      * for normalization if necessary. Grabs a ref to plugin
      * too, as an optimization.
      */
-    makeMap = function (nombre, relParts) {
+    makeMap = function (name, relParts) {
         var plugin,
-            parts = splitPrefix(nombre),
+            parts = splitPrefix(name),
             prefix = parts[0],
-            relResourcenombre = relParts[1];
+            relResourceName = relParts[1];
 
-        nombre = parts[1];
+        name = parts[1];
 
         if (prefix) {
-            prefix = normalize(prefix, relResourcenombre);
+            prefix = normalize(prefix, relResourceName);
             plugin = callDep(prefix);
         }
 
         //Normalize according
         if (prefix) {
             if (plugin && plugin.normalize) {
-                nombre = plugin.normalize(nombre, makeNormalize(relResourcenombre));
+                name = plugin.normalize(name, makeNormalize(relResourceName));
             } else {
-                nombre = normalize(nombre, relResourcenombre);
+                name = normalize(name, relResourceName);
             }
         } else {
-            nombre = normalize(nombre, relResourcenombre);
-            parts = splitPrefix(nombre);
+            name = normalize(name, relResourceName);
+            parts = splitPrefix(name);
             prefix = parts[0];
-            nombre = parts[1];
+            name = parts[1];
             if (prefix) {
                 plugin = callDep(prefix);
             }
         }
 
-        //Using ridiculous property nombres for space reasons
+        //Using ridiculous property names for space reasons
         return {
-            f: prefix ? prefix + '!' + nombre : nombre, //fullnombre
-            n: nombre,
+            f: prefix ? prefix + '!' + name : name, //fullName
+            n: name,
             pr: prefix,
             p: plugin
         };
     };
 
-    function makeConfig(nombre) {
+    function makeConfig(name) {
         return function () {
-            return (config && config.config && config.config[nombre]) || {};
+            return (config && config.config && config.config[name]) || {};
         };
     }
 
     handlers = {
-        require: function (nombre) {
-            return makeRequire(nombre);
+        require: function (name) {
+            return makeRequire(name);
         },
-        exports: function (nombre) {
-            var e = defined[nombre];
+        exports: function (name) {
+            var e = defined[name];
             if (typeof e !== 'undefined') {
                 return e;
             } else {
-                return (defined[nombre] = {});
+                return (defined[name] = {});
             }
         },
-        module: function (nombre) {
+        module: function (name) {
             return {
-                id: nombre,
+                id: name,
                 uri: '',
-                exports: defined[nombre],
-                config: makeConfig(nombre)
+                exports: defined[name],
+                config: makeConfig(name)
             };
         }
     };
 
-    main = function (nombre, deps, callback, relnombre) {
-        var cjsModule, depnombre, ret, map, i, relParts,
+    main = function (name, deps, callback, relName) {
+        var cjsModule, depName, ret, map, i, relParts,
             args = [],
             callbackType = typeof callback,
             usingExports;
 
-        //Use nombre if no relnombre
-        relnombre = relnombre || nombre;
-        relParts = makeRelParts(relnombre);
+        //Use name if no relName
+        relName = relName || name;
+        relParts = makeRelParts(relName);
 
         //Call the callback to define the module, if necessary.
         if (callbackType === 'undefined' || callbackType === 'function') {
@@ -336,61 +336,61 @@ var requirejs, require, define;
             deps = !deps.length && callback.length ? ['require', 'exports', 'module'] : deps;
             for (i = 0; i < deps.length; i += 1) {
                 map = makeMap(deps[i], relParts);
-                depnombre = map.f;
+                depName = map.f;
 
                 //Fast path CommonJS standard dependencies.
-                if (depnombre === "require") {
-                    args[i] = handlers.require(nombre);
-                } else if (depnombre === "exports") {
+                if (depName === "require") {
+                    args[i] = handlers.require(name);
+                } else if (depName === "exports") {
                     //CommonJS module spec 1.1
-                    args[i] = handlers.exports(nombre);
+                    args[i] = handlers.exports(name);
                     usingExports = true;
-                } else if (depnombre === "module") {
+                } else if (depName === "module") {
                     //CommonJS module spec 1.1
-                    cjsModule = args[i] = handlers.module(nombre);
-                } else if (hasProp(defined, depnombre) ||
-                           hasProp(waiting, depnombre) ||
-                           hasProp(defining, depnombre)) {
-                    args[i] = callDep(depnombre);
+                    cjsModule = args[i] = handlers.module(name);
+                } else if (hasProp(defined, depName) ||
+                           hasProp(waiting, depName) ||
+                           hasProp(defining, depName)) {
+                    args[i] = callDep(depName);
                 } else if (map.p) {
-                    map.p.load(map.n, makeRequire(relnombre, true), makeLoad(depnombre), {});
-                    args[i] = defined[depnombre];
+                    map.p.load(map.n, makeRequire(relName, true), makeLoad(depName), {});
+                    args[i] = defined[depName];
                 } else {
-                    throw new Error(nombre + ' missing ' + depnombre);
+                    throw new Error(name + ' missing ' + depName);
                 }
             }
 
-            ret = callback ? callback.apply(defined[nombre], args) : undefined;
+            ret = callback ? callback.apply(defined[name], args) : undefined;
 
-            if (nombre) {
+            if (name) {
                 //If setting exports via "module" is in play,
                 //favor that over return value and exports. After that,
                 //favor a non-undefined return value over exports use.
                 if (cjsModule && cjsModule.exports !== undef &&
-                        cjsModule.exports !== defined[nombre]) {
-                    defined[nombre] = cjsModule.exports;
+                        cjsModule.exports !== defined[name]) {
+                    defined[name] = cjsModule.exports;
                 } else if (ret !== undef || !usingExports) {
                     //Use the return value from the function.
-                    defined[nombre] = ret;
+                    defined[name] = ret;
                 }
             }
-        } else if (nombre) {
+        } else if (name) {
             //May just be an object definition for the module. Only
-            //worry about defining if have a module nombre.
-            defined[nombre] = callback;
+            //worry about defining if have a module name.
+            defined[name] = callback;
         }
     };
 
-    requirejs = require = req = function (deps, callback, relnombre, forceSync, alt) {
+    requirejs = require = req = function (deps, callback, relName, forceSync, alt) {
         if (typeof deps === "string") {
             if (handlers[deps]) {
-                //callback in this case is really relnombre
+                //callback in this case is really relName
                 return handlers[deps](callback);
             }
             //Just return the module wanted. In this scenario, the
-            //deps arg is the module nombre, and second arg (if passed)
-            //is just the relnombre.
-            //Normalize module nombre, if it contains . or ..
+            //deps arg is the module name, and second arg (if passed)
+            //is just the relName.
+            //Normalize module name, if it contains . or ..
             return callDep(makeMap(deps, makeRelParts(callback)).f);
         } else if (!deps.splice) {
             //deps is a config object, not an array.
@@ -406,8 +406,8 @@ var requirejs, require, define;
                 //callback is an array, which means it is a dependency list.
                 //Adjust args if there are dependencies
                 deps = callback;
-                callback = relnombre;
-                relnombre = null;
+                callback = relName;
+                relName = null;
             } else {
                 deps = undef;
             }
@@ -416,16 +416,16 @@ var requirejs, require, define;
         //Support require(['a'])
         callback = callback || function () {};
 
-        //If relnombre is a function, it is an errback handler,
+        //If relName is a function, it is an errback handler,
         //so remove it.
-        if (typeof relnombre === 'function') {
-            relnombre = forceSync;
+        if (typeof relName === 'function') {
+            relName = forceSync;
             forceSync = alt;
         }
 
         //Simulate async callback;
         if (forceSync) {
-            main(undef, deps, callback, relnombre);
+            main(undef, deps, callback, relName);
         } else {
             //Using a non-zero value because of concern for what old browsers
             //do, and latest browsers "upgrade" to 4 if lower value is used:
@@ -434,7 +434,7 @@ var requirejs, require, define;
             //that works in almond on the global level, but not guaranteed and
             //unlikely to work in other AMD implementations.
             setTimeout(function () {
-                main(undef, deps, callback, relnombre);
+                main(undef, deps, callback, relName);
             }, 4);
         }
 
@@ -454,9 +454,9 @@ var requirejs, require, define;
      */
     requirejs._defined = defined;
 
-    define = function (nombre, deps, callback) {
-        if (typeof nombre !== 'string') {
-            throw new Error('See almond README: incorrect module build, no module nombre');
+    define = function (name, deps, callback) {
+        if (typeof name !== 'string') {
+            throw new Error('See almond README: incorrect module build, no module name');
         }
 
         //This module may not have dependencies
@@ -468,8 +468,8 @@ var requirejs, require, define;
             deps = [];
         }
 
-        if (!hasProp(defined, nombre) && !hasProp(waiting, nombre)) {
-            waiting[nombre] = [nombre, deps, callback];
+        if (!hasProp(defined, name) && !hasProp(waiting, name)) {
+            waiting[name] = [name, deps, callback];
         }
     };
 
@@ -528,18 +528,18 @@ S2.define('select2/utils',[
 
     var methods = [];
 
-    for (var methodnombre in proto) {
-      var m = proto[methodnombre];
+    for (var methodName in proto) {
+      var m = proto[methodName];
 
       if (typeof m !== 'function') {
         continue;
       }
 
-      if (methodnombre === 'constructor') {
+      if (methodName === 'constructor') {
         continue;
       }
 
-      methods.push(methodnombre);
+      methods.push(methodName);
     }
 
     return methods;
@@ -565,7 +565,7 @@ S2.define('select2/utils',[
       calledConstructor.apply(this, arguments);
     }
 
-    DecoratorClass.displaynombre = SuperClass.displaynombre;
+    DecoratorClass.displayName = SuperClass.displayName;
 
     function ctr () {
       this.constructor = DecoratedClass;
@@ -580,15 +580,15 @@ S2.define('select2/utils',[
         SuperClass.prototype[superMethod];
     }
 
-    var calledMethod = function (methodnombre) {
+    var calledMethod = function (methodName) {
       // Stub out the original method if it's not decorating an actual method
       var originalMethod = function () {};
 
-      if (methodnombre in DecoratedClass.prototype) {
-        originalMethod = DecoratedClass.prototype[methodnombre];
+      if (methodName in DecoratedClass.prototype) {
+        originalMethod = DecoratedClass.prototype[methodName];
       }
 
-      var decoratedMethod = DecoratorClass.prototype[methodnombre];
+      var decoratedMethod = DecoratorClass.prototype[methodName];
 
       return function () {
         var unshift = Array.prototype.unshift;
@@ -796,31 +796,31 @@ S2.define('select2/utils',[
     return select2Id;
   };
 
-  Utils.StoreData = function (element, nombre, value) {
+  Utils.StoreData = function (element, name, value) {
     // Stores an item in the cache for a specified element.
-    // nombre is the cache key.
+    // name is the cache key.
     var id = Utils.GetUniqueElementId(element);
     if (!Utils.__cache[id]) {
       Utils.__cache[id] = {};
     }
 
-    Utils.__cache[id][nombre] = value;
+    Utils.__cache[id][name] = value;
   };
 
-  Utils.GetData = function (element, nombre) {
-    // Retrieves a value from the cache by its key (nombre)
-    // nombre is optional. If no nombre specified, return
+  Utils.GetData = function (element, name) {
+    // Retrieves a value from the cache by its key (name)
+    // name is optional. If no name specified, return
     // all cache items for the specified element.
     // and for a specified element.
     var id = Utils.GetUniqueElementId(element);
-    if (nombre) {
+    if (name) {
       if (Utils.__cache[id]) {
-        if (Utils.__cache[id][nombre] != null) {
-          return Utils.__cache[id][nombre];
+        if (Utils.__cache[id][name] != null) {
+          return Utils.__cache[id][name];
         }
-        return $(element).data(nombre); // Fallback to HTML5 data attribs.
+        return $(element).data(name); // Fallback to HTML5 data attribs.
       }
-      return $(element).data(nombre); // Fallback to HTML5 data attribs.
+      return $(element).data(name); // Fallback to HTML5 data attribs.
     } else {
       return Utils.__cache[id];
     }
@@ -890,7 +890,7 @@ S2.define('select2/results',[
       )
     );
 
-    $message[0].classnombre += ' select2-results__message';
+    $message[0].className += ' select2-results__message';
 
     this.$results.append($message);
   };
@@ -998,7 +998,7 @@ S2.define('select2/results',[
       text: loadingMore(params)
     };
     var $loading = this.option(loading);
-    $loading.classnombre += ' loading-results';
+    $loading.className += ' loading-results';
 
     this.$results.prepend($loading);
   };
@@ -1009,7 +1009,7 @@ S2.define('select2/results',[
 
   Results.prototype.option = function (data) {
     var option = document.createElement('li');
-    option.classnombre = 'select2-results__option';
+    option.className = 'select2-results__option';
 
     var attrs = {
       'role': 'option',
@@ -1054,7 +1054,7 @@ S2.define('select2/results',[
       var $option = $(option);
 
       var label = document.createElement('strong');
-      label.classnombre = 'select2-results__group';
+      label.className = 'select2-results__group';
 
       var $label = $(label);
       this.template(data, label);
@@ -1466,8 +1466,8 @@ S2.define('select2/selection/base',[
       self.$selection.attr('aria-activedescendant', params.data._resultId);
     });
 
-    container.on('selection:upfecha', function (params) {
-      self.upfecha(params.data);
+    container.on('selection:update', function (params) {
+      self.update(params.data);
     });
 
     container.on('open', function () {
@@ -1552,8 +1552,8 @@ S2.define('select2/selection/base',[
     this._detachCloseHandler(this.container);
   };
 
-  BaseSelection.prototype.upfecha = function (data) {
-    throw new Error('The `upfecha` method must be defined in child classes.');
+  BaseSelection.prototype.update = function (data) {
+    throw new Error('The `update` method must be defined in child classes.');
   };
 
   /**
@@ -1663,7 +1663,7 @@ S2.define('select2/selection/single',[
     return $('<span></span>');
   };
 
-  SingleSelection.prototype.upfecha = function (data) {
+  SingleSelection.prototype.update = function (data) {
     if (data.length === 0) {
       this.clear();
       return;
@@ -1769,7 +1769,7 @@ S2.define('select2/selection/multiple',[
     return $container;
   };
 
-  MultipleSelection.prototype.upfecha = function (data) {
+  MultipleSelection.prototype.update = function (data) {
     this.clear();
 
     if (data.length === 0) {
@@ -1835,7 +1835,7 @@ S2.define('select2/selection/placeholder',[
     return $placeholder;
   };
 
-  Placeholder.prototype.upfecha = function (decorated, data) {
+  Placeholder.prototype.update = function (decorated, data) {
     var singlePlaceholder = (
       data.length == 1 && data[0].id != this.placeholder.id
     );
@@ -1946,7 +1946,7 @@ S2.define('select2/selection/allowClear',[
     }
   };
 
-  AllowClear.prototype.upfecha = function (decorated, data) {
+  AllowClear.prototype.update = function (decorated, data) {
     decorated.call(this, data);
 
     if (this.$selection.find('.select2-selection__placeholder').length > 0 ||
@@ -2148,7 +2148,7 @@ S2.define('select2/selection/search',[
     this.$search.attr('placeholder', placeholder.text);
   };
 
-  Search.prototype.upfecha = function (decorated, data) {
+  Search.prototype.update = function (decorated, data) {
     var searchHadFocus = this.$search[0] == document.activeElement;
 
     this.$search.attr('placeholder', '');
@@ -2227,9 +2227,9 @@ S2.define('select2/selection/eventRelay',[
 
     decorated.call(this, container, $container);
 
-    container.on('*', function (nombre, params) {
+    container.on('*', function (name, params) {
       // Ignore events that should not be relayed
-      if ($.inArray(nombre, relayEvents) === -1) {
+      if ($.inArray(name, relayEvents) === -1) {
         return;
       }
 
@@ -2237,14 +2237,14 @@ S2.define('select2/selection/eventRelay',[
       params = params || {};
 
       // Generate the jQuery event for the Select2 event
-      var evt = $.Event('select2:' + nombre, {
+      var evt = $.Event('select2:' + name, {
         params: params
       });
 
       self.$element.trigger(evt);
 
       // Only handle preventable events if it was one
-      if ($.inArray(nombre, preventableEvents) === -1) {
+      if ($.inArray(name, preventableEvents) === -1) {
         return;
       }
 
@@ -4744,13 +4744,13 @@ S2.define('select2/i18n/en',[],function () {
       return message;
     },
     noResults: function () {
-      return 'No se han encontrado resultados';
+      return 'No results found';
     },
     searching: function () {
-      return 'Buscando…';
+      return 'Searching…';
     },
     removeAllItems: function () {
-      return 'Eliminar todos los elementos';
+      return 'Remove all items';
     }
   };
 });
@@ -5018,7 +5018,7 @@ S2.define('select2/defaults',[
 
   Defaults.prototype.reset = function () {
     function stripDiacritics (text) {
-      // Used 'uni range + nombred function' from http://jsperf.com/diacritics/18
+      // Used 'uni range + named function' from http://jsperf.com/diacritics/18
       function match(a) {
         return DIACRITICS[a] || a;
       }
@@ -5166,7 +5166,7 @@ S2.define('select2/defaults',[
 
       if (typeof language === 'string') {
         try {
-          // Try to load it with the original nombre
+          // Try to load it with the original name
           languageData = Translation.loadPath(language);
         } catch (e) {
           try {
@@ -5300,22 +5300,22 @@ S2.define('select2/options',[
 
     // Pre-load all of the attributes which are prefixed with `data-`
     for (var attr = 0; attr < $e[0].attributes.length; attr++) {
-      var attributenombre = $e[0].attributes[attr].nombre;
+      var attributeName = $e[0].attributes[attr].name;
       var prefix = 'data-';
 
-      if (attributenombre.substr(0, prefix.length) == prefix) {
+      if (attributeName.substr(0, prefix.length) == prefix) {
         // Get the contents of the attribute after `data-`
-        var datanombre = attributenombre.substring(prefix.length);
+        var dataName = attributeName.substring(prefix.length);
 
         // Get the data contents from the consistent source
         // This is more than likely the jQuery data helper
-        var dataValue = Utils.GetData($e[0], datanombre);
+        var dataValue = Utils.GetData($e[0], dataName);
 
-        // camelCase the attribute nombre to match the spec
-        var camelDatanombre = datanombre.replace(/-([a-z])/g, upperCaseLetter);
+        // camelCase the attribute name to match the spec
+        var camelDataName = dataName.replace(/-([a-z])/g, upperCaseLetter);
 
         // Store the data attribute contents into the dataset since
-        dataset[camelDatanombre] = dataValue;
+        dataset[camelDataName] = dataValue;
       }
     }
 
@@ -5429,7 +5429,7 @@ S2.define('select2/core',[
 
     // Set the initial state
     this.dataAdapter.current(function (initialData) {
-      self.trigger('selection:upfecha', {
+      self.trigger('selection:update', {
         data: initialData
       });
     });
@@ -5454,8 +5454,8 @@ S2.define('select2/core',[
 
     if ($element.attr('id') != null) {
       id = $element.attr('id');
-    } else if ($element.attr('nombre') != null) {
-      id = $element.attr('nombre') + '-' + Utils.generateChars(2);
+    } else if ($element.attr('name') != null) {
+      id = $element.attr('name') + '-' + Utils.generateChars(2);
     } else {
       id = Utils.generateChars(4);
     }
@@ -5542,7 +5542,7 @@ S2.define('select2/core',[
 
     this.$element.on('change.select2', function () {
       self.dataAdapter.current(function (data) {
-        self.trigger('selection:upfecha', {
+        self.trigger('selection:update', {
           data: data
         });
       });
@@ -5596,8 +5596,8 @@ S2.define('select2/core',[
   Select2.prototype._registerDataEvents = function () {
     var self = this;
 
-    this.dataAdapter.on('*', function (nombre, params) {
-      self.trigger(nombre, params);
+    this.dataAdapter.on('*', function (name, params) {
+      self.trigger(name, params);
     });
   };
 
@@ -5613,28 +5613,28 @@ S2.define('select2/core',[
       self.focus(params);
     });
 
-    this.selection.on('*', function (nombre, params) {
-      if ($.inArray(nombre, nonRelayEvents) !== -1) {
+    this.selection.on('*', function (name, params) {
+      if ($.inArray(name, nonRelayEvents) !== -1) {
         return;
       }
 
-      self.trigger(nombre, params);
+      self.trigger(name, params);
     });
   };
 
   Select2.prototype._registerDropdownEvents = function () {
     var self = this;
 
-    this.dropdown.on('*', function (nombre, params) {
-      self.trigger(nombre, params);
+    this.dropdown.on('*', function (name, params) {
+      self.trigger(name, params);
     });
   };
 
   Select2.prototype._registerResultsEvents = function () {
     var self = this;
 
-    this.results.on('*', function (nombre, params) {
-      self.trigger(nombre, params);
+    this.results.on('*', function (name, params) {
+      self.trigger(name, params);
     });
   };
 
@@ -5742,7 +5742,7 @@ S2.define('select2/core',[
     // optgroups. This handles the case when the select element is destroyed
     if (
       evt && evt.target && (
-        evt.target.nodenombre !== 'OPTION' && evt.target.nodenombre !== 'OPTGROUP'
+        evt.target.nodeName !== 'OPTION' && evt.target.nodeName !== 'OPTGROUP'
       )
     ) {
       return;
@@ -5782,7 +5782,7 @@ S2.define('select2/core',[
     // Only re-pull the data if we think there is a change
     if (changed) {
       this.dataAdapter.current(function (currentData) {
-        self.trigger('selection:upfecha', {
+        self.trigger('selection:update', {
           data: currentData
         });
       });
@@ -5793,7 +5793,7 @@ S2.define('select2/core',[
    * Override the trigger method to automatically trigger pre-events when
    * there are events that can be prevented.
    */
-  Select2.prototype.trigger = function (nombre, args) {
+  Select2.prototype.trigger = function (name, args) {
     var actualTrigger = Select2.__super__.trigger;
     var preTriggerMap = {
       'open': 'opening',
@@ -5807,15 +5807,15 @@ S2.define('select2/core',[
       args = {};
     }
 
-    if (nombre in preTriggerMap) {
-      var preTriggernombre = preTriggerMap[nombre];
+    if (name in preTriggerMap) {
+      var preTriggerName = preTriggerMap[name];
       var preTriggerArgs = {
         prevented: false,
-        nombre: nombre,
+        name: name,
         args: args
       };
 
-      actualTrigger.call(this, preTriggernombre, preTriggerArgs);
+      actualTrigger.call(this, preTriggerName, preTriggerArgs);
 
       if (preTriggerArgs.prevented) {
         args.prevented = true;
@@ -5824,7 +5824,7 @@ S2.define('select2/core',[
       }
     }
 
-    actualTrigger.call(this, nombre, args);
+    actualTrigger.call(this, name, args);
   };
 
   Select2.prototype.toggleDropdown = function () {

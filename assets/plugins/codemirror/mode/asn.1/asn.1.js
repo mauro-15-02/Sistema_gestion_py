@@ -39,7 +39,7 @@
       if (ch == "-"){
         if (stream.eat("-")) {
           stream.skipToEnd();
-          return "comentario";
+          return "comment";
         }
       }
       if (/\d/.test(ch)) {
@@ -56,7 +56,7 @@
       if (keywords.propertyIsEnumerable(cur)) return "keyword";
       if (cmipVerbs.propertyIsEnumerable(cur)) return "variable cmipVerbs";
       if (compareTypes.propertyIsEnumerable(cur)) return "atom compareTypes";
-      if (status.propertyIsEnumerable(cur)) return "comentario status";
+      if (status.propertyIsEnumerable(cur)) return "comment status";
       if (tags.propertyIsEnumerable(cur)) return "variable-3 tags";
       if (storage.propertyIsEnumerable(cur)) return "builtin storage";
       if (modifier.propertyIsEnumerable(cur)) return "string-2 modifier";
@@ -128,7 +128,7 @@
         if (stream.eatSpace()) return null;
         curPunc = null;
         var style = (state.tokenize || tokenBase)(stream, state);
-        if (style == "comentario") return style;
+        if (style == "comment") return style;
         if (ctx.align == null) ctx.align = true;
 
         if ((curPunc == ";" || curPunc == ":" || curPunc == ",")
@@ -171,7 +171,7 @@
     " REPLY ANY NAMED CHARACTERIZED BEHAVIOUR REGISTERED" +
     " WITH AS IDENTIFIED CONSTRAINED BY PRESENT BEGIN" +
     " IMPORTS FROM UNITS SYNTAX MIN-ACCESS MAX-ACCESS" +
-    " MINACCESS MAXACCESS REVISION STATUS descripcion" +
+    " MINACCESS MAXACCESS REVISION STATUS DESCRIPTION" +
     " SEQUENCE SET COMPONENTS OF CHOICE DistinguishedName" +
     " ENUMERATED SIZE MODULE END INDEX AUGMENTS EXTENSIBILITY" +
     " IMPLIED EXPORTS"),
@@ -186,8 +186,8 @@
     " UNIVERSAL"),
     storage: words("BOOLEAN INTEGER OBJECT IDENTIFIER BIT OCTET STRING" +
     " UTCTime InterfaceIndex IANAifType CMIP-Attribute" +
-    " REAL PACKAGE PACKAGES Ipdireccion Physdireccion" +
-    " Networkdireccion BITS BMPString TimeStamp TimeTicks" +
+    " REAL PACKAGE PACKAGES IpAddress PhysAddress" +
+    " NetworkAddress BITS BMPString TimeStamp TimeTicks" +
     " TruthValue RowStatus DisplayString GeneralString" +
     " GraphicString IA5String NumericString" +
     " PrintableString SnmpAdminAtring TeletexString" +

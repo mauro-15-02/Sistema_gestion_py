@@ -1,7 +1,7 @@
 <?php 
 include 'db_connect.php';
 if(isset($_GET['id'])){
-	$qry = $conn->query("SELECT * FROM productividad_usuario where id = ".$_GET['id'])->fetch_array();
+	$qry = $conn->query("SELECT * FROM user_productivity where id = ".$_GET['id'])->fetch_array();
 	foreach($qry as $k => $v){
 		$$k = $v;
 	}
@@ -9,49 +9,49 @@ if(isset($_GET['id'])){
 ?>
 <div class="container-fluid">
 	<form action="" id="manage-progress">
-		<input type="hidden" nombre="id" value="<?php echo isset($id) ? $id : '' ?>">
-		<input type="hidden" nombre="proyecto_id" value="<?php echo isset($_GET['pid']) ? $_GET['pid'] : '' ?>">
+		<input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
+		<input type="hidden" name="project_id" value="<?php echo isset($_GET['pid']) ? $_GET['pid'] : '' ?>">
 		<div class="col-lg-12">
 			<div class="row">
 				<div class="col-md-5">
 					<?php if(!isset($_GET['tid'])): ?>
 					 <div class="form-group">
 		              <label for="" class="control-label">Tarea</label>
-		              <select class="form-control form-control-sm select2" nombre="tarea_id">
+		              <select class="form-control form-control-sm select2" name="task_id">
 		              	<option></option>
 		              	<?php 
-		              	$tareas = $conn->query("SELECT * FROM tarea_list where proyecto_id = {$_GET['pid']} order by tarea asc ");
-		              	while($row= $tareas->fetch_assoc()):
+		              	$tasks = $conn->query("SELECT * FROM task_list where project_id = {$_GET['pid']} order by task asc ");
+		              	while($row= $tasks->fetch_assoc()):
 		              	?>
-		              	<option value="<?php echo $row['id'] ?>" <?php echo isset($tarea_id) && $tarea_id == $row['id'] ? "selected" : '' ?>><?php echo ucwords($row['tarea']) ?></option>
+		              	<option value="<?php echo $row['id'] ?>" <?php echo isset($task_id) && $task_id == $row['id'] ? "selected" : '' ?>><?php echo ucwords($row['task']) ?></option>
 		              	<?php endwhile; ?>
 		              </select>
 		            </div>
 		            <?php else: ?>
-					<input type="hidden" nombre="tarea_id" value="<?php echo isset($_GET['tid']) ? $_GET['tid'] : '' ?>">
+					<input type="hidden" name="task_id" value="<?php echo isset($_GET['tid']) ? $_GET['tid'] : '' ?>">
 		            <?php endif; ?>
 					<div class="form-group">
 						<label for="">Tema</label>
-						<input type="text" class="form-control form-control-sm" nombre="tema" value="<?php echo isset($tema) ? $tema : '' ?>" required>
+						<input type="text" class="form-control form-control-sm" name="subject" value="<?php echo isset($subject) ? $subject : '' ?>" required>
 					</div>
 					<div class="form-group">
 						<label for="">Fecha</label>
-						<input type="fecha" class="form-control form-control-sm" nombre="fecha" value="<?php echo isset($fecha) ? fecha("d-m-Y",strtotime($fecha)) : '' ?>" required>
+						<input type="date" class="form-control form-control-sm" name="date" value="<?php echo isset($date) ? date("d-m-Y",strtotime($date)) : '' ?>" required>
 					</div>
 					<div class="form-group">
 						<label for="">Tiempo de comienzo</label>
-						<input type="time" class="form-control form-control-sm" nombre="hora_de_inicio" value="<?php echo isset($hora_de_inicio) ? fecha("H:i",strtotime("2022-01-01 ".$hora_de_inicio)) : '' ?>" required>
+						<input type="time" class="form-control form-control-sm" name="start_time" value="<?php echo isset($start_time) ? date("H:i",strtotime("2022-01-01 ".$start_time)) : '' ?>" required>
 					</div>
 					<div class="form-group">
 						<label for="">Tiempo de finalización</label>
-						<input type="time" class="form-control form-control-sm" nombre="fin_tiempo" value="<?php echo isset($fin_tiempo) ? fecha("H:i",strtotime("2022-01-01 ".$fin_tiempo)) : '' ?>" required>
+						<input type="time" class="form-control form-control-sm" name="end_time" value="<?php echo isset($end_time) ? date("H:i",strtotime("2022-01-01 ".$end_time)) : '' ?>" required>
 					</div>
 				</div>
 				<div class="col-md-7">
 					<div class="form-group">
 						<label for="">Comentarios/Descripción del Progreso</label>
-						<textarea nombre="comentario" id="" cols="30" rows="10" class="summernote form-control" required="">
-							<?php echo isset($comentario) ? $comentario : '' ?>
+						<textarea name="comment" id="" cols="30" rows="10" class="summernote form-control" required="">
+							<?php echo isset($comment) ? $comment : '' ?>
 						</textarea>
 					</div>
 				</div>
@@ -67,7 +67,7 @@ if(isset($_GET['id'])){
         toolbar: [
             [ 'style', [ 'style' ] ],
             [ 'font', [ 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear'] ],
-            [ 'fontnombre', [ 'fontnombre' ] ],
+            [ 'fontname', [ 'fontname' ] ],
             [ 'fontsize', [ 'fontsize' ] ],
             [ 'color', [ 'color' ] ],
             [ 'para', [ 'ol', 'ul', 'paragraph', 'height' ] ],

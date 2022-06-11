@@ -34,11 +34,11 @@
 
   CodeMirror.defineSimpleMode("dockerfile", {
     start: [
-      // Block comentario: This is a line starting with a comentario
+      // Block comment: This is a line starting with a comment
       {
         regex: /^\s*#.*$/,
         sol: true,
-        token: "comentario"
+        token: "comment"
       },
       {
         regex: fromRegex,
@@ -83,7 +83,7 @@
         next: "start"
       },
       {
-        // Line comentario without instruction arguments is an error
+        // Line comment without instruction arguments is an error
         regex: /(\s*)(#.*)$/,
         token: [null, "error"],
         next: "start"
@@ -161,7 +161,7 @@
       {
         regex: /^\s*#.*$/,
         sol: true,
-        token: "comentario"
+        token: "comment"
       },
       {
         regex: /"(?:[^\\"]|\\.)*"?$/,

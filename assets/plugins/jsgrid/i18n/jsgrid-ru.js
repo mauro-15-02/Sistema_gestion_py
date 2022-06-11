@@ -26,7 +26,7 @@
                 searchButtonTooltip: "Найти",
                 clearFilterButtonTooltip: "Очистить фильтр",
                 insertButtonTooltip: "Добавить",
-                upfechaButtonTooltip: "Сохранить",
+                updateButtonTooltip: "Сохранить",
                 cancelEditButtonTooltip: "Отменить"
             }
         },

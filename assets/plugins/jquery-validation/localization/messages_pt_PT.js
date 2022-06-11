@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -18,8 +18,8 @@ $.extend( $.validator.messages, {
 	remote: "Por favor, corrija este campo.",
 	email: "Por favor, introduza um endere&ccedil;o eletr&oacute;nico v&aacute;lido.",
 	url: "Por favor, introduza um URL v&aacute;lido.",
-	fecha: "Por favor, introduza uma data v&aacute;lida.",
-	fechaISO: "Por favor, introduza uma data v&aacute;lida (ISO).",
+	date: "Por favor, introduza uma data v&aacute;lida.",
+	dateISO: "Por favor, introduza uma data v&aacute;lida (ISO).",
 	number: "Por favor, introduza um n&uacute;mero v&aacute;lido.",
 	digits: "Por favor, introduza apenas d&iacute;gitos.",
 	creditcard: "Por favor, introduza um n&uacute;mero de cart&atilde;o de cr&eacute;dito v&aacute;lido.",

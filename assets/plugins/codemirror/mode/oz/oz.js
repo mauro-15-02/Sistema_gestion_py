@@ -116,7 +116,7 @@ CodeMirror.defineMode("oz", function (conf) {
     // Comments
     if (ch == "%") {
       stream.skipToEnd();
-      return 'comentario';
+      return 'comment';
     }
     else if (ch == "/") {
       if (stream.eat("*")) {
@@ -184,7 +184,7 @@ CodeMirror.defineMode("oz", function (conf) {
       }
       maybeEnd = (ch == "*");
     }
-    return "comentario";
+    return "comment";
   }
 
   function tokenString(quote) {

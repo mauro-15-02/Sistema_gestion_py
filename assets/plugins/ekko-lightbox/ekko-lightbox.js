@@ -137,7 +137,7 @@ var Lightbox = (function ($) {
 						event.preventDefault();
 						return _this.navigateRight();
 					});
-					this.upfechaNavigation();
+					this.updateNavigation();
 				}
 			}
 
@@ -183,7 +183,7 @@ var Lightbox = (function ($) {
 
 				this._galleryIndex = index;
 
-				this.upfechaNavigation();
+				this.updateNavigation();
 
 				this._$element = $(this._$galleryItems.get(this._galleryIndex));
 				this._handle();
@@ -221,8 +221,8 @@ var Lightbox = (function ($) {
 				return this.navigateTo(this._galleryIndex);
 			}
 		}, {
-			key: 'upfechaNavigation',
-			value: function upfechaNavigation() {
+			key: 'updateNavigation',
+			value: function updateNavigation() {
 				if (!this._config.wrapping) {
 					var $nav = this._$lightboxContainer.find('div.ekko-lightbox-nav-overlay');
 					if (this._galleryIndex === 0) $nav.find('a:first-child').addClass('disabled');else $nav.find('a:first-child').removeClass('disabled');
@@ -294,7 +294,7 @@ var Lightbox = (function ($) {
 			value: function _handle() {
 
 				var $toUse = this._containerToUse();
-				this._upfechaTitleAndFooter();
+				this._updateTitleAndFooter();
 
 				var currentRemote = this._$element.attr('data-remote') || this._$element.attr('href');
 				var currentType = this._detectRemoteType(currentRemote, this._$element.attr('data-type') || false);
@@ -386,8 +386,8 @@ var Lightbox = (function ($) {
 				return parseInt(this._$modalDialog.css(attribute), 10) + parseInt(this._$modalContent.css(attribute), 10) + parseInt(this._$modalBody.css(attribute), 10);
 			}
 		}, {
-			key: '_upfechaTitleAndFooter',
-			value: function _upfechaTitleAndFooter() {
+			key: '_updateTitleAndFooter',
+			value: function _updateTitleAndFooter() {
 				var title = this._$element.data('title') || "";
 				var caption = this._$element.data('footer') || "";
 
@@ -629,9 +629,9 @@ var Lightbox = (function ($) {
 				if (modal) {
 					// v4 method is mistakenly protected
 					try {
-						modal._handleUpfecha();
+						modal._handleUpdate();
 					} catch (Exception) {
-						modal.handleUpfecha();
+						modal.handleUpdate();
 					}
 				}
 				return this;

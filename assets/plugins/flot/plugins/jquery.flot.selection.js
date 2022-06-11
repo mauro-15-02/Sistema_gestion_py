@@ -111,7 +111,7 @@ The plugin allso adds the following methods to the plot object:
 
         function onDrag(e) {
             if (selection.active) {
-                upfechaSelection(e);
+                updateSelection(e);
 
                 plot.getPlaceholder().trigger("plotselecting", [ getSelection() ]);
             }
@@ -155,7 +155,7 @@ The plugin allso adds the following methods to the plot object:
 
             // no more dragging
             selection.active = false;
-            upfechaSelection(e);
+            updateSelection(e);
 
             if (selectionIsSane()) {
                 triggerSelectedEvent();
@@ -221,7 +221,7 @@ The plugin allso adds the following methods to the plot object:
             }
         }
 
-        function upfechaMode(pos) {
+        function updateMode(pos) {
             if (selection.first) {
                 var delta = {
                     x: pos.x - selection.first.x,
@@ -244,7 +244,7 @@ The plugin allso adds the following methods to the plot object:
             pos.x = clamp(0, e.pageX - offset.left - plotOffset.left, plot.width());
             pos.y = clamp(0, e.pageY - offset.top - plotOffset.top, plot.height());
 
-            if (pos !== selection.first) upfechaMode(pos);
+            if (pos !== selection.first) updateMode(pos);
 
             if (selectionDirection(plot) === "y") {
                 pos.x = pos === selection.first ? 0 : plot.width();
@@ -255,7 +255,7 @@ The plugin allso adds the following methods to the plot object:
             }
         }
 
-        function upfechaSelection(pos) {
+        function updateSelection(pos) {
             if (pos.pageX == null) return;
 
             setSelectionPos(selection.second, pos);

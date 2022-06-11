@@ -4,7 +4,7 @@
  * @version 1.5.1
  * @link http://jqvmap.com
  * @license https://github.com/manifestinteractive/jqvmap/blob/master/LICENSE
- * @buildfecha 2016/06/02
+ * @builddate 2016/06/02
  */
 
 var VectorCanvas = function (width, height, params) {
@@ -12,20 +12,20 @@ var VectorCanvas = function (width, height, params) {
   this.params = params;
 
   if (this.mode === 'svg') {
-    this.createSvgNode = function (nodenombre) {
-      return document.createElementNS(this.svgns, nodenombre);
+    this.createSvgNode = function (nodeName) {
+      return document.createElementNS(this.svgns, nodeName);
     };
   } else {
     try {
-      if (!document.nombrespaces.rvml) {
-        document.nombrespaces.add('rvml', 'urn:schemas-microsoft-com:vml');
+      if (!document.namespaces.rvml) {
+        document.namespaces.add('rvml', 'urn:schemas-microsoft-com:vml');
       }
-      this.createVmlNode = function (tagnombre) {
-        return document.createElement('<rvml:' + tagnombre + ' class="rvml">');
+      this.createVmlNode = function (tagName) {
+        return document.createElement('<rvml:' + tagName + ' class="rvml">');
       };
     } catch (e) {
-      this.createVmlNode = function (tagnombre) {
-        return document.createElement('<' + tagnombre + ' xmlns="urn:schemas-microsoft.com:vml" class="rvml">');
+      this.createVmlNode = function (tagName) {
+        return document.createElement('<' + tagName + ' xmlns="urn:schemas-microsoft.com:vml" class="rvml">');
       };
     }
 
@@ -165,12 +165,12 @@ var JQVMap = function (params) {
     code = code.toLowerCase();
 
     if (e.type === 'mouseover') {
-      jQuery(params.container).trigger(regionMouseOverEvent, [code, mapData.paths[code].nombre]);
+      jQuery(params.container).trigger(regionMouseOverEvent, [code, mapData.paths[code].name]);
       if (!regionMouseOverEvent.isDefaultPrevented()) {
         map.highlight(code, containerPath);
       }
       if (params.showTooltip) {
-        map.label.text(mapData.paths[code].nombre);
+        map.label.text(mapData.paths[code].name);
         jQuery(params.container).trigger(labelShowEvent, [map.label, code]);
 
         if (!labelShowEvent.isDefaultPrevented()) {
@@ -183,7 +183,7 @@ var JQVMap = function (params) {
       map.unhighlight(code, containerPath);
 
       map.label.hide();
-      jQuery(params.container).trigger('regionMouseOut.jqvmap', [code, mapData.paths[code].nombre]);
+      jQuery(params.container).trigger('regionMouseOut.jqvmap', [code, mapData.paths[code].name]);
     }
   });
 
@@ -195,7 +195,7 @@ var JQVMap = function (params) {
 
     code = code.toLowerCase();
 
-    jQuery(params.container).trigger(mapClickEvent, [code, mapData.paths[code].nombre]);
+    jQuery(params.container).trigger(mapClickEvent, [code, mapData.paths[code].name]);
 
     if ( !params.multiSelectRegion && !mapClickEvent.isDefaultPrevented()) {
       for (var keyPath in mapData.paths) {
@@ -1140,20 +1140,20 @@ VectorCanvas.prototype.createPath = function (config) {
     node.appendChild(fill);
 
     node.setFill = function (color) {
-      this.getElementsByTagnombre('fill')[0].color = color;
+      this.getElementsByTagName('fill')[0].color = color;
       if (this.getAttribute('original') === null) {
         this.setAttribute('original', color);
       }
     };
 
     node.getFill = function () {
-      return this.getElementsByTagnombre('fill')[0].color;
+      return this.getElementsByTagName('fill')[0].color;
     };
     node.getOriginalFill = function () {
       return this.getAttribute('original');
     };
     node.setOpacity = function (opacity) {
-      this.getElementsByTagnombre('fill')[0].opacity = parseInt(opacity * 100, 10) + '%';
+      this.getElementsByTagName('fill')[0].opacity = parseInt(opacity * 100, 10) + '%';
     };
   }
   return node;
@@ -1273,7 +1273,7 @@ VectorCanvas.prototype.setSize = function (width, height) {
     this.canvas.coordsize = width + ' ' + height;
     this.canvas.coordorigin = '0 0';
     if (this.rootGroup) {
-      var paths = this.rootGroup.getElementsByTagnombre('shape');
+      var paths = this.rootGroup.getElementsByTagName('shape');
       for (var i = 0, l = paths.length; i < l; i++) {
         paths[i].coordsize = width + ' ' + height;
         paths[i].style.width = width + 'px';

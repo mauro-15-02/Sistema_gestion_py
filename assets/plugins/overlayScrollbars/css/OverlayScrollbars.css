@@ -354,8 +354,8 @@ body.os-dragging * {
 .os-resize-observer {
     -webkit-animation-duration: 0.001s;
     animation-duration: 0.001s;
-    -webkit-animation-nombre: os-resize-observer-dummy-animation;
-    animation-nombre: os-resize-observer-dummy-animation;
+    -webkit-animation-name: os-resize-observer-dummy-animation;
+    animation-name: os-resize-observer-dummy-animation;
 }
 object.os-resize-observer {
     box-sizing: border-box !important;

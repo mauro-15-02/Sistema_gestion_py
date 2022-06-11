@@ -17,7 +17,7 @@
 .cm-s-midnight .CodeMirror-linenumber { color: #D0D0D0; }
 .cm-s-midnight .CodeMirror-cursor { border-left: 1px solid #F8F8F0; }
 
-.cm-s-midnight span.cm-comentario { color: #428BDD; }
+.cm-s-midnight span.cm-comment { color: #428BDD; }
 .cm-s-midnight span.cm-atom { color: #AE81FF; }
 .cm-s-midnight span.cm-number { color: #D1EDFF; }
 

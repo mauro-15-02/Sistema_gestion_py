@@ -89,7 +89,7 @@
             mask: function mask(elems) {
                 var that = this;
                 return "string" == typeof elems && (elems = document.getElementById(elems) || document.querySelectorAll(elems)), 
-                elems = elems.nodenombre ? [ elems ] : elems, elems.forEach(function(el, ndx) {
+                elems = elems.nodeName ? [ elems ] : elems, elems.forEach(function(el, ndx) {
                     var scopedOpts = _inputmask.default.extend(!0, {}, that.opts);
                     if (importAttributeOptions(el, scopedOpts, _inputmask.default.extend(!0, {}, that.userOptions), that.dataAttribute)) {
                         var maskset = (0, _maskLexer.generateMaskSet)(scopedOpts, that.noMasksCache);
@@ -186,12 +186,12 @@
             return Inputmask(options).isValid(value);
         }, Inputmask.remove = function(elems) {
             "string" == typeof elems && (elems = document.getElementById(elems) || document.querySelectorAll(elems)), 
-            elems = elems.nodenombre ? [ elems ] : elems, elems.forEach(function(el) {
+            elems = elems.nodeName ? [ elems ] : elems, elems.forEach(function(el) {
                 el.inputmask && el.inputmask.remove();
             });
         }, Inputmask.setValue = function(elems, value) {
             "string" == typeof elems && (elems = document.getElementById(elems) || document.querySelectorAll(elems)), 
-            elems = elems.nodenombre ? [ elems ] : elems, elems.forEach(function(el) {
+            elems = elems.nodeName ? [ elems ] : elems, elems.forEach(function(el) {
                 el.inputmask ? el.inputmask.setValue(value) : (0, _inputmask.default)(el).trigger("setvalue", [ value ]);
             });
         }, Inputmask.dependencyLib = _inputmask.default, _window.default.Inputmask = Inputmask;
@@ -622,7 +622,7 @@
             value: !0
         }), exports.alternate = alternate, exports.checkAlternationMatch = checkAlternationMatch, 
         exports.isComplete = isComplete, exports.isValid = isValid, exports.refreshFromBuffer = refreshFromBuffer, 
-        exports.revalifechaMask = revalifechaMask, exports.handleRemove = handleRemove;
+        exports.revalidateMask = revalidateMask, exports.handleRemove = handleRemove;
         var _validationTests = __webpack_require__(3), _keycode = _interopRequireDefault(__webpack_require__(0)), _positioning = __webpack_require__(2), _eventhandlers = __webpack_require__(6);
         function _interopRequireDefault(obj) {
             return obj && obj.__esModule ? obj : {
@@ -713,7 +713,7 @@
             var lvp = _positioning.getLastValidPosition.call(this, void 0, !0), offset;
             if (pos.end >= _positioning.getBuffer.call(this).length && lvp >= pos.end && (pos.end = lvp + 1), 
             k === _keycode.default.BACKSPACE ? pos.end - pos.begin < 1 && (pos.begin = _positioning.seekPrevious.call(this, pos.begin)) : k === _keycode.default.DELETE && pos.begin === pos.end && (pos.end = _positioning.isMask.call(this, pos.end, !0, !0) ? pos.end + 1 : _positioning.seekNext.call(this, pos.end) + 1), 
-            !1 !== (offset = revalifechaMask.call(this, pos))) {
+            !1 !== (offset = revalidateMask.call(this, pos))) {
                 if (!0 !== strict && !1 !== opts.keepStatic || null !== opts.regex && -1 !== _validationTests.getTest.call(this, pos.begin).match.def.indexOf("|")) {
                     var result = alternate.call(this, !0);
                     if (result) {
@@ -742,7 +742,7 @@
                 return complete;
             }
         }
-        function isValid(pos, c, strict, fromIsValid, fromAlternate, valifechaOnly, fromCheckval) {
+        function isValid(pos, c, strict, fromIsValid, fromAlternate, validateOnly, fromCheckval) {
             var inputmask = this, $ = this.dependencyLib, opts = this.opts, el = inputmask.el, maskset = inputmask.maskset;
             function isSelection(posObj) {
                 return inputmask.isRTL ? 1 < posObj.begin - posObj.end || posObj.begin - posObj.end == 1 : 1 < posObj.end - posObj.begin || posObj.end - posObj.begin == 1;
@@ -755,7 +755,7 @@
                     commandObj.remove.sort(function(a, b) {
                         return b.pos - a.pos;
                     }).forEach(function(lmnt) {
-                        revalifechaMask.call(inputmask, {
+                        revalidateMask.call(inputmask, {
                             begin: lmnt,
                             end: lmnt + 1
                         });
@@ -782,22 +782,22 @@
                         c: _validationTests.getPlaceholder.call(inputmask, position, test, !0) || test.def,
                         pos: position
                     }, !1 === rslt) return !0;
-                    var elem = void 0 !== rslt.c ? rslt.c : c, valifechadPos = position;
+                    var elem = void 0 !== rslt.c ? rslt.c : c, validatedPos = position;
                     return elem = elem === opts.skipOptionalPartCharacter && !0 === test.static ? _validationTests.getPlaceholder.call(inputmask, position, test, !0) || test.def : elem, 
-                    rslt = processCommandObject(rslt), !0 !== rslt && void 0 !== rslt.pos && rslt.pos !== position && (valifechadPos = rslt.pos), 
-                    !0 !== rslt && void 0 === rslt.pos && void 0 === rslt.c || !1 === revalifechaMask.call(inputmask, pos, $.extend({}, tst, {
-                        input: casing.call(inputmask, elem, test, valifechadPos)
-                    }), fromIsValid, valifechadPos) && (rslt = !1), !1;
+                    rslt = processCommandObject(rslt), !0 !== rslt && void 0 !== rslt.pos && rslt.pos !== position && (validatedPos = rslt.pos), 
+                    !0 !== rslt && void 0 === rslt.pos && void 0 === rslt.c || !1 === revalidateMask.call(inputmask, pos, $.extend({}, tst, {
+                        input: casing.call(inputmask, elem, test, validatedPos)
+                    }), fromIsValid, validatedPos) && (rslt = !1), !1;
                 }), rslt;
             }
             void 0 !== pos.begin && (maskPos = inputmask.isRTL ? pos.end : pos.begin);
             var result = !0, positionsClone = $.extend(!0, {}, maskset.validPositions);
             if (!1 === opts.keepStatic && void 0 !== maskset.excludes[maskPos] && !0 !== fromAlternate && !0 !== fromIsValid) for (var i = maskPos; i < (inputmask.isRTL ? pos.begin : pos.end); i++) void 0 !== maskset.excludes[i] && (maskset.excludes[i] = void 0, 
             delete maskset.tests[i]);
-            if ("function" == typeof opts.preValidation && !0 !== fromIsValid && !0 !== valifechaOnly && (result = opts.preValidation.call(el, _positioning.getBuffer.call(inputmask), maskPos, c, isSelection(pos), opts, maskset, pos, strict || fromAlternate), 
+            if ("function" == typeof opts.preValidation && !0 !== fromIsValid && !0 !== validateOnly && (result = opts.preValidation.call(el, _positioning.getBuffer.call(inputmask), maskPos, c, isSelection(pos), opts, maskset, pos, strict || fromAlternate), 
             result = processCommandObject(result)), !0 === result) {
                 if (void 0 === inputmask.maxLength || maskPos < inputmask.maxLength) {
-                    if (result = _isValid(maskPos, c, strict), (!strict || !0 === fromIsValid) && !1 === result && !0 !== valifechaOnly) {
+                    if (result = _isValid(maskPos, c, strict), (!strict || !0 === fromIsValid) && !1 === result && !0 !== validateOnly) {
                         var currentPosValid = maskset.validPositions[maskPos];
                         if (!currentPosValid || !0 !== currentPosValid.match.static || currentPosValid.match.def !== c && c !== opts.skipOptionalPartCharacter) {
                             if (opts.insertMode || void 0 === maskset.validPositions[_positioning.seekNext.call(inputmask, maskPos)] || pos.end > maskPos) {
@@ -821,11 +821,11 @@
                     pos: maskPos
                 });
             }
-            if ("function" == typeof opts.postValidation && !0 !== fromIsValid && !0 !== valifechaOnly) {
+            if ("function" == typeof opts.postValidation && !0 !== fromIsValid && !0 !== validateOnly) {
                 var postResult = opts.postValidation.call(el, _positioning.getBuffer.call(inputmask, !0), void 0 !== pos.begin ? inputmask.isRTL ? pos.end : pos.begin : pos, c, result, opts, maskset, strict, fromCheckval);
                 void 0 !== postResult && (result = !0 === postResult ? result : postResult);
             }
-            result && void 0 === result.pos && (result.pos = maskPos), !1 === result || !0 === valifechaOnly ? (_positioning.resetMaskSet.call(inputmask, !0), 
+            result && void 0 === result.pos && (result.pos = maskPos), !1 === result || !0 === validateOnly ? (_positioning.resetMaskSet.call(inputmask, !0), 
             maskset.validPositions = $.extend(!0, {}, positionsClone)) : trackbackPositions.call(inputmask, void 0, maskPos, !0);
             var endResult = processCommandObject(result);
             return endResult;
@@ -873,7 +873,7 @@
                     var bestMatch = _validationTests.determineTestTemplate.call(this, ps, tests), np;
                     if (bestMatch && (!0 !== bestMatch.match.jit || "master" === bestMatch.match.newBlockMarker && (np = maskset.validPositions[ps + 1]) && !0 === np.match.optionalQuantifier) && (bestMatch = $.extend({}, bestMatch, {
                         input: _validationTests.getPlaceholder.call(this, ps, bestMatch.match, !0) || bestMatch.match.def
-                    }), bestMatch.generatedInput = !0, revalifechaMask.call(this, ps, bestMatch, !0), 
+                    }), bestMatch.generatedInput = !0, revalidateMask.call(this, ps, bestMatch, !0), 
                     !0 !== fillOnly)) {
                         var cvpInput = maskset.validPositions[newPos].input;
                         return maskset.validPositions[newPos] = void 0, isValid.call(this, newPos, cvpInput, !0, !0);
@@ -881,7 +881,7 @@
                 }
             }
         }
-        function revalifechaMask(pos, validTest, fromIsValid, valifechadPos) {
+        function revalidateMask(pos, validTest, fromIsValid, validatedPos) {
             var inputmask = this, maskset = this.maskset, opts = this.opts, $ = this.dependencyLib;
             function IsEnclosedStatic(pos, valids, selection) {
                 var posMatch = valids[pos];
@@ -890,13 +890,13 @@
                 return prevMatch && nextMatch;
             }
             var offset = 0, begin = void 0 !== pos.begin ? pos.begin : pos, end = void 0 !== pos.end ? pos.end : pos;
-            if (pos.begin > pos.end && (begin = pos.end, end = pos.begin), valifechadPos = void 0 !== valifechadPos ? valifechadPos : begin, 
-            begin !== end || opts.insertMode && void 0 !== maskset.validPositions[valifechadPos] && void 0 === fromIsValid || void 0 === validTest) {
+            if (pos.begin > pos.end && (begin = pos.end, end = pos.begin), validatedPos = void 0 !== validatedPos ? validatedPos : begin, 
+            begin !== end || opts.insertMode && void 0 !== maskset.validPositions[validatedPos] && void 0 === fromIsValid || void 0 === validTest) {
                 var positionsClone = $.extend(!0, {}, maskset.validPositions), lvp = _positioning.getLastValidPosition.call(this, void 0, !0), i;
                 for (maskset.p = begin, i = lvp; begin <= i; i--) delete maskset.validPositions[i], 
                 void 0 === validTest && delete maskset.tests[i + 1];
-                var valid = !0, j = valifechadPos, posMatch = j, t, canMatch;
-                for (validTest && (maskset.validPositions[valifechadPos] = $.extend(!0, {}, validTest), 
+                var valid = !0, j = validatedPos, posMatch = j, t, canMatch;
+                for (validTest && (maskset.validPositions[validatedPos] = $.extend(!0, {}, validTest), 
                 posMatch++, j++), i = validTest ? end : end - 1; i <= lvp; i++) {
                     if (void 0 !== (t = positionsClone[i]) && !0 !== t.generatedInput && (end <= i || begin <= i && IsEnclosedStatic(i, positionsClone, {
                         begin: begin,
@@ -921,7 +921,7 @@
                 }
                 if (!valid) return maskset.validPositions = $.extend(!0, {}, positionsClone), _positioning.resetMaskSet.call(this, !0), 
                 !1;
-            } else validTest && _validationTests.getTest.call(this, valifechadPos).match.cd === validTest.match.cd && (maskset.validPositions[valifechadPos] = $.extend(!0, {}, validTest));
+            } else validTest && _validationTests.getTest.call(this, validatedPos).match.cd === validTest.match.cd && (maskset.validPositions[validatedPos] = $.extend(!0, {}, validTest));
             return _positioning.resetMaskSet.call(this, !0), offset;
         }
     }, function(module, exports, __webpack_require__) {
@@ -1364,7 +1364,7 @@
                                     get: getter,
                                     set: setter,
                                     configurable: !0
-                                })) : "input" !== npt.tagnombre.toLowerCase() && (valueGet = function valueGet() {
+                                })) : "input" !== npt.tagName.toLowerCase() && (valueGet = function valueGet() {
                                     return this.textContent;
                                 }, valueSet = function valueSet(value) {
                                     this.textContent = value;
@@ -1389,9 +1389,9 @@
                         }, patchValhook(npt.type), installNativeValueSetFallback(npt));
                     }
                 }
-                "textarea" !== input.tagnombre.toLowerCase() && opts.ignorables.push(_keycode.default.ENTER);
-                var elementType = input.getAttribute("type"), isSupported = "input" === input.tagnombre.toLowerCase() && opts.supportsInputType.includes(elementType) || input.isContentEditable || "textarea" === input.tagnombre.toLowerCase();
-                if (!isSupported) if ("input" === input.tagnombre.toLowerCase()) {
+                "textarea" !== input.tagName.toLowerCase() && opts.ignorables.push(_keycode.default.ENTER);
+                var elementType = input.getAttribute("type"), isSupported = "input" === input.tagName.toLowerCase() && opts.supportsInputType.includes(elementType) || input.isContentEditable || "textarea" === input.tagName.toLowerCase();
+                if (!isSupported) if ("input" === input.tagName.toLowerCase()) {
                     var el = document.createElement("input");
                     el.setAttribute("type", elementType), isSupported = "text" === el.type, el = null;
                 } else isSupported = "partial";
@@ -1445,15 +1445,15 @@
             };
         }
         var EventRuler = {
-            on: function on(input, eventnombre, eventHandler) {
+            on: function on(input, eventName, eventHandler) {
                 var $ = input.inputmask.dependencyLib, ev = function ev(e) {
                     e.originalEvent && (e = e.originalEvent || e, arguments[0] = e);
                     var that = this, args, inputmask = that.inputmask, opts = inputmask ? inputmask.opts : void 0, $ = inputmask.dependencyLib;
-                    if (void 0 === inputmask && "FORM" !== this.nodenombre) {
+                    if (void 0 === inputmask && "FORM" !== this.nodeName) {
                         var imOpts = $.data(that, "_inputmask_opts");
                         $(that).off(), imOpts && new _inputmask.default(imOpts).mask(that);
                     } else {
-                        if ("setvalue" === e.type || "FORM" === this.nodenombre || !(that.disabled || that.readOnly && !("keydown" === e.type && e.ctrlKey && 67 === e.keyCode || !1 === opts.tabThrough && e.keyCode === _keycode.default.TAB))) {
+                        if ("setvalue" === e.type || "FORM" === this.nodeName || !(that.disabled || that.readOnly && !("keydown" === e.type && e.ctrlKey && 67 === e.keyCode || !1 === opts.tabThrough && e.keyCode === _keycode.default.TAB))) {
                             switch (e.type) {
                               case "input":
                                 if (!0 === inputmask.skipInputEvent || e.inputType && "insertCompositionText" === e.inputType) return inputmask.skipInputEvent = !1, 
@@ -1490,19 +1490,19 @@
                         e.preventDefault();
                     }
                 };
-                input.inputmask.events[eventnombre] = input.inputmask.events[eventnombre] || [], input.inputmask.events[eventnombre].push(ev), 
-                [ "submit", "reset" ].includes(eventnombre) ? null !== input.form && $(input.form).on(eventnombre, ev.bind(input)) : $(input).on(eventnombre, ev);
+                input.inputmask.events[eventName] = input.inputmask.events[eventName] || [], input.inputmask.events[eventName].push(ev), 
+                [ "submit", "reset" ].includes(eventName) ? null !== input.form && $(input.form).on(eventName, ev.bind(input)) : $(input).on(eventName, ev);
             },
             off: function off(input, event) {
                 if (input.inputmask && input.inputmask.events) {
                     var $ = input.inputmask.dependencyLib, events = input.inputmask.events;
-                    for (var eventnombre in event && (events = [], events[event] = input.inputmask.events[event]), 
+                    for (var eventName in event && (events = [], events[event] = input.inputmask.events[event]), 
                     events) {
-                        for (var evArr = events[eventnombre]; 0 < evArr.length; ) {
+                        for (var evArr = events[eventName]; 0 < evArr.length; ) {
                             var ev = evArr.pop();
-                            [ "submit", "reset" ].includes(eventnombre) ? null !== input.form && $(input.form).off(eventnombre, ev) : $(input).off(eventnombre, ev);
+                            [ "submit", "reset" ].includes(eventName) ? null !== input.form && $(input.form).off(eventName, ev) : $(input).off(eventName, ev);
                         }
-                        delete input.inputmask.events[eventnombre];
+                        delete input.inputmask.events[eventName];
                     }
                 }
             }
@@ -2100,13 +2100,13 @@
             }
             return opts.tokenizer;
         }
-        function prefillYear(fechaParts, currentResult, opts) {
-            if (fechaParts.year !== fechaParts.rawyear) {
-                var crrntyear = currentYear.toString(), enteredPart = fechaParts.rawyear.replace(/[^0-9]/g, ""), currentYearPart = crrntyear.slice(0, enteredPart.length), currentYearNextPart = crrntyear.slice(enteredPart.length);
+        function prefillYear(dateParts, currentResult, opts) {
+            if (dateParts.year !== dateParts.rawyear) {
+                var crrntyear = currentYear.toString(), enteredPart = dateParts.rawyear.replace(/[^0-9]/g, ""), currentYearPart = crrntyear.slice(0, enteredPart.length), currentYearNextPart = crrntyear.slice(enteredPart.length);
                 if (2 === enteredPart.length && enteredPart === currentYearPart) {
-                    var entryCurrentYear = new Date(currentYear, fechaParts.month - 1, fechaParts.day);
-                    fechaParts.day == entryCurrentYear.getDate() && (!opts.max || opts.max.fecha.getTime() >= entryCurrentYear.getTime()) && (fechaParts.fecha.setFullYear(currentYear), 
-                    fechaParts.year = crrntyear, currentResult.insert = [ {
+                    var entryCurrentYear = new Date(currentYear, dateParts.month - 1, dateParts.day);
+                    dateParts.day == entryCurrentYear.getDate() && (!opts.max || opts.max.date.getTime() >= entryCurrentYear.getTime()) && (dateParts.date.setFullYear(currentYear), 
+                    dateParts.year = crrntyear, currentResult.insert = [ {
                         pos: currentResult.pos + 1,
                         c: currentYearNextPart[0]
                     }, {
@@ -2117,26 +2117,26 @@
             }
             return currentResult;
         }
-        function isValidDate(fechaParts, currentResult, opts) {
-            if (!isFinite(fechaParts.rawday) || "29" == fechaParts.day && !isFinite(fechaParts.rawyear) || new Date(fechaParts.fecha.getFullYear(), isFinite(fechaParts.rawmonth) ? fechaParts.month : fechaParts.fecha.getMonth() + 1, 0).getDate() >= fechaParts.day) return currentResult;
-            if ("29" == fechaParts.day) {
+        function isValidDate(dateParts, currentResult, opts) {
+            if (!isFinite(dateParts.rawday) || "29" == dateParts.day && !isFinite(dateParts.rawyear) || new Date(dateParts.date.getFullYear(), isFinite(dateParts.rawmonth) ? dateParts.month : dateParts.date.getMonth() + 1, 0).getDate() >= dateParts.day) return currentResult;
+            if ("29" == dateParts.day) {
                 var tokenMatch = getTokenMatch(currentResult.pos, opts);
                 if ("yyyy" === tokenMatch.targetMatch[0] && currentResult.pos - tokenMatch.targetMatchIndex == 2) return currentResult.remove = currentResult.pos + 1, 
                 currentResult;
             }
             return !1;
         }
-        function isDateInRange(fechaParts, result, opts, maskset, fromCheckval) {
+        function isDateInRange(dateParts, result, opts, maskset, fromCheckval) {
             if (!result) return result;
             if (opts.min) {
-                if (fechaParts.rawyear) {
-                    var rawYear = fechaParts.rawyear.replace(/[^0-9]/g, ""), minYear = opts.min.year.substr(0, rawYear.length), maxYear;
+                if (dateParts.rawyear) {
+                    var rawYear = dateParts.rawyear.replace(/[^0-9]/g, ""), minYear = opts.min.year.substr(0, rawYear.length), maxYear;
                     if (rawYear < minYear) {
                         var tokenMatch = getTokenMatch(result.pos, opts);
-                        if (rawYear = fechaParts.rawyear.substr(0, result.pos - tokenMatch.targetMatchIndex + 1), 
+                        if (rawYear = dateParts.rawyear.substr(0, result.pos - tokenMatch.targetMatchIndex + 1), 
                         minYear = opts.min.year.substr(0, rawYear.length), minYear <= rawYear) return result.remove = tokenMatch.targetMatchIndex + rawYear.length, 
                         result;
-                        if (rawYear = "yyyy" === tokenMatch.targetMatch[0] ? fechaParts.rawyear.substr(1, 1) : fechaParts.rawyear.substr(0, 1), 
+                        if (rawYear = "yyyy" === tokenMatch.targetMatch[0] ? dateParts.rawyear.substr(1, 1) : dateParts.rawyear.substr(0, 1), 
                         minYear = opts.min.year.substr(2, 1), maxYear = opts.max ? opts.max.year.substr(2, 1) : rawYear, 
                         1 === rawYear.length && minYear <= rawYear <= maxYear && !0 !== fromCheckval) return "yyyy" === tokenMatch.targetMatch[0] ? (result.insert = [ {
                             pos: result.pos + 1,
@@ -2155,14 +2155,14 @@
                         result = !1;
                     }
                 }
-                result && fechaParts.year && fechaParts.year === fechaParts.rawyear && opts.min.fecha.getTime() == opts.min.fecha.getTime() && (result = opts.min.fecha.getTime() <= fechaParts.fecha.getTime());
+                result && dateParts.year && dateParts.year === dateParts.rawyear && opts.min.date.getTime() == opts.min.date.getTime() && (result = opts.min.date.getTime() <= dateParts.date.getTime());
             }
-            return result && opts.max && opts.max.fecha.getTime() == opts.max.fecha.getTime() && (result = opts.max.fecha.getTime() >= fechaParts.fecha.getTime()), 
+            return result && opts.max && opts.max.date.getTime() == opts.max.date.getTime() && (result = opts.max.date.getTime() >= dateParts.date.getTime()), 
             result;
         }
-        function parse(format, fechaObjValue, opts, raw) {
+        function parse(format, dateObjValue, opts, raw) {
             var mask = "", match, fcode;
-            for (getTokenizer(opts).lastIndex = 0; match = getTokenizer(opts).exec(format); ) if (void 0 === fechaObjValue) if (fcode = formatcode(match)) mask += "(" + fcode[0] + ")"; else switch (match[0]) {
+            for (getTokenizer(opts).lastIndex = 0; match = getTokenizer(opts).exec(format); ) if (void 0 === dateObjValue) if (fcode = formatcode(match)) mask += "(" + fcode[0] + ")"; else switch (match[0]) {
               case "[":
                 mask += "(";
                 break;
@@ -2175,8 +2175,8 @@
                 mask += (0, _escapeRegex.default)(match[0]);
             } else if (fcode = formatcode(match)) if (!0 !== raw && fcode[3]) {
                 var getFn = fcode[3];
-                mask += getFn.call(fechaObjValue.fecha);
-            } else fcode[2] ? mask += fechaObjValue["raw" + fcode[2]] : mask += match[0]; else mask += match[0];
+                mask += getFn.call(dateObjValue.date);
+            } else fcode[2] ? mask += dateObjValue["raw" + fcode[2]] : mask += match[0]; else mask += match[0];
             return mask;
         }
         function pad(val, len) {
@@ -2184,12 +2184,12 @@
             return val;
         }
         function analyseMask(maskString, format, opts) {
-            var fechaObj = {
-                fecha: new Date(1, 0, 1)
-            }, targetProp, mask = maskString, match, fechaOperation;
-            function setValue(fechaObj, value, opts) {
-                fechaObj[targetProp] = value.replace(/[^0-9]/g, "0"), fechaObj["raw" + targetProp] = value, 
-                void 0 !== fechaOperation && fechaOperation.call(fechaObj.fecha, "month" == targetProp ? parseInt(fechaObj[targetProp]) - 1 : fechaObj[targetProp]);
+            var dateObj = {
+                date: new Date(1, 0, 1)
+            }, targetProp, mask = maskString, match, dateOperation;
+            function setValue(dateObj, value, opts) {
+                dateObj[targetProp] = value.replace(/[^0-9]/g, "0"), dateObj["raw" + targetProp] = value, 
+                void 0 !== dateOperation && dateOperation.call(dateObj.date, "month" == targetProp ? parseInt(dateObj[targetProp]) - 1 : dateObj[targetProp]);
             }
             if ("string" == typeof mask) {
                 for (getTokenizer(opts).lastIndex = 0; match = getTokenizer(opts).exec(format); ) {
@@ -2199,15 +2199,15 @@
                         getTokenizer(opts).lastIndex = lastIndex, value = mask.slice(0, mask.indexOf(tokanMatch.nextMatch[0]));
                     } else value = mask.slice(0, fcode.length);
                     Object.prototype.hasOwnProperty.call(formatCode, fcode) && (targetProp = formatCode[fcode][2], 
-                    fechaOperation = formatCode[fcode][1], setValue(fechaObj, value, opts)), mask = mask.slice(value.length);
+                    dateOperation = formatCode[fcode][1], setValue(dateObj, value, opts)), mask = mask.slice(value.length);
                 }
-                return fechaObj;
+                return dateObj;
             }
-            if (mask && "object" === _typeof(mask) && Object.prototype.hasOwnProperty.call(mask, "fecha")) return mask;
+            if (mask && "object" === _typeof(mask) && Object.prototype.hasOwnProperty.call(mask, "date")) return mask;
         }
-        function importDate(fechaObj, opts) {
+        function importDate(dateObj, opts) {
             return parse(opts.inputFormat, {
-                fecha: fechaObj
+                date: dateObj
             }, opts);
         }
         function getTokenMatch(pos, opts) {
@@ -2227,7 +2227,7 @@
             };
         }
         _inputmask.default.extendAliases({
-            fechatime: {
+            datetime: {
                 mask: function mask(opts) {
                     return opts.numericInput = !1, formatCode.S = opts.i18n.ordinalSuffix.join("|"), 
                     opts.inputFormat = formatAlias[opts.inputFormat] || opts.inputFormat, opts.displayFormat = formatAlias[opts.displayFormat] || opts.displayFormat || opts.inputFormat, 
@@ -2244,8 +2244,8 @@
                 max: null,
                 skipOptionalPartCharacter: "",
                 i18n: {
-                    daynombres: [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ],
-                    monthnombres: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
+                    dayNames: [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ],
+                    monthNames: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
                     ordinalSuffix: [ "st", "nd", "rd", "th" ]
                 },
                 preValidation: function preValidation(buffer, pos, c, isSelection, opts, maskset, caretPos, strict) {
@@ -2288,11 +2288,11 @@
                         var part = buffer.slice(tokenMatch.targetMatchIndex, tokenMatch.targetMatchIndex + tokenMatch.targetMatch[0].length);
                         !1 === new RegExp(validator).test(part.join("")) && 2 === tokenMatch.targetMatch[0].length && maskset.validPositions[tokenMatch.targetMatchIndex] && maskset.validPositions[tokenMatch.targetMatchIndex + 1] && (maskset.validPositions[tokenMatch.targetMatchIndex + 1].input = "0");
                     }
-                    var result = currentResult, fechaParts = analyseMask(buffer.join(""), opts.inputFormat, opts);
-                    return result && fechaParts.fecha.getTime() == fechaParts.fecha.getTime() && (result = prefillYear(fechaParts, result, opts), 
-                    result = isValidDate(fechaParts, result, opts), result = isDateInRange(fechaParts, result, opts, maskset, fromCheckval)), 
+                    var result = currentResult, dateParts = analyseMask(buffer.join(""), opts.inputFormat, opts);
+                    return result && dateParts.date.getTime() == dateParts.date.getTime() && (result = prefillYear(dateParts, result, opts), 
+                    result = isValidDate(dateParts, result, opts), result = isDateInRange(dateParts, result, opts, maskset, fromCheckval)), 
                     pos && result && currentResult.pos !== pos ? {
-                        buffer: parse(opts.inputFormat, fechaParts, opts).split(""),
+                        buffer: parse(opts.inputFormat, dateParts, opts).split(""),
                         refreshFromBuffer: {
                             start: pos,
                             end: currentResult.pos
@@ -2810,10 +2810,10 @@
                 function InputmaskElement() {
                     var _this;
                     _classCallCheck(this, InputmaskElement), _this = _super.call(this);
-                    var attributenombres = _this.getAttributenombres(), shadow = _this.attachShadow({
+                    var attributeNames = _this.getAttributeNames(), shadow = _this.attachShadow({
                         mode: "closed"
                     }), input = document.createElement("input");
-                    for (var attr in input.type = "text", shadow.appendChild(input), attributenombres) Object.prototype.hasOwnProperty.call(attributenombres, attr) && input.setAttribute(attributenombres[attr], _this.getAttribute(attributenombres[attr]));
+                    for (var attr in input.type = "text", shadow.appendChild(input), attributeNames) Object.prototype.hasOwnProperty.call(attributeNames, attr) && input.setAttribute(attributeNames[attr], _this.getAttribute(attributeNames[attr]));
                     var im = new _inputmask.default();
                     return im.dataAttribute = "", im.mask(input), input.inputmask.shadowRoot = shadow, 
                     _this;
@@ -2906,8 +2906,8 @@
         var _default = _bundle.default;
         exports.default = _default;
     } ], installedModules = {}, __webpack_require__.m = modules, __webpack_require__.c = installedModules, 
-    __webpack_require__.d = function(exports, nombre, getter) {
-        __webpack_require__.o(exports, nombre) || Object.defineProperty(exports, nombre, {
+    __webpack_require__.d = function(exports, name, getter) {
+        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
             enumerable: !0,
             get: getter
         });

@@ -67,8 +67,8 @@ the current viewport.
 user when dragging.
 
 **frameRate** specifies the maximum number of times per second the plot will
-upfecha itself while the user is panning around on it (set to null to disable
-intermediate pans, the plot will then not upfecha until the mouse button is
+update itself while the user is panning around on it (set to null to disable
+intermediate pans, the plot will then not update until the mouse button is
 released).
 
 **mode** a string specifies the pan mode for mouse interaction. Accepted values:

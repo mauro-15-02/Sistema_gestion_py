@@ -52,12 +52,12 @@ var _modal = $(
 );
 
 _display.modal = function ( options ) {
-	return function ( row, upfecha, render ) {
+	return function ( row, update, render ) {
 		if ( ! $.fn.modal ) {
-			_original( row, upfecha, render );
+			_original( row, update, render );
 		}
 		else {
-			if ( ! upfecha ) {
+			if ( ! update ) {
 				if ( options && options.header ) {
 					var header = _modal.find('div.modal-header');
 					var button = header.find('button').detach();

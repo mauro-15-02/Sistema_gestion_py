@@ -10,14 +10,14 @@
 .cm-s-ayu-mirage .CodeMirror-linenumber { color: rgba(61, 66, 77, 99); }
 .cm-s-ayu-mirage .CodeMirror-cursor { border-left: 1px solid #ffcc66; }
 
-.cm-s-ayu-mirage span.cm-comentario { color: #5c6773; font-style:italic; }
+.cm-s-ayu-mirage span.cm-comment { color: #5c6773; font-style:italic; }
 .cm-s-ayu-mirage span.cm-atom { color: #ae81ff; }
 .cm-s-ayu-mirage span.cm-number { color: #ffcc66; }
 
-.cm-s-ayu-mirage span.cm-comentario.cm-attribute { color: #ffd580; }
-.cm-s-ayu-mirage span.cm-comentario.cm-def { color: #d4bfff; }
-.cm-s-ayu-mirage span.cm-comentario.cm-tag { color: #5ccfe6; }
-.cm-s-ayu-mirage span.cm-comentario.cm-type { color: #5998a6; }
+.cm-s-ayu-mirage span.cm-comment.cm-attribute { color: #ffd580; }
+.cm-s-ayu-mirage span.cm-comment.cm-def { color: #d4bfff; }
+.cm-s-ayu-mirage span.cm-comment.cm-tag { color: #5ccfe6; }
+.cm-s-ayu-mirage span.cm-comment.cm-type { color: #5998a6; }
 
 .cm-s-ayu-mirage span.cm-property { color: #f29e74; }
 .cm-s-ayu-mirage span.cm-attribute { color: #ffd580; }  

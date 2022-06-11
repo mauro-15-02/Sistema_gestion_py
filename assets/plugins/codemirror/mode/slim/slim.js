@@ -44,7 +44,7 @@
     }(embedded);
 
     var styleMap = {
-      "comentarioLine": "comentario",
+      "commentLine": "comment",
       "slimSwitch": "operator special",
       "slimTag": "tag",
       "slimId": "attribute def",
@@ -208,20 +208,20 @@
       return null;
     }
 
-    function comentario(stream, state) {
+    function comment(stream, state) {
       stream.skipToEnd();
       return state.stack.style;
     }
 
-    function comentarioMode(stream, state) {
+    function commentMode(stream, state) {
       state.stack = {
         parent: state.stack,
-        style: "comentario",
+        style: "comment",
         indented: state.indented + 1,
         tokenize: state.line
       };
-      state.line = comentario;
-      return comentario(stream, state);
+      state.line = comment;
+      return comment(stream, state);
     }
 
     function attributeWrapper(stream, state) {
@@ -346,7 +346,7 @@
         return startHtmlMode(stream, state, 1);
       }
       if (stream.match(/^\/(!|\[\w+])?/)) {
-        return comentarioMode(stream, state);
+        return commentMode(stream, state);
       }
       if (stream.match(/^(-|==?[<>]?)/)) {
         state.tokenize = lineContinuable(stream.column(), commaContinuable(stream.column(), ruby));

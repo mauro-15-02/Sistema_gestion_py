@@ -13,7 +13,7 @@
 .cm-s-erlang-dark span.cm-attribute  { color: #ff80e1; }
 .cm-s-erlang-dark span.cm-bracket    { color: #ff9d00; }
 .cm-s-erlang-dark span.cm-builtin    { color: #eaa; }
-.cm-s-erlang-dark span.cm-comentario    { color: #77f; }
+.cm-s-erlang-dark span.cm-comment    { color: #77f; }
 .cm-s-erlang-dark span.cm-def        { color: #e7a; }
 .cm-s-erlang-dark span.cm-keyword    { color: #ffee80; }
 .cm-s-erlang-dark span.cm-meta       { color: #50fefe; }

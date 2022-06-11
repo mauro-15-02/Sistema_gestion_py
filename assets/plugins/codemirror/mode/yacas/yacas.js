@@ -51,7 +51,7 @@ CodeMirror.defineMode('yacas', function(_config, _parserConfig) {
       return state.tokenize(stream, state);
     }
 
-    // comentario
+    // comment
     if (ch === '/') {
       if (stream.eat('*')) {
         state.tokenize = tokenComment;
@@ -59,14 +59,14 @@ CodeMirror.defineMode('yacas', function(_config, _parserConfig) {
       }
       if (stream.eat("/")) {
         stream.skipToEnd();
-        return "comentario";
+        return "comment";
       }
     }
 
     // go back one character
     stream.backUp(1);
 
-    // upfecha scope info
+    // update scope info
     var m = stream.match(/^(\w+)\s*\(/, false);
     if (m !== null && bodiedOps.hasOwnProperty(m[1]))
       state.scopes.push('bodied');
@@ -157,7 +157,7 @@ CodeMirror.defineMode('yacas', function(_config, _parserConfig) {
       }
       prev = next;
     }
-    return 'comentario';
+    return 'comment';
   }
 
   function currentScope(state) {

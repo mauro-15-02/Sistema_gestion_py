@@ -23,7 +23,7 @@
     this.options = options;
     this.buttonHeight = options.scrollButtonHeight || cm.getOption("scrollButtonHeight");
     this.annotations = [];
-    this.doRedraw = this.doUpfecha = null;
+    this.doRedraw = this.doUpdate = null;
     this.div = cm.getWrapperElement().appendChild(document.createElement("div"));
     this.div.style.cssText = "position: absolute; right: 0; top: 0; z-index: 7; pointer-events: none";
     this.computeScale();
@@ -35,8 +35,8 @@
 
     var self = this;
     cm.on("refresh", this.resizeHandler = function() {
-      clearTimeout(self.doUpfecha);
-      self.doUpfecha = setTimeout(function() {
+      clearTimeout(self.doUpdate);
+      self.doUpdate = setTimeout(function() {
         if (self.computeScale()) scheduleRedraw(20);
       }, 100);
     });
@@ -58,7 +58,7 @@
     }
   };
 
-  Annotation.prototype.upfecha = function(annotations) {
+  Annotation.prototype.update = function(annotations) {
     this.annotations = annotations;
     this.redraw();
   };

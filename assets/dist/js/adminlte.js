@@ -679,7 +679,7 @@
   var EVENT_TOGGLED = "toggled" + EVENT_KEY$3;
   var SELECTOR_DATA_TOGGLE$1 = '[data-widget="chat-pane-toggle"]';
   var SELECTOR_DIRECT_CHAT = '.direct-chat';
-  var CLASS_NAME_DIRECT_CHAT_OPEN = 'direct-chat-contactos-open';
+  var CLASS_NAME_DIRECT_CHAT_OPEN = 'direct-chat-contacts-open';
   /**
    * Class Definition
    * ====================================================

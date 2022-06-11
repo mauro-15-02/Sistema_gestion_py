@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -20,8 +20,8 @@ $.extend( $.validator.messages, {
 	rangelength: $.validator.format( "Ange minst {0} och max {1} tecken." ),
 	email: "Ange en korrekt e-postadress.",
 	url: "Ange en korrekt URL.",
-	fecha: "Ange ett korrekt datum.",
-	fechaISO: "Ange ett korrekt datum (&Aring;&Aring;&Aring;&Aring;-MM-DD).",
+	date: "Ange ett korrekt datum.",
+	dateISO: "Ange ett korrekt datum (&Aring;&Aring;&Aring;&Aring;-MM-DD).",
 	number: "Ange ett korrekt nummer.",
 	digits: "Ange endast siffror.",
 	equalTo: "Ange samma v&auml;rde igen.",

@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "항목을 수정하세요.",
 	email: "유효하지 않은 E-Mail주소입니다.",
 	url: "유효하지 않은 URL입니다.",
-	fecha: "올바른 날짜를 입력하세요.",
-	fechaISO: "올바른 날짜(ISO)를 입력하세요.",
+	date: "올바른 날짜를 입력하세요.",
+	dateISO: "올바른 날짜(ISO)를 입력하세요.",
 	number: "유효한 숫자가 아닙니다.",
 	digits: "숫자만 입력 가능합니다.",
 	creditcard: "신용카드 번호가 바르지 않습니다.",

@@ -14,23 +14,23 @@
   CodeMirror.defineOption("scrollPastEnd", false, function(cm, val, old) {
     if (old && old != CodeMirror.Init) {
       cm.off("change", onChange);
-      cm.off("refresh", upfechaBottomMargin);
+      cm.off("refresh", updateBottomMargin);
       cm.display.lineSpace.parentNode.style.paddingBottom = "";
       cm.state.scrollPastEndPadding = null;
     }
     if (val) {
       cm.on("change", onChange);
-      cm.on("refresh", upfechaBottomMargin);
-      upfechaBottomMargin(cm);
+      cm.on("refresh", updateBottomMargin);
+      updateBottomMargin(cm);
     }
   });
 
   function onChange(cm, change) {
     if (CodeMirror.changeEnd(change).line == cm.lastLine())
-      upfechaBottomMargin(cm);
+      updateBottomMargin(cm);
   }
 
-  function upfechaBottomMargin(cm) {
+  function updateBottomMargin(cm) {
     var padding = "";
     if (cm.lineCount() > 1) {
       var totalH = cm.display.scroller.clientHeight - 30,
@@ -40,9 +40,9 @@
     if (cm.state.scrollPastEndPadding != padding) {
       cm.state.scrollPastEndPadding = padding;
       cm.display.lineSpace.parentNode.style.paddingBottom = padding;
-      cm.off("refresh", upfechaBottomMargin);
+      cm.off("refresh", updateBottomMargin);
       cm.setSize();
-      cm.on("refresh", upfechaBottomMargin);
+      cm.on("refresh", updateBottomMargin);
     }
   }
 });

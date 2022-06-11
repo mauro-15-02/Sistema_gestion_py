@@ -53,10 +53,10 @@ CodeMirror.defineMode('shell', function() {
     if (ch === '#') {
       if (sol && stream.eat('!')) {
         stream.skipToEnd();
-        return 'meta'; // 'comentario'?
+        return 'meta'; // 'comment'?
       }
       stream.skipToEnd();
-      return 'comentario';
+      return 'comment';
     }
     if (ch === '$') {
       state.tokens.unshift(tokenDollar);

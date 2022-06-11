@@ -86,7 +86,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
         return tokenComment(stream, state);
       } else if (stream.eat("/")) {
         stream.skipToEnd();
-        return ret("comentario", "comentario");
+        return ret("comment", "comment");
       } else if (expressionAllowed(stream, state, 1)) {
         readRegexp(stream);
         stream.match(/^\b(([gimyus])(?![gimyus]*\2))+\b/);
@@ -106,7 +106,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     } else if (ch == "<" && stream.match("!--") ||
                (ch == "-" && stream.match("->") && !/\S/.test(stream.string.slice(0, stream.start)))) {
       stream.skipToEnd()
-      return ret("comentario", "comentario")
+      return ret("comment", "comment")
     } else if (isOperatorChar.test(ch)) {
       if (ch != ">" || !state.lexical || state.lexical.type != ">") {
         if (stream.eat("=")) {
@@ -158,7 +158,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       }
       maybeEnd = (ch == "*");
     }
-    return ret("comentario", "comentario");
+    return ret("comment", "comment");
   }
 
   function tokenQuasi(stream, state) {
@@ -178,7 +178,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   // parsing the argument patterns for a fat-arrow function before we
   // actually hit the arrow token. It only works if the arrow is on
   // the same line as the arguments and there's no strange noise
-  // (comentarios) in between. Fallback is to only notice when we hit the
+  // (comments) in between. Fallback is to only notice when we hit the
   // arrow, and not declare the arguments as locals for the arrow
   // body.
   function findFatArrow(stream, state) {
@@ -862,7 +862,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       }
       if (state.tokenize != tokenComment && stream.eatSpace()) return null;
       var style = state.tokenize(stream, state);
-      if (type == "comentario") return style;
+      if (type == "comment") return style;
       state.lastType = type == "operator" && (content == "++" || content == "--") ? "incdec" : type;
       return parseJS(state, style, type, content, stream);
     },

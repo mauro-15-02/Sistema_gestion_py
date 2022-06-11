@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -19,7 +19,7 @@ $.extend( $.validator.messages, {
 	rangelength: $.validator.format( "Legalább {0} és legfeljebb {1} karakter hosszú legyen." ),
 	email: "Érvényes e-mail címnek kell lennie.",
 	url: "Érvényes URL-nek kell lennie.",
-	fecha: "Dátumnak kell lennie.",
+	date: "Dátumnak kell lennie.",
 	number: "Számnak kell lennie.",
 	digits: "Csak számjegyek lehetnek.",
 	equalTo: "Meg kell egyeznie a két értéknek.",
@@ -28,7 +28,7 @@ $.extend( $.validator.messages, {
 	min: $.validator.format( "Nem lehet kisebb, mint {0}." ),
 	creditcard: "Érvényes hitelkártyaszámnak kell lennie.",
 	remote: "Kérem javítsa ki ezt a mezőt.",
-	fechaISO: "Kérem írjon be egy érvényes dátumot (ISO).",
+	dateISO: "Kérem írjon be egy érvényes dátumot (ISO).",
 	step: $.validator.format( "A {0} egyik többszörösét adja meg." )
 } );
 return $;

@@ -65,12 +65,12 @@
 
     self.events = {
       'summernote.init': function(we, e) {
-        // upfecha existing containers
+        // update existing containers
         $('data.ext-databasic', e.editable).each(function() { self.setContent($(this)); });
         // TODO: make this an undo snapshot...
       },
       'summernote.keyup summernote.mouseup summernote.change summernote.scroll': function() {
-        self.upfecha();
+        self.update();
       },
       'summernote.dialog.shown': function() {
         self.hidePopover();
@@ -88,7 +88,7 @@
       var footer = '<button href="#" class="btn btn-primary ext-databasic-save">' + lang.databasic.insert + '</button>';
 
       self.$dialog = ui.dialog({
-        title: lang.databasic.nombre,
+        title: lang.databasic.name,
         fade: options.dialogsFade,
         body: body,
         footer: footer,
@@ -96,7 +96,7 @@
 
       // create popover
       self.$popover = ui.popover({
-        classnombre: 'ext-databasic-popover',
+        className: 'ext-databasic-popover',
       }).render().appendTo('body');
       var $content = self.$popover.find('.popover-content');
 
@@ -110,7 +110,7 @@
       self.$dialog = null;
     };
 
-    self.upfecha = function() {
+    self.update = function() {
       // Prevent focusing on editable when invoke('code') is executed
       if (!context.invoke('editor.hasFocus')) {
         self.hidePopover();
@@ -169,11 +169,11 @@
     };
 
     self.setContent = function($node) {
-      $node.html('<p contenteditable="false">' + self.icon + ' ' + lang.databasic.nombre + ': ' +
+      $node.html('<p contenteditable="false">' + self.icon + ' ' + lang.databasic.name + ': ' +
         $node.attr('data-test') + '</p>');
     };
 
-    self.upfechaNode = function(info) {
+    self.updateNode = function(info) {
       self.setContent(info.node
         .attr('data-test', info.test));
     };
@@ -208,10 +208,10 @@
             self.createNode(info);
           }
 
-          // upfecha info with dialog info
+          // update info with dialog info
           $.extend(info, dialogInfo);
 
-          self.upfechaNode(info);
+          self.updateNode(info);
         })
         .fail(function() {
           context.invoke('editor.restoreRange');
@@ -279,7 +279,7 @@
     lang: {
       'en-US': {
         databasic: {
-          nombre: 'Basic Data Container',
+          name: 'Basic Data Container',
           insert: 'insert basic data container',
           edit: 'edit basic data container',
           testLabel: 'test input',

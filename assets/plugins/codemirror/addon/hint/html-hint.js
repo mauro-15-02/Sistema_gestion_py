@@ -32,7 +32,7 @@
     },
     abbr: s,
     acronym: s,
-    direccion: s,
+    address: s,
     applet: s,
     area: {
       attrs: {
@@ -69,7 +69,7 @@
         disabled: ["", "autofocus"],
         formenctype: encs,
         formmethod: methods,
-        formnovalifecha: ["", "novalifecha"],
+        formnovalidate: ["", "novalidate"],
         formtarget: targets,
         type: ["submit", "reset", "button"]
       }
@@ -93,7 +93,7 @@
     datagrid: { attrs: { disabled: ["", "disabled"], multiple: ["", "multiple"] } },
     datalist: { attrs: { data: null } },
     dd: s,
-    del: { attrs: { cite: null, fechatime: null } },
+    del: { attrs: { cite: null, datetime: null } },
     details: { attrs: { open: ["", "open"] } },
     dfn: s,
     dir: s,
@@ -115,7 +115,7 @@
         autocomplete: ["on", "off"],
         enctype: encs,
         method: methods,
-        novalifecha: ["", "novalifecha"],
+        novalidate: ["", "novalidate"],
         target: targets
       }
     },
@@ -160,17 +160,17 @@
         disabled: ["", "disabled"],
         formenctype: encs,
         formmethod: methods,
-        formnovalifecha: ["", "novalifecha"],
+        formnovalidate: ["", "novalidate"],
         formtarget: targets,
         multiple: ["", "multiple"],
         readonly: ["", "readonly"],
         required: ["", "required"],
-        type: ["hidden", "text", "search", "tel", "url", "email", "password", "fechatime", "fecha", "month",
-               "week", "time", "fechatime-local", "number", "range", "color", "checkbox", "radio",
+        type: ["hidden", "text", "search", "tel", "url", "email", "password", "datetime", "date", "month",
+               "week", "time", "datetime-local", "number", "range", "color", "checkbox", "radio",
                "file", "submit", "image", "reset", "button"]
       }
     },
-    ins: { attrs: { cite: null, fechatime: null } },
+    ins: { attrs: { cite: null, datetime: null } },
     kbd: s,
     keygen: {
       attrs: {
@@ -198,7 +198,7 @@
       attrs: {
         content: null,
         charset: charsets,
-        name: ["viewport", "application-name", "author", "descripcion", "generator", "keywords"],
+        name: ["viewport", "application-name", "author", "description", "generator", "keywords"],
         "http-equiv": ["content-language", "content-type", "default-style", "refresh"]
       }
     },
@@ -276,13 +276,13 @@
     tfoot: s,
     th: { attrs: { colspan: null, rowspan: null, headers: null, scope: ["row", "col", "rowgroup", "colgroup"] } },
     thead: s,
-    time: { attrs: { fechatime: null } },
+    time: { attrs: { datetime: null } },
     title: s,
     tr: s,
     track: {
       attrs: {
         src: null, label: null, "default": null,
-        kind: ["subtitles", "captions", "descripcions", "chapters", "metadata"],
+        kind: ["subtitles", "captions", "descriptions", "chapters", "metadata"],
         srclang: langs
       }
     },

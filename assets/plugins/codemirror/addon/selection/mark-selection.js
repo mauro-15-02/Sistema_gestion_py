@@ -35,7 +35,7 @@
 
   function onCursorActivity(cm) {
     if (cm.state.markedSelection)
-      cm.operation(function() { upfecha(cm); });
+      cm.operation(function() { update(cm); });
   }
 
   function onChange(cm) {
@@ -76,7 +76,7 @@
       coverRange(cm, ranges[i].from(), ranges[i].to());
   }
 
-  function upfecha(cm) {
+  function update(cm) {
     if (!cm.somethingSelected()) return clear(cm);
     if (cm.listSelections().length > 1) return reset(cm);
 

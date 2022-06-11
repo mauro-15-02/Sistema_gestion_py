@@ -291,7 +291,7 @@
         enterVimMode(cm);
     }
 
-    function upfechaFatCursorMark(cm) {
+    function updateFatCursorMark(cm) {
       if (!cm.state.fatCursorMarks) return;
       clearFatCursorMark(cm);
       var ranges = cm.listSelections(), result = []
@@ -319,13 +319,13 @@
 
     function enableFatCursorMark(cm) {
       cm.state.fatCursorMarks = [];
-      upfechaFatCursorMark(cm)
-      cm.on("cursorActivity", upfechaFatCursorMark)
+      updateFatCursorMark(cm)
+      cm.on("cursorActivity", updateFatCursorMark)
     }
 
     function disableFatCursorMark(cm) {
       clearFatCursorMark(cm);
-      cm.off("cursorActivity", upfechaFatCursorMark);
+      cm.off("cursorActivity", updateFatCursorMark);
       // explicitly set fatCursorMarks to null because event listener above
       // can be invoke after removing it, if off is called from operation
       cm.state.fatCursorMarks = null;
@@ -770,7 +770,7 @@
           return ctx ? [ctx] : ['normal', 'insert', 'visual'];
         }
         var ctxsToMap = toCtxArray(ctx);
-        // Look through all actual defaults to find a map candifecha.
+        // Look through all actual defaults to find a map candidate.
         var actualLength = defaultKeymap.length, origLength = defaultKeymapLength;
         for (var i = actualLength - origLength;
              i < actualLength && ctxsToMap.length;
@@ -1150,7 +1150,7 @@
             case 'delete':
             case 'change':
               if (text.indexOf('\n') == -1) {
-                // Delete less than 1 line. Upfecha the small delete register.
+                // Delete less than 1 line. Update the small delete register.
                 this.registers['-'] = new Register(text, linewise);
               } else {
                 // Shift down the contents of the numbered registers and put the
@@ -1309,7 +1309,7 @@
         inputState.operatorArgs = copyArgs(command.operatorArgs);
         if (command.exitVisualBlock) {
             vim.visualBlock = false;
-            upfechaCmSelection(cm);
+            updateCmSelection(cm);
         }
         if (vim.visualMode) {
           // Operating on a selection in visual mode. We don't need a motion.
@@ -1373,7 +1373,7 @@
           vimGlobalState.searchHistoryController.pushInput(query);
           vimGlobalState.searchHistoryController.reset();
           try {
-            upfechaSearchQuery(cm, query, ignoreCase, smartCase);
+            updateSearchQuery(cm, query, ignoreCase, smartCase);
           } catch (e) {
             showConfirm(cm, 'Invalid regex: ' + query);
             clearInputState(cm);
@@ -1407,7 +1407,7 @@
           }
           var parsedQuery;
           try {
-            parsedQuery = upfechaSearchQuery(cm, query,
+            parsedQuery = updateSearchQuery(cm, query,
                 true /** ignoreCase */, true /** smartCase */);
           } catch (e) {
             // Swallow bad regexes for incremental search.
@@ -1425,7 +1425,7 @@
               (keyName == 'Backspace' && query == '')) {
             vimGlobalState.searchHistoryController.pushInput(query);
             vimGlobalState.searchHistoryController.reset();
-            upfechaSearchQuery(cm, originalQuery);
+            updateSearchQuery(cm, originalQuery);
             clearSearchHighlight(cm);
             cm.scrollTo(originalScrollPos.left, originalScrollPos.top);
             CodeMirror.e_stop(e);
@@ -1614,11 +1614,11 @@
             newAnchor = newAnchor || oldAnchor;
             sel.anchor = newAnchor;
             sel.head = newHead;
-            upfechaCmSelection(cm);
-            upfechaMark(cm, vim, '<',
+            updateCmSelection(cm);
+            updateMark(cm, vim, '<',
                 cursorIsBefore(newAnchor, newHead) ? newAnchor
                     : newHead);
-            upfechaMark(cm, vim, '>',
+            updateMark(cm, vim, '>',
                 cursorIsBefore(newAnchor, newHead) ? newHead
                     : newAnchor);
           } else if (!operator) {
@@ -1654,7 +1654,7 @@
               anchor: newAnchor,
               head: newHead
             };
-            upfechaCmSelection(cm);
+            updateCmSelection(cm);
           } else if (vim.visualMode) {
             operatorArgs.lastSel = {
               anchor: copyCursor(sel.anchor),
@@ -2075,7 +2075,7 @@
           symbol = lineText.charAt(ch);
           if (symbol && isMatchableSymbol(symbol)) {
             var style = cm.getTokenTypeAt(Pos(line, ch + 1));
-            if (style !== "string" && style !== "comentario") {
+            if (style !== "string" && style !== "comment") {
               break;
             }
           }
@@ -2543,16 +2543,16 @@
             head: head
           };
           CodeMirror.signal(cm, "vim-mode-change", {mode: "visual", subMode: vim.visualLine ? "linewise" : vim.visualBlock ? "blockwise" : ""});
-          upfechaCmSelection(cm);
-          upfechaMark(cm, vim, '<', cursorMin(anchor, head));
-          upfechaMark(cm, vim, '>', cursorMax(anchor, head));
+          updateCmSelection(cm);
+          updateMark(cm, vim, '<', cursorMin(anchor, head));
+          updateMark(cm, vim, '>', cursorMax(anchor, head));
         } else if (vim.visualLine ^ actionArgs.linewise ||
             vim.visualBlock ^ actionArgs.blockwise) {
           // Toggling between modes
           vim.visualLine = !!actionArgs.linewise;
           vim.visualBlock = !!actionArgs.blockwise;
           CodeMirror.signal(cm, "vim-mode-change", {mode: "visual", subMode: vim.visualLine ? "linewise" : vim.visualBlock ? "blockwise" : ""});
-          upfechaCmSelection(cm);
+          updateCmSelection(cm);
         } else {
           exitVisualMode(cm);
         }
@@ -2560,7 +2560,7 @@
       reselectLastSelection: function(cm, _actionArgs, vim) {
         var lastSelection = vim.lastSelection;
         if (vim.visualMode) {
-          upfechaLastSelection(cm, vim);
+          updateLastSelection(cm, vim);
         }
         if (lastSelection) {
           var anchor = lastSelection.anchorMark.find();
@@ -2576,9 +2576,9 @@
           vim.visualMode = true;
           vim.visualLine = lastSelection.visualLine;
           vim.visualBlock = lastSelection.visualBlock;
-          upfechaCmSelection(cm);
-          upfechaMark(cm, vim, '<', cursorMin(anchor, head));
-          upfechaMark(cm, vim, '>', cursorMax(anchor, head));
+          updateCmSelection(cm);
+          updateMark(cm, vim, '<', cursorMin(anchor, head));
+          updateMark(cm, vim, '>', cursorMax(anchor, head));
           CodeMirror.signal(cm, 'vim-mode-change', {
             mode: 'visual',
             subMode: vim.visualLine ? 'linewise' :
@@ -2803,7 +2803,7 @@
       },
       setMark: function(cm, actionArgs, vim) {
         var markName = actionArgs.selectedCharacter;
-        upfechaMark(cm, vim, markName, cm.getCursor());
+        updateMark(cm, vim, markName, cm.getCursor());
       },
       replace: function(cm, actionArgs, vim) {
         var replaceWith = actionArgs.selectedCharacter;
@@ -3155,12 +3155,12 @@
         return getCurrentSelectedAreaRange();
       }
     }
-    // Upfechas the previous selection with the current selection's values. This
+    // Updates the previous selection with the current selection's values. This
     // should only be called in visual mode.
-    function upfechaLastSelection(cm, vim) {
+    function updateLastSelection(cm, vim) {
       var anchor = vim.sel.anchor;
       var head = vim.sel.head;
-      // To accommofecha the effect of lastPastedText in the last selection
+      // To accommodate the effect of lastPastedText in the last selection
       if (vim.lastPastedText) {
         head = cm.posFromIndex(cm.indexFromPos(anchor) + vim.lastPastedText.length);
         vim.lastPastedText = null;
@@ -3197,17 +3197,17 @@
       return [anchor, head];
     }
     /**
-     * Upfechas the CodeMirror selection to match the provided vim selection.
+     * Updates the CodeMirror selection to match the provided vim selection.
      * If no arguments are given, it uses the current vim selection state.
      */
-    function upfechaCmSelection(cm, sel, mode) {
+    function updateCmSelection(cm, sel, mode) {
       var vim = cm.state.vim;
       sel = sel || vim.sel;
       var mode = mode ||
         vim.visualLine ? 'line' : vim.visualBlock ? 'block' : 'char';
       var cmSel = makeCmSelection(cm, sel, mode);
       cm.setSelections(cmSel.ranges, cmSel.primary);
-      upfechaFakeCursor(cm);
+      updateFakeCursor(cm);
     }
     function makeCmSelection(cm, sel, mode, exclusive) {
       var head = copyCursor(sel.head);
@@ -3278,7 +3278,7 @@
       if (moveHead !== false) {
         cm.setCursor(clipCursorToContent(cm, vim.sel.head));
       }
-      upfechaLastSelection(cm, vim);
+      updateLastSelection(cm, vim);
       vim.visualMode = false;
       vim.visualLine = false;
       vim.visualBlock = false;
@@ -3387,7 +3387,7 @@
      * The following caveats apply (based off cursory testing, I'm sure there
      * are other discrepancies):
      *
-     * - Does not work inside comentarios:
+     * - Does not work inside comments:
      *   ```
      *   <!-- <div>broken</div> -->
      *   ```
@@ -3432,7 +3432,7 @@
     var symbolToMode = {
         '(': 'bracket', ')': 'bracket', '{': 'bracket', '}': 'bracket',
         '[': 'section', ']': 'section',
-        '*': 'comentario', '/': 'comentario',
+        '*': 'comment', '/': 'comment',
         'm': 'method', 'M': 'method',
         '#': 'preprocess'
     };
@@ -3457,7 +3457,7 @@
           return state.index === 0 && state.nextCh === state.symb;
         }
       },
-      comentario: {
+      comment: {
         isComplete: function(state) {
           var found = state.lastCh === '*' && state.nextCh === '/';
           state.lastCh = state.nextCh;
@@ -3718,7 +3718,7 @@
       return clipCursorToContent(cm, Pos(line, repeat - 1));
     }
 
-    function upfechaMark(cm, vim, markName, pos) {
+    function updateMark(cm, vim, markName, pos) {
       if (!inArray(markName, validMarks)) {
         return;
       }
@@ -4273,7 +4273,7 @@
      *   through to the Regex object.
      */
     function parseQuery(query, ignoreCase, smartCase) {
-      // First upfecha the last search register
+      // First update the last search register
       var lastSearchRegister = vimGlobalState.registerController.getRegister('/');
       lastSearchRegister.setText(query);
       // Check if the query is already a regex.
@@ -4342,7 +4342,7 @@
       return false;
     }
     // Returns true if the query is valid.
-    function upfechaSearchQuery(cm, rawQuery, ignoreCase, smartCase) {
+    function updateSearchQuery(cm, rawQuery, ignoreCase, smartCase) {
       if (!rawQuery) {
         return;
       }
@@ -4557,7 +4557,7 @@
           exitVisualMode(cm);
         }
         var inputStream = new CodeMirror.StringStream(input);
-        // upfecha ": with the latest command whether valid or invalid
+        // update ": with the latest command whether valid or invalid
         commandHistoryRegister.setText(input);
         var params = opt_params || {};
         params.input = input;
@@ -5015,7 +5015,7 @@
           // If regex part is empty, then use the previous query. Otherwise
           // use the regex part as the new query.
           try {
-           upfechaSearchQuery(cm, regexPart, true /** ignoreCase */,
+           updateSearchQuery(cm, regexPart, true /** ignoreCase */,
              true /** smartCase */);
           } catch (e) {
            showConfirm(cm, 'Invalid regex: ' + regexPart);
@@ -5114,7 +5114,7 @@
           // If regex part is empty, then use the previous query. Otherwise use
           // the regex part as the new query.
           try {
-            upfechaSearchQuery(cm, regexPart, true /** ignoreCase */,
+            updateSearchQuery(cm, regexPart, true /** ignoreCase */,
               true /** smartCase */);
           } catch (e) {
             showConfirm(cm, 'Invalid regex: ' + regexPart);
@@ -5360,7 +5360,7 @@
       cm.setOption('keyMap', 'vim');
       cm.setOption('disableInput', true);
       cm.toggleOverwrite(false); // exit replace mode if we were in it.
-      // upfecha the ". register before exiting insert mode
+      // update the ". register before exiting insert mode
       insertModeChangeRegister.setText(lastChange.changes.join(''));
       CodeMirror.signal(cm, "vim-mode-change", {mode: "normal"});
       if (macroModeState.isRecording) {
@@ -5521,13 +5521,13 @@
         handleExternalSelection(cm, vim);
       }
       if (vim.visualMode) {
-        upfechaFakeCursor(cm);
+        updateFakeCursor(cm);
       }
     }
     /**
      * Keeps track of a fake cursor to support visual mode cursor behavior.
      */
-    function upfechaFakeCursor(cm) {
+    function updateFakeCursor(cm) {
       var className = 'cm-animate-fat-cursor';
       var vim = cm.state.vim;
       var from = clipCursorToContent(cm, copyCursor(vim.sel.head));
@@ -5575,8 +5575,8 @@
           anchor: anchor,
           head: head
         };
-        upfechaMark(cm, vim, '<', cursorMin(head, anchor));
-        upfechaMark(cm, vim, '>', cursorMax(head, anchor));
+        updateMark(cm, vim, '<', cursorMin(head, anchor));
+        updateMark(cm, vim, '>', cursorMax(head, anchor));
       } else if (!vim.insertMode) {
         // Reset lastHPos if selection was modified by something outside of vim mode e.g. by mouse.
         vim.lastHPos = cm.getCursor().ch;

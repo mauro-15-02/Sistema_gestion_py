@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Si us plau, omple aquest camp.",
 	email: "Si us plau, escriu una adreça de correu-e vàlida",
 	url: "Si us plau, escriu una URL vàlida.",
-	fecha: "Si us plau, escriu una data vàlida.",
-	fechaISO: "Si us plau, escriu una data (ISO) vàlida.",
+	date: "Si us plau, escriu una data vàlida.",
+	dateISO: "Si us plau, escriu una data (ISO) vàlida.",
 	number: "Si us plau, escriu un número enter vàlid.",
 	digits: "Si us plau, escriu només dígits.",
 	creditcard: "Si us plau, escriu un número de tarjeta vàlid.",

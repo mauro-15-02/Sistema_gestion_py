@@ -26,7 +26,7 @@
                 searchButtonTooltip: "Bul",
                 clearFilterButtonTooltip: "Filtreyi temizle",
                 insertButtonTooltip: "Ekle",
-                upfechaButtonTooltip: "Güncelle",
+                updateButtonTooltip: "Güncelle",
                 cancelEditButtonTooltip: "Güncelleme iptali"
             }
         },

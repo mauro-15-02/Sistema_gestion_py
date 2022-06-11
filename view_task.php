@@ -1,7 +1,7 @@
 <?php 
 include 'db_connect.php';
 if(isset($_GET['id'])){
-	$qry = $conn->query("SELECT * FROM tarea_list where id = ".$_GET['id'])->fetch_array();
+	$qry = $conn->query("SELECT * FROM task_list where id = ".$_GET['id'])->fetch_array();
 	foreach($qry as $k => $v){
 		$$k = $v;
 	}
@@ -9,8 +9,8 @@ if(isset($_GET['id'])){
 ?>
 <div class="container-fluid">
 	<dl>
-		<dt><b class="border-bottom border-primary">tarea</b></dt>
-		<dd><?php echo ucwords($tarea) ?></dd>
+		<dt><b class="border-bottom border-primary">Task</b></dt>
+		<dd><?php echo ucwords($task) ?></dd>
 	</dl>
 	<dl>
 		<dt><b class="border-bottom border-primary">Status</b></dt>
@@ -27,7 +27,7 @@ if(isset($_GET['id'])){
 		</dd>
 	</dl>
 	<dl>
-		<dt><b class="border-bottom border-primary">descripcion</b></dt>
-		<dd><?php echo html_entity_decode($descripcion) ?></dd>
+		<dt><b class="border-bottom border-primary">Description</b></dt>
+		<dd><?php echo html_entity_decode($description) ?></dd>
 	</dl>
 </div>

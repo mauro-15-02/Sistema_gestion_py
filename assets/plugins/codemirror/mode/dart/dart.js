@@ -153,7 +153,7 @@
           return state.tokenize(stream, state)
         }
       }
-      return "comentario"
+      return "comment"
     }
   }
 

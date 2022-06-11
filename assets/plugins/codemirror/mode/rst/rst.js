@@ -449,8 +449,8 @@ CodeMirror.defineMode('rst-base', function (config) {
         change(state, to_normal);
       } else {
         stream.skipToEnd();
-        change(state, to_comentario);
-        token = 'comentario';
+        change(state, to_comment);
+        token = 'comment';
       }
     }
 
@@ -460,8 +460,8 @@ CodeMirror.defineMode('rst-base', function (config) {
   ///////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////
 
-  function to_comentario(stream, state) {
-    return as_block(stream, state, 'comentario');
+  function to_comment(stream, state) {
+    return as_block(stream, state, 'comment');
   }
 
   function to_verbatim(stream, state) {

@@ -17,7 +17,7 @@
             <a href="./" class="nav-link nav-home">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Pagina principal
+                Dashboard
               </p>
             </a>
           </li>  
@@ -39,7 +39,7 @@
               </li>
             <?php endif; ?>
               <li class="nav-item">
-                <a href="./index.php?page=proyecto_list" class="nav-link nav-proyecto_list tree-item">
+                <a href="./index.php?page=project_list" class="nav-link nav-project_list tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>Ver lista</p>
                 </a>
@@ -47,8 +47,8 @@
             </ul>
           </li> 
           <li class="nav-item">
-                <a href="./index.php?page=tarea_list" class="nav-link nav-tarea_list">
-                  <i class="fas fa-tareas nav-icon"></i>
+                <a href="./index.php?page=task_list" class="nav-link nav-task_list">
+                  <i class="fas fa-tasks nav-icon"></i>
                   <p>Tareas</p>
                 </a>
           </li>
@@ -63,7 +63,7 @@
           <?php if($_SESSION['login_type'] == 1): ?>
           <li class="nav-item">
             <a href="#" class="nav-link nav-edit_user">
-              <i class="nav-icon fas fa-usuarios"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
                 Usuarios
                 <i class="right fas fa-angle-left"></i>

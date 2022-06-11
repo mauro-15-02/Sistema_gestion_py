@@ -3,7 +3,7 @@
 
 // LUA mode. Ported to CodeMirror 2 from Franciszek Wawrzak's
 // CodeMirror 1 mode.
-// highlights keywords, strings, comentarios (no leveling supported! ("[==[")), tokens, basic indenting
+// highlights keywords, strings, comments (no leveling supported! ("[==[")), tokens, basic indenting
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
@@ -48,7 +48,7 @@ CodeMirror.defineMode("lua", function(config, parserConfig) {
     "math.min","math.modf","math.pi","math.pow","math.rad","math.random","math.randomseed","math.sin","math.sinh",
     "math.sqrt","math.tan","math.tanh",
 
-    "os.clock","os.fecha","os.difftime","os.execute","os.exit","os.getenv","os.remove","os.rename","os.setlocale",
+    "os.clock","os.date","os.difftime","os.execute","os.exit","os.getenv","os.remove","os.rename","os.setlocale",
     "os.time","os.tmpname",
 
     "package.cpath","package.loaded","package.loaders","package.loadlib","package.path","package.preload",
@@ -78,9 +78,9 @@ CodeMirror.defineMode("lua", function(config, parserConfig) {
     var ch = stream.next();
     if (ch == "-" && stream.eat("-")) {
       if (stream.eat("[") && stream.eat("["))
-        return (state.cur = bracketed(readBracket(stream), "comentario"))(stream, state);
+        return (state.cur = bracketed(readBracket(stream), "comment"))(stream, state);
       stream.skipToEnd();
-      return "comentario";
+      return "comment";
     }
     if (ch == "\"" || ch == "'")
       return (state.cur = string(ch))(stream, state);
@@ -136,7 +136,7 @@ CodeMirror.defineMode("lua", function(config, parserConfig) {
         else if (builtins.test(word)) style = "builtin";
         else if (specials.test(word)) style = "variable-2";
       }
-      if ((style != "comentario") && (style != "string")){
+      if ((style != "comment") && (style != "string")){
         if (indentTokens.test(word)) ++state.indentDepth;
         else if (dedentTokens.test(word)) --state.indentDepth;
       }

@@ -2044,36 +2044,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-primary .bootstrap-fechatimepicker-widget .table td,
-.card.bg-primary .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-primary .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-primary .bootstrap-fechatimepicker-widget .table th {
+.card.bg-primary .bootstrap-datetimepicker-widget .table td,
+.card.bg-primary .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-primary .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-primary .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-primary .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-primary .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-primary .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-primary .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-primary .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-primary .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-primary .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-primary .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-primary .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-primary .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-primary .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-primary .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-primary .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-primary .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-primary .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-primary .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.second:hover {
   background: #0067d6;
   color: #ffffff;
 }
 
-.card.bg-primary .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-primary .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-primary .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-primary .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-primary .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-primary .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-primary .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-primary .bootstrap-datetimepicker-widget table td.active,
+.card.bg-primary .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.active:hover {
   background: #3395ff;
   color: #ffffff;
 }
@@ -2115,36 +2115,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-secondary .bootstrap-fechatimepicker-widget .table td,
-.card.bg-secondary .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-secondary .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-secondary .bootstrap-fechatimepicker-widget .table th {
+.card.bg-secondary .bootstrap-datetimepicker-widget .table td,
+.card.bg-secondary .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-secondary .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-secondary .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-secondary .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-secondary .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-secondary .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-secondary .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-secondary .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-secondary .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-secondary .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-secondary .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-secondary .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-secondary .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-secondary .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-secondary .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-secondary .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-secondary .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-secondary .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-secondary .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-secondary .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-secondary .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-secondary .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-secondary .bootstrap-datetimepicker-widget table td.second:hover {
   background: #596167;
   color: #ffffff;
 }
 
-.card.bg-secondary .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-secondary .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-secondary .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-secondary .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-secondary .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-secondary .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-secondary .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-secondary .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-secondary .bootstrap-datetimepicker-widget table td.active,
+.card.bg-secondary .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-secondary .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-secondary .bootstrap-datetimepicker-widget table td.active:hover {
   background: #868e96;
   color: #ffffff;
 }
@@ -2186,36 +2186,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-success .bootstrap-fechatimepicker-widget .table td,
-.card.bg-success .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-success .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-success .bootstrap-fechatimepicker-widget .table th {
+.card.bg-success .bootstrap-datetimepicker-widget .table td,
+.card.bg-success .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-success .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-success .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-success .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-success .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-success .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-success .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-success .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-success .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-success .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-success .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-success .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-success .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-success .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-success .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-success .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-success .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-success .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-success .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-success .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-success .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-success .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-success .bootstrap-datetimepicker-widget table td.second:hover {
   background: #208637;
   color: #ffffff;
 }
 
-.card.bg-success .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-success .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-success .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-success .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-success .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-success .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-success .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-success .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-success .bootstrap-datetimepicker-widget table td.active,
+.card.bg-success .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-success .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-success .bootstrap-datetimepicker-widget table td.active:hover {
   background: #34ce57;
   color: #ffffff;
 }
@@ -2257,36 +2257,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-info .bootstrap-fechatimepicker-widget .table td,
-.card.bg-info .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-info .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-info .bootstrap-fechatimepicker-widget .table th {
+.card.bg-info .bootstrap-datetimepicker-widget .table td,
+.card.bg-info .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-info .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-info .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-info .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-info .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-info .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-info .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-info .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-info .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-info .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-info .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-info .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-info .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-info .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-info .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-info .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-info .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-info .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-info .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-info .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-info .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-info .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-info .bootstrap-datetimepicker-widget table td.second:hover {
   background: #128294;
   color: #ffffff;
 }
 
-.card.bg-info .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-info .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-info .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-info .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-info .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-info .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-info .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-info .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-info .bootstrap-datetimepicker-widget table td.active,
+.card.bg-info .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-info .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-info .bootstrap-datetimepicker-widget table td.active:hover {
   background: #1fc8e3;
   color: #ffffff;
 }
@@ -2328,36 +2328,36 @@ textarea.form-control.is-warning {
   color: #1F2D3D;
 }
 
-.card.bg-warning .bootstrap-fechatimepicker-widget .table td,
-.card.bg-warning .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-warning .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-warning .bootstrap-fechatimepicker-widget .table th {
+.card.bg-warning .bootstrap-datetimepicker-widget .table td,
+.card.bg-warning .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-warning .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-warning .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-warning .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-warning .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-warning .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-warning .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-warning .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-warning .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-warning .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-warning .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-warning .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-warning .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-warning .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-warning .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-warning .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-warning .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-warning .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-warning .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-warning .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-warning .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-warning .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-warning .bootstrap-datetimepicker-widget table td.second:hover {
   background: #dda600;
   color: #1F2D3D;
 }
 
-.card.bg-warning .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-warning .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-warning .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-warning .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #1F2D3D;
 }
 
-.card.bg-warning .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-warning .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-warning .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-warning .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-warning .bootstrap-datetimepicker-widget table td.active,
+.card.bg-warning .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-warning .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-warning .bootstrap-datetimepicker-widget table td.active:hover {
   background: #ffce3a;
   color: #1F2D3D;
 }
@@ -2399,36 +2399,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-danger .bootstrap-fechatimepicker-widget .table td,
-.card.bg-danger .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-danger .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-danger .bootstrap-fechatimepicker-widget .table th {
+.card.bg-danger .bootstrap-datetimepicker-widget .table td,
+.card.bg-danger .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-danger .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-danger .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-danger .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-danger .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-danger .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-danger .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-danger .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-danger .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-danger .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-danger .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-danger .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-danger .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-danger .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-danger .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-danger .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-danger .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-danger .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-danger .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-danger .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-danger .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-danger .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-danger .bootstrap-datetimepicker-widget table td.second:hover {
   background: #c62232;
   color: #ffffff;
 }
 
-.card.bg-danger .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-danger .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-danger .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-danger .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-danger .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-danger .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-danger .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-danger .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-danger .bootstrap-datetimepicker-widget table td.active,
+.card.bg-danger .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-danger .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-danger .bootstrap-datetimepicker-widget table td.active:hover {
   background: #e4606d;
   color: #ffffff;
 }
@@ -2470,36 +2470,36 @@ textarea.form-control.is-warning {
   color: #1F2D3D;
 }
 
-.card.bg-light .bootstrap-fechatimepicker-widget .table td,
-.card.bg-light .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-light .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-light .bootstrap-fechatimepicker-widget .table th {
+.card.bg-light .bootstrap-datetimepicker-widget .table td,
+.card.bg-light .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-light .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-light .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-light .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-light .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-light .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-light .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-light .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-light .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-light .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-light .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-light .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-light .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-light .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-light .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-light .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-light .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-light .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-light .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-light .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-light .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-light .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-light .bootstrap-datetimepicker-widget table td.second:hover {
   background: #e0e5e9;
   color: #1F2D3D;
 }
 
-.card.bg-light .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-light .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-light .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-light .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #1F2D3D;
 }
 
-.card.bg-light .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-light .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-light .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-light .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-light .bootstrap-datetimepicker-widget table td.active,
+.card.bg-light .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-light .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-light .bootstrap-datetimepicker-widget table td.active:hover {
   background: white;
   color: #1F2D3D;
 }
@@ -2541,36 +2541,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-dark .bootstrap-fechatimepicker-widget .table td,
-.card.bg-dark .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-dark .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-dark .bootstrap-fechatimepicker-widget .table th {
+.card.bg-dark .bootstrap-datetimepicker-widget .table td,
+.card.bg-dark .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-dark .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-dark .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-dark .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-dark .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-dark .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-dark .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-dark .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-dark .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-dark .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-dark .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-dark .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-dark .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-dark .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-dark .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-dark .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-dark .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-dark .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-dark .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-dark .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-dark .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-dark .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-dark .bootstrap-datetimepicker-widget table td.second:hover {
   background: #222629;
   color: #ffffff;
 }
 
-.card.bg-dark .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-dark .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-dark .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-dark .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-dark .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-dark .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-dark .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-dark .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-dark .bootstrap-datetimepicker-widget table td.active,
+.card.bg-dark .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-dark .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-dark .bootstrap-datetimepicker-widget table td.active:hover {
   background: #4b545c;
   color: #ffffff;
 }
@@ -2612,36 +2612,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-lightblue .bootstrap-fechatimepicker-widget .table td,
-.card.bg-lightblue .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-lightblue .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-lightblue .bootstrap-fechatimepicker-widget .table th {
+.card.bg-lightblue .bootstrap-datetimepicker-widget .table td,
+.card.bg-lightblue .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-lightblue .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-lightblue .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-lightblue .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-lightblue .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-lightblue .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-lightblue .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-lightblue .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-lightblue .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-lightblue .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-lightblue .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-lightblue .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-lightblue .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-lightblue .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-lightblue .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-lightblue .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-lightblue .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-lightblue .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-lightblue .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-lightblue .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-lightblue .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-lightblue .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-lightblue .bootstrap-datetimepicker-widget table td.second:hover {
   background: #32769d;
   color: #ffffff;
 }
 
-.card.bg-lightblue .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-lightblue .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-lightblue .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-lightblue .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-lightblue .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-lightblue .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-lightblue .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-lightblue .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-lightblue .bootstrap-datetimepicker-widget table td.active,
+.card.bg-lightblue .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-lightblue .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-lightblue .bootstrap-datetimepicker-widget table td.active:hover {
   background: #5fa4cc;
   color: #ffffff;
 }
@@ -2683,36 +2683,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-navy .bootstrap-fechatimepicker-widget .table td,
-.card.bg-navy .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-navy .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-navy .bootstrap-fechatimepicker-widget .table th {
+.card.bg-navy .bootstrap-datetimepicker-widget .table td,
+.card.bg-navy .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-navy .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-navy .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-navy .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-navy .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-navy .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-navy .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-navy .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-navy .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-navy .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-navy .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-navy .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-navy .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-navy .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-navy .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-navy .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-navy .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-navy .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-navy .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-navy .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-navy .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-navy .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-navy .bootstrap-datetimepicker-widget table td.second:hover {
   background: #000b16;
   color: #ffffff;
 }
 
-.card.bg-navy .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-navy .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-navy .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-navy .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-navy .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-navy .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-navy .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-navy .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-navy .bootstrap-datetimepicker-widget table td.active,
+.card.bg-navy .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-navy .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-navy .bootstrap-datetimepicker-widget table td.active:hover {
   background: #003872;
   color: #ffffff;
 }
@@ -2754,36 +2754,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-olive .bootstrap-fechatimepicker-widget .table td,
-.card.bg-olive .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-olive .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-olive .bootstrap-fechatimepicker-widget .table th {
+.card.bg-olive .bootstrap-datetimepicker-widget .table td,
+.card.bg-olive .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-olive .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-olive .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-olive .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-olive .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-olive .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-olive .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-olive .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-olive .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-olive .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-olive .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-olive .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-olive .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-olive .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-olive .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-olive .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-olive .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-olive .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-olive .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-olive .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-olive .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-olive .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-olive .bootstrap-datetimepicker-widget table td.second:hover {
   background: #317c5b;
   color: #ffffff;
 }
 
-.card.bg-olive .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-olive .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-olive .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-olive .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-olive .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-olive .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-olive .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-olive .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-olive .bootstrap-datetimepicker-widget table td.active,
+.card.bg-olive .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-olive .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-olive .bootstrap-datetimepicker-widget table td.active:hover {
   background: #50b98a;
   color: #ffffff;
 }
@@ -2825,36 +2825,36 @@ textarea.form-control.is-warning {
   color: #1F2D3D;
 }
 
-.card.bg-lime .bootstrap-fechatimepicker-widget .table td,
-.card.bg-lime .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-lime .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-lime .bootstrap-fechatimepicker-widget .table th {
+.card.bg-lime .bootstrap-datetimepicker-widget .table td,
+.card.bg-lime .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-lime .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-lime .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-lime .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-lime .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-lime .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-lime .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-lime .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-lime .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-lime .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-lime .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-lime .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-lime .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-lime .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-lime .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-lime .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-lime .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-lime .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-lime .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-lime .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-lime .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-lime .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-lime .bootstrap-datetimepicker-widget table td.second:hover {
   background: #00d75e;
   color: #1F2D3D;
 }
 
-.card.bg-lime .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-lime .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-lime .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-lime .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #1F2D3D;
 }
 
-.card.bg-lime .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-lime .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-lime .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-lime .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-lime .bootstrap-datetimepicker-widget table td.active,
+.card.bg-lime .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-lime .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-lime .bootstrap-datetimepicker-widget table td.active:hover {
   background: #34ff8d;
   color: #1F2D3D;
 }
@@ -2896,36 +2896,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-fuchsia .bootstrap-fechatimepicker-widget .table td,
-.card.bg-fuchsia .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-fuchsia .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-fuchsia .bootstrap-fechatimepicker-widget .table th {
+.card.bg-fuchsia .bootstrap-datetimepicker-widget .table td,
+.card.bg-fuchsia .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-fuchsia .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-fuchsia .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-fuchsia .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-fuchsia .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-fuchsia .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-fuchsia .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-fuchsia .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-fuchsia .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-fuchsia .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-fuchsia .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-fuchsia .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-fuchsia .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-fuchsia .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-fuchsia .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-fuchsia .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-fuchsia .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-fuchsia .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-fuchsia .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-fuchsia .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-fuchsia .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-fuchsia .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-fuchsia .bootstrap-datetimepicker-widget table td.second:hover {
   background: #cc0da1;
   color: #ffffff;
 }
 
-.card.bg-fuchsia .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-fuchsia .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-fuchsia .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-fuchsia .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-fuchsia .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-fuchsia .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-fuchsia .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-fuchsia .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-fuchsia .bootstrap-datetimepicker-widget table td.active,
+.card.bg-fuchsia .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-fuchsia .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-fuchsia .bootstrap-datetimepicker-widget table td.active:hover {
   background: #f342cb;
   color: #ffffff;
 }
@@ -2967,36 +2967,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-maroon .bootstrap-fechatimepicker-widget .table td,
-.card.bg-maroon .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-maroon .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-maroon .bootstrap-fechatimepicker-widget .table th {
+.card.bg-maroon .bootstrap-datetimepicker-widget .table td,
+.card.bg-maroon .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-maroon .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-maroon .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-maroon .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-maroon .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-maroon .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-maroon .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-maroon .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-maroon .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-maroon .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-maroon .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-maroon .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-maroon .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-maroon .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-maroon .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-maroon .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-maroon .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-maroon .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-maroon .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-maroon .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-maroon .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-maroon .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-maroon .bootstrap-datetimepicker-widget table td.second:hover {
   background: #b41650;
   color: #ffffff;
 }
 
-.card.bg-maroon .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-maroon .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-maroon .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-maroon .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-maroon .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-maroon .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-maroon .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-maroon .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-maroon .bootstrap-datetimepicker-widget table td.active,
+.card.bg-maroon .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-maroon .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-maroon .bootstrap-datetimepicker-widget table td.active:hover {
   background: #e73f7c;
   color: #ffffff;
 }
@@ -3038,36 +3038,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-blue .bootstrap-fechatimepicker-widget .table td,
-.card.bg-blue .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-blue .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-blue .bootstrap-fechatimepicker-widget .table th {
+.card.bg-blue .bootstrap-datetimepicker-widget .table td,
+.card.bg-blue .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-blue .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-blue .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-blue .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-blue .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-blue .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-blue .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-blue .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-blue .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-blue .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-blue .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-blue .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-blue .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-blue .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-blue .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-blue .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-blue .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-blue .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-blue .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-blue .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-blue .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-blue .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-blue .bootstrap-datetimepicker-widget table td.second:hover {
   background: #0067d6;
   color: #ffffff;
 }
 
-.card.bg-blue .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-blue .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-blue .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-blue .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-blue .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-blue .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-blue .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-blue .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-blue .bootstrap-datetimepicker-widget table td.active,
+.card.bg-blue .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-blue .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-blue .bootstrap-datetimepicker-widget table td.active:hover {
   background: #3395ff;
   color: #ffffff;
 }
@@ -3109,36 +3109,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-indigo .bootstrap-fechatimepicker-widget .table td,
-.card.bg-indigo .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-indigo .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-indigo .bootstrap-fechatimepicker-widget .table th {
+.card.bg-indigo .bootstrap-datetimepicker-widget .table td,
+.card.bg-indigo .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-indigo .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-indigo .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-indigo .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-indigo .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-indigo .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-indigo .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-indigo .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-indigo .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-indigo .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-indigo .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-indigo .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-indigo .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-indigo .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-indigo .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-indigo .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-indigo .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-indigo .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-indigo .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-indigo .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-indigo .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-indigo .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-indigo .bootstrap-datetimepicker-widget table td.second:hover {
   background: #550bce;
   color: #ffffff;
 }
 
-.card.bg-indigo .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-indigo .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-indigo .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-indigo .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-indigo .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-indigo .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-indigo .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-indigo .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-indigo .bootstrap-datetimepicker-widget table td.active,
+.card.bg-indigo .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-indigo .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-indigo .bootstrap-datetimepicker-widget table td.active:hover {
   background: #8540f5;
   color: #ffffff;
 }
@@ -3180,36 +3180,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-purple .bootstrap-fechatimepicker-widget .table td,
-.card.bg-purple .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-purple .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-purple .bootstrap-fechatimepicker-widget .table th {
+.card.bg-purple .bootstrap-datetimepicker-widget .table td,
+.card.bg-purple .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-purple .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-purple .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-purple .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-purple .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-purple .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-purple .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-purple .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-purple .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-purple .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-purple .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-purple .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-purple .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-purple .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-purple .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-purple .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-purple .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-purple .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-purple .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-purple .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-purple .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-purple .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-purple .bootstrap-datetimepicker-widget table td.second:hover {
   background: #5d36a4;
   color: #ffffff;
 }
 
-.card.bg-purple .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-purple .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-purple .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-purple .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-purple .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-purple .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-purple .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-purple .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-purple .bootstrap-datetimepicker-widget table td.active,
+.card.bg-purple .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-purple .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-purple .bootstrap-datetimepicker-widget table td.active:hover {
   background: #8c68ce;
   color: #ffffff;
 }
@@ -3251,36 +3251,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-pink .bootstrap-fechatimepicker-widget .table td,
-.card.bg-pink .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-pink .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-pink .bootstrap-fechatimepicker-widget .table th {
+.card.bg-pink .bootstrap-datetimepicker-widget .table td,
+.card.bg-pink .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-pink .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-pink .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-pink .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-pink .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-pink .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-pink .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-pink .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-pink .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-pink .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-pink .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-pink .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-pink .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-pink .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-pink .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-pink .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-pink .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-pink .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-pink .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-pink .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-pink .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-pink .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-pink .bootstrap-datetimepicker-widget table td.second:hover {
   background: #e21b76;
   color: #ffffff;
 }
 
-.card.bg-pink .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-pink .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-pink .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-pink .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-pink .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-pink .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-pink .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-pink .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-pink .bootstrap-datetimepicker-widget table td.active,
+.card.bg-pink .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-pink .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-pink .bootstrap-datetimepicker-widget table td.active:hover {
   background: #ed6ca7;
   color: #ffffff;
 }
@@ -3322,36 +3322,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-red .bootstrap-fechatimepicker-widget .table td,
-.card.bg-red .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-red .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-red .bootstrap-fechatimepicker-widget .table th {
+.card.bg-red .bootstrap-datetimepicker-widget .table td,
+.card.bg-red .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-red .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-red .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-red .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-red .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-red .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-red .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-red .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-red .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-red .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-red .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-red .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-red .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-red .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-red .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-red .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-red .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-red .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-red .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-red .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-red .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-red .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-red .bootstrap-datetimepicker-widget table td.second:hover {
   background: #c62232;
   color: #ffffff;
 }
 
-.card.bg-red .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-red .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-red .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-red .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-red .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-red .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-red .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-red .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-red .bootstrap-datetimepicker-widget table td.active,
+.card.bg-red .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-red .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-red .bootstrap-datetimepicker-widget table td.active:hover {
   background: #e4606d;
   color: #ffffff;
 }
@@ -3393,36 +3393,36 @@ textarea.form-control.is-warning {
   color: #1F2D3D;
 }
 
-.card.bg-orange .bootstrap-fechatimepicker-widget .table td,
-.card.bg-orange .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-orange .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-orange .bootstrap-fechatimepicker-widget .table th {
+.card.bg-orange .bootstrap-datetimepicker-widget .table td,
+.card.bg-orange .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-orange .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-orange .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-orange .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-orange .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-orange .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-orange .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-orange .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-orange .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-orange .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-orange .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-orange .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-orange .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-orange .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-orange .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-orange .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-orange .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-orange .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-orange .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-orange .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-orange .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-orange .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-orange .bootstrap-datetimepicker-widget table td.second:hover {
   background: #e66a02;
   color: #1F2D3D;
 }
 
-.card.bg-orange .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-orange .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-orange .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-orange .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #1F2D3D;
 }
 
-.card.bg-orange .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-orange .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-orange .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-orange .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-orange .bootstrap-datetimepicker-widget table td.active,
+.card.bg-orange .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-orange .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-orange .bootstrap-datetimepicker-widget table td.active:hover {
   background: #fd9a47;
   color: #1F2D3D;
 }
@@ -3464,36 +3464,36 @@ textarea.form-control.is-warning {
   color: #1F2D3D;
 }
 
-.card.bg-yellow .bootstrap-fechatimepicker-widget .table td,
-.card.bg-yellow .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-yellow .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-yellow .bootstrap-fechatimepicker-widget .table th {
+.card.bg-yellow .bootstrap-datetimepicker-widget .table td,
+.card.bg-yellow .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-yellow .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-yellow .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-yellow .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-yellow .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-yellow .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-yellow .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-yellow .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-yellow .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-yellow .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-yellow .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-yellow .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-yellow .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-yellow .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-yellow .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-yellow .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-yellow .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-yellow .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-yellow .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-yellow .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-yellow .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-yellow .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-yellow .bootstrap-datetimepicker-widget table td.second:hover {
   background: #dda600;
   color: #1F2D3D;
 }
 
-.card.bg-yellow .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-yellow .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-yellow .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-yellow .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #1F2D3D;
 }
 
-.card.bg-yellow .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-yellow .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-yellow .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-yellow .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-yellow .bootstrap-datetimepicker-widget table td.active,
+.card.bg-yellow .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-yellow .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-yellow .bootstrap-datetimepicker-widget table td.active:hover {
   background: #ffce3a;
   color: #1F2D3D;
 }
@@ -3535,36 +3535,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-green .bootstrap-fechatimepicker-widget .table td,
-.card.bg-green .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-green .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-green .bootstrap-fechatimepicker-widget .table th {
+.card.bg-green .bootstrap-datetimepicker-widget .table td,
+.card.bg-green .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-green .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-green .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-green .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-green .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-green .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-green .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-green .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-green .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-green .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-green .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-green .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-green .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-green .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-green .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-green .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-green .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-green .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-green .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-green .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-green .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-green .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-green .bootstrap-datetimepicker-widget table td.second:hover {
   background: #208637;
   color: #ffffff;
 }
 
-.card.bg-green .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-green .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-green .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-green .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-green .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-green .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-green .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-green .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-green .bootstrap-datetimepicker-widget table td.active,
+.card.bg-green .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-green .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-green .bootstrap-datetimepicker-widget table td.active:hover {
   background: #34ce57;
   color: #ffffff;
 }
@@ -3606,36 +3606,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-teal .bootstrap-fechatimepicker-widget .table td,
-.card.bg-teal .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-teal .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-teal .bootstrap-fechatimepicker-widget .table th {
+.card.bg-teal .bootstrap-datetimepicker-widget .table td,
+.card.bg-teal .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-teal .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-teal .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-teal .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-teal .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-teal .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-teal .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-teal .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-teal .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-teal .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-teal .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-teal .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-teal .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-teal .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-teal .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-teal .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-teal .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-teal .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-teal .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-teal .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-teal .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-teal .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-teal .bootstrap-datetimepicker-widget table td.second:hover {
   background: #1aa67d;
   color: #ffffff;
 }
 
-.card.bg-teal .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-teal .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-teal .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-teal .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-teal .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-teal .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-teal .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-teal .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-teal .bootstrap-datetimepicker-widget table td.active,
+.card.bg-teal .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-teal .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-teal .bootstrap-datetimepicker-widget table td.active:hover {
   background: #3ce0af;
   color: #ffffff;
 }
@@ -3677,36 +3677,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-cyan .bootstrap-fechatimepicker-widget .table td,
-.card.bg-cyan .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-cyan .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-cyan .bootstrap-fechatimepicker-widget .table th {
+.card.bg-cyan .bootstrap-datetimepicker-widget .table td,
+.card.bg-cyan .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-cyan .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-cyan .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-cyan .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-cyan .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-cyan .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-cyan .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-cyan .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-cyan .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-cyan .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-cyan .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-cyan .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-cyan .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-cyan .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-cyan .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-cyan .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-cyan .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-cyan .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-cyan .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-cyan .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-cyan .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-cyan .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-cyan .bootstrap-datetimepicker-widget table td.second:hover {
   background: #128294;
   color: #ffffff;
 }
 
-.card.bg-cyan .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-cyan .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-cyan .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-cyan .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-cyan .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-cyan .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-cyan .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-cyan .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-cyan .bootstrap-datetimepicker-widget table td.active,
+.card.bg-cyan .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-cyan .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-cyan .bootstrap-datetimepicker-widget table td.active:hover {
   background: #1fc8e3;
   color: #ffffff;
 }
@@ -3748,36 +3748,36 @@ textarea.form-control.is-warning {
   color: #1F2D3D;
 }
 
-.card.bg-white .bootstrap-fechatimepicker-widget .table td,
-.card.bg-white .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-white .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-white .bootstrap-fechatimepicker-widget .table th {
+.card.bg-white .bootstrap-datetimepicker-widget .table td,
+.card.bg-white .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-white .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-white .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-white .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-white .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-white .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-white .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-white .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-white .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-white .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-white .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-white .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-white .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-white .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-white .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-white .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-white .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-white .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-white .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-white .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-white .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-white .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-white .bootstrap-datetimepicker-widget table td.second:hover {
   background: #ebebeb;
   color: #1F2D3D;
 }
 
-.card.bg-white .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-white .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-white .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-white .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #1F2D3D;
 }
 
-.card.bg-white .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-white .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-white .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-white .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-white .bootstrap-datetimepicker-widget table td.active,
+.card.bg-white .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-white .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-white .bootstrap-datetimepicker-widget table td.active:hover {
   background: white;
   color: #1F2D3D;
 }
@@ -3819,36 +3819,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-gray .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gray .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-gray .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-gray .bootstrap-fechatimepicker-widget .table th {
+.card.bg-gray .bootstrap-datetimepicker-widget .table td,
+.card.bg-gray .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-gray .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-gray .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-gray .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gray .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gray .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gray .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gray .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-gray .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-gray .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-gray .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-gray .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-gray .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-gray .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gray .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gray .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gray .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gray .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-gray .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-gray .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-gray .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-gray .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-gray .bootstrap-datetimepicker-widget table td.second:hover {
   background: #596167;
   color: #ffffff;
 }
 
-.card.bg-gray .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-gray .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-gray .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-gray .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-gray .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gray .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-gray .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-gray .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-gray .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gray .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-gray .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-gray .bootstrap-datetimepicker-widget table td.active:hover {
   background: #868e96;
   color: #ffffff;
 }
@@ -3890,36 +3890,36 @@ textarea.form-control.is-warning {
   color: #ffffff;
 }
 
-.card.bg-gray-dark .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gray-dark .bootstrap-fechatimepicker-widget .table th,
-.card.bg-gradient-gray-dark .bootstrap-fechatimepicker-widget .table td,
-.card.bg-gradient-gray-dark .bootstrap-fechatimepicker-widget .table th {
+.card.bg-gray-dark .bootstrap-datetimepicker-widget .table td,
+.card.bg-gray-dark .bootstrap-datetimepicker-widget .table th,
+.card.bg-gradient-gray-dark .bootstrap-datetimepicker-widget .table td,
+.card.bg-gradient-gray-dark .bootstrap-datetimepicker-widget .table th {
   border: none;
 }
 
-.card.bg-gray-dark .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gray-dark .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gray-dark .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gray-dark .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gray-dark .bootstrap-fechatimepicker-widget table td.second:hover,
-.card.bg-gradient-gray-dark .bootstrap-fechatimepicker-widget table thead tr:first-child th:hover,
-.card.bg-gradient-gray-dark .bootstrap-fechatimepicker-widget table td.day:hover,
-.card.bg-gradient-gray-dark .bootstrap-fechatimepicker-widget table td.hour:hover,
-.card.bg-gradient-gray-dark .bootstrap-fechatimepicker-widget table td.minute:hover,
-.card.bg-gradient-gray-dark .bootstrap-fechatimepicker-widget table td.second:hover {
+.card.bg-gray-dark .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gray-dark .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gray-dark .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gray-dark .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gray-dark .bootstrap-datetimepicker-widget table td.second:hover,
+.card.bg-gradient-gray-dark .bootstrap-datetimepicker-widget table thead tr:first-child th:hover,
+.card.bg-gradient-gray-dark .bootstrap-datetimepicker-widget table td.day:hover,
+.card.bg-gradient-gray-dark .bootstrap-datetimepicker-widget table td.hour:hover,
+.card.bg-gradient-gray-dark .bootstrap-datetimepicker-widget table td.minute:hover,
+.card.bg-gradient-gray-dark .bootstrap-datetimepicker-widget table td.second:hover {
   background: #222629;
   color: #ffffff;
 }
 
-.card.bg-gray-dark .bootstrap-fechatimepicker-widget table td.today::before,
-.card.bg-gradient-gray-dark .bootstrap-fechatimepicker-widget table td.today::before {
+.card.bg-gray-dark .bootstrap-datetimepicker-widget table td.today::before,
+.card.bg-gradient-gray-dark .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: #ffffff;
 }
 
-.card.bg-gray-dark .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gray-dark .bootstrap-fechatimepicker-widget table td.active:hover,
-.card.bg-gradient-gray-dark .bootstrap-fechatimepicker-widget table td.active,
-.card.bg-gradient-gray-dark .bootstrap-fechatimepicker-widget table td.active:hover {
+.card.bg-gray-dark .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gray-dark .bootstrap-datetimepicker-widget table td.active:hover,
+.card.bg-gradient-gray-dark .bootstrap-datetimepicker-widget table td.active,
+.card.bg-gradient-gray-dark .bootstrap-datetimepicker-widget table td.active:hover {
   background: #4b545c;
   color: #ffffff;
 }
@@ -4177,47 +4177,47 @@ html.maximized-card {
   }
 }
 
-.card-comentarios {
+.card-comments {
   background: #f8f9fa;
 }
 
-.card-comentarios .card-comentario {
+.card-comments .card-comment {
   border-bottom: 1px solid #e9ecef;
   padding: 8px 0;
 }
 
-.card-comentarios .card-comentario::after {
+.card-comments .card-comment::after {
   display: block;
   clear: both;
   content: "";
 }
 
-.card-comentarios .card-comentario:last-of-type {
+.card-comments .card-comment:last-of-type {
   border-bottom: 0;
 }
 
-.card-comentarios .card-comentario:first-of-type {
+.card-comments .card-comment:first-of-type {
   padding-top: 0;
 }
 
-.card-comentarios .card-comentario img {
+.card-comments .card-comment img {
   height: 1.875rem;
   width: 1.875rem;
   float: left;
 }
 
-.card-comentarios .comentario-text {
+.card-comments .comment-text {
   color: #78838e;
   margin-left: 40px;
 }
 
-.card-comentarios .username {
+.card-comments .username {
   color: #495057;
   display: block;
   font-weight: 600;
 }
 
-.card-comentarios .text-muted {
+.card-comments .text-muted {
   font-size: 12px;
   font-weight: 400;
 }

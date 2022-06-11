@@ -49,7 +49,7 @@ CodeMirror.defineMode("groovy", function(config) {
       }
       if (stream.eat("/")) {
         stream.skipToEnd();
-        return "comentario";
+        return "comment";
       }
       if (expectExpression(state.lastToken, false)) {
         return startString(ch, stream, state);
@@ -131,7 +131,7 @@ CodeMirror.defineMode("groovy", function(config) {
       }
       maybeEnd = (ch == "*");
     }
-    return "comentario";
+    return "comment";
   }
 
   function expectExpression(last, newline) {
@@ -184,7 +184,7 @@ CodeMirror.defineMode("groovy", function(config) {
       if (stream.eatSpace()) return null;
       curPunc = null;
       var style = state.tokenize[state.tokenize.length-1](stream, state);
-      if (style == "comentario") return style;
+      if (style == "comment") return style;
       if (ctx.align == null) ctx.align = true;
 
       if ((curPunc == ";" || curPunc == ":") && ctx.type == "statement") popContext(state);

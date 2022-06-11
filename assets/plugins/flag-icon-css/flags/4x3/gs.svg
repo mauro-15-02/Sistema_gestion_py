@@ -8,15 +8,15 @@
       <stop offset="0" stop-color="#474747"/>
       <stop offset="1" stop-color="#f50"/>
     </linearGradient>
-    <linearGradient id="c" x1="109.3" x2="110.9" y1="218.5" y2="173.4" gradientTransform="matrix(1.5 0 0 .65 40.5 0)" gradientUnits="usuariospaceOnUse" xlink:href="#a"/>
-    <linearGradient id="d" x1="125.9" x2="126" y1="316.4" y2="337.2" gradientTransform="matrix(1.23 0 0 .8 40.5 0)" gradientUnits="usuariospaceOnUse">
+    <linearGradient id="c" x1="109.3" x2="110.9" y1="218.5" y2="173.4" gradientTransform="matrix(1.5 0 0 .65 40.5 0)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
+    <linearGradient id="d" x1="125.9" x2="126" y1="316.4" y2="337.2" gradientTransform="matrix(1.23 0 0 .8 40.5 0)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#b50000"/>
       <stop offset="1" stop-color="#ffc500"/>
     </linearGradient>
-    <linearGradient id="e" x1="407.9" x2="456.4" y1="149.4" y2="147.3" gradientTransform="matrix(.56 0 0 1.76 40.5 0)" gradientUnits="usuariospaceOnUse" xlink:href="#b"/>
-    <linearGradient id="f" x1="215.8" x2="229" y1="103" y2="103" gradientTransform="matrix(.74 0 0 1.33 40.5 0)" gradientUnits="usuariospaceOnUse" xlink:href="#a"/>
-    <linearGradient id="g" x1="117.6" x2="78.2" y1="1040.4" y2="1003.7" gradientTransform="matrix(2.56 0 0 .38 40.5 0)" gradientUnits="usuariospaceOnUse" xlink:href="#b"/>
-    <linearGradient id="h" x1="264.7" x2="255" y1="246" y2="226.4" gradientTransform="matrix(.9 0 0 1.1 40.5 0)" gradientUnits="usuariospaceOnUse" xlink:href="#b"/>
+    <linearGradient id="e" x1="407.9" x2="456.4" y1="149.4" y2="147.3" gradientTransform="matrix(.56 0 0 1.76 40.5 0)" gradientUnits="userSpaceOnUse" xlink:href="#b"/>
+    <linearGradient id="f" x1="215.8" x2="229" y1="103" y2="103" gradientTransform="matrix(.74 0 0 1.33 40.5 0)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
+    <linearGradient id="g" x1="117.6" x2="78.2" y1="1040.4" y2="1003.7" gradientTransform="matrix(2.56 0 0 .38 40.5 0)" gradientUnits="userSpaceOnUse" xlink:href="#b"/>
+    <linearGradient id="h" x1="264.7" x2="255" y1="246" y2="226.4" gradientTransform="matrix(.9 0 0 1.1 40.5 0)" gradientUnits="userSpaceOnUse" xlink:href="#b"/>
   </defs>
   <path fill="#006" d="M0 0h640v480H0z"/>
   <g stroke-width="1pt">

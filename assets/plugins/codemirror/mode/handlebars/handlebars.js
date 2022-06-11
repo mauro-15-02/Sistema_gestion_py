@@ -14,8 +14,8 @@
   CodeMirror.defineSimpleMode("handlebars-tags", {
     start: [
       { regex: /\{\{\{/, push: "handlebars_raw", token: "tag" },
-      { regex: /\{\{!--/, push: "dash_comentario", token: "comentario" },
-      { regex: /\{\{!/,   push: "comentario", token: "comentario" },
+      { regex: /\{\{!--/, push: "dash_comment", token: "comment" },
+      { regex: /\{\{!/,   push: "comment", token: "comment" },
       { regex: /\{\{/,    push: "handlebars", token: "tag" }
     ],
     handlebars_raw: [
@@ -41,15 +41,15 @@
       // Paths
       { regex: /(?:\.\.\/)*(?:[A-Za-z_][\w\.]*)+/, token: "variable-2" }
     ],
-    dash_comentario: [
-      { regex: /--\}\}/, pop: true, token: "comentario" },
+    dash_comment: [
+      { regex: /--\}\}/, pop: true, token: "comment" },
 
       // Commented code
-      { regex: /./, token: "comentario"}
+      { regex: /./, token: "comment"}
     ],
-    comentario: [
-      { regex: /\}\}/, pop: true, token: "comentario" },
-      { regex: /./, token: "comentario" }
+    comment: [
+      { regex: /\}\}/, pop: true, token: "comment" },
+      { regex: /./, token: "comment" }
     ],
     meta: {
       blockCommentStart: "{{--",

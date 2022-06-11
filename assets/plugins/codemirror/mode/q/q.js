@@ -14,7 +14,7 @@
 CodeMirror.defineMode("q",function(config){
   var indentUnit=config.indentUnit,
       curPunc,
-      keywords=buildRE(["abs","acos","aj","aj0","all","and","any","asc","asin","asof","atan","attr","avg","avgs","bin","by","ceiling","cols","cor","cos","count","cov","cross","csv","cut","delete","deltas","desc","dev","differ","distinct","div","do","each","ej","enlist","eval","except","exec","exit","exp","fby","fills","first","fkeys","flip","floor","from","get","getenv","group","gtime","hclose","hcount","hdel","hopen","hsym","iasc","idesc","if","ij","in","insert","inter","inv","key","keys","last","like","list","lj","load","log","lower","lsq","ltime","ltrim","mavg","max","maxs","mcount","md5","mdev","med","meta","min","mins","mmax","mmin","mmu","mod","msum","neg","next","not","null","or","over","parse","peach","pj","plist","prd","prds","prev","prior","rand","rank","ratios","raze","read0","read1","reciprocal","reverse","rload","rotate","rsave","rtrim","save","scan","select","set","setenv","show","signum","sin","sqrt","ss","ssr","string","sublist","sum","sums","sv","system","tables","tan","til","trim","txf","type","uj","ungroup","union","upfecha","upper","upsert","value","var","view","views","vs","wavg","where","where","while","within","wj","wj1","wsum","xasc","xbar","xcol","xcols","xdesc","xexp","xgroup","xkey","xlog","xprev","xrank"]),
+      keywords=buildRE(["abs","acos","aj","aj0","all","and","any","asc","asin","asof","atan","attr","avg","avgs","bin","by","ceiling","cols","cor","cos","count","cov","cross","csv","cut","delete","deltas","desc","dev","differ","distinct","div","do","each","ej","enlist","eval","except","exec","exit","exp","fby","fills","first","fkeys","flip","floor","from","get","getenv","group","gtime","hclose","hcount","hdel","hopen","hsym","iasc","idesc","if","ij","in","insert","inter","inv","key","keys","last","like","list","lj","load","log","lower","lsq","ltime","ltrim","mavg","max","maxs","mcount","md5","mdev","med","meta","min","mins","mmax","mmin","mmu","mod","msum","neg","next","not","null","or","over","parse","peach","pj","plist","prd","prds","prev","prior","rand","rank","ratios","raze","read0","read1","reciprocal","reverse","rload","rotate","rsave","rtrim","save","scan","select","set","setenv","show","signum","sin","sqrt","ss","ssr","string","sublist","sum","sums","sv","system","tables","tan","til","trim","txf","type","uj","ungroup","union","update","upper","upsert","value","var","view","views","vs","wavg","where","where","while","within","wj","wj1","wsum","xasc","xbar","xcol","xcols","xdesc","xexp","xgroup","xkey","xlog","xprev","xrank"]),
       E=/[|/&^!+:\\\-*%$=~#;@><,?_\'\"\[\(\]\)\s{}]/;
   function buildRE(w){return new RegExp("^("+w.join("|")+")$");}
   function tokenBase(stream,state){
@@ -25,12 +25,12 @@ CodeMirror.defineMode("q",function(config){
         return(state.tokenize=tokenLineComment)(stream,state);
       else if(c=="\\"){
         if(stream.eol()||/\s/.test(stream.peek()))
-          return stream.skipToEnd(),/^\\\s*$/.test(stream.current())?(state.tokenize=tokenCommentToEOF)(stream):state.tokenize=tokenBase,"comentario";
+          return stream.skipToEnd(),/^\\\s*$/.test(stream.current())?(state.tokenize=tokenCommentToEOF)(stream):state.tokenize=tokenBase,"comment";
         else
           return state.tokenize=tokenBase,"builtin";
       }
     if(/\s/.test(c))
-      return stream.peek()=="/"?(stream.skipToEnd(),"comentario"):"whitespace";
+      return stream.peek()=="/"?(stream.skipToEnd(),"comment"):"whitespace";
     if(c=='"')
       return(state.tokenize=tokenString)(stream,state);
     if(c=='`')
@@ -60,16 +60,16 @@ CodeMirror.defineMode("q",function(config){
     return"error";
   }
   function tokenLineComment(stream,state){
-    return stream.skipToEnd(),/\/\s*$/.test(stream.current())?(state.tokenize=tokenBlockComment)(stream,state):(state.tokenize=tokenBase),"comentario";
+    return stream.skipToEnd(),/\/\s*$/.test(stream.current())?(state.tokenize=tokenBlockComment)(stream,state):(state.tokenize=tokenBase),"comment";
   }
   function tokenBlockComment(stream,state){
     var f=stream.sol()&&stream.peek()=="\\";
     stream.skipToEnd();
     if(f&&/^\\\s*$/.test(stream.current()))
       state.tokenize=tokenBase;
-    return"comentario";
+    return"comment";
   }
-  function tokenCommentToEOF(stream){return stream.skipToEnd(),"comentario";}
+  function tokenCommentToEOF(stream){return stream.skipToEnd(),"comment";}
   function tokenString(stream,state){
     var escaped=false,next,end=false;
     while((next=stream.next())){
@@ -96,7 +96,7 @@ CodeMirror.defineMode("q",function(config){
       }
       //if (stream.eatSpace()) return null;
       var style=state.tokenize(stream,state);
-      if(style!="comentario"&&state.context&&state.context.align==null&&state.context.type!="pattern"){
+      if(style!="comment"&&state.context&&state.context.align==null&&state.context.type!="pattern"){
         state.context.align=true;
       }
       if(curPunc=="(")pushContext(state,")",stream.column());

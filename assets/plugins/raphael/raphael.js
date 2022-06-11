@@ -53,9 +53,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, nombre, getter) {
-/******/ 		if(!__webpack_require__.o(exports, nombre)) {
-/******/ 			Object.defineProperty(exports, nombre, { enumerable: true, get: getter });
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
 /******/ 	};
 /******/
@@ -67,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 	};
 /******/
-/******/ 	// create a fake nombrespace object
+/******/ 	// create a fake namespace object
 /******/ 	// mode & 1: value is a module id, require it
 /******/ 	// mode & 2: merge all properties of value into the ns
 /******/ 	// mode & 4: return value when already ns object
@@ -150,7 +150,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      - height (number)
      - callback (function) #optional callback function which is going to be executed in the context of newly created paper
      * or
-     - all (array) (first 3 or 4 elements in the array are equal to [containerID, width, height] or [x, y, width, height]. The rest are element descripcions in format {type: type, <attributes>}). See @Paper.add.
+     - all (array) (first 3 or 4 elements in the array are equal to [containerID, width, height] or [x, y, width, height]. The rest are element descriptions in format {type: type, <attributes>}). See @Paper.add.
      - callback (function) #optional callback function which is going to be executed in the context of newly created paper
      * or
      - onReadyCallback (function) function that is going to be called on DOM ready event. You can also subscribe to this event via Eve’s “DOMLoad” event. In this case method returns `undefined`.
@@ -480,13 +480,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      * you can create your own pie chart function and ship it as a Raphaël plugin. To do this
      * you need to extend the `Raphael.fn` object. You should modify the `fn` object before a
      * Raphaël instance is created, otherwise it will take no effect. Please note that the
-     * ability for nombrespaced plugins was removed in Raphael 2.0. It is up to the plugin to
-     * ensure any nombrespacing ensures proper context.
+     * ability for namespaced plugins was removed in Raphael 2.0. It is up to the plugin to
+     * ensure any namespacing ensures proper context.
      > Usage
      | Raphael.fn.arrow = function (x1, y1, x2, y2, size) {
      |     return this.path( ... );
      | };
-     | // or create nombrespace
+     | // or create namespace
      | Raphael.fn.mystuff = {
      |     arrow: function () {…},
      |     star: function () {…},
@@ -507,7 +507,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      * Handful of replacements for `typeof` operator.
      > Parameters
      - o (…) any object or primitive
-     - type (string) nombre of the type, i.e. “string”, “function”, “number”, etc.
+     - type (string) name of the type, i.e. “string”, “function”, “number”, etc.
      = (boolean) is given value is of given type
     \*/
     R.is = function (o, type) {
@@ -651,7 +651,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     };
     var toHex = function (color) {
         if (R.vml) {
-            // http://dean.edwards.nombre/weblog/2009/10/convert-any-colour-value-to-hex-in-msie/
+            // http://dean.edwards.name/weblog/2009/10/convert-any-colour-value-to-hex-in-msie/
             var trim = /^\s+|\s+$/g;
             var bod;
             try {
@@ -984,7 +984,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      > Parameters
      - colour (string) colour string in one of formats:
      # <ul>
-     #     <li>Colour nombre (“<code>red</code>”, “<code>green</code>”, “<code>cornflowerblue</code>”, etc)</li>
+     #     <li>Colour name (“<code>red</code>”, “<code>green</code>”, “<code>cornflowerblue</code>”, etc)</li>
      #     <li>#••• — shortened HTML colour: (“<code>#000</code>”, “<code>#fc0</code>”, etc)</li>
      #     <li>#•••••• — full length HTML colour: (“<code>#000000</code>”, “<code>#bd2300</code>”)</li>
      #     <li>rgb(•••, •••, •••) — red, green and blue channels’ values: (“<code>rgb(200,&nbsp;100,&nbsp;0)</code>”)</li>
@@ -1213,20 +1213,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         if (!data.length) {
             Str(pathString).replace(pathCommand, function (a, b, c) {
                 var params = [],
-                    nombre = b.toLowerCase();
+                    name = b.toLowerCase();
                 c.replace(pathValues, function (a, b) {
                     b && params.push(+b);
                 });
-                if (nombre == "m" && params.length > 2) {
+                if (name == "m" && params.length > 2) {
                     data.push([b][concat](params.splice(0, 2)));
-                    nombre = "l";
+                    name = "l";
                     b = b == "m" ? "l" : "L";
                 }
-                if (nombre == "r") {
+                if (name == "r") {
                     data.push([b][concat](params));
-                } else while (params.length >= paramCounts[nombre]) {
-                    data.push([b][concat](params.splice(0, paramCounts[nombre])));
-                    if (!paramCounts[nombre]) {
+                } else while (params.length >= paramCounts[name]) {
+                    data.push([b][concat](params.splice(0, paramCounts[name])));
+                    if (!paramCounts[name]) {
                         break;
                     }
                 }
@@ -1259,7 +1259,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         if (!data.length) {
             Str(TString).replace(tCommand, function (a, b, c) {
                 var params = [],
-                    nombre = lowerCase.call(b);
+                    name = lowerCase.call(b);
                 c.replace(pathValues, function (a, b) {
                     b && params.push(+b);
                 });
@@ -1687,9 +1687,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         return R.isPointInsideBBox(bbox, x, y) &&
                interPathHelper(path, [["M", x, y], ["H", bbox.x2 + 10]], 1) % 2 == 1;
     };
-    R._removedFactory = function (methodnombre) {
+    R._removedFactory = function (methodname) {
         return function () {
-            eve("raphael.log", null, "Rapha\xebl: you are calling to method \u201c" + methodnombre + "\u201d of removed object", methodnombre);
+            eve("raphael.log", null, "Rapha\xebl: you are calling to method \u201c" + methodname + "\u201d of removed object", methodname);
         };
     };
     /*\
@@ -2509,7 +2509,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         if (container == null) {
             return;
         }
-        if (container.tagnombre) {
+        if (container.tagName) {
             if (y == null) {
                 return {
                     container: container,
@@ -3182,19 +3182,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      = (object) @Element
     \*/
     for (var i = events.length; i--;) {
-        (function (eventnombre) {
-            R[eventnombre] = elproto[eventnombre] = function (fn, scope) {
+        (function (eventName) {
+            R[eventName] = elproto[eventName] = function (fn, scope) {
                 if (R.is(fn, "function")) {
                     this.events = this.events || [];
-                    this.events.push({nombre: eventnombre, f: fn, unbind: addEvent(this.shape || this.node || g.doc, eventnombre, fn, scope || this)});
+                    this.events.push({name: eventName, f: fn, unbind: addEvent(this.shape || this.node || g.doc, eventName, fn, scope || this)});
                 }
                 return this;
             };
-            R["un" + eventnombre] = elproto["un" + eventnombre] = function (fn) {
+            R["un" + eventName] = elproto["un" + eventName] = function (fn) {
                 var events = this.events || [],
                     l = events.length;
                 while (l--){
-                    if (events[l].nombre == eventnombre && (R.is(fn, "undefined") || events[l].f == fn)) {
+                    if (events[l].name == eventName && (R.is(fn, "undefined") || events[l].f == fn)) {
                         events[l].unbind();
                         events.splice(l, 1);
                         !events.length && delete this.events;
@@ -3478,7 +3478,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      * Here we can see two commands: “M”, with arguments `(10, 20)` and “L” with arguments `(30, 40)`. Upper case letter mean command is absolute, lower case—relative.
      *
      # <p>Here is short list of commands available, for more details see <a href="http://www.w3.org/TR/SVG/paths.html#PathData" title="Details of a path's data attribute's format are described in the SVG specification.">SVG path string format</a>.</p>
-     # <table><thead><tr><th>Command</th><th>nombre</th><th>Parameters</th></tr></thead><tbody>
+     # <table><thead><tr><th>Command</th><th>Name</th><th>Parameters</th></tr></thead><tbody>
      # <tr><td>M</td><td>moveto</td><td>(x y)+</td></tr>
      # <tr><td>Z</td><td>closepath</td><td>(none)</td></tr>
      # <tr><td>L</td><td>lineto</td><td>(x y)+</td></tr>
@@ -3701,7 +3701,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         var paper = this,
             svg = paper.canvas,
             target = g.doc.elementFromPoint(x, y);
-        if (g.win.opera && target.tagnombre == "svg") {
+        if (g.win.opera && target.tagName == "svg") {
             var so = getOffset(svg),
                 sr = svg.createSVGRect();
             sr.x = x - so.x;
@@ -5012,23 +5012,23 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         return this;
     };
     for (var method in elproto) if (elproto[has](method)) {
-        setproto[method] = (function (methodnombre) {
+        setproto[method] = (function (methodname) {
             return function () {
                 var arg = arguments;
                 return this.forEach(function (el) {
-                    el[methodnombre][apply](el, arg);
+                    el[methodname][apply](el, arg);
                 });
             };
         })(method);
     }
-    setproto.attr = function (nombre, value) {
-        if (nombre && R.is(nombre, array) && R.is(nombre[0], "object")) {
-            for (var j = 0, jj = nombre.length; j < jj; j++) {
-                this.items[j].attr(nombre[j]);
+    setproto.attr = function (name, value) {
+        if (name && R.is(name, array) && R.is(name[0], "object")) {
+            for (var j = 0, jj = name.length; j < jj; j++) {
+                this.items[j].attr(name[j]);
             }
         } else {
             for (var i = 0, ii = this.items.length; i < ii; i++) {
-                this.items[i].attr(nombre, value);
+                this.items[i].attr(name, value);
             }
         }
         return this;
@@ -5260,11 +5260,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      * Paper.getFont
      [ method ]
      **
-     * Finds font object in the registered fonts by given parameters. You could specify only one word from the font nombre, like “Myriad” for “Myriad Pro”.
+     * Finds font object in the registered fonts by given parameters. You could specify only one word from the font name, like “Myriad” for “Myriad Pro”.
      **
      > Parameters
      **
-     - family (string) font family nombre or any word from it
+     - family (string) font family name or any word from it
      - weight (string) #optional font weight
      - style (string) #optional font style
      - stretch (string) #optional font stretch
@@ -5281,10 +5281,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         }
         var font = R.fonts[family];
         if (!font) {
-            var nombre = new RegExp("(^|\\s)" + family.replace(/[^\w\d\s+!~.:_-]/g, E) + "(\\s|$)", "i");
-            for (var fontnombre in R.fonts) if (R.fonts[has](fontnombre)) {
-                if (nombre.test(fontnombre)) {
-                    font = R.fonts[fontnombre];
+            var name = new RegExp("(^|\\s)" + family.replace(/[^\w\d\s+!~.:_-]/g, E) + "(\\s|$)", "i");
+            for (var fontName in R.fonts) if (R.fonts[has](fontName)) {
+                if (name.test(fontName)) {
+                    font = R.fonts[fontName];
                     break;
                 }
             }
@@ -5433,7 +5433,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      * Raphael.fullfill
      [ method ]
      **
-     * A little bit more advanced format function than @Raphael.format. Replaces construction of type “`{<nombre>}`” to the corresponding argument.
+     * A little bit more advanced format function than @Raphael.format. Replaces construction of type “`{<name>}`” to the corresponding argument.
      **
      > Parameters
      **
@@ -5457,11 +5457,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             objNotationRegex = /(?:(?:^|\.)(.+?)(?=\[|\.|$|\()|\[('|")(.+?)\2\])(\(\))?/g, // matches .xxxxx or ["xxxxx"] to run over object properties
             replacer = function (all, key, obj) {
                 var res = obj;
-                key.replace(objNotationRegex, function (all, nombre, quote, quotednombre, isFunc) {
-                    nombre = nombre || quotednombre;
+                key.replace(objNotationRegex, function (all, name, quote, quotedName, isFunc) {
+                    name = name || quotedName;
                     if (res) {
-                        if (nombre in res) {
-                            res = res[nombre];
+                        if (name in res) {
+                            res = res[name];
                         }
                         typeof res == "function" && isFunc && (res = res());
                     }
@@ -5701,12 +5701,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
       var locationString = (
           location.protocol + '//' +
           location.host +
-          location.pathnombre +
+          location.pathname +
           location.search
       );
       return "url('" + locationString + "#" + id + "')";
     },
-    upfechaPosition = function (o) {
+    updatePosition = function (o) {
         var bbox = o.getBBox(1);
         $(o.pattern, {patternTransform: o.matrix.invert() + " translate(" + bbox.x + "," + bbox.y + ")"});
     },
@@ -5806,7 +5806,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     markerCounter[markerId] = 1;
                 } else {
                     markerCounter[markerId]++;
-                    use = marker.getElementsByTagnombre("use")[0];
+                    use = marker.getElementsByTagName("use")[0];
                 }
                 $(use, attr);
                 var delta = dx * (type != "diamond" && type != "oval");
@@ -5894,7 +5894,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                         o.blur(value);
                         break;
                     case "title":
-                        var title = node.getElementsByTagnombre("title");
+                        var title = node.getElementsByTagName("title");
 
                         // Use the existing <title>.
                         if (title.length && (title = title[0])) {
@@ -5909,7 +5909,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     case "href":
                     case "target":
                         var pn = node.parentNode;
-                        if (pn.tagnombre.toLowerCase() != "a") {
+                        if (pn.tagName.toLowerCase() != "a") {
                             var hl = $("a");
                             pn.insertBefore(hl, node);
                             hl.appendChild(node);
@@ -5990,7 +5990,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                         }
                     case "cx":
                         node.setAttribute(att, value);
-                        o.pattern && upfechaPosition(o);
+                        o.pattern && updatePosition(o);
                         o._.dirty = 1;
                         break;
                     case "height":
@@ -6012,7 +6012,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                         }
                     case "cy":
                         node.setAttribute(att, value);
-                        o.pattern && upfechaPosition(o);
+                        o.pattern && updatePosition(o);
                         o._.dirty = 1;
                         break;
                     case "r":
@@ -6050,7 +6050,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             el = $("pattern");
                             var ig = $("image");
                             el.id = R.createUUID();
-                            $(el, {x: 0, y: 0, patternUnits: "usuariospaceOnUse", height: 1, width: 1});
+                            $(el, {x: 0, y: 0, patternUnits: "userSpaceOnUse", height: 1, width: 1});
                             $(ig, {x: 0, y: 0, "xlink:href": isURL[1]});
                             el.appendChild(ig);
 
@@ -6065,7 +6065,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             o.paper.defs.appendChild(el);
                             $(node, {fill: "url(#" + el.id + ")"});
                             o.pattern = el;
-                            o.pattern && upfechaPosition(o);
+                            o.pattern && updatePosition(o);
                             break;
                         }
                         var clr = R.getRGB(value);
@@ -6082,7 +6082,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             if ("opacity" in attrs || "fill-opacity" in attrs) {
                                 var gradient = R._g.doc.getElementById(node.getAttribute("fill").replace(/^url\(#|\)$/g, E));
                                 if (gradient) {
-                                    var stops = gradient.getElementsByTagnombre("stop");
+                                    var stops = gradient.getElementsByTagName("stop");
                                     $(stops[stops.length - 1], {"stop-opacity": ("opacity" in attrs ? attrs.opacity : 1) * ("fill-opacity" in attrs ? attrs["fill-opacity"] : 1)});
                                 }
                             }
@@ -6112,7 +6112,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                         if (attrs.gradient) {
                             gradient = R._g.doc.getElementById(node.getAttribute("fill").replace(/^url\(#|\)$/g, E));
                             if (gradient) {
-                                stops = gradient.getElementsByTagnombre("stop");
+                                stops = gradient.getElementsByTagName("stop");
                                 $(stops[stops.length - 1], {"stop-opacity": value});
                             }
                             break;
@@ -6158,7 +6158,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 tspans[i] = tspan;
             }
         } else {
-            tspans = node.getElementsByTagnombre("tspan");
+            tspans = node.getElementsByTagName("tspan");
             for (i = 0, ii = tspans.length; i < ii; i++) if (i) {
                 $(tspans[i], {dy: fontSize * leading, x: a.x});
             } else {
@@ -6172,7 +6172,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         dif && R.is(dif, "finite") && $(tspans[0], {dy: dif});
     },
     getRealNode = function (node) {
-        if (node.parentNode && node.parentNode.tagnombre.toLowerCase() === "a") {
+        if (node.parentNode && node.parentNode.tagName.toLowerCase() === "a") {
             return node.parentNode;
         } else {
             return node;
@@ -6425,7 +6425,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         R._extractTransform(this, tstr);
 
         this.clip && $(this.clip, {transform: this.matrix.invert()});
-        this.pattern && upfechaPosition(this);
+        this.pattern && updatePosition(this);
         this.node && $(this.node, {transform: this.matrix});
 
         if (_.sx != 1 || _.sy != 1) {
@@ -6530,17 +6530,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      **
      * Sets the attributes of the element.
      > Parameters
-     - attrnombre (string) attribute’s nombre
+     - attrName (string) attribute’s name
      - value (string) value
      * or
-     - params (object) object of nombre/value pairs
+     - params (object) object of name/value pairs
      * or
-     - attrnombre (string) attribute’s nombre
+     - attrName (string) attribute’s name
      * or
-     - attrnombres (array) in this case method returns array of current values for given attribute nombres
-     = (object) @Element if attrsnombre & value or params are passed in.
-     = (...) value of the attribute if only attrsnombre is passed in.
-     = (array) array of values of the attribute if attrsnombres is passed in.
+     - attrNames (array) in this case method returns array of current values for given attribute names
+     = (object) @Element if attrsName & value or params are passed in.
+     = (...) value of the attribute if only attrsName is passed in.
+     = (array) array of values of the attribute if attrsNames is passed in.
      = (object) object of attributes if nothing is passed in.
      > Possible parameters
      # <p>Please refer to the <a href="http://www.w3.org/TR/SVG/" title="The W3C Recommendation for the SVG language describes these properties in detail.">SVG specification</a> for an explanation of these parameters.</p>
@@ -6589,7 +6589,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      # <p>Please refer to <a href="http://www.w3.org/TR/SVG/paths.html#PathData" title="Details of a path’s data attribute’s format are described in the SVG specification.">SVG documentation regarding path string</a>. Raphaël fully supports it.</p>
      > Colour Parsing
      # <ul>
-     #     <li>Colour nombre (“<code>red</code>”, “<code>green</code>”, “<code>cornflowerblue</code>”, etc)</li>
+     #     <li>Colour name (“<code>red</code>”, “<code>green</code>”, “<code>cornflowerblue</code>”, etc)</li>
      #     <li>#••• — shortened HTML colour: (“<code>#000</code>”, “<code>#fc0</code>”, etc)</li>
      #     <li>#•••••• — full length HTML colour: (“<code>#000000</code>”, “<code>#bd2300</code>”)</li>
      #     <li>rgb(•••, •••, •••) — red, green and blue channels’ values: (“<code>rgb(200,&nbsp;100,&nbsp;0)</code>”)</li>
@@ -6605,11 +6605,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      #     <li>Optionally for hsb and hsl you could specify hue as a degree: “<code>hsl(240deg,&nbsp;1,&nbsp;.5)</code>” or, if you want to go fancy, “<code>hsl(240°,&nbsp;1,&nbsp;.5)</code>”</li>
      # </ul>
     \*/
-    elproto.attr = function (nombre, value) {
+    elproto.attr = function (name, value) {
         if (this.removed) {
             return this;
         }
-        if (nombre == null) {
+        if (name == null) {
             var res = {};
             for (var a in this.attrs) if (this.attrs[has](a)) {
                 res[a] = this.attrs[a];
@@ -6618,39 +6618,39 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             res.transform = this._.transform;
             return res;
         }
-        if (value == null && R.is(nombre, "string")) {
-            if (nombre == "fill" && this.attrs.fill == "none" && this.attrs.gradient) {
+        if (value == null && R.is(name, "string")) {
+            if (name == "fill" && this.attrs.fill == "none" && this.attrs.gradient) {
                 return this.attrs.gradient;
             }
-            if (nombre == "transform") {
+            if (name == "transform") {
                 return this._.transform;
             }
-            var nombres = nombre.split(separator),
+            var names = name.split(separator),
                 out = {};
-            for (var i = 0, ii = nombres.length; i < ii; i++) {
-                nombre = nombres[i];
-                if (nombre in this.attrs) {
-                    out[nombre] = this.attrs[nombre];
-                } else if (R.is(this.paper.customAttributes[nombre], "function")) {
-                    out[nombre] = this.paper.customAttributes[nombre].def;
+            for (var i = 0, ii = names.length; i < ii; i++) {
+                name = names[i];
+                if (name in this.attrs) {
+                    out[name] = this.attrs[name];
+                } else if (R.is(this.paper.customAttributes[name], "function")) {
+                    out[name] = this.paper.customAttributes[name].def;
                 } else {
-                    out[nombre] = R._availableAttrs[nombre];
+                    out[name] = R._availableAttrs[name];
                 }
             }
-            return ii - 1 ? out : out[nombres[0]];
+            return ii - 1 ? out : out[names[0]];
         }
-        if (value == null && R.is(nombre, "array")) {
+        if (value == null && R.is(name, "array")) {
             out = {};
-            for (i = 0, ii = nombre.length; i < ii; i++) {
-                out[nombre[i]] = this.attr(nombre[i]);
+            for (i = 0, ii = name.length; i < ii; i++) {
+                out[name[i]] = this.attr(name[i]);
             }
             return out;
         }
         if (value != null) {
             var params = {};
-            params[nombre] = value;
-        } else if (nombre != null && R.is(nombre, "object")) {
-            params = nombre;
+            params[name] = value;
+        } else if (name != null && R.is(name, "object")) {
+            params = name;
         }
         for (var key in params) {
             eve("raphael.attr." + key + "." + this.id, this, params[key]);
@@ -6970,11 +6970,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     };
     var setproto = R.st;
     for (var method in elproto) if (elproto[has](method) && !setproto[has](method)) {
-        setproto[method] = (function (methodnombre) {
+        setproto[method] = (function (methodname) {
             return function () {
                 var arg = arguments;
                 return this.forEach(function (el) {
-                    el[methodnombre].apply(el, arg);
+                    el[methodname].apply(el, arg);
                 });
             };
         })(method);
@@ -7088,7 +7088,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             s.flip = flip;
             o.coordorigin = (dx * -kx) + S + (dy * -ky);
             if (fillpos || _.fillsize) {
-                var fill = o.getElementsByTagnombre(fillString);
+                var fill = o.getElementsByTagName(fillString);
                 fill = fill && fill[0];
                 o.removeChild(fill);
                 if (fillpos) {
@@ -7128,7 +7128,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 case "short": w = values[i]; break;
             }
         }
-        var stroke = o.node.getElementsByTagnombre("stroke")[0];
+        var stroke = o.node.getElementsByTagName("stroke")[0];
         stroke[se + "arrow"] = type;
         stroke[se + "arrowlength"] = w;
         stroke[se + "arrowwidth"] = h;
@@ -7223,7 +7223,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             params["stroke-miterlimit"] != null ||
             params["stroke-linejoin"] != null ||
             params["stroke-linecap"] != null) {
-            var fill = node.getElementsByTagnombre(fillString),
+            var fill = node.getElementsByTagName(fillString),
                 newfill = false;
             fill = fill && fill[0];
             !fill && (newfill = fill = createNode(fillString));
@@ -7268,7 +7268,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 }
             }
             node.appendChild(fill);
-            var stroke = (node.getElementsByTagnombre("stroke") && node.getElementsByTagnombre("stroke")[0]),
+            var stroke = (node.getElementsByTagName("stroke") && node.getElementsByTagName("stroke")[0]),
             newstroke = false;
             !stroke && (newstroke = stroke = createNode("stroke"));
             if ((params.stroke && params.stroke != "none") ||
@@ -7608,11 +7608,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         }
         this.removed = true;
     };
-    elproto.attr = function (nombre, value) {
+    elproto.attr = function (name, value) {
         if (this.removed) {
             return this;
         }
-        if (nombre == null) {
+        if (name == null) {
             var res = {};
             for (var a in this.attrs) if (this.attrs[has](a)) {
                 res[a] = this.attrs[a];
@@ -7621,37 +7621,37 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             res.transform = this._.transform;
             return res;
         }
-        if (value == null && R.is(nombre, "string")) {
-            if (nombre == fillString && this.attrs.fill == "none" && this.attrs.gradient) {
+        if (value == null && R.is(name, "string")) {
+            if (name == fillString && this.attrs.fill == "none" && this.attrs.gradient) {
                 return this.attrs.gradient;
             }
-            var nombres = nombre.split(separator),
+            var names = name.split(separator),
                 out = {};
-            for (var i = 0, ii = nombres.length; i < ii; i++) {
-                nombre = nombres[i];
-                if (nombre in this.attrs) {
-                    out[nombre] = this.attrs[nombre];
-                } else if (R.is(this.paper.customAttributes[nombre], "function")) {
-                    out[nombre] = this.paper.customAttributes[nombre].def;
+            for (var i = 0, ii = names.length; i < ii; i++) {
+                name = names[i];
+                if (name in this.attrs) {
+                    out[name] = this.attrs[name];
+                } else if (R.is(this.paper.customAttributes[name], "function")) {
+                    out[name] = this.paper.customAttributes[name].def;
                 } else {
-                    out[nombre] = R._availableAttrs[nombre];
+                    out[name] = R._availableAttrs[name];
                 }
             }
-            return ii - 1 ? out : out[nombres[0]];
+            return ii - 1 ? out : out[names[0]];
         }
-        if (this.attrs && value == null && R.is(nombre, "array")) {
+        if (this.attrs && value == null && R.is(name, "array")) {
             out = {};
-            for (i = 0, ii = nombre.length; i < ii; i++) {
-                out[nombre[i]] = this.attr(nombre[i]);
+            for (i = 0, ii = name.length; i < ii; i++) {
+                out[name[i]] = this.attr(name[i]);
             }
             return out;
         }
         var params;
         if (value != null) {
             params = {};
-            params[nombre] = value;
+            params[name] = value;
         }
-        value == null && R.is(nombre, "object") && (params = nombre);
+        value == null && R.is(name, "object") && (params = name);
         for (var key in params) {
             eve("raphael.attr." + key + "." + this.id, this, params[key]);
         }
@@ -7797,7 +7797,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             res = vml.path(path).attr({stroke: "none"}),
             a = res.attrs,
             node = res.node,
-            fill = node.getElementsByTagnombre(fillString)[0];
+            fill = node.getElementsByTagName(fillString)[0];
         a.src = src;
         res.X = a.x = x;
         res.Y = a.y = y;
@@ -7908,13 +7908,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 doc.styleSheets[0].addRule(".rvml", "behavior:url(#default#VML)");
             }
             try {
-                !doc.nombrespaces.rvml && doc.nombrespaces.add("rvml", "urn:schemas-microsoft-com:vml");
-                createNode = function (tagnombre) {
-                    return doc.createElement('<rvml:' + tagnombre + ' class="rvml">');
+                !doc.namespaces.rvml && doc.namespaces.add("rvml", "urn:schemas-microsoft-com:vml");
+                createNode = function (tagName) {
+                    return doc.createElement('<rvml:' + tagName + ' class="rvml">');
                 };
             } catch (e) {
-                createNode = function (tagnombre) {
-                    return doc.createElement('<' + tagnombre + ' xmlns="urn:schemas-microsoft.com:vml" class="rvml">');
+                createNode = function (tagName) {
+                    return doc.createElement('<' + tagName + ' xmlns="urn:schemas-microsoft.com:vml" class="rvml">');
                 };
             }
         };
@@ -7981,11 +7981,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
     var setproto = R.st;
     for (var method in elproto) if (elproto[has](method) && !setproto[has](method)) {
-        setproto[method] = (function (methodnombre) {
+        setproto[method] = (function (methodname) {
             return function () {
                 var arg = arguments;
                 return this.forEach(function (el) {
-                    el[methodnombre].apply(el, arg);
+                    el[methodname].apply(el, arg);
                 });
             };
         })(method);
@@ -8059,21 +8059,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
      * eve
      [ method ]
 
-     * Fires event with given `nombre`, given scope and other parameters.
+     * Fires event with given `name`, given scope and other parameters.
 
      > Arguments
 
-     - nombre (string) nombre of the *event*, dot (`.`) or slash (`/`) separated
+     - name (string) name of the *event*, dot (`.`) or slash (`/`) separated
      - scope (object) context for the event handlers
      - varargs (...) the rest of arguments will be sent to event handlers
 
      = (object) array of returned values from the listeners. Array has two methods `.firstDefined()` and `.lastDefined()` to get first or last not `undefined` value.
     \*/
-        var eve = function (nombre, scope) {
+        var eve = function (name, scope) {
             var e = events,
                 oldstop = stop,
                 args = Array.prototype.slice.call(arguments, 2),
-                listeners = eve.listeners(nombre),
+                listeners = eve.listeners(name),
                 z = 0,
                 f = false,
                 l,
@@ -8084,7 +8084,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
                 errors = [];
             out.firstDefined = firstDefined;
             out.lastDefined = lastDefined;
-            current_event = nombre;
+            current_event = name;
             stop = 0;
             for (var i = 0, ii = listeners.length; i < ii; i++) if ("zIndex" in listeners[i]) {
                 indexed.push(listeners[i].zIndex);
@@ -8137,16 +8137,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
      * eve.listeners
      [ method ]
 
-     * Internal method which gives you array of all event handlers that will be triggered by the given `nombre`.
+     * Internal method which gives you array of all event handlers that will be triggered by the given `name`.
 
      > Arguments
 
-     - nombre (string) nombre of the event, dot (`.`) or slash (`/`) separated
+     - name (string) name of the event, dot (`.`) or slash (`/`) separated
 
      = (array) array of event handlers
     \*/
-    eve.listeners = function (nombre) {
-        var nombres = isArray(nombre) ? nombre : nombre.split(separator),
+    eve.listeners = function (name) {
+        var names = isArray(name) ? name : name.split(separator),
             e = events,
             item,
             items,
@@ -8158,11 +8158,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
             nes,
             es = [e],
             out = [];
-        for (i = 0, ii = nombres.length; i < ii; i++) {
+        for (i = 0, ii = names.length; i < ii; i++) {
             nes = [];
             for (j = 0, jj = es.length; j < jj; j++) {
                 e = es[j].n;
-                items = [e[nombres[i]], e[wildcard]];
+                items = [e[names[i]], e[wildcard]];
                 k = 2;
                 while (k--) {
                     item = items[k];
@@ -8199,15 +8199,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
      * eve.on
      [ method ]
      **
-     * Binds given event handler with a given nombre. You can use wildcards “`*`” for the nombres:
+     * Binds given event handler with a given name. You can use wildcards “`*`” for the names:
      | eve.on("*.under.*", f);
      | eve("mouse.under.floor"); // triggers f
      * Use @eve to trigger the listener.
      **
-     - nombre (string) nombre of the event, dot (`.`) or slash (`/`) separated, with optional wildcards
+     - name (string) name of the event, dot (`.`) or slash (`/`) separated, with optional wildcards
      - f (function) event handler function
      **
-     - nombre (array) if you don’t want to use separators, you can use array of strings
+     - name (array) if you don’t want to use separators, you can use array of strings
      - f (function) event handler function
      **
      = (function) returned function accepts a single numeric parameter that represents z-index of the handler. It is an optional feature and only used when you need to ensure that some subset of handlers will be invoked in a given order, despite of the order of assignment. 
@@ -8220,19 +8220,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
      * If you want to put your handler before non-indexed handlers, specify a negative value.
      * Note: I assume most of the time you don’t need to worry about z-index, but it’s nice to have this feature “just in case”.
     \*/
-    eve.on = function (nombre, f) {
+    eve.on = function (name, f) {
         if (typeof f != "function") {
             return function () {};
         }
-        var nombres = isArray(nombre) ? (isArray(nombre[0]) ? nombre : [nombre]) : Str(nombre).split(comaseparator);
-        for (var i = 0, ii = nombres.length; i < ii; i++) {
-            (function (nombre) {
-                var nombres = isArray(nombre) ? nombre : Str(nombre).split(separator),
+        var names = isArray(name) ? (isArray(name[0]) ? name : [name]) : Str(name).split(comaseparator);
+        for (var i = 0, ii = names.length; i < ii; i++) {
+            (function (name) {
+                var names = isArray(name) ? name : Str(name).split(separator),
                     e = events,
                     exist;
-                for (var i = 0, ii = nombres.length; i < ii; i++) {
+                for (var i = 0, ii = names.length; i < ii; i++) {
                     e = e.n;
-                    e = e.hasOwnProperty(nombres[i]) && e[nombres[i]] || (e[nombres[i]] = {n: {}});
+                    e = e.hasOwnProperty(names[i]) && e[names[i]] || (e[names[i]] = {n: {}});
                 }
                 e.f = e.f || [];
                 for (i = 0, ii = e.f.length; i < ii; i++) if (e.f[i] == f) {
@@ -8240,7 +8240,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
                     break;
                 }
                 !exist && e.f.push(f);
-            }(nombres[i]));
+            }(names[i]));
         }
         return function (zIndex) {
             if (+zIndex == +zIndex) {
@@ -8260,7 +8260,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
      |     console.log(a, b, c); // 1, 2, [event object]
      | });
      > Arguments
-     - event (string) event nombre
+     - event (string) event name
      - varargs (…) and any other arguments
      = (function) possible event handler function
     \*/
@@ -8283,20 +8283,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
      * eve.nt
      [ method ]
      **
-     * Could be used inside event handler to figure out actual nombre of the event.
+     * Could be used inside event handler to figure out actual name of the event.
      **
      > Arguments
      **
-     - subnombre (string) #optional subnombre of the event
+     - subname (string) #optional subname of the event
      **
-     = (string) nombre of the event, if `subnombre` is not specified
+     = (string) name of the event, if `subname` is not specified
      * or
-     = (boolean) `true`, if current event’s nombre contains `subnombre`
+     = (boolean) `true`, if current event’s name contains `subname`
     \*/
-    eve.nt = function (subnombre) {
+    eve.nt = function (subname) {
         var cur = isArray(current_event) ? current_event.join(".") : current_event;
-        if (subnombre) {
-            return new RegExp("(?:\\.|\\/|^)" + subnombre + "(?:\\.|\\/|$)").test(cur);
+        if (subname) {
+            return new RegExp("(?:\\.|\\/|^)" + subname + "(?:\\.|\\/|$)").test(cur);
         }
         return cur;
     };
@@ -8304,10 +8304,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
      * eve.nts
      [ method ]
      **
-     * Could be used inside event handler to figure out actual nombre of the event.
+     * Could be used inside event handler to figure out actual name of the event.
      **
      **
-     = (array) nombres of the event
+     = (array) names of the event
     \*/
     eve.nts = function () {
         return isArray(current_event) ? current_event : current_event.split(separator);
@@ -8316,12 +8316,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
      * eve.off
      [ method ]
      **
-     * Removes given function from the list of event listeners assigned to given nombre.
+     * Removes given function from the list of event listeners assigned to given name.
      * If no arguments specified all the events will be cleared.
      **
      > Arguments
      **
-     - nombre (string) nombre of the event, dot (`.`) or slash (`/`) separated, with optional wildcards
+     - name (string) name of the event, dot (`.`) or slash (`/`) separated, with optional wildcards
      - f (function) event handler function
     \*/
     /*\
@@ -8330,31 +8330,31 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
      **
      * See @eve.off
     \*/
-    eve.off = eve.unbind = function (nombre, f) {
-        if (!nombre) {
+    eve.off = eve.unbind = function (name, f) {
+        if (!name) {
             eve._events = events = {n: {}};
             return;
         }
-        var nombres = isArray(nombre) ? (isArray(nombre[0]) ? nombre : [nombre]) : Str(nombre).split(comaseparator);
-        if (nombres.length > 1) {
-            for (var i = 0, ii = nombres.length; i < ii; i++) {
-                eve.off(nombres[i], f);
+        var names = isArray(name) ? (isArray(name[0]) ? name : [name]) : Str(name).split(comaseparator);
+        if (names.length > 1) {
+            for (var i = 0, ii = names.length; i < ii; i++) {
+                eve.off(names[i], f);
             }
             return;
         }
-        nombres = isArray(nombre) ? nombre : Str(nombre).split(separator);
+        names = isArray(name) ? name : Str(name).split(separator);
         var e,
             key,
             splice,
             i, ii, j, jj,
             cur = [events];
-        for (i = 0, ii = nombres.length; i < ii; i++) {
+        for (i = 0, ii = names.length; i < ii; i++) {
             for (j = 0; j < cur.length; j += splice.length - 2) {
                 splice = [j, 1];
                 e = cur[j].n;
-                if (nombres[i] != wildcard) {
-                    if (e[nombres[i]]) {
-                        splice.push(e[nombres[i]]);
+                if (names[i] != wildcard) {
+                    if (e[names[i]]) {
+                        splice.push(e[names[i]]);
                     }
                 } else {
                     for (key in e) if (e[has](key)) {
@@ -8397,7 +8397,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
      * eve.once
      [ method ]
      **
-     * Binds given event handler with a given nombre to only run once then unbind itself.
+     * Binds given event handler with a given name to only run once then unbind itself.
      | eve.once("login", f);
      | eve("login"); // triggers f
      | eve("login"); // no listeners
@@ -8405,17 +8405,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Copyright (c)
      **
      > Arguments
      **
-     - nombre (string) nombre of the event, dot (`.`) or slash (`/`) separated, with optional wildcards
+     - name (string) name of the event, dot (`.`) or slash (`/`) separated, with optional wildcards
      - f (function) event handler function
      **
      = (function) same return function as @eve.on
     \*/
-    eve.once = function (nombre, f) {
+    eve.once = function (name, f) {
         var f2 = function () {
-            eve.off(nombre, f2);
+            eve.off(name, f2);
             return f.apply(this, arguments);
         };
-        return eve.on(nombre, f2);
+        return eve.on(name, f2);
     };
     /*\
      * eve.version

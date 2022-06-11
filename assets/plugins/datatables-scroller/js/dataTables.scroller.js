@@ -4,11 +4,11 @@
 
 /**
  * @summary     Scroller
- * @descripcion Virtual rendering for DataTables
+ * @description Virtual rendering for DataTables
  * @version     2.0.3
  * @file        dataTables.scroller.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contacto     www.sprymedia.co.uk/contacto
+ * @contact     www.sprymedia.co.uk/contact
  * @copyright   Copyright 2011-2020 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
@@ -233,7 +233,7 @@ var Scroller = function ( dt, opts ) {
 	// only held in the `s` property. At the moment they are mixed
 	this.s = $.extend( this.s, Scroller.oDefaults, opts );
 
-	// Workaround for row height being read from height object (see above comentario)
+	// Workaround for row height being read from height object (see above comment)
 	this.s.heights.row = this.s.rowHeight;
 
 	/**
@@ -407,7 +407,7 @@ $.extend( Scroller.prototype, {
 
 			// If we need records outside the current draw region, but the new
 			// scrolling position is inside that (due to the non-linear nature
-			// for larger numbers of records), we need to force position upfecha.
+			// for larger numbers of records), we need to force position update.
 			if ( this.s.redrawTop < px && px < this.s.redrawBottom ) {
 				this.s.forceReposition = true;
 				animate = false;
@@ -515,7 +515,7 @@ $.extend( Scroller.prototype, {
 				that.dom.label.css('display', 'none');
 			});
 
-		// On resize, upfecha the information element, since the number of rows shown might change
+		// On resize, update the information element, since the number of rows shown might change
 		$(window).on( 'resize.dt-scroller', function () {
 			that.measure( false );
 			that._info();
@@ -562,13 +562,13 @@ $.extend( Scroller.prototype, {
 			that.s.scrollType = 'jump';
 			that._draw();
 
-			// Upfecha the scroller when the DataTable is redrawn
+			// Update the scroller when the DataTable is redrawn
 			dt.on( 'draw.scroller', function () {
 				that._draw();
 			});
 		} );
 
-		// Set height before the draw happens, allowing everything else to upfecha
+		// Set height before the draw happens, allowing everything else to update
 		// on draw complete without worry for roder.
 		dt.on( 'preDraw.dt.scroller', function () {
 			that._scrollForce();
@@ -739,7 +739,7 @@ $.extend( Scroller.prototype, {
 			that.s.ingnoreScroll = false;
 		}
 
-		// Because of the order of the DT callbacks, the info upfecha will
+		// Because of the order of the DT callbacks, the info update will
 		// take precedence over the one we want here. So a 'thread' break is
 		// needed.  Only add the thread break if bInfo is set
 		if ( this.s.dt.oFeatures.bInfo ) {
@@ -809,9 +809,9 @@ $.extend( Scroller.prototype, {
 	},
 
 	/**
-	 * Upfecha any information elements that are controlled by the DataTable based on the scrolling
+	 * Update any information elements that are controlled by the DataTable based on the scrolling
 	 * viewport and what rows are visible in it. This function basically acts in the same way as
-	 * _fnUpfechaInfo in DataTables, and effectively replaces that function.
+	 * _fnUpdateInfo in DataTables, and effectively replaces that function.
 	 *  @returns {void}
 	 *  @private
 	 */
@@ -971,11 +971,11 @@ $.extend( Scroller.prototype, {
 			return;
 		}
 
-		/* Upfecha the table's information display for what is now in the viewport */
+		/* Update the table's information display for what is now in the viewport */
 		this._info();
 
 		/* We don't want to state save on every scroll event - that's heavy
-		 * handed, so use a timeout to upfecha the state saving only when the
+		 * handed, so use a timeout to update the state saving only when the
 		 * scrolling has finished
 		 */
 		clearTimeout( this.s.stateTO );

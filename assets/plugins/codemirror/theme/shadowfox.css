@@ -16,7 +16,7 @@
 .cm-s-shadowfox .CodeMirror-linenumber { color: #939393; }
 .cm-s-shadowfox .CodeMirror-cursor { border-left: 1px solid #fff; }
 
-.cm-s-shadowfox span.cm-comentario { color: #939393; }
+.cm-s-shadowfox span.cm-comment { color: #939393; }
 .cm-s-shadowfox span.cm-atom { color: #FF7DE9; }
 .cm-s-shadowfox span.cm-quote { color: #FF7DE9; }
 .cm-s-shadowfox span.cm-builtin { color: #FF7DE9; }

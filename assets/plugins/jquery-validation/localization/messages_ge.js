@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -18,8 +18,8 @@ $.extend( $.validator.messages, {
 	remote: "გთხოვთ შეასწოროთ.",
 	email: "გთხოვთ შეიყვანოთ სწორი ფორმატით.",
 	url: "გთხოვთ შეიყვანოთ სწორი ფორმატით.",
-	fecha: "გთხოვთ შეიყვანოთ სწორი თარიღი.",
-	fechaISO: "გთხოვთ შეიყვანოთ სწორი ფორმატით (ISO).",
+	date: "გთხოვთ შეიყვანოთ სწორი თარიღი.",
+	dateISO: "გთხოვთ შეიყვანოთ სწორი ფორმატით (ISO).",
 	number: "გთხოვთ შეიყვანოთ რიცხვი.",
 	digits: "დაშვებულია მხოლოდ ციფრები.",
 	creditcard: "გთხოვთ შეიყვანოთ სწორი ფორმატის ბარათის კოდი.",

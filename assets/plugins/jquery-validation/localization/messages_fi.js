@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -16,8 +16,8 @@ $.extend( $.validator.messages, {
 	required: "T&auml;m&auml; kentt&auml; on pakollinen.",
 	email: "Sy&ouml;t&auml; oikea s&auml;hk&ouml;postiosoite.",
 	url: "Sy&ouml;t&auml; oikea URL-osoite.",
-	fecha: "Sy&ouml;t&auml; oikea p&auml;iv&auml;m&auml;&auml;r&auml;.",
-	fechaISO: "Sy&ouml;t&auml; oikea p&auml;iv&auml;m&auml;&auml;r&auml; muodossa VVVV-KK-PP.",
+	date: "Sy&ouml;t&auml; oikea p&auml;iv&auml;m&auml;&auml;r&auml;.",
+	dateISO: "Sy&ouml;t&auml; oikea p&auml;iv&auml;m&auml;&auml;r&auml; muodossa VVVV-KK-PP.",
 	number: "Sy&ouml;t&auml; luku.",
 	creditcard: "Sy&ouml;t&auml; voimassa oleva luottokorttinumero.",
 	digits: "Sy&ouml;t&auml; pelk&auml;st&auml;&auml;n numeroita.",

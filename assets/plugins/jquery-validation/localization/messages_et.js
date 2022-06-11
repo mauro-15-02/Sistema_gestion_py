@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -19,8 +19,8 @@ $.extend( $.validator.messages, {
 	rangelength: $.validator.format( "Palun sisestage väärtus vahemikus {0} kuni {1} tähemärki." ),
 	email: "Palun sisestage korrektne e-maili aadress.",
 	url: "Palun sisestage korrektne URL.",
-	fecha: "Palun sisestage korrektne kuupäev.",
-	fechaISO: "Palun sisestage korrektne kuupäev (YYYY-MM-DD).",
+	date: "Palun sisestage korrektne kuupäev.",
+	dateISO: "Palun sisestage korrektne kuupäev (YYYY-MM-DD).",
 	number: "Palun sisestage korrektne number.",
 	digits: "Palun sisestage ainult numbreid.",
 	equalTo: "Palun sisestage sama väärtus uuesti.",

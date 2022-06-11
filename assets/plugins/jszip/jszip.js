@@ -296,10 +296,10 @@ exports.base64 = false;
 exports.binary = false;
 exports.dir = false;
 exports.createFolders = true;
-exports.fecha = null;
+exports.date = null;
 exports.compression = null;
 exports.compressionOptions = null;
-exports.comentario = null;
+exports.comment = null;
 exports.unixPermissions = null;
 exports.dosPermissions = null;
 
@@ -339,7 +339,7 @@ exports.magic = "\x08\x00";
 /**
  * Create a worker that uses pako to inflate/deflate.
  * @constructor
- * @param {String} action the nombre of the pako function to call : either "Deflate" or "Inflate".
+ * @param {String} action the name of the pako function to call : either "Deflate" or "Inflate".
  * @param {Object} options the options to use when (de)compressing.
  */
 function FlateWorker(action, options) {
@@ -489,27 +489,27 @@ var generateDosExternalFileAttr = function (dosPermissions, isDir) {
  * @param {Boolean} streamingEnded is the stream finished ?
  * @param {number} offset the current offset from the start of the zip file.
  * @param {String} platform let's pretend we are this platform (change platform dependents fields)
- * @param {Function} encodeFilenombre the function to encode the file nombre / comentario.
+ * @param {Function} encodeFileName the function to encode the file name / comment.
  * @return {Object} the zip parts.
  */
-var generateZipParts = function(streamInfo, streamedContent, streamingEnded, offset, platform, encodeFilenombre) {
+var generateZipParts = function(streamInfo, streamedContent, streamingEnded, offset, platform, encodeFileName) {
     var file = streamInfo['file'],
     compression = streamInfo['compression'],
-    useCustomEncoding = encodeFilenombre !== utf8.utf8encode,
-    encodedFilenombre = utils.transformTo("string", encodeFilenombre(file.nombre)),
-    utfEncodedFilenombre = utils.transformTo("string", utf8.utf8encode(file.nombre)),
-    comentario = file.comentario,
-    encodedComment = utils.transformTo("string", encodeFilenombre(comentario)),
-    utfEncodedComment = utils.transformTo("string", utf8.utf8encode(comentario)),
-    useUTF8ForFilenombre = utfEncodedFilenombre.length !== file.nombre.length,
-    useUTF8ForComment = utfEncodedComment.length !== comentario.length,
+    useCustomEncoding = encodeFileName !== utf8.utf8encode,
+    encodedFileName = utils.transformTo("string", encodeFileName(file.name)),
+    utfEncodedFileName = utils.transformTo("string", utf8.utf8encode(file.name)),
+    comment = file.comment,
+    encodedComment = utils.transformTo("string", encodeFileName(comment)),
+    utfEncodedComment = utils.transformTo("string", utf8.utf8encode(comment)),
+    useUTF8ForFileName = utfEncodedFileName.length !== file.name.length,
+    useUTF8ForComment = utfEncodedComment.length !== comment.length,
     dosTime,
     dosDate,
     extraFields = "",
     unicodePathExtraField = "",
     unicodeCommentExtraField = "",
     dir = file.dir,
-    fecha = file.fecha;
+    date = file.date;
 
 
     var dataInfo = {
@@ -533,7 +533,7 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
         // following the compressed data.
         bitflag |= 0x0008;
     }
-    if (!useCustomEncoding && (useUTF8ForFilenombre || useUTF8ForComment)) {
+    if (!useCustomEncoding && (useUTF8ForFileName || useUTF8ForComment)) {
         // Bit 11: Language encoding flag (EFS).
         bitflag |= 0x0800;
     }
@@ -553,24 +553,24 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
         extFileAttr |= generateDosExternalFileAttr(file.dosPermissions, dir);
     }
 
-    // fecha
+    // date
     // @see http://www.delorie.com/djgpp/doc/rbinter/it/52/13.html
     // @see http://www.delorie.com/djgpp/doc/rbinter/it/65/16.html
     // @see http://www.delorie.com/djgpp/doc/rbinter/it/66/16.html
 
-    dosTime = fecha.getUTCHours();
+    dosTime = date.getUTCHours();
     dosTime = dosTime << 6;
-    dosTime = dosTime | fecha.getUTCMinutes();
+    dosTime = dosTime | date.getUTCMinutes();
     dosTime = dosTime << 5;
-    dosTime = dosTime | fecha.getUTCSeconds() / 2;
+    dosTime = dosTime | date.getUTCSeconds() / 2;
 
-    dosDate = fecha.getUTCFullYear() - 1980;
+    dosDate = date.getUTCFullYear() - 1980;
     dosDate = dosDate << 4;
-    dosDate = dosDate | (fecha.getUTCMonth() + 1);
+    dosDate = dosDate | (date.getUTCMonth() + 1);
     dosDate = dosDate << 5;
-    dosDate = dosDate | fecha.getUTCDate();
+    dosDate = dosDate | date.getUTCDate();
 
-    if (useUTF8ForFilenombre) {
+    if (useUTF8ForFileName) {
         // set the unicode path extra field. unzip needs at least one extra
         // field to correctly handle unicode path, so using the path is as good
         // as any other information. This could improve the situation with
@@ -583,10 +583,10 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
         unicodePathExtraField =
             // Version
             decToHex(1, 1) +
-            // nombreCRC32
-            decToHex(crc32(encodedFilenombre), 4) +
-            // Unicodenombre
-            utfEncodedFilenombre;
+            // NameCRC32
+            decToHex(crc32(encodedFileName), 4) +
+            // UnicodeName
+            utfEncodedFileName;
 
         extraFields +=
             // Info-ZIP Unicode Path Extra Field
@@ -604,7 +604,7 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
             decToHex(1, 1) +
             // CommentCRC32
             decToHex(crc32(encodedComment), 4) +
-            // Unicodenombre
+            // UnicodeName
             utfEncodedComment;
 
         extraFields +=
@@ -626,7 +626,7 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
     header += compression.magic;
     // last mod file time
     header += decToHex(dosTime, 2);
-    // last mod file fecha
+    // last mod file date
     header += decToHex(dosDate, 2);
     // crc-32
     header += decToHex(dataInfo.crc32, 4);
@@ -634,20 +634,20 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
     header += decToHex(dataInfo.compressedSize, 4);
     // uncompressed size
     header += decToHex(dataInfo.uncompressedSize, 4);
-    // file nombre length
-    header += decToHex(encodedFilenombre.length, 2);
+    // file name length
+    header += decToHex(encodedFileName.length, 2);
     // extra field length
     header += decToHex(extraFields.length, 2);
 
 
-    var fileRecord = signature.LOCAL_FILE_HEADER + header + encodedFilenombre + extraFields;
+    var fileRecord = signature.LOCAL_FILE_HEADER + header + encodedFileName + extraFields;
 
     var dirRecord = signature.CENTRAL_FILE_HEADER +
         // version made by (00: DOS)
         decToHex(versionMadeBy, 2) +
         // file header (common to file and central directory)
         header +
-        // file comentario length
+        // file comment length
         decToHex(encodedComment.length, 2) +
         // disk number start
         "\x00\x00" +
@@ -657,11 +657,11 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
         decToHex(extFileAttr, 4) +
         // relative offset of local header
         decToHex(offset, 4) +
-        // file nombre
-        encodedFilenombre +
+        // file name
+        encodedFileName +
         // extra field
         extraFields +
-        // file comentario
+        // file comment
         encodedComment;
 
     return {
@@ -675,13 +675,13 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
  * @param {Number} entriesCount the number of entries in the zip file.
  * @param {Number} centralDirLength the length (in bytes) of the central dir.
  * @param {Number} localDirLength the length (in bytes) of the local dir.
- * @param {String} comentario the zip file comentario as a binary string.
- * @param {Function} encodeFilenombre the function to encode the comentario.
+ * @param {String} comment the zip file comment as a binary string.
+ * @param {Function} encodeFileName the function to encode the comment.
  * @return {String} the EOCD record.
  */
-var generateCentralDirectoryEnd = function (entriesCount, centralDirLength, localDirLength, comentario, encodeFilenombre) {
+var generateCentralDirectoryEnd = function (entriesCount, centralDirLength, localDirLength, comment, encodeFileName) {
     var dirEnd = "";
-    var encodedComment = utils.transformTo("string", encodeFilenombre(comentario));
+    var encodedComment = utils.transformTo("string", encodeFileName(comment));
 
     // end of central dir signature
     dirEnd = signature.CENTRAL_DIRECTORY_END +
@@ -697,9 +697,9 @@ var generateCentralDirectoryEnd = function (entriesCount, centralDirLength, loca
         decToHex(centralDirLength, 4) +
         // offset of start of central directory with respect to the starting disk number
         decToHex(localDirLength, 4) +
-        // .ZIP file comentario length
+        // .ZIP file comment length
         decToHex(encodedComment.length, 2) +
-        // .ZIP file comentario
+        // .ZIP file comment
         encodedComment;
 
     return dirEnd;
@@ -729,20 +729,20 @@ var generateDataDescriptors = function (streamInfo) {
  * A worker to concatenate other workers to create a zip file.
  * @param {Boolean} streamFiles `true` to stream the content of the files,
  * `false` to accumulate it.
- * @param {String} comentario the comentario to use.
+ * @param {String} comment the comment to use.
  * @param {String} platform the platform to use, "UNIX" or "DOS".
- * @param {Function} encodeFilenombre the function to encode file nombres and comentarios.
+ * @param {Function} encodeFileName the function to encode file names and comments.
  */
-function ZipFileWorker(streamFiles, comentario, platform, encodeFilenombre) {
+function ZipFileWorker(streamFiles, comment, platform, encodeFileName) {
     GenericWorker.call(this, "ZipFileWorker");
     // The number of bytes written so far. This doesn't count accumulated chunks.
     this.bytesWritten = 0;
-    // The comentario of the zip file
-    this.zipComment = comentario;
+    // The comment of the zip file
+    this.zipComment = comment;
     // The platform "generating" the zip file.
     this.zipPlatform = platform;
-    // the function to encode file nombres and comentarios.
-    this.encodeFilenombre = encodeFilenombre;
+    // the function to encode file names and comments.
+    this.encodeFileName = encodeFileName;
     // Should we stream the content of the files ?
     this.streamFiles = streamFiles;
     // If `streamFiles` is false, we will need to accumulate the content of the
@@ -758,7 +758,7 @@ function ZipFileWorker(streamFiles, comentario, platform, encodeFilenombre) {
     this.currentSourceOffset = 0;
     // The total number of entries in this zip file.
     this.entriesCount = 0;
-    // the nombre of the file currently being added, null when handling the end of the zip file.
+    // the name of the file currently being added, null when handling the end of the zip file.
     // Used for the emitted metadata.
     this.currentFile = null;
 
@@ -798,13 +798,13 @@ ZipFileWorker.prototype.push = function (chunk) {
  */
 ZipFileWorker.prototype.openedSource = function (streamInfo) {
     this.currentSourceOffset = this.bytesWritten;
-    this.currentFile = streamInfo['file'].nombre;
+    this.currentFile = streamInfo['file'].name;
 
     var streamedContent = this.streamFiles && !streamInfo['file'].dir;
 
     // don't stream folders (because they don't have any content)
     if(streamedContent) {
-        var record = generateZipParts(streamInfo, streamedContent, false, this.currentSourceOffset, this.zipPlatform, this.encodeFilenombre);
+        var record = generateZipParts(streamInfo, streamedContent, false, this.currentSourceOffset, this.zipPlatform, this.encodeFileName);
         this.push({
             data : record.fileRecord,
             meta : {percent:0}
@@ -822,7 +822,7 @@ ZipFileWorker.prototype.openedSource = function (streamInfo) {
 ZipFileWorker.prototype.closedSource = function (streamInfo) {
     this.accumulate = false;
     var streamedContent = this.streamFiles && !streamInfo['file'].dir;
-    var record = generateZipParts(streamInfo, streamedContent, true, this.currentSourceOffset, this.zipPlatform, this.encodeFilenombre);
+    var record = generateZipParts(streamInfo, streamedContent, true, this.currentSourceOffset, this.zipPlatform, this.encodeFileName);
 
     this.dirRecords.push(record.dirRecord);
     if(streamedContent) {
@@ -859,7 +859,7 @@ ZipFileWorker.prototype.flush = function () {
     }
     var centralDirLength = this.bytesWritten - localDirLength;
 
-    var dirEnd = generateCentralDirectoryEnd(this.dirRecords.length, centralDirLength, localDirLength, this.zipComment, this.encodeFilenombre);
+    var dirEnd = generateCentralDirectoryEnd(this.dirRecords.length, centralDirLength, localDirLength, this.zipComment, this.encodeFileName);
 
     this.push({
         data : dirEnd,
@@ -967,10 +967,10 @@ var ZipFileWorker = require('./ZipFileWorker');
  */
 var getCompression = function (fileCompression, zipCompression) {
 
-    var compressionnombre = fileCompression || zipCompression;
-    var compression = compressions[compressionnombre];
+    var compressionName = fileCompression || zipCompression;
+    var compression = compressions[compressionName];
     if (!compression) {
-        throw new Error(compressionnombre + " is not a valid compression method !");
+        throw new Error(compressionName + " is not a valid compression method !");
     }
     return compression;
 };
@@ -979,11 +979,11 @@ var getCompression = function (fileCompression, zipCompression) {
  * Create a worker to generate a zip file.
  * @param {JSZip} zip the JSZip instance at the right root level.
  * @param {Object} options to generate the zip file.
- * @param {String} comentario the comentario to use.
+ * @param {String} comment the comment to use.
  */
-exports.generateWorker = function (zip, options, comentario) {
+exports.generateWorker = function (zip, options, comment) {
 
-    var zipFileWorker = new ZipFileWorker(options.streamFiles, comentario, options.platform, options.encodeFilenombre);
+    var zipFileWorker = new ZipFileWorker(options.streamFiles, comment, options.platform, options.encodeFileName);
     var entriesCount = 0;
     try {
 
@@ -991,14 +991,14 @@ exports.generateWorker = function (zip, options, comentario) {
             entriesCount++;
             var compression = getCompression(file.options.compression, options.compression);
             var compressionOptions = file.options.compressionOptions || options.compressionOptions || {};
-            var dir = file.dir, fecha = file.fecha;
+            var dir = file.dir, date = file.date;
 
             file._compressWorker(compression, compressionOptions)
             .withStreamInfo("file", {
-                nombre : relativePath,
+                name : relativePath,
                 dir : dir,
-                fecha : fecha,
-                comentario : file.comentario || "",
+                date : date,
+                comment : file.comment || "",
                 unixPermissions : file.unixPermissions,
                 dosPermissions : file.dosPermissions
             })
@@ -1036,7 +1036,7 @@ function JSZip() {
     // }
     this.files = {};
 
-    this.comentario = null;
+    this.comment = null;
 
     // Where we are in the hierarchy
     this.root = "";
@@ -1105,7 +1105,7 @@ module.exports = function(data, options) {
         checkCRC32: false,
         optimizedBinaryString: false,
         createFolders: false,
-        decodeFilenombre: utf8.utf8decode
+        decodeFileName: utf8.utf8decode
     });
 
     if (nodejsUtils.isNode && nodejsUtils.isStream(data)) {
@@ -1131,19 +1131,19 @@ module.exports = function(data, options) {
         var files = zipEntries.files;
         for (var i = 0; i < files.length; i++) {
             var input = files[i];
-            zip.file(input.filenombreStr, input.decompressed, {
+            zip.file(input.fileNameStr, input.decompressed, {
                 binary: true,
                 optimizedBinaryString: true,
-                fecha: input.fecha,
+                date: input.date,
                 dir: input.dir,
-                comentario : input.fileCommentStr.length ? input.fileCommentStr : null,
+                comment : input.fileCommentStr.length ? input.fileCommentStr : null,
                 unixPermissions : input.unixPermissions,
                 dosPermissions : input.dosPermissions,
                 createFolders: options.createFolders
             });
         }
         if (zipEntries.zipComment.length) {
-            zip.comentario = zipEntries.zipComment;
+            zip.comment = zipEntries.zipComment;
         }
 
         return zip;
@@ -1159,11 +1159,11 @@ var GenericWorker = require('../stream/GenericWorker');
 /**
  * A worker that use a nodejs stream as source.
  * @constructor
- * @param {String} filenombre the nombre of the file entry for this stream.
+ * @param {String} filename the name of the file entry for this stream.
  * @param {Readable} stream the nodejs stream.
  */
-function NodejsStreamInputAdapter(filenombre, stream) {
-    GenericWorker.call(this, "Nodejs stream input adapter for " + filenombre);
+function NodejsStreamInputAdapter(filename, stream) {
+    GenericWorker.call(this, "Nodejs stream input adapter for " + filename);
     this._upstreamEnded = false;
     this._bindStream(stream);
 }
@@ -1240,9 +1240,9 @@ utils.inherits(NodejsStreamOutputAdapter, Readable);
 * @constructor
 * @param {StreamHelper} helper the helper wrapping the worker
 * @param {Object} options the nodejs stream options
-* @param {Function} upfechaCb the upfecha callback.
+* @param {Function} updateCb the update callback.
 */
-function NodejsStreamOutputAdapter(helper, options, upfechaCb) {
+function NodejsStreamOutputAdapter(helper, options, updateCb) {
     Readable.call(this, options);
     this._helper = helper;
 
@@ -1251,8 +1251,8 @@ function NodejsStreamOutputAdapter(helper, options, upfechaCb) {
         if (!self.push(data)) {
             self._helper.pause();
         }
-        if(upfechaCb) {
-            upfechaCb(meta);
+        if(updateCb) {
+            updateCb(meta);
         }
     })
     .on("error", function(e) {
@@ -1346,12 +1346,12 @@ var NodejsStreamInputAdapter = require("./nodejs/NodejsStreamInputAdapter");
 /**
  * Add a file in the current folder.
  * @private
- * @param {string} nombre the nombre of the file
+ * @param {string} name the name of the file
  * @param {String|ArrayBuffer|Uint8Array|Buffer} data the data of the file
  * @param {Object} originalOptions the options of the file
  * @return {Object} the new file.
  */
-var fileAdd = function(nombre, data, originalOptions) {
+var fileAdd = function(name, data, originalOptions) {
     // be sure sub folders exist
     var dataType = utils.getTypeOf(data),
         parent;
@@ -1362,7 +1362,7 @@ var fileAdd = function(nombre, data, originalOptions) {
      */
 
     var o = utils.extend(originalOptions || {}, defaults);
-    o.fecha = o.fecha || new Date();
+    o.date = o.date || new Date();
     if (o.compression !== null) {
         o.compression = o.compression.toUpperCase();
     }
@@ -1381,9 +1381,9 @@ var fileAdd = function(nombre, data, originalOptions) {
     }
 
     if (o.dir) {
-        nombre = forceTrailingSlash(nombre);
+        name = forceTrailingSlash(name);
     }
-    if (o.createFolders && (parent = parentFolder(nombre))) {
+    if (o.createFolders && (parent = parentFolder(name))) {
         folderAdd.call(this, parent, true);
     }
 
@@ -1411,17 +1411,17 @@ var fileAdd = function(nombre, data, originalOptions) {
     if (data instanceof CompressedObject || data instanceof GenericWorker) {
         zipObjectContent = data;
     } else if (nodejsUtils.isNode && nodejsUtils.isStream(data)) {
-        zipObjectContent = new NodejsStreamInputAdapter(nombre, data);
+        zipObjectContent = new NodejsStreamInputAdapter(name, data);
     } else {
-        zipObjectContent = utils.prepareContent(nombre, data, o.binary, o.optimizedBinaryString, o.base64);
+        zipObjectContent = utils.prepareContent(name, data, o.binary, o.optimizedBinaryString, o.base64);
     }
 
-    var object = new ZipObject(nombre, zipObjectContent, o);
-    this.files[nombre] = object;
+    var object = new ZipObject(name, zipObjectContent, o);
+    this.files[name] = object;
     /*
     TODO: we can't throw an exception because we have async promises
     (we can have a promise of a Date() for example) but returning a
-    promise is useless because file(nombre, data) returns the JSZip
+    promise is useless because file(name, data) returns the JSZip
     object for chaining. Should we break that to allow the user
     to catch the error ?
 
@@ -1453,7 +1453,7 @@ var parentFolder = function (path) {
  * @return {String} the path with a trailing slash.
  */
 var forceTrailingSlash = function(path) {
-    // Check the nombre ends with a /
+    // Check the name ends with a /
     if (path.slice(-1) !== "/") {
         path += "/"; // IE doesn't like substr(-1)
     }
@@ -1463,24 +1463,24 @@ var forceTrailingSlash = function(path) {
 /**
  * Add a (sub) folder in the current folder.
  * @private
- * @param {string} nombre the folder's nombre
+ * @param {string} name the folder's name
  * @param {boolean=} [createFolders] If true, automatically create sub
  *  folders. Defaults to false.
  * @return {Object} the new folder.
  */
-var folderAdd = function(nombre, createFolders) {
+var folderAdd = function(name, createFolders) {
     createFolders = (typeof createFolders !== 'undefined') ? createFolders : defaults.createFolders;
 
-    nombre = forceTrailingSlash(nombre);
+    name = forceTrailingSlash(name);
 
     // Does this folder already exist?
-    if (!this.files[nombre]) {
-        fileAdd.call(this, nombre, null, {
+    if (!this.files[name]) {
+        fileAdd.call(this, name, null, {
             dir: true,
             createFolders: createFolders
         });
     }
-    return this.files[nombre];
+    return this.files[name];
 };
 
 /**
@@ -1510,14 +1510,14 @@ var out = {
      * It takes 2 arguments : the relative path and the file.
      */
     forEach: function(cb) {
-        var filenombre, relativePath, file;
-        for (filenombre in this.files) {
-            if (!this.files.hasOwnProperty(filenombre)) {
+        var filename, relativePath, file;
+        for (filename in this.files) {
+            if (!this.files.hasOwnProperty(filename)) {
                 continue;
             }
-            file = this.files[filenombre];
-            relativePath = filenombre.slice(this.root.length, filenombre.length);
-            if (relativePath && filenombre.slice(0, this.root.length) === this.root) { // the file is in the current root
+            file = this.files[filename];
+            relativePath = filename.slice(this.root.length, filename.length);
+            if (relativePath && filename.slice(0, this.root.length) === this.root) { // the file is in the current root
                 cb(relativePath, file); // TODO reverse the parameters ? need to be clean AND consistent with the filter search fn...
             }
         }
@@ -1543,23 +1543,23 @@ var out = {
 
     /**
      * Add a file to the zip file, or search a file.
-     * @param   {string|RegExp} nombre The nombre of the file to add (if data is defined),
-     * the nombre of the file to find (if no data) or a regex to match files.
+     * @param   {string|RegExp} name The name of the file to add (if data is defined),
+     * the name of the file to find (if no data) or a regex to match files.
      * @param   {String|ArrayBuffer|Uint8Array|Buffer} data  The file data, either raw or base64 encoded
      * @param   {Object} o     File options
      * @return  {JSZip|Object|Array} this JSZip object (when adding a file),
      * a file (when searching by string) or an array of files (when searching by regex).
      */
-    file: function(nombre, data, o) {
+    file: function(name, data, o) {
         if (arguments.length === 1) {
-            if (isRegExp(nombre)) {
-                var regexp = nombre;
+            if (isRegExp(name)) {
+                var regexp = name;
                 return this.filter(function(relativePath, file) {
                     return !file.dir && regexp.test(relativePath);
                 });
             }
             else { // text
-                var obj = this.files[this.root + nombre];
+                var obj = this.files[this.root + name];
                 if (obj && !obj.dir) {
                     return obj;
                 } else {
@@ -1568,15 +1568,15 @@ var out = {
             }
         }
         else { // more than one argument : we have data !
-            nombre = this.root + nombre;
-            fileAdd.call(this, nombre, data, o);
+            name = this.root + name;
+            fileAdd.call(this, name, data, o);
         }
         return this;
     },
 
     /**
      * Add a directory to the zip file, or search.
-     * @param   {String|RegExp} arg The nombre of the directory to add, or a regex to search folders.
+     * @param   {String|RegExp} arg The name of the directory to add, or a regex to search folders.
      * @return  {JSZip} an object with the new directory as the root, or an array containing matching folders.
      */
     folder: function(arg) {
@@ -1590,42 +1590,42 @@ var out = {
             });
         }
 
-        // else, nombre is a new folder
-        var nombre = this.root + arg;
-        var newFolder = folderAdd.call(this, nombre);
+        // else, name is a new folder
+        var name = this.root + arg;
+        var newFolder = folderAdd.call(this, name);
 
         // Allow chaining by returning a new object with this folder as the root
         var ret = this.clone();
-        ret.root = newFolder.nombre;
+        ret.root = newFolder.name;
         return ret;
     },
 
     /**
      * Delete a file, or a directory and all sub-files, from the zip
-     * @param {string} nombre the nombre of the file to delete
+     * @param {string} name the name of the file to delete
      * @return {JSZip} this JSZip object
      */
-    remove: function(nombre) {
-        nombre = this.root + nombre;
-        var file = this.files[nombre];
+    remove: function(name) {
+        name = this.root + name;
+        var file = this.files[name];
         if (!file) {
             // Look for any folders
-            if (nombre.slice(-1) !== "/") {
-                nombre += "/";
+            if (name.slice(-1) !== "/") {
+                name += "/";
             }
-            file = this.files[nombre];
+            file = this.files[name];
         }
 
         if (file && !file.dir) {
             // file
-            delete this.files[nombre];
+            delete this.files[name];
         } else {
             // maybe a folder, delete recursively
             var kids = this.filter(function(relativePath, file) {
-                return file.nombre.slice(0, nombre.length) === nombre;
+                return file.name.slice(0, name.length) === name;
             });
             for (var i = 0; i < kids.length; i++) {
-                delete this.files[kids[i].nombre];
+                delete this.files[kids[i].name];
             }
         }
 
@@ -1659,9 +1659,9 @@ var out = {
               compressionOptions : null,
               type: "",
               platform: "DOS",
-              comentario: null,
+              comment: null,
               mimeType: 'application/zip',
-              encodeFilenombre: utf8.utf8encode
+              encodeFileName: utf8.utf8encode
           });
 
           opts.type = opts.type.toLowerCase();
@@ -1691,8 +1691,8 @@ var out = {
               opts.platform = "DOS";
           }
 
-          var comentario = opts.comentario || this.comentario || "";
-          worker = generate.generateWorker(this, opts, comentario);
+          var comment = opts.comment || this.comment || "";
+          worker = generate.generateWorker(this, opts, comment);
       } catch (e) {
         worker = new GenericWorker("error");
         worker.error(e);
@@ -1703,19 +1703,19 @@ var out = {
      * Generate the complete zip file asynchronously.
      * @see generateInternalStream
      */
-    generateAsync: function(options, onUpfecha) {
-        return this.generateInternalStream(options).accumulate(onUpfecha);
+    generateAsync: function(options, onUpdate) {
+        return this.generateInternalStream(options).accumulate(onUpdate);
     },
     /**
      * Generate the complete zip file asynchronously.
      * @see generateInternalStream
      */
-    generateNodeStream: function(options, onUpfecha) {
+    generateNodeStream: function(options, onUpdate) {
         options = options || {};
         if (!options.type) {
             options.type = "nodebuffer";
         }
-        return this.generateInternalStream(options).toNodejsStream(onUpfecha);
+        return this.generateInternalStream(options).toNodejsStream(onUpdate);
     }
 };
 module.exports = out;
@@ -1892,8 +1892,8 @@ DataReader.prototype = {
         // see implementations
     },
     /**
-     * Get the next fecha.
-     * @return {Date} the fecha.
+     * Get the next date.
+     * @return {Date} the date.
      */
     readDate: function() {
         var dostime = this.readInt(4);
@@ -2095,12 +2095,12 @@ var GenericWorker = require('./GenericWorker');
 /**
  * A worker which calculate the total length of the data flowing through.
  * @constructor
- * @param {String} propnombre the nombre used to expose the length
+ * @param {String} propName the name used to expose the length
  */
-function DataLengthProbe(propnombre) {
-    GenericWorker.call(this, "DataLengthProbe for " + propnombre);
-    this.propnombre = propnombre;
-    this.withStreamInfo(propnombre, 0);
+function DataLengthProbe(propName) {
+    GenericWorker.call(this, "DataLengthProbe for " + propName);
+    this.propName = propName;
+    this.withStreamInfo(propName, 0);
 }
 utils.inherits(DataLengthProbe, GenericWorker);
 
@@ -2109,8 +2109,8 @@ utils.inherits(DataLengthProbe, GenericWorker);
  */
 DataLengthProbe.prototype.processChunk = function (chunk) {
     if(chunk) {
-        var length = this.streamInfo[this.propnombre] || 0;
-        this.streamInfo[this.propnombre] = length + chunk.data.length;
+        var length = this.streamInfo[this.propName] || 0;
+        this.streamInfo[this.propName] = length + chunk.data.length;
     }
     GenericWorker.prototype.processChunk.call(this, chunk);
 };
@@ -2250,11 +2250,11 @@ module.exports = DataWorker;
  * details. The latter is the real data (String, Uint8Array, etc).
  *
  * @constructor
- * @param {String} nombre the nombre of the stream (mainly used for debugging purposes)
+ * @param {String} name the name of the stream (mainly used for debugging purposes)
  */
-function GenericWorker(nombre) {
-    // the nombre of the worker
-    this.nombre = nombre || "default";
+function GenericWorker(name) {
+    // the name of the worker
+    this.name = name || "default";
     // an object containing metadata about the workers chain
     this.streamInfo = {};
     // an error which happened when the worker was paused
@@ -2265,7 +2265,7 @@ function GenericWorker(nombre) {
     this.isPaused = true;
     // true if the stream is finished (and should not do anything), false otherwise
     this.isFinished = false;
-    // true if the stream is locked to prevent further structure upfechas (pipe), false otherwise
+    // true if the stream is locked to prevent further structure updates (pipe), false otherwise
     this.isLocked = false;
     // the event listeners
     this._listeners = {
@@ -2334,12 +2334,12 @@ GenericWorker.prototype = {
     },
     /**
      * Add a callback on an event.
-     * @param {String} nombre the nombre of the event (data, end, error)
+     * @param {String} name the name of the event (data, end, error)
      * @param {Function} listener the function to call when the event is triggered
      * @return {GenericWorker} the current object for chainability
      */
-    on : function (nombre, listener) {
-        this._listeners[nombre].push(listener);
+    on : function (name, listener) {
+        this._listeners[name].push(listener);
         return this;
     },
     /**
@@ -2351,13 +2351,13 @@ GenericWorker.prototype = {
     },
     /**
      * Trigger an event. This will call registered callback with the provided arg.
-     * @param {String} nombre the nombre of the event (data, end, error)
+     * @param {String} name the name of the event (data, end, error)
      * @param {Object} arg the argument to call the callback with.
      */
-    emit : function (nombre, arg) {
-        if (this._listeners[nombre]) {
-            for(var i = 0; i < this._listeners[nombre].length; i++) {
-                this._listeners[nombre][i].call(this, arg);
+    emit : function (name, arg) {
+        if (this._listeners[name]) {
+            for(var i = 0; i < this._listeners[name].length; i++) {
+                this._listeners[name][i].call(this, arg);
             }
         }
     },
@@ -2471,7 +2471,7 @@ GenericWorker.prototype = {
     },
 
     /**
-     * Lock the stream to prevent further upfechas on the workers chain.
+     * Lock the stream to prevent further updates on the workers chain.
      * After calling this method, all calls to pipe will fail.
      */
     lock: function () {
@@ -2489,7 +2489,7 @@ GenericWorker.prototype = {
      * Pretty print the workers chain.
      */
     toString : function () {
-        var me = "Worker " + this.nombre;
+        var me = "Worker " + this.name;
         if (this.previous) {
             return this.previous + " -> " + me;
         } else {
@@ -2521,7 +2521,7 @@ if (support.nodestream) {
  * Apply the final transformation of the data. If the user wants a Blob for
  * example, it's easier to work with an U8intArray and finally do the
  * ArrayBuffer/Blob conversion.
- * @param {String} type the nombre of the final type
+ * @param {String} type the name of the final type
  * @param {String|Uint8Array|Buffer} content the content to transform
  * @param {String} mimeType the mime type of the content, if applicable.
  * @return {String|Uint8Array|ArrayBuffer|Buffer|Blob} the content in the right format.
@@ -2572,12 +2572,12 @@ function concat (type, dataArray) {
  * Listen a StreamHelper, accumulate its content and concatenate it into a
  * complete block.
  * @param {StreamHelper} helper the helper to use.
- * @param {Function} upfechaCallback a callback called on each upfecha. Called
+ * @param {Function} updateCallback a callback called on each update. Called
  * with one arg :
- * - the metadata linked to the upfecha received.
+ * - the metadata linked to the update received.
  * @return Promise the promise for the accumulation.
  */
-function accumulate(helper, upfechaCallback) {
+function accumulate(helper, updateCallback) {
     return new external.Promise(function (resolve, reject){
         var dataArray = [];
         var chunkType = helper._internalType,
@@ -2586,8 +2586,8 @@ function accumulate(helper, upfechaCallback) {
         helper
         .on('data', function (data, meta) {
             dataArray.push(data);
-            if(upfechaCallback) {
-                upfechaCallback(meta);
+            if(updateCallback) {
+                updateCallback(meta);
             }
         })
         .on('error', function(err) {
@@ -2636,7 +2636,7 @@ function StreamHelper(worker, outputType, mimeType) {
         utils.checkSupport(internalType);
         this._worker = worker.pipe(new ConvertWorker(internalType));
         // the last workers can be rewired without issues but we need to
-        // prevent any upfechas on previous workers.
+        // prevent any updates on previous workers.
         worker.lock();
     } catch(e) {
         this._worker = new GenericWorker("error");
@@ -2648,15 +2648,15 @@ StreamHelper.prototype = {
     /**
      * Listen a StreamHelper, accumulate its content and concatenate it into a
      * complete block.
-     * @param {Function} upfechaCb the upfecha callback.
+     * @param {Function} updateCb the update callback.
      * @return Promise the promise for the accumulation.
      */
-    accumulate : function (upfechaCb) {
-        return accumulate(this, upfechaCb);
+    accumulate : function (updateCb) {
+        return accumulate(this, updateCb);
     },
     /**
      * Add a listener on an event triggered on a stream.
-     * @param {String} evt the nombre of the event
+     * @param {String} evt the name of the event
      * @param {Function} fn the listener
      * @return {StreamHelper} the current helper.
      */
@@ -2692,22 +2692,22 @@ StreamHelper.prototype = {
     },
     /**
      * Return a nodejs stream for this helper.
-     * @param {Function} upfechaCb the upfecha callback.
+     * @param {Function} updateCb the update callback.
      * @return {NodejsStreamOutputAdapter} the nodejs stream.
      */
-    toNodejsStream : function (upfechaCb) {
+    toNodejsStream : function (updateCb) {
         utils.checkSupport("nodestream");
         if (this._outputType !== "nodebuffer") {
             // an object stream containing blob/arraybuffer/uint8array/string
             // is strange and I don't know if it would be useful.
-            // I you find this comentario and have a good usecase, please open a
+            // I you find this comment and have a good usecase, please open a
             // bug report !
             throw new Error(this._outputType + " is not supported by this method");
         }
 
         return new NodejsStreamOutputAdapter(this, {
             objectMode : this._outputType !== "nodebuffer"
-        }, upfechaCb);
+        }, updateCb);
     }
 };
 
@@ -3111,7 +3111,7 @@ function identity(input) {
  * Fill in an array with a string.
  * @param {String} str the string to use.
  * @param {Array|ArrayBuffer|Uint8Array|Buffer} array the array to fill in (will be mutated).
- * @return {Array|ArrayBuffer|Uint8Array|Buffer} the upfechad array.
+ * @return {Array|ArrayBuffer|Uint8Array|Buffer} the updated array.
  */
 function stringToArrayLike(str, array) {
     for (var i = 0; i < str.length; ++i) {
@@ -3237,7 +3237,7 @@ exports.applyFromCharCode = arrayLikeToString;
  * Copy the data from an array-like to an other array-like.
  * @param {Array|ArrayBuffer|Uint8Array|Buffer} arrayFrom the origin array.
  * @param {Array|ArrayBuffer|Uint8Array|Buffer} arrayTo the destination array which will be mutated.
- * @return {Array|ArrayBuffer|Uint8Array|Buffer} the upfechad destination array.
+ * @return {Array|ArrayBuffer|Uint8Array|Buffer} the updated destination array.
  */
 function arrayLikeToArrayLike(arrayFrom, arrayTo) {
     for (var i = 0; i < arrayFrom.length; i++) {
@@ -3448,14 +3448,14 @@ exports.extend = function() {
 
 /**
  * Transform arbitrary content into a Promise.
- * @param {String} nombre a nombre for the content being processed.
+ * @param {String} name a name for the content being processed.
  * @param {Object} inputData the content to process.
  * @param {Boolean} isBinary true if the content is not an unicode string
  * @param {Boolean} isOptimizedBinaryString true if the string content only has one byte per character.
  * @param {Boolean} isBase64 true if the string content is encoded with base64.
  * @return {Promise} a promise in a format usable by JSZip.
  */
-exports.prepareContent = function(nombre, inputData, isBinary, isOptimizedBinaryString, isBase64) {
+exports.prepareContent = function(name, inputData, isBinary, isOptimizedBinaryString, isBase64) {
 
     // if inputData is already a promise, this flatten it.
     var promise = external.Promise.resolve(inputData).then(function(data) {
@@ -3485,7 +3485,7 @@ exports.prepareContent = function(nombre, inputData, isBinary, isOptimizedBinary
 
         if (!dataType) {
             return external.Promise.reject(
-                new Error("Can't read the data of '" + nombre + "'. Is it " +
+                new Error("Can't read the data of '" + name + "'. Is it " +
                           "in a supported JavaScript type (String, Blob, ArrayBuffer, etc) ?")
             );
         }
@@ -3574,7 +3574,7 @@ ZipEntries.prototype = {
         // To get consistent behavior with the generation part, we will assume that
         // this is utf8 encoded unless specified otherwise.
         var decodeContent = utils.transformTo(decodeParamType, zipComment);
-        this.zipComment = this.loadOptions.decodeFilenombre(decodeContent);
+        this.zipComment = this.loadOptions.decodeFileName(decodeContent);
     },
     /**
      * Read the end of the Zip 64 central directory.
@@ -3748,7 +3748,7 @@ ZipEntries.prototype = {
                 // The offsets seem wrong, but we have something at the specified offset.
                 // So… we keep it.
             } else {
-                // the offset is wrong, upfecha the "zero" of the reader
+                // the offset is wrong, update the "zero" of the reader
                 // this happens if data has been prepended (crx files for example)
                 this.reader.zero = extraBytes;
             }
@@ -3824,8 +3824,8 @@ ZipEntry.prototype = {
         return (this.bitFlag & 0x0001) === 0x0001;
     },
     /**
-     * say if the file has utf-8 filenombre/comentario.
-     * @return {boolean} true if the filenombre/comentario is in utf-8, false otherwise.
+     * say if the file has utf-8 filename/comment.
+     * @return {boolean} true if the filename/comment is in utf-8, false otherwise.
      */
     useUTF8: function() {
         // bit 11 is set
@@ -3844,21 +3844,21 @@ ZipEntry.prototype = {
         // The less data we get here, the more reliable this should be.
         // Let's skip the whole header and dash to the data !
         reader.skip(22);
-        // in some zip created on windows, the filenombre stored in the central dir contains \ instead of /.
-        // Strangely, the filenombre here is OK.
+        // in some zip created on windows, the filename stored in the central dir contains \ instead of /.
+        // Strangely, the filename here is OK.
         // I would love to treat these zip files as corrupted (see http://www.info-zip.org/FAQ.html#backslashes
         // or APPNOTE#4.4.17.1, "All slashes MUST be forward slashes '/'") but there are a lot of bad zip generators...
-        // Search "unzip mismatching "local" filenombre continuing with "central" filenombre version" on
+        // Search "unzip mismatching "local" filename continuing with "central" filename version" on
         // the internet.
         //
         // I think I see the logic here : the central directory is used to display
         // content and the local directory is used to extract the files. Mixing / and \
-        // may be used to display \ to windows usuarios and use / when extracting the files.
+        // may be used to display \ to windows users and use / when extracting the files.
         // Unfortunately, this lead also to some issues : http://seclists.org/fulldisclosure/2009/Sep/394
-        this.filenombreLength = reader.readInt(2);
+        this.fileNameLength = reader.readInt(2);
         localExtraFieldsLength = reader.readInt(2); // can't be sure this will be the same as the central dir
-        // the filenombre is stored as binary data, the handleUTF8 method will take care of the encoding.
-        this.filenombre = reader.readData(this.filenombreLength);
+        // the fileName is stored as binary data, the handleUTF8 method will take care of the encoding.
+        this.fileName = reader.readData(this.fileNameLength);
         reader.skip(localExtraFieldsLength);
 
         if (this.compressedSize === -1 || this.uncompressedSize === -1) {
@@ -3867,7 +3867,7 @@ ZipEntry.prototype = {
 
         compression = findCompression(this.compressionMethod);
         if (compression === null) { // no compression found
-            throw new Error("Corrupted zip : compression " + utils.pretty(this.compressionMethod) + " unknown (inner file : " + utils.transformTo("string", this.filenombre) + ")");
+            throw new Error("Corrupted zip : compression " + utils.pretty(this.compressionMethod) + " unknown (inner file : " + utils.transformTo("string", this.fileName) + ")");
         }
         this.decompressed = new CompressedObject(this.compressedSize, this.uncompressedSize, this.crc32, compression, reader.readData(this.compressedSize));
     },
@@ -3882,11 +3882,11 @@ ZipEntry.prototype = {
         // this.versionNeeded = reader.readInt(2);
         this.bitFlag = reader.readInt(2);
         this.compressionMethod = reader.readString(2);
-        this.fecha = reader.readDate();
+        this.date = reader.readDate();
         this.crc32 = reader.readInt(4);
         this.compressedSize = reader.readInt(4);
         this.uncompressedSize = reader.readInt(4);
-        var filenombreLength = reader.readInt(2);
+        var fileNameLength = reader.readInt(2);
         this.extraFieldsLength = reader.readInt(2);
         this.fileCommentLength = reader.readInt(2);
         this.diskNumberStart = reader.readInt(2);
@@ -3898,8 +3898,8 @@ ZipEntry.prototype = {
             throw new Error("Encrypted zip are not supported");
         }
 
-        // will be read in the local part, see the comentarios there
-        reader.skip(filenombreLength);
+        // will be read in the local part, see the comments there
+        reader.skip(fileNameLength);
         this.readExtraFields(reader);
         this.parseZIP64ExtraField(reader);
         this.fileComment = reader.readData(this.fileCommentLength);
@@ -3928,8 +3928,8 @@ ZipEntry.prototype = {
             // the octal permissions are in (this.unixPermissions & 0x01FF).toString(8);
         }
 
-        // fail safe : if the nombre ends with a / it probably means a folder
-        if (!this.dir && this.filenombreStr.slice(-1) === '/') {
+        // fail safe : if the name ends with a / it probably means a folder
+        if (!this.dir && this.fileNameStr.slice(-1) === '/') {
             this.dir = true;
         }
     },
@@ -3996,25 +3996,25 @@ ZipEntry.prototype = {
     handleUTF8: function() {
         var decodeParamType = support.uint8array ? "uint8array" : "array";
         if (this.useUTF8()) {
-            this.filenombreStr = utf8.utf8decode(this.filenombre);
+            this.fileNameStr = utf8.utf8decode(this.fileName);
             this.fileCommentStr = utf8.utf8decode(this.fileComment);
         } else {
             var upath = this.findExtraFieldUnicodePath();
             if (upath !== null) {
-                this.filenombreStr = upath;
+                this.fileNameStr = upath;
             } else {
                 // ASCII text or unsupported code page
-                var filenombreByteArray =  utils.transformTo(decodeParamType, this.filenombre);
-                this.filenombreStr = this.loadOptions.decodeFilenombre(filenombreByteArray);
+                var fileNameByteArray =  utils.transformTo(decodeParamType, this.fileName);
+                this.fileNameStr = this.loadOptions.decodeFileName(fileNameByteArray);
             }
 
-            var ucomentario = this.findExtraFieldUnicodeComment();
-            if (ucomentario !== null) {
-                this.fileCommentStr = ucomentario;
+            var ucomment = this.findExtraFieldUnicodeComment();
+            if (ucomment !== null) {
+                this.fileCommentStr = ucomment;
             } else {
                 // ASCII text or unsupported code page
-                var comentarioByteArray =  utils.transformTo(decodeParamType, this.fileComment);
-                this.fileCommentStr = this.loadOptions.decodeFilenombre(comentarioByteArray);
+                var commentByteArray =  utils.transformTo(decodeParamType, this.fileComment);
+                this.fileCommentStr = this.loadOptions.decodeFileName(commentByteArray);
             }
         }
     },
@@ -4033,8 +4033,8 @@ ZipEntry.prototype = {
                 return null;
             }
 
-            // the crc of the filenombre changed, this field is out of fecha.
-            if (crc32fn(this.filenombre) !== extraReader.readInt(4)) {
+            // the crc of the filename changed, this field is out of date.
+            if (crc32fn(this.fileName) !== extraReader.readInt(4)) {
                 return null;
             }
 
@@ -4044,25 +4044,25 @@ ZipEntry.prototype = {
     },
 
     /**
-     * Find the unicode comentario declared in the extra field, if any.
-     * @return {String} the unicode comentario, null otherwise.
+     * Find the unicode comment declared in the extra field, if any.
+     * @return {String} the unicode comment, null otherwise.
      */
     findExtraFieldUnicodeComment: function() {
-        var ucomentarioField = this.extraFields[0x6375];
-        if (ucomentarioField) {
-            var extraReader = readerFor(ucomentarioField.value);
+        var ucommentField = this.extraFields[0x6375];
+        if (ucommentField) {
+            var extraReader = readerFor(ucommentField.value);
 
             // wrong version
             if (extraReader.readInt(1) !== 1) {
                 return null;
             }
 
-            // the crc of the comentario changed, this field is out of fecha.
+            // the crc of the comment changed, this field is out of date.
             if (crc32fn(this.fileComment) !== extraReader.readInt(4)) {
                 return null;
             }
 
-            return utf8.utf8decode(extraReader.readData(ucomentarioField.length - 5));
+            return utf8.utf8decode(extraReader.readData(ucommentField.length - 5));
         }
         return null;
     }
@@ -4081,15 +4081,15 @@ var GenericWorker = require('./stream/GenericWorker');
 /**
  * A simple object representing a file in the zip file.
  * @constructor
- * @param {string} nombre the nombre of the file
+ * @param {string} name the name of the file
  * @param {String|ArrayBuffer|Uint8Array|Buffer} data the data
  * @param {Object} options the options of the file
  */
-var ZipObject = function(nombre, data, options) {
-    this.nombre = nombre;
+var ZipObject = function(name, data, options) {
+    this.name = name;
     this.dir = options.dir;
-    this.fecha = options.fecha;
-    this.comentario = options.comentario;
+    this.date = options.date;
+    this.comment = options.comment;
     this.unixPermissions = options.unixPermissions;
     this.dosPermissions = options.dosPermissions;
 
@@ -4140,21 +4140,21 @@ ZipObject.prototype = {
     /**
      * Prepare the content in the asked type.
      * @param {String} type the type of the result.
-     * @param {Function} onUpfecha a function to call on each internal upfecha.
+     * @param {Function} onUpdate a function to call on each internal update.
      * @return Promise the promise of the result.
      */
-    async: function (type, onUpfecha) {
-        return this.internalStream(type).accumulate(onUpfecha);
+    async: function (type, onUpdate) {
+        return this.internalStream(type).accumulate(onUpdate);
     },
 
     /**
      * Prepare the content as a nodejs stream.
      * @param {String} type the type of each chunk.
-     * @param {Function} onUpfecha a function to call on each internal upfecha.
+     * @param {Function} onUpdate a function to call on each internal update.
      * @return Stream the stream.
      */
-    nodeStream: function (type, onUpfecha) {
-        return this.internalStream(type || "nodebuffer").toNodejsStream(onUpfecha);
+    nodeStream: function (type, onUpdate) {
+        return this.internalStream(type || "nodebuffer").toNodejsStream(onUpdate);
     },
 
     /**
@@ -4232,7 +4232,7 @@ var scheduleDrain;
     scheduleDrain = function () {
 
       // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
-      // into the document. Do so, thus queuing up the tarea. Remember to clean up once it's been called.
+      // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
       var scriptEl = global.document.createElement('script');
       scriptEl.onreadystatechange = function () {
         nextTick();
@@ -4252,7 +4252,7 @@ var scheduleDrain;
 
 var draining;
 var queue = [];
-//nombred nextTick for less confusing stack traces
+//named nextTick for less confusing stack traces
 function nextTick() {
   draining = true;
   var i, oldQueue;
@@ -4270,8 +4270,8 @@ function nextTick() {
 }
 
 module.exports = immediate;
-function immediate(tarea) {
-  if (queue.push(tarea) === 1 && !draining) {
+function immediate(task) {
+  if (queue.push(task) === 1 && !draining) {
     scheduleDrain();
   }
 }
@@ -4667,8 +4667,8 @@ var Z_DEFLATED  = 8;
  *   - `time` (Number) - modification time, unix timestamp
  *   - `os` (Number) - operation system code
  *   - `extra` (Array) - array of bytes with extra data (max 65536)
- *   - `nombre` (String) - file nombre (binary string)
- *   - `comentario` (String) - comentario (binary string)
+ *   - `name` (String) - file name (binary string)
+ *   - `comment` (String) - comment (binary string)
  *   - `hcrc` (Boolean) - true if header crc should be added
  *
  * ##### Example:
@@ -5697,7 +5697,7 @@ exports.utf8border = function (buf, max) {
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -5746,7 +5746,7 @@ module.exports = adler32;
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -5820,7 +5820,7 @@ module.exports = {
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -5877,7 +5877,7 @@ module.exports = crc32;
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -5977,7 +5977,7 @@ var PRESET_DICT = 0x20;
 
 var INIT_STATE = 42;
 var EXTRA_STATE = 69;
-var nombre_STATE = 73;
+var NAME_STATE = 73;
 var COMMENT_STATE = 91;
 var HCRC_STATE = 103;
 var BUSY_STATE = 113;
@@ -6056,7 +6056,7 @@ function putShortMSB(s, b) {
 
 
 /* ===========================================================================
- * Read a new buffer from the current input stream, upfecha the adler32
+ * Read a new buffer from the current input stream, update the adler32
  * and total number of bytes read.  All deflate() input goes through
  * this function so some applications may wish to modify it to avoid
  * allocating a large strm->input buffer and copying from it.
@@ -6201,7 +6201,7 @@ function longest_match(s, cur_match) {
 
 /* ===========================================================================
  * Fill the window when the lookahead becomes insufficient.
- * Upfechas strstart and lookahead.
+ * Updates strstart and lookahead.
  *
  * IN assertion: lookahead < MIN_LOOKAHEAD
  * OUT assertions: strstart <= window_size-MIN_LOOKAHEAD
@@ -6297,7 +6297,7 @@ function fill_window(s) {
       /* UPDATE_HASH(s, s->ins_h, s->window[str + 1]); */
       s.ins_h = ((s.ins_h << s.hash_shift) ^ s.window[str + 1]) & s.hash_mask;
 //#if MIN_MATCH != 3
-//        Call upfecha_hash() MIN_MATCH-3 more times
+//        Call update_hash() MIN_MATCH-3 more times
 //#endif
       while (s.insert) {
         /* UPDATE_HASH(s, s->ins_h, s->window[str + MIN_MATCH-1]); */
@@ -6321,7 +6321,7 @@ function fill_window(s) {
   /* If the WIN_INIT bytes after the end of the current data have never been
    * written, then zero those bytes in order to avoid memory check reports of
    * the use of uninitialized (or uninitialised as Julian writes) bytes by
-   * the longest match routines.  Upfecha the high water mark for the next
+   * the longest match routines.  Update the high water mark for the next
    * time through here.  WIN_INIT is set to MAX_MATCH since the longest match
    * routines allow scanning to strstart + MAX_MATCH, ignoring lookahead.
    */
@@ -6959,14 +6959,14 @@ function lm_init(s) {
 
 function DeflateState() {
   this.strm = null;            /* pointer back to this zlib stream */
-  this.status = 0;            /* as the nombre implies */
+  this.status = 0;            /* as the name implies */
   this.pending_buf = null;      /* output still pending */
   this.pending_buf_size = 0;  /* size of pending_buf */
   this.pending_out = 0;       /* next pending byte to output to the stream */
   this.pending = 0;           /* nb of bytes in the pending buffer */
   this.wrap = 0;              /* bit 0 true for zlib, bit 1 true for gzip */
   this.gzhead = null;         /* gzip header information to write */
-  this.gzindex = 0;           /* where in extra, nombre, or comentario */
+  this.gzindex = 0;           /* where in extra, name, or comment */
   this.method = Z_DEFLATED; /* can only be DEFLATED */
   this.last_flush = -1;   /* value of flush param for previous deflate call */
 
@@ -7141,7 +7141,7 @@ function DeflateState() {
   /* High water mark offset in window for initialized bytes -- bytes above
    * this are set to zero in order to avoid memory check warnings when
    * longest match routines access bytes past the input.  This is then
-   * upfechad to the new high water mark.
+   * updated to the new high water mark.
    */
 }
 
@@ -7320,8 +7320,8 @@ function deflate(strm, flush) {
         put_byte(s, (s.gzhead.text ? 1 : 0) +
                     (s.gzhead.hcrc ? 2 : 0) +
                     (!s.gzhead.extra ? 0 : 4) +
-                    (!s.gzhead.nombre ? 0 : 8) +
-                    (!s.gzhead.comentario ? 0 : 16)
+                    (!s.gzhead.name ? 0 : 8) +
+                    (!s.gzhead.comment ? 0 : 16)
                 );
         put_byte(s, s.gzhead.time & 0xff);
         put_byte(s, (s.gzhead.time >> 8) & 0xff);
@@ -7375,7 +7375,7 @@ function deflate(strm, flush) {
 //#ifdef GZIP
   if (s.status === EXTRA_STATE) {
     if (s.gzhead.extra/* != Z_NULL*/) {
-      beg = s.pending;  /* start of bytes to upfecha crc */
+      beg = s.pending;  /* start of bytes to update crc */
 
       while (s.gzindex < (s.gzhead.extra.length & 0xffff)) {
         if (s.pending === s.pending_buf_size) {
@@ -7396,16 +7396,16 @@ function deflate(strm, flush) {
       }
       if (s.gzindex === s.gzhead.extra.length) {
         s.gzindex = 0;
-        s.status = nombre_STATE;
+        s.status = NAME_STATE;
       }
     }
     else {
-      s.status = nombre_STATE;
+      s.status = NAME_STATE;
     }
   }
-  if (s.status === nombre_STATE) {
-    if (s.gzhead.nombre/* != Z_NULL*/) {
-      beg = s.pending;  /* start of bytes to upfecha crc */
+  if (s.status === NAME_STATE) {
+    if (s.gzhead.name/* != Z_NULL*/) {
+      beg = s.pending;  /* start of bytes to update crc */
       //int val;
 
       do {
@@ -7421,8 +7421,8 @@ function deflate(strm, flush) {
           }
         }
         // JS specific: little magic to add zero terminator to end of string
-        if (s.gzindex < s.gzhead.nombre.length) {
-          val = s.gzhead.nombre.charCodeAt(s.gzindex++) & 0xff;
+        if (s.gzindex < s.gzhead.name.length) {
+          val = s.gzhead.name.charCodeAt(s.gzindex++) & 0xff;
         } else {
           val = 0;
         }
@@ -7442,8 +7442,8 @@ function deflate(strm, flush) {
     }
   }
   if (s.status === COMMENT_STATE) {
-    if (s.gzhead.comentario/* != Z_NULL*/) {
-      beg = s.pending;  /* start of bytes to upfecha crc */
+    if (s.gzhead.comment/* != Z_NULL*/) {
+      beg = s.pending;  /* start of bytes to update crc */
       //int val;
 
       do {
@@ -7459,8 +7459,8 @@ function deflate(strm, flush) {
           }
         }
         // JS specific: little magic to add zero terminator to end of string
-        if (s.gzindex < s.gzhead.comentario.length) {
-          val = s.gzhead.comentario.charCodeAt(s.gzindex++) & 0xff;
+        if (s.gzindex < s.gzhead.comment.length) {
+          val = s.gzhead.comment.charCodeAt(s.gzindex++) & 0xff;
         } else {
           val = 0;
         }
@@ -7619,7 +7619,7 @@ function deflateEnd(strm) {
   status = strm.state.status;
   if (status !== INIT_STATE &&
     status !== EXTRA_STATE &&
-    status !== nombre_STATE &&
+    status !== NAME_STATE &&
     status !== COMMENT_STATE &&
     status !== HCRC_STATE &&
     status !== BUSY_STATE &&
@@ -7753,7 +7753,7 @@ exports.deflateTune = deflateTune;
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -7785,13 +7785,13 @@ function GZheader() {
 
   /* space at extra (only when reading header) */
   // this.extra_max  = 0;
-  /* pointer to zero-terminated file nombre or Z_NULL */
-  this.nombre       = '';
-  /* space at nombre (only when reading header) */
-  // this.nombre_max   = 0;
-  /* pointer to zero-terminated comentario or Z_NULL */
-  this.comentario    = '';
-  /* space at comentario (only when reading header) */
+  /* pointer to zero-terminated file name or Z_NULL */
+  this.name       = '';
+  /* space at name (only when reading header) */
+  // this.name_max   = 0;
+  /* pointer to zero-terminated comment or Z_NULL */
+  this.comment    = '';
+  /* space at comment (only when reading header) */
   // this.comm_max   = 0;
   /* true if there was or will be a header crc */
   this.hcrc       = 0;
@@ -7813,7 +7813,7 @@ module.exports = GZheader;
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -8138,7 +8138,7 @@ module.exports = function inflate_fast(strm, start) {
   bits -= len << 3;
   hold &= (1 << bits) - 1;
 
-  /* upfecha state and return */
+  /* update state and return */
   strm.next_in = _in;
   strm.next_out = _out;
   strm.avail_in = (_in < last ? 5 + (last - _in) : 5 - (_in - last));
@@ -8160,7 +8160,7 @@ module.exports = function inflate_fast(strm, start) {
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -8221,8 +8221,8 @@ var    TIME = 3;       /* i: waiting for modification time (gzip) */
 var    OS = 4;         /* i: waiting for extra flags and operating system (gzip) */
 var    EXLEN = 5;      /* i: waiting for extra length (gzip) */
 var    EXTRA = 6;      /* i: waiting for extra bytes (gzip) */
-var    nombre = 7;       /* i: waiting for end of file nombre (gzip) */
-var    COMMENT = 8;    /* i: waiting for end of comentario (gzip) */
+var    NAME = 7;       /* i: waiting for end of file name (gzip) */
+var    COMMENT = 8;    /* i: waiting for end of comment (gzip) */
 var    HCRC = 9;       /* i: waiting for header crc (gzip) */
 var    DICTID = 10;    /* i: waiting for dictionary check value */
 var    DICT = 11;      /* waiting for inflateSetDictionary() call */
@@ -8394,7 +8394,7 @@ function inflateReset2(strm, windowBits) {
     state.window = null;
   }
 
-  /* upfecha state and reset the rest of it */
+  /* update state and reset the rest of it */
   state.wrap = wrap;
   state.wbits = windowBits;
   return inflateReset(strm);
@@ -8474,7 +8474,7 @@ function fixedtables(state) {
 
 
 /*
- Upfecha the window with the last wsize (normally 32K) bytes written before
+ Update the window with the last wsize (normally 32K) bytes written before
  returning.  If window does not exist yet, create it.  This is only called
  when a window is already in use, or when output has been written during this
  inflate call, but the end of the deflate stream has not been reached yet.
@@ -8487,7 +8487,7 @@ function fixedtables(state) {
  output will fall in the output data, making match copies simpler and faster.
  The advantage may be dependent on the size of the processor's data caches.
  */
-function upfechawindow(strm, src, end, copy) {
+function updatewindow(strm, src, end, copy) {
   var dist;
   var state = strm.state;
 
@@ -8803,9 +8803,9 @@ function inflate(strm, flush) {
         if (state.length) { break inf_leave; }
       }
       state.length = 0;
-      state.mode = nombre;
+      state.mode = NAME;
       /* falls through */
-    case nombre:
+    case NAME:
       if (state.flags & 0x0800) {
         if (have === 0) { break inf_leave; }
         copy = 0;
@@ -8814,8 +8814,8 @@ function inflate(strm, flush) {
           len = input[next + copy++];
           /* use constant limit because in js we should not preallocate memory */
           if (state.head && len &&
-              (state.length < 65536 /*state.head.nombre_max*/)) {
-            state.head.nombre += String.fromCharCode(len);
+              (state.length < 65536 /*state.head.name_max*/)) {
+            state.head.name += String.fromCharCode(len);
           }
         } while (len && copy < have);
 
@@ -8827,7 +8827,7 @@ function inflate(strm, flush) {
         if (len) { break inf_leave; }
       }
       else if (state.head) {
-        state.head.nombre = null;
+        state.head.name = null;
       }
       state.length = 0;
       state.mode = COMMENT;
@@ -8841,7 +8841,7 @@ function inflate(strm, flush) {
           /* use constant limit because in js we should not preallocate memory */
           if (state.head && len &&
               (state.length < 65536 /*state.head.comm_max*/)) {
-            state.head.comentario += String.fromCharCode(len);
+            state.head.comment += String.fromCharCode(len);
           }
         } while (len && copy < have);
         if (state.flags & 0x0200) {
@@ -8852,7 +8852,7 @@ function inflate(strm, flush) {
         if (len) { break inf_leave; }
       }
       else if (state.head) {
-        state.head.comentario = null;
+        state.head.comment = null;
       }
       state.mode = HCRC;
       /* falls through */
@@ -9077,7 +9077,7 @@ function inflate(strm, flush) {
       while (state.have < 19) {
         state.lens[order[state.have++]] = 0;
       }
-      // We have separate tables & no pointers. 2 comentarioed lines below not needed.
+      // We have separate tables & no pointers. 2 commented lines below not needed.
       //state.next = state.codes;
       //state.lencode = state.next;
       // Switch to use dynamic table
@@ -9211,13 +9211,13 @@ function inflate(strm, flush) {
       }
 
       /* build code tables -- note: do not change the lenbits or distbits
-         values here (9 and 6) without reading the comentarios in inftrees.h
+         values here (9 and 6) without reading the comments in inftrees.h
          concerning the ENOUGH constants, which depend on those values */
       state.lenbits = 9;
 
       opts = { bits: state.lenbits };
       ret = inflate_table(LENS, state.lens, 0, state.nlen, state.lencode, 0, state.work, opts);
-      // We have separate tables & no pointers. 2 comentarioed lines below not needed.
+      // We have separate tables & no pointers. 2 commented lines below not needed.
       // state.next_index = opts.table_index;
       state.lenbits = opts.bits;
       // state.lencode = state.next;
@@ -9234,7 +9234,7 @@ function inflate(strm, flush) {
       state.distcode = state.distdyn;
       opts = { bits: state.distbits };
       ret = inflate_table(DISTS, state.lens, state.nlen, state.ndist, state.distcode, 0, state.work, opts);
-      // We have separate tables & no pointers. 2 comentarioed lines below not needed.
+      // We have separate tables & no pointers. 2 commented lines below not needed.
       // state.next_index = opts.table_index;
       state.distbits = opts.bits;
       // state.distcode = state.next;
@@ -9583,7 +9583,7 @@ function inflate(strm, flush) {
   /*
      Return from inflate(), updating the total counts and the check value.
      If there was no progress during the inflate() call, return a buffer
-     error.  Call upfechawindow() to create and/or upfecha the window state.
+     error.  Call updatewindow() to create and/or update the window state.
      Note: a memory error from inflate() is non-recoverable.
    */
 
@@ -9598,7 +9598,7 @@ function inflate(strm, flush) {
 
   if (state.wsize || (_out !== strm.avail_out && state.mode < BAD &&
                       (state.mode < CHECK || flush !== Z_FINISH))) {
-    if (upfechawindow(strm, strm.output, strm.next_out, _out - strm.avail_out)) {
+    if (updatewindow(strm, strm.output, strm.next_out, _out - strm.avail_out)) {
       state.mode = MEM;
       return Z_MEM_ERROR;
     }
@@ -9673,9 +9673,9 @@ function inflateSetDictionary(strm, dictionary) {
       return Z_DATA_ERROR;
     }
   }
-  /* copy dictionary to window using upfechawindow(), which will amend the
+  /* copy dictionary to window using updatewindow(), which will amend the
    existing dictionary if appropriate */
-  ret = upfechawindow(strm, dictionary, dictLength, dictLength);
+  ret = updatewindow(strm, dictionary, dictLength, dictLength);
   if (ret) {
     state.mode = MEM;
     return Z_MEM_ERROR;
@@ -9718,7 +9718,7 @@ exports.inflateUndermine = inflateUndermine;
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -9908,7 +9908,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
    used keeps track of how many table entries have been allocated from the
    provided *table space.  It is checked for LENS and DIST tables against
    the constants ENOUGH_LENS and ENOUGH_DISTS to guard against changes in
-   the initial root table size constants.  See the comentarios in inftrees.h
+   the initial root table size constants.  See the comments in inftrees.h
    for more information.
 
    sym increments through all symbols, and the loop terminates when
@@ -9992,7 +9992,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
       huff = 0;
     }
 
-    /* go to next symbol, upfecha count, len */
+    /* go to next symbol, update count, len */
     sym++;
     if (--count[len] === 0) {
       if (len === max) { break; }
@@ -10063,7 +10063,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -10097,7 +10097,7 @@ module.exports = {
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software
@@ -10350,13 +10350,13 @@ function bi_flush(s) {
 
 
 /* ===========================================================================
- * Compute the optimal bit lengths for a tree and upfecha the total bit length
+ * Compute the optimal bit lengths for a tree and update the total bit length
  * for the current block.
  * IN assertion: the fields freq and dad are set, heap[heap_max] and
  *    above are the tree nodes sorted by increasing frequency.
  * OUT assertions: the field len is set to the optimal bit length, the
  *     array bl_count contains the frequencies for each bit length.
- *     The length opt_len is upfechad; static_len is also upfechad if stree is
+ *     The length opt_len is updated; static_len is also updated if stree is
  *     not null.
  */
 function gen_bitlen(s, desc)
@@ -10754,11 +10754,11 @@ function compress_block(s, ltree, dtree)
 
 /* ===========================================================================
  * Construct one Huffman tree and assigns the code bit strings and lengths.
- * Upfecha the total bit length for the current block.
+ * Update the total bit length for the current block.
  * IN assertion: the field freq is set for all tree elements.
  * OUT assertions: the fields len and code are set to the optimal bit length
- *     and corresponding code. The length opt_len is upfechad; static_len is
- *     also upfechad if stree is not null. The field max_code is set.
+ *     and corresponding code. The length opt_len is updated; static_len is
+ *     also updated if stree is not null. The field max_code is set.
  */
 function build_tree(s, desc)
 //    deflate_state *s;
@@ -11015,7 +11015,7 @@ function build_bl_tree(s) {
       break;
     }
   }
-  /* Upfecha opt_len to include the bit length tree and counts */
+  /* Update opt_len to include the bit length tree and counts */
   s.opt_len += 3 * (max_blindex + 1) + 5 + 5 + 4;
   //Tracev((stderr, "\ndyn trees: dyn %ld, stat %ld",
   //        s->opt_len, s->static_len));
@@ -11319,7 +11319,7 @@ exports._tr_align = _tr_align;
 //
 // Permission is granted to anyone to use this software for any purpose,
 // including commercial applications, and to alter it and redistribute it
-// freely, tema to the following restrictions:
+// freely, subject to the following restrictions:
 //
 // 1. The origin of this software must not be misrepresented; you must not
 //   claim that you wrote the original software. If you use this software

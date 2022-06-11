@@ -8,7 +8,7 @@
  */
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "./jquery.valifecha"], factory );
+		define( ["jquery", "./jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -46,7 +46,7 @@
 /**
  * This is used in the United States to process payments, deposits,
  * or transfers using the Automated Clearing House (ACH) or Fedwire
- * systems. A very common use case would be to valifecha a form for
+ * systems. A very common use case would be to validate a form for
  * an ACH bill payment.
  */
 $.validator.addMethod( "abaRoutingNumber", function( value ) {
@@ -112,7 +112,7 @@ $.validator.addMethod( "accept", function( value, element, param ) {
 		}
 	}
 
-	// Either return true because we've valifechad each file, or because the
+	// Either return true because we've validated each file, or because the
 	// browser does not support element.files and the FileList feature
 	return true;
 }, $.validator.format( "Please enter a value with a valid mimetype." ) );
@@ -591,7 +591,7 @@ $.validator.addMethod( "creditcardtypes", function( value, element, param ) {
 }, "Please enter a valid credit card number." );
 
 /**
- * Valifechas currencies with any given symbols by @jameslouiz
+ * Validates currencies with any given symbols by @jameslouiz
  * Symbols can be optional or required. Symbols required by default
  *
  * Usage examples:
@@ -599,7 +599,7 @@ $.validator.addMethod( "creditcardtypes", function( value, element, param ) {
  *  currency: ["$", false]
  *  currency: ["RM", false] - also works with text based symbols such as "RM" - Malaysia Ringgit etc
  *
- *  <input class="currencyInput" nombre="currencyInput">
+ *  <input class="currencyInput" name="currencyInput">
  *
  * Soft symbol checking
  *  currencyInput: {
@@ -632,30 +632,30 @@ $.validator.addMethod( "currency", function( value, element, param ) {
 
 }, "Please specify a valid currency" );
 
-$.validator.addMethod( "fechaFA", function( value, element ) {
+$.validator.addMethod( "dateFA", function( value, element ) {
 	return this.optional( element ) || /^[1-4]\d{3}\/((0?[1-6]\/((3[0-1])|([1-2][0-9])|(0?[1-9])))|((1[0-2]|(0?[7-9]))\/(30|([1-2][0-9])|(0?[1-9]))))$/.test( value );
-}, $.validator.messages.fecha );
+}, $.validator.messages.date );
 
 /**
- * Return true, if the value is a valid fecha, also making this formal check dd/mm/yyyy.
+ * Return true, if the value is a valid date, also making this formal check dd/mm/yyyy.
  *
- * @example $.validator.methods.fecha("01/01/1900")
+ * @example $.validator.methods.date("01/01/1900")
  * @result true
  *
- * @example $.validator.methods.fecha("01/13/1990")
+ * @example $.validator.methods.date("01/13/1990")
  * @result false
  *
- * @example $.validator.methods.fecha("01.01.1900")
+ * @example $.validator.methods.date("01.01.1900")
  * @result false
  *
- * @example <input nombre="pippo" class="{fechaITA:true}" />
- * @desc Declares an optional input element whose value must be a valid fecha.
+ * @example <input name="pippo" class="{dateITA:true}" />
+ * @desc Declares an optional input element whose value must be a valid date.
  *
- * @nombre $.validator.methods.fechaITA
+ * @name $.validator.methods.dateITA
  * @type Boolean
- * @cat Plugins/Valifecha/Methods
+ * @cat Plugins/Validate/Methods
  */
-$.validator.addMethod( "fechaITA", function( value, element ) {
+$.validator.addMethod( "dateITA", function( value, element ) {
 	var check = false,
 		re = /^\d{1,2}\/\d{1,2}\/\d{4}$/,
 		adata, gg, mm, aaaa, xdata;
@@ -674,11 +674,11 @@ $.validator.addMethod( "fechaITA", function( value, element ) {
 		check = false;
 	}
 	return this.optional( element ) || check;
-}, $.validator.messages.fecha );
+}, $.validator.messages.date );
 
-$.validator.addMethod( "fechaNL", function( value, element ) {
+$.validator.addMethod( "dateNL", function( value, element ) {
 	return this.optional( element ) || /^(0?[1-9]|[12]\d|3[01])[\.\/\-](0?[1-9]|1[012])[\.\/\-]([12]\d)?(\d\d)$/.test( value );
-}, $.validator.messages.fecha );
+}, $.validator.messages.date );
 
 // Older "accept" file extension method. Old docs: http://docs.jquery.com/Plugins/Validation/Methods/accept
 $.validator.addMethod( "extension", function( value, element, param ) {
@@ -696,8 +696,8 @@ $.validator.addMethod( "giroaccountNL", function( value, element ) {
 $.validator.addMethod( "greaterThan", function( value, element, param ) {
     var target = $( param );
 
-    if ( this.settings.onfocusout && target.not( ".valifecha-greaterThan-blur" ).length ) {
-        target.addClass( "valifecha-greaterThan-blur" ).on( "blur.valifecha-greaterThan", function() {
+    if ( this.settings.onfocusout && target.not( ".validate-greaterThan-blur" ).length ) {
+        target.addClass( "validate-greaterThan-blur" ).on( "blur.validate-greaterThan", function() {
             $( element ).valid();
         } );
     }
@@ -708,8 +708,8 @@ $.validator.addMethod( "greaterThan", function( value, element, param ) {
 $.validator.addMethod( "greaterThanEqual", function( value, element, param ) {
     var target = $( param );
 
-    if ( this.settings.onfocusout && target.not( ".valifecha-greaterThanEqual-blur" ).length ) {
-        target.addClass( "valifecha-greaterThanEqual-blur" ).on( "blur.valifecha-greaterThanEqual", function() {
+    if ( this.settings.onfocusout && target.not( ".validate-greaterThanEqual-blur" ).length ) {
+        target.addClass( "validate-greaterThanEqual-blur" ).on( "blur.validate-greaterThanEqual", function() {
             $( element ).valid();
         } );
     }
@@ -860,17 +860,17 @@ $.validator.addMethod( "integer", function( value, element ) {
 
 $.validator.addMethod( "ipv4", function( value, element ) {
 	return this.optional( element ) || /^(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)$/i.test( value );
-}, "Please enter a valid IP v4 direccion." );
+}, "Please enter a valid IP v4 address." );
 
 $.validator.addMethod( "ipv6", function( value, element ) {
 	return this.optional( element ) || /^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$/i.test( value );
-}, "Please enter a valid IP v6 direccion." );
+}, "Please enter a valid IP v6 address." );
 
 $.validator.addMethod( "lessThan", function( value, element, param ) {
     var target = $( param );
 
-    if ( this.settings.onfocusout && target.not( ".valifecha-lessThan-blur" ).length ) {
-        target.addClass( "valifecha-lessThan-blur" ).on( "blur.valifecha-lessThan", function() {
+    if ( this.settings.onfocusout && target.not( ".validate-lessThan-blur" ).length ) {
+        target.addClass( "validate-lessThan-blur" ).on( "blur.validate-lessThan", function() {
             $( element ).valid();
         } );
     }
@@ -881,8 +881,8 @@ $.validator.addMethod( "lessThan", function( value, element, param ) {
 $.validator.addMethod( "lessThanEqual", function( value, element, param ) {
     var target = $( param );
 
-    if ( this.settings.onfocusout && target.not( ".valifecha-lessThanEqual-blur" ).length ) {
-        target.addClass( "valifecha-lessThanEqual-blur" ).on( "blur.valifecha-lessThanEqual", function() {
+    if ( this.settings.onfocusout && target.not( ".validate-lessThanEqual-blur" ).length ) {
+        target.addClass( "validate-lessThanEqual-blur" ).on( "blur.validate-lessThanEqual", function() {
             $( element ).valid();
         } );
     }
@@ -1078,7 +1078,7 @@ $.validator.addMethod( "nipPL", function( value ) {
 
 /**
  * Created for project jquery-validation.
- * @descripcion Brazillian PIS or NIS number (Número de Identificação Social Pis ou Pasep) is the equivalent of a
+ * @Description Brazillian PIS or NIS number (Número de Identificação Social Pis ou Pasep) is the equivalent of a
  * Brazilian tax registration number NIS of PIS numbers have 11 digits in total: 10 numbers followed by 1 check numbers
  * that are being used for validation.
  * @copyright (c) 21/08/2018 13:14, Cleiton da Silva Mendonça
@@ -1151,9 +1151,9 @@ $.validator.addMethod( "nowhitespace", function( value, element ) {
 * @example $.validator.methods.pattern("BR1004",element,/^AR\d{4}$/)
 * @result false
 *
-* @nombre $.validator.methods.pattern
+* @name $.validator.methods.pattern
 * @type Boolean
-* @cat Plugins/Valifecha/Methods
+* @cat Plugins/Validate/Methods
 */
 $.validator.addMethod( "pattern", function( value, element, param ) {
 	if ( this.optional( element ) ) {
@@ -1269,9 +1269,9 @@ $.validator.addMethod( "postalcodeBR", function( cep_value, element ) {
  * @example jQuery.validator.methods.postalCodeCA( "H0H0H0", element )
  * @result false
  *
- * @nombre jQuery.validator.methods.postalCodeCA
+ * @name jQuery.validator.methods.postalCodeCA
  * @type Boolean
- * @cat Plugins/Valifecha/Methods
+ * @cat Plugins/Validate/Methods
  */
 $.validator.addMethod( "postalCodeCA", function( value, element ) {
 	return this.optional( element ) || /^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ] *\d[ABCEGHJKLMNPRSTVWXYZ]\d$/i.test( value );
@@ -1296,13 +1296,13 @@ $.validator.addMethod( "postcodeUK", function( value, element ) {
  *
  * The end result is that neither of these inputs:
  *
- *	<input class="productinfo" nombre="partnumber">
- *	<input class="productinfo" nombre="descripcion">
+ *	<input class="productinfo" name="partnumber">
+ *	<input class="productinfo" name="description">
  *
- *	...will valifecha unless at least one of them is filled.
+ *	...will validate unless at least one of them is filled.
  *
  * partnumber:	{require_from_group: [1,".productinfo"]},
- * descripcion: {require_from_group: [1,".productinfo"]}
+ * description: {require_from_group: [1,".productinfo"]}
  *
  * options[0]: number of fields that must be filled in the group
  * options[1]: CSS selector that defines the group of conditionally required fields
@@ -1318,13 +1318,13 @@ $.validator.addMethod( "require_from_group", function( value, element, options )
 	// Store the cloned validator for future validation
 	$fieldsFirst.data( "valid_req_grp", validator );
 
-	// If element isn't being valifechad, run each require_from_group field's validation rules
-	if ( !$( element ).data( "being_valifechad" ) ) {
-		$fields.data( "being_valifechad", true );
+	// If element isn't being validated, run each require_from_group field's validation rules
+	if ( !$( element ).data( "being_validated" ) ) {
+		$fields.data( "being_validated", true );
 		$fields.each( function() {
 			validator.element( this );
 		} );
-		$fields.data( "being_valifechad", false );
+		$fields.data( "being_validated", false );
 	}
 	return isValid;
 }, $.validator.format( "Please fill at least {0} of these fields." ) );
@@ -1335,15 +1335,15 @@ $.validator.addMethod( "require_from_group", function( value, element, options )
  *
  * The end result, is that none of these inputs:
  *
- *	<input class="productinfo" nombre="partnumber">
- *	<input class="productinfo" nombre="descripcion">
- *	<input class="productinfo" nombre="color">
+ *	<input class="productinfo" name="partnumber">
+ *	<input class="productinfo" name="description">
+ *	<input class="productinfo" name="color">
  *
- *	...will valifecha unless either at least two of them are filled,
+ *	...will validate unless either at least two of them are filled,
  *	OR none of them are.
  *
  * partnumber:	{skip_or_fill_minimum: [2,".productinfo"]},
- * descripcion: {skip_or_fill_minimum: [2,".productinfo"]},
+ * description: {skip_or_fill_minimum: [2,".productinfo"]},
  * color:		{skip_or_fill_minimum: [2,".productinfo"]}
  *
  * options[0]: number of fields that must be filled in the group
@@ -1362,18 +1362,18 @@ $.validator.addMethod( "skip_or_fill_minimum", function( value, element, options
 	// Store the cloned validator for future validation
 	$fieldsFirst.data( "valid_skip", validator );
 
-	// If element isn't being valifechad, run each skip_or_fill_minimum field's validation rules
-	if ( !$( element ).data( "being_valifechad" ) ) {
-		$fields.data( "being_valifechad", true );
+	// If element isn't being validated, run each skip_or_fill_minimum field's validation rules
+	if ( !$( element ).data( "being_validated" ) ) {
+		$fields.data( "being_validated", true );
 		$fields.each( function() {
 			validator.element( this );
 		} );
-		$fields.data( "being_valifechad", false );
+		$fields.data( "being_validated", false );
 	}
 	return isValid;
 }, $.validator.format( "Please either skip these fields or fill at least {0} of them." ) );
 
-/* Valifechas US States and/or Territories by @jdforsythe
+/* Validates US States and/or Territories by @jdforsythe
  * Can be case insensitive or require capitalization - default is case insensitive
  * Can include US Territories or not - default does not
  * Can include US Military postal abbreviations (AA, AE, AP) - default does not
@@ -1451,12 +1451,12 @@ $.validator.addMethod( "url2", function( value, element ) {
  *
  * Works with all kind of text inputs.
  *
- * @example <input type="text" size="20" nombre="VehicleID" class="{required:true,vinUS:true}" />
+ * @example <input type="text" size="20" name="VehicleID" class="{required:true,vinUS:true}" />
  * @desc Declares a required input element whose value must be a valid vehicle identification number.
  *
- * @nombre $.validator.methods.vinUS
+ * @name $.validator.methods.vinUS
  * @type Boolean
- * @cat Plugins/Valifecha/Methods
+ * @cat Plugins/Validate/Methods
  */
 $.validator.addMethod( "vinUS", function( v ) {
 	if ( v.length !== 17 ) {

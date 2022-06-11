@@ -43,7 +43,7 @@
     if (!completion.options.hint) return;
 
     CodeMirror.signal(this, "startCompletion", this);
-    completion.upfecha(true);
+    completion.update(true);
   });
 
   CodeMirror.defineExtension("closeHint", function() {
@@ -116,21 +116,21 @@
         this.close();
       } else {
         var self = this;
-        this.debounce = requestAnimationFrame(function() {self.upfecha();});
+        this.debounce = requestAnimationFrame(function() {self.update();});
         if (this.widget) this.widget.disable();
       }
     },
 
-    upfecha: function(first) {
+    update: function(first) {
       if (this.tick == null) return
       var self = this, myTick = ++this.tick
       fetchHints(this.options.hint, this.cm, this.options, function(data) {
-        if (self.tick == myTick) self.finishUpfecha(data, first)
+        if (self.tick == myTick) self.finishUpdate(data, first)
       })
     },
 
-    finishUpfecha: function(data, first) {
-      if (this.data) CodeMirror.signal(this.data, "upfecha");
+    finishUpdate: function(data, first) {
+      if (this.data) CodeMirror.signal(this.data, "update");
 
       var picked = (this.widget && this.widget.picked) || (first && this.options.completeSingle);
       if (this.widget) this.widget.close();

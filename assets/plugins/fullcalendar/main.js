@@ -54,7 +54,7 @@ var FullCalendar = (function (exports) {
         return r;
     }
 
-    var n,u,i,t,r,o,f,e={},c=[],s=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord/i;function a(n,l){for(var u in l)n[u]=l[u];return n}function v(n){var l=n.parentNode;l&&l.removeChild(n);}function h(n,l,u){var i,t=arguments,r={};for(i in l)"key"!==i&&"ref"!==i&&(r[i]=l[i]);if(arguments.length>3)for(u=[u],i=3;i<arguments.length;i++)u.push(t[i]);if(null!=u&&(r.children=u),"function"==typeof n&&null!=n.defaultProps)for(i in n.defaultProps)void 0===r[i]&&(r[i]=n.defaultProps[i]);return p(n,r,l&&l.key,l&&l.ref,null)}function p(l,u,i,t,r){var o={type:l,props:u,key:i,ref:t,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,constructor:void 0,__v:r};return null==r&&(o.__v=o),n.vnode&&n.vnode(o),o}function y(){return {}}function d(n){return n.children}function m(n,l){this.props=n,this.context=l;}function w(n,l){if(null==l)return n.__?w(n.__,n.__.__k.indexOf(n)+1):null;for(var u;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e)return u.__e;return "function"==typeof n.type?w(n):null}function k(n){var l,u;if(null!=(n=n.__)&&null!=n.__c){for(n.__e=n.__c.base=null,l=0;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e){n.__e=n.__c.base=u.__e;break}return k(n)}}function g(l){(!l.__d&&(l.__d=!0)&&u.push(l)&&!i++||r!==n.debounceRendering)&&((r=n.debounceRendering)||t)(_);}function _(){for(var n;i=u.length;)n=u.sort(function(n,l){return n.__v.__b-l.__v.__b}),u=[],n.some(function(n){var l,u,i,t,r,o,f;n.__d&&(o=(r=(l=n).__v).__e,(f=l.__P)&&(u=[],(i=a({},r)).__v=i,t=A(f,r,i,l.__n,void 0!==f.ownerSVGElement,null,u,null==o?w(r):o),T(u,r),t!=o&&k(r)));});}function b(n,l,u,i,t,r,o,f,s){var a,h,p,y,d,m,k,g=u&&u.__k||c,_=g.length;if(f==e&&(f=null!=r?r[0]:_?w(u,0):null),a=0,l.__k=x(l.__k,function(u){if(null!=u){if(u.__=l,u.__b=l.__b+1,null===(p=g[a])||p&&u.key==p.key&&u.type===p.type)g[a]=void 0;else for(h=0;h<_;h++){if((p=g[h])&&u.key==p.key&&u.type===p.type){g[h]=void 0;break}p=null;}if(y=A(n,u,p=p||e,i,t,r,o,f,s),(h=u.ref)&&p.ref!=h&&(k||(k=[]),p.ref&&k.push(p.ref,null,u),k.push(h,u.__c||y,u)),null!=y){var c;if(null==m&&(m=y),void 0!==u.__d)c=u.__d,u.__d=void 0;else if(r==p||y!=f||null==y.parentNode){n:if(null==f||f.parentNode!==n)n.appendChild(y),c=null;else {for(d=f,h=0;(d=d.nextSibling)&&h<_;h+=2)if(d==y)break n;n.insertBefore(y,f),c=f;}"option"==l.type&&(n.value="");}f=void 0!==c?c:y.nextSibling,"function"==typeof l.type&&(l.__d=f);}else f&&p.__e==f&&f.parentNode!=n&&(f=w(p));}return a++,u}),l.__e=m,null!=r&&"function"!=typeof l.type)for(a=r.length;a--;)null!=r[a]&&v(r[a]);for(a=_;a--;)null!=g[a]&&D(g[a],g[a]);if(k)for(a=0;a<k.length;a++)j(k[a],k[++a],k[++a]);}function x(n,l,u){if(null==u&&(u=[]),null==n||"boolean"==typeof n)l&&u.push(l(null));else if(Array.isArray(n))for(var i=0;i<n.length;i++)x(n[i],l,u);else u.push(l?l("string"==typeof n||"number"==typeof n?p(null,n,null,null,n):null!=n.__e||null!=n.__c?p(n.type,n.props,n.key,null,n.__v):n):n);return u}function P(n,l,u,i,t){var r;for(r in u)"children"===r||"key"===r||r in l||N(n,r,null,u[r],i);for(r in l)t&&"function"!=typeof l[r]||"children"===r||"key"===r||"value"===r||"checked"===r||u[r]===l[r]||N(n,r,l[r],u[r],i);}function C(n,l,u){"-"===l[0]?n.setProperty(l,u):n[l]="number"==typeof u&&!1===s.test(l)?u+"px":null==u?"":u;}function N(n,l,u,i,t){var r,o,f,e,c;if(t?"className"===l&&(l="class"):"class"===l&&(l="className"),"style"===l)if(r=n.style,"string"==typeof u)r.cssText=u;else {if("string"==typeof i&&(r.cssText="",i=null),i)for(e in i)u&&e in u||C(r,e,"");if(u)for(c in u)i&&u[c]===i[c]||C(r,c,u[c]);}else "o"===l[0]&&"n"===l[1]?(o=l!==(l=l.replace(/Capture$/,"")),f=l.toLowerCase(),l=(f in n?f:l).slice(2),u?(i||n.addEventListener(l,z,o),(n.l||(n.l={}))[l]=u):n.removeEventListener(l,z,o)):"list"!==l&&"tagName"!==l&&"form"!==l&&"type"!==l&&"size"!==l&&!t&&l in n?n[l]=null==u?"":u:"function"!=typeof u&&"dangerouslySetInnerHTML"!==l&&(l!==(l=l.replace(/^xlink:?/,""))?null==u||!1===u?n.removeAttributeNS("http://www.w3.org/1999/xlink",l.toLowerCase()):n.setAttributeNS("http://www.w3.org/1999/xlink",l.toLowerCase(),u):null==u||!1===u&&!/^ar/.test(l)?n.removeAttribute(l):n.setAttribute(l,u));}function z(l){this.l[l.type](n.event?n.event(l):l);}function A(l,u,i,t,r,o,f,e,c){var s,v,h,p,y,w,k,g,_,x,P=u.type;if(void 0!==u.constructor)return null;(s=n.__b)&&s(u);try{n:if("function"==typeof P){if(g=u.props,_=(s=P.contextType)&&t[s.__c],x=s?_?_.props.value:s.__:t,i.__c?k=(v=u.__c=i.__c).__=v.__E:("prototype"in P&&P.prototype.render?u.__c=v=new P(g,x):(u.__c=v=new m(g,x),v.constructor=P,v.render=E),_&&_.sub(v),v.props=g,v.state||(v.state={}),v.context=x,v.__n=t,h=v.__d=!0,v.__h=[]),null==v.__s&&(v.__s=v.state),null!=P.getDerivedStateFromProps&&(v.__s==v.state&&(v.__s=a({},v.__s)),a(v.__s,P.getDerivedStateFromProps(g,v.__s))),p=v.props,y=v.state,h)null==P.getDerivedStateFromProps&&null!=v.componentWillMount&&v.componentWillMount(),null!=v.componentDidMount&&v.__h.push(v.componentDidMount);else {if(null==P.getDerivedStateFromProps&&g!==p&&null!=v.componentWillReceiveProps&&v.componentWillReceiveProps(g,x),!v.__e&&null!=v.shouldComponentUpfecha&&!1===v.shouldComponentUpfecha(g,v.__s,x)||u.__v===i.__v&&!v.__){for(v.props=g,v.state=v.__s,u.__v!==i.__v&&(v.__d=!1),v.__v=u,u.__e=i.__e,u.__k=i.__k,v.__h.length&&f.push(v),s=0;s<u.__k.length;s++)u.__k[s]&&(u.__k[s].__=u);break n}null!=v.componentWillUpfecha&&v.componentWillUpfecha(g,v.__s,x),null!=v.componentDidUpfecha&&v.__h.push(function(){v.componentDidUpfecha(p,y,w);});}v.context=x,v.props=g,v.state=v.__s,(s=n.__r)&&s(u),v.__d=!1,v.__v=u,v.__P=l,s=v.render(v.props,v.state,v.context),u.__k=null!=s&&s.type==d&&null==s.key?s.props.children:Array.isArray(s)?s:[s],null!=v.getChildContext&&(t=a(a({},t),v.getChildContext())),h||null==v.getSnapshotBeforeUpfecha||(w=v.getSnapshotBeforeUpfecha(p,y)),b(l,u,i,t,r,o,f,e,c),v.base=u.__e,v.__h.length&&f.push(v),k&&(v.__E=v.__=null),v.__e=!1;}else null==o&&u.__v===i.__v?(u.__k=i.__k,u.__e=i.__e):u.__e=$(i.__e,u,i,t,r,o,f,c);(s=n.diffed)&&s(u);}catch(l){u.__v=null,n.__e(l,u,i);}return u.__e}function T(l,u){n.__c&&n.__c(u,l),l.some(function(u){try{l=u.__h,u.__h=[],l.some(function(n){n.call(u);});}catch(l){n.__e(l,u.__v);}});}function $(n,l,u,i,t,r,o,f){var s,a,v,h,p,y=u.props,d=l.props;if(t="svg"===l.type||t,null!=r)for(s=0;s<r.length;s++)if(null!=(a=r[s])&&((null===l.type?3===a.nodeType:a.localName===l.type)||n==a)){n=a,r[s]=null;break}if(null==n){if(null===l.type)return document.createTextNode(d);n=t?document.createElementNS("http://www.w3.org/2000/svg",l.type):document.createElement(l.type,d.is&&{is:d.is}),r=null,f=!1;}if(null===l.type)y!==d&&n.data!=d&&(n.data=d);else {if(null!=r&&(r=c.slice.call(n.childNodes)),v=(y=u.props||e).dangerouslySetInnerHTML,h=d.dangerouslySetInnerHTML,!f){if(y===e)for(y={},p=0;p<n.attributes.length;p++)y[n.attributes[p].name]=n.attributes[p].value;(h||v)&&(h&&v&&h.__html==v.__html||(n.innerHTML=h&&h.__html||""));}P(n,d,y,t,f),h?l.__k=[]:(l.__k=l.props.children,b(n,l,u,i,"foreignObject"!==l.type&&t,r,o,e,f)),f||("value"in d&&void 0!==(s=d.value)&&s!==n.value&&N(n,"value",s,y.value,!1),"checked"in d&&void 0!==(s=d.checked)&&s!==n.checked&&N(n,"checked",s,y.checked,!1));}return n}function j(l,u,i){try{"function"==typeof l?l(u):l.current=u;}catch(l){n.__e(l,i);}}function D(l,u,i){var t,r,o;if(n.unmount&&n.unmount(l),(t=l.ref)&&(t.current&&t.current!==l.__e||j(t,null,u)),i||"function"==typeof l.type||(i=null!=(r=l.__e)),l.__e=l.__d=void 0,null!=(t=l.__c)){if(t.componentWillUnmount)try{t.componentWillUnmount();}catch(l){n.__e(l,u);}t.base=t.__P=null;}if(t=l.__k)for(o=0;o<t.length;o++)t[o]&&D(t[o],u,i);null!=r&&v(r);}function E(n,l,u){return this.constructor(n,u)}function H(l,u,i){var t,r,f;n.__&&n.__(l,u),r=(t=i===o)?null:i&&i.__k||u.__k,l=h(d,null,[l]),f=[],A(u,(t?u:i||u).__k=l,r||e,e,void 0!==u.ownerSVGElement,i&&!t?[i]:r?null:c.slice.call(u.childNodes),f,i||e,t),T(f,l);}function M(n){var l={},u={__c:"__cC"+f++,__:n,Consumer:function(n,l){return n.children(l)},Provider:function(n){var i,t=this;return this.getChildContext||(i=[],this.getChildContext=function(){return l[u.__c]=t,l},this.shouldComponentUpfecha=function(n){t.props.value!==n.value&&i.some(function(l){l.context=n.value,g(l);});},this.sub=function(n){i.push(n);var l=n.componentWillUnmount;n.componentWillUnmount=function(){i.splice(i.indexOf(n),1),l&&l.call(n);};}),n.children}};return u.Consumer.contextType=u,u.Provider.__=u,u}n={__e:function(n,l){for(var u,i;l=l.__;)if((u=l.__c)&&!u.__)try{if(u.constructor&&null!=u.constructor.getDerivedStateFromError&&(i=!0,u.setState(u.constructor.getDerivedStateFromError(n))),null!=u.componentDidCatch&&(i=!0,u.componentDidCatch(n)),i)return g(u.__E=u)}catch(l){n=l;}throw n}},m.prototype.setState=function(n,l){var u;u=this.__s!==this.state?this.__s:this.__s=a({},this.state),"function"==typeof n&&(n=n(u,this.props)),n&&a(u,n),null!=n&&this.__v&&(l&&this.__h.push(l),g(this));},m.prototype.forceUpfecha=function(n){this.__v&&(this.__e=!0,n&&this.__h.push(n),g(this));},m.prototype.render=d,u=[],i=0,t="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,o=e,f=0;
+    var n,u,i,t,r,o,f,e={},c=[],s=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord/i;function a(n,l){for(var u in l)n[u]=l[u];return n}function v(n){var l=n.parentNode;l&&l.removeChild(n);}function h(n,l,u){var i,t=arguments,r={};for(i in l)"key"!==i&&"ref"!==i&&(r[i]=l[i]);if(arguments.length>3)for(u=[u],i=3;i<arguments.length;i++)u.push(t[i]);if(null!=u&&(r.children=u),"function"==typeof n&&null!=n.defaultProps)for(i in n.defaultProps)void 0===r[i]&&(r[i]=n.defaultProps[i]);return p(n,r,l&&l.key,l&&l.ref,null)}function p(l,u,i,t,r){var o={type:l,props:u,key:i,ref:t,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,constructor:void 0,__v:r};return null==r&&(o.__v=o),n.vnode&&n.vnode(o),o}function y(){return {}}function d(n){return n.children}function m(n,l){this.props=n,this.context=l;}function w(n,l){if(null==l)return n.__?w(n.__,n.__.__k.indexOf(n)+1):null;for(var u;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e)return u.__e;return "function"==typeof n.type?w(n):null}function k(n){var l,u;if(null!=(n=n.__)&&null!=n.__c){for(n.__e=n.__c.base=null,l=0;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e){n.__e=n.__c.base=u.__e;break}return k(n)}}function g(l){(!l.__d&&(l.__d=!0)&&u.push(l)&&!i++||r!==n.debounceRendering)&&((r=n.debounceRendering)||t)(_);}function _(){for(var n;i=u.length;)n=u.sort(function(n,l){return n.__v.__b-l.__v.__b}),u=[],n.some(function(n){var l,u,i,t,r,o,f;n.__d&&(o=(r=(l=n).__v).__e,(f=l.__P)&&(u=[],(i=a({},r)).__v=i,t=A(f,r,i,l.__n,void 0!==f.ownerSVGElement,null,u,null==o?w(r):o),T(u,r),t!=o&&k(r)));});}function b(n,l,u,i,t,r,o,f,s){var a,h,p,y,d,m,k,g=u&&u.__k||c,_=g.length;if(f==e&&(f=null!=r?r[0]:_?w(u,0):null),a=0,l.__k=x(l.__k,function(u){if(null!=u){if(u.__=l,u.__b=l.__b+1,null===(p=g[a])||p&&u.key==p.key&&u.type===p.type)g[a]=void 0;else for(h=0;h<_;h++){if((p=g[h])&&u.key==p.key&&u.type===p.type){g[h]=void 0;break}p=null;}if(y=A(n,u,p=p||e,i,t,r,o,f,s),(h=u.ref)&&p.ref!=h&&(k||(k=[]),p.ref&&k.push(p.ref,null,u),k.push(h,u.__c||y,u)),null!=y){var c;if(null==m&&(m=y),void 0!==u.__d)c=u.__d,u.__d=void 0;else if(r==p||y!=f||null==y.parentNode){n:if(null==f||f.parentNode!==n)n.appendChild(y),c=null;else {for(d=f,h=0;(d=d.nextSibling)&&h<_;h+=2)if(d==y)break n;n.insertBefore(y,f),c=f;}"option"==l.type&&(n.value="");}f=void 0!==c?c:y.nextSibling,"function"==typeof l.type&&(l.__d=f);}else f&&p.__e==f&&f.parentNode!=n&&(f=w(p));}return a++,u}),l.__e=m,null!=r&&"function"!=typeof l.type)for(a=r.length;a--;)null!=r[a]&&v(r[a]);for(a=_;a--;)null!=g[a]&&D(g[a],g[a]);if(k)for(a=0;a<k.length;a++)j(k[a],k[++a],k[++a]);}function x(n,l,u){if(null==u&&(u=[]),null==n||"boolean"==typeof n)l&&u.push(l(null));else if(Array.isArray(n))for(var i=0;i<n.length;i++)x(n[i],l,u);else u.push(l?l("string"==typeof n||"number"==typeof n?p(null,n,null,null,n):null!=n.__e||null!=n.__c?p(n.type,n.props,n.key,null,n.__v):n):n);return u}function P(n,l,u,i,t){var r;for(r in u)"children"===r||"key"===r||r in l||N(n,r,null,u[r],i);for(r in l)t&&"function"!=typeof l[r]||"children"===r||"key"===r||"value"===r||"checked"===r||u[r]===l[r]||N(n,r,l[r],u[r],i);}function C(n,l,u){"-"===l[0]?n.setProperty(l,u):n[l]="number"==typeof u&&!1===s.test(l)?u+"px":null==u?"":u;}function N(n,l,u,i,t){var r,o,f,e,c;if(t?"className"===l&&(l="class"):"class"===l&&(l="className"),"style"===l)if(r=n.style,"string"==typeof u)r.cssText=u;else {if("string"==typeof i&&(r.cssText="",i=null),i)for(e in i)u&&e in u||C(r,e,"");if(u)for(c in u)i&&u[c]===i[c]||C(r,c,u[c]);}else "o"===l[0]&&"n"===l[1]?(o=l!==(l=l.replace(/Capture$/,"")),f=l.toLowerCase(),l=(f in n?f:l).slice(2),u?(i||n.addEventListener(l,z,o),(n.l||(n.l={}))[l]=u):n.removeEventListener(l,z,o)):"list"!==l&&"tagName"!==l&&"form"!==l&&"type"!==l&&"size"!==l&&!t&&l in n?n[l]=null==u?"":u:"function"!=typeof u&&"dangerouslySetInnerHTML"!==l&&(l!==(l=l.replace(/^xlink:?/,""))?null==u||!1===u?n.removeAttributeNS("http://www.w3.org/1999/xlink",l.toLowerCase()):n.setAttributeNS("http://www.w3.org/1999/xlink",l.toLowerCase(),u):null==u||!1===u&&!/^ar/.test(l)?n.removeAttribute(l):n.setAttribute(l,u));}function z(l){this.l[l.type](n.event?n.event(l):l);}function A(l,u,i,t,r,o,f,e,c){var s,v,h,p,y,w,k,g,_,x,P=u.type;if(void 0!==u.constructor)return null;(s=n.__b)&&s(u);try{n:if("function"==typeof P){if(g=u.props,_=(s=P.contextType)&&t[s.__c],x=s?_?_.props.value:s.__:t,i.__c?k=(v=u.__c=i.__c).__=v.__E:("prototype"in P&&P.prototype.render?u.__c=v=new P(g,x):(u.__c=v=new m(g,x),v.constructor=P,v.render=E),_&&_.sub(v),v.props=g,v.state||(v.state={}),v.context=x,v.__n=t,h=v.__d=!0,v.__h=[]),null==v.__s&&(v.__s=v.state),null!=P.getDerivedStateFromProps&&(v.__s==v.state&&(v.__s=a({},v.__s)),a(v.__s,P.getDerivedStateFromProps(g,v.__s))),p=v.props,y=v.state,h)null==P.getDerivedStateFromProps&&null!=v.componentWillMount&&v.componentWillMount(),null!=v.componentDidMount&&v.__h.push(v.componentDidMount);else {if(null==P.getDerivedStateFromProps&&g!==p&&null!=v.componentWillReceiveProps&&v.componentWillReceiveProps(g,x),!v.__e&&null!=v.shouldComponentUpdate&&!1===v.shouldComponentUpdate(g,v.__s,x)||u.__v===i.__v&&!v.__){for(v.props=g,v.state=v.__s,u.__v!==i.__v&&(v.__d=!1),v.__v=u,u.__e=i.__e,u.__k=i.__k,v.__h.length&&f.push(v),s=0;s<u.__k.length;s++)u.__k[s]&&(u.__k[s].__=u);break n}null!=v.componentWillUpdate&&v.componentWillUpdate(g,v.__s,x),null!=v.componentDidUpdate&&v.__h.push(function(){v.componentDidUpdate(p,y,w);});}v.context=x,v.props=g,v.state=v.__s,(s=n.__r)&&s(u),v.__d=!1,v.__v=u,v.__P=l,s=v.render(v.props,v.state,v.context),u.__k=null!=s&&s.type==d&&null==s.key?s.props.children:Array.isArray(s)?s:[s],null!=v.getChildContext&&(t=a(a({},t),v.getChildContext())),h||null==v.getSnapshotBeforeUpdate||(w=v.getSnapshotBeforeUpdate(p,y)),b(l,u,i,t,r,o,f,e,c),v.base=u.__e,v.__h.length&&f.push(v),k&&(v.__E=v.__=null),v.__e=!1;}else null==o&&u.__v===i.__v?(u.__k=i.__k,u.__e=i.__e):u.__e=$(i.__e,u,i,t,r,o,f,c);(s=n.diffed)&&s(u);}catch(l){u.__v=null,n.__e(l,u,i);}return u.__e}function T(l,u){n.__c&&n.__c(u,l),l.some(function(u){try{l=u.__h,u.__h=[],l.some(function(n){n.call(u);});}catch(l){n.__e(l,u.__v);}});}function $(n,l,u,i,t,r,o,f){var s,a,v,h,p,y=u.props,d=l.props;if(t="svg"===l.type||t,null!=r)for(s=0;s<r.length;s++)if(null!=(a=r[s])&&((null===l.type?3===a.nodeType:a.localName===l.type)||n==a)){n=a,r[s]=null;break}if(null==n){if(null===l.type)return document.createTextNode(d);n=t?document.createElementNS("http://www.w3.org/2000/svg",l.type):document.createElement(l.type,d.is&&{is:d.is}),r=null,f=!1;}if(null===l.type)y!==d&&n.data!=d&&(n.data=d);else {if(null!=r&&(r=c.slice.call(n.childNodes)),v=(y=u.props||e).dangerouslySetInnerHTML,h=d.dangerouslySetInnerHTML,!f){if(y===e)for(y={},p=0;p<n.attributes.length;p++)y[n.attributes[p].name]=n.attributes[p].value;(h||v)&&(h&&v&&h.__html==v.__html||(n.innerHTML=h&&h.__html||""));}P(n,d,y,t,f),h?l.__k=[]:(l.__k=l.props.children,b(n,l,u,i,"foreignObject"!==l.type&&t,r,o,e,f)),f||("value"in d&&void 0!==(s=d.value)&&s!==n.value&&N(n,"value",s,y.value,!1),"checked"in d&&void 0!==(s=d.checked)&&s!==n.checked&&N(n,"checked",s,y.checked,!1));}return n}function j(l,u,i){try{"function"==typeof l?l(u):l.current=u;}catch(l){n.__e(l,i);}}function D(l,u,i){var t,r,o;if(n.unmount&&n.unmount(l),(t=l.ref)&&(t.current&&t.current!==l.__e||j(t,null,u)),i||"function"==typeof l.type||(i=null!=(r=l.__e)),l.__e=l.__d=void 0,null!=(t=l.__c)){if(t.componentWillUnmount)try{t.componentWillUnmount();}catch(l){n.__e(l,u);}t.base=t.__P=null;}if(t=l.__k)for(o=0;o<t.length;o++)t[o]&&D(t[o],u,i);null!=r&&v(r);}function E(n,l,u){return this.constructor(n,u)}function H(l,u,i){var t,r,f;n.__&&n.__(l,u),r=(t=i===o)?null:i&&i.__k||u.__k,l=h(d,null,[l]),f=[],A(u,(t?u:i||u).__k=l,r||e,e,void 0!==u.ownerSVGElement,i&&!t?[i]:r?null:c.slice.call(u.childNodes),f,i||e,t),T(f,l);}function M(n){var l={},u={__c:"__cC"+f++,__:n,Consumer:function(n,l){return n.children(l)},Provider:function(n){var i,t=this;return this.getChildContext||(i=[],this.getChildContext=function(){return l[u.__c]=t,l},this.shouldComponentUpdate=function(n){t.props.value!==n.value&&i.some(function(l){l.context=n.value,g(l);});},this.sub=function(n){i.push(n);var l=n.componentWillUnmount;n.componentWillUnmount=function(){i.splice(i.indexOf(n),1),l&&l.call(n);};}),n.children}};return u.Consumer.contextType=u,u.Provider.__=u,u}n={__e:function(n,l){for(var u,i;l=l.__;)if((u=l.__c)&&!u.__)try{if(u.constructor&&null!=u.constructor.getDerivedStateFromError&&(i=!0,u.setState(u.constructor.getDerivedStateFromError(n))),null!=u.componentDidCatch&&(i=!0,u.componentDidCatch(n)),i)return g(u.__E=u)}catch(l){n=l;}throw n}},m.prototype.setState=function(n,l){var u;u=this.__s!==this.state?this.__s:this.__s=a({},this.state),"function"==typeof n&&(n=n(u,this.props)),n&&a(u,n),null!=n&&this.__v&&(l&&this.__h.push(l),g(this));},m.prototype.forceUpdate=function(n){this.__v&&(this.__e=!0,n&&this.__h.push(n),g(this));},m.prototype.render=d,u=[],i=0,t="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,o=e,f=0;
 
     (typeof globalThis !== 'undefined' ? globalThis : window).FullCalendarVDom = {
         Component: m,
@@ -99,11 +99,11 @@ var FullCalendar = (function (exports) {
             var children = origProvider.apply(this, arguments);
             if (isNew) {
                 var subs_1 = [];
-                this.shouldComponentUpfecha = function (_props) {
+                this.shouldComponentUpdate = function (_props) {
                     if (_this.props.value !== _props.value) {
                         subs_1.some(function (c) {
                             c.context = _props.value;
-                            c.forceUpfecha();
+                            c.forceUpdate();
                         });
                     }
                 };
@@ -189,7 +189,7 @@ var FullCalendar = (function (exports) {
         var method = el.matches || el.matchesSelector || el.msMatchesSelector;
         return method.call(el, selector);
     }
-    // accepts multiple tema els
+    // accepts multiple subject els
     // returns a real array. good for methods like forEach
     // TODO: accept the document
     function findElements(container, selector) {
@@ -203,7 +203,7 @@ var FullCalendar = (function (exports) {
         }
         return allMatches;
     }
-    // accepts multiple tema els
+    // accepts multiple subject els
     // only queries direct child elements // TODO: rename to findDirectChildren!
     function findDirectChildren(parent, selector) {
         var parents = parent instanceof HTMLElement ? [parent] : parent;
@@ -422,17 +422,17 @@ var FullCalendar = (function (exports) {
     var DAY_IDS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
     // Adding
     function addWeeks(m, n) {
-        var a = fechaToUtcArray(m);
+        var a = dateToUtcArray(m);
         a[2] += n * 7;
         return arrayToUtcDate(a);
     }
     function addDays(m, n) {
-        var a = fechaToUtcArray(m);
+        var a = dateToUtcArray(m);
         a[2] += n;
         return arrayToUtcDate(a);
     }
     function addMs(m, n) {
-        var a = fechaToUtcArray(m);
+        var a = dateToUtcArray(m);
         a[6] += n;
         return arrayToUtcDate(a);
     }
@@ -540,30 +540,30 @@ var FullCalendar = (function (exports) {
         return -fwdlw + fwd - 1;
     }
     // Array Conversion
-    function dateToLocalArray(fecha) {
+    function dateToLocalArray(date) {
         return [
-            fecha.getFullYear(),
-            fecha.getMonth(),
-            fecha.getDate(),
-            fecha.getHours(),
-            fecha.getMinutes(),
-            fecha.getSeconds(),
-            fecha.getMilliseconds()
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            date.getHours(),
+            date.getMinutes(),
+            date.getSeconds(),
+            date.getMilliseconds()
         ];
     }
     function arrayToLocalDate(a) {
         return new Date(a[0], a[1] || 0, a[2] == null ? 1 : a[2], // day of month
         a[3] || 0, a[4] || 0, a[5] || 0);
     }
-    function dateToUtcArray(fecha) {
+    function dateToUtcArray(date) {
         return [
-            fecha.getUTCFullYear(),
-            fecha.getUTCMonth(),
-            fecha.getUTCDate(),
-            fecha.getUTCHours(),
-            fecha.getUTCMinutes(),
-            fecha.getUTCSeconds(),
-            fecha.getUTCMilliseconds()
+            date.getUTCFullYear(),
+            date.getUTCMonth(),
+            date.getUTCDate(),
+            date.getUTCHours(),
+            date.getUTCMinutes(),
+            date.getUTCSeconds(),
+            date.getUTCMilliseconds()
         ];
     }
     function arrayToUtcDate(a) {
@@ -755,9 +755,9 @@ var FullCalendar = (function (exports) {
         return res;
     }
 
-    function parseRecurring(refined, defaultAllDay, fechaEnv, recurringTypes) {
+    function parseRecurring(refined, defaultAllDay, dateEnv, recurringTypes) {
         for (var i = 0; i < recurringTypes.length; i++) {
-            var parsed = recurringTypes[i].parse(refined, fechaEnv);
+            var parsed = recurringTypes[i].parse(refined, dateEnv);
             if (parsed) {
                 var allDay = refined.allDay;
                 if (allDay == null) {
@@ -780,7 +780,7 @@ var FullCalendar = (function (exports) {
         return null;
     }
     function expandRecurring(eventStore, framingRange, context) {
-        var fechaEnv = context.fechaEnv, pluginHooks = context.pluginHooks, options = context.options;
+        var dateEnv = context.dateEnv, pluginHooks = context.pluginHooks, options = context.options;
         var defs = eventStore.defs, instances = eventStore.instances;
         // remove existing recurring instances
         // TODO: bad. always expand events as a second step
@@ -796,12 +796,12 @@ var FullCalendar = (function (exports) {
                         options.defaultAllDayEventDuration :
                         options.defaultTimedEventDuration;
                 }
-                var starts = expandRecurringRanges(def, duration, framingRange, fechaEnv, pluginHooks.recurringTypes);
+                var starts = expandRecurringRanges(def, duration, framingRange, dateEnv, pluginHooks.recurringTypes);
                 for (var _i = 0, starts_1 = starts; _i < starts_1.length; _i++) {
                     var start = starts_1[_i];
                     var instance = createEventInstance(defId, {
                         start: start,
-                        end: fechaEnv.add(start, duration)
+                        end: dateEnv.add(start, duration)
                     });
                     instances[instance.instanceId] = instance;
                 }
@@ -812,12 +812,12 @@ var FullCalendar = (function (exports) {
     /*
     Event MUST have a recurringDef
     */
-    function expandRecurringRanges(eventDef, duration, framingRange, fechaEnv, recurringTypes) {
+    function expandRecurringRanges(eventDef, duration, framingRange, dateEnv, recurringTypes) {
         var typeDef = recurringTypes[eventDef.recurringDef.typeId];
         var markers = typeDef.expand(eventDef.recurringDef.typeData, {
-            start: fechaEnv.subtract(framingRange.start, duration),
+            start: dateEnv.subtract(framingRange.start, duration),
             end: framingRange.end
-        }, fechaEnv);
+        }, dateEnv);
         // the recurrence plugins don't guarantee that all-day events are start-of-day, so we have to
         if (eventDef.allDay) {
             markers = markers.map(startOfDay);
@@ -1007,7 +1007,7 @@ var FullCalendar = (function (exports) {
         }
         return s;
     }
-    // formats the fecha, but with no time part
+    // formats the date, but with no time part
     // TODO: somehow merge with buildIsoString and stripZeroTime
     // TODO: rename. omit "string"
     function formatDayString(marker) {
@@ -1216,8 +1216,8 @@ var FullCalendar = (function (exports) {
             this.severity = severity;
             this.buildFormattingFunc = memoize(buildFormattingFunc);
         }
-        NativeFormatter.prototype.format = function (fecha, context) {
-            return this.buildFormattingFunc(this.standardDateProps, this.extendedSettings, context)(fecha);
+        NativeFormatter.prototype.format = function (date, context) {
+            return this.buildFormattingFunc(this.standardDateProps, this.extendedSettings, context)(date);
         };
         NativeFormatter.prototype.formatRange = function (start, end, context, betterDefaultSeparator) {
             var _a = this, standardDateProps = _a.standardDateProps, extendedSettings = _a.extendedSettings;
@@ -1226,11 +1226,11 @@ var FullCalendar = (function (exports) {
                 return this.format(start, context);
             }
             var biggestUnitForPartial = diffSeverity;
-            if (biggestUnitForPartial > 1 && // the two fechas are different in a way that's larger scale than time
+            if (biggestUnitForPartial > 1 && // the two dates are different in a way that's larger scale than time
                 (standardDateProps.year === 'numeric' || standardDateProps.year === '2-digit') &&
                 (standardDateProps.month === 'numeric' || standardDateProps.month === '2-digit') &&
                 (standardDateProps.day === 'numeric' || standardDateProps.day === '2-digit')) {
-                biggestUnitForPartial = 1; // make it look like the fechas are only different in terms of time
+                biggestUnitForPartial = 1; // make it look like the dates are only different in terms of time
             }
             var full0 = this.format(start, context);
             var full1 = this.format(end, context);
@@ -1269,13 +1269,13 @@ var FullCalendar = (function (exports) {
     function buildFormattingFunc(standardDateProps, extendedSettings, context) {
         var standardDatePropCnt = Object.keys(standardDateProps).length;
         if (standardDatePropCnt === 1 && standardDateProps.timeZoneName === 'short') {
-            return function (fecha) {
-                return formatTimeZoneOffset(fecha.timeZoneOffset);
+            return function (date) {
+                return formatTimeZoneOffset(date.timeZoneOffset);
             };
         }
         if (standardDatePropCnt === 0 && extendedSettings.week) {
-            return function (fecha) {
-                return formatWeekNumber(context.computeWeekNumber(fecha.marker), context.weekText, context.locale, extendedSettings.week);
+            return function (date) {
+                return formatWeekNumber(context.computeWeekNumber(date.marker), context.weekText, context.locale, extendedSettings.week);
             };
         }
         return buildNativeFormattingFunc(standardDateProps, extendedSettings, context);
@@ -1292,8 +1292,8 @@ var FullCalendar = (function (exports) {
             delete zeroProps.minute; // seconds and ms were already considered in sanitizeSettings
             zeroFormat = new Intl.DateTimeFormat(context.locale.codes, zeroProps);
         }
-        return function (fecha) {
-            var marker = fecha.marker;
+        return function (date) {
+            var marker = date.marker;
             var format;
             if (zeroFormat && !marker.getUTCMinutes()) {
                 format = zeroFormat;
@@ -1302,7 +1302,7 @@ var FullCalendar = (function (exports) {
                 format = normalFormat;
             }
             var s = format.format(marker);
-            return postProcess(s, fecha, standardDateProps, extendedSettings, context);
+            return postProcess(s, date, standardDateProps, extendedSettings, context);
         };
     }
     function sanitizeSettings(standardDateProps, extendedSettings) {
@@ -1325,12 +1325,12 @@ var FullCalendar = (function (exports) {
             delete extendedSettings.omitZeroMinute;
         }
     }
-    function postProcess(s, fecha, standardDateProps, extendedSettings, context) {
+    function postProcess(s, date, standardDateProps, extendedSettings, context) {
         s = s.replace(LTR_RE, ''); // remove left-to-right control chars. do first. good for other regexes
         if (standardDateProps.timeZoneName === 'short') {
-            s = injectTzoStr(s, (context.timeZone === 'UTC' || fecha.timeZoneOffset == null) ?
+            s = injectTzoStr(s, (context.timeZone === 'UTC' || date.timeZoneOffset == null) ?
                 'UTC' : // important to normalize for IE, which does "GMT"
-                formatTimeZoneOffset(fecha.timeZoneOffset));
+                formatTimeZoneOffset(date.timeZoneOffset));
         }
         if (extendedSettings.omitCommas) {
             s = s.replace(COMMA_RE, '').trim();
@@ -1411,7 +1411,7 @@ var FullCalendar = (function (exports) {
     function computePartialFormattingOptions(options, biggestUnit) {
         var partialOptions = {};
         for (var name_2 in options) {
-            if (!(name_2 in STANDARD_DATE_PROP_SEVERITIES) || // not a fecha part prop (like timeZone)
+            if (!(name_2 in STANDARD_DATE_PROP_SEVERITIES) || // not a date part prop (like timeZone)
                 STANDARD_DATE_PROP_SEVERITIES[name_2] <= biggestUnit) {
                 partialOptions[name_2] = options[name_2];
             }
@@ -1448,11 +1448,11 @@ var FullCalendar = (function (exports) {
         return null;
     }
 
-    function expandZonedMarker(fechaInfo, calendarSystem) {
-        var a = calendarSystem.markerToArray(fechaInfo.marker);
+    function expandZonedMarker(dateInfo, calendarSystem) {
+        var a = calendarSystem.markerToArray(dateInfo.marker);
         return {
-            marker: fechaInfo.marker,
-            timeZoneOffset: fechaInfo.timeZoneOffset,
+            marker: dateInfo.marker,
+            timeZoneOffset: dateInfo.timeZoneOffset,
             array: a,
             year: a[0],
             month: a[1],
@@ -1468,7 +1468,7 @@ var FullCalendar = (function (exports) {
         var startInfo = expandZonedMarker(start, context.calendarSystem);
         var endInfo = end ? expandZonedMarker(end, context.calendarSystem) : null;
         return {
-            fecha: startInfo,
+            date: startInfo,
             start: startInfo,
             end: endInfo,
             timeZone: context.timeZone,
@@ -1488,8 +1488,8 @@ var FullCalendar = (function (exports) {
         function CmdFormatter(cmdStr) {
             this.cmdStr = cmdStr;
         }
-        CmdFormatter.prototype.format = function (fecha, context, betterDefaultSeparator) {
-            return context.cmdFormatter(this.cmdStr, createVerboseFormattingArg(fecha, null, context, betterDefaultSeparator));
+        CmdFormatter.prototype.format = function (date, context, betterDefaultSeparator) {
+            return context.cmdFormatter(this.cmdStr, createVerboseFormattingArg(date, null, context, betterDefaultSeparator));
         };
         CmdFormatter.prototype.formatRange = function (start, end, context, betterDefaultSeparator) {
             return context.cmdFormatter(this.cmdStr, createVerboseFormattingArg(start, end, context, betterDefaultSeparator));
@@ -1501,8 +1501,8 @@ var FullCalendar = (function (exports) {
         function FuncFormatter(func) {
             this.func = func;
         }
-        FuncFormatter.prototype.format = function (fecha, context, betterDefaultSeparator) {
-            return this.func(createVerboseFormattingArg(fecha, null, context, betterDefaultSeparator));
+        FuncFormatter.prototype.format = function (date, context, betterDefaultSeparator) {
+            return this.func(createVerboseFormattingArg(date, null, context, betterDefaultSeparator));
         };
         FuncFormatter.prototype.formatRange = function (start, end, context, betterDefaultSeparator) {
             return this.func(createVerboseFormattingArg(start, end, context, betterDefaultSeparator));
@@ -1664,8 +1664,8 @@ var FullCalendar = (function (exports) {
         plugins: identity,
         firstDay: Number,
         dayCount: Number,
-        fechaAlignment: String,
-        fechaIncrement: createDuration,
+        dateAlignment: String,
+        dateIncrement: createDuration,
         hiddenDays: identity,
         monthMode: Boolean,
         fixedWeekCount: Boolean,
@@ -1728,7 +1728,7 @@ var FullCalendar = (function (exports) {
     // calendar listeners
     // ------------------
     var CALENDAR_LISTENER_REFINERS = {
-        fechasSet: identity,
+        datesSet: identity,
         eventsSet: identity,
         eventAdd: identity,
         eventChange: identity,
@@ -1780,7 +1780,7 @@ var FullCalendar = (function (exports) {
         component: identity,
         buttonText: String,
         buttonTextKey: String,
-        fechaProfileGeneratorClass: identity,
+        dateProfileGeneratorClass: identity,
         usesMinMaxTime: Boolean,
         classNames: identity,
         content: identity,
@@ -1991,7 +1991,7 @@ var FullCalendar = (function (exports) {
     var EVENT_DATE_REFINERS = {
         start: identity,
         end: identity,
-        fecha: identity,
+        date: identity,
         allDay: Boolean
     };
     var EVENT_REFINERS = __assign(__assign(__assign({}, EVENT_NON_DATE_REFINERS), EVENT_DATE_REFINERS), { extendedProps: identity });
@@ -1999,7 +1999,7 @@ var FullCalendar = (function (exports) {
         if (refiners === void 0) { refiners = buildEventRefiners(context); }
         var _a = refineEventDef(raw, context, refiners), refined = _a.refined, extra = _a.extra;
         var defaultAllDay = computeIsDefaultAllDay(eventSource, context);
-        var recurringRes = parseRecurring(refined, defaultAllDay, context.fechaEnv, context.pluginHooks.recurringTypes);
+        var recurringRes = parseRecurring(refined, defaultAllDay, context.dateEnv, context.pluginHooks.recurringTypes);
         if (recurringRes) {
             var def = parseEventDef(refined, extra, eventSource ? eventSource.sourceId : '', recurringRes.allDay, Boolean(recurringRes.duration), context);
             def.recurringDef = {
@@ -2028,7 +2028,7 @@ var FullCalendar = (function (exports) {
     }
     /*
     Will NOT populate extendedProps with the leftover properties.
-    Will NOT populate fecha-related props.
+    Will NOT populate date-related props.
     */
     function parseEventDef(refined, extra, sourceId, allDay, hasEnd, context) {
         var def = {
@@ -2060,8 +2060,8 @@ var FullCalendar = (function (exports) {
         var hasEnd = false;
         var endMeta;
         var endMarker = null;
-        var startInput = refined.start != null ? refined.start : refined.fecha;
-        startMeta = context.fechaEnv.createMarkerMeta(startInput);
+        var startInput = refined.start != null ? refined.start : refined.date;
+        startMeta = context.dateEnv.createMarkerMeta(startInput);
         if (startMeta) {
             startMarker = startMeta.marker;
         }
@@ -2069,14 +2069,14 @@ var FullCalendar = (function (exports) {
             return null;
         }
         if (refined.end != null) {
-            endMeta = context.fechaEnv.createMarkerMeta(refined.end);
+            endMeta = context.dateEnv.createMarkerMeta(refined.end);
         }
         if (allDay == null) {
             if (defaultAllDay != null) {
                 allDay = defaultAllDay;
             }
             else {
-                // fall back to the fecha props LAST
+                // fall back to the date props LAST
                 allDay = (!startMeta || startMeta.isTimeUnspecified) &&
                     (!endMeta || endMeta.isTimeUnspecified);
             }
@@ -2098,7 +2098,7 @@ var FullCalendar = (function (exports) {
         }
         else if (!allowOpenRange) {
             hasEnd = context.options.forceEventDuration || false;
-            endMarker = context.fechaEnv.add(startMarker, allDay ?
+            endMarker = context.dateEnv.add(startMarker, allDay ?
                 context.options.defaultAllDayEventDuration :
                 context.options.defaultTimedEventDuration);
         }
@@ -2121,7 +2121,7 @@ var FullCalendar = (function (exports) {
         return res;
     }
 
-    /* Date stuff that doesn't belong in fechalib core
+    /* Date stuff that doesn't belong in datelib core
     ----------------------------------------------------------------------------------------------------------------------*/
     // given a timed range, computes an all-day range that has the same exact duration,
     // but whose start time is aligned with the start of the day.
@@ -2131,7 +2131,7 @@ var FullCalendar = (function (exports) {
         var end = addDays(start, dayCnt);
         return { start: start, end: end };
     }
-    // given a timed range, computes an all-day range based on how for the end fecha bleeds into the next day
+    // given a timed range, computes an all-day range based on how for the end date bleeds into the next day
     // TODO: give nextDayThreshold a default arg
     function computeVisibleDayRange(timedRange, nextDayThreshold) {
         if (nextDayThreshold === void 0) { nextDayThreshold = createDuration(0); }
@@ -2161,26 +2161,26 @@ var FullCalendar = (function (exports) {
         var visibleRange = computeVisibleDayRange(range);
         return diffDays(visibleRange.start, visibleRange.end) > 1;
     }
-    function diffDates(fecha0, fecha1, fechaEnv, largeUnit) {
+    function diffDates(date0, date1, dateEnv, largeUnit) {
         if (largeUnit === 'year') {
-            return createDuration(fechaEnv.diffWholeYears(fecha0, fecha1), 'year');
+            return createDuration(dateEnv.diffWholeYears(date0, date1), 'year');
         }
         else if (largeUnit === 'month') {
-            return createDuration(fechaEnv.diffWholeMonths(fecha0, fecha1), 'month');
+            return createDuration(dateEnv.diffWholeMonths(date0, date1), 'month');
         }
         else {
-            return diffDayAndTime(fecha0, fecha1); // returns a duration
+            return diffDayAndTime(date0, date1); // returns a duration
         }
     }
 
-    function parseRange(input, fechaEnv) {
+    function parseRange(input, dateEnv) {
         var start = null;
         var end = null;
         if (input.start) {
-            start = fechaEnv.createMarker(input.start);
+            start = dateEnv.createMarker(input.start);
         }
         if (input.end) {
-            end = fechaEnv.createMarker(input.end);
+            end = dateEnv.createMarker(input.end);
         }
         if (!start && !end) {
             return null;
@@ -2196,17 +2196,17 @@ var FullCalendar = (function (exports) {
         var invertedRanges = [];
         var start = constraintRange.start; // the end of the previous range. the start of the new range
         var i;
-        var fechaRange;
-        // ranges need to be in order. required for our fecha-walking algorithm
+        var dateRange;
+        // ranges need to be in order. required for our date-walking algorithm
         ranges.sort(compareRanges);
         for (i = 0; i < ranges.length; i++) {
-            fechaRange = ranges[i];
+            dateRange = ranges[i];
             // add the span of time before the event (if there is any)
-            if (fechaRange.start > start) { // compare millisecond time (skip any ambig logic)
-                invertedRanges.push({ start: start, end: fechaRange.start });
+            if (dateRange.start > start) { // compare millisecond time (skip any ambig logic)
+                invertedRanges.push({ start: start, end: dateRange.start });
             }
-            if (fechaRange.end > start) {
-                start = fechaRange.end;
+            if (dateRange.end > start) {
+                start = dateRange.end;
             }
         }
         // add the span of time after the last event (if there is any)
@@ -2255,20 +2255,20 @@ var FullCalendar = (function (exports) {
         return (outerRange.start === null || (innerRange.start !== null && innerRange.start >= outerRange.start)) &&
             (outerRange.end === null || (innerRange.end !== null && innerRange.end <= outerRange.end));
     }
-    function rangeContainsMarker(range, fecha) {
-        return (range.start === null || fecha >= range.start) &&
-            (range.end === null || fecha < range.end);
+    function rangeContainsMarker(range, date) {
+        return (range.start === null || date >= range.start) &&
+            (range.end === null || date < range.end);
     }
-    // If the given fecha is not within the given range, move it inside.
+    // If the given date is not within the given range, move it inside.
     // (If it's past the end, make it one millisecond before the end).
-    function constrainMarkerToRange(fecha, range) {
-        if (range.start != null && fecha < range.start) {
+    function constrainMarkerToRange(date, range) {
+        if (range.start != null && date < range.start) {
             return range.start;
         }
-        if (range.end != null && fecha >= range.end) {
+        if (range.end != null && date >= range.end) {
             return new Date(range.end.valueOf() - 1);
         }
-        return fecha;
+        return date;
     }
 
     /*
@@ -2428,7 +2428,7 @@ var FullCalendar = (function (exports) {
     function buildSegTimeText(seg, timeFormat, context, defaultDisplayEventTime, // defaults to true
     defaultDisplayEventEnd, // defaults to true
     startOverride, endOverride) {
-        var fechaEnv = context.fechaEnv, options = context.options;
+        var dateEnv = context.dateEnv, options = context.options;
         var displayEventTime = options.displayEventTime, displayEventEnd = options.displayEventEnd;
         var eventDef = seg.eventRange.def;
         var eventInstance = seg.eventRange.instance;
@@ -2442,13 +2442,13 @@ var FullCalendar = (function (exports) {
             var segStart = startOverride || (seg.isStart ? eventInstance.range.start : (seg.start || seg.eventRange.range.start));
             var segEnd = endOverride || (seg.isEnd ? eventInstance.range.end : (seg.end || seg.eventRange.range.end));
             if (displayEventEnd && eventDef.hasEnd) {
-                return fechaEnv.formatRange(segStart, segEnd, timeFormat, {
+                return dateEnv.formatRange(segStart, segEnd, timeFormat, {
                     forcedStartTzo: startOverride ? null : eventInstance.forcedStartTzo,
                     forcedEndTzo: endOverride ? null : eventInstance.forcedEndTzo
                 });
             }
             else {
-                return fechaEnv.format(segStart, timeFormat, {
+                return dateEnv.format(segStart, timeFormat, {
                     forcedTzo: startOverride ? null : eventInstance.forcedStartTzo // nooooo, same
                 });
             }
@@ -2512,8 +2512,8 @@ var FullCalendar = (function (exports) {
         end: identity,
         allDay: Boolean
     };
-    function parseDateSpan(raw, fechaEnv, defaultDuration) {
-        var span = parseOpenDateSpan(raw, fechaEnv);
+    function parseDateSpan(raw, dateEnv, defaultDuration) {
+        var span = parseOpenDateSpan(raw, dateEnv);
         var range = span.range;
         if (!range.start) {
             return null;
@@ -2523,7 +2523,7 @@ var FullCalendar = (function (exports) {
                 return null;
             }
             else {
-                range.end = fechaEnv.add(range.start, defaultDuration);
+                range.end = dateEnv.add(range.start, defaultDuration);
             }
         }
         return span;
@@ -2532,10 +2532,10 @@ var FullCalendar = (function (exports) {
     TODO: somehow combine with parseRange?
     Will return null if the start/end props were present but parsed invalidly.
     */
-    function parseOpenDateSpan(raw, fechaEnv) {
+    function parseOpenDateSpan(raw, dateEnv) {
         var _a = refineProps(raw, STANDARD_PROPS), standardProps = _a.refined, extra = _a.extra;
-        var startMeta = standardProps.start ? fechaEnv.createMarkerMeta(standardProps.start) : null;
-        var endMeta = standardProps.end ? fechaEnv.createMarkerMeta(standardProps.end) : null;
+        var startMeta = standardProps.start ? dateEnv.createMarkerMeta(standardProps.start) : null;
+        var endMeta = standardProps.end ? dateEnv.createMarkerMeta(standardProps.end) : null;
         var allDay = standardProps.allDay;
         if (allDay == null) {
             allDay = (startMeta && startMeta.isTimeUnspecified) &&
@@ -2569,30 +2569,30 @@ var FullCalendar = (function (exports) {
         }
         return true;
     }
-    function buildDateSpanApi(span, fechaEnv) {
-        return __assign(__assign({}, buildRangeApi(span.range, fechaEnv, span.allDay)), { allDay: span.allDay });
+    function buildDateSpanApi(span, dateEnv) {
+        return __assign(__assign({}, buildRangeApi(span.range, dateEnv, span.allDay)), { allDay: span.allDay });
     }
-    function buildRangeApiWithTimeZone(range, fechaEnv, omitTime) {
-        return __assign(__assign({}, buildRangeApi(range, fechaEnv, omitTime)), { timeZone: fechaEnv.timeZone });
+    function buildRangeApiWithTimeZone(range, dateEnv, omitTime) {
+        return __assign(__assign({}, buildRangeApi(range, dateEnv, omitTime)), { timeZone: dateEnv.timeZone });
     }
-    function buildRangeApi(range, fechaEnv, omitTime) {
+    function buildRangeApi(range, dateEnv, omitTime) {
         return {
-            start: fechaEnv.toDate(range.start),
-            end: fechaEnv.toDate(range.end),
-            startStr: fechaEnv.formatIso(range.start, { omitTime: omitTime }),
-            endStr: fechaEnv.formatIso(range.end, { omitTime: omitTime })
+            start: dateEnv.toDate(range.start),
+            end: dateEnv.toDate(range.end),
+            startStr: dateEnv.formatIso(range.start, { omitTime: omitTime }),
+            endStr: dateEnv.formatIso(range.end, { omitTime: omitTime })
         };
     }
-    function fabricateEventRange(fechaSpan, eventUiBases, context) {
+    function fabricateEventRange(dateSpan, eventUiBases, context) {
         var res = refineEventDef({ editable: false }, context);
         var def = parseEventDef(res.refined, res.extra, '', // sourceId
-        fechaSpan.allDay, true, // hasEnd
+        dateSpan.allDay, true, // hasEnd
         context);
         return {
             def: def,
             ui: compileEventUi(def, eventUiBases),
-            instance: createEventInstance(def.defId, fechaSpan.range),
-            range: fechaSpan.range,
+            instance: createEventInstance(def.defId, dateSpan.range),
+            range: dateSpan.range,
             isStart: true,
             isEnd: true
         };
@@ -2607,26 +2607,26 @@ var FullCalendar = (function (exports) {
             view: context.viewApi || context.calendarApi.view
         });
     }
-    function buildDateSpanApiWithContext(fechaSpan, context) {
+    function buildDateSpanApiWithContext(dateSpan, context) {
         var props = {};
-        for (var _i = 0, _a = context.pluginHooks.fechaSpanTransforms; _i < _a.length; _i++) {
+        for (var _i = 0, _a = context.pluginHooks.dateSpanTransforms; _i < _a.length; _i++) {
             var transform = _a[_i];
-            __assign(props, transform(fechaSpan, context));
+            __assign(props, transform(dateSpan, context));
         }
-        __assign(props, buildDateSpanApi(fechaSpan, context.fechaEnv));
+        __assign(props, buildDateSpanApi(dateSpan, context.dateEnv));
         return props;
     }
-    // Given an event's allDay status and start fecha, return what its fallback end fecha should be.
+    // Given an event's allDay status and start date, return what its fallback end date should be.
     // TODO: rename to computeDefaultEventEnd
     function getDefaultEventEnd(allDay, marker, context) {
-        var fechaEnv = context.fechaEnv, options = context.options;
+        var dateEnv = context.dateEnv, options = context.options;
         var end = marker;
         if (allDay) {
             end = startOfDay(end);
-            end = fechaEnv.add(end, options.defaultAllDayEventDuration);
+            end = dateEnv.add(end, options.defaultAllDayEventDuration);
         }
         else {
-            end = fechaEnv.add(end, options.defaultTimedEventDuration);
+            end = dateEnv.add(end, options.defaultTimedEventDuration);
         }
         return end;
     }
@@ -2671,29 +2671,29 @@ var FullCalendar = (function (exports) {
     }
     function applyMutationToEventInstance(eventInstance, eventDef, // must first be modified by applyMutationToEventDef
     eventConfig, mutation, context) {
-        var fechaEnv = context.fechaEnv;
+        var dateEnv = context.dateEnv;
         var forceAllDay = mutation.standardProps && mutation.standardProps.allDay === true;
         var clearEnd = mutation.standardProps && mutation.standardProps.hasEnd === false;
         var copy = __assign({}, eventInstance);
         if (forceAllDay) {
             copy.range = computeAlignedDayRange(copy.range);
         }
-        if (mutation.fechasDelta && eventConfig.startEditable) {
+        if (mutation.datesDelta && eventConfig.startEditable) {
             copy.range = {
-                start: fechaEnv.add(copy.range.start, mutation.fechasDelta),
-                end: fechaEnv.add(copy.range.end, mutation.fechasDelta)
+                start: dateEnv.add(copy.range.start, mutation.datesDelta),
+                end: dateEnv.add(copy.range.end, mutation.datesDelta)
             };
         }
         if (mutation.startDelta && eventConfig.durationEditable) {
             copy.range = {
-                start: fechaEnv.add(copy.range.start, mutation.startDelta),
+                start: dateEnv.add(copy.range.start, mutation.startDelta),
                 end: copy.range.end
             };
         }
         if (mutation.endDelta && eventConfig.durationEditable) {
             copy.range = {
                 start: copy.range.start,
-                end: fechaEnv.add(copy.range.end, mutation.endDelta)
+                end: dateEnv.add(copy.range.end, mutation.endDelta)
             };
         }
         if (clearEnd) {
@@ -2720,10 +2720,10 @@ var FullCalendar = (function (exports) {
     // no public types yet. when there are, export from:
     // import {} from './api-type-deps'
     var ViewApi = /** @class */ (function () {
-        function ViewApi(type, getCurrentData, fechaEnv) {
+        function ViewApi(type, getCurrentData, dateEnv) {
             this.type = type;
             this.getCurrentData = getCurrentData;
-            this.fechaEnv = fechaEnv;
+            this.dateEnv = dateEnv;
         }
         Object.defineProperty(ViewApi.prototype, "calendar", {
             get: function () {
@@ -2741,28 +2741,28 @@ var FullCalendar = (function (exports) {
         });
         Object.defineProperty(ViewApi.prototype, "activeStart", {
             get: function () {
-                return this.fechaEnv.toDate(this.getCurrentData().fechaProfile.activeRange.start);
+                return this.dateEnv.toDate(this.getCurrentData().dateProfile.activeRange.start);
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(ViewApi.prototype, "activeEnd", {
             get: function () {
-                return this.fechaEnv.toDate(this.getCurrentData().fechaProfile.activeRange.end);
+                return this.dateEnv.toDate(this.getCurrentData().dateProfile.activeRange.end);
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(ViewApi.prototype, "currentStart", {
             get: function () {
-                return this.fechaEnv.toDate(this.getCurrentData().fechaProfile.currentRange.start);
+                return this.dateEnv.toDate(this.getCurrentData().dateProfile.currentRange.start);
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(ViewApi.prototype, "currentEnd", {
             get: function () {
-                return this.fechaEnv.toDate(this.getCurrentData().fechaProfile.currentRange.end);
+                return this.dateEnv.toDate(this.getCurrentData().dateProfile.currentRange.end);
             },
             enumerable: false,
             configurable: true
@@ -2837,29 +2837,29 @@ var FullCalendar = (function (exports) {
     function reduceCurrentDate(currentDate, action) {
         switch (action.type) {
             case 'CHANGE_DATE':
-                return action.fechaMarker;
+                return action.dateMarker;
             default:
                 return currentDate;
         }
     }
-    function getInitialDate(options, fechaEnv) {
+    function getInitialDate(options, dateEnv) {
         var initialDateInput = options.initialDate;
-        // compute the initial ambig-timezone fecha
+        // compute the initial ambig-timezone date
         if (initialDateInput != null) {
-            return fechaEnv.createMarker(initialDateInput);
+            return dateEnv.createMarker(initialDateInput);
         }
         else {
-            return getNow(options.now, fechaEnv); // getNow already returns unzoned
+            return getNow(options.now, dateEnv); // getNow already returns unzoned
         }
     }
-    function getNow(nowInput, fechaEnv) {
+    function getNow(nowInput, dateEnv) {
         if (typeof nowInput === 'function') {
             nowInput = nowInput();
         }
         if (nowInput == null) {
-            return fechaEnv.createNowMarker();
+            return dateEnv.createNowMarker();
         }
-        return fechaEnv.createMarker(nowInput);
+        return dateEnv.createMarker(nowInput);
     }
 
     var CalendarApi = /** @class */ (function () {
@@ -2880,7 +2880,7 @@ var FullCalendar = (function (exports) {
         CalendarApi.prototype.batchRendering = function (callback) {
             callback();
         };
-        CalendarApi.prototype.upfechaSize = function () {
+        CalendarApi.prototype.updateSize = function () {
             this.trigger('_resize', true);
         };
         // Options
@@ -2923,12 +2923,12 @@ var FullCalendar = (function (exports) {
         };
         // View
         // -----------------------------------------------------------------------------------------------------------------
-        CalendarApi.prototype.changeView = function (viewType, fechaOrRange) {
+        CalendarApi.prototype.changeView = function (viewType, dateOrRange) {
             var _this = this;
             this.batchRendering(function () {
                 _this.unselect();
-                if (fechaOrRange) {
-                    if (fechaOrRange.start && fechaOrRange.end) { // a range
+                if (dateOrRange) {
+                    if (dateOrRange.start && dateOrRange.end) { // a range
                         _this.dispatch({
                             type: 'CHANGE_VIEW_TYPE',
                             viewType: viewType,
@@ -2936,15 +2936,15 @@ var FullCalendar = (function (exports) {
                         _this.dispatch({
                             type: 'SET_OPTION',
                             optionName: 'visibleRange',
-                            rawOptionValue: fechaOrRange
+                            rawOptionValue: dateOrRange
                         });
                     }
                     else {
-                        var fechaEnv = _this.getCurrentData().fechaEnv;
+                        var dateEnv = _this.getCurrentData().dateEnv;
                         _this.dispatch({
                             type: 'CHANGE_VIEW_TYPE',
                             viewType: viewType,
-                            fechaMarker: fechaEnv.createMarker(fechaOrRange)
+                            dateMarker: dateEnv.createMarker(dateOrRange)
                         });
                     }
                 }
@@ -2956,10 +2956,10 @@ var FullCalendar = (function (exports) {
                 }
             });
         };
-        // Forces navigation to a view for the given fecha.
+        // Forces navigation to a view for the given date.
         // `viewType` can be a specific view name or a generic one like "week" or "day".
         // needs to change
-        CalendarApi.prototype.zoomTo = function (fechaMarker, viewType) {
+        CalendarApi.prototype.zoomTo = function (dateMarker, viewType) {
             var state = this.getCurrentData();
             var spec;
             viewType = viewType || 'day'; // day is default zoom
@@ -2969,13 +2969,13 @@ var FullCalendar = (function (exports) {
                 this.dispatch({
                     type: 'CHANGE_VIEW_TYPE',
                     viewType: spec.type,
-                    fechaMarker: fechaMarker
+                    dateMarker: dateMarker
                 });
             }
             else {
                 this.dispatch({
                     type: 'CHANGE_DATE',
-                    fechaMarker: fechaMarker
+                    dateMarker: dateMarker
                 });
             }
         };
@@ -3013,7 +3013,7 @@ var FullCalendar = (function (exports) {
             this.unselect();
             this.dispatch({
                 type: 'CHANGE_DATE',
-                fechaMarker: state.fechaEnv.addYears(state.currentDate, -1)
+                dateMarker: state.dateEnv.addYears(state.currentDate, -1)
             });
         };
         CalendarApi.prototype.nextYear = function () {
@@ -3021,7 +3021,7 @@ var FullCalendar = (function (exports) {
             this.unselect();
             this.dispatch({
                 type: 'CHANGE_DATE',
-                fechaMarker: state.fechaEnv.addYears(state.currentDate, 1)
+                dateMarker: state.dateEnv.addYears(state.currentDate, 1)
             });
         };
         CalendarApi.prototype.today = function () {
@@ -3029,7 +3029,7 @@ var FullCalendar = (function (exports) {
             this.unselect();
             this.dispatch({
                 type: 'CHANGE_DATE',
-                fechaMarker: getNow(state.calendarOptions.now, state.fechaEnv)
+                dateMarker: getNow(state.calendarOptions.now, state.dateEnv)
             });
         };
         CalendarApi.prototype.gotoDate = function (zonedDateInput) {
@@ -3037,7 +3037,7 @@ var FullCalendar = (function (exports) {
             this.unselect();
             this.dispatch({
                 type: 'CHANGE_DATE',
-                fechaMarker: state.fechaEnv.createMarker(zonedDateInput)
+                dateMarker: state.dateEnv.createMarker(zonedDateInput)
             });
         };
         CalendarApi.prototype.incrementDate = function (deltaInput) {
@@ -3047,55 +3047,55 @@ var FullCalendar = (function (exports) {
                 this.unselect();
                 this.dispatch({
                     type: 'CHANGE_DATE',
-                    fechaMarker: state.fechaEnv.add(state.currentDate, delta)
+                    dateMarker: state.dateEnv.add(state.currentDate, delta)
                 });
             }
         };
         // for external API
         CalendarApi.prototype.getDate = function () {
             var state = this.getCurrentData();
-            return state.fechaEnv.toDate(state.currentDate);
+            return state.dateEnv.toDate(state.currentDate);
         };
         // Date Formatting Utils
         // -----------------------------------------------------------------------------------------------------------------
         CalendarApi.prototype.formatDate = function (d, formatter) {
-            var fechaEnv = this.getCurrentData().fechaEnv;
-            return fechaEnv.format(fechaEnv.createMarker(d), createFormatter(formatter));
+            var dateEnv = this.getCurrentData().dateEnv;
+            return dateEnv.format(dateEnv.createMarker(d), createFormatter(formatter));
         };
         // `settings` is for formatter AND isEndExclusive
         CalendarApi.prototype.formatRange = function (d0, d1, settings) {
-            var fechaEnv = this.getCurrentData().fechaEnv;
-            return fechaEnv.formatRange(fechaEnv.createMarker(d0), fechaEnv.createMarker(d1), createFormatter(settings), settings);
+            var dateEnv = this.getCurrentData().dateEnv;
+            return dateEnv.formatRange(dateEnv.createMarker(d0), dateEnv.createMarker(d1), createFormatter(settings), settings);
         };
         CalendarApi.prototype.formatIso = function (d, omitTime) {
-            var fechaEnv = this.getCurrentData().fechaEnv;
-            return fechaEnv.formatIso(fechaEnv.createMarker(d), { omitTime: omitTime });
+            var dateEnv = this.getCurrentData().dateEnv;
+            return dateEnv.formatIso(dateEnv.createMarker(d), { omitTime: omitTime });
         };
         // Date Selection / Event Selection / DayClick
         // -----------------------------------------------------------------------------------------------------------------
-        // this public method receives start/end fechas in any format, with any timezone
+        // this public method receives start/end dates in any format, with any timezone
         // NOTE: args were changed from v3
-        CalendarApi.prototype.select = function (fechaOrObj, endDate) {
+        CalendarApi.prototype.select = function (dateOrObj, endDate) {
             var selectionInput;
             if (endDate == null) {
-                if (fechaOrObj.start != null) {
-                    selectionInput = fechaOrObj;
+                if (dateOrObj.start != null) {
+                    selectionInput = dateOrObj;
                 }
                 else {
                     selectionInput = {
-                        start: fechaOrObj,
+                        start: dateOrObj,
                         end: null
                     };
                 }
             }
             else {
                 selectionInput = {
-                    start: fechaOrObj,
+                    start: dateOrObj,
                     end: endDate
                 };
             }
             var state = this.getCurrentData();
-            var selection = parseDateSpan(selectionInput, state.fechaEnv, createDuration({ days: 1 }) // TODO: cache this?
+            var selection = parseDateSpan(selectionInput, state.dateEnv, createDuration({ days: 1 }) // TODO: cache this?
             );
             if (selection) { // throw parse error otherwise?
                 this.dispatch({ type: 'SELECT_DATES', selection: selection });
@@ -3105,7 +3105,7 @@ var FullCalendar = (function (exports) {
         // public method
         CalendarApi.prototype.unselect = function (pev) {
             var state = this.getCurrentData();
-            if (state.fechaSelection) {
+            if (state.dateSelection) {
                 this.dispatch({ type: 'UNSELECT_DATES' });
                 triggerDateUnselect(pev, state);
             }
@@ -3263,7 +3263,7 @@ var FullCalendar = (function (exports) {
 
     var EventApi = /** @class */ (function () {
         // instance will be null if expressing a recurring event that has no current instances,
-        // OR if trying to valifecha an incoming external event that has no fechas assigned
+        // OR if trying to validate an incoming external event that has no dates assigned
         function EventApi(context, def, instance) {
             this._context = context;
             this._def = def;
@@ -3275,7 +3275,7 @@ var FullCalendar = (function (exports) {
         EventApi.prototype.setProp = function (name, val) {
             var _a, _b;
             if (name in EVENT_DATE_REFINERS) {
-                console.warn("Could not set fecha-related prop 'name'. Use one of the fecha-related methods instead.");
+                console.warn("Could not set date-related prop 'name'. Use one of the date-related methods instead.");
             }
             else if (name in EVENT_NON_DATE_REFINERS) {
                 val = EVENT_NON_DATE_REFINERS[name](val);
@@ -3310,13 +3310,13 @@ var FullCalendar = (function (exports) {
         };
         EventApi.prototype.setStart = function (startInput, options) {
             if (options === void 0) { options = {}; }
-            var fechaEnv = this._context.fechaEnv;
-            var start = fechaEnv.createMarker(startInput);
+            var dateEnv = this._context.dateEnv;
+            var start = dateEnv.createMarker(startInput);
             if (start && this._instance) { // TODO: warning if parsed bad
                 var instanceRange = this._instance.range;
-                var startDelta = diffDates(instanceRange.start, start, fechaEnv, options.granularity); // what if parsed bad!?
+                var startDelta = diffDates(instanceRange.start, start, dateEnv, options.granularity); // what if parsed bad!?
                 if (options.maintainDuration) {
-                    this.mutate({ fechasDelta: startDelta });
+                    this.mutate({ datesDelta: startDelta });
                 }
                 else {
                     this.mutate({ startDelta: startDelta });
@@ -3325,17 +3325,17 @@ var FullCalendar = (function (exports) {
         };
         EventApi.prototype.setEnd = function (endInput, options) {
             if (options === void 0) { options = {}; }
-            var fechaEnv = this._context.fechaEnv;
+            var dateEnv = this._context.dateEnv;
             var end;
             if (endInput != null) {
-                end = fechaEnv.createMarker(endInput);
+                end = dateEnv.createMarker(endInput);
                 if (!end) {
                     return; // TODO: warning if parsed bad
                 }
             }
             if (this._instance) {
                 if (end) {
-                    var endDelta = diffDates(this._instance.range.end, end, fechaEnv, options.granularity);
+                    var endDelta = diffDates(this._instance.range.end, end, dateEnv, options.granularity);
                     this.mutate({ endDelta: endDelta });
                 }
                 else {
@@ -3345,15 +3345,15 @@ var FullCalendar = (function (exports) {
         };
         EventApi.prototype.setDates = function (startInput, endInput, options) {
             if (options === void 0) { options = {}; }
-            var fechaEnv = this._context.fechaEnv;
+            var dateEnv = this._context.dateEnv;
             var standardProps = { allDay: options.allDay };
-            var start = fechaEnv.createMarker(startInput);
+            var start = dateEnv.createMarker(startInput);
             var end;
             if (!start) {
                 return; // TODO: warning if parsed bad
             }
             if (endInput != null) {
-                end = fechaEnv.createMarker(endInput);
+                end = dateEnv.createMarker(endInput);
                 if (!end) { // TODO: warning if parsed bad
                     return;
                 }
@@ -3365,11 +3365,11 @@ var FullCalendar = (function (exports) {
                 if (options.allDay === true) {
                     instanceRange = computeAlignedDayRange(instanceRange);
                 }
-                var startDelta = diffDates(instanceRange.start, start, fechaEnv, options.granularity);
+                var startDelta = diffDates(instanceRange.start, start, dateEnv, options.granularity);
                 if (end) {
-                    var endDelta = diffDates(instanceRange.end, end, fechaEnv, options.granularity);
+                    var endDelta = diffDates(instanceRange.end, end, dateEnv, options.granularity);
                     if (durationsEqual(startDelta, endDelta)) {
-                        this.mutate({ fechasDelta: startDelta, standardProps: standardProps });
+                        this.mutate({ datesDelta: startDelta, standardProps: standardProps });
                     }
                     else {
                         this.mutate({ startDelta: startDelta, endDelta: endDelta, standardProps: standardProps });
@@ -3377,7 +3377,7 @@ var FullCalendar = (function (exports) {
                 }
                 else { // means "clear the end"
                     standardProps.hasEnd = false;
-                    this.mutate({ fechasDelta: startDelta, standardProps: standardProps });
+                    this.mutate({ datesDelta: startDelta, standardProps: standardProps });
                 }
             }
         };
@@ -3396,7 +3396,7 @@ var FullCalendar = (function (exports) {
         EventApi.prototype.moveDates = function (deltaInput) {
             var delta = createDuration(deltaInput);
             if (delta) { // TODO: warning if parsed bad
-                this.mutate({ fechasDelta: delta });
+                this.mutate({ datesDelta: delta });
             }
         };
         EventApi.prototype.setAllDay = function (allDay, options) {
@@ -3412,17 +3412,17 @@ var FullCalendar = (function (exports) {
             this.mutate({ standardProps: standardProps });
         };
         EventApi.prototype.formatRange = function (formatInput) {
-            var fechaEnv = this._context.fechaEnv;
+            var dateEnv = this._context.dateEnv;
             var instance = this._instance;
             var formatter = createFormatter(formatInput);
             if (this._def.hasEnd) {
-                return fechaEnv.formatRange(instance.range.start, instance.range.end, formatter, {
+                return dateEnv.formatRange(instance.range.start, instance.range.end, formatter, {
                     forcedStartTzo: instance.forcedStartTzo,
                     forcedEndTzo: instance.forcedEndTzo
                 });
             }
             else {
-                return fechaEnv.format(instance.range.start, formatter, {
+                return dateEnv.format(instance.range.start, formatter, {
                     forcedTzo: instance.forcedStartTzo
                 });
             }
@@ -3501,7 +3501,7 @@ var FullCalendar = (function (exports) {
         Object.defineProperty(EventApi.prototype, "start", {
             get: function () {
                 return this._instance ?
-                    this._context.fechaEnv.toDate(this._instance.range.start) :
+                    this._context.dateEnv.toDate(this._instance.range.start) :
                     null;
             },
             enumerable: false,
@@ -3510,7 +3510,7 @@ var FullCalendar = (function (exports) {
         Object.defineProperty(EventApi.prototype, "end", {
             get: function () {
                 return (this._instance && this._def.hasEnd) ?
-                    this._context.fechaEnv.toDate(this._instance.range.end) :
+                    this._context.dateEnv.toDate(this._instance.range.end) :
                     null;
             },
             enumerable: false,
@@ -3520,7 +3520,7 @@ var FullCalendar = (function (exports) {
             get: function () {
                 var instance = this._instance;
                 if (instance) {
-                    return this._context.fechaEnv.formatIso(instance.range.start, {
+                    return this._context.dateEnv.formatIso(instance.range.start, {
                         omitTime: this._def.allDay,
                         forcedTzo: instance.forcedStartTzo
                     });
@@ -3534,7 +3534,7 @@ var FullCalendar = (function (exports) {
             get: function () {
                 var instance = this._instance;
                 if (instance && this._def.hasEnd) {
-                    return this._context.fechaEnv.formatIso(instance.range.end, {
+                    return this._context.dateEnv.formatIso(instance.range.end, {
                         omitTime: this._def.allDay,
                         forcedTzo: instance.forcedEndTzo
                     });
@@ -3736,7 +3736,7 @@ var FullCalendar = (function (exports) {
             return arrayToUtcDate(arr);
         };
         GregorianCalendarSystem.prototype.markerToArray = function (marker) {
-            return fechaToUtcArray(marker);
+            return dateToUtcArray(marker);
         };
         return GregorianCalendarSystem;
     }());
@@ -3802,9 +3802,9 @@ var FullCalendar = (function (exports) {
                 return this.timestampToMarker(new Date().valueOf());
             }
             else {
-                // if we can't compute the current fecha val for a timezone,
-                // better to give the current local fecha vals than UTC
-                return arrayToUtcDate(fechaToLocalArray(new Date()));
+                // if we can't compute the current date val for a timezone,
+                // better to give the current local date vals than UTC
+                return arrayToUtcDate(dateToLocalArray(new Date()));
             }
         };
         DateEnv.prototype.createMarkerMeta = function (input) {
@@ -3955,7 +3955,7 @@ var FullCalendar = (function (exports) {
             return (m1.valueOf() - m0.valueOf()) / asRoughMs(d);
         };
         // Start-Of
-        // these DON'T return zoned-fechas. only UTC start-of fechas
+        // these DON'T return zoned-dates. only UTC start-of dates
         DateEnv.prototype.startOf = function (m, unit) {
             if (unit === 'year') {
                 return this.startOfYear(m);
@@ -4007,31 +4007,31 @@ var FullCalendar = (function (exports) {
             }
         };
         // TODO: choke on timeZoneName: long
-        DateEnv.prototype.format = function (marker, formatter, fechaOptions) {
-            if (fechaOptions === void 0) { fechaOptions = {}; }
+        DateEnv.prototype.format = function (marker, formatter, dateOptions) {
+            if (dateOptions === void 0) { dateOptions = {}; }
             return formatter.format({
                 marker: marker,
-                timeZoneOffset: fechaOptions.forcedTzo != null ?
-                    fechaOptions.forcedTzo :
+                timeZoneOffset: dateOptions.forcedTzo != null ?
+                    dateOptions.forcedTzo :
                     this.offsetForMarker(marker)
             }, this);
         };
-        DateEnv.prototype.formatRange = function (start, end, formatter, fechaOptions) {
-            if (fechaOptions === void 0) { fechaOptions = {}; }
-            if (fechaOptions.isEndExclusive) {
+        DateEnv.prototype.formatRange = function (start, end, formatter, dateOptions) {
+            if (dateOptions === void 0) { dateOptions = {}; }
+            if (dateOptions.isEndExclusive) {
                 end = addMs(end, -1);
             }
             return formatter.formatRange({
                 marker: start,
-                timeZoneOffset: fechaOptions.forcedStartTzo != null ?
-                    fechaOptions.forcedStartTzo :
+                timeZoneOffset: dateOptions.forcedStartTzo != null ?
+                    dateOptions.forcedStartTzo :
                     this.offsetForMarker(start)
             }, {
                 marker: end,
-                timeZoneOffset: fechaOptions.forcedEndTzo != null ?
-                    fechaOptions.forcedEndTzo :
+                timeZoneOffset: dateOptions.forcedEndTzo != null ?
+                    dateOptions.forcedEndTzo :
                     this.offsetForMarker(end)
-            }, this, fechaOptions.defaultSeparator);
+            }, this, dateOptions.defaultSeparator);
         };
         /*
         DUMB: the omitTime arg is dumb. if we omit the time, we want to omit the timezone offset. and if we do that,
@@ -4053,7 +4053,7 @@ var FullCalendar = (function (exports) {
         // TimeZone
         DateEnv.prototype.timestampToMarker = function (ms) {
             if (this.timeZone === 'local') {
-                return arrayToUtcDate(fechaToLocalArray(new Date(ms)));
+                return arrayToUtcDate(dateToLocalArray(new Date(ms)));
             }
             else if (this.timeZone === 'UTC' || !this.namedTimeZoneImpl) {
                 return new Date(ms);
@@ -4064,20 +4064,20 @@ var FullCalendar = (function (exports) {
         };
         DateEnv.prototype.offsetForMarker = function (m) {
             if (this.timeZone === 'local') {
-                return -arrayToLocalDate(fechaToUtcArray(m)).getTimezoneOffset(); // convert "inverse" offset to "normal" offset
+                return -arrayToLocalDate(dateToUtcArray(m)).getTimezoneOffset(); // convert "inverse" offset to "normal" offset
             }
             else if (this.timeZone === 'UTC') {
                 return 0;
             }
             else if (this.namedTimeZoneImpl) {
-                return this.namedTimeZoneImpl.offsetForArray(fechaToUtcArray(m));
+                return this.namedTimeZoneImpl.offsetForArray(dateToUtcArray(m));
             }
             return null;
         };
         // Conversion
         DateEnv.prototype.toDate = function (m, forcedTzo) {
             if (this.timeZone === 'local') {
-                return arrayToLocalDate(fechaToUtcArray(m));
+                return arrayToLocalDate(dateToUtcArray(m));
             }
             else if (this.timeZone === 'UTC') {
                 return new Date(m.valueOf()); // make sure it's a copy
@@ -4087,7 +4087,7 @@ var FullCalendar = (function (exports) {
             }
             else {
                 return new Date(m.valueOf() -
-                    this.namedTimeZoneImpl.offsetForArray(fechaToUtcArray(m)) * 1000 * 60 // convert minutes -> ms
+                    this.namedTimeZoneImpl.offsetForArray(dateToUtcArray(m)) * 1000 * 60 // convert minutes -> ms
                 );
             }
         };
@@ -4174,28 +4174,28 @@ var FullCalendar = (function (exports) {
         };
     }
 
-    function formatDate(fechaInput, options) {
+    function formatDate(dateInput, options) {
         if (options === void 0) { options = {}; }
-        var fechaEnv = buildDateEnv(options);
+        var dateEnv = buildDateEnv(options);
         var formatter = createFormatter(options);
-        var fechaMeta = fechaEnv.createMarkerMeta(fechaInput);
-        if (!fechaMeta) { // TODO: warning?
+        var dateMeta = dateEnv.createMarkerMeta(dateInput);
+        if (!dateMeta) { // TODO: warning?
             return '';
         }
-        return fechaEnv.format(fechaMeta.marker, formatter, {
-            forcedTzo: fechaMeta.forcedTzo
+        return dateEnv.format(dateMeta.marker, formatter, {
+            forcedTzo: dateMeta.forcedTzo
         });
     }
     function formatRange(startInput, endInput, options // mixture of env and formatter settings
     ) {
-        var fechaEnv = buildDateEnv(typeof options === 'object' && options ? options : {}); // pass in if non-null object
+        var dateEnv = buildDateEnv(typeof options === 'object' && options ? options : {}); // pass in if non-null object
         var formatter = createFormatter(options);
-        var startMeta = fechaEnv.createMarkerMeta(startInput);
-        var endMeta = fechaEnv.createMarkerMeta(endInput);
+        var startMeta = dateEnv.createMarkerMeta(startInput);
+        var endMeta = dateEnv.createMarkerMeta(endInput);
         if (!startMeta || !endMeta) { // TODO: warning?
             return '';
         }
-        return fechaEnv.formatRange(startMeta.marker, endMeta.marker, formatter, {
+        return dateEnv.formatRange(startMeta.marker, endMeta.marker, formatter, {
             forcedStartTzo: startMeta.forcedTzo,
             forcedEndTzo: endMeta.forcedTzo,
             isEndExclusive: options.isEndExclusive,
@@ -4336,7 +4336,7 @@ var FullCalendar = (function (exports) {
             var _this = this;
             var keyInfos = this.getKeyInfo(props);
             var defKeys = this.getKeysForEventDefs(props.eventStore);
-            var fechaSelections = this.splitDateSelection(props.fechaSelection);
+            var dateSelections = this.splitDateSelection(props.dateSelection);
             var individualUi = this.splitIndividualUi(props.eventUiBases, defKeys); // the individual *bases*
             var eventStores = this.splitEventStore(props.eventStore, defKeys);
             var eventDrags = this.splitEventDrag(props.eventDrag);
@@ -4351,7 +4351,7 @@ var FullCalendar = (function (exports) {
                 var buildEventUi = this.eventUiBuilders[key];
                 splitProps[key] = {
                     businessHours: keyInfo.businessHours || props.businessHours,
-                    fechaSelection: fechaSelections[key] || null,
+                    dateSelection: dateSelections[key] || null,
                     eventStore: eventStore,
                     eventUiBases: buildEventUi(props.eventUiBases[''], keyInfo.ui, individualUi[key]),
                     eventSelection: eventStore.instances[props.eventSelection] ? props.eventSelection : '',
@@ -4361,16 +4361,16 @@ var FullCalendar = (function (exports) {
             }
             return splitProps;
         };
-        Splitter.prototype._splitDateSpan = function (fechaSpan) {
-            var fechaSpans = {};
-            if (fechaSpan) {
-                var keys = this.getKeysForDateSpan(fechaSpan);
+        Splitter.prototype._splitDateSpan = function (dateSpan) {
+            var dateSpans = {};
+            if (dateSpan) {
+                var keys = this.getKeysForDateSpan(dateSpan);
                 for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
                     var key = keys_1[_i];
-                    fechaSpans[key] = fechaSpan;
+                    dateSpans[key] = dateSpan;
                 }
             }
-            return fechaSpans;
+            return dateSpans;
         };
         Splitter.prototype._getKeysForEventDefs = function (eventStore) {
             var _this = this;
@@ -4461,14 +4461,14 @@ var FullCalendar = (function (exports) {
         return stuff;
     }
 
-    function getDateMeta(fecha, todayRange, nowDate, fechaProfile) {
+    function getDateMeta(date, todayRange, nowDate, dateProfile) {
         return {
-            dow: fecha.getUTCDay(),
-            isDisabled: Boolean(fechaProfile && !rangeContainsMarker(fechaProfile.activeRange, fecha)),
-            isOther: Boolean(fechaProfile && !rangeContainsMarker(fechaProfile.currentRange, fecha)),
-            isToday: Boolean(todayRange && rangeContainsMarker(todayRange, fecha)),
-            isPast: Boolean(nowDate ? (fecha < nowDate) : todayRange ? (fecha < todayRange.start) : false),
-            isFuture: Boolean(nowDate ? (fecha > nowDate) : todayRange ? (fecha >= todayRange.end) : false)
+            dow: date.getUTCDay(),
+            isDisabled: Boolean(dateProfile && !rangeContainsMarker(dateProfile.activeRange, date)),
+            isOther: Boolean(dateProfile && !rangeContainsMarker(dateProfile.currentRange, date)),
+            isToday: Boolean(todayRange && rangeContainsMarker(todayRange, date)),
+            isPast: Boolean(nowDate ? (date < nowDate) : todayRange ? (date < todayRange.start) : false),
+            isFuture: Boolean(nowDate ? (date > nowDate) : todayRange ? (date >= todayRange.end) : false)
         };
     }
     function getDayClassNames(meta, theme) {
@@ -4519,10 +4519,10 @@ var FullCalendar = (function (exports) {
         return classNames;
     }
 
-    function buildNavLinkData(fecha, type) {
+    function buildNavLinkData(date, type) {
         if (type === void 0) { type = 'day'; }
         return JSON.stringify({
-            fecha: formatDayString(fecha),
+            date: formatDayString(date),
             type: type
         });
     }
@@ -5007,7 +5007,7 @@ var FullCalendar = (function (exports) {
         ScrollResponder.prototype.detach = function () {
             this.emitter.off('_scrollRequest', this.handleScrollRequest);
         };
-        ScrollResponder.prototype.upfecha = function (isDatesNew) {
+        ScrollResponder.prototype.update = function (isDatesNew) {
             if (isDatesNew) {
                 this.fireInitialScroll(); // will drain
             }
@@ -5029,9 +5029,9 @@ var FullCalendar = (function (exports) {
     }());
 
     var ViewContextType = createContext$1({}); // for Components
-    function buildViewContext(viewSpec, viewApi, viewOptions, fechaProfileGenerator, fechaEnv, theme, pluginHooks, dispatch, getCurrentData, emitter, calendarApi, registerInteractiveComponent, unregisterInteractiveComponent) {
+    function buildViewContext(viewSpec, viewApi, viewOptions, dateProfileGenerator, dateEnv, theme, pluginHooks, dispatch, getCurrentData, emitter, calendarApi, registerInteractiveComponent, unregisterInteractiveComponent) {
         return {
-            fechaEnv: fechaEnv,
+            dateEnv: dateEnv,
             options: viewOptions,
             pluginHooks: pluginHooks,
             emitter: emitter,
@@ -5040,7 +5040,7 @@ var FullCalendar = (function (exports) {
             calendarApi: calendarApi,
             viewSpec: viewSpec,
             viewApi: viewApi,
-            fechaProfileGenerator: fechaProfileGenerator,
+            dateProfileGenerator: dateProfileGenerator,
             theme: theme,
             isRtl: viewOptions.direction === 'rtl',
             addResizeHandler: function (handler) {
@@ -5062,7 +5062,7 @@ var FullCalendar = (function (exports) {
         function PureComponent() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        PureComponent.prototype.shouldComponentUpfecha = function (nextProps, nextState) {
+        PureComponent.prototype.shouldComponentUpdate = function (nextProps, nextState) {
             if (this.debug) {
                 console.log(getUnequalProps(nextProps, this.props), getUnequalProps(nextState, this.state));
             }
@@ -5105,21 +5105,21 @@ var FullCalendar = (function (exports) {
         }
     }
 
-    function reduceEventStore(eventStore, action, eventSources, fechaProfile, context) {
+    function reduceEventStore(eventStore, action, eventSources, dateProfile, context) {
         switch (action.type) {
             case 'RECEIVE_EVENTS': // raw
                 return receiveRawEvents(eventStore, eventSources[action.sourceId], action.fetchId, action.fetchRange, action.rawEvents, context);
             case 'ADD_EVENTS': // already parsed, but not expanded
                 return addEvent(eventStore, action.eventStore, // new ones
-                fechaProfile ? fechaProfile.activeRange : null, context);
+                dateProfile ? dateProfile.activeRange : null, context);
             case 'MERGE_EVENTS': // already parsed and expanded
                 return mergeEventStores(eventStore, action.eventStore);
-            case 'PREV': // TODO: how do we track all actions that affect fechaProfile :(
+            case 'PREV': // TODO: how do we track all actions that affect dateProfile :(
             case 'NEXT':
             case 'CHANGE_DATE':
             case 'CHANGE_VIEW_TYPE':
-                if (fechaProfile) {
-                    return expandRecurring(eventStore, fechaProfile.activeRange, context);
+                if (dateProfile) {
+                    return expandRecurring(eventStore, dateProfile.activeRange, context);
                 }
                 else {
                     return eventStore;
@@ -5223,50 +5223,50 @@ var FullCalendar = (function (exports) {
     function isInteractionValid(interaction, context) {
         return isNewPropsValid({ eventDrag: interaction }, context); // HACK: the eventDrag props is used for ALL interactions
     }
-    function isDateSelectionValid(fechaSelection, context) {
-        return isNewPropsValid({ fechaSelection: fechaSelection }, context);
+    function isDateSelectionValid(dateSelection, context) {
+        return isNewPropsValid({ dateSelection: dateSelection }, context);
     }
     function isNewPropsValid(newProps, context) {
         var calendarState = context.getCurrentData();
-        var props = __assign({ businessHours: calendarState.businessHours, fechaSelection: '', eventStore: calendarState.eventStore, eventUiBases: calendarState.eventUiBases, eventSelection: '', eventDrag: null, eventResize: null }, newProps);
+        var props = __assign({ businessHours: calendarState.businessHours, dateSelection: '', eventStore: calendarState.eventStore, eventUiBases: calendarState.eventUiBases, eventSelection: '', eventDrag: null, eventResize: null }, newProps);
         return (context.pluginHooks.isPropsValid || isPropsValid)(props, context);
     }
-    function isPropsValid(state, context, fechaSpanMeta, filterConfig) {
-        if (fechaSpanMeta === void 0) { fechaSpanMeta = {}; }
-        if (state.eventDrag && !isInteractionPropsValid(state, context, fechaSpanMeta, filterConfig)) {
+    function isPropsValid(state, context, dateSpanMeta, filterConfig) {
+        if (dateSpanMeta === void 0) { dateSpanMeta = {}; }
+        if (state.eventDrag && !isInteractionPropsValid(state, context, dateSpanMeta, filterConfig)) {
             return false;
         }
-        if (state.fechaSelection && !isDateSelectionPropsValid(state, context, fechaSpanMeta, filterConfig)) {
+        if (state.dateSelection && !isDateSelectionPropsValid(state, context, dateSpanMeta, filterConfig)) {
             return false;
         }
         return true;
     }
     // Moving Event Validation
     // ------------------------------------------------------------------------------------------------------------------------
-    function isInteractionPropsValid(state, context, fechaSpanMeta, filterConfig) {
+    function isInteractionPropsValid(state, context, dateSpanMeta, filterConfig) {
         var currentState = context.getCurrentData();
         var interaction = state.eventDrag; // HACK: the eventDrag props is used for ALL interactions
-        var temaEventStore = interaction.mutatedEvents;
-        var temaDefs = temaEventStore.defs;
-        var temaInstances = temaEventStore.instances;
-        var temaConfigs = compileEventUis(temaDefs, interaction.isEvent ?
+        var subjectEventStore = interaction.mutatedEvents;
+        var subjectDefs = subjectEventStore.defs;
+        var subjectInstances = subjectEventStore.instances;
+        var subjectConfigs = compileEventUis(subjectDefs, interaction.isEvent ?
             state.eventUiBases :
-            { '': currentState.selectionConfig } // if not a real event, valifecha as a selection
+            { '': currentState.selectionConfig } // if not a real event, validate as a selection
         );
         if (filterConfig) {
-            temaConfigs = mapHash(temaConfigs, filterConfig);
+            subjectConfigs = mapHash(subjectConfigs, filterConfig);
         }
-        var otherEventStore = excludeInstances(state.eventStore, interaction.affectedEvents.instances); // exclude the tema events. TODO: exclude defs too?
+        var otherEventStore = excludeInstances(state.eventStore, interaction.affectedEvents.instances); // exclude the subject events. TODO: exclude defs too?
         var otherDefs = otherEventStore.defs;
         var otherInstances = otherEventStore.instances;
         var otherConfigs = compileEventUis(otherDefs, state.eventUiBases);
-        for (var temaInstanceId in temaInstances) {
-            var temaInstance = temaInstances[temaInstanceId];
-            var temaRange = temaInstance.range;
-            var temaConfig = temaConfigs[temaInstance.defId];
-            var temaDef = temaDefs[temaInstance.defId];
+        for (var subjectInstanceId in subjectInstances) {
+            var subjectInstance = subjectInstances[subjectInstanceId];
+            var subjectRange = subjectInstance.range;
+            var subjectConfig = subjectConfigs[subjectInstance.defId];
+            var subjectDef = subjectDefs[subjectInstance.defId];
             // constraint
-            if (!allConstraintsPass(temaConfig.constraints, temaRange, otherEventStore, state.businessHours, context)) {
+            if (!allConstraintsPass(subjectConfig.constraints, subjectRange, otherEventStore, state.businessHours, context)) {
                 return false;
             }
             // overlap
@@ -5275,17 +5275,17 @@ var FullCalendar = (function (exports) {
             for (var otherInstanceId in otherInstances) {
                 var otherInstance = otherInstances[otherInstanceId];
                 // intersect! evaluate
-                if (rangesIntersect(temaRange, otherInstance.range)) {
+                if (rangesIntersect(subjectRange, otherInstance.range)) {
                     var otherOverlap = otherConfigs[otherInstance.defId].overlap;
-                    // consider the other event's overlap. only do this if the tema event is a "real" event
+                    // consider the other event's overlap. only do this if the subject event is a "real" event
                     if (otherOverlap === false && interaction.isEvent) {
                         return false;
                     }
-                    if (temaConfig.overlap === false) {
+                    if (subjectConfig.overlap === false) {
                         return false;
                     }
                     if (eventOverlapFunc && !eventOverlapFunc(new EventApi(context, otherDefs[otherInstance.defId], otherInstance), // still event
-                    new EventApi(context, temaDef, temaInstance) // moving event
+                    new EventApi(context, subjectDef, subjectInstance) // moving event
                     )) {
                         return false;
                     }
@@ -5293,19 +5293,19 @@ var FullCalendar = (function (exports) {
             }
             // allow (a function)
             var calendarEventStore = currentState.eventStore; // need global-to-calendar, not local to component (splittable)state
-            for (var _i = 0, _a = temaConfig.allows; _i < _a.length; _i++) {
-                var temaAllow = _a[_i];
-                var temaDateSpan = __assign(__assign({}, fechaSpanMeta), { range: temaInstance.range, allDay: temaDef.allDay });
-                var origDef = calendarEventStore.defs[temaDef.defId];
-                var origInstance = calendarEventStore.instances[temaInstanceId];
+            for (var _i = 0, _a = subjectConfig.allows; _i < _a.length; _i++) {
+                var subjectAllow = _a[_i];
+                var subjectDateSpan = __assign(__assign({}, dateSpanMeta), { range: subjectInstance.range, allDay: subjectDef.allDay });
+                var origDef = calendarEventStore.defs[subjectDef.defId];
+                var origInstance = calendarEventStore.instances[subjectInstanceId];
                 var eventApi = void 0;
                 if (origDef) { // was previously in the calendar
                     eventApi = new EventApi(context, origDef, origInstance);
                 }
                 else { // was an external event
-                    eventApi = new EventApi(context, temaDef); // no instance, because had no fechas
+                    eventApi = new EventApi(context, subjectDef); // no instance, because had no dates
                 }
-                if (!temaAllow(buildDateSpanApiWithContext(temaDateSpan, context), eventApi)) {
+                if (!subjectAllow(buildDateSpanApiWithContext(subjectDateSpan, context), eventApi)) {
                     return false;
                 }
             }
@@ -5314,11 +5314,11 @@ var FullCalendar = (function (exports) {
     }
     // Date Selection Validation
     // ------------------------------------------------------------------------------------------------------------------------
-    function isDateSelectionPropsValid(state, context, fechaSpanMeta, filterConfig) {
+    function isDateSelectionPropsValid(state, context, dateSpanMeta, filterConfig) {
         var relevantEventStore = state.eventStore;
         var relevantDefs = relevantEventStore.defs;
         var relevantInstances = relevantEventStore.instances;
-        var selection = state.fechaSelection;
+        var selection = state.dateSelection;
         var selectionRange = selection.range;
         var selectionConfig = context.getCurrentData().selectionConfig;
         if (filterConfig) {
@@ -5346,7 +5346,7 @@ var FullCalendar = (function (exports) {
         // allow (a function)
         for (var _i = 0, _a = selectionConfig.allows; _i < _a.length; _i++) {
             var selectionAllow = _a[_i];
-            var fullDateSpan = __assign(__assign({}, fechaSpanMeta), selection);
+            var fullDateSpan = __assign(__assign({}, dateSpanMeta), selection);
             if (!selectionAllow(buildDateSpanApiWithContext(fullDateSpan, context), null)) {
                 return false;
             }
@@ -5355,22 +5355,22 @@ var FullCalendar = (function (exports) {
     }
     // Constraint Utils
     // ------------------------------------------------------------------------------------------------------------------------
-    function allConstraintsPass(constraints, temaRange, otherEventStore, businessHoursUnexpanded, context) {
+    function allConstraintsPass(constraints, subjectRange, otherEventStore, businessHoursUnexpanded, context) {
         for (var _i = 0, constraints_1 = constraints; _i < constraints_1.length; _i++) {
             var constraint = constraints_1[_i];
-            if (!anyRangesContainRange(constraintToRanges(constraint, temaRange, otherEventStore, businessHoursUnexpanded, context), temaRange)) {
+            if (!anyRangesContainRange(constraintToRanges(constraint, subjectRange, otherEventStore, businessHoursUnexpanded, context), subjectRange)) {
                 return false;
             }
         }
         return true;
     }
-    function constraintToRanges(constraint, temaRange, // for expanding a recurring constraint, or expanding business hours
+    function constraintToRanges(constraint, subjectRange, // for expanding a recurring constraint, or expanding business hours
     otherEventStore, // for if constraint is an even group ID
     businessHoursUnexpanded, // for if constraint is 'businessHours'
     context // for expanding businesshours
     ) {
         if (constraint === 'businessHours') {
-            return eventStoreToRanges(expandRecurring(businessHoursUnexpanded, temaRange, context));
+            return eventStoreToRanges(expandRecurring(businessHoursUnexpanded, subjectRange, context));
         }
         else if (typeof constraint === 'string') { // an group ID
             return eventStoreToRanges(filterEventStoreDefs(otherEventStore, function (eventDef) {
@@ -5378,7 +5378,7 @@ var FullCalendar = (function (exports) {
             }));
         }
         else if (typeof constraint === 'object' && constraint) { // non-null object
-            return eventStoreToRanges(expandRecurring(constraint, temaRange, context));
+            return eventStoreToRanges(expandRecurring(constraint, subjectRange, context));
         }
         return []; // if it's false
     }
@@ -5403,7 +5403,7 @@ var FullCalendar = (function (exports) {
     }
 
     /*
-    an INTERACTABLE fecha component
+    an INTERACTABLE date component
 
     PURPOSES:
     - hook up to fg, fill, and mirror renderers
@@ -5426,11 +5426,11 @@ var FullCalendar = (function (exports) {
         // Validation
         // -----------------------------------------------------------------------------------------------------------------
         DateComponent.prototype.isInteractionValid = function (interaction) {
-            var fechaProfile = this.props.fechaProfile; // HACK
+            var dateProfile = this.props.dateProfile; // HACK
             var instances = interaction.mutatedEvents.instances;
-            if (fechaProfile) { // HACK for MorePopover
+            if (dateProfile) { // HACK for MorePopover
                 for (var instanceId in instances) {
-                    if (!rangeContainsRange(fechaProfile.validRange, instances[instanceId].range)) {
+                    if (!rangeContainsRange(dateProfile.validRange, instances[instanceId].range)) {
                         return false;
                     }
                 }
@@ -5438,9 +5438,9 @@ var FullCalendar = (function (exports) {
             return isInteractionValid(interaction, this.context);
         };
         DateComponent.prototype.isDateSelectionValid = function (selection) {
-            var fechaProfile = this.props.fechaProfile; // HACK
-            if (fechaProfile && // HACK for MorePopover
-                !rangeContainsRange(fechaProfile.validRange, selection.range)) {
+            var dateProfile = this.props.dateProfile; // HACK
+            if (dateProfile && // HACK for MorePopover
+                !rangeContainsRange(dateProfile.validRange, selection.range)) {
                 return false;
             }
             return isDateSelectionValid(selection, this.context);
@@ -5470,7 +5470,7 @@ var FullCalendar = (function (exports) {
         return DateComponent;
     }(BaseComponent));
 
-    // TODO: easier way to add new hooks? need to upfecha a million things
+    // TODO: easier way to add new hooks? need to update a million things
     function createPlugin(input) {
         return {
             id: guid(),
@@ -5483,9 +5483,9 @@ var FullCalendar = (function (exports) {
             isDraggableTransformers: input.isDraggableTransformers || [],
             eventDragMutationMassagers: input.eventDragMutationMassagers || [],
             eventDefMutationAppliers: input.eventDefMutationAppliers || [],
-            fechaSelectionTransformers: input.fechaSelectionTransformers || [],
-            fechaPointTransforms: input.fechaPointTransforms || [],
-            fechaSpanTransforms: input.fechaSpanTransforms || [],
+            dateSelectionTransformers: input.dateSelectionTransformers || [],
+            datePointTransforms: input.datePointTransforms || [],
+            dateSpanTransforms: input.dateSpanTransforms || [],
             views: input.views || {},
             viewPropsTransformers: input.viewPropsTransformers || [],
             isPropsValid: input.isPropsValid || null,
@@ -5521,9 +5521,9 @@ var FullCalendar = (function (exports) {
             isDraggableTransformers: [],
             eventDragMutationMassagers: [],
             eventDefMutationAppliers: [],
-            fechaSelectionTransformers: [],
-            fechaPointTransforms: [],
-            fechaSpanTransforms: [],
+            dateSelectionTransformers: [],
+            datePointTransforms: [],
+            dateSpanTransforms: [],
             views: {},
             viewPropsTransformers: [],
             isPropsValid: null,
@@ -5586,9 +5586,9 @@ var FullCalendar = (function (exports) {
             isDraggableTransformers: hooks0.isDraggableTransformers.concat(hooks1.isDraggableTransformers),
             eventDragMutationMassagers: hooks0.eventDragMutationMassagers.concat(hooks1.eventDragMutationMassagers),
             eventDefMutationAppliers: hooks0.eventDefMutationAppliers.concat(hooks1.eventDefMutationAppliers),
-            fechaSelectionTransformers: hooks0.fechaSelectionTransformers.concat(hooks1.fechaSelectionTransformers),
-            fechaPointTransforms: hooks0.fechaPointTransforms.concat(hooks1.fechaPointTransforms),
-            fechaSpanTransforms: hooks0.fechaSpanTransforms.concat(hooks1.fechaSpanTransforms),
+            dateSelectionTransformers: hooks0.dateSelectionTransformers.concat(hooks1.dateSelectionTransformers),
+            datePointTransforms: hooks0.datePointTransforms.concat(hooks1.datePointTransforms),
+            dateSpanTransforms: hooks0.dateSpanTransforms.concat(hooks1.dateSpanTransforms),
             views: __assign(__assign({}, hooks0.views), hooks1.views),
             viewPropsTransformers: hooks0.viewPropsTransformers.concat(hooks1.viewPropsTransformers),
             isPropsValid: hooks1.isPropsValid || hooks0.isPropsValid,
@@ -5735,10 +5735,10 @@ var FullCalendar = (function (exports) {
             return this.props.children(this.innerElRef, this.renderInnerContent());
         };
         ContentHookInner.prototype.componentDidMount = function () {
-            this.upfechaCustomContent();
+            this.updateCustomContent();
         };
-        ContentHookInner.prototype.componentDidUpfecha = function () {
-            this.upfechaCustomContent();
+        ContentHookInner.prototype.componentDidUpdate = function () {
+            this.updateCustomContent();
         };
         ContentHookInner.prototype.renderInnerContent = function () {
             var contentTypeHandlers = this.context.pluginHooks.contentTypeHandlers;
@@ -5775,7 +5775,7 @@ var FullCalendar = (function (exports) {
             }
             return innerContentVDom;
         };
-        ContentHookInner.prototype.upfechaCustomContent = function () {
+        ContentHookInner.prototype.updateCustomContent = function () {
             if (this.customContentInfo) {
                 this.customContentInfo.handler(this.innerElRef.current || this.props.backupElRef.current, // the element to render into
                 this.customContentInfo.contentVal);
@@ -5953,27 +5953,27 @@ var FullCalendar = (function (exports) {
     var DateProfileGenerator = /** @class */ (function () {
         function DateProfileGenerator(props) {
             this.props = props;
-            this.nowDate = getNow(props.nowInput, props.fechaEnv);
+            this.nowDate = getNow(props.nowInput, props.dateEnv);
             this.initHiddenDays();
         }
         /* Date Range Computation
         ------------------------------------------------------------------------------------------------------------------*/
-        // Builds a structure with info about what the fechas/ranges will be for the "prev" view.
+        // Builds a structure with info about what the dates/ranges will be for the "prev" view.
         DateProfileGenerator.prototype.buildPrev = function (currentDateProfile, currentDate, forceToValid) {
-            var fechaEnv = this.props.fechaEnv;
-            var prevDate = fechaEnv.subtract(fechaEnv.startOf(currentDate, currentDateProfile.currentRangeUnit), // important for start-of-month
-            currentDateProfile.fechaIncrement);
+            var dateEnv = this.props.dateEnv;
+            var prevDate = dateEnv.subtract(dateEnv.startOf(currentDate, currentDateProfile.currentRangeUnit), // important for start-of-month
+            currentDateProfile.dateIncrement);
             return this.build(prevDate, -1, forceToValid);
         };
-        // Builds a structure with info about what the fechas/ranges will be for the "next" view.
+        // Builds a structure with info about what the dates/ranges will be for the "next" view.
         DateProfileGenerator.prototype.buildNext = function (currentDateProfile, currentDate, forceToValid) {
-            var fechaEnv = this.props.fechaEnv;
-            var nextDate = fechaEnv.add(fechaEnv.startOf(currentDate, currentDateProfile.currentRangeUnit), // important for start-of-month
-            currentDateProfile.fechaIncrement);
+            var dateEnv = this.props.dateEnv;
+            var nextDate = dateEnv.add(dateEnv.startOf(currentDate, currentDateProfile.currentRangeUnit), // important for start-of-month
+            currentDateProfile.dateIncrement);
             return this.build(nextDate, 1, forceToValid);
         };
-        // Builds a structure holding fechas/ranges for rendering around the given fecha.
-        // Optional direction param indicates whether the fecha is being incremented/decremented
+        // Builds a structure holding dates/ranges for rendering around the given date.
+        // Optional direction param indicates whether the date is being incremented/decremented
         // from its previous value. decremented = -1, incremented = 1 (default).
         DateProfileGenerator.prototype.build = function (currentDate, direction, forceToValid) {
             if (forceToValid === void 0) { forceToValid = true; }
@@ -5999,7 +5999,7 @@ var FullCalendar = (function (exports) {
             }
             activeRange = this.adjustActiveRange(activeRange);
             activeRange = intersectRanges(activeRange, validRange); // might return null
-            // it's invalid if the originally requested fecha is not contained,
+            // it's invalid if the originally requested date is not contained,
             // or if the range is completely outside of the valid range.
             isValid = rangesIntersect(currentInfo.range, validRange);
             return {
@@ -6007,15 +6007,15 @@ var FullCalendar = (function (exports) {
                 // an object with optional start and end properties.
                 validRange: validRange,
                 // range the view is formally responsible for.
-                // for example, a month view might have 1st-31st, excluding padded fechas
+                // for example, a month view might have 1st-31st, excluding padded dates
                 currentRange: currentInfo.range,
                 // name of largest unit being displayed, like "month" or "week"
                 currentRangeUnit: currentInfo.unit,
                 isRangeAllDay: isRangeAllDay,
-                // fechas that display events and accept drag-n-drop
-                // will be `null` if no fechas accept events
+                // dates that display events and accept drag-n-drop
+                // will be `null` if no dates accept events
                 activeRange: activeRange,
-                // fecha range with a rendered skeleton
+                // date range with a rendered skeleton
                 // includes not-active days that need some sort of DOM
                 renderRange: renderRange,
                 // Duration object that denotes the first visible time of any given day
@@ -6023,13 +6023,13 @@ var FullCalendar = (function (exports) {
                 // Duration object that denotes the exclusive visible end time of any given day
                 slotMaxTime: props.slotMaxTime,
                 isValid: isValid,
-                // how far the current fecha will move for a prev/next operation
-                fechaIncrement: this.buildDateIncrement(currentInfo.duration)
+                // how far the current date will move for a prev/next operation
+                dateIncrement: this.buildDateIncrement(currentInfo.duration)
                 // pass a fallback (might be null) ^
             };
         };
         // Builds an object with optional start/end properties.
-        // Indicates the minimum/maximum fechas to display.
+        // Indicates the minimum/maximum dates to display.
         // not responsible for trimming hidden days.
         DateProfileGenerator.prototype.buildValidRange = function () {
             var input = this.props.validRangeInput;
@@ -6041,9 +6041,9 @@ var FullCalendar = (function (exports) {
         };
         // Builds a structure with info about the "current" range, the range that is
         // highlighted as being the current month for example.
-        // See build() for a descripcion of `direction`.
+        // See build() for a description of `direction`.
         // Guaranteed to have `range` and `unit` properties. `duration` is optional.
-        DateProfileGenerator.prototype.buildCurrentRangeInfo = function (fecha, direction) {
+        DateProfileGenerator.prototype.buildCurrentRangeInfo = function (date, direction) {
             var props = this.props;
             var duration = null;
             var unit = null;
@@ -6052,19 +6052,19 @@ var FullCalendar = (function (exports) {
             if (props.duration) {
                 duration = props.duration;
                 unit = props.durationUnit;
-                range = this.buildRangeFromDuration(fecha, direction, duration, unit);
+                range = this.buildRangeFromDuration(date, direction, duration, unit);
             }
             else if ((dayCount = this.props.dayCount)) {
                 unit = 'day';
-                range = this.buildRangeFromDayCount(fecha, direction, dayCount);
+                range = this.buildRangeFromDayCount(date, direction, dayCount);
             }
-            else if ((range = this.buildCustomVisibleRange(fecha))) {
-                unit = props.fechaEnv.greatestWholeUnit(range.start, range.end).unit;
+            else if ((range = this.buildCustomVisibleRange(date))) {
+                unit = props.dateEnv.greatestWholeUnit(range.start, range.end).unit;
             }
             else {
                 duration = this.getFallbackDuration();
                 unit = greatestDurationDenominator(duration).unit;
-                range = this.buildRangeFromDuration(fecha, direction, duration, unit);
+                range = this.buildRangeFromDuration(date, direction, duration, unit);
             }
             return { duration: duration, unit: unit, range: range };
         };
@@ -6074,45 +6074,45 @@ var FullCalendar = (function (exports) {
         // Returns a new activeRange to have time values (un-ambiguate)
         // slotMinTime or slotMaxTime causes the range to expand.
         DateProfileGenerator.prototype.adjustActiveRange = function (range) {
-            var _a = this.props, fechaEnv = _a.fechaEnv, usesMinMaxTime = _a.usesMinMaxTime, slotMinTime = _a.slotMinTime, slotMaxTime = _a.slotMaxTime;
+            var _a = this.props, dateEnv = _a.dateEnv, usesMinMaxTime = _a.usesMinMaxTime, slotMinTime = _a.slotMinTime, slotMaxTime = _a.slotMaxTime;
             var start = range.start;
             var end = range.end;
             if (usesMinMaxTime) {
                 // expand active range if slotMinTime is negative (why not when positive?)
                 if (asRoughDays(slotMinTime) < 0) {
                     start = startOfDay(start); // necessary?
-                    start = fechaEnv.add(start, slotMinTime);
+                    start = dateEnv.add(start, slotMinTime);
                 }
                 // expand active range if slotMaxTime is beyond one day (why not when negative?)
                 if (asRoughDays(slotMaxTime) > 1) {
                     end = startOfDay(end); // necessary?
                     end = addDays(end, -1);
-                    end = fechaEnv.add(end, slotMaxTime);
+                    end = dateEnv.add(end, slotMaxTime);
                 }
             }
             return { start: start, end: end };
         };
         // Builds the "current" range when it is specified as an explicit duration.
         // `unit` is the already-computed greatestDurationDenominator unit of duration.
-        DateProfileGenerator.prototype.buildRangeFromDuration = function (fecha, direction, duration, unit) {
-            var _a = this.props, fechaEnv = _a.fechaEnv, fechaAlignment = _a.fechaAlignment;
+        DateProfileGenerator.prototype.buildRangeFromDuration = function (date, direction, duration, unit) {
+            var _a = this.props, dateEnv = _a.dateEnv, dateAlignment = _a.dateAlignment;
             var start;
             var end;
             var res;
             // compute what the alignment should be
-            if (!fechaAlignment) {
-                var fechaIncrement = this.props.fechaIncrement;
-                if (fechaIncrement) {
+            if (!dateAlignment) {
+                var dateIncrement = this.props.dateIncrement;
+                if (dateIncrement) {
                     // use the smaller of the two units
-                    if (asRoughMs(fechaIncrement) < asRoughMs(duration)) {
-                        fechaAlignment = greatestDurationDenominator(fechaIncrement).unit;
+                    if (asRoughMs(dateIncrement) < asRoughMs(duration)) {
+                        dateAlignment = greatestDurationDenominator(dateIncrement).unit;
                     }
                     else {
-                        fechaAlignment = unit;
+                        dateAlignment = unit;
                     }
                 }
                 else {
-                    fechaAlignment = unit;
+                    dateAlignment = unit;
                 }
             }
             // if the view displays a single day or smaller
@@ -6123,26 +6123,26 @@ var FullCalendar = (function (exports) {
                 }
             }
             function computeRes() {
-                start = fechaEnv.startOf(fecha, fechaAlignment);
-                end = fechaEnv.add(start, duration);
+                start = dateEnv.startOf(date, dateAlignment);
+                end = dateEnv.add(start, duration);
                 res = { start: start, end: end };
             }
             computeRes();
             // if range is completely enveloped by hidden days, go past the hidden days
             if (!this.trimHiddenDays(res)) {
-                fecha = this.skipHiddenDays(fecha, direction);
+                date = this.skipHiddenDays(date, direction);
                 computeRes();
             }
             return res;
         };
         // Builds the "current" range when a dayCount is specified.
-        DateProfileGenerator.prototype.buildRangeFromDayCount = function (fecha, direction, dayCount) {
-            var _a = this.props, fechaEnv = _a.fechaEnv, fechaAlignment = _a.fechaAlignment;
+        DateProfileGenerator.prototype.buildRangeFromDayCount = function (date, direction, dayCount) {
+            var _a = this.props, dateEnv = _a.dateEnv, dateAlignment = _a.dateAlignment;
             var runningCount = 0;
-            var start = fecha;
+            var start = date;
             var end;
-            if (fechaAlignment) {
-                start = fechaEnv.startOf(start, fechaAlignment);
+            if (dateAlignment) {
+                start = dateEnv.startOf(start, dateAlignment);
             }
             start = startOfDay(start);
             start = this.skipHiddenDays(start, direction);
@@ -6157,11 +6157,11 @@ var FullCalendar = (function (exports) {
         };
         // Builds a normalized range object for the "visible" range,
         // which is a way to define the currentRange and activeRange at the same time.
-        DateProfileGenerator.prototype.buildCustomVisibleRange = function (fecha) {
+        DateProfileGenerator.prototype.buildCustomVisibleRange = function (date) {
             var props = this.props;
             var input = props.visibleRangeInput;
             var simpleInput = typeof input === 'function'
-                ? input.call(props.calendarApi, props.fechaEnv.toDate(fecha))
+                ? input.call(props.calendarApi, props.dateEnv.toDate(date))
                 : input;
             var range = this.refineRange(simpleInput);
             if (range && (range.start == null || range.end == null)) {
@@ -6175,15 +6175,15 @@ var FullCalendar = (function (exports) {
         DateProfileGenerator.prototype.buildRenderRange = function (currentRange, currentRangeUnit, isRangeAllDay) {
             return currentRange;
         };
-        // Compute the duration value that should be added/substracted to the current fecha
+        // Compute the duration value that should be added/substracted to the current date
         // when a prev/next operation happens.
         DateProfileGenerator.prototype.buildDateIncrement = function (fallback) {
-            var fechaIncrement = this.props.fechaIncrement;
+            var dateIncrement = this.props.dateIncrement;
             var customAlignment;
-            if (fechaIncrement) {
-                return fechaIncrement;
+            if (dateIncrement) {
+                return dateIncrement;
             }
-            else if ((customAlignment = this.props.fechaAlignment)) {
+            else if ((customAlignment = this.props.dateAlignment)) {
                 return createDuration(1, customAlignment);
             }
             else if (fallback) {
@@ -6195,7 +6195,7 @@ var FullCalendar = (function (exports) {
         };
         DateProfileGenerator.prototype.refineRange = function (rangeInput) {
             if (rangeInput) {
-                var range = parseRange(rangeInput, this.props.fechaEnv);
+                var range = parseRange(rangeInput, this.props.dateEnv);
                 if (range) {
                     range = computeVisibleDayRange(range);
                 }
@@ -6250,16 +6250,16 @@ var FullCalendar = (function (exports) {
         };
         // Incrementing the current day until it is no longer a hidden day, returning a copy.
         // DOES NOT CONSIDER validRange!
-        // If the initial value of `fecha` is not a hidden day, don't do anything.
-        // Pass `isExclusive` as `true` if you are dealing with an end fecha.
+        // If the initial value of `date` is not a hidden day, don't do anything.
+        // Pass `isExclusive` as `true` if you are dealing with an end date.
         // `inc` defaults to `1` (increment one day forward each time)
-        DateProfileGenerator.prototype.skipHiddenDays = function (fecha, inc, isExclusive) {
+        DateProfileGenerator.prototype.skipHiddenDays = function (date, inc, isExclusive) {
             if (inc === void 0) { inc = 1; }
             if (isExclusive === void 0) { isExclusive = false; }
-            while (this.isHiddenDayHash[(fecha.getUTCDay() + (isExclusive ? inc : 0) + 7) % 7]) {
-                fecha = addDays(fecha, inc);
+            while (this.isHiddenDayHash[(date.getUTCDay() + (isExclusive ? inc : 0) + 7) % 7]) {
+                date = addDays(date, inc);
             }
-            return fecha;
+            return date;
         };
         return DateProfileGenerator;
     }());
@@ -6282,26 +6282,26 @@ var FullCalendar = (function (exports) {
         }
     }
 
-    function reduceDateProfile(currentDateProfile, action, currentDate, fechaProfileGenerator) {
+    function reduceDateProfile(currentDateProfile, action, currentDate, dateProfileGenerator) {
         var dp;
         switch (action.type) {
             case 'CHANGE_VIEW_TYPE':
-                return fechaProfileGenerator.build(action.fechaMarker || currentDate);
+                return dateProfileGenerator.build(action.dateMarker || currentDate);
             case 'CHANGE_DATE':
                 if (!currentDateProfile.activeRange ||
-                    !rangeContainsMarker(currentDateProfile.currentRange, action.fechaMarker) // don't move if fecha already in view
+                    !rangeContainsMarker(currentDateProfile.currentRange, action.dateMarker) // don't move if date already in view
                 ) {
-                    return fechaProfileGenerator.build(action.fechaMarker);
+                    return dateProfileGenerator.build(action.dateMarker);
                 }
                 break;
             case 'PREV':
-                dp = fechaProfileGenerator.buildPrev(currentDateProfile, currentDate);
+                dp = dateProfileGenerator.buildPrev(currentDateProfile, currentDate);
                 if (dp.isValid) {
                     return dp;
                 }
                 break;
             case 'NEXT':
-                dp = fechaProfileGenerator.buildNext(currentDateProfile, currentDate);
+                dp = dateProfileGenerator.buildNext(currentDateProfile, currentDate);
                 if (dp.isValid) {
                     return dp;
                 }
@@ -6310,22 +6310,22 @@ var FullCalendar = (function (exports) {
         return currentDateProfile;
     }
 
-    function initEventSources(calendarOptions, fechaProfile, context) {
-        var activeRange = fechaProfile ? fechaProfile.activeRange : null;
+    function initEventSources(calendarOptions, dateProfile, context) {
+        var activeRange = dateProfile ? dateProfile.activeRange : null;
         return addSources({}, parseInitialSources(calendarOptions, context), activeRange, context);
     }
-    function reduceEventSources(eventSources, action, fechaProfile, context) {
-        var activeRange = fechaProfile ? fechaProfile.activeRange : null; // need this check?
+    function reduceEventSources(eventSources, action, dateProfile, context) {
+        var activeRange = dateProfile ? dateProfile.activeRange : null; // need this check?
         switch (action.type) {
             case 'ADD_EVENT_SOURCES': // already parsed
                 return addSources(eventSources, action.sources, activeRange, context);
             case 'REMOVE_EVENT_SOURCE':
                 return removeSource(eventSources, action.sourceId);
-            case 'PREV': // TODO: how do we track all actions that affect fechaProfile :(
+            case 'PREV': // TODO: how do we track all actions that affect dateProfile :(
             case 'NEXT':
             case 'CHANGE_DATE':
             case 'CHANGE_VIEW_TYPE':
-                if (fechaProfile) {
+                if (dateProfile) {
                     return fetchDirtySources(eventSources, activeRange, context);
                 }
                 else {
@@ -6344,8 +6344,8 @@ var FullCalendar = (function (exports) {
                 return eventSources;
         }
     }
-    function reduceEventSourcesNewTimeZone(eventSources, fechaProfile, context) {
-        var activeRange = fechaProfile ? fechaProfile.activeRange : null; // need this check?
+    function reduceEventSourcesNewTimeZone(eventSources, dateProfile, context) {
+        var activeRange = dateProfile ? dateProfile.activeRange : null; // need this check?
         return fetchSourcesByIds(eventSources, excludeStaticSources(eventSources, context), activeRange, context);
     }
     function computeEventSourceLoadingLevel(eventSources) {
@@ -6385,7 +6385,7 @@ var FullCalendar = (function (exports) {
         else {
             return !context.options.lazyFetching ||
                 !eventSource.fetchRange ||
-                eventSource.isFetching || // always cancel outfechad in-progress fetches
+                eventSource.isFetching || // always cancel outdated in-progress fetches
                 fetchRange.start < eventSource.fetchRange.start ||
                 fetchRange.end > eventSource.fetchRange.end;
         }
@@ -6630,9 +6630,9 @@ var FullCalendar = (function (exports) {
             return null;
         },
         fetch: function (arg, success, failure) {
-            var fechaEnv = arg.context.fechaEnv;
+            var dateEnv = arg.context.dateEnv;
             var func = arg.eventSource.meta;
-            unpromisify(func.bind(null, buildRangeApiWithTimeZone(arg.range, fechaEnv)), function (rawEvents) {
+            unpromisify(func.bind(null, buildRangeApiWithTimeZone(arg.range, dateEnv)), function (rawEvents) {
                 success({ rawEvents: rawEvents }); // needs an object response
             }, failure // send errorObj directly to failure callback
             );
@@ -6733,7 +6733,7 @@ var FullCalendar = (function (exports) {
         eventSourceDefs: [eventSourceDef$2]
     });
     function buildRequestParams(meta, range, context) {
-        var fechaEnv = context.fechaEnv, options = context.options;
+        var dateEnv = context.dateEnv, options = context.options;
         var startParam;
         var endParam;
         var timeZoneParam;
@@ -6761,10 +6761,10 @@ var FullCalendar = (function (exports) {
             customRequestParams = meta.extraParams || {};
         }
         __assign(params, customRequestParams);
-        params[startParam] = fechaEnv.formatIso(range.start);
-        params[endParam] = fechaEnv.formatIso(range.end);
-        if (fechaEnv.timeZone !== 'local') {
-            params[timeZoneParam] = fechaEnv.timeZone;
+        params[startParam] = dateEnv.formatIso(range.start);
+        params[endParam] = dateEnv.formatIso(range.end);
+        if (dateEnv.timeZone !== 'local') {
+            params[timeZoneParam] = dateEnv.timeZone;
         }
         return params;
     }
@@ -6779,14 +6779,14 @@ var FullCalendar = (function (exports) {
     };
 
     var recurring = {
-        parse: function (refined, fechaEnv) {
+        parse: function (refined, dateEnv) {
             if (refined.daysOfWeek || refined.startTime || refined.endTime || refined.startRecur || refined.endRecur) {
                 var recurringData = {
                     daysOfWeek: refined.daysOfWeek || null,
                     startTime: refined.startTime || null,
                     endTime: refined.endTime || null,
-                    startRecur: refined.startRecur ? fechaEnv.createMarker(refined.startRecur) : null,
-                    endRecur: refined.endRecur ? fechaEnv.createMarker(refined.endRecur) : null
+                    startRecur: refined.startRecur ? dateEnv.createMarker(refined.startRecur) : null,
+                    endRecur: refined.endRecur ? dateEnv.createMarker(refined.endRecur) : null
                 };
                 var duration = void 0;
                 if (refined.duration) {
@@ -6803,10 +6803,10 @@ var FullCalendar = (function (exports) {
             }
             return null;
         },
-        expand: function (typeData, framingRange, fechaEnv) {
+        expand: function (typeData, framingRange, dateEnv) {
             var clippedFramingRange = intersectRanges(framingRange, { start: typeData.startRecur, end: typeData.endRecur });
             if (clippedFramingRange) {
-                return expandRanges(typeData.daysOfWeek, typeData.startTime, clippedFramingRange, fechaEnv);
+                return expandRanges(typeData.daysOfWeek, typeData.startTime, clippedFramingRange, dateEnv);
             }
             else {
                 return [];
@@ -6817,7 +6817,7 @@ var FullCalendar = (function (exports) {
         recurringTypes: [recurring],
         eventRefiners: SIMPLE_RECURRING_REFINERS
     });
-    function expandRanges(daysOfWeek, startTime, framingRange, fechaEnv) {
+    function expandRanges(daysOfWeek, startTime, framingRange, dateEnv) {
         var dowHash = daysOfWeek ? arrayToHash(daysOfWeek) : null;
         var dayMarker = startOfDay(framingRange.start);
         var endMarker = framingRange.end;
@@ -6829,7 +6829,7 @@ var FullCalendar = (function (exports) {
             // if everyday, or this particular day-of-week
             if (!dowHash || dowHash[dayMarker.getUTCDay()]) {
                 if (startTime) {
-                    instanceStart = fechaEnv.add(dayMarker, startTime);
+                    instanceStart = dateEnv.add(dayMarker, startTime);
                 }
                 else {
                     instanceStart = dayMarker;
@@ -6882,8 +6882,8 @@ var FullCalendar = (function (exports) {
         }
     }
 
-    function handleDateProfile(fechaProfile, context) {
-        context.emitter.trigger('fechasSet', __assign(__assign({}, buildRangeApiWithTimeZone(fechaProfile.activeRange, context.fechaEnv)), { view: context.viewApi }));
+    function handleDateProfile(dateProfile, context) {
+        context.emitter.trigger('datesSet', __assign(__assign({}, buildRangeApiWithTimeZone(dateProfile.activeRange, context.dateEnv)), { view: context.viewApi }));
     }
 
     function handleEventStore(eventStore, context) {
@@ -6909,7 +6909,7 @@ var FullCalendar = (function (exports) {
                 domNodes: function () { return injectDomNodes; }
             },
             propSetHandlers: {
-                fechaProfile: handleDateProfile,
+                dateProfile: handleDateProfile,
                 eventStore: handleEventStore
             }
         })
@@ -7003,67 +7003,67 @@ var FullCalendar = (function (exports) {
         };
         return DelayedRunner;
     }());
-    var tareaRunner = /** @class */ (function () {
-        function tareaRunner(runtareaOption, drainedOption) {
-            this.runtareaOption = runtareaOption;
+    var TaskRunner = /** @class */ (function () {
+        function TaskRunner(runTaskOption, drainedOption) {
+            this.runTaskOption = runTaskOption;
             this.drainedOption = drainedOption;
             this.queue = [];
             this.delayedRunner = new DelayedRunner(this.drain.bind(this));
         }
-        tareaRunner.prototype.request = function (tarea, delay) {
-            this.queue.push(tarea);
+        TaskRunner.prototype.request = function (task, delay) {
+            this.queue.push(task);
             this.delayedRunner.request(delay);
         };
-        tareaRunner.prototype.pause = function (scope) {
+        TaskRunner.prototype.pause = function (scope) {
             this.delayedRunner.pause(scope);
         };
-        tareaRunner.prototype.resume = function (scope, force) {
+        TaskRunner.prototype.resume = function (scope, force) {
             this.delayedRunner.resume(scope, force);
         };
-        tareaRunner.prototype.drain = function () {
+        TaskRunner.prototype.drain = function () {
             var queue = this.queue;
             while (queue.length) {
-                var completedtareas = [];
-                var tarea = void 0;
-                while ((tarea = queue.shift())) {
-                    this.runtarea(tarea);
-                    completedtareas.push(tarea);
+                var completedTasks = [];
+                var task = void 0;
+                while ((task = queue.shift())) {
+                    this.runTask(task);
+                    completedTasks.push(task);
                 }
-                this.drained(completedtareas);
-            } // keep going, in case new tareas were added in the drained handler
+                this.drained(completedTasks);
+            } // keep going, in case new tasks were added in the drained handler
         };
-        tareaRunner.prototype.runtarea = function (tarea) {
-            if (this.runtareaOption) {
-                this.runtareaOption(tarea);
+        TaskRunner.prototype.runTask = function (task) {
+            if (this.runTaskOption) {
+                this.runTaskOption(task);
             }
         };
-        tareaRunner.prototype.drained = function (completedtareas) {
+        TaskRunner.prototype.drained = function (completedTasks) {
             if (this.drainedOption) {
-                this.drainedOption(completedtareas);
+                this.drainedOption(completedTasks);
             }
         };
-        return tareaRunner;
+        return TaskRunner;
     }());
 
     // Computes what the title at the top of the calendarApi should be for this view
-    function buildTitle(fechaProfile, viewOptions, fechaEnv) {
+    function buildTitle(dateProfile, viewOptions, dateEnv) {
         var range;
         // for views that span a large unit of time, show the proper interval, ignoring stray days before and after
-        if (/^(year|month)$/.test(fechaProfile.currentRangeUnit)) {
-            range = fechaProfile.currentRange;
+        if (/^(year|month)$/.test(dateProfile.currentRangeUnit)) {
+            range = dateProfile.currentRange;
         }
         else { // for day units or smaller, use the actual day range
-            range = fechaProfile.activeRange;
+            range = dateProfile.activeRange;
         }
-        return fechaEnv.formatRange(range.start, range.end, createFormatter(viewOptions.titleFormat || buildTitleFormat(fechaProfile)), {
-            isEndExclusive: fechaProfile.isRangeAllDay,
+        return dateEnv.formatRange(range.start, range.end, createFormatter(viewOptions.titleFormat || buildTitleFormat(dateProfile)), {
+            isEndExclusive: dateProfile.isRangeAllDay,
             defaultSeparator: viewOptions.titleRangeSeparator
         });
     }
-    // Generates the format string that should be used to generate the title for the current fecha range.
+    // Generates the format string that should be used to generate the title for the current date range.
     // Attempts to compute the most appropriate format if not explicitly specified with `titleFormat`.
-    function buildTitleFormat(fechaProfile) {
-        var currentRangeUnit = fechaProfile.currentRangeUnit;
+    function buildTitleFormat(dateProfile) {
+        var currentRangeUnit = dateProfile.currentRangeUnit;
         if (currentRangeUnit === 'year') {
             return { year: 'numeric' };
         }
@@ -7071,7 +7071,7 @@ var FullCalendar = (function (exports) {
             return { year: 'numeric', month: 'long' }; // like "September 2014"
         }
         else {
-            var days = diffWholeDays(fechaProfile.currentRange.start, fechaProfile.currentRange.end);
+            var days = diffWholeDays(dateProfile.currentRange.start, dateProfile.currentRange.end);
             if (days !== null && days > 1) {
                 // multi-day range. shorter, like "Sep 9 - 10 2014"
                 return { year: 'numeric', month: 'short', day: 'numeric' };
@@ -7105,7 +7105,7 @@ var FullCalendar = (function (exports) {
             this.parseContextBusinessHours = memoizeObjArg(parseContextBusinessHours);
             this.buildTitle = memoize(buildTitle);
             this.emitter = new Emitter();
-            this.actionRunner = new tareaRunner(this._handleAction.bind(this), this.upfechaData.bind(this));
+            this.actionRunner = new TaskRunner(this._handleAction.bind(this), this.updateData.bind(this));
             this.currentCalendarOptionsInput = {};
             this.currentCalendarOptionsRefined = {};
             this.currentViewOptionsInput = {};
@@ -7128,13 +7128,13 @@ var FullCalendar = (function (exports) {
             props.calendarApi.currentDataManager = this;
             this.emitter.setThisContext(props.calendarApi);
             this.emitter.setOptions(currentViewData.options);
-            var currentDate = getInitialDate(optionsData.calendarOptions, optionsData.fechaEnv);
-            var fechaProfile = currentViewData.fechaProfileGenerator.build(currentDate);
-            if (!rangeContainsMarker(fechaProfile.activeRange, currentDate)) {
-                currentDate = fechaProfile.currentRange.start;
+            var currentDate = getInitialDate(optionsData.calendarOptions, optionsData.dateEnv);
+            var dateProfile = currentViewData.dateProfileGenerator.build(currentDate);
+            if (!rangeContainsMarker(dateProfile.activeRange, currentDate)) {
+                currentDate = dateProfile.currentRange.start;
             }
             var calendarContext = {
-                fechaEnv: optionsData.fechaEnv,
+                dateEnv: optionsData.dateEnv,
                 options: optionsData.calendarOptions,
                 pluginHooks: optionsData.pluginHooks,
                 calendarApi: props.calendarApi,
@@ -7148,19 +7148,19 @@ var FullCalendar = (function (exports) {
                 callback(calendarContext);
             }
             // NOT DRY
-            var eventSources = initEventSources(optionsData.calendarOptions, fechaProfile, calendarContext);
+            var eventSources = initEventSources(optionsData.calendarOptions, dateProfile, calendarContext);
             var initialState = {
                 dynamicOptionOverrides: dynamicOptionOverrides,
                 currentViewType: currentViewType,
                 currentDate: currentDate,
-                fechaProfile: fechaProfile,
+                dateProfile: dateProfile,
                 businessHours: this.parseContextBusinessHours(calendarContext),
                 eventSources: eventSources,
                 eventUiBases: {},
                 loadingLevel: computeEventSourceLoadingLevel(eventSources),
                 eventStore: createEmptyEventStore(),
                 renderableEventStore: createEmptyEventStore(),
-                fechaSelection: null,
+                dateSelection: null,
                 eventSelection: '',
                 eventDrag: null,
                 eventResize: null,
@@ -7175,7 +7175,7 @@ var FullCalendar = (function (exports) {
                 this.emitter.trigger('loading', true); // NOT DRY
             }
             this.state = initialState;
-            this.upfechaData();
+            this.updateData();
             this.actionRunner.resume();
         }
         CalendarDataManager.prototype.resetOptions = function (optionOverrides, append) {
@@ -7198,7 +7198,7 @@ var FullCalendar = (function (exports) {
             emitter.setThisContext(props.calendarApi);
             emitter.setOptions(currentViewData.options);
             var calendarContext = {
-                fechaEnv: optionsData.fechaEnv,
+                dateEnv: optionsData.dateEnv,
                 options: optionsData.calendarOptions,
                 pluginHooks: optionsData.pluginHooks,
                 calendarApi: props.calendarApi,
@@ -7207,18 +7207,18 @@ var FullCalendar = (function (exports) {
                 getCurrentData: this.getCurrentData
             };
             var currentDate = state.currentDate;
-            var fechaProfile = state.fechaProfile;
-            if (this.data && this.data.fechaProfileGenerator !== currentViewData.fechaProfileGenerator) { // hack
-                fechaProfile = currentViewData.fechaProfileGenerator.build(currentDate);
+            var dateProfile = state.dateProfile;
+            if (this.data && this.data.dateProfileGenerator !== currentViewData.dateProfileGenerator) { // hack
+                dateProfile = currentViewData.dateProfileGenerator.build(currentDate);
             }
             currentDate = reduceCurrentDate(currentDate, action);
-            fechaProfile = reduceDateProfile(fechaProfile, action, currentDate, currentViewData.fechaProfileGenerator);
-            if (!rangeContainsMarker(fechaProfile.currentRange, currentDate)) {
-                currentDate = fechaProfile.currentRange.start;
+            dateProfile = reduceDateProfile(dateProfile, action, currentDate, currentViewData.dateProfileGenerator);
+            if (!rangeContainsMarker(dateProfile.currentRange, currentDate)) {
+                currentDate = dateProfile.currentRange.start;
             }
-            var eventSources = reduceEventSources(state.eventSources, action, fechaProfile, calendarContext);
+            var eventSources = reduceEventSources(state.eventSources, action, dateProfile, calendarContext);
             var eventSourceLoadingLevel = computeEventSourceLoadingLevel(eventSources);
-            var eventStore = reduceEventStore(state.eventStore, action, eventSources, fechaProfile, calendarContext);
+            var eventStore = reduceEventStore(state.eventStore, action, eventSources, dateProfile, calendarContext);
             var renderableEventStore = (eventSourceLoadingLevel && !currentViewData.options.progressiveEventRendering) ?
                 (state.renderableEventStore || eventStore) : // try from previous state
                 eventStore;
@@ -7231,7 +7231,7 @@ var FullCalendar = (function (exports) {
                 dynamicOptionOverrides: dynamicOptionOverrides,
                 currentViewType: currentViewType,
                 currentDate: currentDate,
-                fechaProfile: fechaProfile,
+                dateProfile: dateProfile,
                 eventSources: eventSources,
                 eventStore: eventStore,
                 renderableEventStore: renderableEventStore,
@@ -7239,7 +7239,7 @@ var FullCalendar = (function (exports) {
                 eventUiBases: eventUiBases,
                 loadingLevel: loadingLevel,
                 businessHours: this.parseContextBusinessHours(calendarContext),
-                fechaSelection: reduceDateSelection(state.fechaSelection, action),
+                dateSelection: reduceDateSelection(state.dateSelection, action),
                 eventSelection: reduceSelectedEvent(state.eventSelection, action),
                 eventDrag: reduceEventDrag(state.eventDrag, action),
                 eventResize: reduceEventResize(state.eventResize, action)
@@ -7261,20 +7261,20 @@ var FullCalendar = (function (exports) {
                 props.onAction(action);
             }
         };
-        CalendarDataManager.prototype.upfechaData = function () {
+        CalendarDataManager.prototype.updateData = function () {
             var _a = this, props = _a.props, state = _a.state;
             var oldData = this.data;
             var optionsData = this.computeOptionsData(props.optionOverrides, state.dynamicOptionOverrides, props.calendarApi);
             var currentViewData = this.computeCurrentViewData(state.currentViewType, optionsData, props.optionOverrides, state.dynamicOptionOverrides);
-            var data = this.data = __assign(__assign(__assign({ viewTitle: this.buildTitle(state.fechaProfile, currentViewData.options, optionsData.fechaEnv), calendarApi: props.calendarApi, dispatch: this.dispatch, emitter: this.emitter, getCurrentData: this.getCurrentData }, optionsData), currentViewData), state);
+            var data = this.data = __assign(__assign(__assign({ viewTitle: this.buildTitle(state.dateProfile, currentViewData.options, optionsData.dateEnv), calendarApi: props.calendarApi, dispatch: this.dispatch, emitter: this.emitter, getCurrentData: this.getCurrentData }, optionsData), currentViewData), state);
             var changeHandlers = optionsData.pluginHooks.optionChangeHandlers;
             var oldCalendarOptions = oldData && oldData.calendarOptions;
             var newCalendarOptions = optionsData.calendarOptions;
             if (oldCalendarOptions && oldCalendarOptions !== newCalendarOptions) {
                 if (oldCalendarOptions.timeZone !== newCalendarOptions.timeZone) {
                     // hack
-                    state.eventSources = data.eventSources = reduceEventSourcesNewTimeZone(data.eventSources, state.fechaProfile, data);
-                    state.eventStore = data.eventStore = rezoneEventStoreDates(data.eventStore, oldData.fechaEnv, data.fechaEnv);
+                    state.eventSources = data.eventSources = reduceEventSourcesNewTimeZone(data.eventSources, state.dateProfile, data);
+                    state.eventStore = data.eventStore = rezoneEventStoreDates(data.eventStore, oldData.dateEnv, data.dateEnv);
                 }
                 for (var optionName in changeHandlers) {
                     if (oldCalendarOptions[optionName] !== newCalendarOptions[optionName]) {
@@ -7290,14 +7290,14 @@ var FullCalendar = (function (exports) {
             // TODO: blacklist options that are handled by optionChangeHandlers
             var _a = this.processRawCalendarOptions(optionOverrides, dynamicOptionOverrides), refinedOptions = _a.refinedOptions, pluginHooks = _a.pluginHooks, localeDefaults = _a.localeDefaults, availableLocaleData = _a.availableLocaleData, extra = _a.extra;
             warnUnknownOptions(extra);
-            var fechaEnv = this.buildDateEnv(refinedOptions.timeZone, refinedOptions.locale, refinedOptions.weekNumberCalculation, refinedOptions.firstDay, refinedOptions.weekText, pluginHooks, availableLocaleData, refinedOptions.defaultRangeSeparator);
+            var dateEnv = this.buildDateEnv(refinedOptions.timeZone, refinedOptions.locale, refinedOptions.weekNumberCalculation, refinedOptions.firstDay, refinedOptions.weekText, pluginHooks, availableLocaleData, refinedOptions.defaultRangeSeparator);
             var viewSpecs = this.buildViewSpecs(pluginHooks.views, optionOverrides, dynamicOptionOverrides, localeDefaults);
             var theme = this.buildTheme(refinedOptions, pluginHooks);
             var toolbarConfig = this.parseToolbars(refinedOptions, optionOverrides, theme, viewSpecs, calendarApi);
             return {
                 calendarOptions: refinedOptions,
                 pluginHooks: pluginHooks,
-                fechaEnv: fechaEnv,
+                dateEnv: dateEnv,
                 viewSpecs: viewSpecs,
                 theme: theme,
                 toolbarConfig: toolbarConfig,
@@ -7363,19 +7363,19 @@ var FullCalendar = (function (exports) {
             }
             var _a = this.processRawViewOptions(viewSpec, optionsData.pluginHooks, optionsData.localeDefaults, optionOverrides, dynamicOptionOverrides), refinedOptions = _a.refinedOptions, extra = _a.extra;
             warnUnknownOptions(extra);
-            var fechaProfileGenerator = this.buildDateProfileGenerator({
-                fechaProfileGeneratorClass: viewSpec.optionDefaults.fechaProfileGeneratorClass,
+            var dateProfileGenerator = this.buildDateProfileGenerator({
+                dateProfileGeneratorClass: viewSpec.optionDefaults.dateProfileGeneratorClass,
                 duration: viewSpec.duration,
                 durationUnit: viewSpec.durationUnit,
                 usesMinMaxTime: viewSpec.optionDefaults.usesMinMaxTime,
-                fechaEnv: optionsData.fechaEnv,
+                dateEnv: optionsData.dateEnv,
                 calendarApi: this.props.calendarApi,
                 slotMinTime: refinedOptions.slotMinTime,
                 slotMaxTime: refinedOptions.slotMaxTime,
                 showNonCurrentDates: refinedOptions.showNonCurrentDates,
                 dayCount: refinedOptions.dayCount,
-                fechaAlignment: refinedOptions.fechaAlignment,
-                fechaIncrement: refinedOptions.fechaIncrement,
+                dateAlignment: refinedOptions.dateAlignment,
+                dateIncrement: refinedOptions.dateIncrement,
                 hiddenDays: refinedOptions.hiddenDays,
                 weekends: refinedOptions.weekends,
                 nowInput: refinedOptions.now,
@@ -7384,8 +7384,8 @@ var FullCalendar = (function (exports) {
                 monthMode: refinedOptions.monthMode,
                 fixedWeekCount: refinedOptions.fixedWeekCount
             });
-            var viewApi = this.buildViewApi(viewType, this.getCurrentData, optionsData.fechaEnv);
-            return { viewSpec: viewSpec, options: refinedOptions, fechaProfileGenerator: fechaProfileGenerator, viewApi: viewApi };
+            var viewApi = this.buildViewApi(viewType, this.getCurrentData, optionsData.dateEnv);
+            return { viewSpec: viewSpec, options: refinedOptions, dateProfileGenerator: dateProfileGenerator, viewApi: viewApi };
         };
         CalendarDataManager.prototype.processRawViewOptions = function (viewSpec, pluginHooks, localeDefaults, optionOverrides, dynamicOptionOverrides) {
             var raw = mergeRawOptions([
@@ -7452,11 +7452,11 @@ var FullCalendar = (function (exports) {
         return new ThemeClass(options);
     }
     function buildDateProfileGenerator(props) {
-        var DateProfileGeneratorClass = props.fechaProfileGeneratorClass || DateProfileGenerator;
+        var DateProfileGeneratorClass = props.dateProfileGeneratorClass || DateProfileGenerator;
         return new DateProfileGeneratorClass(props);
     }
-    function buildViewApi(type, getCurrentData, fechaEnv) {
-        return new ViewApi(type, getCurrentData, fechaEnv);
+    function buildViewApi(type, getCurrentData, dateEnv) {
+        return new ViewApi(type, getCurrentData, dateEnv);
     }
     function buildEventUiBySource(eventSources) {
         return mapHash(eventSources, function (eventSource) {
@@ -7531,7 +7531,7 @@ var FullCalendar = (function (exports) {
         CalendarDataProvider.prototype.render = function () {
             return this.props.children(this.state);
         };
-        CalendarDataProvider.prototype.componentDidUpfecha = function (prevProps) {
+        CalendarDataProvider.prototype.componentDidUpdate = function (prevProps) {
             var newOptionOverrides = this.props.optionOverrides;
             if (newOptionOverrides !== prevProps.optionOverrides) { // prevent recursive handleData
                 this.dataManager.resetOptions(newOptionOverrides);
@@ -7546,7 +7546,7 @@ var FullCalendar = (function (exports) {
     you can get nextDayThreshold from context.nextDayThreshold
     */
     function sliceEvents(props, allDay) {
-        return sliceEventStore(props.eventStore, props.eventUiBases, props.fechaProfile.activeRange, allDay ? props.nextDayThreshold : null).fg;
+        return sliceEventStore(props.eventStore, props.eventUiBases, props.dateProfile.activeRange, allDay ? props.nextDayThreshold : null).fg;
     }
 
     var NamedTimeZoneImpl = /** @class */ (function () {
@@ -7732,10 +7732,10 @@ var FullCalendar = (function (exports) {
             _this.handleEl = function (el) {
                 _this.el = el;
                 setRef(_this.props.elRef, el);
-                _this.upfechaAvailableWidth();
+                _this.updateAvailableWidth();
             };
             _this.handleResize = function () {
-                _this.upfechaAvailableWidth();
+                _this.updateAvailableWidth();
             };
             return _this;
         }
@@ -7773,7 +7773,7 @@ var FullCalendar = (function (exports) {
         ViewContainer.prototype.componentWillUnmount = function () {
             this.context.removeResizeHandler(this.handleResize);
         };
-        ViewContainer.prototype.upfechaAvailableWidth = function () {
+        ViewContainer.prototype.updateAvailableWidth = function () {
             if (this.el && // needed. but why?
                 this.props.aspectRatio // aspectRatio is the only height setting that needs availableWidth
             ) {
@@ -7923,7 +7923,7 @@ var FullCalendar = (function (exports) {
         CalendarContent.prototype.render = function () {
             var props = this.props;
             var toolbarConfig = props.toolbarConfig, options = props.options;
-            var toolbarProps = this.buildToolbarProps(props.viewSpec, props.fechaProfile, props.fechaProfileGenerator, props.currentDate, getNow(props.options.now, props.fechaEnv), // TODO: use NowTimer????
+            var toolbarProps = this.buildToolbarProps(props.viewSpec, props.dateProfile, props.dateProfileGenerator, props.currentDate, getNow(props.options.now, props.dateEnv), // TODO: use NowTimer????
             props.viewTitle);
             var viewVGrow = false;
             var viewHeight = '';
@@ -7940,7 +7940,7 @@ var FullCalendar = (function (exports) {
             else {
                 viewAspectRatio = Math.max(options.aspectRatio, 0.5); // prevent from getting too tall
             }
-            var viewContext = this.buildViewContext(props.viewSpec, props.viewApi, props.options, props.fechaProfileGenerator, props.fechaEnv, props.theme, props.pluginHooks, props.dispatch, props.getCurrentData, props.emitter, props.calendarApi, this.registerInteractiveComponent, this.unregisterInteractiveComponent);
+            var viewContext = this.buildViewContext(props.viewSpec, props.viewApi, props.options, props.dateProfileGenerator, props.dateEnv, props.theme, props.pluginHooks, props.dispatch, props.getCurrentData, props.emitter, props.calendarApi, this.registerInteractiveComponent, this.unregisterInteractiveComponent);
             return (createElement(ViewContextType.Provider, { value: viewContext },
                 toolbarConfig.headerToolbar &&
                     createElement(Toolbar, __assign({ ref: this.headerRef, extraClassName: 'fc-header-toolbar', model: toolbarConfig.headerToolbar }, toolbarProps)),
@@ -7962,7 +7962,7 @@ var FullCalendar = (function (exports) {
                 propSetHandlers[propName](props[propName], props);
             }
         };
-        CalendarContent.prototype.componentDidUpfecha = function (prevProps) {
+        CalendarContent.prototype.componentDidUpdate = function (prevProps) {
             var props = this.props;
             var propSetHandlers = props.pluginHooks.propSetHandlers;
             for (var propName in propSetHandlers) {
@@ -7981,21 +7981,21 @@ var FullCalendar = (function (exports) {
             this.props.emitter.trigger('_unmount');
         };
         CalendarContent.prototype._handleNavLinkClick = function (ev, anchorEl) {
-            var _a = this.props, fechaEnv = _a.fechaEnv, options = _a.options, calendarApi = _a.calendarApi;
+            var _a = this.props, dateEnv = _a.dateEnv, options = _a.options, calendarApi = _a.calendarApi;
             var navLinkOptions = anchorEl.getAttribute('data-navlink');
             navLinkOptions = navLinkOptions ? JSON.parse(navLinkOptions) : {};
-            var fechaMarker = fechaEnv.createMarker(navLinkOptions.fecha);
+            var dateMarker = dateEnv.createMarker(navLinkOptions.date);
             var viewType = navLinkOptions.type;
             var customAction = viewType === 'day' ? options.navLinkDayClick :
                 viewType === 'week' ? options.navLinkWeekClick : null;
             if (typeof customAction === 'function') {
-                customAction.call(calendarApi, fechaEnv.toDate(fechaMarker), ev);
+                customAction.call(calendarApi, dateEnv.toDate(dateMarker), ev);
             }
             else {
                 if (typeof customAction === 'string') {
                     viewType = customAction;
                 }
-                calendarApi.zoomTo(fechaMarker, viewType);
+                calendarApi.zoomTo(dateMarker, viewType);
             }
         };
         CalendarContent.prototype.buildAppendContent = function () {
@@ -8007,11 +8007,11 @@ var FullCalendar = (function (exports) {
             var pluginHooks = props.pluginHooks;
             var viewSpec = props.viewSpec;
             var viewProps = {
-                fechaProfile: props.fechaProfile,
+                dateProfile: props.dateProfile,
                 businessHours: props.businessHours,
                 eventStore: props.renderableEventStore,
                 eventUiBases: props.eventUiBases,
-                fechaSelection: props.fechaSelection,
+                dateSelection: props.dateSelection,
                 eventSelection: props.eventSelection,
                 eventDrag: props.eventDrag,
                 eventResize: props.eventResize,
@@ -8028,15 +8028,15 @@ var FullCalendar = (function (exports) {
         };
         return CalendarContent;
     }(PureComponent));
-    function buildToolbarProps(viewSpec, fechaProfile, fechaProfileGenerator, currentDate, now, title) {
-        // don't force any fecha-profiles to valid fecha profiles (the `false`) so that we can tell if it's invalid
-        var todayInfo = fechaProfileGenerator.build(now, undefined, false); // TODO: need `undefined` or else INFINITE LOOP for some reason
-        var prevInfo = fechaProfileGenerator.buildPrev(fechaProfile, currentDate, false);
-        var nextInfo = fechaProfileGenerator.buildNext(fechaProfile, currentDate, false);
+    function buildToolbarProps(viewSpec, dateProfile, dateProfileGenerator, currentDate, now, title) {
+        // don't force any date-profiles to valid date profiles (the `false`) so that we can tell if it's invalid
+        var todayInfo = dateProfileGenerator.build(now, undefined, false); // TODO: need `undefined` or else INFINITE LOOP for some reason
+        var prevInfo = dateProfileGenerator.buildPrev(dateProfile, currentDate, false);
+        var nextInfo = dateProfileGenerator.buildNext(dateProfile, currentDate, false);
         return {
             title: title,
             activeButton: viewSpec.type,
-            isTodayEnabled: todayInfo.isValid && !rangeContainsMarker(fechaProfile.currentRange, now),
+            isTodayEnabled: todayInfo.isValid && !rangeContainsMarker(dateProfile.currentRange, now),
             isPrevEnabled: prevInfo.isValid,
             isNextEnabled: nextInfo.isValid
         };
@@ -8095,10 +8095,10 @@ var FullCalendar = (function (exports) {
     }(BaseComponent));
 
     // Computes a default column header formatting string if `colFormat` is not explicitly defined
-    function computeFallbackHeaderFormat(fechasRepDistinctDays, dayCnt) {
+    function computeFallbackHeaderFormat(datesRepDistinctDays, dayCnt) {
         // if more than one week row, or if there are a lot of columns with not much space,
         // put just the day numbers will be in each cell
-        if (!fechasRepDistinctDays || dayCnt > 10) {
+        if (!datesRepDistinctDays || dayCnt > 10) {
             return createFormatter({ weekday: 'short' }); // "Sat"
         }
         else if (dayCnt > 1) {
@@ -8116,18 +8116,18 @@ var FullCalendar = (function (exports) {
             return _super !== null && _super.apply(this, arguments) || this;
         }
         TableDateCell.prototype.render = function () {
-            var _a = this.context, fechaEnv = _a.fechaEnv, options = _a.options, theme = _a.theme, viewApi = _a.viewApi;
+            var _a = this.context, dateEnv = _a.dateEnv, options = _a.options, theme = _a.theme, viewApi = _a.viewApi;
             var props = this.props;
-            var fecha = props.fecha, fechaProfile = props.fechaProfile;
-            var dayMeta = getDateMeta(fecha, props.todayRange, null, fechaProfile);
+            var date = props.date, dateProfile = props.dateProfile;
+            var dayMeta = getDateMeta(date, props.todayRange, null, dateProfile);
             var classNames = [CLASS_NAME].concat(getDayClassNames(dayMeta, theme));
-            var text = fechaEnv.format(fecha, props.dayHeaderFormat);
+            var text = dateEnv.format(date, props.dayHeaderFormat);
             // if colCnt is 1, we are already in a day-view and don't need a navlink
             var navLinkAttrs = (options.navLinks && !dayMeta.isDisabled && props.colCnt > 1)
-                ? { 'data-navlink': buildNavLinkData(fecha), tabIndex: 0 }
+                ? { 'data-navlink': buildNavLinkData(date), tabIndex: 0 }
                 : {};
-            var hookProps = __assign(__assign(__assign({ fecha: fechaEnv.toDate(fecha), view: viewApi }, props.extraHookProps), { text: text }), dayMeta);
-            return (createElement(RenderHook, { hookProps: hookProps, classNames: options.dayHeaderClassNames, content: options.dayHeaderContent, defaultContent: renderInner, didMount: options.dayHeaderDidMount, willUnmount: options.dayHeaderWillUnmount }, function (rootElRef, customClassNames, innerElRef, innerContent) { return (createElement("th", __assign({ ref: rootElRef, className: classNames.concat(customClassNames).join(' '), "data-fecha": !dayMeta.isDisabled ? formatDayString(fecha) : undefined, colSpan: props.colSpan }, props.extraDataAttrs),
+            var hookProps = __assign(__assign(__assign({ date: dateEnv.toDate(date), view: viewApi }, props.extraHookProps), { text: text }), dayMeta);
+            return (createElement(RenderHook, { hookProps: hookProps, classNames: options.dayHeaderClassNames, content: options.dayHeaderContent, defaultContent: renderInner, didMount: options.dayHeaderDidMount, willUnmount: options.dayHeaderWillUnmount }, function (rootElRef, customClassNames, innerElRef, innerContent) { return (createElement("th", __assign({ ref: rootElRef, className: classNames.concat(customClassNames).join(' '), "data-date": !dayMeta.isDisabled ? formatDayString(date) : undefined, colSpan: props.colSpan }, props.extraDataAttrs),
                 createElement("div", { className: 'fc-scrollgrid-sync-inner' }, !dayMeta.isDisabled &&
                     createElement("a", __assign({ ref: innerElRef, className: [
                             'fc-col-header-cell-cushion',
@@ -8143,9 +8143,9 @@ var FullCalendar = (function (exports) {
         }
         TableDowCell.prototype.render = function () {
             var props = this.props;
-            var _a = this.context, fechaEnv = _a.fechaEnv, theme = _a.theme, viewApi = _a.viewApi, options = _a.options;
-            var fecha = addDays(new Date(259200000), props.dow); // start with Sun, 04 Jan 1970 00:00:00 GMT
-            var fechaMeta = {
+            var _a = this.context, dateEnv = _a.dateEnv, theme = _a.theme, viewApi = _a.viewApi, options = _a.options;
+            var date = addDays(new Date(259200000), props.dow); // start with Sun, 04 Jan 1970 00:00:00 GMT
+            var dateMeta = {
                 dow: props.dow,
                 isDisabled: false,
                 isFuture: false,
@@ -8153,10 +8153,10 @@ var FullCalendar = (function (exports) {
                 isToday: false,
                 isOther: false
             };
-            var classNames = [CLASS_NAME].concat(getDayClassNames(fechaMeta, theme), props.extraClassNames || []);
-            var text = fechaEnv.format(fecha, props.dayHeaderFormat);
+            var classNames = [CLASS_NAME].concat(getDayClassNames(dateMeta, theme), props.extraClassNames || []);
+            var text = dateEnv.format(date, props.dayHeaderFormat);
             var hookProps = __assign(__assign(__assign(__assign({ // TODO: make this public?
-                fecha: fecha }, fechaMeta), { view: viewApi }), props.extraHookProps), { text: text });
+                date: date }, dateMeta), { view: viewApi }), props.extraHookProps), { text: text });
             return (createElement(RenderHook, { hookProps: hookProps, classNames: options.dayHeaderClassNames, content: options.dayHeaderContent, defaultContent: renderInner, didMount: options.dayHeaderDidMount, willUnmount: options.dayHeaderWillUnmount }, function (rootElRef, customClassNames, innerElRef, innerContent) { return (createElement("th", __assign({ ref: rootElRef, className: classNames.concat(customClassNames).join(' '), colSpan: props.colSpan }, props.extraDataAttrs),
                 createElement("div", { className: 'fc-scrollgrid-sync-inner' },
                     createElement("a", { className: [
@@ -8174,7 +8174,7 @@ var FullCalendar = (function (exports) {
         __extends(NowTimer, _super);
         function NowTimer(props, context) {
             var _this = _super.call(this, props, context) || this;
-            _this.initialNowDate = getNow(context.options.now, context.fechaEnv);
+            _this.initialNowDate = getNow(context.options.now, context.dateEnv);
             _this.initialNowQueriedMs = new Date().valueOf();
             _this.state = _this.computeTiming().currentState;
             return _this;
@@ -8186,7 +8186,7 @@ var FullCalendar = (function (exports) {
         NowTimer.prototype.componentDidMount = function () {
             this.setTimeout();
         };
-        NowTimer.prototype.componentDidUpfecha = function (prevProps) {
+        NowTimer.prototype.componentDidUpdate = function (prevProps) {
             if (prevProps.unit !== this.props.unit) {
                 this.clearTimeout();
                 this.setTimeout();
@@ -8198,8 +8198,8 @@ var FullCalendar = (function (exports) {
         NowTimer.prototype.computeTiming = function () {
             var _a = this, props = _a.props, context = _a.context;
             var unroundedNow = addMs(this.initialNowDate, new Date().valueOf() - this.initialNowQueriedMs);
-            var currentUnitStart = context.fechaEnv.startOf(unroundedNow, props.unit);
-            var nextUnitStart = context.fechaEnv.add(currentUnitStart, createDuration(1, props.unit));
+            var currentUnitStart = context.dateEnv.startOf(unroundedNow, props.unit);
+            var nextUnitStart = context.dateEnv.add(currentUnitStart, createDuration(1, props.unit));
             var waitMs = nextUnitStart.valueOf() - unroundedNow.valueOf();
             return {
                 currentState: { nowDate: currentUnitStart, todayRange: buildDayRange(currentUnitStart) },
@@ -8224,8 +8224,8 @@ var FullCalendar = (function (exports) {
         NowTimer.contextType = ViewContextType;
         return NowTimer;
     }(Component));
-    function buildDayRange(fecha) {
-        var start = startOfDay(fecha);
+    function buildDayRange(date) {
+        var start = startOfDay(date);
         var end = addDays(start, 1);
         return { start: start, end: end };
     }
@@ -8239,41 +8239,41 @@ var FullCalendar = (function (exports) {
         }
         DayHeader.prototype.render = function () {
             var context = this.context;
-            var _a = this.props, fechas = _a.fechas, fechaProfile = _a.fechaProfile, fechasRepDistinctDays = _a.fechasRepDistinctDays, renderIntro = _a.renderIntro;
-            var dayHeaderFormat = this.createDayHeaderFormatter(context.options.dayHeaderFormat, fechasRepDistinctDays, fechas.length);
+            var _a = this.props, dates = _a.dates, dateProfile = _a.dateProfile, datesRepDistinctDays = _a.datesRepDistinctDays, renderIntro = _a.renderIntro;
+            var dayHeaderFormat = this.createDayHeaderFormatter(context.options.dayHeaderFormat, datesRepDistinctDays, dates.length);
             return (createElement(NowTimer, { unit: 'day' }, function (nowDate, todayRange) { return (createElement("tr", null,
                 renderIntro && renderIntro(),
-                fechas.map(function (fecha) { return (fechasRepDistinctDays ?
-                    createElement(TableDateCell, { key: fecha.toISOString(), fecha: fecha, fechaProfile: fechaProfile, todayRange: todayRange, colCnt: fechas.length, dayHeaderFormat: dayHeaderFormat }) :
-                    createElement(TableDowCell, { key: fecha.getUTCDay(), dow: fecha.getUTCDay(), dayHeaderFormat: dayHeaderFormat })); }))); }));
+                dates.map(function (date) { return (datesRepDistinctDays ?
+                    createElement(TableDateCell, { key: date.toISOString(), date: date, dateProfile: dateProfile, todayRange: todayRange, colCnt: dates.length, dayHeaderFormat: dayHeaderFormat }) :
+                    createElement(TableDowCell, { key: date.getUTCDay(), dow: date.getUTCDay(), dayHeaderFormat: dayHeaderFormat })); }))); }));
         };
         return DayHeader;
     }(BaseComponent));
-    function createDayHeaderFormatter(explicitFormat, fechasRepDistinctDays, fechaCnt) {
-        return explicitFormat || computeFallbackHeaderFormat(fechasRepDistinctDays, fechaCnt);
+    function createDayHeaderFormatter(explicitFormat, datesRepDistinctDays, dateCnt) {
+        return explicitFormat || computeFallbackHeaderFormat(datesRepDistinctDays, dateCnt);
     }
 
     var DaySeriesModel = /** @class */ (function () {
-        function DaySeriesModel(range, fechaProfileGenerator) {
-            var fecha = range.start;
+        function DaySeriesModel(range, dateProfileGenerator) {
+            var date = range.start;
             var end = range.end;
             var indices = [];
-            var fechas = [];
+            var dates = [];
             var dayIndex = -1;
-            while (fecha < end) { // loop each day from start to end
-                if (fechaProfileGenerator.isHiddenDay(fecha)) {
+            while (date < end) { // loop each day from start to end
+                if (dateProfileGenerator.isHiddenDay(date)) {
                     indices.push(dayIndex + 0.5); // mark that it's between indices
                 }
                 else {
                     dayIndex++;
                     indices.push(dayIndex);
-                    fechas.push(fecha);
+                    dates.push(date);
                 }
-                fecha = addDays(fecha, 1);
+                date = addDays(date, 1);
             }
-            this.fechas = fechas;
+            this.dates = dates;
             this.indices = indices;
-            this.cnt = fechas.length;
+            this.cnt = dates.length;
         }
         DaySeriesModel.prototype.sliceRange = function (range) {
             var firstIndex = this.getDateDayIndex(range.start); // inclusive first index
@@ -8295,14 +8295,14 @@ var FullCalendar = (function (exports) {
                 return null;
             }
         };
-        // Given a fecha, returns its chronolocial cell-index from the first cell of the grid.
-        // If the fecha lies between cells (because of hiddenDays), returns a floating-point value between offsets.
+        // Given a date, returns its chronolocial cell-index from the first cell of the grid.
+        // If the date lies between cells (because of hiddenDays), returns a floating-point value between offsets.
         // If before the first offset, returns a negative number.
         // If after the last offset, returns an offset past the last cell offset.
-        // Only works for *start* fechas of cells. Will not work for exclusive end fechas for cells.
-        DaySeriesModel.prototype.getDateDayIndex = function (fecha) {
+        // Only works for *start* dates of cells. Will not work for exclusive end dates for cells.
+        DaySeriesModel.prototype.getDateDayIndex = function (date) {
             var indices = this.indices;
-            var dayOffset = Math.floor(diffDays(this.fechas[0], fecha));
+            var dayOffset = Math.floor(diffDays(this.dates[0], date));
             if (dayOffset < 0) {
                 return indices[0] - 1;
             }
@@ -8318,23 +8318,23 @@ var FullCalendar = (function (exports) {
 
     var DayTableModel = /** @class */ (function () {
         function DayTableModel(daySeries, breakOnWeeks) {
-            var fechas = daySeries.fechas;
+            var dates = daySeries.dates;
             var daysPerRow;
             var firstDay;
             var rowCnt;
             if (breakOnWeeks) {
                 // count columns until the day-of-week repeats
-                firstDay = fechas[0].getUTCDay();
-                for (daysPerRow = 1; daysPerRow < fechas.length; daysPerRow++) {
-                    if (fechas[daysPerRow].getUTCDay() === firstDay) {
+                firstDay = dates[0].getUTCDay();
+                for (daysPerRow = 1; daysPerRow < dates.length; daysPerRow++) {
+                    if (dates[daysPerRow].getUTCDay() === firstDay) {
                         break;
                     }
                 }
-                rowCnt = Math.ceil(fechas.length / daysPerRow);
+                rowCnt = Math.ceil(dates.length / daysPerRow);
             }
             else {
                 rowCnt = 1;
-                daysPerRow = fechas.length;
+                daysPerRow = dates.length;
             }
             this.rowCnt = rowCnt;
             this.colCnt = daysPerRow;
@@ -8354,18 +8354,18 @@ var FullCalendar = (function (exports) {
             return rows;
         };
         DayTableModel.prototype.buildCell = function (row, col) {
-            var fecha = this.daySeries.fechas[row * this.colCnt + col];
+            var date = this.daySeries.dates[row * this.colCnt + col];
             return {
-                key: fecha.toISOString(),
-                fecha: fecha
+                key: date.toISOString(),
+                date: date
             };
         };
         DayTableModel.prototype.buildHeaderDates = function () {
-            var fechas = [];
+            var dates = [];
             for (var col = 0; col < this.colCnt; col++) {
-                fechas.push(this.cells[0][col].fecha);
+                dates.push(this.cells[0][col].date);
             }
-            return fechas;
+            return dates;
         };
         DayTableModel.prototype.sliceRange = function (range) {
             var colCnt = this.colCnt;
@@ -8401,34 +8401,34 @@ var FullCalendar = (function (exports) {
             this.sliceEventResize = memoize(this._sliceInteraction);
             this.forceDayIfListItem = false; // hack
         }
-        Slicer.prototype.sliceProps = function (props, fechaProfile, nextDayThreshold, context) {
+        Slicer.prototype.sliceProps = function (props, dateProfile, nextDayThreshold, context) {
             var extraArgs = [];
             for (var _i = 4; _i < arguments.length; _i++) {
                 extraArgs[_i - 4] = arguments[_i];
             }
             var eventUiBases = props.eventUiBases;
-            var eventSegs = this.sliceEventStore.apply(this, __spreadArrays([props.eventStore, eventUiBases, fechaProfile, nextDayThreshold], extraArgs));
+            var eventSegs = this.sliceEventStore.apply(this, __spreadArrays([props.eventStore, eventUiBases, dateProfile, nextDayThreshold], extraArgs));
             return {
-                fechaSelectionSegs: this.sliceDateSelection.apply(this, __spreadArrays([props.fechaSelection, eventUiBases, context], extraArgs)),
-                businessHourSegs: this.sliceBusinessHours.apply(this, __spreadArrays([props.businessHours, fechaProfile, nextDayThreshold, context], extraArgs)),
+                dateSelectionSegs: this.sliceDateSelection.apply(this, __spreadArrays([props.dateSelection, eventUiBases, context], extraArgs)),
+                businessHourSegs: this.sliceBusinessHours.apply(this, __spreadArrays([props.businessHours, dateProfile, nextDayThreshold, context], extraArgs)),
                 fgEventSegs: eventSegs.fg,
                 bgEventSegs: eventSegs.bg,
-                eventDrag: this.sliceEventDrag.apply(this, __spreadArrays([props.eventDrag, eventUiBases, fechaProfile, nextDayThreshold], extraArgs)),
-                eventResize: this.sliceEventResize.apply(this, __spreadArrays([props.eventResize, eventUiBases, fechaProfile, nextDayThreshold], extraArgs)),
+                eventDrag: this.sliceEventDrag.apply(this, __spreadArrays([props.eventDrag, eventUiBases, dateProfile, nextDayThreshold], extraArgs)),
+                eventResize: this.sliceEventResize.apply(this, __spreadArrays([props.eventResize, eventUiBases, dateProfile, nextDayThreshold], extraArgs)),
                 eventSelection: props.eventSelection
             }; // TODO: give interactionSegs?
         };
         Slicer.prototype.sliceNowDate = function (// does not memoize
-        fecha, context) {
+        date, context) {
             var extraArgs = [];
             for (var _i = 2; _i < arguments.length; _i++) {
                 extraArgs[_i - 2] = arguments[_i];
             }
-            return this._sliceDateSpan.apply(this, __spreadArrays([{ range: { start: fecha, end: addMs(fecha, 1) }, allDay: false },
+            return this._sliceDateSpan.apply(this, __spreadArrays([{ range: { start: date, end: addMs(date, 1) }, allDay: false },
                 {},
                 context], extraArgs));
         };
-        Slicer.prototype._sliceBusinessHours = function (businessHours, fechaProfile, nextDayThreshold, context) {
+        Slicer.prototype._sliceBusinessHours = function (businessHours, dateProfile, nextDayThreshold, context) {
             var extraArgs = [];
             for (var _i = 4; _i < arguments.length; _i++) {
                 extraArgs[_i - 4] = arguments[_i];
@@ -8436,18 +8436,18 @@ var FullCalendar = (function (exports) {
             if (!businessHours) {
                 return [];
             }
-            return this._sliceEventStore.apply(this, __spreadArrays([expandRecurring(businessHours, computeActiveRange(fechaProfile, Boolean(nextDayThreshold)), context),
+            return this._sliceEventStore.apply(this, __spreadArrays([expandRecurring(businessHours, computeActiveRange(dateProfile, Boolean(nextDayThreshold)), context),
                 {},
-                fechaProfile,
+                dateProfile,
                 nextDayThreshold], extraArgs)).bg;
         };
-        Slicer.prototype._sliceEventStore = function (eventStore, eventUiBases, fechaProfile, nextDayThreshold) {
+        Slicer.prototype._sliceEventStore = function (eventStore, eventUiBases, dateProfile, nextDayThreshold) {
             var extraArgs = [];
             for (var _i = 4; _i < arguments.length; _i++) {
                 extraArgs[_i - 4] = arguments[_i];
             }
             if (eventStore) {
-                var rangeRes = sliceEventStore(eventStore, eventUiBases, computeActiveRange(fechaProfile, Boolean(nextDayThreshold)), nextDayThreshold);
+                var rangeRes = sliceEventStore(eventStore, eventUiBases, computeActiveRange(dateProfile, Boolean(nextDayThreshold)), nextDayThreshold);
                 return {
                     bg: this.sliceEventRanges(rangeRes.bg, extraArgs),
                     fg: this.sliceEventRanges(rangeRes.fg, extraArgs)
@@ -8457,7 +8457,7 @@ var FullCalendar = (function (exports) {
                 return { bg: [], fg: [] };
             }
         };
-        Slicer.prototype._sliceInteraction = function (interaction, eventUiBases, fechaProfile, nextDayThreshold) {
+        Slicer.prototype._sliceInteraction = function (interaction, eventUiBases, dateProfile, nextDayThreshold) {
             var extraArgs = [];
             for (var _i = 4; _i < arguments.length; _i++) {
                 extraArgs[_i - 4] = arguments[_i];
@@ -8465,23 +8465,23 @@ var FullCalendar = (function (exports) {
             if (!interaction) {
                 return null;
             }
-            var rangeRes = sliceEventStore(interaction.mutatedEvents, eventUiBases, computeActiveRange(fechaProfile, Boolean(nextDayThreshold)), nextDayThreshold);
+            var rangeRes = sliceEventStore(interaction.mutatedEvents, eventUiBases, computeActiveRange(dateProfile, Boolean(nextDayThreshold)), nextDayThreshold);
             return {
                 segs: this.sliceEventRanges(rangeRes.fg, extraArgs),
                 affectedInstances: interaction.affectedEvents.instances,
                 isEvent: interaction.isEvent
             };
         };
-        Slicer.prototype._sliceDateSpan = function (fechaSpan, eventUiBases, context) {
+        Slicer.prototype._sliceDateSpan = function (dateSpan, eventUiBases, context) {
             var extraArgs = [];
             for (var _i = 3; _i < arguments.length; _i++) {
                 extraArgs[_i - 3] = arguments[_i];
             }
-            if (!fechaSpan) {
+            if (!dateSpan) {
                 return [];
             }
-            var eventRange = fabricateEventRange(fechaSpan, eventUiBases, context);
-            var segs = this.sliceRange.apply(this, __spreadArrays([fechaSpan.range], extraArgs));
+            var eventRange = fabricateEventRange(dateSpan, eventUiBases, context);
+            var segs = this.sliceRange.apply(this, __spreadArrays([dateSpan.range], extraArgs));
             for (var _a = 0, segs_1 = segs; _a < segs_1.length; _a++) {
                 var seg = segs_1[_a];
                 seg.eventRange = eventRange;
@@ -8503,15 +8503,15 @@ var FullCalendar = (function (exports) {
         "complete" seg means it has component and eventRange
         */
         Slicer.prototype.sliceEventRange = function (eventRange, extraArgs) {
-            var fechaRange = eventRange.range;
+            var dateRange = eventRange.range;
             // hack to make multi-day events that are being force-displayed as list-items to take up only one day
             if (this.forceDayIfListItem && eventRange.ui.display === 'list-item') {
-                fechaRange = {
-                    start: fechaRange.start,
-                    end: addDays(fechaRange.start, 1)
+                dateRange = {
+                    start: dateRange.start,
+                    end: addDays(dateRange.start, 1)
                 };
             }
-            var segs = this.sliceRange.apply(this, __spreadArrays([fechaRange], extraArgs));
+            var segs = this.sliceRange.apply(this, __spreadArrays([dateRange], extraArgs));
             for (var _i = 0, segs_2 = segs; _i < segs_2.length; _i++) {
                 var seg = segs_2[_i];
                 seg.eventRange = eventRange;
@@ -8527,14 +8527,14 @@ var FullCalendar = (function (exports) {
     TODO: should be part of DateProfile!
     TimelineDateProfile already does this btw
     */
-    function computeActiveRange(fechaProfile, isComponentAllDay) {
-        var range = fechaProfile.activeRange;
+    function computeActiveRange(dateProfile, isComponentAllDay) {
+        var range = dateProfile.activeRange;
         if (isComponentAllDay) {
             return range;
         }
         return {
-            start: addMs(range.start, fechaProfile.slotMinTime.milliseconds),
-            end: addMs(range.end, fechaProfile.slotMaxTime.milliseconds - 864e5) // 864e5 = ms in a day
+            start: addMs(range.start, dateProfile.slotMinTime.milliseconds),
+            end: addMs(range.end, dateProfile.slotMaxTime.milliseconds - 864e5) // 864e5 = ms in a day
         };
     }
 
@@ -8900,7 +8900,7 @@ var FullCalendar = (function (exports) {
             this.handleSizing();
             this.context.addResizeHandler(this.handleSizing);
         };
-        SimpleScrollGrid.prototype.componentDidUpfecha = function () {
+        SimpleScrollGrid.prototype.componentDidUpdate = function () {
             // TODO: need better solution when state contains non-sizing things
             this.handleSizing();
         };
@@ -8988,7 +8988,7 @@ var FullCalendar = (function (exports) {
         /*
         need to re-assign seg to the element if seg changes, even if the element is the same
         */
-        EventRoot.prototype.componentDidUpfecha = function (prevProps) {
+        EventRoot.prototype.componentDidUpdate = function (prevProps) {
             var seg = this.props.seg;
             if (seg !== prevProps.seg) {
                 setElSeg(this.elRef.current, seg);
@@ -9036,7 +9036,7 @@ var FullCalendar = (function (exports) {
         var options = context.options;
         var hookProps = {
             isAxis: props.isAxis,
-            fecha: context.fechaEnv.toDate(props.fecha),
+            date: context.dateEnv.toDate(props.date),
             view: context.viewApi
         };
         return (createElement(RenderHook, { hookProps: hookProps, classNames: options.nowIndicatorClassNames, content: options.nowIndicatorContent, didMount: options.nowIndicatorDidMount, willUnmount: options.nowIndicatorWillUnmount }, props.children));
@@ -9055,19 +9055,19 @@ var FullCalendar = (function (exports) {
             var _a = this, props = _a.props, context = _a.context;
             var options = context.options;
             var hookProps = this.refineHookProps({
-                fecha: props.fecha,
-                fechaProfile: props.fechaProfile,
+                date: props.date,
+                dateProfile: props.dateProfile,
                 todayRange: props.todayRange,
                 showDayNumber: props.showDayNumber,
                 extraProps: props.extraHookProps,
                 viewApi: context.viewApi,
-                fechaEnv: context.fechaEnv
+                dateEnv: context.dateEnv
             });
             var classNames = getDayClassNames(hookProps, context.theme).concat(hookProps.isDisabled
                 ? [] // don't use custom classNames if disabled
                 : this.normalizeClassNames(options.dayCellClassNames, hookProps));
             var dataAttrs = hookProps.isDisabled ? {} : {
-                'data-fecha': formatDayString(props.fecha)
+                'data-date': formatDayString(props.date)
             };
             return (createElement(MountHook, { hookProps: hookProps, didMount: options.dayCellDidMount, willUnmount: options.dayCellWillUnmount, elRef: props.elRef }, function (rootElRef) { return props.children(rootElRef, classNames, dataAttrs, hookProps.isDisabled); }));
         };
@@ -9082,22 +9082,22 @@ var FullCalendar = (function (exports) {
             var _a = this, props = _a.props, context = _a.context;
             var options = context.options;
             var hookProps = refineHookProps({
-                fecha: props.fecha,
-                fechaProfile: props.fechaProfile,
+                date: props.date,
+                dateProfile: props.dateProfile,
                 todayRange: props.todayRange,
                 showDayNumber: props.showDayNumber,
                 extraProps: props.extraHookProps,
                 viewApi: context.viewApi,
-                fechaEnv: context.fechaEnv
+                dateEnv: context.dateEnv
             });
             return (createElement(ContentHook, { hookProps: hookProps, content: options.dayCellContent, defaultContent: props.defaultContent }, props.children));
         };
         return DayCellContent;
     }(BaseComponent));
     function refineHookProps(raw) {
-        var fecha = raw.fecha, fechaEnv = raw.fechaEnv;
-        var dayMeta = getDateMeta(fecha, raw.todayRange, null, raw.fechaProfile);
-        return __assign(__assign(__assign({ fecha: fechaEnv.toDate(fecha), view: raw.viewApi }, dayMeta), { dayNumberText: raw.showDayNumber ? fechaEnv.format(fecha, DAY_NUM_FORMAT) : '' }), raw.extraProps);
+        var date = raw.date, dateEnv = raw.dateEnv;
+        var dayMeta = getDateMeta(date, raw.todayRange, null, raw.dateProfile);
+        return __assign(__assign(__assign({ date: dateEnv.toDate(date), view: raw.viewApi }, dayMeta), { dayNumberText: raw.showDayNumber ? dateEnv.format(date, DAY_NUM_FORMAT) : '' }), raw.extraProps);
     }
 
     function renderFill(fillType) {
@@ -9112,12 +9112,12 @@ var FullCalendar = (function (exports) {
     }
 
     var WeekNumberRoot = function (props) { return (createElement(ViewContextType.Consumer, null, function (context) {
-        var fechaEnv = context.fechaEnv, options = context.options;
-        var fecha = props.fecha;
+        var dateEnv = context.dateEnv, options = context.options;
+        var date = props.date;
         var format = options.weekNumberFormat || props.defaultFormat;
-        var num = fechaEnv.computeWeekNumber(fecha); // TODO: somehow use for formatting as well?
-        var text = fechaEnv.format(fecha, format);
-        var hookProps = { num: num, text: text, fecha: fecha };
+        var num = dateEnv.computeWeekNumber(date); // TODO: somehow use for formatting as well?
+        var text = dateEnv.format(date, format);
+        var hookProps = { num: num, text: text, date: date };
         return (createElement(RenderHook, { hookProps: hookProps, classNames: options.weekNumberClassNames, content: options.weekNumberContent, defaultContent: renderInner$1, didMount: options.weekNumberDidMount, willUnmount: options.weekNumberWillUnmount }, props.children));
     })); };
     function renderInner$1(innerProps) {
@@ -9194,7 +9194,7 @@ var FullCalendar = (function (exports) {
             }
             this.renderRunner.request();
             if (wasRendering) {
-                this.upfechaSize();
+                this.updateSize();
             }
         };
         Calendar.prototype.destroy = function () {
@@ -9203,8 +9203,8 @@ var FullCalendar = (function (exports) {
                 this.renderRunner.request();
             }
         };
-        Calendar.prototype.upfechaSize = function () {
-            _super.prototype.upfechaSize.call(this);
+        Calendar.prototype.updateSize = function () {
+            _super.prototype.updateSize.call(this);
             flushToDom$1();
         };
         Calendar.prototype.batchRendering = function (func) {
@@ -9261,9 +9261,9 @@ var FullCalendar = (function (exports) {
     var PointerDragging = /** @class */ (function () {
         function PointerDragging(containerEl) {
             var _this = this;
-            this.temaEl = null;
+            this.subjectEl = null;
             // options that can be directly assigned by caller
-            this.selector = ''; // will cause temaEl in all emitted events to be this element
+            this.selector = ''; // will cause subjectEl in all emitted events to be this element
             this.handleSelector = '';
             this.shouldIgnoreMove = false;
             this.shouldWatchScroll = true; // for simulating pointermove on scroll
@@ -9348,7 +9348,7 @@ var FullCalendar = (function (exports) {
                     _this.emitter.trigger('pointermove', {
                         origEvent: ev,
                         isTouch: _this.isTouchDragging,
-                        temaEl: _this.temaEl,
+                        subjectEl: _this.subjectEl,
                         pageX: pageX,
                         pageY: pageY,
                         deltaX: pageX - _this.origPageX,
@@ -9368,11 +9368,11 @@ var FullCalendar = (function (exports) {
             listenerDestroyed();
         };
         PointerDragging.prototype.tryStart = function (ev) {
-            var temaEl = this.querySubjectEl(ev);
+            var subjectEl = this.querySubjectEl(ev);
             var downEl = ev.target;
-            if (temaEl &&
+            if (subjectEl &&
                 (!this.handleSelector || elementClosest(downEl, this.handleSelector))) {
-                this.temaEl = temaEl;
+                this.subjectEl = subjectEl;
                 this.isDragging = true; // do this first so cancelTouchScroll will work
                 this.wasTouchScroll = false;
                 return true;
@@ -9382,7 +9382,7 @@ var FullCalendar = (function (exports) {
         PointerDragging.prototype.cleanup = function () {
             isWindowTouchMoveCancelled = false;
             this.isDragging = false;
-            this.temaEl = null;
+            this.subjectEl = null;
             // keep wasTouchScroll around for later access
             this.destroyScrollWatch();
         };
@@ -9441,7 +9441,7 @@ var FullCalendar = (function (exports) {
             return {
                 origEvent: ev,
                 isTouch: false,
-                temaEl: this.temaEl,
+                subjectEl: this.subjectEl,
                 pageX: ev.pageX,
                 pageY: ev.pageY,
                 deltaX: deltaX,
@@ -9476,7 +9476,7 @@ var FullCalendar = (function (exports) {
             return {
                 origEvent: ev,
                 isTouch: true,
-                temaEl: this.temaEl,
+                subjectEl: this.subjectEl,
                 pageX: pageX,
                 pageY: pageY,
                 deltaX: deltaX,
@@ -9538,12 +9538,12 @@ var FullCalendar = (function (exports) {
             this.origScreenY = pageY - window.pageYOffset;
             this.deltaX = 0;
             this.deltaY = 0;
-            this.upfechaElPosition();
+            this.updateElPosition();
         };
         ElementMirror.prototype.handleMove = function (pageX, pageY) {
             this.deltaX = (pageX - window.pageXOffset) - this.origScreenX;
             this.deltaY = (pageY - window.pageYOffset) - this.origScreenY;
-            this.upfechaElPosition();
+            this.updateElPosition();
         };
         // can be called before start
         ElementMirror.prototype.setIsVisible = function (bool) {
@@ -9552,8 +9552,8 @@ var FullCalendar = (function (exports) {
                     if (this.mirrorEl) {
                         this.mirrorEl.style.display = '';
                     }
-                    this.isVisible = bool; // needs to happen before upfechaElPosition
-                    this.upfechaElPosition(); // because was not updating the position while invisible
+                    this.isVisible = bool; // needs to happen before updateElPosition
+                    this.updateElPosition(); // because was not updating the position while invisible
                 }
             }
             else {
@@ -9606,7 +9606,7 @@ var FullCalendar = (function (exports) {
             }
             this.sourceEl = null;
         };
-        ElementMirror.prototype.upfechaElPosition = function () {
+        ElementMirror.prototype.updateElPosition = function () {
             if (this.sourceEl && this.isVisible) {
                 applyStyle(this.getMirrorEl(), {
                     left: this.sourceElRect.left + this.deltaX,
@@ -9647,7 +9647,7 @@ var FullCalendar = (function (exports) {
 
     The cache can be in one of two modes:
     - doesListening:false - ignores when the container is scrolled by someone else
-    - doesListening:true - watch for scrolling and upfecha the cache
+    - doesListening:true - watch for scrolling and update the cache
     */
     var ScrollGeomCache = /** @class */ (function (_super) {
         __extends(ScrollGeomCache, _super);
@@ -9969,7 +9969,7 @@ var FullCalendar = (function (exports) {
                         !_this.pointer.shouldIgnoreMove) {
                         // actions related to initiating dragstart+dragmove+dragend...
                         _this.mirror.setIsVisible(false); // reset. caller must set-visible
-                        _this.mirror.start(ev.temaEl, ev.pageX, ev.pageY); // must happen on first pointer down
+                        _this.mirror.start(ev.subjectEl, ev.pageX, ev.pageY); // must happen on first pointer down
                         _this.startDelay(ev);
                         if (!_this.minDistance) {
                             _this.handleDistanceSurpassed(ev);
@@ -10200,7 +10200,7 @@ var FullCalendar = (function (exports) {
             };
             this.handleDragEnd = function (ev) {
                 if (_this.movingHit) {
-                    _this.emitter.trigger('hitupfecha', null, true, ev);
+                    _this.emitter.trigger('hitupdate', null, true, ev);
                 }
                 _this.finalHit = _this.movingHit;
                 _this.movingHit = null;
@@ -10220,16 +10220,16 @@ var FullCalendar = (function (exports) {
         HitDragging.prototype.processFirstCoord = function (ev) {
             var origPoint = { left: ev.pageX, top: ev.pageY };
             var adjustedPoint = origPoint;
-            var temaEl = ev.temaEl;
-            var temaRect;
-            if (temaEl !== document) {
-                temaRect = computeRect(temaEl);
-                adjustedPoint = constrainPoint(adjustedPoint, temaRect);
+            var subjectEl = ev.subjectEl;
+            var subjectRect;
+            if (subjectEl !== document) {
+                subjectRect = computeRect(subjectEl);
+                adjustedPoint = constrainPoint(adjustedPoint, subjectRect);
             }
             var initialHit = this.initialHit = this.queryHitForOffset(adjustedPoint.left, adjustedPoint.top);
             if (initialHit) {
-                if (this.useSubjectCenter && temaRect) {
-                    var slicedSubjectRect = intersectRects(temaRect, initialHit.rect);
+                if (this.useSubjectCenter && subjectRect) {
+                    var slicedSubjectRect = intersectRects(subjectRect, initialHit.rect);
                     if (slicedSubjectRect) {
                         adjustedPoint = getRectCenter(slicedSubjectRect);
                     }
@@ -10244,7 +10244,7 @@ var FullCalendar = (function (exports) {
             var hit = this.queryHitForOffset(ev.pageX + this.coordAdjust.left, ev.pageY + this.coordAdjust.top);
             if (forceHandle || !isHitsEqual(this.movingHit, hit)) {
                 this.movingHit = hit;
-                this.emitter.trigger('hitupfecha', hit, false, ev);
+                this.emitter.trigger('hitupdate', hit, false, ev);
             }
         };
         HitDragging.prototype.prepareHits = function () {
@@ -10280,11 +10280,11 @@ var FullCalendar = (function (exports) {
                     positionLeft >= 0 && positionLeft < width &&
                         positionTop >= 0 && positionTop < height) {
                         var hit = component.queryHit(positionLeft, positionTop, width, height);
-                        var fechaProfile = component.context.getCurrentData().fechaProfile;
+                        var dateProfile = component.context.getCurrentData().dateProfile;
                         if (hit &&
                             (
                             // make sure the hit is within activeRange, meaning it's not a deal cell
-                            rangeContainsRange(fechaProfile.activeRange, hit.fechaSpan.range)) &&
+                            rangeContainsRange(dateProfile.activeRange, hit.dateSpan.range)) &&
                             (!bestHit || hit.layer > bestHit.layer)) {
                             // TODO: better way to re-orient rectangle
                             hit.rect.left += originLeft;
@@ -10307,28 +10307,28 @@ var FullCalendar = (function (exports) {
         if (Boolean(hit0) !== Boolean(hit1)) {
             return false;
         }
-        return isDateSpansEqual(hit0.fechaSpan, hit1.fechaSpan);
+        return isDateSpansEqual(hit0.dateSpan, hit1.dateSpan);
     }
 
-    function buildDatePointApiWithContext(fechaSpan, context) {
+    function buildDatePointApiWithContext(dateSpan, context) {
         var props = {};
-        for (var _i = 0, _a = context.pluginHooks.fechaPointTransforms; _i < _a.length; _i++) {
+        for (var _i = 0, _a = context.pluginHooks.datePointTransforms; _i < _a.length; _i++) {
             var transform = _a[_i];
-            __assign(props, transform(fechaSpan, context));
+            __assign(props, transform(dateSpan, context));
         }
-        __assign(props, buildDatePointApi(fechaSpan, context.fechaEnv));
+        __assign(props, buildDatePointApi(dateSpan, context.dateEnv));
         return props;
     }
-    function buildDatePointApi(span, fechaEnv) {
+    function buildDatePointApi(span, dateEnv) {
         return {
-            fecha: fechaEnv.toDate(span.range.start),
-            fechaStr: fechaEnv.formatIso(span.range.start, { omitTime: span.allDay }),
+            date: dateEnv.toDate(span.range.start),
+            dateStr: dateEnv.formatIso(span.range.start, { omitTime: span.allDay }),
             allDay: span.allDay
         };
     }
 
     /*
-    Monitors when the user clicks on a specific fecha/time of a component.
+    Monitors when the user clicks on a specific date/time of a component.
     A pointerdown+pointerup on the same "hit" constitutes a click.
     */
     var DateClicking = /** @class */ (function (_super) {
@@ -10349,8 +10349,8 @@ var FullCalendar = (function (exports) {
                     var _a = _this.hitDragging, initialHit = _a.initialHit, finalHit = _a.finalHit;
                     if (initialHit && finalHit && isHitsEqual(initialHit, finalHit)) {
                         var context = component.context;
-                        var arg = __assign(__assign({}, buildDatePointApiWithContext(initialHit.fechaSpan, context)), { dayEl: initialHit.dayEl, jsEvent: ev.origEvent, view: context.viewApi || context.calendarApi.view });
-                        context.emitter.trigger('fechaClick', arg);
+                        var arg = __assign(__assign({}, buildDatePointApiWithContext(initialHit.dateSpan, context)), { dayEl: initialHit.dayEl, jsEvent: ev.origEvent, view: context.viewApi || context.calendarApi.view });
+                        context.emitter.trigger('dateClick', arg);
                     }
                 }
             };
@@ -10370,7 +10370,7 @@ var FullCalendar = (function (exports) {
 
     /*
     Tracks when the user selects a portion of time of a component,
-    constituted by a drag over fecha cells, with a possible delay at the beginning of the drag.
+    constituted by a drag over date cells, with a possible delay at the beginning of the drag.
     */
     var DateSelecting = /** @class */ (function (_super) {
         __extends(DateSelecting, _super);
@@ -10390,12 +10390,12 @@ var FullCalendar = (function (exports) {
             _this.handleDragStart = function (ev) {
                 _this.component.context.calendarApi.unselect(ev); // unselect previous selections
             };
-            _this.handleHitUpfecha = function (hit, isFinal) {
+            _this.handleHitUpdate = function (hit, isFinal) {
                 var context = _this.component.context;
                 var dragSelection = null;
                 var isInvalid = false;
                 if (hit) {
-                    dragSelection = joinHitsIntoSelection(_this.hitDragging.initialHit, hit, context.pluginHooks.fechaSelectionTransformers);
+                    dragSelection = joinHitsIntoSelection(_this.hitDragging.initialHit, hit, context.pluginHooks.dateSelectionTransformers);
                     if (!dragSelection || !_this.component.isDateSelectionValid(dragSelection)) {
                         isInvalid = true;
                         dragSelection = null;
@@ -10433,7 +10433,7 @@ var FullCalendar = (function (exports) {
             var hitDragging = _this.hitDragging = new HitDragging(_this.dragging, interactionSettingsToStore(settings));
             hitDragging.emitter.on('pointerdown', _this.handlePointerDown);
             hitDragging.emitter.on('dragstart', _this.handleDragStart);
-            hitDragging.emitter.on('hitupfecha', _this.handleHitUpfecha);
+            hitDragging.emitter.on('hitupdate', _this.handleHitUpdate);
             hitDragging.emitter.on('pointerup', _this.handlePointerUp);
             return _this;
         }
@@ -10450,19 +10450,19 @@ var FullCalendar = (function (exports) {
         }
         return delay;
     }
-    function joinHitsIntoSelection(hit0, hit1, fechaSelectionTransformers) {
-        var fechaSpan0 = hit0.fechaSpan;
-        var fechaSpan1 = hit1.fechaSpan;
+    function joinHitsIntoSelection(hit0, hit1, dateSelectionTransformers) {
+        var dateSpan0 = hit0.dateSpan;
+        var dateSpan1 = hit1.dateSpan;
         var ms = [
-            fechaSpan0.range.start,
-            fechaSpan0.range.end,
-            fechaSpan1.range.start,
-            fechaSpan1.range.end
+            dateSpan0.range.start,
+            dateSpan0.range.end,
+            dateSpan1.range.start,
+            dateSpan1.range.end
         ];
         ms.sort(compareNumbers);
         var props = {};
-        for (var _i = 0, fechaSelectionTransformers_1 = fechaSelectionTransformers; _i < fechaSelectionTransformers_1.length; _i++) {
-            var transformer = fechaSelectionTransformers_1[_i];
+        for (var _i = 0, dateSelectionTransformers_1 = dateSelectionTransformers; _i < dateSelectionTransformers_1.length; _i++) {
+            var transformer = dateSelectionTransformers_1[_i];
             var res = transformer(hit0, hit1);
             if (res === false) {
                 return null;
@@ -10472,7 +10472,7 @@ var FullCalendar = (function (exports) {
             }
         }
         props.range = { start: ms[0], end: ms[3] };
-        props.allDay = fechaSpan0.allDay;
+        props.allDay = dateSpan0.allDay;
         return props;
     }
 
@@ -10481,8 +10481,8 @@ var FullCalendar = (function (exports) {
         function EventDragging(settings) {
             var _this = _super.call(this, settings) || this;
             // internal state
-            _this.temaEl = null;
-            _this.temaSeg = null; // the seg being selected/dragged
+            _this.subjectEl = null;
+            _this.subjectSeg = null; // the seg being selected/dragged
             _this.isDragging = false;
             _this.eventRange = null;
             _this.relevantEvents = null; // the events being dragged
@@ -10495,9 +10495,9 @@ var FullCalendar = (function (exports) {
                 var mirror = dragging.mirror;
                 var options = component.context.options;
                 var initialContext = component.context;
-                _this.temaEl = ev.temaEl;
-                var temaSeg = _this.temaSeg = getElSeg(ev.temaEl);
-                var eventRange = _this.eventRange = temaSeg.eventRange;
+                _this.subjectEl = ev.subjectEl;
+                var subjectSeg = _this.subjectSeg = getElSeg(ev.subjectEl);
+                var eventRange = _this.eventRange = subjectSeg.eventRange;
                 var eventInstanceId = eventRange.instance.instanceId;
                 _this.relevantEvents = getRelevantEvents(initialContext.getCurrentData().eventStore, eventInstanceId);
                 dragging.minDistance = ev.isTouch ? 0 : options.eventDragMinDistance;
@@ -10514,7 +10514,7 @@ var FullCalendar = (function (exports) {
                 // disable dragging for elements that are resizable (ie, selectable)
                 // but are not draggable
                 _this.isDragging = isValid &&
-                    ev.temaEl.classList.contains('fc-event-draggable');
+                    ev.subjectEl.classList.contains('fc-event-draggable');
             };
             _this.handleDragStart = function (ev) {
                 var initialContext = _this.component.context;
@@ -10531,16 +10531,16 @@ var FullCalendar = (function (exports) {
                     initialContext.dispatch({ type: 'UNSELECT_EVENT' });
                 }
                 if (_this.isDragging) {
-                    initialContext.calendarApi.unselect(ev); // unselect *fecha* selection
+                    initialContext.calendarApi.unselect(ev); // unselect *date* selection
                     initialContext.emitter.trigger('eventDragStart', {
-                        el: _this.temaEl,
+                        el: _this.subjectEl,
                         event: new EventApi(initialContext, eventRange.def, eventRange.instance),
                         jsEvent: ev.origEvent,
                         view: initialContext.viewApi
                     });
                 }
             };
-            _this.handleHitUpfecha = function (hit, isFinal) {
+            _this.handleHitUpdate = function (hit, isFinal) {
                 if (!_this.isDragging) {
                     return;
                 }
@@ -10619,7 +10619,7 @@ var FullCalendar = (function (exports) {
                     var finalHit = _this.hitDragging.finalHit;
                     _this.clearDrag(); // must happen after revert animation
                     initialContext_1.emitter.trigger('eventDragStop', {
-                        el: _this.temaEl,
+                        el: _this.subjectEl,
                         event: eventApi,
                         jsEvent: ev.origEvent,
                         view: initialView
@@ -10627,14 +10627,14 @@ var FullCalendar = (function (exports) {
                     if (validMutation) {
                         // dropped within same calendar
                         if (receivingContext_1 === initialContext_1) {
-                            var upfechadEventApi = new EventApi(initialContext_1, mutatedRelevantEvents_1.defs[eventDef.defId], eventInstance ? mutatedRelevantEvents_1.instances[eventInstance.instanceId] : null);
+                            var updatedEventApi = new EventApi(initialContext_1, mutatedRelevantEvents_1.defs[eventDef.defId], eventInstance ? mutatedRelevantEvents_1.instances[eventInstance.instanceId] : null);
                             initialContext_1.dispatch({
                                 type: 'MERGE_EVENTS',
                                 eventStore: mutatedRelevantEvents_1
                             });
                             var eventChangeArg = {
                                 oldEvent: eventApi,
-                                event: upfechadEventApi,
+                                event: updatedEventApi,
                                 relatedEvents: buildEventApis(mutatedRelevantEvents_1, initialContext_1, eventInstance),
                                 revert: function () {
                                     initialContext_1.dispatch({
@@ -10648,7 +10648,7 @@ var FullCalendar = (function (exports) {
                                 var transformer = _b[_i];
                                 __assign(transformed, transformer(validMutation, initialContext_1));
                             }
-                            initialContext_1.emitter.trigger('eventDrop', __assign(__assign(__assign({}, eventChangeArg), transformed), { el: ev.temaEl, delta: validMutation.fechasDelta, jsEvent: ev.origEvent, view: initialView }));
+                            initialContext_1.emitter.trigger('eventDrop', __assign(__assign(__assign({}, eventChangeArg), transformed), { el: ev.subjectEl, delta: validMutation.datesDelta, jsEvent: ev.origEvent, view: initialView }));
                             initialContext_1.emitter.trigger('eventChange', eventChangeArg);
                             // dropped in different calendar
                         }
@@ -10663,7 +10663,7 @@ var FullCalendar = (function (exports) {
                                     });
                                 }
                             };
-                            initialContext_1.emitter.trigger('eventLeave', __assign(__assign({}, eventRemoveArg), { draggedEl: ev.temaEl, view: initialView }));
+                            initialContext_1.emitter.trigger('eventLeave', __assign(__assign({}, eventRemoveArg), { draggedEl: ev.subjectEl, view: initialView }));
                             initialContext_1.dispatch({
                                 type: 'REMOVE_EVENTS',
                                 eventStore: relevantEvents_1
@@ -10693,8 +10693,8 @@ var FullCalendar = (function (exports) {
                                     eventInstanceId: eventInstance.instanceId
                                 });
                             }
-                            receivingContext_1.emitter.trigger('drop', __assign(__assign({}, buildDatePointApiWithContext(finalHit.fechaSpan, receivingContext_1)), { draggedEl: ev.temaEl, jsEvent: ev.origEvent, view: finalHit.component.context.viewApi }));
-                            receivingContext_1.emitter.trigger('eventReceive', __assign(__assign({}, eventAddArg), { draggedEl: ev.temaEl, view: finalHit.component.context.viewApi }));
+                            receivingContext_1.emitter.trigger('drop', __assign(__assign({}, buildDatePointApiWithContext(finalHit.dateSpan, receivingContext_1)), { draggedEl: ev.subjectEl, jsEvent: ev.origEvent, view: finalHit.component.context.viewApi }));
+                            receivingContext_1.emitter.trigger('eventReceive', __assign(__assign({}, eventAddArg), { draggedEl: ev.subjectEl, view: finalHit.component.context.viewApi }));
                         }
                     }
                     else {
@@ -10713,7 +10713,7 @@ var FullCalendar = (function (exports) {
             hitDragging.useSubjectCenter = settings.useEventCenter;
             hitDragging.emitter.on('pointerdown', _this.handlePointerDown);
             hitDragging.emitter.on('dragstart', _this.handleDragStart);
-            hitDragging.emitter.on('hitupfecha', _this.handleHitUpfecha);
+            hitDragging.emitter.on('hitupdate', _this.handleHitUpdate);
             hitDragging.emitter.on('pointerup', _this.handlePointerUp);
             hitDragging.emitter.on('dragend', _this.handleDragEnd);
             return _this;
@@ -10760,7 +10760,7 @@ var FullCalendar = (function (exports) {
             }
         };
         EventDragging.prototype.cleanup = function () {
-            this.temaSeg = null;
+            this.subjectSeg = null;
             this.isDragging = false;
             this.eventRange = null;
             this.relevantEvents = null;
@@ -10774,28 +10774,28 @@ var FullCalendar = (function (exports) {
         return EventDragging;
     }(Interaction));
     function computeEventMutation(hit0, hit1, massagers) {
-        var fechaSpan0 = hit0.fechaSpan;
-        var fechaSpan1 = hit1.fechaSpan;
-        var fecha0 = fechaSpan0.range.start;
-        var fecha1 = fechaSpan1.range.start;
+        var dateSpan0 = hit0.dateSpan;
+        var dateSpan1 = hit1.dateSpan;
+        var date0 = dateSpan0.range.start;
+        var date1 = dateSpan1.range.start;
         var standardProps = {};
-        if (fechaSpan0.allDay !== fechaSpan1.allDay) {
-            standardProps.allDay = fechaSpan1.allDay;
+        if (dateSpan0.allDay !== dateSpan1.allDay) {
+            standardProps.allDay = dateSpan1.allDay;
             standardProps.hasEnd = hit1.component.context.options.allDayMaintainDuration;
-            if (fechaSpan1.allDay) {
-                // means fecha1 is already start-of-day,
-                // but fecha0 needs to be converted
-                fecha0 = startOfDay(fecha0);
+            if (dateSpan1.allDay) {
+                // means date1 is already start-of-day,
+                // but date0 needs to be converted
+                date0 = startOfDay(date0);
             }
         }
-        var delta = diffDates(fecha0, fecha1, hit0.component.context.fechaEnv, hit0.component === hit1.component ?
+        var delta = diffDates(date0, date1, hit0.component.context.dateEnv, hit0.component === hit1.component ?
             hit0.component.largeUnit :
             null);
         if (delta.milliseconds) { // has hours/minutes/seconds
             standardProps.allDay = false;
         }
         var mutation = {
-            fechasDelta: delta,
+            datesDelta: delta,
             standardProps: standardProps
         };
         for (var _i = 0, massagers_1 = massagers; _i < massagers_1.length; _i++) {
@@ -10819,7 +10819,7 @@ var FullCalendar = (function (exports) {
             var _this = _super.call(this, settings) || this;
             // internal state
             _this.draggingSegEl = null;
-            _this.draggingSeg = null; // TODO: rename to resizingSeg? temaSeg?
+            _this.draggingSeg = null; // TODO: rename to resizingSeg? subjectSeg?
             _this.eventRange = null;
             _this.relevantEvents = null;
             _this.validMutation = null;
@@ -10849,7 +10849,7 @@ var FullCalendar = (function (exports) {
                     view: context.viewApi
                 });
             };
-            _this.handleHitUpfecha = function (hit, isFinal, ev) {
+            _this.handleHitUpdate = function (hit, isFinal, ev) {
                 var context = _this.component.context;
                 var relevantEvents = _this.relevantEvents;
                 var initialHit = _this.hitDragging.initialHit;
@@ -10863,7 +10863,7 @@ var FullCalendar = (function (exports) {
                     isEvent: true
                 };
                 if (hit) {
-                    mutation = computeMutation(initialHit, hit, ev.temaEl.classList.contains('fc-event-resizer-start'), eventInstance.range, context.pluginHooks.eventResizeJoinTransforms);
+                    mutation = computeMutation(initialHit, hit, ev.subjectEl.classList.contains('fc-event-resizer-start'), eventInstance.range, context.pluginHooks.eventResizeJoinTransforms);
                 }
                 if (mutation) {
                     mutatedRelevantEvents = applyMutationToEventStore(relevantEvents, context.getCurrentData().eventUiBases, mutation, context);
@@ -10912,14 +10912,14 @@ var FullCalendar = (function (exports) {
                     view: context.viewApi
                 });
                 if (_this.validMutation) {
-                    var upfechadEventApi = new EventApi(context, mutatedRelevantEvents.defs[eventDef.defId], eventInstance ? mutatedRelevantEvents.instances[eventInstance.instanceId] : null);
+                    var updatedEventApi = new EventApi(context, mutatedRelevantEvents.defs[eventDef.defId], eventInstance ? mutatedRelevantEvents.instances[eventInstance.instanceId] : null);
                     context.dispatch({
                         type: 'MERGE_EVENTS',
                         eventStore: mutatedRelevantEvents
                     });
                     var eventChangeArg = {
                         oldEvent: eventApi,
-                        event: upfechadEventApi,
+                        event: updatedEventApi,
                         relatedEvents: buildEventApis(mutatedRelevantEvents, context, eventInstance),
                         revert: function () {
                             context.dispatch({
@@ -10948,7 +10948,7 @@ var FullCalendar = (function (exports) {
             var hitDragging = _this.hitDragging = new HitDragging(_this.dragging, interactionSettingsToStore(settings));
             hitDragging.emitter.on('pointerdown', _this.handlePointerDown);
             hitDragging.emitter.on('dragstart', _this.handleDragStart);
-            hitDragging.emitter.on('hitupfecha', _this.handleHitUpfecha);
+            hitDragging.emitter.on('hitupdate', _this.handleHitUpdate);
             hitDragging.emitter.on('dragend', _this.handleDragEnd);
             return _this;
         }
@@ -10956,15 +10956,15 @@ var FullCalendar = (function (exports) {
             this.dragging.destroy();
         };
         EventResizing.prototype.querySegEl = function (ev) {
-            return elementClosest(ev.temaEl, '.fc-event');
+            return elementClosest(ev.subjectEl, '.fc-event');
         };
         return EventResizing;
     }(Interaction));
     function computeMutation(hit0, hit1, isFromStart, instanceRange, transforms) {
-        var fechaEnv = hit0.component.context.fechaEnv;
-        var fecha0 = hit0.fechaSpan.range.start;
-        var fecha1 = hit1.fechaSpan.range.start;
-        var delta = diffDates(fecha0, fecha1, fechaEnv, hit0.component.largeUnit);
+        var dateEnv = hit0.component.context.dateEnv;
+        var date0 = hit0.dateSpan.range.start;
+        var date1 = hit1.dateSpan.range.start;
+        var delta = diffDates(date0, date1, dateEnv, hit0.component.largeUnit);
         var props = {};
         for (var _i = 0, transforms_1 = transforms; _i < transforms_1.length; _i++) {
             var transform = transforms_1[_i];
@@ -10977,13 +10977,13 @@ var FullCalendar = (function (exports) {
             }
         }
         if (isFromStart) {
-            if (fechaEnv.add(instanceRange.start, delta) < instanceRange.end) {
+            if (dateEnv.add(instanceRange.start, delta) < instanceRange.end) {
                 props.startDelta = delta;
                 return props;
             }
         }
         else {
-            if (fechaEnv.add(instanceRange.end, delta) > instanceRange.start) {
+            if (dateEnv.add(instanceRange.end, delta) > instanceRange.start) {
                 props.endDelta = delta;
                 return props;
             }
@@ -10995,7 +10995,7 @@ var FullCalendar = (function (exports) {
         function UnselectAuto(context) {
             var _this = this;
             this.context = context;
-            this.isRecentPointerDateSelect = false; // wish we could use a selector to detect fecha selection, but uses hit system
+            this.isRecentPointerDateSelect = false; // wish we could use a selector to detect date selection, but uses hit system
             this.matchesCancel = false;
             this.matchesEvent = false;
             this.onSelect = function (selectInfo) {
@@ -11015,8 +11015,8 @@ var FullCalendar = (function (exports) {
                 var calendarState = context.getCurrentData();
                 // touch-scrolling should never unfocus any type of selection
                 if (!documentPointer.wasTouchScroll) {
-                    if (calendarState.fechaSelection && // an existing fecha selection?
-                        !_this.isRecentPointerDateSelect // a new pointer-initiated fecha selection since last onDocumentPointerUp?
+                    if (calendarState.dateSelection && // an existing date selection?
+                        !_this.isRecentPointerDateSelect // a new pointer-initiated date selection since last onDocumentPointerUp?
                     ) {
                         var unselectAuto = context.options.unselectAuto;
                         if (unselectAuto && (!unselectAuto || !_this.matchesCancel)) {
@@ -11049,7 +11049,7 @@ var FullCalendar = (function (exports) {
     }());
 
     var LISTENER_REFINERS = {
-        fechaClick: identity,
+        dateClick: identity,
         eventDragStart: identity,
         eventDragStop: identity,
         eventDrop: identity,
@@ -11074,9 +11074,9 @@ var FullCalendar = (function (exports) {
             this.suppliedDragMeta = null;
             this.dragMeta = null;
             this.handleDragStart = function (ev) {
-                _this.dragMeta = _this.buildDragMeta(ev.temaEl);
+                _this.dragMeta = _this.buildDragMeta(ev.subjectEl);
             };
-            this.handleHitUpfecha = function (hit, isFinal, ev) {
+            this.handleHitUpdate = function (hit, isFinal, ev) {
                 var dragging = _this.hitDragging.dragging;
                 var receivingContext = null;
                 var droppableEvent = null;
@@ -11088,8 +11088,8 @@ var FullCalendar = (function (exports) {
                 };
                 if (hit) {
                     receivingContext = hit.component.context;
-                    if (_this.canDropElOnCalendar(ev.temaEl, receivingContext)) {
-                        droppableEvent = computeEventForDateSpan(hit.fechaSpan, _this.dragMeta, receivingContext);
+                    if (_this.canDropElOnCalendar(ev.subjectEl, receivingContext)) {
+                        droppableEvent = computeEventForDateSpan(hit.dateSpan, _this.dragMeta, receivingContext);
                         interaction.mutatedEvents = eventTupleToStore(droppableEvent);
                         isInvalid = !isInteractionValid(interaction, receivingContext);
                         if (isInvalid) {
@@ -11121,7 +11121,7 @@ var FullCalendar = (function (exports) {
                     var finalHit = _this.hitDragging.finalHit;
                     var finalView = finalHit.component.context.viewApi;
                     var dragMeta = _this.dragMeta;
-                    receivingContext.emitter.trigger('drop', __assign(__assign({}, buildDatePointApiWithContext(finalHit.fechaSpan, receivingContext)), { draggedEl: pev.temaEl, jsEvent: pev.origEvent, view: finalView }));
+                    receivingContext.emitter.trigger('drop', __assign(__assign({}, buildDatePointApiWithContext(finalHit.dateSpan, receivingContext)), { draggedEl: pev.subjectEl, jsEvent: pev.origEvent, view: finalView }));
                     if (dragMeta.create) {
                         var addingEvents_1 = eventTupleToStore(droppableEvent);
                         receivingContext.dispatch({
@@ -11144,7 +11144,7 @@ var FullCalendar = (function (exports) {
                                     eventStore: addingEvents_1
                                 });
                             },
-                            draggedEl: pev.temaEl,
+                            draggedEl: pev.subjectEl,
                             view: finalView
                         });
                     }
@@ -11155,19 +11155,19 @@ var FullCalendar = (function (exports) {
             var hitDragging = this.hitDragging = new HitDragging(dragging, interactionSettingsStore);
             hitDragging.requireInitial = false; // will start outside of a component
             hitDragging.emitter.on('dragstart', this.handleDragStart);
-            hitDragging.emitter.on('hitupfecha', this.handleHitUpfecha);
+            hitDragging.emitter.on('hitupdate', this.handleHitUpdate);
             hitDragging.emitter.on('dragend', this.handleDragEnd);
             this.suppliedDragMeta = suppliedDragMeta;
         }
-        ExternalElementDragging.prototype.buildDragMeta = function (temaEl) {
+        ExternalElementDragging.prototype.buildDragMeta = function (subjectEl) {
             if (typeof this.suppliedDragMeta === 'object') {
                 return parseDragMeta(this.suppliedDragMeta);
             }
             else if (typeof this.suppliedDragMeta === 'function') {
-                return parseDragMeta(this.suppliedDragMeta(temaEl));
+                return parseDragMeta(this.suppliedDragMeta(subjectEl));
             }
             else {
-                return getDragMetaFromEl(temaEl);
+                return getDragMetaFromEl(subjectEl);
             }
         };
         ExternalElementDragging.prototype.displayDrag = function (nextContext, state) {
@@ -11198,24 +11198,24 @@ var FullCalendar = (function (exports) {
     }());
     // Utils for computing event store from the DragMeta
     // ----------------------------------------------------------------------------------------------------
-    function computeEventForDateSpan(fechaSpan, dragMeta, context) {
+    function computeEventForDateSpan(dateSpan, dragMeta, context) {
         var defProps = __assign({}, dragMeta.leftoverProps);
         for (var _i = 0, _a = context.pluginHooks.externalDefTransforms; _i < _a.length; _i++) {
             var transform = _a[_i];
-            __assign(defProps, transform(fechaSpan, dragMeta));
+            __assign(defProps, transform(dateSpan, dragMeta));
         }
         var _b = refineEventDef(defProps, context), refined = _b.refined, extra = _b.extra;
-        var def = parseEventDef(refined, extra, dragMeta.sourceId, fechaSpan.allDay, context.options.forceEventDuration || Boolean(dragMeta.duration), // hasEnd
+        var def = parseEventDef(refined, extra, dragMeta.sourceId, dateSpan.allDay, context.options.forceEventDuration || Boolean(dragMeta.duration), // hasEnd
         context);
-        var start = fechaSpan.range.start;
+        var start = dateSpan.range.start;
         // only rely on time info if drop zone is all-day,
         // otherwise, we already know the time
-        if (fechaSpan.allDay && dragMeta.startTime) {
-            start = context.fechaEnv.add(start, dragMeta.startTime);
+        if (dateSpan.allDay && dragMeta.startTime) {
+            start = context.dateEnv.add(start, dragMeta.startTime);
         }
         var end = dragMeta.duration ?
-            context.fechaEnv.add(start, dragMeta.duration) :
-            getDefaultEventEnd(fechaSpan.allDay, start, context);
+            context.dateEnv.add(start, dragMeta.duration) :
+            getDefaultEventEnd(dateSpan.allDay, start, context);
         var instance = createEventInstance(def.defId, { start: start, end: end });
         return { def: def, instance: instance };
     }
@@ -11259,7 +11259,7 @@ var FullCalendar = (function (exports) {
             this.handleDragStart = function (ev) {
                 if (ev.isTouch &&
                     _this.dragging.delay &&
-                    ev.temaEl.classList.contains('fc-event')) {
+                    ev.subjectEl.classList.contains('fc-event')) {
                     _this.dragging.mirror.getMirrorEl().classList.add('fc-event-selected');
                 }
             };
@@ -11534,7 +11534,7 @@ var FullCalendar = (function (exports) {
                     var allSegs = props.segsByEachCol;
                     var hiddenSegs = allSegs.filter(function (seg) { return props.segIsHidden[seg.eventRange.instance.instanceId]; });
                     props.onMoreClick({
-                        fecha: props.fecha,
+                        date: props.date,
                         allSegs: allSegs,
                         hiddenSegs: hiddenSegs,
                         moreCnt: props.moreCnt,
@@ -11549,21 +11549,21 @@ var FullCalendar = (function (exports) {
             var _this = this;
             var _a = this.context, options = _a.options, viewApi = _a.viewApi;
             var props = this.props;
-            var fecha = props.fecha, fechaProfile = props.fechaProfile;
+            var date = props.date, dateProfile = props.dateProfile;
             var hookProps = {
                 num: props.moreCnt,
                 text: props.buildMoreLinkText(props.moreCnt),
                 view: viewApi
             };
             var navLinkAttrs = options.navLinks
-                ? { 'data-navlink': buildNavLinkData(fecha, 'week'), tabIndex: 0 }
+                ? { 'data-navlink': buildNavLinkData(date, 'week'), tabIndex: 0 }
                 : {};
-            return (createElement(DayCellRoot, { fecha: fecha, fechaProfile: fechaProfile, todayRange: props.todayRange, showDayNumber: props.showDayNumber, extraHookProps: props.extraHookProps, elRef: this.handleRootEl }, function (rootElRef, classNames, rootDataAttrs, isDisabled) { return (createElement("td", __assign({ ref: rootElRef, className: ['fc-daygrid-day'].concat(classNames, props.extraClassNames || []).join(' ') }, rootDataAttrs, props.extraDataAttrs),
+            return (createElement(DayCellRoot, { date: date, dateProfile: dateProfile, todayRange: props.todayRange, showDayNumber: props.showDayNumber, extraHookProps: props.extraHookProps, elRef: this.handleRootEl }, function (rootElRef, classNames, rootDataAttrs, isDisabled) { return (createElement("td", __assign({ ref: rootElRef, className: ['fc-daygrid-day'].concat(classNames, props.extraClassNames || []).join(' ') }, rootDataAttrs, props.extraDataAttrs),
                 createElement("div", { className: 'fc-daygrid-day-frame fc-scrollgrid-sync-inner', ref: props.innerElRef /* different from hook system! RENAME */ },
                     props.showWeekNumber &&
-                        createElement(WeekNumberRoot, { fecha: fecha, defaultFormat: DEFAULT_WEEK_NUM_FORMAT }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("a", __assign({ ref: rootElRef, className: ['fc-daygrid-week-number'].concat(classNames).join(' ') }, navLinkAttrs), innerContent)); }),
+                        createElement(WeekNumberRoot, { date: date, defaultFormat: DEFAULT_WEEK_NUM_FORMAT }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("a", __assign({ ref: rootElRef, className: ['fc-daygrid-week-number'].concat(classNames).join(' ') }, navLinkAttrs), innerContent)); }),
                     !isDisabled &&
-                        createElement(TableCellTop, { fecha: fecha, fechaProfile: fechaProfile, showDayNumber: props.showDayNumber, forceDayTop: props.forceDayTop, todayRange: props.todayRange, extraHookProps: props.extraHookProps }),
+                        createElement(TableCellTop, { date: date, dateProfile: dateProfile, showDayNumber: props.showDayNumber, forceDayTop: props.forceDayTop, todayRange: props.todayRange, extraHookProps: props.extraHookProps }),
                     createElement("div", { className: 'fc-daygrid-day-events', ref: props.fgContentElRef, style: { paddingBottom: props.fgPaddingBottom } },
                         props.fgContent,
                         Boolean(props.moreCnt) &&
@@ -11587,9 +11587,9 @@ var FullCalendar = (function (exports) {
         TableCellTop.prototype.render = function () {
             var props = this.props;
             var navLinkAttrs = this.context.options.navLinks
-                ? { 'data-navlink': buildNavLinkData(props.fecha), tabIndex: 0 }
+                ? { 'data-navlink': buildNavLinkData(props.date), tabIndex: 0 }
                 : {};
-            return (createElement(DayCellContent, { fecha: props.fecha, fechaProfile: props.fechaProfile, todayRange: props.todayRange, showDayNumber: props.showDayNumber, extraHookProps: props.extraHookProps, defaultContent: renderTopInner }, function (innerElRef, innerContent) { return ((innerContent || props.forceDayTop) &&
+            return (createElement(DayCellContent, { date: props.date, dateProfile: props.dateProfile, todayRange: props.todayRange, showDayNumber: props.showDayNumber, extraHookProps: props.extraHookProps, defaultContent: renderTopInner }, function (innerElRef, innerContent) { return ((innerContent || props.forceDayTop) &&
                 createElement("div", { className: 'fc-daygrid-day-top', ref: innerElRef },
                     createElement("a", __assign({ className: 'fc-daygrid-day-number' }, navLinkAttrs), innerContent || createElement(Fragment, null, "\u00A0")))); }));
         };
@@ -11762,7 +11762,7 @@ var FullCalendar = (function (exports) {
         var segsByFirstCol = colPlacements.map(extractFirstColSegs); // operates on the sorted cols
         var segsByEachCol = colPlacements.map(function (placements, col) {
             var segs = extractAllColSegs(placements);
-            segs = resliceDaySegs(segs, cellModels[col].fecha, col);
+            segs = resliceDaySegs(segs, cellModels[col].date, col);
             return segs;
         });
         return {
@@ -11923,9 +11923,9 @@ var FullCalendar = (function (exports) {
                 props.cells.map(function (cell, col) {
                     var normalFgNodes = _this.renderFgSegs(segsByFirstCol[col], segIsHidden, segTops, segMarginTops, selectedInstanceHash, props.todayRange);
                     var mirrorFgNodes = _this.renderFgSegs(mirrorSegsByCol[col], {}, segTops, // use same tops as real rendering
-                    {}, {}, props.todayRange, Boolean(props.eventDrag), Boolean(props.eventResize), false // fecha-selecting (because mirror is never drawn for fecha selection)
+                    {}, {}, props.todayRange, Boolean(props.eventDrag), Boolean(props.eventResize), false // date-selecting (because mirror is never drawn for date selection)
                     );
-                    return (createElement(TableCell, { key: cell.key, elRef: _this.cellElRefs.createRef(cell.key), innerElRef: _this.frameElRefs.createRef(cell.key) /* FF <td> problem, but okay to use for left/right. TODO: rename prop */, fechaProfile: props.fechaProfile, fecha: cell.fecha, showDayNumber: props.showDayNumbers, showWeekNumber: props.showWeekNumbers && col === 0, forceDayTop: props.showWeekNumbers /* even displaying weeknum for row, not necessarily day */, todayRange: props.todayRange, extraHookProps: cell.extraHookProps, extraDataAttrs: cell.extraDataAttrs, extraClassNames: cell.extraClassNames, moreCnt: moreCnts[col], buildMoreLinkText: props.buildMoreLinkText, onMoreClick: props.onMoreClick, segIsHidden: segIsHidden, moreMarginTop: moreTops[col] /* rename */, segsByEachCol: segsByEachCol[col], fgPaddingBottom: paddingBottoms[col], fgContentElRef: _this.fgElRefs.createRef(cell.key), fgContent: ( // Fragment scopes the keys
+                    return (createElement(TableCell, { key: cell.key, elRef: _this.cellElRefs.createRef(cell.key), innerElRef: _this.frameElRefs.createRef(cell.key) /* FF <td> problem, but okay to use for left/right. TODO: rename prop */, dateProfile: props.dateProfile, date: cell.date, showDayNumber: props.showDayNumbers, showWeekNumber: props.showWeekNumbers && col === 0, forceDayTop: props.showWeekNumbers /* even displaying weeknum for row, not necessarily day */, todayRange: props.todayRange, extraHookProps: cell.extraHookProps, extraDataAttrs: cell.extraDataAttrs, extraClassNames: cell.extraClassNames, moreCnt: moreCnts[col], buildMoreLinkText: props.buildMoreLinkText, onMoreClick: props.onMoreClick, segIsHidden: segIsHidden, moreMarginTop: moreTops[col] /* rename */, segsByEachCol: segsByEachCol[col], fgPaddingBottom: paddingBottoms[col], fgContentElRef: _this.fgElRefs.createRef(cell.key), fgContent: ( // Fragment scopes the keys
                         createElement(Fragment, null,
                             createElement(Fragment, null, normalFgNodes),
                             createElement(Fragment, null, mirrorFgNodes))), bgContent: ( // Fragment scopes the keys
@@ -11936,11 +11936,11 @@ var FullCalendar = (function (exports) {
                 })));
         };
         TableRow.prototype.componentDidMount = function () {
-            this.upfechaSizing(true);
+            this.updateSizing(true);
         };
-        TableRow.prototype.componentDidUpfecha = function (prevProps, prevState) {
+        TableRow.prototype.componentDidUpdate = function (prevProps, prevState) {
             var currentProps = this.props;
-            this.upfechaSizing(!isPropsEqual(prevProps, currentProps));
+            this.updateSizing(!isPropsEqual(prevProps, currentProps));
         };
         TableRow.prototype.getHighlightSegs = function () {
             var props = this.props;
@@ -11951,7 +11951,7 @@ var FullCalendar = (function (exports) {
                 return props.eventResize.segs;
             }
             else {
-                return props.fechaSelectionSegs;
+                return props.dateSelectionSegs;
             }
         };
         TableRow.prototype.getMirrorSegs = function () {
@@ -12034,7 +12034,7 @@ var FullCalendar = (function (exports) {
             }
             return createElement.apply(void 0, __spreadArrays([Fragment, {}], nodes));
         };
-        TableRow.prototype.upfechaSizing = function (isExternalSizingChange) {
+        TableRow.prototype.updateSizing = function (isExternalSizingChange) {
             var _a = this, props = _a.props, frameElRefs = _a.frameElRefs;
             if (props.clientWidth !== null) { // positioning ready?
                 if (isExternalSizingChange) {
@@ -12079,7 +12079,7 @@ var FullCalendar = (function (exports) {
         __extends(Popover, _super);
         function Popover() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.repositioner = new DelayedRunner(_this.upfechaSize.bind(_this));
+            _this.repositioner = new DelayedRunner(_this.updateSize.bind(_this));
             _this.handleRootEl = function (el) {
                 _this.rootEl = el;
                 if (_this.props.elRef) {
@@ -12121,7 +12121,7 @@ var FullCalendar = (function (exports) {
         Popover.prototype.componentDidMount = function () {
             document.addEventListener('mousedown', this.handleDocumentMousedown);
             document.addEventListener('scroll', this.handleDocumentScroll);
-            this.upfechaSize();
+            this.updateSize();
         };
         Popover.prototype.componentWillUnmount = function () {
             document.removeEventListener('mousedown', this.handleDocumentMousedown);
@@ -12131,13 +12131,13 @@ var FullCalendar = (function (exports) {
         /*
         NOTE: the popover is position:fixed, so coordinates are relative to the viewport
         NOTE: the PARENT calls this as well, on window resize. we would have wanted to use the repositioner,
-              but need to ensure that all other components have upfechad size first (for alignmentEl)
+              but need to ensure that all other components have updated size first (for alignmentEl)
         */
-        Popover.prototype.upfechaSize = function () {
+        Popover.prototype.updateSize = function () {
             var _a = this.props, alignmentEl = _a.alignmentEl, topAlignmentEl = _a.topAlignmentEl;
             var rootEl = this.rootEl;
             if (!rootEl) {
-                return; // not sure why this was null, but we shouldn't let external components call upfechaSize() anyway
+                return; // not sure why this was null, but we shouldn't let external components call updateSize() anyway
             }
             var dims = rootEl.getBoundingClientRect(); // only used for width,height
             var alignment = alignmentEl.getBoundingClientRect();
@@ -12177,12 +12177,12 @@ var FullCalendar = (function (exports) {
             return _this;
         }
         MorePopover.prototype.render = function () {
-            var _a = this.context, options = _a.options, fechaEnv = _a.fechaEnv;
+            var _a = this.context, options = _a.options, dateEnv = _a.dateEnv;
             var props = this.props;
-            var fecha = props.fecha, hiddenInstances = props.hiddenInstances, todayRange = props.todayRange, fechaProfile = props.fechaProfile, selectedInstanceId = props.selectedInstanceId;
-            var title = fechaEnv.format(fecha, options.dayPopoverFormat);
-            return (createElement(DayCellRoot, { fecha: fecha, fechaProfile: fechaProfile, todayRange: todayRange, elRef: this.handlePopoverEl }, function (rootElRef, dayClassNames, dataAttrs) { return (createElement(Popover, { elRef: rootElRef, title: title, extraClassNames: ['fc-more-popover'].concat(dayClassNames), extraAttrs: dataAttrs, onClose: props.onCloseClick, alignmentEl: props.alignmentEl, topAlignmentEl: props.topAlignmentEl },
-                createElement(DayCellContent, { fecha: fecha, fechaProfile: fechaProfile, todayRange: todayRange }, function (innerElRef, innerContent) { return (innerContent &&
+            var date = props.date, hiddenInstances = props.hiddenInstances, todayRange = props.todayRange, dateProfile = props.dateProfile, selectedInstanceId = props.selectedInstanceId;
+            var title = dateEnv.format(date, options.dayPopoverFormat);
+            return (createElement(DayCellRoot, { date: date, dateProfile: dateProfile, todayRange: todayRange, elRef: this.handlePopoverEl }, function (rootElRef, dayClassNames, dataAttrs) { return (createElement(Popover, { elRef: rootElRef, title: title, extraClassNames: ['fc-more-popover'].concat(dayClassNames), extraAttrs: dataAttrs, onClose: props.onCloseClick, alignmentEl: props.alignmentEl, topAlignmentEl: props.topAlignmentEl },
+                createElement(DayCellContent, { date: date, dateProfile: dateProfile, todayRange: todayRange }, function (innerElRef, innerContent) { return (innerContent &&
                     createElement("div", { className: 'fc-more-popover-misc', ref: innerElRef }, innerContent)); }),
                 props.segs.map(function (seg) {
                     var instanceId = seg.eventRange.instance.instanceId;
@@ -12194,13 +12194,13 @@ var FullCalendar = (function (exports) {
                 }))); }));
         };
         MorePopover.prototype.queryHit = function (positionLeft, positionTop, elWidth, elHeight) {
-            var fecha = this.props.fecha;
+            var date = this.props.date;
             if (positionLeft < elWidth && positionTop < elHeight) {
                 return {
                     component: this,
-                    fechaSpan: {
+                    dateSpan: {
                         allDay: true,
-                        range: { start: fecha, end: addDays(fecha, 1) }
+                        range: { start: date, end: addDays(date, 1) }
                     },
                     dayEl: this.popoverEl,
                     rect: {
@@ -12240,21 +12240,21 @@ var FullCalendar = (function (exports) {
             };
             _this.handleMoreLinkClick = function (arg) {
                 var context = _this.context;
-                var fechaEnv = context.fechaEnv;
+                var dateEnv = context.dateEnv;
                 var clickOption = context.options.moreLinkClick;
                 function segForPublic(seg) {
                     var _a = seg.eventRange, def = _a.def, instance = _a.instance, range = _a.range;
                     return {
                         event: new EventApi(context, def, instance),
-                        start: fechaEnv.toDate(range.start),
-                        end: fechaEnv.toDate(range.end),
+                        start: dateEnv.toDate(range.start),
+                        end: dateEnv.toDate(range.end),
                         isStart: seg.isStart,
                         isEnd: seg.isEnd
                     };
                 }
                 if (typeof clickOption === 'function') {
                     clickOption = clickOption({
-                        fecha: fechaEnv.toDate(arg.fecha),
+                        date: dateEnv.toDate(arg.date),
                         allDay: true,
                         allSegs: arg.allSegs.map(segForPublic),
                         hiddenSegs: arg.hiddenSegs.map(segForPublic),
@@ -12268,7 +12268,7 @@ var FullCalendar = (function (exports) {
                     });
                 }
                 else if (typeof clickOption === 'string') { // a view name
-                    context.calendarApi.zoomTo(arg.fecha, clickOption);
+                    context.calendarApi.zoomTo(arg.date, clickOption);
                 }
             };
             _this.handleMorePopoverClose = function () {
@@ -12281,13 +12281,13 @@ var FullCalendar = (function (exports) {
         Table.prototype.render = function () {
             var _this = this;
             var props = this.props;
-            var fechaProfile = props.fechaProfile, dayMaxEventRows = props.dayMaxEventRows, dayMaxEvents = props.dayMaxEvents, expandRows = props.expandRows;
+            var dateProfile = props.dateProfile, dayMaxEventRows = props.dayMaxEventRows, dayMaxEvents = props.dayMaxEvents, expandRows = props.expandRows;
             var morePopoverState = this.state.morePopoverState;
             var rowCnt = props.cells.length;
             var businessHourSegsByRow = this.splitBusinessHourSegs(props.businessHourSegs, rowCnt);
             var bgEventSegsByRow = this.splitBgEventSegs(props.bgEventSegs, rowCnt);
             var fgEventSegsByRow = this.splitFgEventSegs(props.fgEventSegs, rowCnt);
-            var fechaSelectionSegsByRow = this.splitDateSelectionSegs(props.fechaSelectionSegs, rowCnt);
+            var dateSelectionSegsByRow = this.splitDateSelectionSegs(props.dateSelectionSegs, rowCnt);
             var eventDragByRow = this.splitEventDrag(props.eventDrag, rowCnt);
             var eventResizeByRow = this.splitEventResize(props.eventResize, rowCnt);
             var buildMoreLinkText = this.buildBuildMoreLinkText(this.context.options.moreLinkText);
@@ -12318,11 +12318,11 @@ var FullCalendar = (function (exports) {
                         } },
                         props.colGroupNode,
                         createElement("tbody", null, props.cells.map(function (cells, row) { return (createElement(TableRow, { ref: _this.rowRefs.createRef(row), key: cells.length
-                                ? cells[0].fecha.toISOString() /* best? or put key on cell? or use diff formatter? */
+                                ? cells[0].date.toISOString() /* best? or put key on cell? or use diff formatter? */
                                 : row // in case there are no cells (like when resource view is loading)
-                            , showDayNumbers: rowCnt > 1, showWeekNumbers: props.showWeekNumbers, todayRange: todayRange, fechaProfile: fechaProfile, cells: cells, renderIntro: props.renderRowIntro, businessHourSegs: businessHourSegsByRow[row], eventSelection: props.eventSelection, bgEventSegs: bgEventSegsByRow[row].filter(isSegAllDay) /* hack */, fgEventSegs: fgEventSegsByRow[row], fechaSelectionSegs: fechaSelectionSegsByRow[row], eventDrag: eventDragByRow[row], eventResize: eventResizeByRow[row], dayMaxEvents: dayMaxEvents, dayMaxEventRows: dayMaxEventRows, clientWidth: props.clientWidth, clientHeight: props.clientHeight, buildMoreLinkText: buildMoreLinkText, onMoreClick: _this.handleMoreLinkClick })); }))),
+                            , showDayNumbers: rowCnt > 1, showWeekNumbers: props.showWeekNumbers, todayRange: todayRange, dateProfile: dateProfile, cells: cells, renderIntro: props.renderRowIntro, businessHourSegs: businessHourSegsByRow[row], eventSelection: props.eventSelection, bgEventSegs: bgEventSegsByRow[row].filter(isSegAllDay) /* hack */, fgEventSegs: fgEventSegsByRow[row], dateSelectionSegs: dateSelectionSegsByRow[row], eventDrag: eventDragByRow[row], eventResize: eventResizeByRow[row], dayMaxEvents: dayMaxEvents, dayMaxEventRows: dayMaxEventRows, clientWidth: props.clientWidth, clientHeight: props.clientHeight, buildMoreLinkText: buildMoreLinkText, onMoreClick: _this.handleMoreLinkClick })); }))),
                     (!props.forPrint && morePopoverState && morePopoverState.currentFgEventSegs === props.fgEventSegs) && // clear popover on event mod
-                        createElement(MorePopover, { fecha: morePopoverState.fecha, fechaProfile: fechaProfile, segs: morePopoverState.allSegs, alignmentEl: morePopoverState.dayEl, topAlignmentEl: rowCnt === 1 ? props.headerAlignElRef.current : null, onCloseClick: _this.handleMorePopoverClose, selectedInstanceId: props.eventSelection, hiddenInstances: // yuck
+                        createElement(MorePopover, { date: morePopoverState.date, dateProfile: dateProfile, segs: morePopoverState.allSegs, alignmentEl: morePopoverState.dayEl, topAlignmentEl: rowCnt === 1 ? props.headerAlignElRef.current : null, onCloseClick: _this.handleMorePopoverClose, selectedInstanceId: props.eventSelection, hiddenInstances: // yuck
                             (props.eventDrag ? props.eventDrag.affectedInstances : null) ||
                                 (props.eventResize ? props.eventResize.affectedInstances : null) ||
                                 {}, todayRange: todayRange }))); })));
@@ -12345,7 +12345,7 @@ var FullCalendar = (function (exports) {
                 return {
                     row: row,
                     col: col,
-                    fechaSpan: {
+                    dateSpan: {
                         range: this.getCellRange(row, col),
                         allDay: true
                     },
@@ -12363,7 +12363,7 @@ var FullCalendar = (function (exports) {
             return this.rowRefs.currentMap[row].getCellEls()[col]; // TODO: not optimal
         };
         Table.prototype.getCellRange = function (row, col) {
-            var start = this.props.cells[row][col].fecha;
+            var start = this.props.cells[row][col].date;
             var end = addDays(start, 1);
             return { start: start, end: end };
         };
@@ -12401,7 +12401,7 @@ var FullCalendar = (function (exports) {
         }
         DayTable.prototype.render = function () {
             var _a = this, props = _a.props, context = _a.context;
-            return (createElement(Table, __assign({ ref: this.tableRef, elRef: this.handleRootEl }, this.slicer.sliceProps(props, props.fechaProfile, props.nextDayThreshold, context, props.dayTableModel), { fechaProfile: props.fechaProfile, cells: props.dayTableModel.cells, colGroupNode: props.colGroupNode, tableMinWidth: props.tableMinWidth, renderRowIntro: props.renderRowIntro, dayMaxEvents: props.dayMaxEvents, dayMaxEventRows: props.dayMaxEventRows, showWeekNumbers: props.showWeekNumbers, expandRows: props.expandRows, headerAlignElRef: props.headerAlignElRef, clientWidth: props.clientWidth, clientHeight: props.clientHeight, forPrint: props.forPrint })));
+            return (createElement(Table, __assign({ ref: this.tableRef, elRef: this.handleRootEl }, this.slicer.sliceProps(props, props.dateProfile, props.nextDayThreshold, context, props.dayTableModel), { dateProfile: props.dateProfile, cells: props.dayTableModel.cells, colGroupNode: props.colGroupNode, tableMinWidth: props.tableMinWidth, renderRowIntro: props.renderRowIntro, dayMaxEvents: props.dayMaxEvents, dayMaxEventRows: props.dayMaxEventRows, showWeekNumbers: props.showWeekNumbers, expandRows: props.expandRows, headerAlignElRef: props.headerAlignElRef, clientWidth: props.clientWidth, clientHeight: props.clientHeight, forPrint: props.forPrint })));
         };
         DayTable.prototype.prepareHits = function () {
             this.tableRef.current.prepareHits();
@@ -12411,7 +12411,7 @@ var FullCalendar = (function (exports) {
             if (rawHit) {
                 return {
                     component: this,
-                    fechaSpan: rawHit.fechaSpan,
+                    dateSpan: rawHit.dateSpan,
                     dayEl: rawHit.dayEl,
                     rect: {
                         left: rawHit.relativeRect.left,
@@ -12432,8 +12432,8 @@ var FullCalendar = (function (exports) {
             _this.forceDayIfListItem = true;
             return _this;
         }
-        DayTableSlicer.prototype.sliceRange = function (fechaRange, dayTableModel) {
-            return dayTableModel.sliceRange(fechaRange);
+        DayTableSlicer.prototype.sliceRange = function (dateRange, dayTableModel) {
+            return dayTableModel.sliceRange(dateRange);
         };
         return DayTableSlicer;
     }(Slicer));
@@ -12449,21 +12449,21 @@ var FullCalendar = (function (exports) {
         }
         DayTableView.prototype.render = function () {
             var _this = this;
-            var _a = this.context, options = _a.options, fechaProfileGenerator = _a.fechaProfileGenerator;
+            var _a = this.context, options = _a.options, dateProfileGenerator = _a.dateProfileGenerator;
             var props = this.props;
-            var dayTableModel = this.buildDayTableModel(props.fechaProfile, fechaProfileGenerator);
+            var dayTableModel = this.buildDayTableModel(props.dateProfile, dateProfileGenerator);
             var headerContent = options.dayHeaders &&
-                createElement(DayHeader, { ref: this.headerRef, fechaProfile: props.fechaProfile, fechas: dayTableModel.headerDates, fechasRepDistinctDays: dayTableModel.rowCnt === 1 });
-            var bodyContent = function (contentArg) { return (createElement(DayTable, { ref: _this.tableRef, fechaProfile: props.fechaProfile, dayTableModel: dayTableModel, businessHours: props.businessHours, fechaSelection: props.fechaSelection, eventStore: props.eventStore, eventUiBases: props.eventUiBases, eventSelection: props.eventSelection, eventDrag: props.eventDrag, eventResize: props.eventResize, nextDayThreshold: options.nextDayThreshold, colGroupNode: contentArg.tableColGroupNode, tableMinWidth: contentArg.tableMinWidth, dayMaxEvents: options.dayMaxEvents, dayMaxEventRows: options.dayMaxEventRows, showWeekNumbers: options.weekNumbers, expandRows: !props.isHeightAuto, headerAlignElRef: _this.headerElRef, clientWidth: contentArg.clientWidth, clientHeight: contentArg.clientHeight, forPrint: props.forPrint })); };
+                createElement(DayHeader, { ref: this.headerRef, dateProfile: props.dateProfile, dates: dayTableModel.headerDates, datesRepDistinctDays: dayTableModel.rowCnt === 1 });
+            var bodyContent = function (contentArg) { return (createElement(DayTable, { ref: _this.tableRef, dateProfile: props.dateProfile, dayTableModel: dayTableModel, businessHours: props.businessHours, dateSelection: props.dateSelection, eventStore: props.eventStore, eventUiBases: props.eventUiBases, eventSelection: props.eventSelection, eventDrag: props.eventDrag, eventResize: props.eventResize, nextDayThreshold: options.nextDayThreshold, colGroupNode: contentArg.tableColGroupNode, tableMinWidth: contentArg.tableMinWidth, dayMaxEvents: options.dayMaxEvents, dayMaxEventRows: options.dayMaxEventRows, showWeekNumbers: options.weekNumbers, expandRows: !props.isHeightAuto, headerAlignElRef: _this.headerElRef, clientWidth: contentArg.clientWidth, clientHeight: contentArg.clientHeight, forPrint: props.forPrint })); };
             return options.dayMinWidth
                 ? this.renderHScrollLayout(headerContent, bodyContent, dayTableModel.colCnt, options.dayMinWidth)
                 : this.renderSimpleLayout(headerContent, bodyContent);
         };
         return DayTableView;
     }(TableView));
-    function buildDayTableModel(fechaProfile, fechaProfileGenerator) {
-        var daySeries = new DaySeriesModel(fechaProfile.renderRange, fechaProfileGenerator);
-        return new DayTableModel(daySeries, /year|month|week/.test(fechaProfile.currentRangeUnit));
+    function buildDayTableModel(dateProfile, dateProfileGenerator) {
+        var daySeries = new DaySeriesModel(dateProfile.renderRange, dateProfileGenerator);
+        return new DayTableModel(daySeries, /year|month|week/.test(dateProfile.currentRangeUnit));
     }
 
     var TableDateProfileGenerator = /** @class */ (function (_super) {
@@ -12471,18 +12471,18 @@ var FullCalendar = (function (exports) {
         function TableDateProfileGenerator() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        // Computes the fecha range that will be rendered.
+        // Computes the date range that will be rendered.
         TableDateProfileGenerator.prototype.buildRenderRange = function (currentRange, currentRangeUnit, isRangeAllDay) {
-            var fechaEnv = this.props.fechaEnv;
+            var dateEnv = this.props.dateEnv;
             var renderRange = _super.prototype.buildRenderRange.call(this, currentRange, currentRangeUnit, isRangeAllDay);
             var start = renderRange.start;
             var end = renderRange.end;
             var endOfWeek;
             // year and month views should be aligned with weeks. this is already done for week
             if (/^(year|month)$/.test(currentRangeUnit)) {
-                start = fechaEnv.startOfWeek(start);
+                start = dateEnv.startOfWeek(start);
                 // make end-of-week if not already
-                endOfWeek = fechaEnv.startOfWeek(end);
+                endOfWeek = dateEnv.startOfWeek(end);
                 if (endOfWeek.valueOf() !== end.valueOf()) {
                     end = addWeeks(endOfWeek, 1);
                 }
@@ -12513,7 +12513,7 @@ var FullCalendar = (function (exports) {
         views: {
             dayGrid: {
                 component: DayTableView,
-                fechaProfileGeneratorClass: TableDateProfileGenerator
+                dateProfileGeneratorClass: TableDateProfileGenerator
             },
             dayGridDay: {
                 type: 'dayGrid',
@@ -12543,8 +12543,8 @@ var FullCalendar = (function (exports) {
                 timed: {}
             };
         };
-        AllDaySplitter.prototype.getKeysForDateSpan = function (fechaSpan) {
-            if (fechaSpan.allDay) {
+        AllDaySplitter.prototype.getKeysForDateSpan = function (dateSpan) {
+            if (dateSpan.allDay) {
                 return ['allDay'];
             }
             else {
@@ -12566,23 +12566,23 @@ var FullCalendar = (function (exports) {
     }(Splitter));
 
     var TimeColsSlatsCoords = /** @class */ (function () {
-        function TimeColsSlatsCoords(positions, fechaProfile, slatMetas) {
+        function TimeColsSlatsCoords(positions, dateProfile, slatMetas) {
             this.positions = positions;
-            this.fechaProfile = fechaProfile;
+            this.dateProfile = dateProfile;
             this.slatMetas = slatMetas;
         }
-        TimeColsSlatsCoords.prototype.safeComputeTop = function (fecha) {
-            var fechaProfile = this.fechaProfile;
-            if (rangeContainsMarker(fechaProfile.currentRange, fecha)) {
-                var startOfDayDate = startOfDay(fecha);
-                var timeMs = fecha.valueOf() - startOfDayDate.valueOf();
-                if (timeMs >= asRoughMs(fechaProfile.slotMinTime) &&
-                    timeMs < asRoughMs(fechaProfile.slotMaxTime)) {
+        TimeColsSlatsCoords.prototype.safeComputeTop = function (date) {
+            var dateProfile = this.dateProfile;
+            if (rangeContainsMarker(dateProfile.currentRange, date)) {
+                var startOfDayDate = startOfDay(date);
+                var timeMs = date.valueOf() - startOfDayDate.valueOf();
+                if (timeMs >= asRoughMs(dateProfile.slotMinTime) &&
+                    timeMs < asRoughMs(dateProfile.slotMaxTime)) {
                     return this.computeTimeTop(createDuration(timeMs));
                 }
             }
         };
-        // Computes the top coordinate, relative to the bounds of the grid, of the given fecha.
+        // Computes the top coordinate, relative to the bounds of the grid, of the given date.
         // A `startOfDayDate` must be given for avoiding ambiguity over how to treat midnight.
         TimeColsSlatsCoords.prototype.computeDateTop = function (when, startOfDayDate) {
             if (!startOfDayDate) {
@@ -12591,13 +12591,13 @@ var FullCalendar = (function (exports) {
             return this.computeTimeTop(createDuration(when.valueOf() - startOfDayDate.valueOf()));
         };
         // Computes the top coordinate, relative to the bounds of the grid, of the given time (a Duration).
-        // This is a makeshify way to compute the time-top. Assumes all slatMetas fechas are uniform.
-        // Eventually allow computation with arbirary slat fechas.
+        // This is a makeshify way to compute the time-top. Assumes all slatMetas dates are uniform.
+        // Eventually allow computation with arbirary slat dates.
         TimeColsSlatsCoords.prototype.computeTimeTop = function (duration) {
-            var _a = this, positions = _a.positions, fechaProfile = _a.fechaProfile, slatMetas = _a.slatMetas;
+            var _a = this, positions = _a.positions, dateProfile = _a.dateProfile, slatMetas = _a.slatMetas;
             var len = positions.els.length;
-            var slotDurationMs = slatMetas[1].fecha.valueOf() - slatMetas[0].fecha.valueOf(); // we assume fechas are uniform
-            var slatCoverage = (duration.milliseconds - asRoughMs(fechaProfile.slotMinTime)) / slotDurationMs; // floating-point value of # of slots covered
+            var slotDurationMs = slatMetas[1].date.valueOf() - slatMetas[0].date.valueOf(); // we assume dates are uniform
+            var slatCoverage = (duration.milliseconds - asRoughMs(dateProfile.slotMinTime)) / slotDurationMs; // floating-point value of # of slots covered
             var slatIndex;
             var slatRemainder;
             // compute a floating-point number for how many slats should be progressed through.
@@ -12650,17 +12650,17 @@ var FullCalendar = (function (exports) {
                     createElement(TimeColsSlatsBody, { slatElRefs: this.slatElRefs, axis: props.axis, slatMetas: props.slatMetas }))));
         };
         TimeColsSlats.prototype.componentDidMount = function () {
-            this.upfechaSizing();
+            this.updateSizing();
         };
-        TimeColsSlats.prototype.componentDidUpfecha = function () {
-            this.upfechaSizing();
+        TimeColsSlats.prototype.componentDidUpdate = function () {
+            this.updateSizing();
         };
         TimeColsSlats.prototype.componentWillUnmount = function () {
             if (this.props.onCoords) {
                 this.props.onCoords(null);
             }
         };
-        TimeColsSlats.prototype.upfechaSizing = function () {
+        TimeColsSlats.prototype.updateSizing = function () {
             var props = this.props;
             if (props.onCoords &&
                 props.clientWidth !== null // means sizing has stabilized
@@ -12668,7 +12668,7 @@ var FullCalendar = (function (exports) {
                 var rootEl = this.rootElRef.current;
                 if (rootEl.offsetHeight) { // not hidden by css
                     props.onCoords(new TimeColsSlatsCoords(new PositionCache(this.rootElRef.current, collectSlatEls(this.slatElRefs.currentMap, props.slatMetas), false, true // vertical
-                    ), this.props.fechaProfile, props.slatMetas));
+                    ), this.props.dateProfile, props.slatMetas));
                 }
             }
         };
@@ -12689,7 +12689,7 @@ var FullCalendar = (function (exports) {
             return (createElement("tbody", null, props.slatMetas.map(function (slatMeta, i) {
                 var hookProps = {
                     time: slatMeta.time,
-                    fecha: context.fechaEnv.toDate(slatMeta.fecha),
+                    date: context.dateEnv.toDate(slatMeta.date),
                     view: context.viewApi
                 };
                 var classNames = [
@@ -12722,7 +12722,7 @@ var FullCalendar = (function (exports) {
                 return (createElement("td", { className: classNames.join(' '), "data-time": props.isoTimeStr }));
             }
             else {
-                var fechaEnv = context.fechaEnv, options = context.options, viewApi = context.viewApi;
+                var dateEnv = context.dateEnv, options = context.options, viewApi = context.viewApi;
                 var labelFormat = // TODO: fully pre-parse
                  options.slotLabelFormat == null ? DEFAULT_SLAT_LABEL_FORMAT :
                     Array.isArray(options.slotLabelFormat) ? createFormatter(options.slotLabelFormat[0]) :
@@ -12730,9 +12730,9 @@ var FullCalendar = (function (exports) {
                 var hookProps = {
                     level: 0,
                     time: props.time,
-                    fecha: fechaEnv.toDate(props.fecha),
+                    date: dateEnv.toDate(props.date),
                     view: viewApi,
-                    text: fechaEnv.format(props.fecha, labelFormat)
+                    text: dateEnv.format(props.date, labelFormat)
                 };
                 return (createElement(RenderHook, { hookProps: hookProps, classNames: options.slotLabelClassNames, content: options.slotLabelContent, defaultContent: renderInnerContent$3, didMount: options.slotLabelDidMount, willUnmount: options.slotLabelWillUnmount }, function (rootElRef, customClassNames, innerElRef, innerContent) { return (createElement("td", { ref: rootElRef, className: classNames.concat(customClassNames).join(' '), "data-time": props.isoTimeStr },
                     createElement("div", { className: 'fc-timegrid-slot-label-frame fc-scrollgrid-shrink-frame' },
@@ -12743,20 +12743,20 @@ var FullCalendar = (function (exports) {
     function renderInnerContent$3(props) {
         return props.text;
     }
-    function buildSlatMetas(slotMinTime, slotMaxTime, explicitLabelInterval, slotDuration, fechaEnv) {
+    function buildSlatMetas(slotMinTime, slotMaxTime, explicitLabelInterval, slotDuration, dateEnv) {
         var dayStart = new Date(0);
         var slatTime = slotMinTime;
         var slatIterator = createDuration(0);
         var labelInterval = explicitLabelInterval || computeLabelInterval(slotDuration);
         var metas = [];
         while (asRoughMs(slatTime) < asRoughMs(slotMaxTime)) {
-            var fecha = fechaEnv.add(dayStart, slatTime);
+            var date = dateEnv.add(dayStart, slatTime);
             var isLabeled = wholeDivideDurations(slatIterator, labelInterval) !== null;
             metas.push({
-                fecha: fecha,
+                date: date,
                 time: slatTime,
-                key: fecha.toISOString(),
-                isoTimeStr: formatIsoTimeString(fecha),
+                key: date.toISOString(),
+                isoTimeStr: formatIsoTimeString(date),
                 isLabeled: isLabeled
             });
             slatTime = addDurations(slatTime, slotDuration);
@@ -12804,14 +12804,14 @@ var FullCalendar = (function (exports) {
             _this.renderHeadAxis = function (frameHeight) {
                 if (frameHeight === void 0) { frameHeight = ''; }
                 var options = _this.context.options;
-                var fechaProfile = _this.props.fechaProfile;
-                var range = fechaProfile.renderRange;
+                var dateProfile = _this.props.dateProfile;
+                var range = dateProfile.renderRange;
                 var dayCnt = diffDays(range.start, range.end);
                 var navLinkAttrs = (options.navLinks && dayCnt === 1) // only do in day views (to avoid doing in week views that dont need it)
                     ? { 'data-navlink': buildNavLinkData(range.start, 'week'), tabIndex: 0 }
                     : {};
                 if (options.weekNumbers) {
-                    return (createElement(WeekNumberRoot, { fecha: range.start, defaultFormat: DEFAULT_WEEK_NUM_FORMAT$1 }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("th", { ref: rootElRef, className: [
+                    return (createElement(WeekNumberRoot, { date: range.start, defaultFormat: DEFAULT_WEEK_NUM_FORMAT$1 }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("th", { ref: rootElRef, className: [
                             'fc-timegrid-axis',
                             'fc-scrollgrid-shrink'
                         ].concat(classNames).join(' ') },
@@ -12967,7 +12967,7 @@ var FullCalendar = (function (exports) {
                                             slatCoords &&
                                             slatCoords.safeComputeTop(nowDate); // might return void
                                         if (typeof nowIndicatorTop === 'number') {
-                                            return (createElement(NowIndicatorRoot, { isAxis: true, fecha: nowDate }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("div", { ref: rootElRef, className: ['fc-timegrid-now-indicator-arrow'].concat(classNames).join(' '), style: { top: nowIndicatorTop } }, innerContent)); }));
+                                            return (createElement(NowIndicatorRoot, { isAxis: true, date: nowDate }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("div", { ref: rootElRef, className: ['fc-timegrid-now-indicator-arrow'].concat(classNames).join(' '), style: { top: nowIndicatorTop } }, innerContent)); }));
                                         }
                                         return null;
                                     }))));
@@ -13083,7 +13083,7 @@ var FullCalendar = (function (exports) {
     }
     // Given an array of segments that are all in the same column, sets the backwardCoord and forwardCoord on each.
     // Assumed the segs are already ordered.
-    // NOTE: Also reorders the given array by fecha!
+    // NOTE: Also reorders the given array by date!
     function computeSegHorizontals(segs, eventOrderSpecs) {
         // IMPORTANT TO CLEAR OLD RESULTS :(
         for (var _i = 0, segs_2 = segs; _i < segs_2.length; _i++) {
@@ -13110,7 +13110,7 @@ var FullCalendar = (function (exports) {
         return segs;
     }
     // Builds an array of segments "levels". The first level will be the leftmost tier of segments if the calendar is
-    // left-to-right, or the rightmost if the calendar is right-to-left. Assumes the segments are already ordered by fecha.
+    // left-to-right, or the rightmost if the calendar is right-to-left. Assumes the segments are already ordered by date.
     function buildSlotSegLevels(segs) {
         var levels = [];
         var i;
@@ -13274,24 +13274,24 @@ var FullCalendar = (function (exports) {
             var isSelectMirror = context.options.selectMirror;
             var mirrorSegs = (props.eventDrag && props.eventDrag.segs) ||
                 (props.eventResize && props.eventResize.segs) ||
-                (isSelectMirror && props.fechaSelectionSegs) ||
+                (isSelectMirror && props.dateSelectionSegs) ||
                 [];
             var interactionAffectedInstances = // TODO: messy way to compute this
              (props.eventDrag && props.eventDrag.affectedInstances) ||
                 (props.eventResize && props.eventResize.affectedInstances) ||
                 {};
-            return (createElement(DayCellRoot, { elRef: props.elRef, fecha: props.fecha, fechaProfile: props.fechaProfile, todayRange: props.todayRange, extraHookProps: props.extraHookProps }, function (rootElRef, classNames, dataAttrs) { return (createElement("td", __assign({ ref: rootElRef, className: ['fc-timegrid-col'].concat(classNames, props.extraClassNames || []).join(' ') }, dataAttrs, props.extraDataAttrs),
+            return (createElement(DayCellRoot, { elRef: props.elRef, date: props.date, dateProfile: props.dateProfile, todayRange: props.todayRange, extraHookProps: props.extraHookProps }, function (rootElRef, classNames, dataAttrs) { return (createElement("td", __assign({ ref: rootElRef, className: ['fc-timegrid-col'].concat(classNames, props.extraClassNames || []).join(' ') }, dataAttrs, props.extraDataAttrs),
                 createElement("div", { className: 'fc-timegrid-col-frame' },
                     createElement("div", { className: 'fc-timegrid-col-bg' },
                         _this.renderFillSegs(props.businessHourSegs, 'non-business'),
                         _this.renderFillSegs(props.bgEventSegs, 'bg-event'),
-                        _this.renderFillSegs(props.fechaSelectionSegs, 'highlight')),
+                        _this.renderFillSegs(props.dateSelectionSegs, 'highlight')),
                     createElement("div", { className: 'fc-timegrid-col-events' }, _this.renderFgSegs(props.fgEventSegs, interactionAffectedInstances)),
                     createElement("div", { className: 'fc-timegrid-col-events' }, _this.renderFgSegs(mirrorSegs, {}, Boolean(props.eventDrag), Boolean(props.eventResize), Boolean(isSelectMirror)
                     // TODO: pass in left/right instead of using only computeSegTopBottomCss
                     )),
                     createElement("div", { className: 'fc-timegrid-now-indicator-container' }, _this.renderNowIndicator(props.nowIndicatorSegs)),
-                    createElement(TimeColMisc, { fecha: props.fecha, fechaProfile: props.fechaProfile, todayRange: props.todayRange, extraHookProps: props.extraHookProps })))); }));
+                    createElement(TimeColMisc, { date: props.date, dateProfile: props.dateProfile, todayRange: props.todayRange, extraHookProps: props.extraHookProps })))); }));
         };
         TimeCol.prototype.renderFgSegs = function (segs, segIsInvisible, isDragging, isResizing, isDateSelecting) {
             var props = this.props;
@@ -13314,7 +13314,7 @@ var FullCalendar = (function (exports) {
             var _a = this, context = _a.context, props = _a.props;
             // assigns TO THE SEGS THEMSELVES
             // also, receives resorted array
-            segs = computeSegCoords(segs, props.fecha, props.slatCoords, context.options.eventMinHeight, context.options.eventOrder);
+            segs = computeSegCoords(segs, props.date, props.slatCoords, context.options.eventMinHeight, context.options.eventOrder);
             return segs.map(function (seg) {
                 var instanceId = seg.eventRange.instance.instanceId;
                 var isMirror = isDragging || isResizing || isDateSelecting;
@@ -13331,18 +13331,18 @@ var FullCalendar = (function (exports) {
                 return;
             }
             // BAD: assigns TO THE SEGS THEMSELVES
-            computeSegVerticals(segs, props.fecha, props.slatCoords, context.options.eventMinHeight);
+            computeSegVerticals(segs, props.date, props.slatCoords, context.options.eventMinHeight);
             var children = segs.map(function (seg) { return (createElement("div", { key: buildEventRangeKey(seg.eventRange), className: 'fc-timegrid-bg-harness', style: _this.computeSegTopBottomCss(seg) }, fillType === 'bg-event' ?
                 createElement(BgEvent, __assign({ seg: seg }, getSegMeta(seg, props.todayRange, props.nowDate))) :
                 renderFill(fillType))); });
             return createElement(Fragment, null, children);
         };
         TimeCol.prototype.renderNowIndicator = function (segs) {
-            var _a = this.props, slatCoords = _a.slatCoords, fecha = _a.fecha;
+            var _a = this.props, slatCoords = _a.slatCoords, date = _a.date;
             if (!slatCoords) {
                 return;
             }
-            return segs.map(function (seg, i) { return (createElement(NowIndicatorRoot, { isAxis: false, fecha: fecha, key: i /* key doesn't matter. will only ever be one */ }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("div", { ref: rootElRef, className: ['fc-timegrid-now-indicator-line'].concat(classNames).join(' '), style: { top: slatCoords.computeDateTop(seg.start, fecha) } }, innerContent)); })); });
+            return segs.map(function (seg, i) { return (createElement(NowIndicatorRoot, { isAxis: false, date: date, key: i /* key doesn't matter. will only ever be one */ }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("div", { ref: rootElRef, className: ['fc-timegrid-now-indicator-line'].concat(classNames).join(' '), style: { top: slatCoords.computeDateTop(seg.start, date) } }, innerContent)); })); });
         };
         TimeCol.prototype.computeFgSegPositionCss = function (seg) {
             var _a = this.context, isRtl = _a.isRtl, options = _a.options;
@@ -13389,7 +13389,7 @@ var FullCalendar = (function (exports) {
         }
         TimeColMisc.prototype.render = function () {
             var props = this.props;
-            return (createElement(DayCellContent, { fecha: props.fecha, fechaProfile: props.fechaProfile, todayRange: props.todayRange, extraHookProps: props.extraHookProps }, function (innerElRef, innerContent) { return (innerContent &&
+            return (createElement(DayCellContent, { date: props.date, dateProfile: props.dateProfile, todayRange: props.todayRange, extraHookProps: props.extraHookProps }, function (innerElRef, innerContent) { return (innerContent &&
                 createElement("div", { className: 'fc-timegrid-col-misc', ref: innerElRef }, innerContent)); }));
         };
         return TimeColMisc;
@@ -13421,7 +13421,7 @@ var FullCalendar = (function (exports) {
             var bgEventSegsByRow = this.splitBgEventSegs(props.bgEventSegs, colCnt);
             var businessHourSegsByRow = this.splitBusinessHourSegs(props.businessHourSegs, colCnt);
             var nowIndicatorSegsByRow = this.splitNowIndicatorSegs(props.nowIndicatorSegs, colCnt);
-            var fechaSelectionSegsByRow = this.splitDateSelectionSegs(props.fechaSelectionSegs, colCnt);
+            var dateSelectionSegsByRow = this.splitDateSelectionSegs(props.dateSelectionSegs, colCnt);
             var eventDragByRow = this.splitEventDrag(props.eventDrag, colCnt);
             var eventResizeByRow = this.splitEventResize(props.eventResize, colCnt);
             return (createElement("div", { className: 'fc-timegrid-cols', ref: this.rootElRef },
@@ -13436,16 +13436,16 @@ var FullCalendar = (function (exports) {
                                 createElement("td", { className: 'fc-timegrid-col fc-timegrid-axis' },
                                     createElement("div", { className: 'fc-timegrid-col-frame' },
                                         createElement("div", { className: 'fc-timegrid-now-indicator-container' }, typeof nowIndicatorTop === 'number' &&
-                                            createElement(NowIndicatorRoot, { isAxis: true, fecha: props.nowDate }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("div", { ref: rootElRef, className: ['fc-timegrid-now-indicator-arrow'].concat(classNames).join(' '), style: { top: nowIndicatorTop } }, innerContent)); })))),
-                            props.cells.map(function (cell, i) { return (createElement(TimeCol, { key: cell.key, elRef: _this.cellElRefs.createRef(cell.key), fechaProfile: props.fechaProfile, fecha: cell.fecha, nowDate: props.nowDate, todayRange: props.todayRange, extraHookProps: cell.extraHookProps, extraDataAttrs: cell.extraDataAttrs, extraClassNames: cell.extraClassNames, fgEventSegs: fgEventSegsByRow[i], bgEventSegs: bgEventSegsByRow[i], businessHourSegs: businessHourSegsByRow[i], nowIndicatorSegs: nowIndicatorSegsByRow[i], fechaSelectionSegs: fechaSelectionSegsByRow[i], eventDrag: eventDragByRow[i], eventResize: eventResizeByRow[i], slatCoords: props.slatCoords, eventSelection: props.eventSelection, forPrint: props.forPrint })); }))))));
+                                            createElement(NowIndicatorRoot, { isAxis: true, date: props.nowDate }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("div", { ref: rootElRef, className: ['fc-timegrid-now-indicator-arrow'].concat(classNames).join(' '), style: { top: nowIndicatorTop } }, innerContent)); })))),
+                            props.cells.map(function (cell, i) { return (createElement(TimeCol, { key: cell.key, elRef: _this.cellElRefs.createRef(cell.key), dateProfile: props.dateProfile, date: cell.date, nowDate: props.nowDate, todayRange: props.todayRange, extraHookProps: cell.extraHookProps, extraDataAttrs: cell.extraDataAttrs, extraClassNames: cell.extraClassNames, fgEventSegs: fgEventSegsByRow[i], bgEventSegs: bgEventSegsByRow[i], businessHourSegs: businessHourSegsByRow[i], nowIndicatorSegs: nowIndicatorSegsByRow[i], dateSelectionSegs: dateSelectionSegsByRow[i], eventDrag: eventDragByRow[i], eventResize: eventResizeByRow[i], slatCoords: props.slatCoords, eventSelection: props.eventSelection, forPrint: props.forPrint })); }))))));
         };
         TimeColsContent.prototype.componentDidMount = function () {
-            this.upfechaCoords();
+            this.updateCoords();
         };
-        TimeColsContent.prototype.componentDidUpfecha = function () {
-            this.upfechaCoords();
+        TimeColsContent.prototype.componentDidUpdate = function () {
+            this.updateCoords();
         };
-        TimeColsContent.prototype.upfechaCoords = function () {
+        TimeColsContent.prototype.updateCoords = function () {
             var props = this.props;
             if (props.onColCoords &&
                 props.clientWidth !== null // means sizing has stabilized
@@ -13504,22 +13504,22 @@ var FullCalendar = (function (exports) {
                     width: props.clientWidth,
                     minWidth: props.tableMinWidth
                 } },
-                createElement(TimeColsSlats, { axis: props.axis, fechaProfile: props.fechaProfile, slatMetas: props.slatMetas, clientWidth: props.clientWidth, minHeight: props.expandRows ? props.clientHeight : '', tableMinWidth: props.tableMinWidth, tableColGroupNode: props.axis ? props.tableColGroupNode : null /* axis depends on the colgroup's shrinking */, onCoords: this.handleSlatCoords }),
-                createElement(TimeColsContent, { cells: props.cells, axis: props.axis, fechaProfile: props.fechaProfile, businessHourSegs: props.businessHourSegs, bgEventSegs: props.bgEventSegs, fgEventSegs: props.fgEventSegs, fechaSelectionSegs: props.fechaSelectionSegs, eventSelection: props.eventSelection, eventDrag: props.eventDrag, eventResize: props.eventResize, todayRange: props.todayRange, nowDate: props.nowDate, nowIndicatorSegs: props.nowIndicatorSegs, clientWidth: props.clientWidth, tableMinWidth: props.tableMinWidth, tableColGroupNode: props.tableColGroupNode, slatCoords: state.slatCoords, onColCoords: this.handleColCoords, forPrint: props.forPrint })));
+                createElement(TimeColsSlats, { axis: props.axis, dateProfile: props.dateProfile, slatMetas: props.slatMetas, clientWidth: props.clientWidth, minHeight: props.expandRows ? props.clientHeight : '', tableMinWidth: props.tableMinWidth, tableColGroupNode: props.axis ? props.tableColGroupNode : null /* axis depends on the colgroup's shrinking */, onCoords: this.handleSlatCoords }),
+                createElement(TimeColsContent, { cells: props.cells, axis: props.axis, dateProfile: props.dateProfile, businessHourSegs: props.businessHourSegs, bgEventSegs: props.bgEventSegs, fgEventSegs: props.fgEventSegs, dateSelectionSegs: props.dateSelectionSegs, eventSelection: props.eventSelection, eventDrag: props.eventDrag, eventResize: props.eventResize, todayRange: props.todayRange, nowDate: props.nowDate, nowIndicatorSegs: props.nowIndicatorSegs, clientWidth: props.clientWidth, tableMinWidth: props.tableMinWidth, tableColGroupNode: props.tableColGroupNode, slatCoords: state.slatCoords, onColCoords: this.handleColCoords, forPrint: props.forPrint })));
         };
         TimeCols.prototype.componentDidMount = function () {
             this.scrollResponder = this.context.createScrollResponder(this.handleScrollRequest);
         };
-        TimeCols.prototype.componentDidUpfecha = function (prevProps) {
-            this.scrollResponder.upfecha(prevProps.fechaProfile !== this.props.fechaProfile);
+        TimeCols.prototype.componentDidUpdate = function (prevProps) {
+            this.scrollResponder.update(prevProps.dateProfile !== this.props.dateProfile);
         };
         TimeCols.prototype.componentWillUnmount = function () {
             this.scrollResponder.detach();
         };
         TimeCols.prototype.positionToHit = function (positionLeft, positionTop) {
-            var _a = this.context, fechaEnv = _a.fechaEnv, options = _a.options;
+            var _a = this.context, dateEnv = _a.dateEnv, options = _a.options;
             var colCoords = this.colCoords;
-            var fechaProfile = this.props.fechaProfile;
+            var dateProfile = this.props.dateProfile;
             var slatCoords = this.state.slatCoords;
             var _b = this.processSlotOptions(this.props.slotDuration, options.snapDuration), snapDuration = _b.snapDuration, snapsPerSlot = _b.snapsPerSlot;
             var colIndex = colCoords.leftToIndex(positionLeft);
@@ -13530,13 +13530,13 @@ var FullCalendar = (function (exports) {
                 var partial = (positionTop - slatTop) / slatHeight; // floating point number between 0 and 1
                 var localSnapIndex = Math.floor(partial * snapsPerSlot); // the snap # relative to start of slat
                 var snapIndex = slatIndex * snapsPerSlot + localSnapIndex;
-                var dayDate = this.props.cells[colIndex].fecha;
-                var time = addDurations(fechaProfile.slotMinTime, multiplyDuration(snapDuration, snapIndex));
-                var start = fechaEnv.add(dayDate, time);
-                var end = fechaEnv.add(start, snapDuration);
+                var dayDate = this.props.cells[colIndex].date;
+                var time = addDurations(dateProfile.slotMinTime, multiplyDuration(snapDuration, snapIndex));
+                var start = dateEnv.add(dayDate, time);
+                var end = dateEnv.add(start, snapDuration);
                 return {
                     col: colIndex,
-                    fechaSpan: {
+                    dateSpan: {
                         range: { start: start, end: end },
                         allDay: false
                     },
@@ -13583,19 +13583,19 @@ var FullCalendar = (function (exports) {
         DayTimeCols.prototype.render = function () {
             var _this = this;
             var _a = this, props = _a.props, context = _a.context;
-            var fechaProfile = props.fechaProfile, dayTableModel = props.dayTableModel;
+            var dateProfile = props.dateProfile, dayTableModel = props.dayTableModel;
             var isNowIndicator = context.options.nowIndicator;
-            var dayRanges = this.buildDayRanges(dayTableModel, fechaProfile, context.fechaEnv);
+            var dayRanges = this.buildDayRanges(dayTableModel, dateProfile, context.dateEnv);
             // give it the first row of cells
             // TODO: would move this further down hierarchy, but sliceNowDate needs it
-            return (createElement(NowTimer, { unit: isNowIndicator ? 'minute' : 'day' }, function (nowDate, todayRange) { return (createElement(TimeCols, __assign({ ref: _this.timeColsRef, rootElRef: _this.handleRootEl }, _this.slicer.sliceProps(props, fechaProfile, null, context, dayRanges), { forPrint: props.forPrint, axis: props.axis, fechaProfile: fechaProfile, slatMetas: props.slatMetas, slotDuration: props.slotDuration, cells: dayTableModel.cells[0], tableColGroupNode: props.tableColGroupNode, tableMinWidth: props.tableMinWidth, clientWidth: props.clientWidth, clientHeight: props.clientHeight, expandRows: props.expandRows, nowDate: nowDate, nowIndicatorSegs: isNowIndicator && _this.slicer.sliceNowDate(nowDate, context, dayRanges), todayRange: todayRange, onScrollTopRequest: props.onScrollTopRequest, onSlatCoords: props.onSlatCoords }))); }));
+            return (createElement(NowTimer, { unit: isNowIndicator ? 'minute' : 'day' }, function (nowDate, todayRange) { return (createElement(TimeCols, __assign({ ref: _this.timeColsRef, rootElRef: _this.handleRootEl }, _this.slicer.sliceProps(props, dateProfile, null, context, dayRanges), { forPrint: props.forPrint, axis: props.axis, dateProfile: dateProfile, slatMetas: props.slatMetas, slotDuration: props.slotDuration, cells: dayTableModel.cells[0], tableColGroupNode: props.tableColGroupNode, tableMinWidth: props.tableMinWidth, clientWidth: props.clientWidth, clientHeight: props.clientHeight, expandRows: props.expandRows, nowDate: nowDate, nowIndicatorSegs: isNowIndicator && _this.slicer.sliceNowDate(nowDate, context, dayRanges), todayRange: todayRange, onScrollTopRequest: props.onScrollTopRequest, onSlatCoords: props.onSlatCoords }))); }));
         };
         DayTimeCols.prototype.queryHit = function (positionLeft, positionTop) {
             var rawHit = this.timeColsRef.current.positionToHit(positionLeft, positionTop);
             if (rawHit) {
                 return {
                     component: this,
-                    fechaSpan: rawHit.fechaSpan,
+                    dateSpan: rawHit.dateSpan,
                     dayEl: rawHit.dayEl,
                     rect: {
                         left: rawHit.relativeRect.left,
@@ -13609,13 +13609,13 @@ var FullCalendar = (function (exports) {
         };
         return DayTimeCols;
     }(DateComponent));
-    function buildDayRanges(dayTableModel, fechaProfile, fechaEnv) {
+    function buildDayRanges(dayTableModel, dateProfile, dateEnv) {
         var ranges = [];
         for (var _i = 0, _a = dayTableModel.headerDates; _i < _a.length; _i++) {
-            var fecha = _a[_i];
+            var date = _a[_i];
             ranges.push({
-                start: fechaEnv.add(fecha, fechaProfile.slotMinTime),
-                end: fechaEnv.add(fecha, fechaProfile.slotMaxTime)
+                start: dateEnv.add(date, dateProfile.slotMinTime),
+                end: dateEnv.add(date, dateProfile.slotMaxTime)
             });
         }
         return ranges;
@@ -13654,27 +13654,27 @@ var FullCalendar = (function (exports) {
         }
         DayTimeColsView.prototype.render = function () {
             var _this = this;
-            var _a = this.context, options = _a.options, fechaEnv = _a.fechaEnv, fechaProfileGenerator = _a.fechaProfileGenerator;
+            var _a = this.context, options = _a.options, dateEnv = _a.dateEnv, dateProfileGenerator = _a.dateProfileGenerator;
             var props = this.props;
-            var fechaProfile = props.fechaProfile;
-            var dayTableModel = this.buildTimeColsModel(fechaProfile, fechaProfileGenerator);
+            var dateProfile = props.dateProfile;
+            var dayTableModel = this.buildTimeColsModel(dateProfile, dateProfileGenerator);
             var splitProps = this.allDaySplitter.splitProps(props);
-            var slatMetas = this.buildSlatMetas(fechaProfile.slotMinTime, fechaProfile.slotMaxTime, options.slotLabelInterval, options.slotDuration, fechaEnv);
+            var slatMetas = this.buildSlatMetas(dateProfile.slotMinTime, dateProfile.slotMaxTime, options.slotLabelInterval, options.slotDuration, dateEnv);
             var dayMinWidth = options.dayMinWidth;
             var hasAttachedAxis = !dayMinWidth;
             var hasDetachedAxis = dayMinWidth;
             var headerContent = options.dayHeaders &&
-                createElement(DayHeader, { fechas: dayTableModel.headerDates, fechaProfile: fechaProfile, fechasRepDistinctDays: true, renderIntro: hasAttachedAxis ? this.renderHeadAxis : null });
-            var allDayContent = (options.allDaySlot !== false) && (function (contentArg) { return (createElement(DayTable, __assign({}, splitProps['allDay'], { fechaProfile: fechaProfile, dayTableModel: dayTableModel, nextDayThreshold: options.nextDayThreshold, tableMinWidth: contentArg.tableMinWidth, colGroupNode: contentArg.tableColGroupNode, renderRowIntro: hasAttachedAxis ? _this.renderTableRowAxis : null, showWeekNumbers: false, expandRows: false, headerAlignElRef: _this.headerElRef, clientWidth: contentArg.clientWidth, clientHeight: contentArg.clientHeight, forPrint: props.forPrint }, _this.getAllDayMaxEventProps()))); });
-            var timeGridContent = function (contentArg) { return (createElement(DayTimeCols, __assign({}, splitProps['timed'], { dayTableModel: dayTableModel, fechaProfile: fechaProfile, axis: hasAttachedAxis, slotDuration: options.slotDuration, slatMetas: slatMetas, forPrint: props.forPrint, tableColGroupNode: contentArg.tableColGroupNode, tableMinWidth: contentArg.tableMinWidth, clientWidth: contentArg.clientWidth, clientHeight: contentArg.clientHeight, onSlatCoords: _this.handleSlatCoords, expandRows: contentArg.expandRows, onScrollTopRequest: _this.handleScrollTopRequest }))); };
+                createElement(DayHeader, { dates: dayTableModel.headerDates, dateProfile: dateProfile, datesRepDistinctDays: true, renderIntro: hasAttachedAxis ? this.renderHeadAxis : null });
+            var allDayContent = (options.allDaySlot !== false) && (function (contentArg) { return (createElement(DayTable, __assign({}, splitProps['allDay'], { dateProfile: dateProfile, dayTableModel: dayTableModel, nextDayThreshold: options.nextDayThreshold, tableMinWidth: contentArg.tableMinWidth, colGroupNode: contentArg.tableColGroupNode, renderRowIntro: hasAttachedAxis ? _this.renderTableRowAxis : null, showWeekNumbers: false, expandRows: false, headerAlignElRef: _this.headerElRef, clientWidth: contentArg.clientWidth, clientHeight: contentArg.clientHeight, forPrint: props.forPrint }, _this.getAllDayMaxEventProps()))); });
+            var timeGridContent = function (contentArg) { return (createElement(DayTimeCols, __assign({}, splitProps['timed'], { dayTableModel: dayTableModel, dateProfile: dateProfile, axis: hasAttachedAxis, slotDuration: options.slotDuration, slatMetas: slatMetas, forPrint: props.forPrint, tableColGroupNode: contentArg.tableColGroupNode, tableMinWidth: contentArg.tableMinWidth, clientWidth: contentArg.clientWidth, clientHeight: contentArg.clientHeight, onSlatCoords: _this.handleSlatCoords, expandRows: contentArg.expandRows, onScrollTopRequest: _this.handleScrollTopRequest }))); };
             return hasDetachedAxis
                 ? this.renderHScrollLayout(headerContent, allDayContent, timeGridContent, dayTableModel.colCnt, dayMinWidth, slatMetas, this.state.slatCoords)
                 : this.renderSimpleLayout(headerContent, allDayContent, timeGridContent);
         };
         return DayTimeColsView;
     }(TimeColsView));
-    function buildTimeColsModel(fechaProfile, fechaProfileGenerator) {
-        var daySeries = new DaySeriesModel(fechaProfile.renderRange, fechaProfileGenerator);
+    function buildTimeColsModel(dateProfile, dateProfileGenerator) {
+        var daySeries = new DaySeriesModel(dateProfile.renderRange, dateProfileGenerator);
         return new DayTableModel(daySeries, false);
     }
 
@@ -13711,19 +13711,19 @@ var FullCalendar = (function (exports) {
         }
         ListViewHeaderRow.prototype.render = function () {
             var _a = this.props, dayDate = _a.dayDate, todayRange = _a.todayRange;
-            var _b = this.context, theme = _b.theme, fechaEnv = _b.fechaEnv, options = _b.options, viewApi = _b.viewApi;
+            var _b = this.context, theme = _b.theme, dateEnv = _b.dateEnv, options = _b.options, viewApi = _b.viewApi;
             var dayMeta = getDateMeta(dayDate, todayRange);
-            var text = options.listDayFormat ? fechaEnv.format(dayDate, options.listDayFormat) : ''; // will ever be falsy?
-            var sideText = options.listDaySideFormat ? fechaEnv.format(dayDate, options.listDaySideFormat) : ''; // will ever be falsy? also, BAD NAME "alt"
+            var text = options.listDayFormat ? dateEnv.format(dayDate, options.listDayFormat) : ''; // will ever be falsy?
+            var sideText = options.listDaySideFormat ? dateEnv.format(dayDate, options.listDaySideFormat) : ''; // will ever be falsy? also, BAD NAME "alt"
             var navLinkData = options.navLinks
                 ? buildNavLinkData(dayDate)
                 : null;
-            var hookProps = __assign({ fecha: fechaEnv.toDate(dayDate), view: viewApi, text: text,
+            var hookProps = __assign({ date: dateEnv.toDate(dayDate), view: viewApi, text: text,
                 sideText: sideText,
                 navLinkData: navLinkData }, dayMeta);
             var classNames = ['fc-list-day'].concat(getDayClassNames(dayMeta, theme));
             // TODO: make a reusable HOC for dayHeader (used in daygrid/timegrid too)
-            return (createElement(RenderHook, { hookProps: hookProps, classNames: options.dayHeaderClassNames, content: options.dayHeaderContent, defaultContent: renderInnerContent$4, didMount: options.dayHeaderDidMount, willUnmount: options.dayHeaderWillUnmount }, function (rootElRef, customClassNames, innerElRef, innerContent) { return (createElement("tr", { ref: rootElRef, className: classNames.concat(customClassNames).join(' '), "data-fecha": formatDayString(dayDate) },
+            return (createElement(RenderHook, { hookProps: hookProps, classNames: options.dayHeaderClassNames, content: options.dayHeaderContent, defaultContent: renderInnerContent$4, didMount: options.dayHeaderDidMount, willUnmount: options.dayHeaderWillUnmount }, function (rootElRef, customClassNames, innerElRef, innerContent) { return (createElement("tr", { ref: rootElRef, className: classNames.concat(customClassNames).join(' '), "data-date": formatDayString(dayDate) },
                 createElement("th", { colSpan: 3 },
                     createElement("div", { className: 'fc-list-day-cushion ' + theme.getClass('tableCellShaded'), ref: innerElRef }, innerContent)))); }));
         };
@@ -13838,7 +13838,7 @@ var FullCalendar = (function (exports) {
                 context.theme.getClass('table'),
                 context.options.stickyHeaderDates !== false ? 'fc-list-sticky' : ''
             ];
-            var _b = this.computeDateVars(props.fechaProfile), dayDates = _b.dayDates, dayRanges = _b.dayRanges;
+            var _b = this.computeDateVars(props.dateProfile), dayDates = _b.dayDates, dayRanges = _b.dayRanges;
             var eventSegs = this.eventStoreToSegs(props.eventStore, props.eventUiBases, dayRanges);
             return (createElement(ViewRoot, { viewSpec: context.viewSpec, elRef: this.setRootEl }, function (rootElRef, classNames) { return (createElement("div", { ref: rootElRef, className: extraClassNames.concat(classNames).join(' ') },
                 createElement(Scroller, { liquid: !props.isHeightAuto, overflowX: props.isHeightAuto ? 'visible' : 'hidden', overflowY: props.isHeightAuto ? 'visible' : 'auto' }, eventSegs.length > 0 ?
@@ -13877,7 +13877,7 @@ var FullCalendar = (function (exports) {
             }));
         };
         ListView.prototype._eventStoreToSegs = function (eventStore, eventUiBases, dayRanges) {
-            return this.eventRangesToSegs(sliceEventStore(eventStore, eventUiBases, this.props.fechaProfile.activeRange, this.context.options.nextDayThreshold).fg, dayRanges);
+            return this.eventRangesToSegs(sliceEventStore(eventStore, eventUiBases, this.props.dateProfile.activeRange, this.context.options.nextDayThreshold).fg, dayRanges);
         };
         ListView.prototype.eventRangesToSegs = function (eventRanges, dayRanges) {
             var segs = [];
@@ -13888,7 +13888,7 @@ var FullCalendar = (function (exports) {
             return segs;
         };
         ListView.prototype.eventRangeToSegs = function (eventRange, dayRanges) {
-            var fechaEnv = this.context.fechaEnv;
+            var dateEnv = this.context.dateEnv;
             var nextDayThreshold = this.context.options.nextDayThreshold;
             var range = eventRange.range;
             var allDay = eventRange.def.allDay;
@@ -13914,7 +13914,7 @@ var FullCalendar = (function (exports) {
                     if (!seg.isEnd && !allDay &&
                         dayIndex + 1 < dayRanges.length &&
                         range.end <
-                            fechaEnv.add(dayRanges[dayIndex + 1].start, nextDayThreshold)) {
+                            dateEnv.add(dayRanges[dayIndex + 1].start, nextDayThreshold)) {
                         seg.end = range.end;
                         seg.isEnd = true;
                         break;
@@ -13928,9 +13928,9 @@ var FullCalendar = (function (exports) {
     function renderNoEventsInner(hookProps) {
         return hookProps.text;
     }
-    function computeDateVars(fechaProfile) {
-        var dayStart = startOfDay(fechaProfile.renderRange.start);
-        var viewEnd = fechaProfile.renderRange.end;
+    function computeDateVars(dateProfile) {
+        var dayStart = startOfDay(dateProfile.renderRange.start);
+        var viewEnd = dateProfile.renderRange.end;
         var dayDates = [];
         var dayRanges = [];
         while (dayStart < viewEnd) {
@@ -13980,7 +13980,7 @@ var FullCalendar = (function (exports) {
             listDay: {
                 type: 'list',
                 duration: { days: 1 },
-                listDayFormat: { weekday: 'long' } // day-of-week is all we need. full fecha is probably in headerToolbar
+                listDayFormat: { weekday: 'long' } // day-of-week is all we need. full date is probably in headerToolbar
             },
             listWeek: {
                 type: 'list',
@@ -14073,7 +14073,7 @@ var FullCalendar = (function (exports) {
             return null;
         },
         fetch: function (arg, onSuccess, onFailure) {
-            var _a = arg.context, fechaEnv = _a.fechaEnv, options = _a.options;
+            var _a = arg.context, dateEnv = _a.dateEnv, options = _a.options;
             var meta = arg.eventSource.meta;
             var apiKey = meta.googleCalendarApiKey || options.googleCalendarApiKey;
             if (!apiKey) {
@@ -14086,7 +14086,7 @@ var FullCalendar = (function (exports) {
                 // TODO: make DRY with json-feed-event-source
                 var extraParams = meta.extraParams;
                 var extraParamsObj = typeof extraParams === 'function' ? extraParams() : extraParams;
-                var requestParams_1 = buildRequestParams$1(arg.range, apiKey, extraParamsObj, fechaEnv);
+                var requestParams_1 = buildRequestParams$1(arg.range, apiKey, extraParamsObj, dateEnv);
                 requestJson('GET', url, requestParams_1, function (body, xhr) {
                     if (body.error) {
                         onFailure({
@@ -14126,25 +14126,25 @@ var FullCalendar = (function (exports) {
         }
         return apiBase + '/' + encodeURIComponent(meta.googleCalendarId) + '/events';
     }
-    function buildRequestParams$1(range, apiKey, extraParams, fechaEnv) {
+    function buildRequestParams$1(range, apiKey, extraParams, dateEnv) {
         var params;
         var startStr;
         var endStr;
-        if (fechaEnv.canComputeOffset) {
+        if (dateEnv.canComputeOffset) {
             // strings will naturally have offsets, which GCal needs
-            startStr = fechaEnv.formatIso(range.start);
-            endStr = fechaEnv.formatIso(range.end);
+            startStr = dateEnv.formatIso(range.start);
+            endStr = dateEnv.formatIso(range.end);
         }
         else {
             // when timezone isn't known, we don't know what the UTC offset should be, so ask for +/- 1 day
             // from the UTC day-start to guarantee we're getting all the events
-            // (start/end will be UTC-coerced fechas, so toISOString is okay)
+            // (start/end will be UTC-coerced dates, so toISOString is okay)
             startStr = addDays(range.start, -1).toISOString();
             endStr = addDays(range.end, 1).toISOString();
         }
         params = __assign(__assign({}, (extraParams || {})), { key: apiKey, timeMin: startStr, timeMax: endStr, singleEvents: true, maxResults: 9999 });
-        if (fechaEnv.timeZone !== 'local') {
-            params.timeZone = fechaEnv.timeZone;
+        if (dateEnv.timeZone !== 'local') {
+            params.timeZone = dateEnv.timeZone;
         }
         return params;
     }
@@ -14162,11 +14162,11 @@ var FullCalendar = (function (exports) {
         return {
             id: item.id,
             title: item.summary,
-            start: item.start.fechaTime || item.start.fecha,
-            end: item.end.fechaTime || item.end.fecha,
+            start: item.start.dateTime || item.start.date,
+            end: item.end.dateTime || item.end.date,
             url: url,
             location: item.location,
-            descripcion: item.descripcion
+            description: item.description
         };
     }
     // Injects a string like "arg=value" into the querystring of a URL

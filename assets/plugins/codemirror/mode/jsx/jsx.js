@@ -13,7 +13,7 @@
 
   // Depth means the amount of open braces in JS context, in XML
   // context 0 means not in tag, 1 means in tag, and 2 means in tag
-  // and js block comentario.
+  // and js block comment.
   function Context(state, mode, depth, prev) {
     this.state = state; this.mode = mode; this.depth = depth; this.prev = prev
   }
@@ -45,10 +45,10 @@
     }
 
     function xmlToken(stream, state, cx) {
-      if (cx.depth == 2) { // Inside a JS /* */ comentario
+      if (cx.depth == 2) { // Inside a JS /* */ comment
         if (stream.match(/^.*?\*\//)) cx.depth = 1
         else stream.skipToEnd()
-        return "comentario"
+        return "comment"
       }
 
       if (stream.peek() == "{") {
@@ -81,7 +81,7 @@
           return null
         } else if (stream.match("//")) {
           stream.skipToEnd()
-          return "comentario"
+          return "comment"
         } else if (stream.match("/*")) {
           cx.depth = 2
           return token(stream, state)

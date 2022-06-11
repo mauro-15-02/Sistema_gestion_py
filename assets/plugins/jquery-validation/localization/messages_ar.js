@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "يرجى تصحيح هذا الحقل للمتابعة",
 	email: "رجاء إدخال عنوان بريد إلكتروني صحيح",
 	url: "رجاء إدخال عنوان موقع إلكتروني صحيح",
-	fecha: "رجاء إدخال تاريخ صحيح",
-	fechaISO: "رجاء إدخال تاريخ صحيح (ISO)",
+	date: "رجاء إدخال تاريخ صحيح",
+	dateISO: "رجاء إدخال تاريخ صحيح (ISO)",
 	number: "رجاء إدخال عدد بطريقة صحيحة",
 	digits: "رجاء إدخال أرقام فقط",
 	creditcard: "رجاء إدخال رقم بطاقة ائتمان صحيح",

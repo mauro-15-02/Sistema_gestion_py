@@ -26,7 +26,7 @@
                 searchButtonTooltip: "フィルター",
                 clearFilterButtonTooltip: "クリア",
                 insertButtonTooltip: "登録",
-                upfechaButtonTooltip: "更新",
+                updateButtonTooltip: "更新",
                 cancelEditButtonTooltip: "編集戻す"
             }
         },

@@ -40,7 +40,7 @@ CodeMirror.defineMode("pig", function(_config, parserConfig) {
       }
       isEnd = (ch == "*");
     }
-    return "comentario";
+    return "comment";
   }
 
   function tokenString(quote) {
@@ -73,7 +73,7 @@ CodeMirror.defineMode("pig", function(_config, parserConfig) {
       stream.eatWhile(/[\w\.]/);
       return "number";
     }
-    // multi line comentario or operator
+    // multi line comment or operator
     else if (ch == "/") {
       if (stream.eat("*")) {
         return chain(stream, state, tokenComment);
@@ -83,11 +83,11 @@ CodeMirror.defineMode("pig", function(_config, parserConfig) {
         return "operator";
       }
     }
-    // single line comentario or operator
+    // single line comment or operator
     else if (ch=="-") {
       if(stream.eat("-")){
         stream.skipToEnd();
-        return "comentario";
+        return "comment";
       }
       else {
         stream.eatWhile(isOperatorChar);

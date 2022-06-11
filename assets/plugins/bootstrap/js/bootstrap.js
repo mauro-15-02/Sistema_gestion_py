@@ -1726,11 +1726,11 @@
       }
     };
 
-    _proto.upfecha = function upfecha() {
+    _proto.update = function update() {
       this._inNavbar = this._detectNavbar();
 
       if (this._popper !== null) {
-        this._popper.scheduleUpfecha();
+        this._popper.scheduleUpdate();
       }
     } // Private
     ;
@@ -2220,7 +2220,7 @@
       this._scrollbarWidth = null;
     };
 
-    _proto.handleUpfecha = function handleUpfecha() {
+    _proto.handleUpdate = function handleUpdate() {
       this._adjustDialog();
     } // Private
     ;
@@ -2358,7 +2358,7 @@
 
       if (this._isShown) {
         $(window).on(EVENT_RESIZE, function (event) {
-          return _this7.handleUpfecha(event);
+          return _this7.handleUpdate(event);
         });
       } else {
         $(window).off(EVENT_RESIZE);
@@ -2711,7 +2711,7 @@
 
     var regExp = allowedAttributeList.filter(function (attrRegex) {
       return attrRegex instanceof RegExp;
-    }); // Check if a regular expression valifechas the attribute.
+    }); // Check if a regular expression validates the attribute.
 
     for (var i = 0, len = regExp.length; i < len; i++) {
       if (attrName.match(regExp[i])) {
@@ -3070,9 +3070,9 @@
       this._hoverState = '';
     };
 
-    _proto.upfecha = function upfecha() {
+    _proto.update = function update() {
       if (this._popper !== null) {
-        this._popper.scheduleUpfecha();
+        this._popper.scheduleUpdate();
       }
     } // Protected
     ;
@@ -3154,7 +3154,7 @@
             _this3._handlePopperPlacementChange(data);
           }
         },
-        onUpfecha: function onUpfecha(data) {
+        onUpdate: function onUpdate(data) {
           return _this3._handlePopperPlacementChange(data);
         }
       };

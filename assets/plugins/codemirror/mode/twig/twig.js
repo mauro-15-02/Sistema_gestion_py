@@ -25,14 +25,14 @@
       var ch = stream.peek();
 
       //Comment
-      if (state.incomentario) {
+      if (state.incomment) {
         if (!stream.skipTo("#}")) {
           stream.skipToEnd();
         } else {
           stream.eatWhile(/\#|}/);
-          state.incomentario = false;
+          state.incomment = false;
         }
-        return "comentario";
+        return "comment";
       //Tag
       } else if (state.intag) {
         //After operator
@@ -96,14 +96,14 @@
         return "variable";
       } else if (stream.eat("{")) {
         if (stream.eat("#")) {
-          state.incomentario = true;
+          state.incomment = true;
           if (!stream.skipTo("#}")) {
             stream.skipToEnd();
           } else {
             stream.eatWhile(/\#|}/);
-            state.incomentario = false;
+            state.incomment = false;
           }
-          return "comentario";
+          return "comment";
         //Open tag
         } else if (ch = stream.eat(/\{|%/)) {
           //Cache close tag

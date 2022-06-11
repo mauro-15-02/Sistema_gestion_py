@@ -4,11 +4,11 @@
 
 /**
  * @summary     Responsive
- * @descripcion Responsive tables plug-in for DataTables
+ * @description Responsive tables plug-in for DataTables
  * @version     2.2.6
  * @file        dataTables.responsive.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contacto     www.sprymedia.co.uk/contacto
+ * @contact     www.sprymedia.co.uk/contact
  * @copyright   Copyright 2014-2020 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
@@ -228,7 +228,7 @@ $.extend( Responsive.prototype, {
 
 			// Redraw the details box on each draw which will happen if the data
 			// has changed. This is used until DataTables implements a native
-			// `upfechad` event for rows
+			// `updated` event for rows
 			dt.on( 'draw.dtr', function () {
 				that._redrawChildren();
 			} );
@@ -576,7 +576,7 @@ $.extend( Responsive.prototype, {
 	},
 
 	/**
-	 * Upfecha the cells to show the correct control class / button
+	 * Update the cells to show the correct control class / button
 	 * @private
 	 */
 	_controlClass: function ()
@@ -610,24 +610,24 @@ $.extend( Responsive.prototype, {
 	 * Show the details for the child row
 	 *
 	 * @param  {DataTables.Api} row    API instance for the row
-	 * @param  {boolean}        upfecha Upfecha flag
+	 * @param  {boolean}        update Update flag
 	 * @private
 	 */
-	_detailsDisplay: function ( row, upfecha )
+	_detailsDisplay: function ( row, update )
 	{
 		var that = this;
 		var dt = this.s.dt;
 		var details = this.c.details;
 
 		if ( details && details.type !== false ) {
-			var res = details.display( row, upfecha, function () {
+			var res = details.display( row, update, function () {
 				return details.renderer(
 					dt, row[0], that._detailsObj(row[0])
 				);
 			} );
 
 			if ( res === true || res === false ) {
-				$(dt.table().node()).triggerHandler( 'responsive-display.dt', [dt, row, res, upfecha] );
+				$(dt.table().node()).triggerHandler( 'responsive-display.dt', [dt, row, res, update] );
 			}
 		}
 	},
@@ -703,7 +703,7 @@ $.extend( Responsive.prototype, {
 						that._detailsDisplay( row, false );
 					}
 					else if ( e.type === 'mousedown' ) {
-						// For mouse usuarios, prevent the focus ring from showing
+						// For mouse users, prevent the focus ring from showing
 						$(this).css('outline', 'none');
 					}
 					else if ( e.type === 'mouseup' ) {
@@ -751,7 +751,7 @@ $.extend( Responsive.prototype, {
 	 * Find a breakpoint object from a name
 	 *
 	 * @param  {string} name Breakpoint name to find
-	 * @return {object}      Breakpoint descripcion object
+	 * @return {object}      Breakpoint description object
 	 * @private
 	 */
 	_find: function ( name )
@@ -850,7 +850,7 @@ $.extend( Responsive.prototype, {
 			// Inform listeners of the change
 			$(dt.table().node()).trigger( 'responsive-resize.dt', [dt, this.s.current] );
 
-			// If no records, upfecha the "No records" display element
+			// If no records, update the "No records" display element
 			if ( dt.page.info().recordsDisplay === 0 ) {
 				$('td', dt.table().body()).eq(0).attr('colspan', visible);
 			}
@@ -1026,7 +1026,7 @@ $.extend( Responsive.prototype, {
 
 
 	/**
-	 * Upfecha the cell tab indexes for keyboard accessibility. This is called on
+	 * Update the cell tab indexes for keyboard accessibility. This is called on
 	 * every table draw - that is potentially inefficient, but also the least
 	 * complex option given that column visibility can change on the fly. Its a
 	 * shame user-focus was removed from CSS 3 UI, as it would have solved this
@@ -1091,8 +1091,8 @@ Responsive.breakpoints = [
  * @static
  */
 Responsive.display = {
-	childRow: function ( row, upfecha, render ) {
-		if ( upfecha ) {
+	childRow: function ( row, update, render ) {
+		if ( update ) {
 			if ( $(row.node()).hasClass('parent') ) {
 				row.child( render(), 'child' ).show();
 
@@ -1115,8 +1115,8 @@ Responsive.display = {
 		}
 	},
 
-	childRowImmediate: function ( row, upfecha, render ) {
-		if ( (! upfecha && row.child.isShown()) || ! row.responsive.hasHidden() ) {
+	childRowImmediate: function ( row, update, render ) {
+		if ( (! update && row.child.isShown()) || ! row.responsive.hasHidden() ) {
 			// User interaction and the row is show, or nothing to show
 			row.child( false );
 			$( row.node() ).removeClass( 'parent' );
@@ -1136,8 +1136,8 @@ Responsive.display = {
 	// have options passed into them. This specific one doesn't need to be a
 	// function but it is for consistency in the `modal` name
 	modal: function ( options ) {
-		return function ( row, upfecha, render ) {
-			if ( ! upfecha ) {
+		return function ( row, update, render ) {
+			if ( ! update ) {
 				// Show a modal
 				var close = function () {
 					modal.remove(); // will tidy events for us

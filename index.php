@@ -8,7 +8,7 @@
     ob_start();
   if(!isset($_SESSION['system'])){
 
-    $system = $conn->query("SELECT * FROM ajustes_del_sistema")->fetch_array();
+    $system = $conn->query("SELECT * FROM system_settings")->fetch_array();
     foreach($system as $k => $v){
       $_SESSION['system'][$k] = $v;
     }
@@ -19,44 +19,43 @@
 ?>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
-  <?php include 'barra_superior.php' ?><!-- barra superior -->
-  <?php include 'barra_lateral.php' ?><!-- barra lateral -->
+  <?php include 'topbar.php' ?>
+  <?php include 'sidebar.php' ?>
 
-<!-- Contenedor. Contiene contenido de la página -->
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
   	 <div class="toast" id="alert_toast" role="alert" aria-live="assertive" aria-atomic="true">
 	    <div class="toast-body text-white">
 	    </div>
 	  </div>
     <div id="toastsContainerTopRight" class="toasts-top-right fixed"></div>
-   <!-- Encabezado de contenido (Encabezado de página) -->
+    <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0"><?php echo $title ?></h1><!-- este titulo se encuentra en header.php -->
-          </div>
+            <h1 class="m-0"><?php echo $title ?></h1>
+          </div><!-- /.col -->
 
-        </div>
+        </div><!-- /.row -->
             <hr class="border-primary">
-      </div>
+      </div><!-- /.container-fluid -->
     </div>
-    <!--fin del contenido header -->
+    <!-- /.content-header -->
 
-    <!-- Contenido principal -->
+    <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
          <?php 
-            ## lo que se realiza en este retazo de codigo es: se crea una variable $page donde se 
-            ## guarda el nombre de la pagina por get y se verifica que exista si existre lo ejecuta 
             $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             if(!file_exists($page.".php")){
                 include '404.html';
             }else{
             include $page.'.php';
+
             }
           ?>
-      </div>
+      </div><!--/. container-fluid -->
     </section>
     <!-- /.content -->
     <div class="modal fade" id="confirm_modal" role='dialog'>

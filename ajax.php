@@ -1,6 +1,6 @@
 <?php
 ob_start();
-date_default_timezone_set("America/Argentina/Buenos_Aires");
+date_default_timezone_set("Asia/Manila");
 
 $action = $_GET['action'];
 include 'admin_class.php';
@@ -36,8 +36,8 @@ if($action == 'save_user'){
 	if($save)
 		echo $save;
 }
-if($action == 'upfecha_user'){
-	$save = $crud->upfecha_user();
+if($action == 'update_user'){
+	$save = $crud->update_user();
 	if($save)
 		echo $save;
 }
@@ -56,13 +56,13 @@ if($action == 'delete_project'){
 	if($save)
 		echo $save;
 }
-if($action == 'save_tarea'){
-	$save = $crud->save_tarea();
+if($action == 'save_task'){
+	$save = $crud->save_task();
 	if($save)
 		echo $save;
 }
-if($action == 'delete_tarea'){
-	$save = $crud->delete_tarea();
+if($action == 'delete_task'){
+	$save = $crud->delete_task();
 	if($save)
 		echo $save;
 }

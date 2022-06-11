@@ -4,11 +4,11 @@
 
 /**
  * @summary     FixedColumns
- * @descripcion Freeze columns in place on a scrolling DataTable
+ * @description Freeze columns in place on a scrolling DataTable
  * @version     3.3.2
  * @file        dataTables.fixedColumns.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contacto     www.sprymedia.co.uk/contacto
+ * @contact     www.sprymedia.co.uk/contact
  * @copyright   Copyright 2010-2020 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
@@ -318,8 +318,8 @@ $.extend( FixedColumns.prototype , {
 	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 	/**
-	 * Upfecha the fixed columns - including headers and footers. Note that FixedColumns will
-	 * automatically upfecha the display whenever the host DataTable redraws.
+	 * Update the fixed columns - including headers and footers. Note that FixedColumns will
+	 * automatically update the display whenever the host DataTable redraws.
 	 *  @returns {void}
 	 *  @example
 	 *      var table = $('#example').dataTable( {
@@ -328,9 +328,9 @@ $.extend( FixedColumns.prototype , {
 	 *      var fc = new $.fn.dataTable.fixedColumns( table );
 	 *
 	 *      // at some later point when the table has been manipulated....
-	 *      fc.fnUpfecha();
+	 *      fc.fnUpdate();
 	 */
-	"fnUpfecha": function ()
+	"fnUpdate": function ()
 	{
 		this._fnDraw( true );
 	},
@@ -338,7 +338,7 @@ $.extend( FixedColumns.prototype , {
 
 	/**
 	 * Recalculate the resizes of the 3x3 grid that FixedColumns uses for display of the table.
-	 * This is useful if you upfecha the width of the table container. Note that FixedColumns will
+	 * This is useful if you update the width of the table container. Note that FixedColumns will
 	 * perform this function automatically when the window.resize event is fired.
 	 *  @returns {void}
 	 *  @example
@@ -355,7 +355,7 @@ $.extend( FixedColumns.prototype , {
 	{
 		this._fnColCalc();
 		this._fnGridLayout();
-		this.fnUpfecha();
+		this.fnUpdate();
 	},
 
 
@@ -371,11 +371,11 @@ $.extend( FixedColumns.prototype , {
 	 *      } );
 	 *      var fc = new $.fn.dataTable.fixedColumns( table );
 	 *
-	 *      // manipulate the table - mark the row as needing an upfecha then upfecha the table
-	 *      // this allows the redraw performed by DataTables fnUpfecha to recalculate the row
+	 *      // manipulate the table - mark the row as needing an update then update the table
+	 *      // this allows the redraw performed by DataTables fnUpdate to recalculate the row
 	 *      // height
 	 *      fc.fnRecalculateHeight();
-	 *      table.fnUpfecha( $('#example tbody tr:eq(0)')[0], ["insert fecha", 1, 2, 3 ... ]);
+	 *      table.fnUpdate( $('#example tbody tr:eq(0)')[0], ["insert date", 1, 2, 3 ... ]);
 	 */
 	"fnRecalculateHeight": function ( nTr )
 	{
@@ -997,7 +997,7 @@ $.extend( FixedColumns.prototype , {
 	/**
 	 * Clone and position the fixed columns
 	 *  @returns {void}
-	 *  @param   {Boolean} bAll Indicate if the header and footer should be upfechad as well (true)
+	 *  @param   {Boolean} bAll Indicate if the header and footer should be updated as well (true)
 	 *  @private
 	 */
 	"_fnDraw": function ( bAll )
@@ -1025,7 +1025,7 @@ $.extend( FixedColumns.prototype , {
 	/**
 	 * Clone the right columns
 	 *  @returns {void}
-	 *  @param   {Boolean} bAll Indicate if the header and footer should be upfechad as well (true)
+	 *  @param   {Boolean} bAll Indicate if the header and footer should be updated as well (true)
 	 *  @private
 	 */
 	"_fnCloneRight": function ( bAll )
@@ -1051,7 +1051,7 @@ $.extend( FixedColumns.prototype , {
 	/**
 	 * Clone the left columns
 	 *  @returns {void}
-	 *  @param   {Boolean} bAll Indicate if the header and footer should be upfechad as well (true)
+	 *  @param   {Boolean} bAll Indicate if the header and footer should be updated as well (true)
 	 *  @private
 	 */
 	"_fnCloneLeft": function ( bAll )
@@ -1136,7 +1136,7 @@ $.extend( FixedColumns.prototype , {
 	 *  @param   {Object} oGrid Grid object containing the display grid elements for the cloned
 	 *                    column (left or right)
 	 *  @param   {Array} aiColumns Column indexes which should be operated on from the DataTable
-	 *  @param   {Boolean} bAll Indicate if the header and footer should be upfechad as well (true)
+	 *  @param   {Boolean} bAll Indicate if the header and footer should be updated as well (true)
 	 *  @private
 	 */
 	"_fnClone": function ( oClone, oGrid, aiColumns, bAll )
@@ -1585,10 +1585,10 @@ DataTable.Api.register( 'fixedColumns()', function () {
 	return this;
 } );
 
-DataTable.Api.register( 'fixedColumns().upfecha()', function () {
+DataTable.Api.register( 'fixedColumns().update()', function () {
 	return this.iterator( 'table', function ( ctx ) {
 		if ( ctx._oFixedColumns ) {
-			ctx._oFixedColumns.fnUpfecha();
+			ctx._oFixedColumns.fnUpdate();
 		}
 	} );
 } );

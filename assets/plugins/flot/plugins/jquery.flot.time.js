@@ -70,7 +70,7 @@ API.txt for details.
         return newDate;
     }
 
-    // Returns a string with the fecha d formatted according to fmt.
+    // Returns a string with the date d formatted according to fmt.
     // A subset of the Open Group's strftime format is supported.
 
     function formatDate(d, fmt, monthNames, dayNames) {
@@ -164,7 +164,7 @@ API.txt for details.
     }
 
     // To have a consistent view of time-based data independent of which time
-    // zone the client happens to be in we need a fecha-like object independent
+    // zone the client happens to be in we need a date-like object independent
     // of time zones.  This is done through a wrapper that only calls the UTC
     // versions of the accessor methods.
 
@@ -197,7 +197,7 @@ API.txt for details.
         return utc;
     }
 
-    // select time zone strategy.  This returns a fecha-like object tied to the
+    // select time zone strategy.  This returns a date-like object tied to the
     // desired timezone
     function dateGenerator(ts, opts) {
         var maxDateValue = 8640000000000000;
@@ -581,7 +581,7 @@ API.txt for details.
     // on the function, so we need to re-expose it here.
 
     $.plot.formatDate = formatDate;
-    $.plot.fechaGenerator = dateGenerator;
-    $.plot.fechaTickGenerator = dateTickGenerator;
+    $.plot.dateGenerator = dateGenerator;
+    $.plot.dateTickGenerator = dateTickGenerator;
     $.plot.makeUtcWrapper = makeUtcWrapper;
 })(jQuery);

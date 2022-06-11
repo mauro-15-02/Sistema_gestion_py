@@ -33,11 +33,11 @@ CodeMirror.defineMode("puppet", function () {
   define('builtin', 'action augeas burst chain computer cron destination dport exec ' +
     'file filebucket group host icmp iniface interface jump k5login limit log_level ' +
     'log_prefix macauthorization mailalias maillist mcx mount nagios_command ' +
-    'nagios_contacto nagios_contactogroup nagios_host nagios_hostdependency ' +
+    'nagios_contact nagios_contactgroup nagios_host nagios_hostdependency ' +
     'nagios_hostescalation nagios_hostextinfo nagios_hostgroup nagios_service ' +
     'nagios_servicedependency nagios_serviceescalation nagios_serviceextinfo ' +
     'nagios_servicegroup nagios_timeperiod name notify outiface package proto reject ' +
-    'resources router schedule scheduled_tarea selboolean selmodule service source ' +
+    'resources router schedule scheduled_task selboolean selmodule service source ' +
     'sport ssh_authorized_key sshkey stage state table tidy todest toports tosource ' +
     'user vlan yumrepo zfs zone zpool');
 
@@ -157,10 +157,10 @@ CodeMirror.defineMode("puppet", function () {
       stream.match(/(\s+)?[@]{1,2}/);
       return 'special';
     }
-    // Match all the comentarios. All of them.
+    // Match all the comments. All of them.
     if (ch == "#") {
       stream.skipToEnd();
-      return "comentario";
+      return "comment";
     }
     // Have we found a string?
     if (ch == "'" || ch == '"') {

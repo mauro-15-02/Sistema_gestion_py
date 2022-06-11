@@ -25,7 +25,7 @@
     footnote: "variable",
     footCite: "qualifier",
     header: "header",
-    html: "comentario",
+    html: "comment",
     image: "string",
     italic: "em",
     link: "link",

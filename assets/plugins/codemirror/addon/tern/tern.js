@@ -58,7 +58,7 @@
     var self = this;
     this.options = options || {};
     var plugins = this.options.plugins || (this.options.plugins = {});
-    if (!plugins.doc_comentario) plugins.doc_comentario = true;
+    if (!plugins.doc_comment) plugins.doc_comment = true;
     this.docs = Object.create(null);
     if (this.options.useWorker) {
       this.server = new WorkerServer(this);
@@ -110,7 +110,7 @@
 
     showDocs: function(cm, pos, c) { showContextInfo(this, cm, pos, "documentation", c); },
 
-    upfechaArgHints: function(cm) { upfechaArgHints(this, cm); },
+    updateArgHints: function(cm) { updateArgHints(this, cm); },
 
     jumpToDef: function(cm) { jumpToDef(this, cm); },
 
@@ -225,7 +225,7 @@
       var obj = {from: from, to: to, list: completions};
       var tooltip = null;
       CodeMirror.on(obj, "close", function() { remove(tooltip); });
-      CodeMirror.on(obj, "upfecha", function() { remove(tooltip); });
+      CodeMirror.on(obj, "update", function() { remove(tooltip); });
       CodeMirror.on(obj, "select", function(cur, node) {
         remove(tooltip);
         var content = ts.options.completionTip ? ts.options.completionTip(cur.data) : cur.data.doc;
@@ -274,7 +274,7 @@
 
   // Maintaining argument hints
 
-  function upfechaArgHints(ts, cm) {
+  function updateArgHints(ts, cm) {
     closeArgHints(ts);
 
     if (cm.somethingSelected()) return;
@@ -449,7 +449,7 @@
 
   function atInterestingExpression(cm) {
     var pos = cm.getCursor("end"), tok = cm.getTokenAt(pos);
-    if (tok.start < pos.ch && tok.type == "comentario") return false;
+    if (tok.start < pos.ch && tok.type == "comment") return false;
     return /[\w)\]]/.test(cm.getLine(pos.line).slice(Math.max(pos.ch - 1, 0), pos.ch + 1));
   }
 

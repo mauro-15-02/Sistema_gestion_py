@@ -14,7 +14,7 @@
 function lineIndent(cm, lineNo) {
   var text = cm.getLine(lineNo)
   var spaceTo = text.search(/\S/)
-  if (spaceTo == -1 || /\bcomentario\b/.test(cm.getTokenTypeAt(CodeMirror.Pos(lineNo, spaceTo + 1))))
+  if (spaceTo == -1 || /\bcomment\b/.test(cm.getTokenTypeAt(CodeMirror.Pos(lineNo, spaceTo + 1))))
     return -1
   return CodeMirror.countColumn(text, null, cm.getOption("tabSize"))
 }
@@ -33,7 +33,7 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
       // Lines with a greater indent are considered part of the block.
       lastLineInFold = i;
     } else {
-      // If this line has non-space, non-comentario content, and is
+      // If this line has non-space, non-comment content, and is
       // indented less or equal to the start line, it is the start of
       // another block.
       break;

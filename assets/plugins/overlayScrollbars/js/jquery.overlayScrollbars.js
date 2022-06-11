@@ -21,7 +21,7 @@
 }(typeof window !== 'undefined' ? window : this,
     function (window, document, undefined, framework) {
         'use strict';
-        var PLUGINnombre = 'OverlayScrollbars';
+        var PLUGINNAME = 'OverlayScrollbars';
         var TYPES = {
             o: 'object',
             f: 'function',
@@ -31,7 +31,7 @@
             n: 'number',
             u: 'undefined',
             z: 'null'
-            //d : 'fecha',
+            //d : 'date',
             //e : 'error',
             //r : 'regexp',
             //y : 'symbol'
@@ -65,13 +65,13 @@
             return {
                 _cssPrefixes: cssPrefixes,
                 _jsPrefixes: jsPrefixes,
-                _cssProperty: function (nombre) {
-                    var result = cssCache[nombre];
+                _cssProperty: function (name) {
+                    var result = cssCache[name];
 
-                    if (cssCache[LEXICON.hOP](nombre))
+                    if (cssCache[LEXICON.hOP](name))
                         return result;
 
-                    var uppercasednombre = firstLetterToUpper(nombre);
+                    var uppercasedName = firstLetterToUpper(name);
                     var elmStyle = document.createElement('div')[LEXICON.s];
                     var resultPossibilities;
                     var i = 0;
@@ -81,10 +81,10 @@
                     for (; i < cssPrefixes.length; i++) {
                         currVendorWithoutDashes = cssPrefixes[i].replace(/-/g, '');
                         resultPossibilities = [
-                            nombre, //transition
-                            cssPrefixes[i] + nombre, //-webkit-transition
-                            currVendorWithoutDashes + uppercasednombre, //webkitTransition
-                            firstLetterToUpper(currVendorWithoutDashes) + uppercasednombre //WebkitTransition
+                            name, //transition
+                            cssPrefixes[i] + name, //-webkit-transition
+                            currVendorWithoutDashes + uppercasedName, //webkitTransition
+                            firstLetterToUpper(currVendorWithoutDashes) + uppercasedName //WebkitTransition
                         ];
                         for (v = 0; v < resultPossibilities[LEXICON.l]; v++) {
                             if (elmStyle[resultPossibilities[v]] !== undefined) {
@@ -94,14 +94,14 @@
                         }
                     }
 
-                    cssCache[nombre] = result;
+                    cssCache[name] = result;
                     return result;
                 },
                 _cssPropertyValue: function (property, values, suffix) {
-                    var nombre = property + ' ' + values;
-                    var result = cssCache[nombre];
+                    var name = property + ' ' + values;
+                    var result = cssCache[name];
 
-                    if (cssCache[LEXICON.hOP](nombre))
+                    if (cssCache[LEXICON.hOP](name))
                         return result;
 
                     var dummyStyle = document.createElement('div')[LEXICON.s];
@@ -122,18 +122,18 @@
                         }
                     }
 
-                    cssCache[nombre] = result;
+                    cssCache[name] = result;
                     return result;
                 },
-                _jsAPI: function (nombre, isInterface, fallback) {
+                _jsAPI: function (name, isInterface, fallback) {
                     var i = 0;
-                    var result = jsCache[nombre];
+                    var result = jsCache[name];
 
-                    if (!jsCache[LEXICON.hOP](nombre)) {
-                        result = window[nombre];
+                    if (!jsCache[LEXICON.hOP](name)) {
+                        result = window[name];
                         for (; i < jsPrefixes[LEXICON.l]; i++)
-                            result = result || window[(isInterface ? jsPrefixes[i] : jsPrefixes[i].toLowerCase()) + firstLetterToUpper(nombre)];
-                        jsCache[nombre] = result;
+                            result = result || window[(isInterface ? jsPrefixes[i] : jsPrefixes[i].toLowerCase()) + firstLetterToUpper(name)];
+                        jsCache[name] = result;
                     }
                     return result || fallback;
                 }
@@ -330,15 +330,15 @@
                 bind: bind
 
                 /**
-                 * Gets the vendor-prefixed CSS property by the given nombre.
-                 * For example the given nombre is "transform" and you're using a old Firefox browser then the returned value would be "-moz-transform".
-                 * If the browser doesn't need a vendor-prefix, then the returned string is the given nombre.
-                 * If the browser doesn't support the given property nombre at all (not even with a vendor-prefix) the returned value is null.
-                 * @param propnombre The unprefixed CSS property nombre.
+                 * Gets the vendor-prefixed CSS property by the given name.
+                 * For example the given name is "transform" and you're using a old Firefox browser then the returned value would be "-moz-transform".
+                 * If the browser doesn't need a vendor-prefix, then the returned string is the given name.
+                 * If the browser doesn't support the given property name at all (not even with a vendor-prefix) the returned value is null.
+                 * @param propName The unprefixed CSS property name.
                  * @returns {string|null} The vendor-prefixed CSS property or null if the browser doesn't support the given CSS property.
 
-                cssProp: function(propnombre) {
-                    return VENDORS._cssProperty(propnombre);
+                cssProp: function(propName) {
+                    return VENDORS._cssProperty(propName);
                 }
                 */
             }
@@ -394,7 +394,7 @@
         var PLUGIN = (function () {
             var _plugin;
             var _pluginsGlobals;
-            var _pluginsAutoUpfechaLoop;
+            var _pluginsAutoUpdateLoop;
             var _pluginsExtensions = [];
             var _pluginsOptions = (function () {
                 var type = COMPATIBILITY.type;
@@ -409,28 +409,28 @@
                 ];
                 var restrictedStringsSplit = ' ';
                 var restrictedStringsPossibilitiesSplit = ':';
-                var classnombreAllowedValues = [TYPES.z, TYPES.s];
+                var classNameAllowedValues = [TYPES.z, TYPES.s];
                 var numberAllowedValues = TYPES.n;
                 var booleanNullAllowedValues = [TYPES.z, TYPES.b];
                 var booleanTrueTemplate = [true, TYPES.b];
                 var booleanFalseTemplate = [false, TYPES.b];
                 var callbackTemplate = [null, [TYPES.z, TYPES.f]];
-                var upfechaOnLoadTemplate = [['img'], [TYPES.s, TYPES.a, TYPES.z]];
+                var updateOnLoadTemplate = [['img'], [TYPES.s, TYPES.a, TYPES.z]];
                 var inheritedAttrsTemplate = [['style', 'class'], [TYPES.s, TYPES.a, TYPES.z]];
                 var resizeAllowedValues = 'n:none b:both h:horizontal v:vertical';
                 var overflowBehaviorAllowedValues = 'v-h:visible-hidden v-s:visible-scroll s:scroll h:hidden';
                 var scrollbarsVisibilityAllowedValues = 'v:visible h:hidden a:auto';
                 var scrollbarsAutoHideAllowedValues = 'n:never s:scroll l:leave m:move';
                 var optionsDefaultsAndTemplate = {
-                    classnombre: ['os-theme-dark', classnombreAllowedValues],                //null || string
+                    className: ['os-theme-dark', classNameAllowedValues],                //null || string
                     resize: ['none', resizeAllowedValues],                               //none || both  || horizontal || vertical || n || b || h || v
                     sizeAutoCapable: booleanTrueTemplate,                                //true || false
                     clipAlways: booleanTrueTemplate,                                     //true || false
                     normalizeRTL: booleanTrueTemplate,                                   //true || false
                     paddingAbsolute: booleanFalseTemplate,                               //true || false
-                    autoUpfecha: [null, booleanNullAllowedValues],                        //true || false || null
-                    autoUpfechaInterval: [33, numberAllowedValues],                       //number
-                    upfechaOnLoad: upfechaOnLoadTemplate,                                  //string || array || null
+                    autoUpdate: [null, booleanNullAllowedValues],                        //true || false || null
+                    autoUpdateInterval: [33, numberAllowedValues],                       //number
+                    updateOnLoad: updateOnLoadTemplate,                                  //string || array || null
                     nativeScrollbarsOverlaid: {
                         showNativeScrollbars: booleanFalseTemplate,                      //true || false
                         initialize: booleanTrueTemplate                                  //true || false
@@ -465,7 +465,7 @@
                         onDirectionChanged: callbackTemplate,                            //null || function
                         onContentSizeChanged: callbackTemplate,                          //null || function
                         onHostSizeChanged: callbackTemplate,                             //null || function
-                        onUpfechad: callbackTemplate                                      //null || function
+                        onUpdated: callbackTemplate                                      //null || function
                     }
                 };
                 var convert = function (template) {
@@ -494,20 +494,20 @@
                     _template: convert(true),
 
                     /**
-                     * Valifechas the passed object by the passed template.
-                     * @param obj The object which shall be valifechad.
+                     * Validates the passed object by the passed template.
+                     * @param obj The object which shall be validated.
                      * @param template The template which defines the allowed values and types.
                      * @param writeErrors True if errors shall be logged to the console.
                      * @param diffObj If a object is passed then only valid differences to this object will be returned.
                      * @returns {{}} A object which contains two objects called "default" and "prepared" which contains only the valid properties of the passed original object and discards not different values compared to the passed diffObj.
                      */
-                    _valifecha: function (obj, template, writeErrors, diffObj) {
-                        var valifechadOptions = {};
-                        var valifechadOptionsPrepared = {};
+                    _validate: function (obj, template, writeErrors, diffObj) {
+                        var validatedOptions = {};
+                        var validatedOptionsPrepared = {};
                         var objectCopy = FRAMEWORK.extend(true, {}, obj);
                         var inArray = FRAMEWORK.inArray;
                         var isEmptyObj = FRAMEWORK.isEmptyObject;
-                        var checkObjectProps = function (data, template, diffData, valifechadOptions, valifechadOptionsPrepared, prevPropnombre) {
+                        var checkObjectProps = function (data, template, diffData, validatedOptions, validatedOptionsPrepared, prevPropName) {
                             for (var prop in template) {
                                 if (template[LEXICON.hOP](prop) && data[LEXICON.hOP](prop)) {
                                     var isValid = false;
@@ -519,7 +519,7 @@
                                     var dataDiffValue = diffData[prop];
                                     var dataValue = data[prop];
                                     var dataValueType = type(dataValue);
-                                    var propPrefix = prevPropnombre ? prevPropnombre + '.' : '';
+                                    var propPrefix = prevPropName ? prevPropName + '.' : '';
                                     var error = "The option \"" + propPrefix + prop + "\" wasn't set, because";
                                     var errorPossibleTypes = [];
                                     var errorRestrictedStrings = [];
@@ -536,10 +536,10 @@
 
                                     //if the template has a object as value, it means that the options are complex (verschachtelt)
                                     if (templateIsComplex && dataValueType == TYPES.o) {
-                                        valifechadOptions[prop] = {};
-                                        valifechadOptionsPrepared[prop] = {};
-                                        checkObjectProps(dataValue, templateValue, dataDiffValue, valifechadOptions[prop], valifechadOptionsPrepared[prop], propPrefix + prop);
-                                        FRAMEWORK.each([data, valifechadOptions, valifechadOptionsPrepared], function (index, value) {
+                                        validatedOptions[prop] = {};
+                                        validatedOptionsPrepared[prop] = {};
+                                        checkObjectProps(dataValue, templateValue, dataDiffValue, validatedOptions[prop], validatedOptionsPrepared[prop], propPrefix + prop);
+                                        FRAMEWORK.each([data, validatedOptions, validatedOptionsPrepared], function (index, value) {
                                             if (isEmptyObj(value[prop])) {
                                                 delete value[prop];
                                             }
@@ -586,10 +586,10 @@
                                             isDiff = dataValue !== dataDiffValue;
 
                                             if (isDiff)
-                                                valifechadOptions[prop] = dataValue;
+                                                validatedOptions[prop] = dataValue;
 
                                             if (isRestrictedValue ? inArray(dataDiffValue, restrictedStringValuesPossibilitiesSplit) < 0 : isDiff)
-                                                valifechadOptionsPrepared[prop] = isRestrictedValue ? mainPossibility : dataValue;
+                                                validatedOptionsPrepared[prop] = isRestrictedValue ? mainPossibility : dataValue;
                                         }
                                         else if (writeErrors) {
                                             console.warn(error + " it doesn't accept the type [ " + dataValueType.toUpperCase() + " ] with the value of \"" + dataValue + "\".\r\n" +
@@ -601,13 +601,13 @@
                                 }
                             }
                         };
-                        checkObjectProps(objectCopy, template, diffObj || {}, valifechadOptions, valifechadOptionsPrepared);
+                        checkObjectProps(objectCopy, template, diffObj || {}, validatedOptions, validatedOptionsPrepared);
 
-                        //add values which aren't specified in the template to the finished valifechad object to prevent them from being discarded
+                        //add values which aren't specified in the template to the finished validated object to prevent them from being discarded
                         /*
                         if(keepForeignProps) {
-                            FRAMEWORK.extend(true, valifechadOptions, objectCopy);
-                            FRAMEWORK.extend(true, valifechadOptionsPrepared, objectCopy);
+                            FRAMEWORK.extend(true, validatedOptions, objectCopy);
+                            FRAMEWORK.extend(true, validatedOptionsPrepared, objectCopy);
                         }
                         */
 
@@ -615,8 +615,8 @@
                             console.warn('The following options are discarded due to invalidity:\r\n' + window.JSON.stringify(objectCopy, null, 2));
 
                         return {
-                            _default: valifechadOptions,
-                            _prepared: valifechadOptionsPrepared
+                            _default: validatedOptions,
+                            _prepared: validatedOptionsPrepared
                         };
                     }
                 }
@@ -628,8 +628,8 @@
             function initOverlayScrollbarsStatics() {
                 if (!_pluginsGlobals)
                     _pluginsGlobals = new OverlayScrollbarsGlobals(_pluginsOptions._defaults);
-                if (!_pluginsAutoUpfechaLoop)
-                    _pluginsAutoUpfechaLoop = new OverlayScrollbarsAutoUpfechaLoop(_pluginsGlobals);
+                if (!_pluginsAutoUpdateLoop)
+                    _pluginsAutoUpdateLoop = new OverlayScrollbarsAutoUpdateLoop(_pluginsGlobals);
             }
 
             /**
@@ -685,8 +685,8 @@
                 FRAMEWORK.extend(_base, {
                     defaultOptions: defaultOptions,
                     msie: msie,
-                    autoUpfechaLoop: false,
-                    autoUpfechaRecommended: !COMPATIBILITY.mO(),
+                    autoUpdateLoop: false,
+                    autoUpdateRecommended: !COMPATIBILITY.mO(),
                     nativeScrollbarSize: nativeScrollbarSize,
                     nativeScrollbarIsOverlaid: nativeScrollbarIsOverlaid,
                     nativeScrollbarStyling: (function () {
@@ -800,7 +800,7 @@
                                 if (oldScrollbarSize.x !== newScrollbarSize.x || oldScrollbarSize.y !== newScrollbarSize.y) {
                                     FRAMEWORK.each(INSTANCES(), function () {
                                         if (INSTANCES(this))
-                                            INSTANCES(this).upfecha('zoom');
+                                            INSTANCES(this).update('zoom');
                                     });
                                 }
                             }
@@ -835,15 +835,15 @@
             }
 
             /**
-             * The object which manages the auto upfecha loop for all OverlayScrollbars objects. This object is initialized only once: if the first OverlayScrollbars object gets initialized.
+             * The object which manages the auto update loop for all OverlayScrollbars objects. This object is initialized only once: if the first OverlayScrollbars object gets initialized.
              * @constructor
              */
-            function OverlayScrollbarsAutoUpfechaLoop(globals) {
+            function OverlayScrollbarsAutoUpdateLoop(globals) {
                 var _base = this;
                 var _inArray = FRAMEWORK.inArray;
                 var _getNow = COMPATIBILITY.now;
-                var _strAutoUpfecha = 'autoUpfecha';
-                var _strAutoUpfechaInterval = _strAutoUpfecha + 'Interval';
+                var _strAutoUpdate = 'autoUpdate';
+                var _strAutoUpdateInterval = _strAutoUpdate + 'Interval';
                 var _strLength = LEXICON.l;
                 var _loopingInstances = [];
                 var _loopingInstancesIntervalCache = [];
@@ -855,7 +855,7 @@
 
 
                 /**
-                 * The auto upfecha loop which will run every 50 milliseconds or less if the upfecha interval of a instance is lower than 50 milliseconds.
+                 * The auto update loop which will run every 50 milliseconds or less if the update interval of a instance is lower than 50 milliseconds.
                  */
                 var loop = function () {
                     if (_loopingInstances[_strLength] > 0 && _loopIsActive) {
@@ -867,8 +867,8 @@
                         var lowestInterval;
                         var instance;
                         var instanceOptions;
-                        var instanceAutoUpfechaAllowed;
-                        var instanceAutoUpfechaInterval;
+                        var instanceAutoUpdateAllowed;
+                        var instanceAutoUpdateInterval;
                         var now;
 
                         if (timeDelta > _loopInterval) {
@@ -878,16 +878,16 @@
                                 instance = _loopingInstances[i];
                                 if (instance !== undefined) {
                                     instanceOptions = instance.options();
-                                    instanceAutoUpfechaAllowed = instanceOptions[_strAutoUpfecha];
-                                    instanceAutoUpfechaInterval = MATH.max(1, instanceOptions[_strAutoUpfechaInterval]);
+                                    instanceAutoUpdateAllowed = instanceOptions[_strAutoUpdate];
+                                    instanceAutoUpdateInterval = MATH.max(1, instanceOptions[_strAutoUpdateInterval]);
                                     now = _getNow();
 
-                                    if ((instanceAutoUpfechaAllowed === true || instanceAutoUpfechaAllowed === null) && (now - _loopingInstancesIntervalCache[i]) > instanceAutoUpfechaInterval) {
-                                        instance.upfecha('auto');
-                                        _loopingInstancesIntervalCache[i] = new Date(now += instanceAutoUpfechaInterval);
+                                    if ((instanceAutoUpdateAllowed === true || instanceAutoUpdateAllowed === null) && (now - _loopingInstancesIntervalCache[i]) > instanceAutoUpdateInterval) {
+                                        instance.update('auto');
+                                        _loopingInstancesIntervalCache[i] = new Date(now += instanceAutoUpdateInterval);
                                     }
 
-                                    lowestInterval = MATH.max(1, MATH.min(lowestInterval, instanceAutoUpfechaInterval));
+                                    lowestInterval = MATH.max(1, MATH.min(lowestInterval, instanceAutoUpdateInterval));
                                 }
                             }
                             _loopInterval = lowestInterval;
@@ -898,8 +898,8 @@
                 };
 
                 /**
-                 * Add OverlayScrollbars instance to the auto upfecha loop. Only successful if the instance isn't already added.
-                 * @param instance The instance which shall be upfechad in a loop automatically.
+                 * Add OverlayScrollbars instance to the auto update loop. Only successful if the instance isn't already added.
+                 * @param instance The instance which shall be updated in a loop automatically.
                  */
                 _base.add = function (instance) {
                     if (_inArray(instance, _loopingInstances) === -1) {
@@ -907,15 +907,15 @@
                         _loopingInstancesIntervalCache.push(_getNow());
                         if (_loopingInstances[_strLength] > 0 && !_loopIsActive) {
                             _loopIsActive = true;
-                            globals.autoUpfechaLoop = _loopIsActive;
+                            globals.autoUpdateLoop = _loopIsActive;
                             loop();
                         }
                     }
                 };
 
                 /**
-                 * Remove OverlayScrollbars instance from the auto upfecha loop. Only successful if the instance was added before.
-                 * @param instance The instance which shall be upfechad in a loop automatically.
+                 * Remove OverlayScrollbars instance from the auto update loop. Only successful if the instance was added before.
+                 * @param instance The instance which shall be updated in a loop automatically.
                  */
                 _base.remove = function (instance) {
                     var index = _inArray(instance, _loopingInstances);
@@ -924,10 +924,10 @@
                         _loopingInstancesIntervalCache.splice(index, 1);
                         _loopingInstances.splice(index, 1);
 
-                        //correct upfecha loop behavior
+                        //correct update loop behavior
                         if (_loopingInstances[_strLength] === 0 && _loopIsActive) {
                             _loopIsActive = false;
-                            globals.autoUpfechaLoop = _loopIsActive;
+                            globals.autoUpdateLoop = _loopIsActive;
                             if (_loopID !== undefined) {
                                 COMPATIBILITY.cAF()(_loopID);
                                 _loopID = -1;
@@ -943,11 +943,11 @@
              * @param options The custom options.
              * @param extensions The custom extensions.
              * @param globals
-             * @param autoUpfechaLoop
+             * @param autoUpdateLoop
              * @returns {*}
              * @constructor
              */
-            function OverlayScrollbarsInstance(pluginTargetElement, options, extensions, globals, autoUpfechaLoop) {
+            function OverlayScrollbarsInstance(pluginTargetElement, options, extensions, globals, autoUpdateLoop) {
                 //shortcuts
                 var type = COMPATIBILITY.type;
                 var inArray = FRAMEWORK.inArray;
@@ -972,7 +972,7 @@
                 var _nativeScrollbarIsOverlaid;
                 var _overlayScrollbarDummySize;
                 var _rtlScrollBehavior;
-                var _autoUpfechaRecommended;
+                var _autoUpdateRecommended;
                 var _msieVersion;
                 var _nativeScrollbarStyling;
                 var _cssCalc;
@@ -1048,64 +1048,64 @@
                 var _strTransitionEndEvent = 'transitionend webkitTransitionEnd oTransitionEnd';
                 var _strResizeObserverProperty = '__overlayScrollbarsRO__';
 
-                //class nombres:	
-                var _cassnombresPrefix = 'os-';
-                var _classnombreHTMLElement = _cassnombresPrefix + 'html';
-                var _classnombreHostElement = _cassnombresPrefix + 'host';
-                var _classnombreHostElementForeign = _classnombreHostElement + '-foreign';
-                var _classnombreHostTextareaElement = _classnombreHostElement + '-textarea';
-                var _classnombreHostScrollbarHorizontalHidden = _classnombreHostElement + '-' + _strScrollbar + _strMinusHorizontal + _strMinusHidden;
-                var _classnombreHostScrollbarVerticalHidden = _classnombreHostElement + '-' + _strScrollbar + _strMinusVertical + _strMinusHidden;
-                var _classnombreHostTransition = _classnombreHostElement + '-transition';
-                var _classnombreHostRTL = _classnombreHostElement + '-rtl';
-                var _classnombreHostResizeDisabled = _classnombreHostElement + '-resize-disabled';
-                var _classnombreHostScrolling = _classnombreHostElement + '-scrolling';
-                var _classnombreHostOverflow = _classnombreHostElement + '-overflow';
-                var _classnombreHostOverflow = _classnombreHostElement + '-overflow';
-                var _classnombreHostOverflowX = _classnombreHostOverflow + '-x';
-                var _classnombreHostOverflowY = _classnombreHostOverflow + '-y';
-                var _classnombreTextareaElement = _cassnombresPrefix + 'textarea';
-                var _classnombreTextareaCoverElement = _classnombreTextareaElement + '-cover';
-                var _classnombrePaddingElement = _cassnombresPrefix + 'padding';
-                var _classnombreViewportElement = _cassnombresPrefix + 'viewport';
-                var _classnombreViewportNativeScrollbarsInvisible = _classnombreViewportElement + '-native-scrollbars-invisible';
-                var _classnombreViewportNativeScrollbarsOverlaid = _classnombreViewportElement + '-native-scrollbars-overlaid';
-                var _classnombreContentElement = _cassnombresPrefix + 'content';
-                var _classnombreContentArrangeElement = _cassnombresPrefix + 'content-arrange';
-                var _classnombreContentGlueElement = _cassnombresPrefix + 'content-glue';
-                var _classnombreSizeAutoObserverElement = _cassnombresPrefix + 'size-auto-observer';
-                var _classnombreResizeObserverElement = _cassnombresPrefix + 'resize-observer';
-                var _classnombreResizeObserverItemElement = _cassnombresPrefix + 'resize-observer-item';
-                var _classnombreResizeObserverItemFinalElement = _classnombreResizeObserverItemElement + '-final';
-                var _classnombreTextInherit = _cassnombresPrefix + 'text-inherit';
-                var _classnombreScrollbar = _cassnombresPrefix + _strScrollbar;
-                var _classnombreScrollbarTrack = _classnombreScrollbar + '-track';
-                var _classnombreScrollbarTrackOff = _classnombreScrollbarTrack + '-off';
-                var _classnombreScrollbarHandle = _classnombreScrollbar + '-handle';
-                var _classnombreScrollbarHandleOff = _classnombreScrollbarHandle + '-off';
-                var _classnombreScrollbarUnusable = _classnombreScrollbar + '-unusable';
-                var _classnombreScrollbarAutoHidden = _classnombreScrollbar + '-' + _strAuto + _strMinusHidden;
-                var _classnombreScrollbarCorner = _classnombreScrollbar + '-corner';
-                var _classnombreScrollbarCornerResize = _classnombreScrollbarCorner + '-resize';
-                var _classnombreScrollbarCornerResizeB = _classnombreScrollbarCornerResize + '-both';
-                var _classnombreScrollbarCornerResizeH = _classnombreScrollbarCornerResize + _strMinusHorizontal;
-                var _classnombreScrollbarCornerResizeV = _classnombreScrollbarCornerResize + _strMinusVertical;
-                var _classnombreScrollbarHorizontal = _classnombreScrollbar + _strMinusHorizontal;
-                var _classnombreScrollbarVertical = _classnombreScrollbar + _strMinusVertical;
-                var _classnombreDragging = _cassnombresPrefix + 'dragging';
-                var _classnombreThemeNone = _cassnombresPrefix + 'theme-none';
-                var _classnombresDynamicDestroy = [
-                    _classnombreViewportNativeScrollbarsInvisible,
-                    _classnombreViewportNativeScrollbarsOverlaid,
-                    _classnombreScrollbarTrackOff,
-                    _classnombreScrollbarHandleOff,
-                    _classnombreScrollbarUnusable,
-                    _classnombreScrollbarAutoHidden,
-                    _classnombreScrollbarCornerResize,
-                    _classnombreScrollbarCornerResizeB,
-                    _classnombreScrollbarCornerResizeH,
-                    _classnombreScrollbarCornerResizeV,
-                    _classnombreDragging].join(_strSpace);
+                //class names:	
+                var _cassNamesPrefix = 'os-';
+                var _classNameHTMLElement = _cassNamesPrefix + 'html';
+                var _classNameHostElement = _cassNamesPrefix + 'host';
+                var _classNameHostElementForeign = _classNameHostElement + '-foreign';
+                var _classNameHostTextareaElement = _classNameHostElement + '-textarea';
+                var _classNameHostScrollbarHorizontalHidden = _classNameHostElement + '-' + _strScrollbar + _strMinusHorizontal + _strMinusHidden;
+                var _classNameHostScrollbarVerticalHidden = _classNameHostElement + '-' + _strScrollbar + _strMinusVertical + _strMinusHidden;
+                var _classNameHostTransition = _classNameHostElement + '-transition';
+                var _classNameHostRTL = _classNameHostElement + '-rtl';
+                var _classNameHostResizeDisabled = _classNameHostElement + '-resize-disabled';
+                var _classNameHostScrolling = _classNameHostElement + '-scrolling';
+                var _classNameHostOverflow = _classNameHostElement + '-overflow';
+                var _classNameHostOverflow = _classNameHostElement + '-overflow';
+                var _classNameHostOverflowX = _classNameHostOverflow + '-x';
+                var _classNameHostOverflowY = _classNameHostOverflow + '-y';
+                var _classNameTextareaElement = _cassNamesPrefix + 'textarea';
+                var _classNameTextareaCoverElement = _classNameTextareaElement + '-cover';
+                var _classNamePaddingElement = _cassNamesPrefix + 'padding';
+                var _classNameViewportElement = _cassNamesPrefix + 'viewport';
+                var _classNameViewportNativeScrollbarsInvisible = _classNameViewportElement + '-native-scrollbars-invisible';
+                var _classNameViewportNativeScrollbarsOverlaid = _classNameViewportElement + '-native-scrollbars-overlaid';
+                var _classNameContentElement = _cassNamesPrefix + 'content';
+                var _classNameContentArrangeElement = _cassNamesPrefix + 'content-arrange';
+                var _classNameContentGlueElement = _cassNamesPrefix + 'content-glue';
+                var _classNameSizeAutoObserverElement = _cassNamesPrefix + 'size-auto-observer';
+                var _classNameResizeObserverElement = _cassNamesPrefix + 'resize-observer';
+                var _classNameResizeObserverItemElement = _cassNamesPrefix + 'resize-observer-item';
+                var _classNameResizeObserverItemFinalElement = _classNameResizeObserverItemElement + '-final';
+                var _classNameTextInherit = _cassNamesPrefix + 'text-inherit';
+                var _classNameScrollbar = _cassNamesPrefix + _strScrollbar;
+                var _classNameScrollbarTrack = _classNameScrollbar + '-track';
+                var _classNameScrollbarTrackOff = _classNameScrollbarTrack + '-off';
+                var _classNameScrollbarHandle = _classNameScrollbar + '-handle';
+                var _classNameScrollbarHandleOff = _classNameScrollbarHandle + '-off';
+                var _classNameScrollbarUnusable = _classNameScrollbar + '-unusable';
+                var _classNameScrollbarAutoHidden = _classNameScrollbar + '-' + _strAuto + _strMinusHidden;
+                var _classNameScrollbarCorner = _classNameScrollbar + '-corner';
+                var _classNameScrollbarCornerResize = _classNameScrollbarCorner + '-resize';
+                var _classNameScrollbarCornerResizeB = _classNameScrollbarCornerResize + '-both';
+                var _classNameScrollbarCornerResizeH = _classNameScrollbarCornerResize + _strMinusHorizontal;
+                var _classNameScrollbarCornerResizeV = _classNameScrollbarCornerResize + _strMinusVertical;
+                var _classNameScrollbarHorizontal = _classNameScrollbar + _strMinusHorizontal;
+                var _classNameScrollbarVertical = _classNameScrollbar + _strMinusVertical;
+                var _classNameDragging = _cassNamesPrefix + 'dragging';
+                var _classNameThemeNone = _cassNamesPrefix + 'theme-none';
+                var _classNamesDynamicDestroy = [
+                    _classNameViewportNativeScrollbarsInvisible,
+                    _classNameViewportNativeScrollbarsOverlaid,
+                    _classNameScrollbarTrackOff,
+                    _classNameScrollbarHandleOff,
+                    _classNameScrollbarUnusable,
+                    _classNameScrollbarAutoHidden,
+                    _classNameScrollbarCornerResize,
+                    _classNameScrollbarCornerResizeB,
+                    _classNameScrollbarCornerResizeH,
+                    _classNameScrollbarCornerResizeV,
+                    _classNameDragging].join(_strSpace);
 
                 //callbacks:	
                 var _callbacksInitQeueue = [];
@@ -1122,13 +1122,13 @@
                 var _extensions = {};
                 var _extensionsPrivateMethods = 'added removed on contract';
 
-                //upfecha	
-                var _lastUpfechaTime;
-                var _swallowedUpfechaHints = {};
-                var _swallowedUpfechaTimeout;
-                var _swallowUpfechaLag = 42;
-                var _upfechaOnLoadEventnombre = 'load';
-                var _upfechaOnLoadElms = [];
+                //update	
+                var _lastUpdateTime;
+                var _swallowedUpdateHints = {};
+                var _swallowedUpdateTimeout;
+                var _swallowUpdateLag = 42;
+                var _updateOnLoadEventName = 'load';
+                var _updateOnLoadElms = [];
 
                 //DOM elements:	
                 var _windowElement;
@@ -1182,7 +1182,7 @@
                 var _overflowBehaviorCache;
                 var _overflowAmountCache;
                 var _ignoreOverlayScrollbarHidingCache;
-                var _autoUpfechaCache;
+                var _autoUpdateCache;
                 var _sizeAutoCapableCache;
                 var _contentElementScrollSizeChangeDetectedCache;
                 var _hostElementSizeChangeDetectedCache;
@@ -1192,15 +1192,15 @@
                 var _scrollbarsDragScrollingCache;
                 var _resizeCache;
                 var _normalizeRTLCache;
-                var _classnombreCache;
-                var _oldClassnombre;
+                var _classNameCache;
+                var _oldClassName;
                 var _textareaAutoWrappingCache;
                 var _textareaInfoCache;
                 var _textareaSizeCache;
                 var _textareaDynHeightCache;
                 var _textareaDynWidthCache;
                 var _bodyMinSizeCache;
-                var _upfechaAutoCache = {};
+                var _updateAutoCache = {};
 
                 //MutationObserver:	
                 var _mutationObserverHost;
@@ -1240,16 +1240,16 @@
                 /**	
                  * Adds or removes a event listener from the given element. 	
                  * @param element The element to which the event listener shall be applied or removed.	
-                 * @param eventnombres The nombre(s) of the events.	
+                 * @param eventNames The name(s) of the events.	
                  * @param listener The method which shall be called.	
                  * @param remove True if the handler shall be removed, false or undefined if the handler shall be added.	
                  * @param passiveOrOptions The options for the event.
                  */
-                function setupResponsiveEventListener(element, eventnombres, listener, remove, passiveOrOptions) {
-                    var collected = COMPATIBILITY.isA(eventnombres) && COMPATIBILITY.isA(listener);
+                function setupResponsiveEventListener(element, eventNames, listener, remove, passiveOrOptions) {
+                    var collected = COMPATIBILITY.isA(eventNames) && COMPATIBILITY.isA(listener);
                     var method = remove ? 'removeEventListener' : 'addEventListener';
                     var onOff = remove ? 'off' : 'on';
-                    var events = collected ? false : eventnombres.split(_strSpace)
+                    var events = collected ? false : eventNames.split(_strSpace)
                     var i = 0;
 
                     var passiveOrOptionsIsObj = FRAMEWORK.isPlainObject(passiveOrOptions);
@@ -1262,8 +1262,8 @@
                     } : capture;
 
                     if (collected) {
-                        for (; i < eventnombres[LEXICON.l]; i++)
-                            setupResponsiveEventListener(element, eventnombres[i], listener[i], remove, passiveOrOptions);
+                        for (; i < eventNames[LEXICON.l]; i++)
+                            setupResponsiveEventListener(element, eventNames[i], listener[i], remove, passiveOrOptions);
                     }
                     else {
                         for (; i < events[LEXICON.l]; i++) {
@@ -1278,9 +1278,9 @@
                 }
 
 
-                function addDestroyEventListener(element, eventnombres, listener, passive) {
-                    setupResponsiveEventListener(element, eventnombres, listener, false, passive);
-                    _destroyEvents.push(COMPATIBILITY.bind(setupResponsiveEventListener, 0, element, eventnombres, listener, true, passive));
+                function addDestroyEventListener(element, eventNames, listener, passive) {
+                    setupResponsiveEventListener(element, eventNames, listener, false, passive);
+                    _destroyEvents.push(COMPATIBILITY.bind(setupResponsiveEventListener, 0, element, eventNames, listener, true, passive));
                 }
 
                 //==== Resize Observer ====//
@@ -1303,20 +1303,20 @@
                         //add resize observer:
                         if (onElementResizedCallback) {
                             if (_supportResizeObserver) {
-                                var element = targetElement.addClass('observed').append(generateDiv(_classnombreResizeObserverElement)).contents()[0];
+                                var element = targetElement.addClass('observed').append(generateDiv(_classNameResizeObserverElement)).contents()[0];
                                 var observer = element[_strResizeObserverProperty] = new resizeObserver(callback);
                                 observer.observe(element);
                             }
                             else {
-                                if (_msieVersion > 9 || !_autoUpfechaRecommended) {
+                                if (_msieVersion > 9 || !_autoUpdateRecommended) {
                                     targetElement.prepend(
-                                        generateDiv(_classnombreResizeObserverElement,
-                                            generateDiv({ c: _classnombreResizeObserverItemElement, dir: 'ltr' },
-                                                generateDiv(_classnombreResizeObserverItemElement,
-                                                    generateDiv(_classnombreResizeObserverItemFinalElement)
+                                        generateDiv(_classNameResizeObserverElement,
+                                            generateDiv({ c: _classNameResizeObserverItemElement, dir: 'ltr' },
+                                                generateDiv(_classNameResizeObserverItemElement,
+                                                    generateDiv(_classNameResizeObserverItemFinalElement)
                                                 ) +
-                                                generateDiv(_classnombreResizeObserverItemElement,
-                                                    generateDiv({ c: _classnombreResizeObserverItemFinalElement, style: 'width: 200%; height: 200%' })
+                                                generateDiv(_classNameResizeObserverItemElement,
+                                                    generateDiv({ c: _classNameResizeObserverItemFinalElement, style: 'width: 200%; height: 200%' })
                                                 )
                                             )
                                         )
@@ -1405,13 +1405,13 @@
                                     var attachEvent = _documentElementNative.attachEvent;
                                     var isIE = _msieVersion !== undefined;
                                     if (attachEvent) {
-                                        targetElement.prepend(generateDiv(_classnombreResizeObserverElement));
-                                        findFirst(targetElement, _strDot + _classnombreResizeObserverElement)[0].attachEvent('onresize', callback);
+                                        targetElement.prepend(generateDiv(_classNameResizeObserverElement));
+                                        findFirst(targetElement, _strDot + _classNameResizeObserverElement)[0].attachEvent('onresize', callback);
                                     }
                                     else {
                                         var obj = _documentElementNative.createElement(TYPES.o);
                                         obj.setAttribute(LEXICON.ti, '-1');
-                                        obj.setAttribute(LEXICON.c, _classnombreResizeObserverElement);
+                                        obj.setAttribute(LEXICON.c, _classNameResizeObserverElement);
                                         obj.onload = function () {
                                             var wnd = this.contentDocument.defaultView;
                                             wnd.addEventListener('resize', callback);
@@ -1456,7 +1456,7 @@
                                 directionChanged();
                                 addDestroyEventListener(targetElement, _strScroll, function (event) {
                                     if (directionChanged())
-                                        upfecha();
+                                        update();
                                     COMPATIBILITY.prvD(event);
                                     COMPATIBILITY.stpP(event);
                                     return false;
@@ -1474,7 +1474,7 @@
                                 }
                             }
                             else {
-                                remove(targetElement.children(_strDot + _classnombreResizeObserverElement).eq(0));
+                                remove(targetElement.children(_strDot + _classNameResizeObserverElement).eq(0));
                             }
                         }
                     }
@@ -1493,7 +1493,7 @@
                                 element[_strResizeObserverProperty].unobserve(element);
                             }
                             else {
-                                targetElement = targetElement.children(_strDot + _classnombreResizeObserverElement).eq(0);
+                                targetElement = targetElement.children(_strDot + _classNameResizeObserverElement).eq(0);
                                 var w = targetElement.css(_strWidth);
                                 var h = targetElement.css(_strHeight);
                                 var css = {};
@@ -1511,7 +1511,7 @@
                                 var css = { };
                                 css[_strHeight] = _strEmpty;
                                 css[_strWidth] = _strEmpty;
-                                targetElement.children(_strDot + _classnombreResizeObserverElement).eq(0).css(css);
+                                targetElement.children(_strDot + _classNameResizeObserverElement).eq(0).css(css);
                             }
                         }
                     }
@@ -1528,13 +1528,13 @@
                     if (_supportMutationObserver) {
                         var mutationObserverContentLag = 11;
                         var mutationObserver = COMPATIBILITY.mO();
-                        var contentLastUpfecha = COMPATIBILITY.now();
+                        var contentLastUpdate = COMPATIBILITY.now();
                         var mutationTarget;
-                        var mutationAttrnombre;
+                        var mutationAttrName;
                         var mutationIsClass;
                         var oldMutationVal;
                         var newClassVal;
-                        var hostClassnombreRegex;
+                        var hostClassNameRegex;
                         var contentTimeout;
                         var now;
                         var sizeAuto;
@@ -1542,8 +1542,8 @@
 
                         _mutationObserverHostCallback = function (mutations) {
 
-                            var doUpfecha = false;
-                            var doUpfechaForce = false;
+                            var doUpdate = false;
+                            var doUpdateForce = false;
                             var mutation;
                             var mutatedAttrs = [];
 
@@ -1551,76 +1551,76 @@
                                 each(mutations, function () {
                                     mutation = this;
                                     mutationTarget = mutation.target;
-                                    mutationAttrnombre = mutation.attributenombre;
-                                    mutationIsClass = mutationAttrnombre === LEXICON.c;
+                                    mutationAttrName = mutation.attributeName;
+                                    mutationIsClass = mutationAttrName === LEXICON.c;
                                     oldMutationVal = mutation.oldValue;
-                                    newClassVal = mutationTarget.classnombre;
+                                    newClassVal = mutationTarget.className;
 
-                                    if (_domExists && mutationIsClass && !doUpfechaForce) {
-                                        // if old class value contains _classnombreHostElementForeign and new class value doesn't
-                                        if (oldMutationVal.indexOf(_classnombreHostElementForeign) > -1 && newClassVal.indexOf(_classnombreHostElementForeign) < 0) {
-                                            hostClassnombreRegex = createHostClassnombreRegExp(true);
-                                            _hostElementNative.classnombre = newClassVal.split(_strSpace).concat(oldMutationVal.split(_strSpace).filter(function (nombre) {
-                                                return nombre.match(hostClassnombreRegex);
+                                    if (_domExists && mutationIsClass && !doUpdateForce) {
+                                        // if old class value contains _classNameHostElementForeign and new class value doesn't
+                                        if (oldMutationVal.indexOf(_classNameHostElementForeign) > -1 && newClassVal.indexOf(_classNameHostElementForeign) < 0) {
+                                            hostClassNameRegex = createHostClassNameRegExp(true);
+                                            _hostElementNative.className = newClassVal.split(_strSpace).concat(oldMutationVal.split(_strSpace).filter(function (name) {
+                                                return name.match(hostClassNameRegex);
                                             })).join(_strSpace);
-                                            doUpfecha = doUpfechaForce = true;
+                                            doUpdate = doUpdateForce = true;
                                         }
                                     }
 
-                                    if (!doUpfecha) {
-                                        doUpfecha = mutationIsClass
-                                            ? hostClassnombresChanged(oldMutationVal, newClassVal)
-                                            : mutationAttrnombre === LEXICON.s
+                                    if (!doUpdate) {
+                                        doUpdate = mutationIsClass
+                                            ? hostClassNamesChanged(oldMutationVal, newClassVal)
+                                            : mutationAttrName === LEXICON.s
                                                 ? oldMutationVal !== mutationTarget[LEXICON.s].cssText
                                                 : true;
                                     }
 
-                                    mutatedAttrs.push(mutationAttrnombre);
+                                    mutatedAttrs.push(mutationAttrName);
                                 });
 
-                                upfechaViewportAttrsFromTarget(mutatedAttrs);
+                                updateViewportAttrsFromTarget(mutatedAttrs);
 
-                                if (doUpfecha)
-                                    _base.upfecha(doUpfechaForce || _strAuto);
+                                if (doUpdate)
+                                    _base.update(doUpdateForce || _strAuto);
                             }
-                            return doUpfecha;
+                            return doUpdate;
                         };
                         _mutationObserverContentCallback = function (mutations) {
-                            var doUpfecha = false;
+                            var doUpdate = false;
                             var mutation;
 
                             if (_initialized && !_sleeping) {
                                 each(mutations, function () {
                                     mutation = this;
-                                    doUpfecha = isUnknownMutation(mutation);
-                                    return !doUpfecha;
+                                    doUpdate = isUnknownMutation(mutation);
+                                    return !doUpdate;
                                 });
 
-                                if (doUpfecha) {
+                                if (doUpdate) {
                                     now = COMPATIBILITY.now();
                                     sizeAuto = (_heightAutoCache || _widthAutoCache);
                                     action = function () {
                                         if (!_destroyed) {
-                                            contentLastUpfecha = now;
+                                            contentLastUpdate = now;
 
                                             //if cols, rows or wrap attr was changed
                                             if (_isTextarea)
-                                                textareaUpfecha();
+                                                textareaUpdate();
 
                                             if (sizeAuto)
-                                                upfecha();
+                                                update();
                                             else
-                                                _base.upfecha(_strAuto);
+                                                _base.update(_strAuto);
                                         }
                                     };
                                     clearTimeout(contentTimeout);
-                                    if (mutationObserverContentLag <= 0 || now - contentLastUpfecha > mutationObserverContentLag || !sizeAuto)
+                                    if (mutationObserverContentLag <= 0 || now - contentLastUpdate > mutationObserverContentLag || !sizeAuto)
                                         action();
                                     else
                                         contentTimeout = setTimeout(action, mutationObserverContentLag);
                                 }
                             }
-                            return doUpfecha;
+                            return doUpdate;
                         }
 
                         _mutationObserverHost = new mutationObserver(_mutationObserverHostCallback);
@@ -1670,7 +1670,7 @@
                 /**
                  * This method gets called every time the host element gets resized. IMPORTANT: Padding changes are detected too!!
                  * It refreshes the hostResizedEventArgs and the hostSizeResizeCache.
-                 * If there are any size changes, the upfecha method gets called.
+                 * If there are any size changes, the update method gets called.
                  */
                 function hostOnResized() {
                     if (!_sleeping) {
@@ -1683,7 +1683,7 @@
                         changed = checkCache(hostSize, _hostElementSizeChangeDetectedCache);
                         _hostElementSizeChangeDetectedCache = hostSize;
                         if (changed)
-                            upfecha({ _hostSizeChanged: true });
+                            update({ _hostSizeChanged: true });
                     }
                 }
 
@@ -1699,7 +1699,7 @@
                  * The mouse leave event of the host element. This event is only needed for the autoHide feature.
                  */
                 function hostOnMouseLeave() {
-                    if (_scrollbarsAutoHideLeave && !_bodyElement.hasClass(_classnombreDragging))
+                    if (_scrollbarsAutoHideLeave && !_bodyElement.hasClass(_classNameDragging))
                         refreshScrollbarsAutoHide(false);
                 }
 
@@ -1729,12 +1729,12 @@
                 /**	
                  * A callback which will be called after a element has loaded.	
                  */
-                function upfechaOnLoadCallback(event) {
+                function updateOnLoadCallback(event) {
                     var elm = FRAMEWORK(event.target);
 
-                    eachUpfechaOnLoad(function (i, upfechaOnLoadSelector) {
-                        if (elm.is(upfechaOnLoadSelector)) {
-                            upfecha({ _contentSizeChanged: true });
+                    eachUpdateOnLoad(function (i, updateOnLoadSelector) {
+                        if (elm.is(updateOnLoadSelector)) {
+                            update({ _contentSizeChanged: true });
                         }
                     });
                 }
@@ -1762,7 +1762,7 @@
                 }
 
 
-                //==== Upfecha Detection ====//
+                //==== Update Detection ====//
 
                 /**
                  * Measures the min width and min height of the body element and refreshes the related cache.
@@ -1781,18 +1781,18 @@
                 }
 
                 /**
-                 * Returns true if the class nombres really changed (new class without plugin host prefix)
-                 * @param oldClassnombres The old Classnombre string or array.
-                 * @param newClassnombres The new Classnombre string or array.
-                 * @returns {boolean} True if the class nombres has really changed, false otherwise.
+                 * Returns true if the class names really changed (new class without plugin host prefix)
+                 * @param oldClassNames The old ClassName string or array.
+                 * @param newClassNames The new ClassName string or array.
+                 * @returns {boolean} True if the class names has really changed, false otherwise.
                  */
-                function hostClassnombresChanged(oldClassnombres, newClassnombres) {
-                    var currClasses = typeof newClassnombres == TYPES.s ? newClassnombres.split(_strSpace) : [];
-                    var oldClasses = typeof oldClassnombres == TYPES.s ? oldClassnombres.split(_strSpace) : [];
+                function hostClassNamesChanged(oldClassNames, newClassNames) {
+                    var currClasses = typeof newClassNames == TYPES.s ? newClassNames.split(_strSpace) : [];
+                    var oldClasses = typeof oldClassNames == TYPES.s ? oldClassNames.split(_strSpace) : [];
                     var diff = getArrayDifferences(oldClasses, currClasses);
 
-                    // remove none theme from diff list to prevent upfecha
-                    var idx = inArray(_classnombreThemeNone, diff);
+                    // remove none theme from diff list to prevent update
+                    var idx = inArray(_classNameThemeNone, diff);
                     var i;
                     var regex;
 
@@ -1800,7 +1800,7 @@
                         diff.splice(idx, 1);
 
                     if (diff[LEXICON.l] > 0) {
-                        regex = createHostClassnombreRegExp(true, true);
+                        regex = createHostClassNameRegExp(true, true);
                         for (i = 0; i < diff.length; i++) {
                             if (!diff[i].match(regex)) {
                                 return true;
@@ -1816,24 +1816,24 @@
                  * @returns {boolean} True if the mutation is from a unknown element, false otherwise.
                  */
                 function isUnknownMutation(mutation) {
-                    var attributenombre = mutation.attributenombre;
+                    var attributeName = mutation.attributeName;
                     var mutationTarget = mutation.target;
                     var mutationType = mutation.type;
                     var strClosest = 'closest';
 
                     if (mutationTarget === _contentElementNative)
-                        return attributenombre === null;
-                    if (mutationType === 'attributes' && (attributenombre === LEXICON.c || attributenombre === LEXICON.s) && !_isTextarea) {
-                        //ignore classnombre changes by the plugin	
-                        if (attributenombre === LEXICON.c && FRAMEWORK(mutationTarget).hasClass(_classnombreHostElement))
-                            return hostClassnombresChanged(mutation.oldValue, mutationTarget.classnombre);
+                        return attributeName === null;
+                    if (mutationType === 'attributes' && (attributeName === LEXICON.c || attributeName === LEXICON.s) && !_isTextarea) {
+                        //ignore className changes by the plugin	
+                        if (attributeName === LEXICON.c && FRAMEWORK(mutationTarget).hasClass(_classNameHostElement))
+                            return hostClassNamesChanged(mutation.oldValue, mutationTarget.className);
 
                         //only do it of browser support it natively	
                         if (typeof mutationTarget[strClosest] != TYPES.f)
                             return true;
-                        if (mutationTarget[strClosest](_strDot + _classnombreResizeObserverElement) !== null ||
-                            mutationTarget[strClosest](_strDot + _classnombreScrollbar) !== null ||
-                            mutationTarget[strClosest](_strDot + _classnombreScrollbarCorner) !== null)
+                        if (mutationTarget[strClosest](_strDot + _classNameResizeObserverElement) !== null ||
+                            mutationTarget[strClosest](_strDot + _classNameScrollbar) !== null ||
+                            mutationTarget[strClosest](_strDot + _classNameScrollbarCorner) !== null)
                             return false;
                     }
                     return true;
@@ -1843,7 +1843,7 @@
                  * Returns true if the content size was changed since the last time this method was called.
                  * @returns {boolean} True if the content size was changed, false otherwise.
                  */
-                function upfechaAutoContentSizeChanged() {
+                function updateAutoContentSizeChanged() {
                     if (_sleeping)
                         return false;
 
@@ -1908,28 +1908,28 @@
                         if (elem) {
                             each(check._attrs, function (index, attr) {
                                 curr = attr.charAt(0) === ':' ? elem.is(attr) : elem.attr(attr);
-                                cache = _upfechaAutoCache[attr];
+                                cache = _updateAutoCache[attr];
 
                                 if (checkCache(curr, cache)) {
                                     changedAttrs.push(attr);
                                 }
 
-                                _upfechaAutoCache[attr] = curr;
+                                _updateAutoCache[attr] = curr;
                             });
                         }
                     });
 
-                    upfechaViewportAttrsFromTarget(changedAttrs);
+                    updateViewportAttrsFromTarget(changedAttrs);
 
                     return changedAttrs[LEXICON.l] > 0;
                 }
 
                 /**
                  * Checks is a CSS Property of a child element is affecting the scroll size of the content.
-                 * @param propertynombre The CSS property nombre.
+                 * @param propertyName The CSS property name.
                  * @returns {boolean} True if the property is affecting the content scroll size, false otherwise.
                  */
-                function isSizeAffectingCSSProperty(propertynombre) {
+                function isSizeAffectingCSSProperty(propertyName) {
                     if (!_initialized)
                         return true;
                     var flexGrow = 'flex-grow';
@@ -1979,36 +1979,36 @@
                     var checkX = _overflowBehaviorCache.x === _strS || _overflowBehaviorCache.x === _strVS;
                     var checkY = _overflowBehaviorCache.y === _strS || _overflowBehaviorCache.y === _strVS;
                     var sizeIsAffected = false;
-                    var checkPropertynombre = function (arr, nombre) {
+                    var checkPropertyName = function (arr, name) {
                         for (var i = 0; i < arr[LEXICON.l]; i++) {
-                            if (arr[i] === nombre)
+                            if (arr[i] === name)
                                 return true;
                         }
                         return false;
                     };
 
                     if (checkY) {
-                        sizeIsAffected = checkPropertynombre(affectingPropsY, propertynombre);
+                        sizeIsAffected = checkPropertyName(affectingPropsY, propertyName);
                         if (!sizeIsAffected && !_isBorderBox)
-                            sizeIsAffected = checkPropertynombre(affectingPropsYContentBox, propertynombre);
+                            sizeIsAffected = checkPropertyName(affectingPropsYContentBox, propertyName);
                     }
                     if (checkX && !sizeIsAffected) {
-                        sizeIsAffected = checkPropertynombre(affectingPropsX, propertynombre);
+                        sizeIsAffected = checkPropertyName(affectingPropsX, propertyName);
                         if (!sizeIsAffected && !_isBorderBox)
-                            sizeIsAffected = checkPropertynombre(affectingPropsXContentBox, propertynombre);
+                            sizeIsAffected = checkPropertyName(affectingPropsXContentBox, propertyName);
                     }
                     return sizeIsAffected;
                 }
 
 
-                //==== Upfecha ====//
+                //==== Update ====//
 
                 /**
                  * Sets the attribute values of the viewport element to the values from the target element.
                  * The value of a attribute is only set if the attribute is whitelisted.
                  * @attrs attrs The array of attributes which shall be set or undefined if all whitelisted shall be set.
                  */
-                function upfechaViewportAttrsFromTarget(attrs) {
+                function updateViewportAttrsFromTarget(attrs) {
                     attrs = attrs || _viewportAttrsFromTarget;
                     each(attrs, function (index, attr) {
                         if (COMPATIBILITY.inA(attr, _viewportAttrsFromTarget) > -1) {
@@ -2024,9 +2024,9 @@
                 }
 
                 /**
-                 * Upfechas the variables and size of the textarea element, and manages the scroll on new line or new character.
+                 * Updates the variables and size of the textarea element, and manages the scroll on new line or new character.
                  */
-                function textareaUpfecha() {
+                function textareaUpdate() {
                     if (!_sleeping) {
                         var wrapAttrOff = !_textareaAutoWrappingCache;
                         var minWidth = _viewportSize.w;
@@ -2083,9 +2083,9 @@
                 }
 
                 /**
-                 * Upfechas the plugin and DOM to the current options.
-                 * This method should only be called if a upfecha is 100% required.
-                 * @param upfechaHints A objects which contains hints for this upfecha:
+                 * Updates the plugin and DOM to the current options.
+                 * This method should only be called if a update is 100% required.
+                 * @param updateHints A objects which contains hints for this update:
                  * {
                  *   _hostSizeChanged : boolean,
                  *   _contentSizeChanged : boolean,
@@ -2093,25 +2093,25 @@
                  *   _changedOptions : { },                        == preventSwallowing && preventSleep
                 *  }
                  */
-                function upfecha(upfechaHints) {
-                    clearTimeout(_swallowedUpfechaTimeout);
-                    upfechaHints = upfechaHints || {};
-                    _swallowedUpfechaHints._hostSizeChanged |= upfechaHints._hostSizeChanged;
-                    _swallowedUpfechaHints._contentSizeChanged |= upfechaHints._contentSizeChanged;
-                    _swallowedUpfechaHints._force |= upfechaHints._force;
+                function update(updateHints) {
+                    clearTimeout(_swallowedUpdateTimeout);
+                    updateHints = updateHints || {};
+                    _swallowedUpdateHints._hostSizeChanged |= updateHints._hostSizeChanged;
+                    _swallowedUpdateHints._contentSizeChanged |= updateHints._contentSizeChanged;
+                    _swallowedUpdateHints._force |= updateHints._force;
 
                     var now = COMPATIBILITY.now();
-                    var hostSizeChanged = !!_swallowedUpfechaHints._hostSizeChanged;
-                    var contentSizeChanged = !!_swallowedUpfechaHints._contentSizeChanged;
-                    var force = !!_swallowedUpfechaHints._force;
-                    var changedOptions = upfechaHints._changedOptions;
-                    var swallow = _swallowUpfechaLag > 0 && _initialized && !_destroyed && !force && !changedOptions && (now - _lastUpfechaTime) < _swallowUpfechaLag && (!_heightAutoCache && !_widthAutoCache);
+                    var hostSizeChanged = !!_swallowedUpdateHints._hostSizeChanged;
+                    var contentSizeChanged = !!_swallowedUpdateHints._contentSizeChanged;
+                    var force = !!_swallowedUpdateHints._force;
+                    var changedOptions = updateHints._changedOptions;
+                    var swallow = _swallowUpdateLag > 0 && _initialized && !_destroyed && !force && !changedOptions && (now - _lastUpdateTime) < _swallowUpdateLag && (!_heightAutoCache && !_widthAutoCache);
                     var displayIsHidden;
 
                     if (swallow)
-                        _swallowedUpfechaTimeout = setTimeout(upfecha, _swallowUpfechaLag);
+                        _swallowedUpdateTimeout = setTimeout(update, _swallowUpdateLag);
 
-                    //abort upfecha due to:
+                    //abort update due to:
                     //destroyed
                     //swallowing
                     //sleeping
@@ -2119,8 +2119,8 @@
                     if (_destroyed || swallow || (_sleeping && !changedOptions) || (_initialized && !force && (displayIsHidden = _hostElement.is(':hidden'))) || _hostElement.css('display') === 'inline')
                         return;
 
-                    _lastUpfechaTime = now;
-                    _swallowedUpfechaHints = {};
+                    _lastUpdateTime = now;
+                    _swallowedUpdateHints = {};
 
                     //if scrollbar styling is possible and native scrollbars aren't overlaid the scrollbar styling will be applied which hides the native scrollbars completely.
                     if (_nativeScrollbarStyling && !(_nativeScrollbarIsOverlaid.x && _nativeScrollbarIsOverlaid.y)) {
@@ -2175,9 +2175,9 @@
                     var scrollbarsDragScrolling = currentPreparedOptionsScrollbars.dragScrolling;
                     var scrollbarsDragScrollingChanged = checkCacheAutoForce(scrollbarsDragScrolling, _scrollbarsDragScrollingCache);
 
-                    //classnombre
-                    var classnombre = _currentPreparedOptions.classnombre;
-                    var classnombreChanged = checkCacheAutoForce(classnombre, _classnombreCache);
+                    //className
+                    var className = _currentPreparedOptions.className;
+                    var classNameChanged = checkCacheAutoForce(className, _classNameCache);
 
                     //resize
                     var resize = _currentPreparedOptions.resize;
@@ -2199,9 +2199,9 @@
                     var ignoreOverlayScrollbarHiding = _currentPreparedOptions.nativeScrollbarsOverlaid.showNativeScrollbars;
                     var ignoreOverlayScrollbarHidingChanged = checkCacheAutoForce(ignoreOverlayScrollbarHiding, _ignoreOverlayScrollbarHidingCache);
 
-                    //autoUpfecha
-                    var autoUpfecha = _currentPreparedOptions.autoUpfecha;
-                    var autoUpfechaChanged = checkCacheAutoForce(autoUpfecha, _autoUpfechaCache);
+                    //autoUpdate
+                    var autoUpdate = _currentPreparedOptions.autoUpdate;
+                    var autoUpdateChanged = checkCacheAutoForce(autoUpdate, _autoUpdateCache);
 
                     //overflowBehavior
                     var overflowBehavior = _currentPreparedOptions.overflowBehavior;
@@ -2224,8 +2224,8 @@
                     //scrollbars autoHideDelay
                     _scrollbarsAutoHideDelay = currentPreparedOptionsScrollbars.autoHideDelay;
 
-                    //old classnombre
-                    _oldClassnombre = _classnombreCache;
+                    //old className
+                    _oldClassName = _classNameCache;
 
                     //resize
                     _resizeNone = resize === 'n';
@@ -2244,32 +2244,32 @@
                     _scrollbarsAutoHideCache = scrollbarsAutoHide;
                     _scrollbarsClickScrollingCache = scrollbarsClickScrolling;
                     _scrollbarsDragScrollingCache = scrollbarsDragScrolling;
-                    _classnombreCache = classnombre;
+                    _classNameCache = className;
                     _resizeCache = resize;
                     _paddingAbsoluteCache = paddingAbsolute;
                     _clipAlwaysCache = clipAlways;
                     _sizeAutoCapableCache = sizeAutoCapable;
                     _ignoreOverlayScrollbarHidingCache = ignoreOverlayScrollbarHiding;
-                    _autoUpfechaCache = autoUpfecha;
+                    _autoUpdateCache = autoUpdate;
                     _overflowBehaviorCache = extendDeep({}, overflowBehavior);
                     _textareaDynWidthCache = textareaDynWidth;
                     _textareaDynHeightCache = textareaDynHeight;
                     _hasOverflowCache = _hasOverflowCache || { x: false, y: false };
 
-                    //set correct class nombre to the host element
-                    if (classnombreChanged) {
-                        removeClass(_hostElement, _oldClassnombre + _strSpace + _classnombreThemeNone);
-                        addClass(_hostElement, classnombre !== undefined && classnombre !== null && classnombre.length > 0 ? classnombre : _classnombreThemeNone);
+                    //set correct class name to the host element
+                    if (classNameChanged) {
+                        removeClass(_hostElement, _oldClassName + _strSpace + _classNameThemeNone);
+                        addClass(_hostElement, className !== undefined && className !== null && className.length > 0 ? className : _classNameThemeNone);
                     }
 
-                    //set correct auto Upfecha
-                    if (autoUpfechaChanged) {
-                        if (autoUpfecha === true || (autoUpfecha === null && _autoUpfechaRecommended)) {
+                    //set correct auto Update
+                    if (autoUpdateChanged) {
+                        if (autoUpdate === true || (autoUpdate === null && _autoUpdateRecommended)) {
                             disconnectMutationObservers();
-                            autoUpfechaLoop.add(_base);
+                            autoUpdateLoop.add(_base);
                         }
                         else {
-                            autoUpfechaLoop.remove(_base);
+                            autoUpdateLoop.remove(_base);
                             connectMutationObservers();
                         }
                     }
@@ -2281,14 +2281,14 @@
                                 _contentGlueElement.show();
                             }
                             else {
-                                _contentGlueElement = FRAMEWORK(generateDiv(_classnombreContentGlueElement));
+                                _contentGlueElement = FRAMEWORK(generateDiv(_classNameContentGlueElement));
                                 _paddingElement.before(_contentGlueElement);
                             }
                             if (_sizeAutoObserverAdded) {
                                 _sizeAutoObserverElement.show();
                             }
                             else {
-                                _sizeAutoObserverElement = FRAMEWORK(generateDiv(_classnombreSizeAutoObserverElement));
+                                _sizeAutoObserverElement = FRAMEWORK(generateDiv(_classNameSizeAutoObserverElement));
                                 _sizeAutoObserverElementNative = _sizeAutoObserverElement[0];
 
                                 _contentGlueElement.before(_sizeAutoObserverElement);
@@ -2300,10 +2300,10 @@
                                     };
                                     if (checkCache(newSize, oldSize)) {
                                         if (_initialized && (_heightAutoCache && newSize.h > 0) || (_widthAutoCache && newSize.w > 0)) {
-                                            upfecha();
+                                            update();
                                         }
                                         else if (_initialized && (!_heightAutoCache && newSize.h === 0) || (!_widthAutoCache && newSize.w === 0)) {
-                                            upfecha();
+                                            update();
                                         }
                                     }
                                     oldSize = newSize;
@@ -2323,7 +2323,7 @@
                         }
                     }
 
-                    //if force, upfecha all resizeObservers too
+                    //if force, update all resizeObservers too
                     if (force) {
                         _sizeObserverElement.find('*').trigger(_strScroll);
                         if (_sizeAutoObserverAdded)
@@ -2391,9 +2391,9 @@
 
                     //detect border:
                     //we need the border only if border box and auto size
-                    var upfechaBorderX = (widthAuto && _isBorderBox) || !_isBorderBox;
-                    var upfechaBorderY = (heightAuto && _isBorderBox) || !_isBorderBox;
-                    var border = getTopRightBottomLeftHost(_strBorderMinus, '-' + _strWidth, !upfechaBorderX, !upfechaBorderY)
+                    var updateBorderX = (widthAuto && _isBorderBox) || !_isBorderBox;
+                    var updateBorderY = (heightAuto && _isBorderBox) || !_isBorderBox;
+                    var border = getTopRightBottomLeftHost(_strBorderMinus, '-' + _strWidth, !updateBorderX, !updateBorderY)
 
                     //detect margin:
                     var margin = getTopRightBottomLeftHost(_strMarginMinus);
@@ -2474,8 +2474,8 @@
                     //viewport size is padding container because it never has padding, margin and a border.
                     _viewportSize = getViewportSize();
 
-                    //upfecha Textarea
-                    var textareaSize = _isTextarea ? textareaUpfecha() : false;
+                    //update Textarea
+                    var textareaSize = _isTextarea ? textareaUpdate() : false;
                     var textareaSizeChanged = _isTextarea && checkCacheAutoForce(textareaSize, _textareaSizeCache);
                     var textareaDynOrigSize = _isTextarea && textareaSize ? {
                         w: textareaDynWidth ? textareaSize._dynamicWidth : textareaSize._originalWidth,
@@ -2733,7 +2733,7 @@
                                 };
 
                                 if (_nativeScrollbarStyling) {
-                                    addRemoveClass(_viewportElement, _classnombreViewportNativeScrollbarsInvisible, !ignoreOverlayScrollbarHiding)
+                                    addRemoveClass(_viewportElement, _classNameViewportNativeScrollbarsInvisible, !ignoreOverlayScrollbarHiding)
                                 }
                                 else {
                                     setContentElementCSS(true);
@@ -2749,7 +2749,7 @@
                                 contentArrangeElementCSS[_strHeight] = hideOverflow.x ? arrangeContent.h : _strEmpty;
 
                                 if (!_contentArrangeElement) {
-                                    _contentArrangeElement = FRAMEWORK(generateDiv(_classnombreContentArrangeElement));
+                                    _contentArrangeElement = FRAMEWORK(generateDiv(_classNameContentArrangeElement));
                                     _viewportElement.prepend(_contentArrangeElement);
                                 }
                                 _contentArrangeElement.css(contentArrangeElementCSS);
@@ -2916,32 +2916,32 @@
                             refreshScrollbarAppearance(false, showY, canScroll.y)
                         };
 
-                        //manage class nombre which indicates scrollable overflow
-                        addRemoveClass(_hostElement, _classnombreHostOverflow, hideOverflow.x || hideOverflow.y);
-                        addRemoveClass(_hostElement, _classnombreHostOverflowX, hideOverflow.x);
-                        addRemoveClass(_hostElement, _classnombreHostOverflowY, hideOverflow.y);
+                        //manage class name which indicates scrollable overflow
+                        addRemoveClass(_hostElement, _classNameHostOverflow, hideOverflow.x || hideOverflow.y);
+                        addRemoveClass(_hostElement, _classNameHostOverflowX, hideOverflow.x);
+                        addRemoveClass(_hostElement, _classNameHostOverflowY, hideOverflow.y);
 
-                        //add or remove rtl class nombre for styling purposes except when its body, then the scrollbar stays
+                        //add or remove rtl class name for styling purposes except when its body, then the scrollbar stays
                         if (cssDirectionChanged && !_isBody) {
-                            addRemoveClass(_hostElement, _classnombreHostRTL, _isRTL);
+                            addRemoveClass(_hostElement, _classNameHostRTL, _isRTL);
                         }
 
                         //manage the resize feature (CSS3 resize "polyfill" for this plugin)
                         if (_isBody)
-                            addClass(_hostElement, _classnombreHostResizeDisabled);
+                            addClass(_hostElement, _classNameHostResizeDisabled);
                         if (resizeChanged) {
-                            addRemoveClass(_hostElement, _classnombreHostResizeDisabled, _resizeNone);
-                            addRemoveClass(_scrollbarCornerElement, _classnombreScrollbarCornerResize, !_resizeNone);
-                            addRemoveClass(_scrollbarCornerElement, _classnombreScrollbarCornerResizeB, _resizeBoth);
-                            addRemoveClass(_scrollbarCornerElement, _classnombreScrollbarCornerResizeH, _resizeHorizontal);
-                            addRemoveClass(_scrollbarCornerElement, _classnombreScrollbarCornerResizeV, _resizeVertical);
+                            addRemoveClass(_hostElement, _classNameHostResizeDisabled, _resizeNone);
+                            addRemoveClass(_scrollbarCornerElement, _classNameScrollbarCornerResize, !_resizeNone);
+                            addRemoveClass(_scrollbarCornerElement, _classNameScrollbarCornerResizeB, _resizeBoth);
+                            addRemoveClass(_scrollbarCornerElement, _classNameScrollbarCornerResizeH, _resizeHorizontal);
+                            addRemoveClass(_scrollbarCornerElement, _classNameScrollbarCornerResizeV, _resizeVertical);
                         }
 
-                        //manage the scrollbars general visibility + the scrollbar interactivity (unusable class nombre)
+                        //manage the scrollbars general visibility + the scrollbar interactivity (unusable class name)
                         if (scrollbarsVisibilityChanged || overflowBehaviorChanged || hideOverflow.c || hasOverflow.c || ignoreOverlayScrollbarHidingChanged) {
                             if (ignoreOverlayScrollbarHiding) {
                                 if (ignoreOverlayScrollbarHidingChanged) {
-                                    removeClass(_hostElement, _classnombreHostScrolling);
+                                    removeClass(_hostElement, _classNameHostScrolling);
                                     if (ignoreOverlayScrollbarHiding) {
                                         refreshScrollbarsVisibility(false);
                                     }
@@ -3016,29 +3016,29 @@
                         _bodyMinSizeCache.c = false;
                     }
 
-                    if (_initialized && changedOptions.upfechaOnLoad) {
-                        upfechaElementsOnLoad();
+                    if (_initialized && changedOptions.updateOnLoad) {
+                        updateElementsOnLoad();
                     }
 
                     //freezeResizeObserver(_sizeObserverElement, false);
                     //freezeResizeObserver(_sizeAutoObserverElement, false);
 
-                    dispatchCallback('onUpfechad', { forced: force });
+                    dispatchCallback('onUpdated', { forced: force });
                 }
 
                 /**
-                 * Upfechas the found elements of which the load event shall be handled.
+                 * Updates the found elements of which the load event shall be handled.
                  */
-                function upfechaElementsOnLoad() {
+                function updateElementsOnLoad() {
                     if (!_isTextarea) {
-                        eachUpfechaOnLoad(function (i, upfechaOnLoadSelector) {
-                            _contentElement.find(upfechaOnLoadSelector).each(function (i, el) {
-                                // if element doesn't have a upfechaOnLoadCallback applied
-                                if (COMPATIBILITY.inA(el, _upfechaOnLoadElms) < 0) {
-                                    _upfechaOnLoadElms.push(el);
+                        eachUpdateOnLoad(function (i, updateOnLoadSelector) {
+                            _contentElement.find(updateOnLoadSelector).each(function (i, el) {
+                                // if element doesn't have a updateOnLoadCallback applied
+                                if (COMPATIBILITY.inA(el, _updateOnLoadElms) < 0) {
+                                    _updateOnLoadElms.push(el);
                                     FRAMEWORK(el)
-                                        .off(_upfechaOnLoadEventnombre, upfechaOnLoadCallback)
-                                        .on(_upfechaOnLoadEventnombre, upfechaOnLoadCallback);
+                                        .off(_updateOnLoadEventName, updateOnLoadCallback)
+                                        .on(_updateOnLoadEventName, updateOnLoadCallback);
                                 }
                             });
                         });
@@ -3048,17 +3048,17 @@
                 //==== Options ====//
 
                 /**
-                 * Sets new options but doesn't call the upfecha method.
+                 * Sets new options but doesn't call the update method.
                  * @param newOptions The object which contains the new options.
                  * @returns {*} A object which contains the changed options.
                  */
                 function setOptions(newOptions) {
-                    var valifechadOpts = _pluginsOptions._valifecha(newOptions, _pluginsOptions._template, true, _currentOptions)
+                    var validatedOpts = _pluginsOptions._validate(newOptions, _pluginsOptions._template, true, _currentOptions)
 
-                    _currentOptions = extendDeep({}, _currentOptions, valifechadOpts._default);
-                    _currentPreparedOptions = extendDeep({}, _currentPreparedOptions, valifechadOpts._prepared);
+                    _currentOptions = extendDeep({}, _currentOptions, validatedOpts._default);
+                    _currentPreparedOptions = extendDeep({}, _currentPreparedOptions, validatedOpts._prepared);
 
-                    return valifechadOpts._prepared;
+                    return validatedOpts._prepared;
                 }
 
 
@@ -3074,9 +3074,9 @@
                  */
                 function setupStructureDOM(destroy) {
                     var strParent = 'parent';
-                    var classnombreResizeObserverHost = 'os-resize-observer-host';
-                    var classnombreTextareaElementFull = _classnombreTextareaElement + _strSpace + _classnombreTextInherit;
-                    var textareaClass = _isTextarea ? _strSpace + _classnombreTextInherit : _strEmpty;
+                    var classNameResizeObserverHost = 'os-resize-observer-host';
+                    var classNameTextareaElementFull = _classNameTextareaElement + _strSpace + _classNameTextInherit;
+                    var textareaClass = _isTextarea ? _strSpace + _classNameTextInherit : _strEmpty;
                     var adoptAttrs = _currentPreparedOptions.textarea.inheritedAttrs;
                     var adoptAttrsMap = {};
                     var applyAdoptedAttrs = function () {
@@ -3090,41 +3090,41 @@
                             }
                         });
                     };
-                    var hostElementClassnombres = [
-                        _classnombreHostElement,
-                        _classnombreHostElementForeign,
-                        _classnombreHostTextareaElement,
-                        _classnombreHostResizeDisabled,
-                        _classnombreHostRTL,
-                        _classnombreHostScrollbarHorizontalHidden,
-                        _classnombreHostScrollbarVerticalHidden,
-                        _classnombreHostTransition,
-                        _classnombreHostScrolling,
-                        _classnombreHostOverflow,
-                        _classnombreHostOverflowX,
-                        _classnombreHostOverflowY,
-                        _classnombreThemeNone,
-                        _classnombreTextareaElement,
-                        _classnombreTextInherit,
-                        _classnombreCache].join(_strSpace);
+                    var hostElementClassNames = [
+                        _classNameHostElement,
+                        _classNameHostElementForeign,
+                        _classNameHostTextareaElement,
+                        _classNameHostResizeDisabled,
+                        _classNameHostRTL,
+                        _classNameHostScrollbarHorizontalHidden,
+                        _classNameHostScrollbarVerticalHidden,
+                        _classNameHostTransition,
+                        _classNameHostScrolling,
+                        _classNameHostOverflow,
+                        _classNameHostOverflowX,
+                        _classNameHostOverflowY,
+                        _classNameThemeNone,
+                        _classNameTextareaElement,
+                        _classNameTextInherit,
+                        _classNameCache].join(_strSpace);
                     var hostElementCSS = {};
 
                     //get host element as first element, because that's the most upper element and required for the other elements
-                    _hostElement = _hostElement || (_isTextarea ? (_domExists ? _targetElement[strParent]()[strParent]()[strParent]()[strParent]() : FRAMEWORK(generateDiv(_classnombreHostTextareaElement))) : _targetElement);
-                    _contentElement = _contentElement || selectOrGenerateDivByClass(_classnombreContentElement + textareaClass);
-                    _viewportElement = _viewportElement || selectOrGenerateDivByClass(_classnombreViewportElement + textareaClass);
-                    _paddingElement = _paddingElement || selectOrGenerateDivByClass(_classnombrePaddingElement + textareaClass);
-                    _sizeObserverElement = _sizeObserverElement || selectOrGenerateDivByClass(classnombreResizeObserverHost);
-                    _textareaCoverElement = _textareaCoverElement || (_isTextarea ? selectOrGenerateDivByClass(_classnombreTextareaCoverElement) : undefined);
+                    _hostElement = _hostElement || (_isTextarea ? (_domExists ? _targetElement[strParent]()[strParent]()[strParent]()[strParent]() : FRAMEWORK(generateDiv(_classNameHostTextareaElement))) : _targetElement);
+                    _contentElement = _contentElement || selectOrGenerateDivByClass(_classNameContentElement + textareaClass);
+                    _viewportElement = _viewportElement || selectOrGenerateDivByClass(_classNameViewportElement + textareaClass);
+                    _paddingElement = _paddingElement || selectOrGenerateDivByClass(_classNamePaddingElement + textareaClass);
+                    _sizeObserverElement = _sizeObserverElement || selectOrGenerateDivByClass(classNameResizeObserverHost);
+                    _textareaCoverElement = _textareaCoverElement || (_isTextarea ? selectOrGenerateDivByClass(_classNameTextareaCoverElement) : undefined);
 
                     //add this class to workaround class changing issues with UI frameworks especially Vue
                     if (_domExists)
-                        addClass(_hostElement, _classnombreHostElementForeign);
+                        addClass(_hostElement, _classNameHostElementForeign);
 
-                    //on destroy, remove all generated class nombres from the host element before collecting the adopted attributes 
-                    //to prevent adopting generated class nombres
+                    //on destroy, remove all generated class names from the host element before collecting the adopted attributes 
+                    //to prevent adopting generated class names
                     if (destroy)
-                        removeClass(_hostElement, hostElementClassnombres);
+                        removeClass(_hostElement, hostElementClassNames);
 
                     //collect all adopted attributes
                     adoptAttrs = type(adoptAttrs) == TYPES.s ? adoptAttrs.split(_strSpace) : adoptAttrs;
@@ -3144,7 +3144,7 @@
                             }
 
                             if (!_domExists)
-                                _targetElement.addClass(_classnombreTextInherit).wrap(_hostElement);
+                                _targetElement.addClass(_classNameTextInherit).wrap(_hostElement);
 
                             //jQuery clones elements in wrap functions, so we have to select them again
                             _hostElement = _targetElement[strParent]().css(hostElementCSS);
@@ -3152,7 +3152,7 @@
 
                         if (!_domExists) {
                             //add the correct class to the target element
-                            addClass(_targetElement, _isTextarea ? classnombreTextareaElementFull : _classnombreHostElement);
+                            addClass(_targetElement, _isTextarea ? classNameTextareaElementFull : _classNameHostElement);
 
                             //wrap the content into the generated elements to create the required DOM
                             _hostElement.wrapInner(_contentElement)
@@ -3161,9 +3161,9 @@
                                 .prepend(_sizeObserverElement);
 
                             //jQuery clones elements in wrap functions, so we have to select them again
-                            _contentElement = findFirst(_hostElement, _strDot + _classnombreContentElement);
-                            _viewportElement = findFirst(_hostElement, _strDot + _classnombreViewportElement);
-                            _paddingElement = findFirst(_hostElement, _strDot + _classnombrePaddingElement);
+                            _contentElement = findFirst(_hostElement, _strDot + _classNameContentElement);
+                            _viewportElement = findFirst(_hostElement, _strDot + _classNameViewportElement);
+                            _paddingElement = findFirst(_hostElement, _strDot + _classNamePaddingElement);
 
                             if (_isTextarea) {
                                 _contentElement.prepend(_textareaCoverElement);
@@ -3172,11 +3172,11 @@
                         }
 
                         if (_nativeScrollbarStyling)
-                            addClass(_viewportElement, _classnombreViewportNativeScrollbarsInvisible);
+                            addClass(_viewportElement, _classNameViewportNativeScrollbarsInvisible);
                         if (_nativeScrollbarIsOverlaid.x && _nativeScrollbarIsOverlaid.y)
-                            addClass(_viewportElement, _classnombreViewportNativeScrollbarsOverlaid);
+                            addClass(_viewportElement, _classNameViewportNativeScrollbarsOverlaid);
                         if (_isBody)
-                            addClass(_htmlElement, _classnombreHTMLElement);
+                            addClass(_htmlElement, _classNameHTMLElement);
 
                         _sizeObserverElementNative = _sizeObserverElement[0];
                         _hostElementNative = _hostElement[0];
@@ -3184,7 +3184,7 @@
                         _viewportElementNative = _viewportElement[0];
                         _contentElementNative = _contentElement[0];
 
-                        upfechaViewportAttrsFromTarget();
+                        updateViewportAttrsFromTarget();
                     }
                     else {
                         if (_domExists && _initialized) {
@@ -3194,12 +3194,12 @@
                             //remove the style property and classes from already generated elements
                             each([_paddingElement, _viewportElement, _contentElement, _textareaCoverElement], function (i, elm) {
                                 if (elm) {
-                                    removeClass(elm.removeAttr(LEXICON.s), _classnombresDynamicDestroy);
+                                    removeClass(elm.removeAttr(LEXICON.s), _classNamesDynamicDestroy);
                                 }
                             });
 
                             //add classes to the host element which was removed previously to match the expected DOM
-                            addClass(_hostElement, _isTextarea ? _classnombreHostTextareaElement : _classnombreHostElement);
+                            addClass(_hostElement, _isTextarea ? _classNameHostTextareaElement : _classNameHostElement);
                         }
                         else {
                             //remove size observer
@@ -3223,7 +3223,7 @@
                             _targetElement.removeAttr(LEXICON.s);
 
                         if (_isBody)
-                            removeClass(_htmlElement, _classnombreHTMLElement);
+                            removeClass(_htmlElement, _classNameHTMLElement);
                     }
                 }
 
@@ -3239,16 +3239,16 @@
                         16, 17, 18, 19, 20, 144                                   //Shift, Ctrl, Alt, Pause, CapsLock, NumLock
                     ];
                     var textareaKeyDownKeyCodesList = [];
-                    var textareaUpfechaIntervalID;
+                    var textareaUpdateIntervalID;
                     var scrollStopTimeoutId;
                     var scrollStopDelay = 175;
                     var strFocus = 'focus';
 
-                    function upfechaTextarea(doClearInterval) {
-                        textareaUpfecha();
-                        _base.upfecha(_strAuto);
-                        if (doClearInterval && _autoUpfechaRecommended)
-                            clearInterval(textareaUpfechaIntervalID);
+                    function updateTextarea(doClearInterval) {
+                        textareaUpdate();
+                        _base.update(_strAuto);
+                        if (doClearInterval && _autoUpdateRecommended)
+                            clearInterval(textareaUpdateIntervalID);
                     }
                     function textareaOnScroll(event) {
                         _targetElement[_strScrollLeft](_rtlScrollBehavior.i && _normalizeRTLCache ? 9999999 : 0);
@@ -3260,7 +3260,7 @@
                     function textareaOnDrop(event) {
                         setTimeout(function () {
                             if (!_destroyed)
-                                upfechaTextarea();
+                                updateTextarea();
                         }, 50);
                     }
                     function textareaOnFocus() {
@@ -3271,15 +3271,15 @@
                         _textareaHasFocus = false;
                         textareaKeyDownKeyCodesList = [];
                         removeClass(_hostElement, strFocus);
-                        upfechaTextarea(true);
+                        updateTextarea(true);
                     }
                     function textareaOnKeyDown(event) {
                         var keyCode = event.keyCode;
 
                         if (inArray(keyCode, textareaKeyDownRestrictedKeyCodes) < 0) {
                             if (!textareaKeyDownKeyCodesList[LEXICON.l]) {
-                                upfechaTextarea();
-                                textareaUpfechaIntervalID = setInterval(upfechaTextarea, 1000 / 60);
+                                updateTextarea();
+                                textareaUpdateIntervalID = setInterval(updateTextarea, 1000 / 60);
                             }
                             if (inArray(keyCode, textareaKeyDownKeyCodesList) < 0)
                                 textareaKeyDownKeyCodesList.push(keyCode);
@@ -3293,15 +3293,15 @@
                             if (index > -1)
                                 textareaKeyDownKeyCodesList.splice(index, 1);
                             if (!textareaKeyDownKeyCodesList[LEXICON.l])
-                                upfechaTextarea(true);
+                                updateTextarea(true);
                         }
                     }
                     function contentOnTransitionEnd(event) {
-                        if (_autoUpfechaCache === true)
+                        if (_autoUpdateCache === true)
                             return;
                         event = event.originalEvent || event;
-                        if (isSizeAffectingCSSProperty(event.propertynombre))
-                            _base.upfecha(_strAuto);
+                        if (isSizeAffectingCSSProperty(event.propertyName))
+                            _base.update(_strAuto);
                     }
                     function viewportOnScroll(event) {
                         if (!_sleeping) {
@@ -3312,7 +3312,7 @@
                                     refreshScrollbarsAutoHide(true);
 
                                 if (!nativeOverlayScrollbarsAreActive())
-                                    addClass(_hostElement, _classnombreHostScrolling);
+                                    addClass(_hostElement, _classNameHostScrolling);
 
                                 dispatchCallback('onScrollStart', event);
                             }
@@ -3336,7 +3336,7 @@
                                         refreshScrollbarsAutoHide(false);
 
                                     if (!nativeOverlayScrollbarsAreActive())
-                                        removeClass(_hostElement, _classnombreHostScrolling);
+                                        removeClass(_hostElement, _classNameHostScrolling);
 
                                     dispatchCallback('onScrollStop', event);
                                 }
@@ -3346,8 +3346,8 @@
 
 
                     if (_isTextarea) {
-                        if (_msieVersion > 9 || !_autoUpfechaRecommended) {
-                            addDestroyEventListener(_targetElement, 'input', upfechaTextarea);
+                        if (_msieVersion > 9 || !_autoUpdateRecommended) {
+                            addDestroyEventListener(_targetElement, 'input', updateTextarea);
                         }
                         else {
                             addDestroyEventListener(_targetElement,
@@ -3374,10 +3374,10 @@
                  */
                 function setupScrollbarsDOM(destroy) {
                     var selectOrGenerateScrollbarDOM = function (isHorizontal) {
-                        var scrollbarClassnombre = isHorizontal ? _classnombreScrollbarHorizontal : _classnombreScrollbarVertical;
-                        var scrollbar = selectOrGenerateDivByClass(_classnombreScrollbar + _strSpace + scrollbarClassnombre, true);
-                        var track = selectOrGenerateDivByClass(_classnombreScrollbarTrack, scrollbar);
-                        var handle = selectOrGenerateDivByClass(_classnombreScrollbarHandle, scrollbar);
+                        var scrollbarClassName = isHorizontal ? _classNameScrollbarHorizontal : _classNameScrollbarVertical;
+                        var scrollbar = selectOrGenerateDivByClass(_classNameScrollbar + _strSpace + scrollbarClassName, true);
+                        var track = selectOrGenerateDivByClass(_classNameScrollbarTrack, scrollbar);
+                        var handle = selectOrGenerateDivByClass(_classNameScrollbarHandle, scrollbar);
 
                         if (!_domExists && !destroy) {
                             scrollbar.append(track);
@@ -3398,7 +3398,7 @@
 
                         if (_domExists && _initialized) {
                             each([scrollbar, track, handle], function (i, elm) {
-                                removeClass(elm.removeAttr(LEXICON.s), _classnombresDynamicDestroy);
+                                removeClass(elm.removeAttr(LEXICON.s), _classNamesDynamicDestroy);
                             });
                         }
                         else {
@@ -3454,8 +3454,8 @@
                     function getPointerPosition(event) {
                         return _msieVersion && insideIFrame ? event['screen' + XY] : COMPATIBILITY.page(event)[xy]; //use screen coordinates in EDGE & IE because the page values are incorrect in frames.
                     }
-                    function getPreparedScrollbarsOption(nombre) {
-                        return _currentPreparedOptions.scrollbars[nombre];
+                    function getPreparedScrollbarsOption(name) {
+                        return _currentPreparedOptions.scrollbars[name];
                     }
                     function increaseTrackScrollAmount() {
                         scrollDurationFactor = 0.5;
@@ -3518,7 +3518,7 @@
                             refreshScrollbarHandleOffset(isHorizontal, true);
 
                         _scrollbarsHandlesDefineScrollPos = false;
-                        removeClass(_bodyElement, _classnombreDragging);
+                        removeClass(_bodyElement, _classNameDragging);
                         removeClass(scrollbarVars._handle, strActive);
                         removeClass(scrollbarVars._track, strActive);
                         removeClass(scrollbarVars._scrollbar, strActive);
@@ -3561,7 +3561,7 @@
                         mouseDownOffset = getPointerPosition(event);
 
                         _scrollbarsHandlesDefineScrollPos = !getPreparedScrollbarsOption(strSnapHandle);
-                        addClass(_bodyElement, _classnombreDragging);
+                        addClass(_bodyElement, _classNameDragging);
                         addClass(scrollbarVars._handle, strActive);
                         addClass(scrollbarVars._scrollbar, strActive);
 
@@ -3679,7 +3679,7 @@
                             mouseDownOffset = COMPATIBILITY.page(event)[xy];
 
                             _scrollbarsHandlesDefineScrollPos = !getPreparedScrollbarsOption(strSnapHandle);
-                            addClass(_bodyElement, _classnombreDragging);
+                            addClass(_bodyElement, _classNameDragging);
                             addClass(scrollbarVars._track, strActive);
                             addClass(scrollbarVars._scrollbar, strActive);
 
@@ -3728,17 +3728,17 @@
                 }
 
                 /**
-                 * Shows or hides the given scrollbar and applied a class nombre which indicates if the scrollbar is scrollable or not.
+                 * Shows or hides the given scrollbar and applied a class name which indicates if the scrollbar is scrollable or not.
                  * @param isHorizontal True if the horizontal scrollbar is the target, false if the vertical scrollbar is the target.
                  * @param shallBeVisible True if the scrollbar shall be shown, false if hidden.
                  * @param canScroll True if the scrollbar is scrollable, false otherwise.
                  */
                 function refreshScrollbarAppearance(isHorizontal, shallBeVisible, canScroll) {
-                    var scrollbarHiddenClassnombre = isHorizontal ? _classnombreHostScrollbarHorizontalHidden : _classnombreHostScrollbarVerticalHidden;
+                    var scrollbarHiddenClassName = isHorizontal ? _classNameHostScrollbarHorizontalHidden : _classNameHostScrollbarVerticalHidden;
                     var scrollbarElement = isHorizontal ? _scrollbarHorizontalElement : _scrollbarVerticalElement;
 
-                    addRemoveClass(_hostElement, scrollbarHiddenClassnombre, !shallBeVisible);
-                    addRemoveClass(scrollbarElement, _classnombreScrollbarUnusable, !canScroll);
+                    addRemoveClass(_hostElement, scrollbarHiddenClassName, !shallBeVisible);
+                    addRemoveClass(scrollbarElement, _classNameScrollbarUnusable, !canScroll);
                 }
 
                 /**
@@ -3750,9 +3750,9 @@
                     clearTimeout(_scrollbarsAutoHideTimeoutId);
                     if (shallBeVisible) {
                         //if(_hasOverflowCache.x && _hideOverflowCache.xs)
-                        removeClass(_scrollbarHorizontalElement, _classnombreScrollbarAutoHidden);
+                        removeClass(_scrollbarHorizontalElement, _classNameScrollbarAutoHidden);
                         //if(_hasOverflowCache.y && _hideOverflowCache.ys)
-                        removeClass(_scrollbarVerticalElement, _classnombreScrollbarAutoHidden);
+                        removeClass(_scrollbarVerticalElement, _classNameScrollbarAutoHidden);
                     }
                     else {
                         var anyActive;
@@ -3761,9 +3761,9 @@
                             if (!_scrollbarsHandleHovered && !_destroyed) {
                                 anyActive = _scrollbarHorizontalHandleElement.hasClass(strActive) || _scrollbarVerticalHandleElement.hasClass(strActive);
                                 if (!anyActive && (_scrollbarsAutoHideScroll || _scrollbarsAutoHideMove || _scrollbarsAutoHideLeave))
-                                    addClass(_scrollbarHorizontalElement, _classnombreScrollbarAutoHidden);
+                                    addClass(_scrollbarHorizontalElement, _classNameScrollbarAutoHidden);
                                 if (!anyActive && (_scrollbarsAutoHideScroll || _scrollbarsAutoHideMove || _scrollbarsAutoHideLeave))
-                                    addClass(_scrollbarVerticalElement, _classnombreScrollbarAutoHidden);
+                                    addClass(_scrollbarVerticalElement, _classNameScrollbarAutoHidden);
                             }
                         };
                         if (_scrollbarsAutoHideDelay > 0 && delayfree !== true)
@@ -3820,7 +3820,7 @@
                     var translateValue;
 
                     //DONT use the variable '_contentScrollSizeCache[scrollbarVars._w_h]' instead of '_viewportElement[0]['scroll' + scrollbarVars._Width_Height]'
-                    // because its a bit behind during the small delay when content size upfechas
+                    // because its a bit behind during the small delay when content size updates
                     //(delay = mutationObserverContentLag, if its 0 then this var could be used)
                     var maxScroll = (_viewportElementNative[_strScroll + scrollbarVars._Width_Height] - _viewportElementNative['client' + scrollbarVars._Width_Height]) * (_rtlScrollBehavior.n && isRTLisHorizontal ? -1 : 1); //* -1 if rtl scroll max is negative
                     var getScrollRatio = function (base) {
@@ -3884,10 +3884,10 @@
                     var action = value ? 'removeClass' : 'addClass';
                     var element1 = isTrack ? _scrollbarHorizontalTrackElement : _scrollbarHorizontalHandleElement;
                     var element2 = isTrack ? _scrollbarVerticalTrackElement : _scrollbarVerticalHandleElement;
-                    var classnombre = isTrack ? _classnombreScrollbarTrackOff : _classnombreScrollbarHandleOff;
+                    var className = isTrack ? _classNameScrollbarTrackOff : _classNameScrollbarHandleOff;
 
-                    element1[action](classnombre);
-                    element2[action](classnombre);
+                    element1[action](className);
+                    element2[action](className);
                 }
 
                 /**
@@ -3920,7 +3920,7 @@
                  * @param destroy Indicates whether the DOM shall be build or destroyed.
                  */
                 function setupScrollbarCornerDOM(destroy) {
-                    _scrollbarCornerElement = _scrollbarCornerElement || selectOrGenerateDivByClass(_classnombreScrollbarCorner, true);
+                    _scrollbarCornerElement = _scrollbarCornerElement || selectOrGenerateDivByClass(_classNameScrollbarCorner, true);
 
                     if (!destroy) {
                         if (!_domExists) {
@@ -3929,7 +3929,7 @@
                     }
                     else {
                         if (_domExists && _initialized) {
-                            removeClass(_scrollbarCornerElement.removeAttr(LEXICON.s), _classnombresDynamicDestroy);
+                            removeClass(_scrollbarCornerElement.removeAttr(LEXICON.s), _classNamesDynamicDestroy);
                         }
                         else {
                             remove(_scrollbarCornerElement);
@@ -3970,14 +3970,14 @@
                             [documentOnSelectStart, documentDragMove, documentMouseTouchUp],
                             true);
 
-                        removeClass(_bodyElement, _classnombreDragging);
+                        removeClass(_bodyElement, _classNameDragging);
                         if (_scrollbarCornerElement.releaseCapture)
                             _scrollbarCornerElement.releaseCapture();
 
                         if (eventIsTrusted) {
                             if (reconnectMutationObserver)
                                 connectMutationObservers();
-                            _base.upfecha(_strAuto);
+                            _base.update(_strAuto);
                         }
                         reconnectMutationObserver = false;
                     }
@@ -4007,7 +4007,7 @@
                                 [_strSelectStartEvent, _strMouseTouchMoveEvent, _strMouseTouchUpEvent],
                                 [documentOnSelectStart, documentDragMove, documentMouseTouchUp]);
 
-                            addClass(_bodyElement, _classnombreDragging);
+                            addClass(_bodyElement, _classNameDragging);
                             if (_scrollbarCornerElement.setCapture)
                                 _scrollbarCornerElement.setCapture();
 
@@ -4021,21 +4021,21 @@
                 //==== Utils ====//
 
                 /**
-                 * Calls the callback with the given nombre. The Context of this callback is always _base (this).
-                 * @param nombre The nombre of the target which shall be called.
+                 * Calls the callback with the given name. The Context of this callback is always _base (this).
+                 * @param name The name of the target which shall be called.
                  * @param args The args with which the callback shall be called.
                  * @param dependent Boolean which decides whether the callback shall be fired, undefined is like a "true" value.
                  */
-                function dispatchCallback(nombre, args, dependent) {
+                function dispatchCallback(name, args, dependent) {
                     if (dependent === false)
                         return;
                     if (_initialized) {
-                        var callback = _currentPreparedOptions.callbacks[nombre];
-                        var extensionOnnombre = nombre;
+                        var callback = _currentPreparedOptions.callbacks[name];
+                        var extensionOnName = name;
                         var ext;
 
-                        if (extensionOnnombre.substr(0, 2) === 'on')
-                            extensionOnnombre = extensionOnnombre.substr(2, 1).toLowerCase() + extensionOnnombre.substr(3);
+                        if (extensionOnName.substr(0, 2) === 'on')
+                            extensionOnName = extensionOnName.substr(2, 1).toLowerCase() + extensionOnName.substr(3);
 
                         if (type(callback) == TYPES.f)
                             callback.call(_base, args);
@@ -4043,11 +4043,11 @@
                         each(_extensions, function () {
                             ext = this;
                             if (type(ext.on) == TYPES.f)
-                                ext.on(extensionOnnombre, args);
+                                ext.on(extensionOnName, args);
                         });
                     }
                     else if (!_destroyed)
-                        _callbacksInitQeueue.push({ n: nombre, a: args });
+                        _callbacksInitQeueue.push({ n: name, a: args });
                 }
 
                 /**
@@ -4098,7 +4098,7 @@
                         return assembledValue;
                     var regExpString = '\\s*(' + '([^,(]+(\\(.+?\\))?)+' + ')[\\s,]*';
                     var regExpMain = new RegExp(regExpString);
-                    var regExpValifecha = new RegExp('^(' + regExpString + ')+$');
+                    var regExpValidate = new RegExp('^(' + regExpString + ')+$');
                     var properties = 'property duration timing-function delay'.split(' ');
                     var result = [];
                     var strResult;
@@ -4107,7 +4107,7 @@
                     var j;
                     var splitCssStyleByComma = function (str) {
                         strResult = [];
-                        if (!str.match(regExpValifecha))
+                        if (!str.match(regExpValidate))
                             return str;
                         while (str.match(regExpMain)) {
                             strResult.push(RegExp.$1);
@@ -4126,10 +4126,10 @@
 
                 /**
                  * Generates a Regular Expression which matches with a string which starts with 'os-host'.
-                 * @param {boolean} withCurrClassnombreOption The Regular Expression also matches if the string is the current Classnombre option (multiple values splitted by space possible).
-                 * @param {boolean} withOldClassnombreOption The Regular Expression also matches if the string is the old Classnombre option (multiple values splitted by space possible).
+                 * @param {boolean} withCurrClassNameOption The Regular Expression also matches if the string is the current ClassName option (multiple values splitted by space possible).
+                 * @param {boolean} withOldClassNameOption The Regular Expression also matches if the string is the old ClassName option (multiple values splitted by space possible).
                  */
-                function createHostClassnombreRegExp(withCurrClassnombreOption, withOldClassnombreOption) {
+                function createHostClassNameRegExp(withCurrClassNameOption, withOldClassNameOption) {
                     var i;
                     var split;
                     var appendix;
@@ -4145,9 +4145,9 @@
                     };
 
                     return new RegExp(
-                        '(^' + _classnombreHostElement + '([-_].+|)$)' +
-                        appendClasses(_classnombreCache, withCurrClassnombreOption) +
-                        appendClasses(_oldClassnombre, withOldClassnombreOption), 'g');
+                        '(^' + _classNameHostElement + '([-_].+|)$)' +
+                        appendClasses(_classNameCache, withCurrClassNameOption) +
+                        appendClasses(_oldClassName, withOldClassNameOption), 'g');
                 }
 
                 /**
@@ -4173,7 +4173,7 @@
                     var wnd = o && o[strOwnerDocument] ? (o[strOwnerDocument].parentWindow || window) : window;
                     return (
                         typeof wnd[strHTMLElement] == TYPES.o ? o instanceof wnd[strHTMLElement] : //DOM2
-                            o && typeof o == TYPES.o && o !== null && o.nodeType === 1 && typeof o.nodenombre == TYPES.s
+                            o && typeof o == TYPES.o && o !== null && o.nodeType === 1 && typeof o.nodeName == TYPES.s
                     );
                 }
 
@@ -4271,7 +4271,7 @@
 
                 /**
                  * Generates a string which represents a HTML div with the given classes or attributes.
-                 * @param classesOrAttrs The class of the div as string or a object which represents the attributes of the div. (The class attribute can also be written as "classnombre".)
+                 * @param classesOrAttrs The class of the div as string or a object which represents the attributes of the div. (The class attribute can also be written as "className".)
                  * @param content The content of the div as string.
                  * @returns {string} The concated string which represents a HTML div and its content.
                  */
@@ -4295,20 +4295,20 @@
 
                 /**
                  * Selects or generates a div with the given class attribute.
-                 * @param classnombre The class nombres (divided by spaces) of the div which shall be selected or generated.
+                 * @param className The class names (divided by spaces) of the div which shall be selected or generated.
                  * @param selectParentOrOnlyChildren The parent element from which of the element shall be selected. (if undefined or boolean its hostElement)
                  * If its a boolean it decides whether only the children of the host element shall be selected.
                  * @returns {*} The generated or selected element.
                  */
-                function selectOrGenerateDivByClass(classnombre, selectParentOrOnlyChildren) {
+                function selectOrGenerateDivByClass(className, selectParentOrOnlyChildren) {
                     var onlyChildren = type(selectParentOrOnlyChildren) == TYPES.b;
                     var selectParent = onlyChildren ? _hostElement : (selectParentOrOnlyChildren || _hostElement);
 
                     return (_domExists && !selectParent[LEXICON.l])
                         ? null
                         : _domExists
-                            ? selectParent[onlyChildren ? 'children' : 'find'](_strDot + classnombre.replace(/\s/g, _strDot)).eq(0)
-                            : FRAMEWORK(generateDiv(classnombre))
+                            ? selectParent[onlyChildren ? 'children' : 'find'](_strDot + className.replace(/\s/g, _strDot)).eq(0)
+                            : FRAMEWORK(generateDiv(className))
                 }
 
                 /**
@@ -4349,15 +4349,15 @@
                 }
 
                 /**	
-                 * Runs a action for each selector inside the upfechaOnLoad option.	
-                 * @param {Function} action The action for each upfechaOnLoad selector, the arguments the function takes is the index and the value (the selector).	
+                 * Runs a action for each selector inside the updateOnLoad option.	
+                 * @param {Function} action The action for each updateOnLoad selector, the arguments the function takes is the index and the value (the selector).	
                  */
-                function eachUpfechaOnLoad(action) {
-                    var upfechaOnLoad = _currentPreparedOptions.upfechaOnLoad;
-                    upfechaOnLoad = type(upfechaOnLoad) == TYPES.s ? upfechaOnLoad.split(_strSpace) : upfechaOnLoad;
+                function eachUpdateOnLoad(action) {
+                    var updateOnLoad = _currentPreparedOptions.updateOnLoad;
+                    updateOnLoad = type(updateOnLoad) == TYPES.s ? updateOnLoad.split(_strSpace) : updateOnLoad;
 
-                    if (COMPATIBILITY.isA(upfechaOnLoad) && !_destroyed) {
-                        each(upfechaOnLoad, action);
+                    if (COMPATIBILITY.isA(updateOnLoad) && !_destroyed) {
+                        each(updateOnLoad, action);
                     }
                 }
 
@@ -4445,44 +4445,44 @@
                 //==== API ====//
 
                 /**
-                 * Puts the instance to sleep. It wont respond to any changes in the DOM and won't upfecha. Scrollbar Interactivity is also disabled as well as the resize handle.
-                 * This behavior can be reset by calling the upfecha method.
+                 * Puts the instance to sleep. It wont respond to any changes in the DOM and won't update. Scrollbar Interactivity is also disabled as well as the resize handle.
+                 * This behavior can be reset by calling the update method.
                  */
                 _base.sleep = function () {
                     _sleeping = true;
                 };
 
                 /**
-                 * Upfechas the plugin and DOM to the current options.
-                 * This method should only be called if a upfecha is 100% required.
-                 * @param force True if every property shall be upfechad and the cache shall be ignored.
+                 * Updates the plugin and DOM to the current options.
+                 * This method should only be called if a update is 100% required.
+                 * @param force True if every property shall be updated and the cache shall be ignored.
                  * !INTERNAL USAGE! : force can be a string "auto", "sync" or "zoom" too
-                 * if "auto" then before a real upfecha the content size and host element attributes gets checked, and if they changed only then the upfecha method will be called.
-                 * if "sync" then the async upfecha process (MutationObserver or UpfechaLoop) gets synchronized and a corresponding upfecha takes place if one was needed due to pending changes.
-                 * if "zoom" then a upfecha takes place where it's assumed that content and host size changed
+                 * if "auto" then before a real update the content size and host element attributes gets checked, and if they changed only then the update method will be called.
+                 * if "sync" then the async update process (MutationObserver or UpdateLoop) gets synchronized and a corresponding update takes place if one was needed due to pending changes.
+                 * if "zoom" then a update takes place where it's assumed that content and host size changed
                  * @returns {boolean|undefined} 
-                 * If force is "sync" then a boolean is returned which indicates whether a upfecha was needed due to pending changes.
-                 * If force is "auto" then a boolean is returned whether a upfecha was needed due to attribute or size changes.
+                 * If force is "sync" then a boolean is returned which indicates whether a update was needed due to pending changes.
+                 * If force is "auto" then a boolean is returned whether a update was needed due to attribute or size changes.
                  * undefined otherwise.
                  */
-                _base.upfecha = function (force) {
+                _base.update = function (force) {
                     if (_destroyed)
                         return;
 
                     var attrsChanged;
                     var contentSizeC;
                     var isString = type(force) == TYPES.s;
-                    var doUpfechaAuto;
+                    var doUpdateAuto;
                     var mutHost;
                     var mutContent;
 
                     if (isString) {
                         if (force === _strAuto) {
                             attrsChanged = meaningfulAttrsChanged();
-                            contentSizeC = upfechaAutoContentSizeChanged();
-                            doUpfechaAuto = attrsChanged || contentSizeC;
-                            if (doUpfechaAuto) {
-                                upfecha({
+                            contentSizeC = updateAutoContentSizeChanged();
+                            doUpdateAuto = attrsChanged || contentSizeC;
+                            if (doUpdateAuto) {
+                                update({
                                     _contentSizeChanged: contentSizeC,
                                     _changedOptions: _initialized ? undefined : _currentPreparedOptions
                                 });
@@ -4494,11 +4494,11 @@
                                 mutContent = _mutationObserverContentCallback(_mutationObserverContent.takeRecords());
                             }
                             else {
-                                mutHost = _base.upfecha(_strAuto);
+                                mutHost = _base.update(_strAuto);
                             }
                         }
                         else if (force === 'zoom') {
-                            upfecha({
+                            update({
                                 _hostSizeChanged: true,
                                 _contentSizeChanged: true
                             });
@@ -4507,17 +4507,17 @@
                     else {
                         force = _sleeping || force;
                         _sleeping = false;
-                        if (!_base.upfecha(_strSync) || force)
-                            upfecha({ _force: force });
+                        if (!_base.update(_strSync) || force)
+                            update({ _force: force });
                     }
 
-                    upfechaElementsOnLoad();
+                    updateElementsOnLoad();
 
-                    return doUpfechaAuto || mutHost || mutContent;
+                    return doUpdateAuto || mutHost || mutContent;
                 };
 
                 /**
-                 Gets or sets the current options. The upfecha method will be called automatically if new options were set.
+                 Gets or sets the current options. The update method will be called automatically if new options were set.
                  * @param newOptions If new options are given, then the new options will be set, if new options aren't given (undefined or a not a plain object) then the current options will be returned.
                  * @param value If new options is a property path string, then this value will be used to set the option to which the property path string leads.
                  * @returns {*}
@@ -4544,7 +4544,7 @@
                     }
 
                     if (!FRAMEWORK.isEmptyObject(changedOps)) {
-                        upfecha({ _changedOptions: changedOps });
+                        update({ _changedOptions: changedOps });
                     }
                 };
 
@@ -4555,8 +4555,8 @@
                     if (_destroyed)
                         return;
 
-                    //remove this instance from auto upfecha loop
-                    autoUpfechaLoop.remove(_base);
+                    //remove this instance from auto update loop
+                    autoUpdateLoop.remove(_base);
 
                     //disconnect all mutation observers
                     disconnectMutationObservers();
@@ -4566,8 +4566,8 @@
                     setupResizeObserver(_sizeAutoObserverElement);
 
                     //remove all extensions
-                    for (var extnombre in _extensions)
-                        _base.removeExt(extnombre);
+                    for (var extName in _extensions)
+                        _base.removeExt(extName);
 
                     //remove all 'destroy' events
                     while (_destroyEvents[LEXICON.l] > 0)
@@ -4590,9 +4590,9 @@
                     setupStructureDOM(true);
 
                     //remove all generated image load events
-                    for (var i = 0; i < _upfechaOnLoadElms[LEXICON.l]; i++)
-                        FRAMEWORK(_upfechaOnLoadElms[i]).off(_upfechaOnLoadEventnombre, upfechaOnLoadCallback);
-                    _upfechaOnLoadElms = undefined;
+                    for (var i = 0; i < _updateOnLoadElms[LEXICON.l]; i++)
+                        FRAMEWORK(_updateOnLoadElms[i]).off(_updateOnLoadEventName, updateOnLoadCallback);
+                    _updateOnLoadElms = undefined;
 
                     _destroyed = true;
                     _sleeping = true;
@@ -4728,7 +4728,7 @@
                         };
                     }
 
-                    _base.upfecha(_strSync);
+                    _base.update(_strSync);
 
                     var normalizeRTL = _normalizeRTLCache;
                     var coordinatesXAxisProps = [_strX, _strLeft, 'l'];
@@ -4762,14 +4762,14 @@
                     var possibleElement = coordinatesIsElementObj ? coordinates.el : coordinates;
                     var possibleElementIsJQuery = possibleElement instanceof FRAMEWORK || JQUERY ? possibleElement instanceof JQUERY : false;
                     var possibleElementIsHTMLElement = possibleElementIsJQuery ? false : isHTMLElement(possibleElement);
-                    var upfechaScrollbarInfos = function () {
+                    var updateScrollbarInfos = function () {
                         if (doScrollLeft)
                             refreshScrollbarHandleOffset(true);
                         if (doScrollTop)
                             refreshScrollbarHandleOffset(false);
                     };
                     var proxyCompleteCallback = type(completeCallback) != TYPES.f ? undefined : function () {
-                        upfechaScrollbarInfos();
+                        updateScrollbarInfos();
                         completeCallback();
                     };
                     function checkSettingsStringValue(currValue, allowedValues) {
@@ -5061,7 +5061,7 @@
                             _viewportElement[_strScrollLeft](finalScroll[_strScrollLeft]);
                         if (doScrollTop)
                             _viewportElement[_strScrollTop](finalScroll[_strScrollTop]);
-                        upfechaScrollbarInfos();
+                        updateScrollbarInfos();
                     }
                 };
 
@@ -5076,10 +5076,10 @@
 
                 /**
                  * Returns all relevant elements.
-                 * @param elementnombre The nombre of the element which shall be returned.
+                 * @param elementName The name of the element which shall be returned.
                  * @returns {{target: *, host: *, padding: *, viewport: *, content: *, scrollbarHorizontal: {scrollbar: *, track: *, handle: *}, scrollbarVertical: {scrollbar: *, track: *, handle: *}, scrollbarCorner: *} | *}
                  */
-                _base.getElements = function (elementnombre) {
+                _base.getElements = function (elementName) {
                     var obj = {
                         target: _targetElementNative,
                         host: _hostElementNative,
@@ -5098,34 +5098,34 @@
                         },
                         scrollbarCorner: _scrollbarCornerElement[0]
                     };
-                    return type(elementnombre) == TYPES.s ? getObjectPropVal(obj, elementnombre) : obj;
+                    return type(elementName) == TYPES.s ? getObjectPropVal(obj, elementName) : obj;
                 };
 
                 /**
                  * Returns a object which describes the current state of this instance.
                  * @param stateProperty A specific property from the state object which shall be returned.
-                 * @returns {{widthAuto, heightAuto, overflowAmount, hideOverflow, hasOverflow, contentScrollSize, viewportSize, hostSize, autoUpfecha} | *}
+                 * @returns {{widthAuto, heightAuto, overflowAmount, hideOverflow, hasOverflow, contentScrollSize, viewportSize, hostSize, autoUpdate} | *}
                  */
                 _base.getState = function (stateProperty) {
                     function prepare(obj) {
                         if (!FRAMEWORK.isPlainObject(obj))
                             return obj;
                         var extended = extendDeep({}, obj);
-                        var changePropertynombre = function (from, to) {
+                        var changePropertyName = function (from, to) {
                             if (extended[LEXICON.hOP](from)) {
                                 extended[to] = extended[from];
                                 delete extended[from];
                             }
                         };
-                        changePropertynombre('w', _strWidth); //change w to width
-                        changePropertynombre('h', _strHeight); //change h to height
+                        changePropertyName('w', _strWidth); //change w to width
+                        changePropertyName('h', _strHeight); //change h to height
                         delete extended.c; //delete c (the 'changed' prop)
                         return extended;
                     };
                     var obj = {
                         destroyed: !!prepare(_destroyed),
                         sleeping: !!prepare(_sleeping),
-                        autoUpfecha: prepare(!_mutationObserversConnected),
+                        autoUpdate: prepare(!_mutationObserversConnected),
                         widthAuto: prepare(_widthAutoCache),
                         heightAuto: prepare(_heightAutoCache),
                         padding: prepare(_cssPaddingCache),
@@ -5142,16 +5142,16 @@
 
                 /**
                  * Gets all or specific extension instance.
-                 * @param extnombre The nombre of the extension from which the instance shall be got.
-                 * @returns {{}} The instance of the extension with the given nombre or undefined if the instance couldn't be found.
+                 * @param extName The name of the extension from which the instance shall be got.
+                 * @returns {{}} The instance of the extension with the given name or undefined if the instance couldn't be found.
                  */
-                _base.ext = function (extnombre) {
+                _base.ext = function (extName) {
                     var result;
                     var privateMethods = _extensionsPrivateMethods.split(' ');
                     var i = 0;
-                    if (type(extnombre) == TYPES.s) {
-                        if (_extensions[LEXICON.hOP](extnombre)) {
-                            result = extendDeep({}, _extensions[extnombre]);
+                    if (type(extName) == TYPES.s) {
+                        if (_extensions[LEXICON.hOP](extName)) {
+                            result = extendDeep({}, _extensions[extName]);
                             for (; i < privateMethods.length; i++)
                                 delete result[privateMethods[i]];
                         }
@@ -5166,19 +5166,19 @@
 
                 /**
                  * Adds a extension to this instance.
-                 * @param extnombre The nombre of the extension which shall be added.
+                 * @param extName The name of the extension which shall be added.
                  * @param extensionOptions The extension options which shall be used.
                  * @returns {{}} The instance of the added extension or undefined if the extension couldn't be added properly.
                  */
-                _base.addExt = function (extnombre, extensionOptions) {
-                    var registeredExtensionObj = _plugin.extension(extnombre);
+                _base.addExt = function (extName, extensionOptions) {
+                    var registeredExtensionObj = _plugin.extension(extName);
                     var instance;
                     var instanceAdded;
                     var instanceContract;
                     var contractResult;
                     var contractFulfilled = true;
                     if (registeredExtensionObj) {
-                        if (!_extensions[LEXICON.hOP](extnombre)) {
+                        if (!_extensions[LEXICON.hOP](extName)) {
                             instance = registeredExtensionObj.extensionFactory.call(_base,
                                 extendDeep({}, registeredExtensionObj.defaultOptions),
                                 FRAMEWORK,
@@ -5191,32 +5191,32 @@
                                     contractFulfilled = type(contractResult) == TYPES.b ? contractResult : contractFulfilled;
                                 }
                                 if (contractFulfilled) {
-                                    _extensions[extnombre] = instance;
+                                    _extensions[extName] = instance;
                                     instanceAdded = instance.added;
                                     if (type(instanceAdded) == TYPES.f)
                                         instanceAdded(extensionOptions);
 
-                                    return _base.ext(extnombre);
+                                    return _base.ext(extName);
                                 }
                             }
                         }
                         else
-                            return _base.ext(extnombre);
+                            return _base.ext(extName);
                     }
                     else
-                        console.warn("A extension with the nombre \"" + extnombre + "\" isn't registered.");
+                        console.warn("A extension with the name \"" + extName + "\" isn't registered.");
                 };
 
                 /**
                  * Removes a extension from this instance.
-                 * @param extnombre The nombre of the extension which shall be removed.
+                 * @param extName The name of the extension which shall be removed.
                  * @returns {boolean} True if the extension was removed, false otherwise e.g. if the extension wasn't added before.
                  */
-                _base.removeExt = function (extnombre) {
-                    var instance = _extensions[extnombre];
+                _base.removeExt = function (extName) {
+                    var instance = _extensions[extName];
                     var instanceRemoved;
                     if (instance) {
-                        delete _extensions[extnombre];
+                        delete _extensions[extName];
 
                         instanceRemoved = instance.removed;
                         if (type(instanceRemoved) == TYPES.f)
@@ -5242,12 +5242,12 @@
                     _overlayScrollbarDummySize = extendDeep({}, globals.overlayScrollbarDummySize);
                     _rtlScrollBehavior = extendDeep({}, globals.rtlScrollBehavior);
 
-                    //parse & set options but don't upfecha
+                    //parse & set options but don't update
                     setOptions(extendDeep({}, _defaultOptions, options));
 
                     _cssCalc = globals.cssCalc;
                     _msieVersion = globals.msie;
-                    _autoUpfechaRecommended = globals.autoUpfechaRecommended;
+                    _autoUpdateRecommended = globals.autoUpdateRecommended;
                     _supportTransition = globals.supportTransition;
                     _supportTransform = globals.supportTransform;
                     _supportPassiveEvents = globals.supportPassiveEvents;
@@ -5326,8 +5326,8 @@
                      *  </div>
                      */
                     _domExists = _isTextarea
-                        ? _targetElement.hasClass(_classnombreTextareaElement) && _targetElement.parent().hasClass(_classnombreContentElement)
-                        : _targetElement.hasClass(_classnombreHostElement) && _targetElement.children(_strDot + _classnombrePaddingElement)[LEXICON.l];
+                        ? _targetElement.hasClass(_classNameTextareaElement) && _targetElement.parent().hasClass(_classNameContentElement)
+                        : _targetElement.hasClass(_classNameHostElement) && _targetElement.children(_strDot + _classNamePaddingElement)[LEXICON.l];
 
                     var initBodyScroll;
                     var bodyMouseTouchDownListener;
@@ -5376,7 +5376,7 @@
                     setupResizeObserver(_sizeObserverElement, hostOnResized);
 
                     if (_isBody) {
-                        //apply the body scroll to handle it right in the upfecha method
+                        //apply the body scroll to handle it right in the update method
                         _viewportElement[_strScrollLeft](initBodyScroll.l)[_strScrollTop](initBodyScroll.t);
 
                         //set the focus on the viewport element so you dont have to click on the page to use keyboard keys (up / down / space) for scrolling
@@ -5393,8 +5393,8 @@
                         }
                     }
 
-                    //upfecha for the first time & initialize cache
-                    _base.upfecha(_strAuto);
+                    //update for the first time & initialize cache
+                    _base.update(_strAuto);
 
                     //the plugin is initialized now!
                     _initialized = true;
@@ -5412,10 +5412,10 @@
                     else if (FRAMEWORK.isPlainObject(extensions))
                         each(extensions, function (key, value) { _base.addExt(key, value); });
 
-                    //add the transition class for transitions AFTER the first upfecha & AFTER the applied extensions (for preventing unwanted transitions)
+                    //add the transition class for transitions AFTER the first update & AFTER the applied extensions (for preventing unwanted transitions)
                     setTimeout(function () {
                         if (_supportTransition && !_destroyed)
-                            addClass(_hostElement, _classnombreHostTransition);
+                            addClass(_hostElement, _classNameHostTransition);
                     }, 333);
 
                     return _base;
@@ -5435,7 +5435,7 @@
              * @param extensions The extension(s) which shall be added right after initialization.
              * @returns {*}
              */
-            _plugin = window[PLUGINnombre] = function (pluginTargetElements, options, extensions) {
+            _plugin = window[PLUGINNAME] = function (pluginTargetElements, options, extensions) {
                 if (arguments[LEXICON.l] === 0)
                     return this;
 
@@ -5463,7 +5463,7 @@
                         FRAMEWORK.each(pluginTargetElements, function (i, v) {
                             inst = v;
                             if (inst !== undefined)
-                                arr.push(OverlayScrollbarsInstance(inst, options, extensions, _pluginsGlobals, _pluginsAutoUpfechaLoop));
+                                arr.push(OverlayScrollbarsInstance(inst, options, extensions, _pluginsGlobals, _pluginsAutoUpdateLoop));
                         });
                     }
                     else {
@@ -5502,7 +5502,7 @@
                     return FRAMEWORK.extend(true, {}, currDefaultOptions);
 
                 //set the new default options
-                _pluginsGlobals.defaultOptions = FRAMEWORK.extend(true, {}, currDefaultOptions, _pluginsOptions._valifecha(newDefaultOptions, _pluginsOptions._template, true, currDefaultOptions)._default);
+                _pluginsGlobals.defaultOptions = FRAMEWORK.extend(true, {}, currDefaultOptions, _pluginsOptions._validate(newDefaultOptions, _pluginsOptions._template, true, currDefaultOptions)._default);
             };
 
             /**
@@ -5516,38 +5516,38 @@
 
             /**
              * Registers, Unregisters or returns a extension.
-             * Register: Pass the nombre and the extension. (defaultOptions is optional)
-             * Unregister: Pass the nombre and anything except a function as extension parameter.
-             * Get extension: Pass the nombre of the extension which shall be got.
+             * Register: Pass the name and the extension. (defaultOptions is optional)
+             * Unregister: Pass the name and anything except a function as extension parameter.
+             * Get extension: Pass the name of the extension which shall be got.
              * Get all extensions: Pass no arguments.
-             * @param extensionnombre The nombre of the extension which shall be registered, unregistered or returned.
+             * @param extensionName The name of the extension which shall be registered, unregistered or returned.
              * @param extension A function which generates the instance of the extension or anything other to remove a already registered extension.
              * @param defaultOptions The default options which shall be used for the registered extension.
              */
-            _plugin.extension = function (extensionnombre, extension, defaultOptions) {
-                var extnombreTypeString = COMPATIBILITY.type(extensionnombre) == TYPES.s;
+            _plugin.extension = function (extensionName, extension, defaultOptions) {
+                var extNameTypeString = COMPATIBILITY.type(extensionName) == TYPES.s;
                 var argLen = arguments[LEXICON.l];
                 var i = 0;
-                if (argLen < 1 || !extnombreTypeString) {
+                if (argLen < 1 || !extNameTypeString) {
                     //return a copy of all extension objects
                     return FRAMEWORK.extend(true, { length: _pluginsExtensions[LEXICON.l] }, _pluginsExtensions);
                 }
-                else if (extnombreTypeString) {
+                else if (extNameTypeString) {
                     if (COMPATIBILITY.type(extension) == TYPES.f) {
                         //register extension
                         _pluginsExtensions.push({
-                            nombre: extensionnombre,
+                            name: extensionName,
                             extensionFactory: extension,
                             defaultOptions: defaultOptions
                         });
                     }
                     else {
                         for (; i < _pluginsExtensions[LEXICON.l]; i++) {
-                            if (_pluginsExtensions[i].nombre === extensionnombre) {
+                            if (_pluginsExtensions[i].name === extensionName) {
                                 if (argLen > 1)
                                     _pluginsExtensions.splice(i, 1); //remove extension
                                 else
-                                    return FRAMEWORK.extend(true, {}, _pluginsExtensions[i]); //return extension with the given nombre
+                                    return FRAMEWORK.extend(true, {}, _pluginsExtensions[i]); //return extension with the given name
                             }
                         }
                     }

@@ -26,7 +26,7 @@
                 searchButtonTooltip: "חיפוש",
                 clearFilterButtonTooltip: "ניקוי מסנן",
                 insertButtonTooltip: "הכנסה",
-                upfechaButtonTooltip: "עדכון",
+                updateButtonTooltip: "עדכון",
                 cancelEditButtonTooltip: "ביטול עריכה"
             }
         },

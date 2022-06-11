@@ -97,7 +97,7 @@ CodeMirror.defineMode("eiffel", function() {
       return chain(readQuoted(ch, "string"), stream, state);
     } else if (ch == "-"&&stream.eat("-")) {
       stream.skipToEnd();
-      return "comentario";
+      return "comment";
     } else if (ch == ":"&&stream.eat("=")) {
       return "operator";
     } else if (/[0-9]/.test(ch)) {

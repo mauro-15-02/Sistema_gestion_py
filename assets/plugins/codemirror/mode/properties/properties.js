@@ -40,9 +40,9 @@ CodeMirror.defineMode("properties", function() {
       var ch = stream.next();
 
       if (sol && (ch === "#" || ch === "!" || ch === ";")) {
-        state.position = "comentario";
+        state.position = "comment";
         stream.skipToEnd();
-        return "comentario";
+        return "comment";
       } else if (sol && ch === "[") {
         state.afterSection = true;
         stream.skipTo("]"); stream.eat("]");
@@ -62,7 +62,7 @@ CodeMirror.defineMode("properties", function() {
 
     startState: function() {
       return {
-        position : "def",       // Current position, "def", "quote" or "comentario"
+        position : "def",       // Current position, "def", "quote" or "comment"
         nextMultiline : false,  // Is the next line multiline value
         inMultiline : false,    // Is the current line a multiline value
         afterSection : false    // Did we just open a section

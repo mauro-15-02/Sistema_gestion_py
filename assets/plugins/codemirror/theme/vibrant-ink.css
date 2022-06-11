@@ -18,7 +18,7 @@
 .cm-s-vibrant-ink span.cm-variable-2, .cm-s-vibrant span.cm-tag { color: #FFC66D; }
 .cm-s-vibrant-ink span.cm-variable-3, .cm-s-vibrant span.cm-def, .cm-s-vibrant span.cm-type { color: #FFC66D; }
 .cm-s-vibrant-ink .cm-operator { color: #888; }
-.cm-s-vibrant-ink .cm-comentario { color: gray; font-weight: bold; }
+.cm-s-vibrant-ink .cm-comment { color: gray; font-weight: bold; }
 .cm-s-vibrant-ink .cm-string { color:  #A5C25C; }
 .cm-s-vibrant-ink .cm-string-2 { color: red; }
 .cm-s-vibrant-ink .cm-meta { color: #D8FA3C; }

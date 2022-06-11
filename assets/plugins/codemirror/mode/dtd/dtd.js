@@ -60,7 +60,7 @@ CodeMirror.defineMode("dtd", function(config) {
       }
       dashes = (ch == "-") ? dashes + 1 : 0;
     }
-    return ret("comentario", "comentario");
+    return ret("comment", "comment");
   }
 
   function tokenString(quote) {

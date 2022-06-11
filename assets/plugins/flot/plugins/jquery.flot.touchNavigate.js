@@ -75,7 +75,7 @@
         pan = {
             start: function(e) {
                 presetNavigationState(e, 'pan', gestureState);
-                upfechaData(e, 'pan', gestureState, navigationState);
+                updateData(e, 'pan', gestureState, navigationState);
 
                 if (useSmartPan) {
                     var point = getPoint(e, 'pan');
@@ -98,7 +98,7 @@
                         top: -delta(e, 'pan', gestureState).y,
                         axes: navigationState.touchedAxis
                     });
-                    upfechaPrevPanPosition(e, 'pan', gestureState, navigationState);
+                    updatePrevPanPosition(e, 'pan', gestureState, navigationState);
                 }
             },
 
@@ -110,7 +110,7 @@
                 }
 
                 if (wasPinchEvent(e, gestureState)) {
-                    upfechaprevPanPosition(e, 'pan', gestureState, navigationState);
+                    updateprevPanPosition(e, 'pan', gestureState, navigationState);
                 }
             }
         };
@@ -124,7 +124,7 @@
                 }
                 presetNavigationState(e, 'pinch', gestureState);
                 setPrevDistance(e, gestureState);
-                upfechaData(e, 'pinch', gestureState, navigationState);
+                updateData(e, 'pinch', gestureState, navigationState);
             },
 
             drag: function(e) {
@@ -138,7 +138,7 @@
                         top: -delta(e, 'pinch', gestureState).y,
                         axes: navigationState.touchedAxis
                     });
-                    upfechaPrevPanPosition(e, 'pinch', gestureState, navigationState);
+                    updatePrevPanPosition(e, 'pinch', gestureState, navigationState);
 
                     var dist = pinchDistance(e);
 
@@ -266,7 +266,7 @@
         } else if (e.type === 'panstart') {
             return plot.getTouchedAxis(e.detail.touches[0].pageX, e.detail.touches[0].pageY);
         } else if (e.type === 'pinchend') {
-            //upfecha axis since instead on pinch, a pan event is made
+            //update axis since instead on pinch, a pan event is made
             return plot.getTouchedAxis(e.detail.touches[0].pageX, e.detail.touches[0].pageY);
         } else {
             return navigationState.touchedAxis;
@@ -281,7 +281,7 @@
         gestureState.prevDistance = pinchDistance(e);
     }
 
-    function upfechaData(e, gesture, gestureState, navigationState) {
+    function updateData(e, gesture, gestureState, navigationState) {
         var axisDir,
             point = getPoint(e, gesture);
 
@@ -318,7 +318,7 @@
         return distance(t1.pageX, t1.pageY, t2.pageX, t2.pageY);
     }
 
-    function upfechaPrevPanPosition(e, gesture, gestureState, navigationState) {
+    function updatePrevPanPosition(e, gesture, gestureState, navigationState) {
         var point = getPoint(e, gesture);
 
         switch (navigationState.navigationConstraint) {

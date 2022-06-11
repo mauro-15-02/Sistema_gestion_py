@@ -78,7 +78,7 @@ CodeMirror.defineMode('z80', function(_config, parserConfig) {
         }
       } else if (stream.eat(';')) {
         stream.skipToEnd();
-        return 'comentario';
+        return 'comment';
       } else if (stream.eat('"')) {
         while (w = stream.next()) {
           if (w == '"')

@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valifecha"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -17,8 +17,8 @@ $.extend( $.validator.messages, {
 	remote: "Controlla questo campo",
 	email: "Inserisci un indirizzo email valido",
 	url: "Inserisci un indirizzo web valido",
-	fecha: "Inserisci una data valida",
-	fechaISO: "Inserisci una data valida (ISO)",
+	date: "Inserisci una data valida",
+	dateISO: "Inserisci una data valida (ISO)",
 	number: "Inserisci un numero valido",
 	digits: "Inserisci solo numeri",
 	creditcard: "Inserisci un numero di carta di credito valido",

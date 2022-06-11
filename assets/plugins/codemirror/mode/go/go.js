@@ -65,7 +65,7 @@ CodeMirror.defineMode("go", function(config) {
       }
       if (stream.eat("/")) {
         stream.skipToEnd();
-        return "comentario";
+        return "comment";
       }
     }
     if (isOperatorChar.test(ch)) {
@@ -104,7 +104,7 @@ CodeMirror.defineMode("go", function(config) {
       }
       maybeEnd = (ch == "*");
     }
-    return "comentario";
+    return "comment";
   }
 
   function Context(indented, column, type, align, prev) {
@@ -148,7 +148,7 @@ CodeMirror.defineMode("go", function(config) {
       if (stream.eatSpace()) return null;
       curPunc = null;
       var style = (state.tokenize || tokenBase)(stream, state);
-      if (style == "comentario") return style;
+      if (style == "comment") return style;
       if (ctx.align == null) ctx.align = true;
 
       if (curPunc == "{") pushContext(state, stream.column(), "}");

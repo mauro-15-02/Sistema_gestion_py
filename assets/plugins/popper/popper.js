@@ -9,7 +9,7 @@
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, tema to the following conditions:
+ * furnished to do so, subject to the following conditions:
  *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
@@ -34,7 +34,7 @@ const timeoutDuration = function () {
   return 0;
 }();
 
-function microtareaDebounce(fn) {
+function microtaskDebounce(fn) {
   let called = false;
   return () => {
     if (called) {
@@ -48,7 +48,7 @@ function microtareaDebounce(fn) {
   };
 }
 
-function tareaDebounce(fn) {
+function taskDebounce(fn) {
   let scheduled = false;
   return () => {
     if (!scheduled) {
@@ -61,7 +61,7 @@ function tareaDebounce(fn) {
   };
 }
 
-const supportsMicrotareas = isBrowser && window.Promise;
+const supportsMicroTasks = isBrowser && window.Promise;
 
 /**
 * Create a debounced version of a method, that's asynchronously deferred
@@ -72,7 +72,7 @@ const supportsMicrotareas = isBrowser && window.Promise;
 * @argument {Function} fn
 * @returns {Function}
 */
-var debounce = supportsMicrotareas ? microtareaDebounce : tareaDebounce;
+var debounce = supportsMicroTasks ? microtaskDebounce : taskDebounce;
 
 /**
  * Check if the given variable is a function
@@ -111,7 +111,7 @@ function getStyleComputedProperty(element, property) {
  * @returns {Element} parent
  */
 function getParentNode(element) {
-  if (element.nodenombre === 'HTML') {
+  if (element.nodeName === 'HTML') {
     return element;
   }
   return element.parentNode || element.host;
@@ -130,7 +130,7 @@ function getScrollParent(element) {
     return document.body;
   }
 
-  switch (element.nodenombre) {
+  switch (element.nodeName) {
     case 'HTML':
     case 'BODY':
       return element.ownerDocument.body;
@@ -199,15 +199,15 @@ function getOffsetParent(element) {
     offsetParent = (element = element.nextElementSibling).offsetParent;
   }
 
-  const nodenombre = offsetParent && offsetParent.nodenombre;
+  const nodeName = offsetParent && offsetParent.nodeName;
 
-  if (!nodenombre || nodenombre === 'BODY' || nodenombre === 'HTML') {
+  if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
     return element ? element.ownerDocument.documentElement : document.documentElement;
   }
 
   // .offsetParent will return the closest TH, TD or TABLE in case
   // no offsetParent is present, I hate this job...
-  if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodenombre) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
+  if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
     return getOffsetParent(offsetParent);
   }
 
@@ -215,11 +215,11 @@ function getOffsetParent(element) {
 }
 
 function isOffsetContainer(element) {
-  const { nodenombre } = element;
-  if (nodenombre === 'BODY') {
+  const { nodeName } = element;
+  if (nodeName === 'BODY') {
     return false;
   }
-  return nodenombre === 'HTML' || getOffsetParent(element.firstElementChild) === element;
+  return nodeName === 'HTML' || getOffsetParent(element.firstElementChild) === element;
 }
 
 /**
@@ -290,9 +290,9 @@ function findCommonOffsetParent(element1, element2) {
  */
 function getScroll(element, side = 'top') {
   const upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
-  const nodenombre = element.nodenombre;
+  const nodeName = element.nodeName;
 
-  if (nodenombre === 'BODY' || nodenombre === 'HTML') {
+  if (nodeName === 'BODY' || nodeName === 'HTML') {
     const html = element.ownerDocument.documentElement;
     const scrollingElement = element.ownerDocument.scrollingElement || html;
     return scrollingElement[upperSide];
@@ -416,7 +416,7 @@ function getBoundingClientRect(element) {
   };
 
   // subtract scrollbar size from sizes
-  const sizes = element.nodenombre === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
+  const sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
   const width = sizes.width || element.clientWidth || result.width;
   const height = sizes.height || element.clientHeight || result.height;
 
@@ -439,7 +439,7 @@ function getBoundingClientRect(element) {
 
 function getOffsetRectRelativeToArbitraryNode(children, parent, fixedPosition = false) {
   const isIE10 = isIE(10);
-  const isHTML = parent.nodenombre === 'HTML';
+  const isHTML = parent.nodeName === 'HTML';
   const childrenRect = getBoundingClientRect(children);
   const parentRect = getBoundingClientRect(parent);
   const scrollParent = getScrollParent(children);
@@ -480,7 +480,7 @@ function getOffsetRectRelativeToArbitraryNode(children, parent, fixedPosition = 
     offsets.marginLeft = marginLeft;
   }
 
-  if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodenombre !== 'BODY') {
+  if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodeName !== 'BODY') {
     offsets = includeScroll(offsets, parent);
   }
 
@@ -515,8 +515,8 @@ function getViewportOffsetRectRelativeToArtbitraryNode(element, excludeScroll = 
  * @returns {Boolean} answer to "isFixed?"
  */
 function isFixed(element) {
-  const nodenombre = element.nodenombre;
-  if (nodenombre === 'BODY' || nodenombre === 'HTML') {
+  const nodeName = element.nodeName;
+  if (nodeName === 'BODY' || nodeName === 'HTML') {
     return false;
   }
   if (getStyleComputedProperty(element, 'position') === 'fixed') {
@@ -574,7 +574,7 @@ function getBoundaries(popper, reference, padding, boundariesElement, fixedPosit
     let boundariesNode;
     if (boundariesElement === 'scrollParent') {
       boundariesNode = getScrollParent(getParentNode(reference));
-      if (boundariesNode.nodenombre === 'BODY') {
+      if (boundariesNode.nodeName === 'BODY') {
         boundariesNode = popper.ownerDocument.documentElement;
       }
     } else if (boundariesElement === 'window') {
@@ -586,7 +586,7 @@ function getBoundaries(popper, reference, padding, boundariesElement, fixedPosit
     const offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
 
     // In case of HTML, we need a different computation
-    if (boundariesNode.nodenombre === 'HTML' && !isFixed(offsetParent)) {
+    if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
       const { height, width } = getWindowSizes(popper.ownerDocument);
       boundaries.top += offsets.top - offsets.marginTop;
       boundaries.bottom = height + offsets.top;
@@ -618,7 +618,7 @@ function getArea({ width, height }) {
  * available space.
  * @method
  * @memberof Popper.Utils
- * @argument {Object} data - The data object generated by upfecha method
+ * @argument {Object} data - The data object generated by update method
  * @argument {Object} options - Modifiers configuration and options
  * @returns {Object} The data object, properly modified
  */
@@ -794,11 +794,11 @@ function findIndex(arr, prop, value) {
  * @memberof Popper.Utils
  * @param {dataObject} data
  * @param {Array} modifiers
- * @param {String} ends - Optional modifier nombre used as stopper
+ * @param {String} ends - Optional modifier name used as stopper
  * @returns {dataObject}
  */
 function runModifiers(modifiers, data, ends) {
-  const modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'nombre', ends));
+  const modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'name', ends));
 
   modifiersToRun.forEach(modifier => {
     if (modifier['function']) {
@@ -821,14 +821,14 @@ function runModifiers(modifiers, data, ends) {
 }
 
 /**
- * Upfechas the position of the popper, computing the new offsets and applying
+ * Updates the position of the popper, computing the new offsets and applying
  * the new style.<br />
- * Prefer `scheduleUpfecha` over `upfecha` because of performance reasons.
+ * Prefer `scheduleUpdate` over `update` because of performance reasons.
  * @method
  * @memberof Popper
  */
-function upfecha() {
-  // if popper is destroyed, don't perform any further upfecha
+function update() {
+  // if popper is destroyed, don't perform any further update
   if (this.state.isDestroyed) {
     return;
   }
@@ -863,13 +863,13 @@ function upfecha() {
   // run the modifiers
   data = runModifiers(this.modifiers, data);
 
-  // the first `upfecha` will call `onCreate` callback
-  // the other ones will call `onUpfecha` callback
+  // the first `update` will call `onCreate` callback
+  // the other ones will call `onUpdate` callback
   if (!this.state.isCreated) {
     this.state.isCreated = true;
     this.options.onCreate(data);
   } else {
-    this.options.onUpfecha(data);
+    this.options.onUpdate(data);
   }
 }
 
@@ -879,18 +879,18 @@ function upfecha() {
  * @memberof Popper.Utils
  * @returns {Boolean}
  */
-function isModifierEnabled(modifiers, modifiernombre) {
-  return modifiers.some(({ nombre, enabled }) => enabled && nombre === modifiernombre);
+function isModifierEnabled(modifiers, modifierName) {
+  return modifiers.some(({ name, enabled }) => enabled && name === modifierName);
 }
 
 /**
- * Get the prefixed supported property nombre
+ * Get the prefixed supported property name
  * @method
  * @memberof Popper.Utils
  * @argument {String} property (camelCase)
  * @returns {String} prefixed property (camelCase or PascalCase, depending on the vendor prefix)
  */
-function getSupportedPropertynombre(property) {
+function getSupportedPropertyName(property) {
   const prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
   const upperProp = property.charAt(0).toUpperCase() + property.slice(1);
 
@@ -921,7 +921,7 @@ function destroy() {
     this.popper.style.right = '';
     this.popper.style.bottom = '';
     this.popper.style.willChange = '';
-    this.popper.style[getSupportedPropertynombre('transform')] = '';
+    this.popper.style[getSupportedPropertyName('transform')] = '';
   }
 
   this.disableEventListeners();
@@ -945,7 +945,7 @@ function getWindow(element) {
 }
 
 function attachToScrollParents(scrollParent, event, callback, scrollParents) {
-  const isBody = scrollParent.nodenombre === 'BODY';
+  const isBody = scrollParent.nodeName === 'BODY';
   const target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
   target.addEventListener(event, callback, { passive: true });
 
@@ -956,19 +956,19 @@ function attachToScrollParents(scrollParent, event, callback, scrollParents) {
 }
 
 /**
- * Setup needed event listeners used to upfecha the popper position
+ * Setup needed event listeners used to update the popper position
  * @method
  * @memberof Popper.Utils
  * @private
  */
-function setupEventListeners(reference, options, state, upfechaBound) {
+function setupEventListeners(reference, options, state, updateBound) {
   // Resize event listener on window
-  state.upfechaBound = upfechaBound;
-  getWindow(reference).addEventListener('resize', state.upfechaBound, { passive: true });
+  state.updateBound = updateBound;
+  getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
 
   // Scroll event listener on scroll parents
   const scrollElement = getScrollParent(reference);
-  attachToScrollParents(scrollElement, 'scroll', state.upfechaBound, state.scrollParents);
+  attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
   state.scrollElement = scrollElement;
   state.eventsEnabled = true;
 
@@ -983,27 +983,27 @@ function setupEventListeners(reference, options, state, upfechaBound) {
  */
 function enableEventListeners() {
   if (!this.state.eventsEnabled) {
-    this.state = setupEventListeners(this.reference, this.options, this.state, this.scheduleUpfecha);
+    this.state = setupEventListeners(this.reference, this.options, this.state, this.scheduleUpdate);
   }
 }
 
 /**
- * Remove event listeners used to upfecha the popper position
+ * Remove event listeners used to update the popper position
  * @method
  * @memberof Popper.Utils
  * @private
  */
 function removeEventListeners(reference, state) {
   // Remove resize event listener on window
-  getWindow(reference).removeEventListener('resize', state.upfechaBound);
+  getWindow(reference).removeEventListener('resize', state.updateBound);
 
   // Remove scroll event listener on scroll parents
   state.scrollParents.forEach(target => {
-    target.removeEventListener('scroll', state.upfechaBound);
+    target.removeEventListener('scroll', state.updateBound);
   });
 
   // Reset state
-  state.upfechaBound = null;
+  state.updateBound = null;
   state.scrollParents = [];
   state.scrollElement = null;
   state.eventsEnabled = false;
@@ -1012,14 +1012,14 @@ function removeEventListeners(reference, state) {
 
 /**
  * It will remove resize/scroll events and won't recalculate popper position
- * when they are triggered. It also won't trigger `onUpfecha` callback anymore,
- * unless you call `upfecha` method manually.
+ * when they are triggered. It also won't trigger `onUpdate` callback anymore,
+ * unless you call `update` method manually.
  * @method
  * @memberof Popper
  */
 function disableEventListeners() {
   if (this.state.eventsEnabled) {
-    cancelAnimationFrame(this.scheduleUpfecha);
+    cancelAnimationFrame(this.scheduleUpdate);
     this.state = removeEventListeners(this.reference, this.state);
   }
 }
@@ -1076,7 +1076,7 @@ function setAttributes(element, attributes) {
 /**
  * @function
  * @memberof Modifiers
- * @argument {Object} data - The data object generated by `upfecha` method
+ * @argument {Object} data - The data object generated by `update` method
  * @argument {Object} data.styles - List of style properties - values to apply to popper element
  * @argument {Object} data.attributes - List of attribute properties - values to apply to popper element
  * @argument {Object} options - Modifiers configuration and options
@@ -1132,7 +1132,7 @@ function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
 /**
  * @function
  * @memberof Popper.Utils
- * @argument {Object} data - The data object generated by `upfecha` method
+ * @argument {Object} data - The data object generated by `update` method
  * @argument {Boolean} shouldRound - If the offsets should be rounded at all
  * @returns {Object} The popper's position offsets rounded
  *
@@ -1177,7 +1177,7 @@ const isFirefox = isBrowser && /Firefox/i.test(navigator.userAgent);
 /**
  * @function
  * @memberof Modifiers
- * @argument {Object} data - The data object generated by `upfecha` method
+ * @argument {Object} data - The data object generated by `update` method
  * @argument {Object} options - Modifiers configuration and options
  * @returns {Object} The data object, properly modified
  */
@@ -1186,7 +1186,7 @@ function computeStyle(data, options) {
   const { popper } = data.offsets;
 
   // Remove this legacy support in Popper.js v2
-  const legacyGpuAccelerationOption = find(data.instance.modifiers, modifier => modifier.nombre === 'applyStyle').gpuAcceleration;
+  const legacyGpuAccelerationOption = find(data.instance.modifiers, modifier => modifier.name === 'applyStyle').gpuAcceleration;
   if (legacyGpuAccelerationOption !== undefined) {
     console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!');
   }
@@ -1208,7 +1208,7 @@ function computeStyle(data, options) {
   // if gpuAcceleration is set to `true` and transform is supported,
   //  we use `translate3d` to apply the position to the popper we
   // automatically use the supported prefixed version if needed
-  const prefixedProperty = getSupportedPropertynombre('transform');
+  const prefixedProperty = getSupportedPropertyName('transform');
 
   // now, let's make a step back and look at this code closely (wtf?)
   // If the content of the popper grows once it's been positioned, it
@@ -1223,7 +1223,7 @@ function computeStyle(data, options) {
   if (sideA === 'bottom') {
     // when offsetParent is <html> the positioning is relative to the bottom of the screen (excluding the scrollbar)
     // and not the bottom of the html element
-    if (offsetParent.nodenombre === 'HTML') {
+    if (offsetParent.nodeName === 'HTML') {
       top = -offsetParent.clientHeight + offsets.bottom;
     } else {
       top = -offsetParentRect.height + offsets.bottom;
@@ -1232,7 +1232,7 @@ function computeStyle(data, options) {
     top = offsets.top;
   }
   if (sideB === 'right') {
-    if (offsetParent.nodenombre === 'HTML') {
+    if (offsetParent.nodeName === 'HTML') {
       left = -offsetParent.clientWidth + offsets.right;
     } else {
       left = -offsetParentRect.width + offsets.right;
@@ -1259,7 +1259,7 @@ function computeStyle(data, options) {
     'x-placement': data.placement
   };
 
-  // Upfecha `data` attributes, styles and arrowStyles
+  // Update `data` attributes, styles and arrowStyles
   data.attributes = _extends({}, attributes, data.attributes);
   data.styles = _extends({}, styles, data.styles);
   data.arrowStyles = _extends({}, data.offsets.arrow, data.arrowStyles);
@@ -1273,20 +1273,20 @@ function computeStyle(data, options) {
  * @method
  * @memberof Popper.Utils
  * @param {Array} modifiers - list of modifiers
- * @param {String} requestingnombre - nombre of requesting modifier
- * @param {String} requestednombre - nombre of requested modifier
+ * @param {String} requestingName - name of requesting modifier
+ * @param {String} requestedName - name of requested modifier
  * @returns {Boolean}
  */
-function isModifierRequired(modifiers, requestingnombre, requestednombre) {
-  const requesting = find(modifiers, ({ nombre }) => nombre === requestingnombre);
+function isModifierRequired(modifiers, requestingName, requestedName) {
+  const requesting = find(modifiers, ({ name }) => name === requestingName);
 
   const isRequired = !!requesting && modifiers.some(modifier => {
-    return modifier.nombre === requestednombre && modifier.enabled && modifier.order < requesting.order;
+    return modifier.name === requestedName && modifier.enabled && modifier.order < requesting.order;
   });
 
   if (!isRequired) {
-    const requesting = `\`${requestingnombre}\``;
-    const requested = `\`${requestednombre}\``;
+    const requesting = `\`${requestingName}\``;
+    const requested = `\`${requestedName}\``;
     console.warn(`${requested} modifier is required by ${requesting} modifier in order to work, be sure to include it before ${requesting}!`);
   }
   return isRequired;
@@ -1295,7 +1295,7 @@ function isModifierRequired(modifiers, requestingnombre, requestednombre) {
 /**
  * @function
  * @memberof Modifiers
- * @argument {Object} data - The data object generated by upfecha method
+ * @argument {Object} data - The data object generated by update method
  * @argument {Object} options - Modifiers configuration and options
  * @returns {Object} The data object, properly modified
  */
@@ -1353,7 +1353,7 @@ function arrow(data, options) {
   // compute center of the popper
   const center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
 
-  // Compute the sideValue using the upfechad popper offsets
+  // Compute the sideValue using the updated popper offsets
   // take popper margin in account because we don't have this info available
   const css = getStyleComputedProperty(data.instance.popper);
   const popperMarginSide = parseFloat(css[`margin${sideCapitalized}`]);
@@ -1449,7 +1449,7 @@ const BEHAVIORS = {
 /**
  * @function
  * @memberof Modifiers
- * @argument {Object} data - The data object generated by upfecha method
+ * @argument {Object} data - The data object generated by update method
  * @argument {Object} options - Modifiers configuration and options
  * @returns {Object} The data object, properly modified
  */
@@ -1546,7 +1546,7 @@ function flip(data, options) {
 /**
  * @function
  * @memberof Modifiers
- * @argument {Object} data - The data object generated by upfecha method
+ * @argument {Object} data - The data object generated by update method
  * @argument {Object} options - Modifiers configuration and options
  * @returns {Object} The data object, properly modified
  */
@@ -1642,7 +1642,7 @@ function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
   const useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
 
   // Split the offset string to obtain a list of values and operands
-  // The regex direcciones values with the plus or minus sign in front (+10, -20, etc)
+  // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
   const fragments = offset.split(/(\+|\-)/).map(frag => frag.trim());
 
   // Detect if the offset string contains a pair of values or a single one
@@ -1697,10 +1697,10 @@ function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
 /**
  * @function
  * @memberof Modifiers
- * @argument {Object} data - The data object generated by upfecha method
+ * @argument {Object} data - The data object generated by update method
  * @argument {Object} options - Modifiers configuration and options
  * @argument {Number|String} options.offset=0
- * The offset value as described in the modifier descripcion
+ * The offset value as described in the modifier description
  * @returns {Object} The data object, properly modified
  */
 function offset(data, { offset }) {
@@ -1735,7 +1735,7 @@ function offset(data, { offset }) {
 /**
  * @function
  * @memberof Modifiers
- * @argument {Object} data - The data object generated by `upfecha` method
+ * @argument {Object} data - The data object generated by `update` method
  * @argument {Object} options - Modifiers configuration and options
  * @returns {Object} The data object, properly modified
  */
@@ -1752,7 +1752,7 @@ function preventOverflow(data, options) {
   // NOTE: DOM access here
   // resets the popper's position so that the document size can be calculated excluding
   // the size of the popper element itself
-  const transformProp = getSupportedPropertynombre('transform');
+  const transformProp = getSupportedPropertyName('transform');
   const popperStyles = data.instance.popper.style; // assignment to help minification
   const { top, left, [transformProp]: transform } = popperStyles;
   popperStyles.top = '';
@@ -1803,7 +1803,7 @@ function preventOverflow(data, options) {
 /**
  * @function
  * @memberof Modifiers
- * @argument {Object} data - The data object generated by `upfecha` method
+ * @argument {Object} data - The data object generated by `update` method
  * @argument {Object} options - Modifiers configuration and options
  * @returns {Object} The data object, properly modified
  */
@@ -1835,7 +1835,7 @@ function shift(data) {
 /**
  * @function
  * @memberof Modifiers
- * @argument {Object} data - The data object generated by upfecha method
+ * @argument {Object} data - The data object generated by update method
  * @argument {Object} options - Modifiers configuration and options
  * @returns {Object} The data object, properly modified
  */
@@ -1845,7 +1845,7 @@ function hide(data) {
   }
 
   const refRect = data.offsets.reference;
-  const bound = find(data.instance.modifiers, modifier => modifier.nombre === 'preventOverflow').boundaries;
+  const bound = find(data.instance.modifiers, modifier => modifier.name === 'preventOverflow').boundaries;
 
   if (refRect.bottom < bound.top || refRect.left > bound.right || refRect.top > bound.bottom || refRect.right < bound.left) {
     // Avoid unnecessary DOM access if visibility hasn't changed
@@ -1871,7 +1871,7 @@ function hide(data) {
 /**
  * @function
  * @memberof Modifiers
- * @argument {Object} data - The data object generated by `upfecha` method
+ * @argument {Object} data - The data object generated by `update` method
  * @argument {Object} options - Modifiers configuration and options
  * @returns {Object} The data object, properly modified
  */
@@ -1894,11 +1894,11 @@ function inner(data) {
 /**
  * Modifier function, each modifier can have a function of this type assigned
  * to its `fn` property.<br />
- * These functions will be called on each upfecha, this means that you must
+ * These functions will be called on each update, this means that you must
  * make sure they are performant enough to avoid performance bottlenecks.
  *
  * @function ModifierFn
- * @argument {dataObject} data - The data object generated by `upfecha` method
+ * @argument {dataObject} data - The data object generated by `update` method
  * @argument {Object} options - Modifiers configuration and options
  * @returns {dataObject} The data object, properly modified
  */
@@ -1910,7 +1910,7 @@ function inner(data) {
  *
  * Usually you don't want to override the `order`, `fn` and `onLoad` props.
  * All the other properties are configurations that could be tweaked.
- * @nombrespace modifiers
+ * @namespace modifiers
  */
 var modifiers = {
   /**
@@ -1976,7 +1976,7 @@ var modifiers = {
     /** @prop {ModifierFn} */
     fn: offset,
     /** @prop {Number|String} offset=0
-     * The offset value as described in the modifier descripcion
+     * The offset value as described in the modifier description
      */
     offset: 0
   },
@@ -2071,7 +2071,7 @@ var modifiers = {
    *
    * Requires the `preventOverflow` modifier before it in order to work.
    *
-   * **NOTE:** this modifier will interrupt the current upfecha cycle and will
+   * **NOTE:** this modifier will interrupt the current update cycle and will
    * restart it if it detects the need to flip the placement.
    * @memberof modifiers
    * @inner
@@ -2233,8 +2233,8 @@ var modifiers = {
 
 /**
  * The `dataObject` is an object containing all the information used by Popper.js.
- * This object is passed to modifiers and to the `onCreate` and `onUpfecha` callbacks.
- * @nombre dataObject
+ * This object is passed to modifiers and to the `onCreate` and `onUpdate` callbacks.
+ * @name dataObject
  * @property {Object} data.instance The Popper.js instance
  * @property {String} data.placement Placement applied to popper
  * @property {String} data.originalPlacement Placement originally defined on init
@@ -2301,14 +2301,14 @@ var Defaults = {
   onCreate: () => {},
 
   /**
-   * Callback called when the popper is upfechad. This callback is not called
+   * Callback called when the popper is updated. This callback is not called
    * on the initialization/creation of the popper, but only on subsequent
-   * upfechas.<br />
+   * updates.<br />
    * By default, it is set to no-op.<br />
    * Access Popper.js instance with `data.instance`.
-   * @prop {onUpfecha}
+   * @prop {onUpdate}
    */
-  onUpfecha: () => {},
+  onUpdate: () => {},
 
   /**
    * List of modifiers used to modify the offsets before they are applied to the popper.
@@ -2324,7 +2324,7 @@ var Defaults = {
  */
 
 /**
- * @callback onUpfecha
+ * @callback onUpdate
  * @param {dataObject} data
  */
 
@@ -2340,10 +2340,10 @@ class Popper {
    * @return {Object} instance - The generated Popper.js instance
    */
   constructor(reference, popper, options = {}) {
-    this.scheduleUpfecha = () => requestAnimationFrame(this.upfecha);
+    this.scheduleUpdate = () => requestAnimationFrame(this.update);
 
-    // make upfecha() debounced, so that it only runs at most once-per-tick
-    this.upfecha = debounce(this.upfecha.bind(this));
+    // make update() debounced, so that it only runs at most once-per-tick
+    this.update = debounce(this.update.bind(this));
 
     // with {} we create a new object with the options inside it
     this.options = _extends({}, Popper.Defaults, options);
@@ -2361,33 +2361,33 @@ class Popper {
 
     // Deep merge modifiers options
     this.options.modifiers = {};
-    Object.keys(_extends({}, Popper.Defaults.modifiers, options.modifiers)).forEach(nombre => {
-      this.options.modifiers[nombre] = _extends({}, Popper.Defaults.modifiers[nombre] || {}, options.modifiers ? options.modifiers[nombre] : {});
+    Object.keys(_extends({}, Popper.Defaults.modifiers, options.modifiers)).forEach(name => {
+      this.options.modifiers[name] = _extends({}, Popper.Defaults.modifiers[name] || {}, options.modifiers ? options.modifiers[name] : {});
     });
 
     // Refactoring modifiers' list (Object => Array)
-    this.modifiers = Object.keys(this.options.modifiers).map(nombre => _extends({
-      nombre
-    }, this.options.modifiers[nombre]))
+    this.modifiers = Object.keys(this.options.modifiers).map(name => _extends({
+      name
+    }, this.options.modifiers[name]))
     // sort the modifiers by order
     .sort((a, b) => a.order - b.order);
 
     // modifiers have the ability to execute arbitrary code when Popper.js get inited
     // such code is executed in the same order of its modifier
     // they could add new properties to their options configuration
-    // BE AWARE: don't add options to `options.modifiers.nombre` but to `modifierOptions`!
+    // BE AWARE: don't add options to `options.modifiers.name` but to `modifierOptions`!
     this.modifiers.forEach(modifierOptions => {
       if (modifierOptions.enabled && isFunction(modifierOptions.onLoad)) {
         modifierOptions.onLoad(this.reference, this.popper, this.options, modifierOptions, this.state);
       }
     });
 
-    // fire the first upfecha to position the popper in the right place
-    this.upfecha();
+    // fire the first update to position the popper in the right place
+    this.update();
 
     const eventsEnabled = this.options.eventsEnabled;
     if (eventsEnabled) {
-      // setup event listeners, they will take care of upfecha the position in specific situations
+      // setup event listeners, they will take care of update the position in specific situations
       this.enableEventListeners();
     }
 
@@ -2396,8 +2396,8 @@ class Popper {
 
   // We can't use class properties because they don't get listed in the
   // class prototype and break stuff like Sinon stubs
-  upfecha() {
-    return upfecha.call(this);
+  update() {
+    return update.call(this);
   }
   destroy() {
     return destroy.call(this);
@@ -2410,8 +2410,8 @@ class Popper {
   }
 
   /**
-   * Schedules an upfecha. It will run on the next UI upfecha available.
-   * @method scheduleUpfecha
+   * Schedules an update. It will run on the next UI update available.
+   * @method scheduleUpdate
    * @memberof Popper
    */
 
@@ -2445,7 +2445,7 @@ class Popper {
  * ```
  *
  * NB: This feature isn't supported in Internet Explorer 10.
- * @nombre referenceObject
+ * @name referenceObject
  * @property {Function} data.getBoundingClientRect
  * A function that returns a set of coordinates compatible with the native `getBoundingClientRect` method.
  * @property {number} data.clientWidth

@@ -21,19 +21,19 @@ CodeMirror.defineMode("mirc", function() {
     return obj;
   }
   var specials = parseWords("$! $$ $& $? $+ $abook $abs $active $activecid " +
-                            "$activewid $direccion $addtok $agent $agentname $agentstat $agentver " +
+                            "$activewid $address $addtok $agent $agentname $agentstat $agentver " +
                             "$alias $and $anick $ansi2mirc $aop $appactive $appstate $asc $asctime " +
                             "$asin $atan $avoice $away $awaymsg $awaytime $banmask $base $bfind " +
                             "$binoff $biton $bnick $bvar $bytes $calc $cb $cd $ceil $chan $chanmodes " +
                             "$chantypes $chat $chr $cid $clevel $click $cmdbox $cmdline $cnick $color " +
                             "$com $comcall $comchan $comerr $compact $compress $comval $cos $count " +
-                            "$cr $crc $creq $crlf $ctime $ctimer $ctrlenter $fecha $day $daylight " +
+                            "$cr $crc $creq $crlf $ctime $ctimer $ctrlenter $date $day $daylight " +
                             "$dbuh $dbuw $dccignore $dccport $dde $ddename $debug $decode $decompress " +
                             "$deltok $devent $dialog $did $didreg $didtok $didwm $disk $dlevel $dll " +
                             "$dllcall $dname $dns $duration $ebeeps $editbox $emailaddr $encode $error " +
                             "$eval $event $exist $feof $ferr $fgetc $file $filename $filtered $finddir " +
                             "$finddirn $findfile $findfilen $findtok $fline $floor $fopen $fread $fserve " +
-                            "$fulldireccion $fullfecha $fullname $fullscreen $get $getdir $getdot $gettok $gmt " +
+                            "$fulladdress $fulldate $fullname $fullscreen $get $getdir $getdot $gettok $gmt " +
                             "$group $halted $hash $height $hfind $hget $highlight $hnick $hotline " +
                             "$hotlinepos $ial $ialchan $ibl $idle $iel $ifmatch $ignore $iif $iil " +
                             "$inelipse $ini $inmidi $inpaste $inpoly $input $inrect $inroundrect " +
@@ -41,7 +41,7 @@ CodeMirror.defineMode("mirc", function() {
                             "$isid $islower $istok $isupper $keychar $keyrpt $keyval $knick $lactive " +
                             "$lactivecid $lactivewid $left $len $level $lf $line $lines $link $lock " +
                             "$lock $locked $log $logstamp $logstampfmt $longfn $longip $lower $ltimer " +
-                            "$mdireccion $mask $matchkey $matchtok $md5 $me $menu $menubar $menucontext " +
+                            "$maddress $mask $matchkey $matchtok $md5 $me $menu $menubar $menucontext " +
                             "$menutype $mid $middir $mircdir $mircexe $mircini $mklogfn $mnick $mode " +
                             "$modefirst $modelast $modespl $mouse $msfile $network $newnick $nick $nofile " +
                             "$nopath $noqt $not $notags $notify $null $numeric $numok $oline $onpoly " +
@@ -75,7 +75,7 @@ CodeMirror.defineMode("mirc", function() {
                             "say scid scon server set showmirc signam sline sockaccept sockclose socklist " +
                             "socklisten sockmark sockopen sockpause sockread sockrename sockudp sockwrite " +
                             "sound speak splay sreq strip switchbar timer timestamp titlebar tnick tokenize " +
-                            "toolbar topic tray treebar ulist unload unset unsetall upfechanl url uwho " +
+                            "toolbar topic tray treebar ulist unload unset unsetall updatenl url uwho " +
                             "var vcadd vcmd vcrem vol while whois window winhelp write writeint if isalnum " +
                             "isalpha isaop isavoice isban ischan ishop isignore isin isincs isletter islower " +
                             "isnotify isnum ison isop isprotect isreg isupper isvoice iswm iswmcs " +
@@ -113,7 +113,7 @@ CodeMirror.defineMode("mirc", function() {
     }
     else if (ch == ";" && !state.inParams) {
       stream.skipToEnd();
-      return "comentario";
+      return "comment";
     }
     else if (ch == '"') {
       stream.eat(/"/);
@@ -159,7 +159,7 @@ CodeMirror.defineMode("mirc", function() {
       }
       maybeEnd = (ch == "*");
     }
-    return "comentario";
+    return "comment";
   }
   function tokenUnparsed(stream, state) {
     var maybeEnd = 0, ch;

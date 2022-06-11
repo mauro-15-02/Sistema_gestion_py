@@ -30,7 +30,7 @@
         windowScroll: function() { reset(cm); },
         rects: null,
         mouseX: null, mouseY: null,
-        willUpfecha: false
+        willUpdate: false
       };
       CodeMirror.on(cm.getWrapperElement(), "mousemove", data.mousemove);
       CodeMirror.on(cm.getWrapperElement(), "mouseout", data.mouseout);
@@ -48,33 +48,33 @@
       data.mouseX = event.clientX;
       data.mouseY = event.clientY;
     }
-    scheduleUpfecha(cm);
+    scheduleUpdate(cm);
   }
 
   function mouseout(cm, event) {
     if (!cm.getWrapperElement().contains(event.relatedTarget)) {
       var data = cm.state.selectionPointer;
       data.mouseX = data.mouseY = null;
-      scheduleUpfecha(cm);
+      scheduleUpdate(cm);
     }
   }
 
   function reset(cm) {
     cm.state.selectionPointer.rects = null;
-    scheduleUpfecha(cm);
+    scheduleUpdate(cm);
   }
 
-  function scheduleUpfecha(cm) {
-    if (!cm.state.selectionPointer.willUpfecha) {
-      cm.state.selectionPointer.willUpfecha = true;
+  function scheduleUpdate(cm) {
+    if (!cm.state.selectionPointer.willUpdate) {
+      cm.state.selectionPointer.willUpdate = true;
       setTimeout(function() {
-        upfecha(cm);
-        cm.state.selectionPointer.willUpfecha = false;
+        update(cm);
+        cm.state.selectionPointer.willUpdate = false;
       }, 50);
     }
   }
 
-  function upfecha(cm) {
+  function update(cm) {
     var data = cm.state.selectionPointer;
     if (!data) return;
     if (data.rects == null && data.mouseX != null) {

@@ -39,7 +39,7 @@ CodeMirror.defineMode("dylan", function(_config) {
     // Words that introduce trickier definitions like "define method".
     // These require special definitions to be added to startExpressions
     otherParameterizedDefinition: ["method", "function",
-                                   "C-variable", "C-direccion"
+                                   "C-variable", "C-address"
                                   ],
 
     // Words that introduce module constant definitions.
@@ -176,7 +176,7 @@ CodeMirror.defineMode("dylan", function(_config) {
         return chain(stream, state, tokenComment);
       } else if (stream.eat("/")) {
         stream.skipToEnd();
-        return "comentario";
+        return "comment";
       }
       stream.backUp(1);
     }
@@ -308,7 +308,7 @@ CodeMirror.defineMode("dylan", function(_config) {
       maybeEnd = (ch == "*");
       maybeNested = (ch == "/");
     }
-    return "comentario";
+    return "comment";
   }
 
   function tokenString(quote, style) {

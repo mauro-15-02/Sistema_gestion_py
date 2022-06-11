@@ -77,7 +77,7 @@ CodeMirror.defineMode("haxe", function(config, parserConfig) {
         return chain(stream, state, haxeTokenComment);
       } else if (stream.eat("/")) {
         stream.skipToEnd();
-        return ret("comentario", "comentario");
+        return ret("comment", "comment");
       } else {
         stream.eatWhile(isOperatorChar);
         return ret("operator", null, stream.current());
@@ -124,7 +124,7 @@ CodeMirror.defineMode("haxe", function(config, parserConfig) {
       }
       maybeEnd = (ch == "*");
     }
-    return ret("comentario", "comentario");
+    return ret("comment", "comment");
   }
 
   // Parser
@@ -414,7 +414,7 @@ CodeMirror.defineMode("haxe", function(config, parserConfig) {
       }
       if (stream.eatSpace()) return null;
       var style = state.tokenize(stream, state);
-      if (type == "comentario") return style;
+      if (type == "comment") return style;
       state.reAllowed = !!(type == "operator" || type == "keyword c" || type.match(/^[\[{}\(,;:]$/));
       state.kwAllowed = type != '.';
       return parseHaxe(state, style, type, content, stream);
@@ -456,10 +456,10 @@ CodeMirror.defineMode("hxml", function () {
       var ch = stream.peek();
       var sol = stream.sol();
 
-      ///* comentarios */
+      ///* comments */
       if (ch == "#") {
         stream.skipToEnd();
-        return "comentario";
+        return "comment";
       }
       if (sol && ch == "-") {
         var style = "variable-2";
