@@ -25,7 +25,7 @@ if (isset($_SESSION['login_id']))
     <div class="login-logo">
       <a href="#" class="text-white"><b><?php echo $_SESSION['system']['name'] ?></b></a>
       <br>
-      <img src="logo.png" alt="..." width="50%">
+      <img src="logi.png" alt="..." width="50%">
     </div>
     <!-- /.login-logo -->
     <div class="card">
